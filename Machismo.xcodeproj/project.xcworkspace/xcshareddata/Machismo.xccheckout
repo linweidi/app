@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>23BB7F71-0BF1-497C-A846-85F0B5D8AA97</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Machismo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>5A344718-4B5C-42F0-BC63-118B32776586</key>
+		<string>ssh://github.com/linweidi/app.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Machismo.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>5A344718-4B5C-42F0-BC63-118B32776586</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/linweidi/app.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>5A344718-4B5C-42F0-BC63-118B32776586</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>5A344718-4B5C-42F0-BC63-118B32776586</string>
+			<key>IDESourceControlWCCName</key>
+			<string>app</string>
+		</dict>
+	</array>
+</dict>
+</plist>
