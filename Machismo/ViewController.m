@@ -8,7 +8,7 @@
 
 #import "PlayingCardDeck.h"
 #import "ViewController.h"
-#import "CardMatchingGame.h"
+#import "ThreeCardMatchingGame.h"
 #import "PlayingCard.h"
 
 @interface ViewController ()
@@ -16,23 +16,76 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 
-
-@property (nonatomic) int flipCount;
 @property (nonatomic, strong) Deck * deck;
-@property (nonatomic, strong) CardMatchingGame * game;
+@property (nonatomic, strong) ThreeCardMatchingGame * game;
+
+@property (weak, nonatomic) IBOutlet UISegmentedControl *matchMode;
+@property (weak, nonatomic) IBOutlet UISwitch *enableSwitch;
+@property (weak, nonatomic) IBOutlet UIButton *redealButton;
+
+@property (weak, nonatomic) IBOutlet UILabel *matchResult;
+@property (weak, nonatomic) IBOutlet UISlider *slider;
+
+@property (nonatomic, strong) NSMutableArray * textArray;
 
 @end
 
 @implementation ViewController
 
+- (void) viewDidLoad {
+    [super viewDidLoad];
+    [self.slider removeConstraints:self.view.constraints];
+    CGAffineTransform trans = CGAffineTransformMakeRotation(M_PI*-0.5);
+    self.slider.translatesAutoresizingMaskIntoConstraints = YES;
+    self.slider.transform = trans;
+}
 
-
-- (CardMatchingGame *) game {
+- (ThreeCardMatchingGame *) game {
     if(!_game) {
-        _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[self createDeck]];
+        _game = [[ThreeCardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[self createDeck]];
     }
     
     return _game;
+}
+
+- (IBAction)slideChangeValue:(UISlider *)sender {
+        self.matchResult.text = self.textArray[(int)(sender.value)];
+}
+
+static const int MAX_ARRAY_NUM = 10;
+
+- (NSMutableArray *) textArray {
+    if(!_textArray) {
+        _textArray = [[NSMutableArray alloc] init];
+        
+        for(int i=0; i< MAX_ARRAY_NUM; i++) {
+            [_textArray addObject:@"No Record!"];
+        }
+        
+    }
+    return _textArray;
+}
+
+- (IBAction)switchChangeMode:(UISegmentedControl *)sender {
+    if(self.matchMode.selectedSegmentIndex == 0 ) {
+        NSLog(@"seleted segment index is 0");
+        self.game.matchMode = NO ;
+    }
+    else {
+        NSLog(@"seleted segment index is 1");
+        self.game.matchMode = YES;
+    }
+    
+    
+}
+
+- (IBAction)switchEnable:(UISwitch *)sender {
+    if([sender isOn]) {
+        self.redealButton.enabled = YES;
+    }
+    else {
+        self.redealButton.enabled = NO;
+    }
 }
 
 - (IBAction)touchCardButton:(UIButton *)sender {
@@ -66,33 +119,28 @@
 //        }
 //
 //    }
+    self.matchMode.enabled = NO;
+    
     int chosenButtonIndex = [self.cardButtons indexOfObject:sender];
     
     [self.game chooseCardAtIndex:chosenButtonIndex];
     //Card  * card = [self.game cardAtIndex:chosenButtonIndex];
     
-    [self updateUI];
-//    if(card) {
-//        if(card.isMatched) {
-//            UIImage *image = [UIImage imageNamed:@"cardfront"];
-//            [sender setBackgroundImage:image forState:UIControlStateNormal];
-//            [sender setTitle:card.contents forState:UIControlStateNormal];
-//        }
-//        else {
-//            if(card.isChosen) {
-//                UIImage *image = [UIImage imageNamed:@"cardfront"];
-//                [sender setBackgroundImage:image forState:UIControlStateNormal];
-//                [sender setTitle:card.contents forState:UIControlStateNormal];
-//            }
-//            else {
-//                UIImage *image = [UIImage imageNamed:@"cardback"];
-//                [sender setBackgroundImage:image forState:UIControlStateNormal];
-//                [sender setTitle:@"" forState:UIControlStateNormal];
-//            }
-//        }
-//        
-//    }
+	[self storeLabelText];
     
+    [self updateUI];
+
+    
+}
+
+- (void) storeLabelText {
+    [self.textArray addObject:self.game.labelText];
+    if([self.textArray count]>MAX_ARRAY_NUM){
+        for(int i=0; i<MAX_ARRAY_NUM; i++) {
+            self.textArray[i] = self.textArray[i+1];
+        }
+        [self.textArray removeLastObject];
+    }
 }
 
 - (void) updateUI {
@@ -109,6 +157,8 @@
         
         
     }
+    
+    self.matchResult.text = self.game.labelText;
 }
 
 - (NSString *) titleForCard: (Card *)card {
@@ -125,5 +175,28 @@
 - (Deck *)createDeck {
     return [[PlayingCardDeck alloc] init];
 }
+
+- (IBAction)touchForRedeal:(UIButton *)sender {
+    self.deck = [self createDeck];
+    self.game = [[ThreeCardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:self.deck];
+    [self updateUI];
+    
+    if(self.matchMode.selectedSegmentIndex == 0 ) {
+        NSLog(@"seleted segment index is 0");
+        self.game.matchMode = NO ;
+    }
+    else {
+        NSLog(@"seleted segment index is 1");
+        self.game.matchMode = YES;
+    }
+    
+    //enable switch
+    self.matchMode.enabled = YES;
+}
+
+//- (void)resetUI {
+//    [self.scoreLabel setText:[NSString stringWithFormat:@"Score: %d", self.game.score]];
+//    
+//}
 
 @end

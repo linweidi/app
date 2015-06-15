@@ -53,6 +53,8 @@
 - (int) match: (NSArray *) otherCards {
     int score = 0;
     
+    NSAssert( [otherCards count] == 1 || [otherCards count] == 2, @"count out of bound");
+    
     if([otherCards count] == 1) {
         PlayingCard *otherCard  = [otherCards firstObject];
         if(otherCard.rank == self.rank) {
@@ -62,8 +64,19 @@
             score = 1;
         }
     }
+    else {
+        // count is two
+        PlayingCard * secCard = [otherCards firstObject];
+        PlayingCard * thirdCard = [otherCards objectAtIndex:1];
+        int matchOne = [self match: @[secCard]];
+        int matchTwo = [self match:@[thirdCard]];
+        int matchThird = [secCard match:@[thirdCard]];
+        score = matchOne + matchTwo + matchThird;
+    }
     
     return score;
 }
+
+
 
 @end

@@ -12,6 +12,7 @@
 
 @interface CardMatchingGame : NSObject
 
+@property (nonatomic) BOOL matchMode; // 2-NO, 3-YES
 
 //designated initializer
 - (instancetype)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck;
@@ -20,6 +21,13 @@
 
 - (Card *)cardAtIndex:(NSUInteger)index;
 
+
+- (void) matchTwoCards: (Card *)card ;
+- (void) matchThreeCards: (Card *)card ;
+
 @property (nonatomic, readonly) NSInteger score;
+
+@property (nonatomic) NSInteger indexSecCard;
+@property (nonatomic) NSInteger indexThirdCard;
 
 @end
