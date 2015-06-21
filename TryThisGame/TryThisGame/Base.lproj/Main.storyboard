@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="dEf-Ue-43Z">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <scenes>
+        <!--Tab Bar Controller-->
+        <scene sceneID="umg-2c-pOh">
+            <objects>
+                <tabBarController definesPresentationContext="YES" id="dEf-Ue-43Z" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="aKJ-YS-wC3">
+                        <rect key="frame" x="129" y="330" width="163" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="ui7-0O-1w0" kind="relationship" relationship="viewControllers" id="esT-FZ-jnU"/>
+                        <segue destination="zFg-EJ-iCn" kind="relationship" relationship="viewControllers" id="IKo-TG-Cd9"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BE3-C6-VGJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-201" y="-89"/>
+        </scene>
+        <!--Card Game View Controller - Poke Card Match-->
+        <scene sceneID="xJi-yc-DJc">
+            <objects>
+                <viewController title="Poke Card Match" id="ox3-4X-FeG" customClass="CardGameViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MgL-Bm-Tr7"/>
+                        <viewControllerLayoutGuide type="bottom" id="HMi-bn-m7y"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="C5S-Qj-nS2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9bE-wb-rd4">
+                                <rect key="frame" x="21" y="86" width="60" height="70"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchCardButton:" destination="ox3-4X-FeG" eventType="touchUpInside" id="7LU-x1-o68"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xOz-Gn-YnC">
+                                <rect key="frame" x="96" y="86" width="60" height="70"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchCardButton:" destination="ox3-4X-FeG" eventType="touchUpInside" id="ZXc-AV-gb9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcV-l5-vhf">
+                                <rect key="frame" x="169" y="86" width="60" height="70"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchCardButton:" destination="ox3-4X-FeG" eventType="touchUpInside" id="i44-l9-g4Y"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ufw-qc-V2D">
+                                <rect key="frame" x="243" y="86" width="60" height="70"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchCardButton:" destination="ox3-4X-FeG" eventType="touchUpInside" id="8GU-Gg-U5h"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GgK-FV-v9M">
+                                <rect key="frame" x="21" y="178" width="60" height="70"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchCardButton:" destination="ox3-4X-FeG" eventType="touchUpInside" id="lpY-Ds-49P"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iul-AF-tWg">
+                                <rect key="frame" x="96" y="178" width="60" height="70"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchCardButton:" destination="ox3-4X-FeG" eventType="touchUpInside" id="kLI-Rh-3J9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oHE-d3-1BE">
+                                <rect key="frame" x="169" y="178" width="60" height="70"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchCardButton:" destination="ox3-4X-FeG" eventType="touchUpInside" id="xPu-dj-PVu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGU-gn-vH0">
+                                <rect key="frame" x="243" y="178" width="60" height="70"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchCardButton:" destination="ox3-4X-FeG" eventType="touchUpInside" id="Dwr-kX-iGc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YPO-4q-uKb">
+                                <rect key="frame" x="21" y="270" width="60" height="70"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchCardButton:" destination="ox3-4X-FeG" eventType="touchUpInside" id="dnm-CT-sr7"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kI7-Ks-5bo">
+                                <rect key="frame" x="96" y="270" width="60" height="70"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchCardButton:" destination="ox3-4X-FeG" eventType="touchUpInside" id="m1g-w8-cs8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="acC-ZM-iD3">
+                                <rect key="frame" x="169" y="270" width="60" height="70"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchCardButton:" destination="ox3-4X-FeG" eventType="touchUpInside" id="c6a-dY-baS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S6v-U6-lG8">
+                                <rect key="frame" x="243" y="270" width="60" height="70"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchCardButton:" destination="ox3-4X-FeG" eventType="touchUpInside" id="0RB-ab-2bF"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HZU-FW-lGg">
+                                <rect key="frame" x="25" y="377" width="127" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="guT-RH-H16">
+                                <rect key="frame" x="215" y="374" width="85" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Re-Deal">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchForRedeal:" destination="ox3-4X-FeG" eventType="touchUpInside" id="NZJ-jt-pDi"/>
+                                </connections>
+                            </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="btv-2C-hSi">
+                                <rect key="frame" x="193" y="333" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="switchEnable:" destination="ox3-4X-FeG" eventType="valueChanged" id="gJr-xU-Jig"/>
+                                </connections>
+                            </switch>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0Lj-E2-4Gu">
+                                <rect key="frame" x="68" y="297" width="232" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <segments>
+                                    <segment title="2-card-match"/>
+                                    <segment title="3-card-match"/>
+                                </segments>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="switchChangeMode:" destination="ox3-4X-FeG" eventType="valueChanged" id="RAb-z8-ZT7"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enable" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="idx-CQ-b1X">
+                                <rect key="frame" x="149" y="333" width="53" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="9" minValue="0.0" maxValue="9" translatesAutoresizingMaskIntoConstraints="NO" id="yXp-Wr-aux">
+                                <rect key="frame" x="36" y="328" width="118" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="slideChangeValue:" destination="ox3-4X-FeG" eventType="valueChanged" id="ZKq-hW-dp1"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sit-mi-dxK">
+                                <rect key="frame" x="25" y="345" width="280" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Poke Card Match" id="QbH-rq-ogL">
+                        <barButtonItem key="rightBarButtonItem" title="Record" id="cS4-Co-x8j">
+                            <connections>
+                                <segue destination="2ED-YQ-gbE" kind="push" identifier="Poke Record" id="f2j-Jn-UUy"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="enableLabel" destination="idx-CQ-b1X" id="jou-Bp-4W1"/>
+                        <outlet property="enableSwitch" destination="btv-2C-hSi" id="0Kf-pk-VFz"/>
+                        <outlet property="matchMode" destination="0Lj-E2-4Gu" id="Jbr-gs-9bE"/>
+                        <outlet property="matchResult" destination="Sit-mi-dxK" id="EpF-VH-bHK"/>
+                        <outlet property="redealButton" destination="guT-RH-H16" id="ZUp-cr-5V1"/>
+                        <outlet property="scoreLabel" destination="HZU-FW-lGg" id="6DC-tZ-PdP"/>
+                        <outlet property="slider" destination="yXp-Wr-aux" id="ygF-v0-WQK"/>
+                        <outletCollection property="cardButtons" destination="S6v-U6-lG8" id="kKj-pa-ep1"/>
+                        <outletCollection property="cardButtons" destination="acC-ZM-iD3" id="RM4-dx-ASf"/>
+                        <outletCollection property="cardButtons" destination="kI7-Ks-5bo" id="h1b-AQ-0KF"/>
+                        <outletCollection property="cardButtons" destination="YPO-4q-uKb" id="M0z-Q4-Q6s"/>
+                        <outletCollection property="cardButtons" destination="qGU-gn-vH0" id="Bdi-Ya-iYx"/>
+                        <outletCollection property="cardButtons" destination="oHE-d3-1BE" id="tEz-5k-iPb"/>
+                        <outletCollection property="cardButtons" destination="iul-AF-tWg" id="0h6-nY-Ap5"/>
+                        <outletCollection property="cardButtons" destination="GgK-FV-v9M" id="IHW-V6-WM1"/>
+                        <outletCollection property="cardButtons" destination="ufw-qc-V2D" id="hSg-cL-Osf"/>
+                        <outletCollection property="cardButtons" destination="wcV-l5-vhf" id="WNk-XY-0Xt"/>
+                        <outletCollection property="cardButtons" destination="xOz-Gn-YnC" id="Y6Q-Bz-WTJ"/>
+                        <outletCollection property="cardButtons" destination="9bE-wb-rd4" id="hkM-0t-8gL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qtS-Fr-OiY" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="793" y="332"/>
+        </scene>
+        <!--Set Card Game View Controller - Set Card Match-->
+        <scene sceneID="yPP-Zi-3fj">
+            <objects>
+                <viewController id="wIH-rq-ebQ" customClass="SetCardGameViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aKE-SI-Mwg"/>
+                        <viewControllerLayoutGuide type="bottom" id="9Ge-GE-RWw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tfr-Bj-ttS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HVO-mS-d8u">
+                                <rect key="frame" x="10" y="73" width="58" height="66"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchCardButton:" destination="wIH-rq-ebQ" eventType="touchUpInside" id="WhH-yp-Ism"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1TD-n9-BRy">
+                                <rect key="frame" x="70" y="73" width="58" height="66"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchCardButton:" destination="wIH-rq-ebQ" eventType="touchUpInside" id="210-uT-fOR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6W3-Ki-WWj">
+                                <rect key="frame" x="131" y="73" width="58" height="66"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchCardButton:" destination="wIH-rq-ebQ" eventType="touchUpInside" id="yN0-Xc-D1y"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcw-IS-zDw">
+                                <rect key="frame" x="191" y="73" width="58" height="66"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchCardButton:" destination="wIH-rq-ebQ" eventType="touchUpInside" id="CRY-o3-pVH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Fz-ZH-Q1N">
+                                <rect key="frame" x="252" y="73" width="58" height="66"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchCardButton:" destination="wIH-rq-ebQ" eventType="touchUpInside" id="nL1-mL-pUw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PTa-Bm-Jf2">
+                                <rect key="frame" x="10" y="147" width="58" height="66"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchCardButton:" destination="wIH-rq-ebQ" eventType="touchUpInside" id="JYl-qm-L2l"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ymA-Ew-1Jw">
+                                <rect key="frame" x="70" y="147" width="58" height="66"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchCardButton:" destination="wIH-rq-ebQ" eventType="touchUpInside" id="BEh-tp-Ipk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nzu-dT-nfT">
+                                <rect key="frame" x="131" y="147" width="58" height="66"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchCardButton:" destination="wIH-rq-ebQ" eventType="touchUpInside" id="tjA-Ik-6sQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZM-s2-Mt5">
+                                <rect key="frame" x="191" y="147" width="58" height="66"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchCardButton:" destination="wIH-rq-ebQ" eventType="touchUpInside" id="xEb-xh-0ZK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G7t-5H-aqP">
+                                <rect key="frame" x="252" y="147" width="58" height="66"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchCardButton:" destination="wIH-rq-ebQ" eventType="touchUpInside" id="RHn-a9-uFl"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QqZ-h6-hCe">
+                                <rect key="frame" x="10" y="221" width="58" height="66"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchCardButton:" destination="wIH-rq-ebQ" eventType="touchUpInside" id="hkd-9g-8VD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DjX-S4-LKu">
+                                <rect key="frame" x="70" y="221" width="58" height="66"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchCardButton:" destination="wIH-rq-ebQ" eventType="touchUpInside" id="B4K-wO-306"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mDk-kA-SFf">
+                                <rect key="frame" x="131" y="221" width="58" height="66"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchCardButton:" destination="wIH-rq-ebQ" eventType="touchUpInside" id="kEY-Ll-pZO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qpl-x0-A4y">
+                                <rect key="frame" x="191" y="221" width="58" height="66"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchCardButton:" destination="wIH-rq-ebQ" eventType="touchUpInside" id="me2-Kf-MHg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3QH-rm-CYo">
+                                <rect key="frame" x="252" y="221" width="58" height="66"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" backgroundImage="cardback">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchCardButton:" destination="wIH-rq-ebQ" eventType="touchUpInside" id="5Hw-kV-9dh"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTd-ws-TJn">
+                                <rect key="frame" x="218" y="327" width="127" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ARy-Y3-Z4T">
+                                <rect key="frame" x="215" y="364" width="85" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Re-Deal">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchForRedeal:" destination="wIH-rq-ebQ" eventType="touchUpInside" id="L6E-Os-LGC"/>
+                                </connections>
+                            </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GOt-af-VIl">
+                                <rect key="frame" x="75" y="357" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="switchEnable:" destination="wIH-rq-ebQ" eventType="valueChanged" id="iav-hj-D7d"/>
+                                </connections>
+                            </switch>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="G2J-sh-nu0">
+                                <rect key="frame" x="78" y="301" width="232" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <segments>
+                                    <segment title="2-card-match"/>
+                                    <segment title="3-card-match"/>
+                                </segments>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="switchChangeMode:" destination="wIH-rq-ebQ" eventType="valueChanged" id="6PT-3a-4tC"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enable" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KFE-eZ-kcz">
+                                <rect key="frame" x="15" y="357" width="53" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="9" minValue="0.0" maxValue="9" translatesAutoresizingMaskIntoConstraints="NO" id="Qfq-fP-QZs">
+                                <rect key="frame" x="8" y="310" width="118" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="slideChangeValue:" destination="wIH-rq-ebQ" eventType="valueChanged" id="ekK-oe-rtJ"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hN2-ka-RgJ">
+                                <rect key="frame" x="20" y="295" width="280" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Set Card Match" id="NCJ-kN-vBs">
+                        <barButtonItem key="rightBarButtonItem" title="Record" id="qkC-gb-9Bg">
+                            <connections>
+                                <segue destination="2ED-YQ-gbE" kind="push" identifier="Set Record" id="atO-4z-UOB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="enableLabel" destination="KFE-eZ-kcz" id="eoW-ts-JsY"/>
+                        <outlet property="enableSwitch" destination="GOt-af-VIl" id="AH4-Vd-9IV"/>
+                        <outlet property="matchMode" destination="G2J-sh-nu0" id="noF-P9-oL2"/>
+                        <outlet property="matchResult" destination="hN2-ka-RgJ" id="Obt-Ig-mV3"/>
+                        <outlet property="redealButton" destination="ARy-Y3-Z4T" id="LdZ-pG-56E"/>
+                        <outlet property="scoreLabel" destination="TTd-ws-TJn" id="s0H-mh-bpG"/>
+                        <outlet property="slider" destination="Qfq-fP-QZs" id="ic9-RD-rgq"/>
+                        <outletCollection property="cardButtons" destination="HVO-mS-d8u" id="j2j-Gh-ZJ3"/>
+                        <outletCollection property="cardButtons" destination="1TD-n9-BRy" id="hJH-nf-rb0"/>
+                        <outletCollection property="cardButtons" destination="6W3-Ki-WWj" id="pa3-ha-d1f"/>
+                        <outletCollection property="cardButtons" destination="wcw-IS-zDw" id="MXf-Jq-sDT"/>
+                        <outletCollection property="cardButtons" destination="6Fz-ZH-Q1N" id="q4l-uU-TOe"/>
+                        <outletCollection property="cardButtons" destination="PTa-Bm-Jf2" id="0s8-rj-MSB"/>
+                        <outletCollection property="cardButtons" destination="ymA-Ew-1Jw" id="XHy-tD-arr"/>
+                        <outletCollection property="cardButtons" destination="Nzu-dT-nfT" id="mv2-jH-JIz"/>
+                        <outletCollection property="cardButtons" destination="sZM-s2-Mt5" id="yVQ-1X-aCG"/>
+                        <outletCollection property="cardButtons" destination="G7t-5H-aqP" id="zsK-J5-uuz"/>
+                        <outletCollection property="cardButtons" destination="QqZ-h6-hCe" id="oJX-Bk-Oye"/>
+                        <outletCollection property="cardButtons" destination="DjX-S4-LKu" id="KDd-Ne-Uig"/>
+                        <outletCollection property="cardButtons" destination="mDk-kA-SFf" id="fde-IY-jRv"/>
+                        <outletCollection property="cardButtons" destination="Qpl-x0-A4y" id="eie-gG-zig"/>
+                        <outletCollection property="cardButtons" destination="3QH-rm-CYo" id="3yo-PP-fsF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TLo-qh-mJW" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="793" y="-352"/>
+        </scene>
+        <!--Text History View Controller - History Record-->
+        <scene sceneID="GtY-cB-oQA">
+            <objects>
+                <viewController id="2ED-YQ-gbE" customClass="TextHistoryViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="866-pJ-Lzo"/>
+                        <viewControllerLayoutGuide type="bottom" id="Oh5-Ai-lFX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RIW-eT-OZW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5K-Df-Go5">
+                                <rect key="frame" x="0.0" y="64" width="320" height="365"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.50196081399917603" blue="0.25098040699958801" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="History Record" id="lcx-UL-d2V"/>
+                    <connections>
+                        <outlet property="textView" destination="O5K-Df-Go5" id="2Wx-W9-JWm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RrN-85-Rwe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1317" y="-9"/>
+        </scene>
+        <!--Navigation Controller - SET-->
+        <scene sceneID="IHE-iS-Z7P">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zFg-EJ-iCn" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="SET" id="9f5-NL-nvu"/>
+                    <toolbarItems/>
+                    <size key="freeformSize" width="320" height="480"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XCW-3B-Bnt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Xaq-zC-LkC">
+                        <rect key="frame" x="0.0" y="436" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="wIH-rq-ebQ" kind="relationship" relationship="rootViewController" id="gjA-Y9-oes"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gpk-1M-5Od" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="294" y="-358"/>
+        </scene>
+        <!--Navigation Controller - MATCH-->
+        <scene sceneID="8tt-qs-f3Y">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ui7-0O-1w0" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="MATCH" id="vtp-lp-f03"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CX3-TV-Oci">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ox3-4X-FeG" kind="relationship" relationship="rootViewController" id="vKC-XO-hJT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="er8-e0-Had" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="286" y="332"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="cardback" width="64" height="96"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="atO-4z-UOB"/>
+    </inferredMetricsTieBreakers>
+</document>
