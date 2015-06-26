@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="daE-TJ-f6Q">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <scenes>
+        <!--Test Play Card View Controller - Poke Card Match-->
+        <scene sceneID="oe9-wS-4MX">
+            <objects>
+                <viewController title="Poke Card Match" id="daE-TJ-f6Q" customClass="TestPlayCardViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vl8-oH-gb0"/>
+                        <viewControllerLayoutGuide type="bottom" id="ebq-vq-cMl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zZM-VY-aTq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOo-cm-SeM">
+                                <rect key="frame" x="20" y="451" width="64" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nGL-ag-Iko">
+                                <rect key="frame" x="215" y="433" width="85" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="85" id="bu1-Nu-XAG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Re-Deal">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CwZ-yx-exq">
+                                <rect key="frame" x="20" y="422" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JXn-t7-B3a">
+                                <rect key="frame" x="0.0" y="20" width="320" height="394"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="eOo-cm-SeM" firstAttribute="top" secondItem="CwZ-yx-exq" secondAttribute="bottom" constant="8" symbolic="YES" id="38U-Uf-ncl"/>
+                            <constraint firstItem="ebq-vq-cMl" firstAttribute="top" secondItem="eOo-cm-SeM" secondAttribute="bottom" constant="8" id="9WL-Ng-MaM"/>
+                            <constraint firstItem="CwZ-yx-exq" firstAttribute="top" secondItem="JXn-t7-B3a" secondAttribute="bottom" constant="8" symbolic="YES" id="DRs-mo-cN0"/>
+                            <constraint firstItem="JXn-t7-B3a" firstAttribute="top" secondItem="vl8-oH-gb0" secondAttribute="bottom" id="GOT-1r-N1x"/>
+                            <constraint firstItem="ebq-vq-cMl" firstAttribute="top" secondItem="nGL-ag-Iko" secondAttribute="bottom" constant="20" symbolic="YES" id="Sq2-bU-ArM"/>
+                            <constraint firstItem="CwZ-yx-exq" firstAttribute="leading" secondItem="eOo-cm-SeM" secondAttribute="leading" id="X9r-Y1-Om6"/>
+                            <constraint firstAttribute="trailing" secondItem="nGL-ag-Iko" secondAttribute="trailing" constant="20" symbolic="YES" id="aFZ-xM-5b8"/>
+                            <constraint firstItem="JXn-t7-B3a" firstAttribute="leading" secondItem="zZM-VY-aTq" secondAttribute="leading" id="bB5-j3-Inn"/>
+                            <constraint firstAttribute="trailing" secondItem="JXn-t7-B3a" secondAttribute="trailing" id="ft9-pU-2qO"/>
+                            <constraint firstItem="CwZ-yx-exq" firstAttribute="trailing" secondItem="nGL-ag-Iko" secondAttribute="trailing" id="kf3-3G-yj5"/>
+                            <constraint firstItem="eOo-cm-SeM" firstAttribute="leading" secondItem="zZM-VY-aTq" secondAttribute="leading" constant="20" symbolic="YES" id="oUi-2x-jht"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="B3j-Mq-2Cl" appends="YES" id="ZiD-VG-gzO"/>
+                            <outletCollection property="gestureRecognizers" destination="fyD-xP-tVw" appends="YES" id="2EI-LE-juf"/>
+                        </connections>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" image="poker game" id="b83-ud-yuC"/>
+                    <navigationItem key="navigationItem" title="Poke Card Match" id="6aF-Rg-ZGZ">
+                        <barButtonItem key="rightBarButtonItem" title="Record" id="wNN-Pl-KHQ"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="JXn-t7-B3a" id="Bb2-iC-Ero"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xqZ-dH-czX" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="B3j-Mq-2Cl">
+                    <connections>
+                        <action selector="tap:" destination="daE-TJ-f6Q" id="FBS-ya-lYg"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="fyD-xP-tVw">
+                    <connections>
+                        <action selector="swipe:" destination="daE-TJ-f6Q" id="JKs-MC-bNG"/>
+                    </connections>
+                </swipeGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="682" y="112"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="poker game" width="25" height="25"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>
