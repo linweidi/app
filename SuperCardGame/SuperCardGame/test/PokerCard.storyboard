@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Test Play Card View Controller - Poke Card Match-->
+        <!--Test Set Card View Controller - Poke Card Match-->
         <scene sceneID="oe9-wS-4MX">
             <objects>
-                <viewController title="Poke Card Match" id="daE-TJ-f6Q" customClass="TestPlayCardViewController" sceneMemberID="viewController">
+                <viewController title="Poke Card Match" id="daE-TJ-f6Q" customClass="TestSetCardViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vl8-oH-gb0"/>
                         <viewControllerLayoutGuide type="bottom" id="ebq-vq-cMl"/>

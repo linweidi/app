@@ -20,6 +20,11 @@
     return self;
 }
 
+- (NSUInteger) indexOfView:(UIView *)view  {
+    return [self.subviews indexOfObject:view];
+}
+
+
 #pragma mark -- Properties
 
 //- (void) setBounds:(CGRect)bounds {

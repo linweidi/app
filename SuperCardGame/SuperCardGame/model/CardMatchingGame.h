@@ -14,13 +14,23 @@
 
 @property (nonatomic) BOOL matchMode; // 2-NO, 3-YES
 
+@property (nonatomic, strong) NSMutableArray *cards;    // of Card
+@property (nonatomic, strong) Deck * deck;
+
 //designated initializer
 - (instancetype)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck;
+
+
+- (instancetype)init;
+
+// virtual function
+- (Deck *) createDeck;
 
 - (void)chooseCardAtIndex:(NSUInteger)index;
 
 - (Card *)cardAtIndex:(NSUInteger)index;
 
+- (NSUInteger) cardNumber ;
 
 - (void) matchTwoCards: (Card *)card ;
 - (void) matchThreeCards: (Card *)card ;

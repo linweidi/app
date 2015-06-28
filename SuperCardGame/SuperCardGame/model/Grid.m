@@ -109,13 +109,30 @@
     return center;
 }
 
+static const int BOUNDS_FRAME_RATIO = 15;
 - (CGRect)frameOfCellAtRow:(NSUInteger)row inColumn:(NSUInteger)column
 {
-    CGRect frame = CGRectMake(0, 0, self.cellSize.width, self.cellSize.height);
+    CGRect frame = CGRectMake(
+             self.cellSize.width*1.0/BOUNDS_FRAME_RATIO,
+             self.cellSize.height*1.0/BOUNDS_FRAME_RATIO,
+             self.cellSize.width*(BOUNDS_FRAME_RATIO-2)*1.0/BOUNDS_FRAME_RATIO,
+             self.cellSize.height*(BOUNDS_FRAME_RATIO-2)*1.0/BOUNDS_FRAME_RATIO);
     frame.origin.x += column * self.cellSize.width;
     frame.origin.y += row * self.cellSize.height;
     return frame;
 }
+
+
+//- (CGRect)boundsOfCellAtRow:(NSUInteger)row inColumn:(NSUInteger)column{
+//    CGRect bounds = CGRectMake(
+//           self.cellSize.width*1.0/BOUNDS_FRAME_RATIO,
+//           self.cellSize.height*1.0/BOUNDS_FRAME_RATIO,
+//           self.cellSize.width*(BOUNDS_FRAME_RATIO-2)*1.0/BOUNDS_FRAME_RATIO,
+//           self.cellSize.height*(BOUNDS_FRAME_RATIO-2)*1.0/BOUNDS_FRAME_RATIO);
+//    //bounds.origin.x += column * self.cellSize.width;
+//    //bounds.origin.y += row * self.cellSize.height;
+//    return bounds;
+//}
 
 - (void)setMinimumNumberOfCells:(NSUInteger)minimumNumberOfCells
 {
@@ -175,6 +192,10 @@
 {
     [self validate];
     return _cellSize;
+}
+
++ (NSUInteger)boundsFrameRatio  {
+    return BOUNDS_FRAME_RATIO;
 }
 
 - (NSString *)description

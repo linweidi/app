@@ -11,5 +11,5 @@
 
 @interface TableView : UIView
 
-@property (strong, nonatomic) NSMutableArray * cardViews;
+- (NSUInteger) indexOfView:(UIView *)view ;
 @end

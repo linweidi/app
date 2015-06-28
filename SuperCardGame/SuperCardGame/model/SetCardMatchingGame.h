@@ -10,4 +10,16 @@
 
 @interface SetCardMatchingGame : CardMatchingGame
 
+- (instancetype)init;
+
+- (Deck *) createDeck;
+
+- (BOOL) dealThreeCards ;
+
++ (NSUInteger) initCardNumber;
+
+- (NSUInteger) cardNumber;
+
+- (NSUInteger) cardUnmatchedNumber;
+
 @end

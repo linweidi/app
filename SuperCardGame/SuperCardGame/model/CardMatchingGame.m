@@ -11,7 +11,7 @@
 @interface CardMatchingGame ()
 
 @property (nonatomic, readwrite) NSInteger score;
-@property (nonatomic, strong) NSMutableArray *cards;    // of Card
+
 
 
 @end
@@ -24,6 +24,15 @@
         
     }
     return _cards;
+}
+
+- (instancetype)init {
+    self = [super init];
+    
+    if (self) {
+        
+    }
+    return self;
 }
 
 - (instancetype) initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck {
@@ -41,17 +50,22 @@
             }
             
         }
+        
+        self.deck = deck;
     }
     
     return self;
 }
 
+- (Deck *) createDeck {
+    return nil;
+}
 
 //static const int MATCH_BONUS_TWO = 4;
 //static const int MATCH_BONUS_THREE = 10;
 
 - (Card *)cardAtIndex:(NSUInteger)index {
-    NSAssert(index<[self.cards count], @"");
+    NSAssert(index<[self.cards count], @"the input index is:%d",index);
     return self.cards[index];
 }
 
@@ -71,6 +85,10 @@ static const int COST_TO_CHOSEN = 1;
 
         [self matchTwoCards:card];
     }
+}
+
+- (NSUInteger) cardNumber {
+    return [self.cards count];
 }
 
 - (void) matchTwoCards: (Card *)card {

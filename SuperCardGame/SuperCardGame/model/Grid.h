@@ -51,5 +51,7 @@
 
 - (CGPoint)centerOfCellAtRow:(NSUInteger)row inColumn:(NSUInteger)column;
 - (CGRect)frameOfCellAtRow:(NSUInteger)row inColumn:(NSUInteger)column;
+//- (CGRect)boundsOfCellAtRow:(NSUInteger)row inColumn:(NSUInteger)column;
 
++ (NSUInteger)boundsFrameRatio ;
 @end

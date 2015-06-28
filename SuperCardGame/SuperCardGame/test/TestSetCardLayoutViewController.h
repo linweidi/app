@@ -1,21 +1,18 @@
 //
-//  TestCardGameViewController.h
+//  TestSetCardLayoutViewController.h
 //  SuperCardGame
 //
-//  Created by Linwei Ding on 6/25/15.
+//  Created by Linwei Ding on 6/26/15.
 //  Copyright (c) 2015 Linwei Ding. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "TestPlayCardViewController.h"
 #import "Grid.h"
 #import "CardMatchingGame.h"
-#import "SetCardMatchingGame.h"
+#import "TestBasicCardLayoutViewController.h"
+@interface TestSetCardLayoutViewController : TestBasicCardLayoutViewController
 
-@interface TestCardGameViewController : TestPlayCardViewController
 @property (strong, nonatomic) Grid * grid;
 
 @property (strong, nonatomic) CardMatchingGame * game;
-
 
 @end

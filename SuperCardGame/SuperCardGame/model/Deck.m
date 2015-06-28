@@ -10,7 +10,7 @@
 
 @interface Deck()
 
-@property (strong, nonatomic) NSMutableArray *cards; //of card
+
 
 @end
 

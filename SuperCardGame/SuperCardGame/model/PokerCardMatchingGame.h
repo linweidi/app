@@ -10,4 +10,10 @@
 
 @interface PokerCardMatchingGame : CardMatchingGame
 
+
+- (instancetype)init;
+
+- (Deck *) createDeck;
+
++ (NSUInteger) initCardNumber;
 @end

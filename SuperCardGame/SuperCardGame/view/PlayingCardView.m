@@ -80,6 +80,7 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
+    //NSLog(@"the bound width:%f, heigh:%f, frame width:%f, heigh:%f",self.bounds.size.width, self.bounds.size.height, self.frame.size.width, self.frame.size.height);
     // Drawing code
     UIBezierPath *roundedRect = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:[self cornerRadius]];
     
@@ -115,6 +116,8 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSaveGState(context);
     CGContextTranslateCTM(context, self.bounds.size.width, self.bounds.size.height);
+    //NSLog(@"the bound width:%f, heigh:%f, frame width:%f, heigh:%f",self.bounds.size.width, self.bounds.size.height,self.frame.size.width, self.frame.size.height);
+    
     CGContextRotateCTM(context, M_PI);
 }
 
@@ -133,9 +136,12 @@
     UIFont *cornerFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     cornerFont = [cornerFont fontWithSize:cornerFont.pointSize * [self cornerScaleFactor]];
     
+    //NSLog(@"the bound width:%f, heigh:%f, frame width:%f, heigh:%f",self.bounds.size.width, self.bounds.size.height, self.frame.size.width, self.frame.size.height);
     NSAttributedString *cornerText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n%@", [self rankAsString], self.suit] attributes:@{ NSFontAttributeName : cornerFont, NSParagraphStyleAttributeName : paragraphStyle }];
     
     CGRect textBounds;
+    
+    //ME: changed
     textBounds.origin = CGPointMake([self cornerOffset], [self cornerOffset]);
     textBounds.size = [cornerText size];
     [cornerText drawInRect:textBounds];

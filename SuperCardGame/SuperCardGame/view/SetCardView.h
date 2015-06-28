@@ -1,27 +1,24 @@
 //
-//  SetCard.h
+//  SetCardView.h
 //  SuperCardGame
 //
-//  Created by Linwei Ding on 6/26/15.
+//  Created by Linwei Ding on 6/27/15.
 //  Copyright (c) 2015 Linwei Ding. All rights reserved.
 //
 
-#import "Card.h"
+#import <UIKit/UIKit.h>
 
-@interface SetCard : Card
+@interface SetCardView : UIView
 
+
+// when rank is 0, it is nil
 @property (nonatomic, strong) NSString * shape;
 @property (nonatomic) NSUInteger rank;
 @property (nonatomic, strong) NSString * pattern;
 @property (nonatomic, strong) NSString * color;
+@property (nonatomic) BOOL shade;
 
-#pragma mark -- Valid Functions
-+ (NSArray *) validShape ;
-+ (NSArray *) validPattern ;
-+ (NSArray *) validColor ;
-+ (NSUInteger) maxRank;
 
-- (int) match: (NSArray *) otherCards;
 
 
 @end
