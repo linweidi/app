@@ -50,7 +50,31 @@
 
 #pragma mark -- Gestures
 
-
+//- (IBAction)tap:(UITapGestureRecognizer *)sender {
+//    CGPoint hitPoint = [sender locationInView:self.view];
+//    UIView * view = [self.view hitTest:hitPoint withEvent:nil];
+//    
+//    
+//    if (view) {
+//        if ([view isKindOfClass:[CardView class]]) {
+//            CardView *cardView = nil;
+//            cardView = (CardView *)view;
+//            
+//            NSUInteger indexOfView = [(TableView *)self.tableView indexOfView:cardView ];
+//            
+//            //update the card
+//            [self.game chooseCardAtIndex:indexOfView];
+//            
+//            //update the view
+//            [self updateUI];
+//            
+//        }
+//        else {
+//            //none
+//        }
+//    }
+//    
+//}
 
 /*
  #pragma mark - Navigation
@@ -84,24 +108,42 @@
     if ([card isKindOfClass:[PlayingCard class]]) {
         playingCard = (PlayingCard *)card;
     }
-    if (card.isMatched) {
-        playingCardView.suit = playingCard.suit;
-        playingCardView.rank = playingCard.rank;
-        playingCardView.faceUp = YES;
-    }
     else {
-        if (card.isChosen) {
-            playingCardView.suit = playingCard.suit;
-            playingCardView.rank = playingCard.rank;
-            playingCardView.faceUp = YES;
-        }
-        else {
-            playingCardView.suit = nil;
-            playingCardView.rank = 0;
-            playingCardView.faceUp = NO;
-        }
+        NSAssert(NO, @"card is not playing card");
     }
     
+    
+    if ((card.isMatched && !playingCardView.faceUp)
+        || (!card.isMatched && ((card.isChosen && !playingCardView.faceUp) || (!card.isChosen && playingCardView.faceUp)))) {
+        [UIView transitionWithView:playingCardView duration:1.0 options:UIViewAnimationOptionTransitionFlipFromLeft|
+         UIViewAnimationOptionBeginFromCurrentState|
+         UIViewAnimationOptionCurveEaseInOut animations:^{
+             if (card.isMatched) {
+                 playingCardView.suit = playingCard.suit;
+                 playingCardView.rank = playingCard.rank;
+                 playingCardView.faceUp = YES;
+             }
+             else {
+                 if (card.isChosen) {
+                     playingCardView.suit = playingCard.suit;
+                     playingCardView.rank = playingCard.rank;
+                     playingCardView.faceUp = YES;
+                 }
+                 else {
+                     playingCardView.suit = nil;
+                     playingCardView.rank = 0;
+                     playingCardView.faceUp = NO;
+                 }
+             }
+         }completion:nil];
+    }
+    
+    
+    
+    
+
+    
+    //animation
 }
 
 

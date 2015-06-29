@@ -10,6 +10,9 @@
 
 @interface SetCardMatchingGame : CardMatchingGame
 
+@property (strong, nonatomic) NSMutableArray * dealCards ;
+@property (strong, nonatomic) NSMutableArray * removedCards; //Card
+@property (nonatomic) NSMutableArray  *indexRemovedCards; //NSUInteger
 - (instancetype)init;
 
 - (Deck *) createDeck;
@@ -23,4 +26,8 @@
 - (NSUInteger) cardUnmatchedNumber;
 
 - (void)chooseCardAtIndex:(NSUInteger)index;
+
+- (void) addRemovedCard:(Card *)card index:(NSUInteger)index;
+
+- (void) removeRemovedCard:(Card *)card;
 @end

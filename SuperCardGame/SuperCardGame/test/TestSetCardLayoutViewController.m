@@ -63,34 +63,40 @@
             if (valid) {
                 //there are more cards, and deal success;
                 //update the view
+                
                 [self updateUI];
+//                [UIView transitionWithView:self.tableView duration:3 options:UIViewAnimationOptionLayoutSubviews|
+//                 UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseOut
+//                                animations:^{
+//                                    [self updateUI];
+//                                    [self.tableView setNeedsDisplay];
+//                                }completion:nil];
+//                [UIView animateWithDuration:3 delay:0 options:
+//                 UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseOut animations:^{
+//                    [self updateUI];
+//                }completion:nil];
+                
             }
             else {
                 //deal three cards fail
-                
-                // indication
-                CGRect indViewRect = CGRectMake(self.tableView.center.x/2, self.tableView.center.y/2, self.tableView.bounds.size.width/2, self.tableView.bounds.size.height/2);
-                
-                //instantiate the indication
-                ErrorIndicationView * indicationView = [[ErrorIndicationView alloc] initWithFrame:indViewRect];
-                [self.tableView addSubview:indicationView];
-                indicationView.opaque = NO;
-                indicationView.alpha = 0;
-                
-                //animation of indication
-                [UIView transitionWithView:indicationView duration:3 options:UIViewAnimationOptionShowHideTransitionViews|UIViewAnimationOptionCurveEaseOut animations:^{
-                    indicationView.alpha = 1.0;
-                }completion:^(BOOL finished){
-                    if (finished) {
-                        [indicationView removeFromSuperview];
-                    }
-                }];
+        
+                [self startIndication];
             }
         }
         else {
             //none
         }
     }
+}
+
+- (void) startIndication {
+    // indication
+    CGRect indViewRect = CGRectMake(self.tableView.center.x/2, self.tableView.center.y/2, self.tableView.bounds.size.width/2, self.tableView.bounds.size.height/2);
+    
+    //instantiate the indication
+    ErrorIndicationView * indicationView = [[ErrorIndicationView alloc] initWithFrame:indViewRect];
+    [self.tableView addSubview:indicationView];
+    [indicationView animateIndication];
 }
 
 /*
@@ -113,6 +119,32 @@
 }
 
 #pragma mark -- Update UI
+
+- (void) updateUI {
+    NSAssert([self.game isKindOfClass:[SetCardMatchingGame class]], @"the game is not set card matching game");
+    SetCardMatchingGame *game = (SetCardMatchingGame *)self.game;
+    
+    while ([game.removedCards count]>0) {
+        Card *card = [game.removedCards firstObject];
+        NSUInteger indexView = [(NSNumber *)([game.indexRemovedCards firstObject]) unsignedIntegerValue];
+        SetCardView *view = [self.tableView.subviews objectAtIndex:indexView];
+        [view animateDepartureCard];
+        
+        //clear removedCards array
+        [game removeRemovedCard:card];
+    }
+    
+    [super updateUI];
+}
+
+- (NSInteger) indexOfCardView:(Card *)card viewGroup:(NSArray *)views {
+    NSInteger ret = -1;
+    
+    
+    
+    return ret;
+}
+
 - (void) updateCardView:(UIView *)view forCard:(Card *)card {
     SetCardView *setCardView = nil;
     SetCard * setCard  = nil;
@@ -147,6 +179,14 @@
 //    NSLog(@"the card is: rank:%d, shape:%@, \
 //          color:%@, pattern:%@, shade:%d ", setCard.rank,
 //           setCard.shape, setCard.color, setCard.pattern, setCardView.shade);
-    [setCardView setNeedsDisplay];
+    
+    if ([((SetCardMatchingGame *)self.game).dealCards containsObject:card]) {
+        [setCardView animateArrivingCard];
+        [((SetCardMatchingGame *)self.game).dealCards removeObject:card];
+    }
+    else {
+        [setCardView setNeedsDisplay];
+    }
+    
 }
 @end

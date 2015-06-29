@@ -16,6 +16,8 @@
 @property (strong, nonatomic) CardMatchingGame * game;
 
 
+- (void) updateUI;
+
 - (void) updateCardView:(UIView *)view forCard:(Card *)card;
 
 - (UIView *) createView:(CGRect)rect;

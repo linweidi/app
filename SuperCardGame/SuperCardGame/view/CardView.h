@@ -10,4 +10,10 @@
 
 @interface CardView : UIView
 
+
+- (void) animateArrivingCard;
+
+- (void) animateDepartureCard;
+
+
 @end

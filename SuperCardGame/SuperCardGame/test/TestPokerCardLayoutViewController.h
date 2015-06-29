@@ -21,4 +21,7 @@
 - (UIView *) createView:(CGRect)rect;
 
 - (CardMatchingGame *) createGame ;
+
+//- (IBAction)tap:(UITapGestureRecognizer *)sender;
+
 @end

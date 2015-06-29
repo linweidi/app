@@ -13,6 +13,9 @@
 @property (nonatomic) CGRect imageBounds;
 @property (strong,nonatomic) NSMutableArray * boundsArray;
 
+
+@property  (nonatomic) BOOL update;
+
 // shape
 - (UIBezierPath *) bezierPathForFrame:(CGRect)rect;
 - (void) drawSquiggle:(UIBezierPath *) path withFrame:(CGRect)rect ;
@@ -93,8 +96,12 @@
 #pragma mark - Pips
 
 - (void) updatePips {
-    UIBezierPath *path = nil;
+
     
+
+    
+    UIBezierPath *path = nil;
+
     CGRect rect = CGRectMake(0, 0, self.imageBounds.size.width, self.imageBounds.size.height/3);
     path = [self bezierPathForFrame:rect];
     
@@ -103,7 +110,7 @@
     //UIBezierPath * stripePath = [[UIBezierPath alloc] init];
     [self updateBoundsArray];
     [self updatePathColor:path];
-
+    
     
     
     for (NSValue * relativeRect in self.boundsArray) {
@@ -114,6 +121,15 @@
         
         CGContextRestoreGState(ctxt);
     }
+        
+
+        
+
+
+    
+    
+    
+    
 
 //
 
@@ -159,7 +175,7 @@
     }
 }
 
-static const int STRIPE_LINE_INTERVAL = 20;
+static const int STRIPE_LINE_INTERVAL = 10;
 - (void) drawStripeLines:(UIBezierPath *)path inBounds:(CGRect)bounds {
     for (int i = 1; i<STRIPE_LINE_INTERVAL; i++) {
         [path moveToPoint:CGPointMake(0, bounds.size.height*i/STRIPE_LINE_INTERVAL)];
@@ -234,21 +250,33 @@ static const int STRIPE_LINE_INTERVAL = 20;
 }
 
 - (void)setRank:(NSUInteger)rank {
+    if (_rank != rank) {
+        self.update = YES;
+    }
     _rank = rank;
     //[self setNeedsDisplay];
 }
 
 - (void) setPattern:(NSString *)pattern {
+    if (_pattern != pattern) {
+        self.update = YES;
+    }
     _pattern = pattern;
     //[self setNeedsDisplay];
 }
 
 - (void)setShape:(NSString *)shape {
+    if (_shape != shape) {
+        self.update = YES;
+    }
     _shape = shape;
     //[self setNeedsDisplay];
 }
 
 - (void)setColor:(NSString *)color {
+    if (_color != color) {
+        self.update = YES;
+    }
     _color = color;
     //[self setNeedsDisplay];
 }

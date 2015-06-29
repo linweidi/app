@@ -10,4 +10,7 @@
 
 @interface ErrorIndicationView : UIView
 
+
+- (void) animateIndication;
+
 @end

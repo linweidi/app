@@ -77,5 +77,21 @@
     //[path fill];
 }
 
-
+#pragma mark -- Animation
+- (void) animateIndication {
+    
+    self.opaque = NO;
+    self.alpha = 0;
+    
+    __weak ErrorIndicationView * weakView = self;
+    
+    //animation of indication
+    [UIView transitionWithView:weakView duration:3 options:UIViewAnimationOptionShowHideTransitionViews|UIViewAnimationOptionCurveEaseOut animations:^{
+        weakView.alpha = 1.0;
+    }completion:^(BOOL finished){
+        if (finished) {
+            [weakView removeFromSuperview];
+        }
+    }];
+}
 @end
