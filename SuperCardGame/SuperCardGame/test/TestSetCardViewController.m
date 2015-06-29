@@ -68,7 +68,6 @@
         NSLog(@"rank =%d, %@, %@, %@", setCard.rank, setCard.color,
               setCard.shape, setCard.pattern);
         
-        [self.cardView setNeedsDisplay];
     }
 }
 

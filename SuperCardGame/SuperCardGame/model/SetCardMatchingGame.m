@@ -18,6 +18,8 @@ static const int GAME_CARD_INIT_NUMBER = 12;
     
     if (self) {
         self = [super initWithCardCount:GAME_CARD_INIT_NUMBER usingDeck:[self createDeck]];
+        
+        self.matchMode = YES;
     }
     return self;
 }
@@ -28,16 +30,21 @@ static const int GAME_CARD_INIT_NUMBER = 12;
 
 - (BOOL) dealThreeCards  {
     BOOL ret = NO;
-    NSMutableArray * threeCards = [[NSMutableArray alloc] init];
-    [threeCards addObject:[self.deck drawRandomCard]];
-    [threeCards addObject:[self.deck drawRandomCard]];
-    [threeCards addObject:[self.deck drawRandomCard]];
-    
-    if ([threeCards count] == 3) {
-        [self.cards addObjectsFromArray:threeCards];
+
+    if ([self.deck.cards count] >= 3) {
         
-        ret = YES;
+        NSMutableArray * threeCards = [[NSMutableArray alloc] init];
+        [threeCards addObject:[self.deck drawRandomCard]];
+        [threeCards addObject:[self.deck drawRandomCard]];
+        [threeCards addObject:[self.deck drawRandomCard]];
+        
+        if ([threeCards count] == 3) {
+            [self.cards addObjectsFromArray:threeCards];
+            
+            ret = YES;
+        }
     }
+
     
     return ret;
     
@@ -59,5 +66,23 @@ static const int GAME_CARD_INIT_NUMBER = 12;
         }
     }
     return count;
+}
+
+- (void)chooseCardAtIndex:(NSUInteger)index {
+    [super chooseCardAtIndex:index];
+    
+    //remove matched cards in the game
+    NSMutableArray * array = [[NSMutableArray alloc] init];
+    
+    for (Card *card in self.cards) {
+        if (card.matched) {
+            [array addObject:card];
+            //[self.cards removeObject:card];
+        }
+    }
+    
+    for (Card *card in array) {
+        [self.cards removeObject:card];
+    }
 }
 @end

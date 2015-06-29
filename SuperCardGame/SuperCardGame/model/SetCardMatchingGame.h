@@ -22,4 +22,5 @@
 
 - (NSUInteger) cardUnmatchedNumber;
 
+- (void)chooseCardAtIndex:(NSUInteger)index;
 @end

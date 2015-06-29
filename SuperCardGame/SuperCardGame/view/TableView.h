@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Grid.h"
+#import "CardView.h"
 
 @interface TableView : UIView
 

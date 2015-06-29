@@ -9,6 +9,7 @@
 
 #import "TableView.h"
 #import "TestBasicCardLayoutViewController.h"
+#import "CardView.h"
 
 @interface TestBasicCardLayoutViewController ()
 
@@ -36,16 +37,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.grid.minimumNumberOfCells = [self.game cardNumber];
-    
-    BOOL valid = [self.grid inputsAreValid];
-    if (valid) {
-        //empty
-    }
-    else {
-        NSAssert(NO, @"Input to grid is not valid" );
-    }
-    [self layoutViewOnGrid];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -59,6 +50,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark -- Gestures
 - (IBAction)swipe:(UISwipeGestureRecognizer *)sender {
     //
     //    if (!self.cardView.faceUp) [self drawRandomPlayingCard];
@@ -68,34 +60,66 @@
 - (IBAction)tap:(UITapGestureRecognizer *)sender {
     CGPoint hitPoint = [sender locationInView:self.view];
     UIView * view = [self.view hitTest:hitPoint withEvent:nil];
+    
+    
     if (view) {
-//        if ([view isKindOfClass:[PlayingCardView class]]) {
-//            cardView = (PlayingCardView *)view;
-        
-            NSUInteger indexOfView = [(TableView *)self.tableView indexOfView:view ];
+        if ([view isKindOfClass:[CardView class]]) {
+            CardView *cardView = nil;
+            cardView = (CardView *)view;
+    
+            NSUInteger indexOfView = [(TableView *)self.tableView indexOfView:cardView ];
             
             //update the card
             [self.game chooseCardAtIndex:indexOfView];
-            
+        
             //update the view
             [self updateUI];
-        
-        
-    }
     
+        }
+        else {
+            //none
+        }
+    }
 }
 
 #pragma mark -- Update UI
 - (void) layoutViewOnGrid {
+    
+    //re-grid
+    
+    int cardNumber = [self.game cardNumber];
+    if (cardNumber != self.grid.minimumNumberOfCells) {
+        self.grid.minimumNumberOfCells = cardNumber;
+        
+        //remove all the subview in the table view
+        
+        for (UIView *view in self.tableView.subviews) {
+            [view removeFromSuperview];
+        }
+    }
+    else {
+        // if card number is the same, we do not need relayout
+        return;
+    }
+    
+    BOOL valid = [self.grid inputsAreValid];
+    if (valid) {
+        //empty
+    }
+    else {
+        NSAssert(NO, @"Input to grid is not valid" );
+    }
+    
+    
     CGPoint center;
     CGRect frame;
     //CGRect bounds;
     
     UIView * view = nil;
     
+
     
-    NSAssert([self.tableView.subviews count]==0, @"the card views' count is not 0, it is: %d",
-             [self.tableView.subviews count]);
+    NSAssert([self.tableView.subviews count]==0, @"the card views' count is not 0, it is: %d",[self.tableView.subviews count]);
     
     int cardIndex = 0;
     for (int i =0; i<self.grid.rowCount; i++) {
@@ -110,18 +134,7 @@
                 //NSLog(@"the bound width:%f, heigh:%f, frame width:%f, heigh:%f",bounds.size.width, bounds.size.height,frame.size.width, frame.size.height);
                 view = [self createView:frame];
                 view.center = center;
-                //bounds.size = frame.size;
-                //view.bounds = bounds;// = bounds.origin.x;
-                //NSLog(@"the bound width:%f, heigh:%f, frame width:%f, heigh:%f",view.bounds.size.width, view.bounds.size.height,view.frame.size.width, view.frame.size.height);
-                //                //draw view
-                //                if ([self.game isKindOfClass:[PokerCardMatchingGame class]]) {
-                //                    PlayingCard *card = (PlayingCard *)[self.game cardAtIndex:cardIndex];
-                //
-                //                    // set view info according to card
-                //                    [self setCardView:view forCard:card];
-                //                }
                 
-                // add view to table view
                 [self.tableView addSubview:view];
                 
                 
@@ -145,6 +158,7 @@
 }
 
 - (void) updateUI {
+    [self layoutViewOnGrid];
     
     int indexCardView = 0;
     for (UIView *cardView in self.tableView.subviews) {
@@ -160,8 +174,12 @@
             
         }
         
+        NSLog(@"INDEX:%d %@", indexCardView, 	cardView);
+        
         indexCardView++;
     }
+    
+    
     
 }
 

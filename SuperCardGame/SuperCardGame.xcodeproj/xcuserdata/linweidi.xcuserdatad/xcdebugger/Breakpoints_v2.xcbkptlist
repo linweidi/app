@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SuperCardGame/view/SetCardView.m"
-            timestampString = "457168887.871951"
+            timestampString = "457226307.26941"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
-            landmarkName = "-drawDiamond:withFrame:"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
+            landmarkName = "-bezierPathForFrame:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,13 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SuperCardGame/view/SetCardView.m"
-            timestampString = "457169319.98382"
+            filePath = "SuperCardGame/test/TestBasicCardLayoutViewController.m"
+            timestampString = "457234224.915474"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
-            landmarkName = "-updatePathPattern:"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
+            landmarkName = "-updateUI"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,13 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SuperCardGame/view/SetCardView.m"
-            timestampString = "457169961.224632"
+            filePath = "SuperCardGame/view/PlayingCardView.m"
+            timestampString = "457227768.176446"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
-            landmarkName = "-updateBoundsArray"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "-drawRect:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

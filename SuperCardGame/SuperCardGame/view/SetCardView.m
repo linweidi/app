@@ -57,6 +57,12 @@
 - (void)drawRect:(CGRect)rect
 {
     // Drawing code
+    if (self.shape == nil || self.pattern == nil || self.color == nil) {
+        
+        // this means that view has not been initialized.
+        return;
+    }
+    
     CGContextRef ctxt;
     ctxt = UIGraphicsGetCurrentContext();
     CGContextSaveGState(ctxt);
@@ -229,22 +235,34 @@ static const int STRIPE_LINE_INTERVAL = 20;
 
 - (void)setRank:(NSUInteger)rank {
     _rank = rank;
-    [self setNeedsDisplay];
+    //[self setNeedsDisplay];
 }
 
 - (void) setPattern:(NSString *)pattern {
     _pattern = pattern;
-    [self setNeedsDisplay];
+    //[self setNeedsDisplay];
 }
 
 - (void)setShape:(NSString *)shape {
     _shape = shape;
-    [self setNeedsDisplay];
+    //[self setNeedsDisplay];
 }
 
 - (void)setColor:(NSString *)color {
     _color = color;
-    [self setNeedsDisplay];
+    //[self setNeedsDisplay];
+}
+
+- (void)setShade:(BOOL)shade {
+    _shade = shade;
+    if (shade) {
+        self.alpha = 0.5;
+    }
+    else {
+        self.alpha = 1.0;
+    }
+
+    //[self setNeedsDisplay];
 }
 
 - (void) updateBoundsArray {
@@ -298,5 +316,9 @@ static const int STRIPE_LINE_INTERVAL = 20;
     }
     
     self.boundsArray = array;
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"the card is: rank:%d, shape:%@, color:%@, pattern:%@, shade:%d ", self.rank, self.shape, self.color, self.pattern, self.shade ];
 }
 @end

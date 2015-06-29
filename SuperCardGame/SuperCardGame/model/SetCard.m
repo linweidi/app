@@ -53,8 +53,43 @@
 
 
 #pragma mark -- Functions
++ (BOOL) matchOneAspect:(NSString *)first two:(NSString*)second three:(NSString *)third {
+    NSAssert(first!=nil&& second!=nil && third!=nil, @"the input is nil");
+    BOOL valid = NO;
+    
+    BOOL validOne = [first isEqualToString:second];
+    BOOL validTwo = [second isEqualToString:third];
+    BOOL validThree = [first isEqualToString:third];
+    if ((validOne && validTwo && validThree)
+        || (!validOne && !validTwo && !validThree)) {
+        valid = YES;
+    }
+    else {
+        valid = NO;
+    }
+    return valid;
+}
+
++ (BOOL) matchOneAspectInt:(NSUInteger)first two:(NSUInteger)second three:(NSUInteger)third {
+    NSAssert(first<3&& second<3&& third<3, @"the input is greater than or equal to 3");
+    BOOL valid = NO;
+    
+    BOOL validOne = (first == second);
+    BOOL validTwo = (second == third);
+    BOOL validThree = (first == third);
+    if ((validOne && validTwo && validThree)
+        || (!validOne && !validTwo && !validThree)) {
+        valid = YES;
+    }
+    else {
+        valid = NO;
+    }
+    return valid;
+}
+
 - (int) match: (NSArray *) otherCards {
     int score = 0;
+    BOOL valid = YES;
     
     NSAssert( [otherCards count] == 1 || [otherCards count] == 2, @"count out of bound");
     
@@ -72,10 +107,36 @@
         // count is two
         SetCard * secCard = [otherCards firstObject];
         SetCard * thirdCard = [otherCards objectAtIndex:1];
-        int matchOne = [self match: @[secCard]];
-        int matchTwo = [self match:@[thirdCard]];
-        int matchThird = [secCard match:@[thirdCard]];
-        score = matchOne + matchTwo + matchThird;
+        
+        valid = YES;
+        if ([SetCard matchOneAspectInt:self.rank two:secCard.rank three:thirdCard.rank]) {
+        }
+        else {
+            valid = NO;
+        }
+        if ([SetCard matchOneAspect:self.shape two:secCard.shape three:thirdCard.shape]) {
+        }
+        else {
+            valid = NO;
+        }
+        if ([SetCard matchOneAspect:self.color two:secCard.color three:thirdCard.color]) {
+        }
+        else {
+            valid = NO;
+        }
+        if ([SetCard matchOneAspect:self.pattern two:secCard.pattern three:thirdCard.pattern]) {
+        }
+        else {
+            valid = NO;
+        }
+        
+        if (valid) {
+            //satisfy the set card match condition
+            score = 4;
+        }
+        else {
+            score = 0;
+        }
     }
     
     return score;

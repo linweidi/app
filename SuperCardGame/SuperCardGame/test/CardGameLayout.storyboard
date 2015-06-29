@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Test Poker Card Layout View Controller - Poke Card Match-->
+        <!--Test Set Card Layout View Controller - Poke Card Match-->
         <scene sceneID="3bT-mO-Zhh">
             <objects>
-                <viewController title="Poke Card Match" id="Wnp-aH-O9n" customClass="TestPokerCardLayoutViewController" sceneMemberID="viewController">
+                <viewController title="Poke Card Match" id="Wnp-aH-O9n" customClass="TestSetCardLayoutViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hk3-Qs-ya4"/>
                         <viewControllerLayoutGuide type="bottom" id="5Mb-51-06J"/>
@@ -47,7 +47,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.50196081399917603" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Eog-Sc-eAy" firstAttribute="trailing" secondItem="GIA-lm-Dwo" secondAttribute="trailing" id="53i-dq-lvR"/>

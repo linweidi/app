@@ -7,6 +7,7 @@
 //
 
 #import "TableView.h"
+#import "CardView.h"
 #import "PlayingCardView.h"
 
 @implementation TableView
@@ -21,6 +22,7 @@
 }
 
 - (NSUInteger) indexOfView:(UIView *)view  {
+    NSAssert([view isKindOfClass:[CardView class]],@"the view is not cardview");
     return [self.subviews indexOfObject:view];
 }
 

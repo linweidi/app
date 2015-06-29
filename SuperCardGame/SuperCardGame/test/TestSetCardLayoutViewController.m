@@ -9,6 +9,7 @@
 #import "TableView.h"
 #import "SetCardView.h"
 #import "SetCard.h"
+#import "ErrorIndicationView.h"
 #import "TestSetCardLayoutViewController.h"
 
 @interface TestSetCardLayoutViewController ()
@@ -48,7 +49,49 @@
 
 #pragma mark -- Gestures
 
-
+- (IBAction)tap:(UITapGestureRecognizer *)sender {
+    [super tap:sender];
+    CGPoint hitPoint = [sender locationInView:self.view];
+    UIView * view = [self.view hitTest:hitPoint withEvent:nil];
+    
+    
+    if (view) {
+        if ([view isKindOfClass:[TableView class]]) {
+            //redeal
+            NSAssert([self.game isKindOfClass:[SetCardMatchingGame class]],@"the game is not Set card game");
+            BOOL valid = [((SetCardMatchingGame *)self.game) dealThreeCards];
+            if (valid) {
+                //there are more cards, and deal success;
+                //update the view
+                [self updateUI];
+            }
+            else {
+                //deal three cards fail
+                
+                // indication
+                CGRect indViewRect = CGRectMake(self.tableView.center.x/2, self.tableView.center.y/2, self.tableView.bounds.size.width/2, self.tableView.bounds.size.height/2);
+                
+                //instantiate the indication
+                ErrorIndicationView * indicationView = [[ErrorIndicationView alloc] initWithFrame:indViewRect];
+                [self.tableView addSubview:indicationView];
+                indicationView.opaque = NO;
+                indicationView.alpha = 0;
+                
+                //animation of indication
+                [UIView transitionWithView:indicationView duration:3 options:UIViewAnimationOptionShowHideTransitionViews|UIViewAnimationOptionCurveEaseOut animations:^{
+                    indicationView.alpha = 1.0;
+                }completion:^(BOOL finished){
+                    if (finished) {
+                        [indicationView removeFromSuperview];
+                    }
+                }];
+            }
+        }
+        else {
+            //none
+        }
+    }
+}
 
 /*
 #pragma mark - Navigation
@@ -77,28 +120,33 @@
         setCardView = (SetCardView * )view;
     }
     else {
-        NSAssert(NO, @"view is not playing card view");
+        NSAssert(NO, @"view is not set card view");
     }
     if ([card isKindOfClass:[SetCard class]]) {
         setCard = (SetCard *)card;
     }
+    else {
+        NSAssert(NO, @"card is not set card");
+    }
     if (card.isMatched) {
-//        setCardView.suit = setCard.suit;
-//        setCardView.rank = setCard.rank;
-//        setCardView.faceUp = YES;
+        setCardView.shade = YES;
     }
     else {
         if (card.isChosen) {
-//            setCardView.suit = setCard.suit;
-//            setCardView.rank = setCard.rank;
-//            setCardView.faceUp = YES;
+            setCardView.shade = YES;
         }
         else {
-//            setCardView.suit = nil;
-//            setCardView.rank = 0;
-//            setCardView.faceUp = NO;
+            setCardView.shade = NO;
         }
     }
+    setCardView.rank = setCard.rank;
+    setCardView.shape = setCard.shape;
+    setCardView.color = setCard.color;
+    setCardView.pattern = setCard.pattern;
     
+//    NSLog(@"the card is: rank:%d, shape:%@, \
+//          color:%@, pattern:%@, shade:%d ", setCard.rank,
+//           setCard.shape, setCard.color, setCard.pattern, setCardView.shade);
+    [setCardView setNeedsDisplay];
 }
 @end

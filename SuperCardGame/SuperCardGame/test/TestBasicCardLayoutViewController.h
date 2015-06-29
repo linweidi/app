@@ -15,10 +15,15 @@
 @property (strong, nonatomic) CardMatchingGame * game;
 @property (weak, nonatomic) IBOutlet UIView *tableView;
 
+
+- (void) updateUI;
+
 #pragma mark -- Virtual Functions
 - (void) updateCardView:(UIView *)view forCard:(Card *)card;
 - (UIView *) createView:(CGRect)rect;
 - (CardMatchingGame *) createGame;
 
+#pragma mark -- Gestures
+- (IBAction)tap:(UITapGestureRecognizer *)sender;
 @end
 

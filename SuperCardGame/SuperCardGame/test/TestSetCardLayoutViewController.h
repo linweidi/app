@@ -15,4 +15,12 @@
 
 @property (strong, nonatomic) CardMatchingGame * game;
 
+
+- (void) updateCardView:(UIView *)view forCard:(Card *)card;
+
+- (UIView *) createView:(CGRect)rect;
+
+- (CardMatchingGame *) createGame ;
+
+- (IBAction)tap:(UITapGestureRecognizer *)sender;
 @end
