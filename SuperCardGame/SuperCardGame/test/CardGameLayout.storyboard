@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Test Set Card Layout View Controller - Poke Card Match-->
+        <!--Test Poker Card Layout View Controller - Poke Card Match-->
         <scene sceneID="3bT-mO-Zhh">
             <objects>
-                <viewController title="Poke Card Match" id="Wnp-aH-O9n" customClass="TestSetCardLayoutViewController" sceneMemberID="viewController">
+                <viewController title="Poke Card Match" id="Wnp-aH-O9n" customClass="TestPokerCardLayoutViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hk3-Qs-ya4"/>
                         <viewControllerLayoutGuide type="bottom" id="5Mb-51-06J"/>
@@ -34,6 +34,9 @@
                                 <state key="normal" title="Re-Deal">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="touchForRedeal:" destination="Wnp-aH-O9n" eventType="touchUpInside" id="DZo-V2-3YW"/>
+                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eog-Sc-eAy">
                                 <rect key="frame" x="20" y="422" width="280" height="21"/>
@@ -72,6 +75,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Record" id="CFD-dq-cuF"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="redealButton" destination="GIA-lm-Dwo" id="ame-XM-qVS"/>
                         <outlet property="tableView" destination="ifd-8P-WOw" id="99j-FR-wNY"/>
                     </connections>
                 </viewController>

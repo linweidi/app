@@ -5,23 +5,39 @@
 //  Created by Linwei Ding on 6/24/15.
 //  Copyright (c) 2015 ___FULLUSERNAME___. All rights reserved.
 //
-
-#import <UIKit/UIKit.h>
+#import "Grid.h"
 #import "CardMatchingGame.h"
+#import <UIKit/UIKit.h>
+
 
 @interface SuperCardViewController : UIViewController
 
 
-//virtual function
-- (CardMatchingGame *) createMatchingGame;
 
-- (void) updateUI ;
+@property (strong, nonatomic) Grid * grid;
 
-//virtual function;
-- (Deck *)createDeck;
+@property (strong, nonatomic) CardMatchingGame * game;
+//@property (weak, nonatomic) IBOutlet UIView *tableView;
 
-- (NSString *) titleForCard: (Card *)card;
+@property (weak, nonatomic) IBOutlet TableView *tableView;
 
-- (UIImage *) backgroundImageForCard: (Card*)card;
+@property (weak, nonatomic) IBOutlet UIButton *redealButton;
+
+- (void) updateUI;
+
+- (void)animateDealCardsForView: (CardView *)view card:(Card*)card;
+
+
+#pragma mark -- Virtual Functions
+- (void) updateCardView:(UIView *)view forCard:(Card *)card;
+- (UIView *) createView:(CGRect)rect;
+- (CardMatchingGame *) createGame;
+
+#pragma mark -- Gestures
+- (IBAction)tap:(UITapGestureRecognizer *)sender;
+
+
+
+- (IBAction)touchForRedeal:(UIButton *)sender;
 
 @end

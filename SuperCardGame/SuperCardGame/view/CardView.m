@@ -33,33 +33,33 @@
     CGRect oldFrame = self.frame;
     oldFrame.origin.x -= self.superview.bounds.size.width;
     self.frame = oldFrame;
-    
-    __weak CardView * weakView = self;
+ 
     [UIView animateWithDuration:2
                           delay:0
                         options:
-     UIViewAnimationOptionBeginFromCurrentState|
-     UIViewAnimationOptionCurveEaseIn
+    //UIViewAnimationOptionBeginFromCurrentState|
+     UIViewAnimationOptionCurveEaseOut
                      animations:^{
-                         weakView.frame = newFrame;
+                         
+                         self.frame = newFrame;
+                         
                          
                      }completion:nil];
 }
 
 - (void) animateDepartureCard {
     CGRect newFrame = self.frame;
-    CGRect oldFrame = self.frame;
-    newFrame.origin.x += self.superview.bounds.size.width;
-    self.frame = oldFrame;
+    //CGRect oldFrame = self.frame;
+    newFrame.origin.x += self.superview.bounds.size.width;;//self.superview.bounds.size.width;
+    //self.frame = oldFrame;
     
-    __weak CardView * weakView = self;
     [UIView animateWithDuration:2
                           delay:0
                         options:
      UIViewAnimationOptionBeginFromCurrentState|
      UIViewAnimationOptionCurveEaseOut
                      animations:^{
-                         weakView.frame = newFrame;
+                         self.frame = newFrame;
                          
                      }completion:nil];
 }

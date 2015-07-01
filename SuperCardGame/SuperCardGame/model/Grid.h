@@ -27,6 +27,8 @@
 @interface Grid : NSObject
 
 // required inputs (zero is not a valid value for any of these)
+@property (nonatomic) BOOL resolved;
+
 
 @property (nonatomic) CGSize size;                      // overall available space to put grid into
 @property (nonatomic) CGFloat cellAspectRatio;          // width divided by height (of each cell)

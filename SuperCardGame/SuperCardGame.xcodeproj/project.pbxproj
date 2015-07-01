@@ -41,6 +41,8 @@
 		E5C93BF11B3B5CAD006092EA /* PlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C93BEA1B3B5CAD006092EA /* PlayingCardDeck.m */; };
 		E5C93BF21B3B5CAD006092EA /* ThreeCardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C93BEC1B3B5CAD006092EA /* ThreeCardMatchingGame.m */; };
 		E5C93BF81B3B5F81006092EA /* Grid.m in Sources */ = {isa = PBXBuildFile; fileRef = E5C93BF71B3B5F81006092EA /* Grid.m */; };
+		E5D42D7B1B43A71F007E3403 /* SuperSetCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5D42D7A1B43A71F007E3403 /* SuperSetCardViewController.m */; };
+		E5D42D7E1B43A739007E3403 /* SuperPokerCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5D42D7D1B43A739007E3403 /* SuperPokerCardViewController.m */; };
 		E5F534211B40D584000FC422 /* CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5F534201B40D584000FC422 /* CardView.m */; };
 		E5FCE6B61B3DB9DF008DAA5D /* SetCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = E5FCE6B51B3DB9DF008DAA5D /* SetCardDeck.m */; };
 		E5FCE6B91B3DD32F008DAA5D /* TestSetCardLayoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5FCE6B81B3DD32F008DAA5D /* TestSetCardLayoutViewController.m */; };
@@ -115,6 +117,10 @@
 		E5C93BEC1B3B5CAD006092EA /* ThreeCardMatchingGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreeCardMatchingGame.m; sourceTree = "<group>"; };
 		E5C93BF61B3B5F81006092EA /* Grid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Grid.h; sourceTree = "<group>"; };
 		E5C93BF71B3B5F81006092EA /* Grid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Grid.m; sourceTree = "<group>"; };
+		E5D42D791B43A71F007E3403 /* SuperSetCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperSetCardViewController.h; sourceTree = "<group>"; };
+		E5D42D7A1B43A71F007E3403 /* SuperSetCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperSetCardViewController.m; sourceTree = "<group>"; };
+		E5D42D7C1B43A739007E3403 /* SuperPokerCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperPokerCardViewController.h; sourceTree = "<group>"; };
+		E5D42D7D1B43A739007E3403 /* SuperPokerCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperPokerCardViewController.m; sourceTree = "<group>"; };
 		E5F5341F1B40D584000FC422 /* CardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardView.h; path = view/CardView.h; sourceTree = "<group>"; };
 		E5F534201B40D584000FC422 /* CardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardView.m; path = view/CardView.m; sourceTree = "<group>"; };
 		E5FCE6B41B3DB9DF008DAA5D /* SetCardDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCardDeck.h; sourceTree = "<group>"; };
@@ -205,6 +211,10 @@
 			isa = PBXGroup;
 			children = (
 				E5C93BAE1B3B522E006092EA /* Main.storyboard */,
+				E5D42D7C1B43A739007E3403 /* SuperPokerCardViewController.h */,
+				E5D42D7D1B43A739007E3403 /* SuperPokerCardViewController.m */,
+				E5D42D791B43A71F007E3403 /* SuperSetCardViewController.h */,
+				E5D42D7A1B43A71F007E3403 /* SuperSetCardViewController.m */,
 				E5C93BB11B3B522E006092EA /* SuperCardViewController.h */,
 				E5C93BB21B3B522E006092EA /* SuperCardViewController.m */,
 				E5C93BB41B3B522E006092EA /* Images.xcassets */,
@@ -412,6 +422,7 @@
 				E50FD5C01B3D28920044F1DF /* TestPlayCardViewController.m in Sources */,
 				E5C93BEF1B3B5CAD006092EA /* Deck.m in Sources */,
 				E5C93BAD1B3B522E006092EA /* SuperCardAppDelegate.m in Sources */,
+				E5D42D7B1B43A71F007E3403 /* SuperSetCardViewController.m in Sources */,
 				E5C93BF01B3B5CAD006092EA /* PlayingCard.m in Sources */,
 				E505A77D1B3F3CE80011138D /* SetCardView.m in Sources */,
 				E50100551B3CABA4007D28A6 /* TableView.m in Sources */,
@@ -424,6 +435,7 @@
 				E5C93BED1B3B5CAD006092EA /* Card.m in Sources */,
 				E5FCE6B91B3DD32F008DAA5D /* TestSetCardLayoutViewController.m in Sources */,
 				E554A4C41B40DCA20057F044 /* ErrorIndicationView.m in Sources */,
+				E5D42D7E1B43A739007E3403 /* SuperPokerCardViewController.m in Sources */,
 				E5FCE6BC1B3E0791008DAA5D /* TestPokerCardLayoutViewController.m in Sources */,
 				E5C93BEE1B3B5CAD006092EA /* CardMatchingGame.m in Sources */,
 			);

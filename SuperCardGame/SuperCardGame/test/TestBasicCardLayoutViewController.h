@@ -15,8 +15,12 @@
 @property (strong, nonatomic) CardMatchingGame * game;
 @property (weak, nonatomic) IBOutlet UIView *tableView;
 
+@property (weak, nonatomic) IBOutlet UIButton *redealButton;
 
 - (void) updateUI;
+
+- (void)animateDealCardsForView: (CardView *)view card:(Card*)card;
+
 
 #pragma mark -- Virtual Functions
 - (void) updateCardView:(UIView *)view forCard:(Card *)card;
@@ -25,5 +29,9 @@
 
 #pragma mark -- Gestures
 - (IBAction)tap:(UITapGestureRecognizer *)sender;
+
+
+
+- (IBAction)touchForRedeal:(UIButton *)sender;
 @end
 

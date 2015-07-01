@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Super Card View Controller - Poke Card Match-->
+        <!--Super Poker Card View Controller - Poke Card Match-->
         <scene sceneID="Gqo-zF-0d7">
             <objects>
-                <viewController title="Poke Card Match" id="pY4-E2-azT" customClass="SuperCardViewController" sceneMemberID="viewController">
+                <viewController title="Poke Card Match" id="pY4-E2-azT" customClass="SuperPokerCardViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="v6e-la-wwN"/>
                         <viewControllerLayoutGuide type="bottom" id="MyA-zW-gRF"/>
@@ -35,7 +35,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="touchForRedeal:" destination="1XH-xg-Tq1" eventType="touchUpInside" id="Xqq-JE-khP"/>
+                                    <action selector="touchForRedeal:" destination="pY4-E2-azT" eventType="touchUpInside" id="Vzj-GY-8oU"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z9f-95-XhH">
@@ -44,40 +44,65 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ait-Ks-bw1">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ait-Ks-bw1" customClass="TableView">
                                 <rect key="frame" x="0.0" y="20" width="320" height="345"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.50196081399917603" blue="0.25098040699958801" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="z9f-95-XhH" firstAttribute="trailing" secondItem="ko5-ry-lBU" secondAttribute="trailing" id="1zF-8Q-nMq"/>
                             <constraint firstAttribute="trailing" secondItem="ait-Ks-bw1" secondAttribute="trailing" id="5M9-jD-52d"/>
                             <constraint firstItem="z9f-95-XhH" firstAttribute="top" secondItem="ait-Ks-bw1" secondAttribute="bottom" constant="8" symbolic="YES" id="5fG-B8-PT4"/>
+                            <constraint firstItem="ait-Ks-bw1" firstAttribute="top" secondItem="v6e-la-wwN" secondAttribute="bottom" id="839-4w-JY5"/>
                             <constraint firstItem="ait-Ks-bw1" firstAttribute="leading" secondItem="Yys-7I-ELj" secondAttribute="leading" id="ENs-ae-1AJ"/>
-                            <constraint firstItem="MyA-zW-gRF" firstAttribute="top" secondItem="FOX-qp-f3B" secondAttribute="bottom" constant="8" id="K9u-S4-Zgx"/>
                             <constraint firstAttribute="trailing" secondItem="ko5-ry-lBU" secondAttribute="trailing" constant="20" symbolic="YES" id="OqX-Xn-TMU"/>
                             <constraint firstItem="z9f-95-XhH" firstAttribute="leading" secondItem="FOX-qp-f3B" secondAttribute="leading" id="W4z-0h-GzJ"/>
+                            <constraint firstAttribute="bottom" secondItem="ko5-ry-lBU" secondAttribute="bottom" constant="57" id="YMf-Hw-4Em"/>
                             <constraint firstItem="FOX-qp-f3B" firstAttribute="leading" secondItem="Yys-7I-ELj" secondAttribute="leading" constant="20" symbolic="YES" id="Ycd-3s-1ui"/>
-                            <constraint firstItem="MyA-zW-gRF" firstAttribute="top" secondItem="ko5-ry-lBU" secondAttribute="bottom" constant="20" symbolic="YES" id="eBL-oh-VrB"/>
-                            <constraint firstItem="ait-Ks-bw1" firstAttribute="top" secondItem="v6e-la-wwN" secondAttribute="bottom" id="iq2-9M-NYe"/>
                             <constraint firstItem="FOX-qp-f3B" firstAttribute="top" secondItem="z9f-95-XhH" secondAttribute="bottom" constant="8" symbolic="YES" id="jBq-WL-Z8q"/>
+                            <constraint firstAttribute="bottom" secondItem="FOX-qp-f3B" secondAttribute="bottom" constant="57" id="tCb-1P-Hcr"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="JUb-3y-GNy" appends="YES" id="Ehp-7V-8kM"/>
+                            <outletCollection property="gestureRecognizers" destination="rPu-Cl-b2r" appends="YES" id="fdg-eI-qKT"/>
+                            <outletCollection property="gestureRecognizers" destination="L7t-6E-8X6" appends="YES" id="sst-qw-Gga"/>
+                        </connections>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" image="poker game" id="MxM-ZV-C2y"/>
+                    <tabBarItem key="tabBarItem" title="Poker" image="poker game" id="MxM-ZV-C2y"/>
                     <navigationItem key="navigationItem" title="Poke Card Match" id="2Nb-ae-AJG">
                         <barButtonItem key="rightBarButtonItem" title="Record" id="40e-Yv-gMG"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="redealButton" destination="ko5-ry-lBU" id="MKy-P8-wJh"/>
+                        <outlet property="tableView" destination="ait-Ks-bw1" id="Dqc-Wh-Z8L"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RIa-KR-FUg" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="JUb-3y-GNy">
+                    <connections>
+                        <action selector="tap:" destination="pY4-E2-azT" id="QPO-vU-OyR"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <pinchGestureRecognizer id="rPu-Cl-b2r">
+                    <connections>
+                        <action selector="pinch:" destination="pY4-E2-azT" id="Rrd-ma-Bx4"/>
+                    </connections>
+                </pinchGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="L7t-6E-8X6">
+                    <connections>
+                        <action selector="pan:" destination="pY4-E2-azT" id="Sp9-sK-raX"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="783" y="316"/>
+            <point key="canvasLocation" x="788" y="314"/>
         </scene>
-        <!--Super Card View Controller - Set Card Match-->
+        <!--Super Set Card View Controller - Set Card Match-->
         <scene sceneID="eHM-iX-diH">
             <objects>
-                <viewController id="1XH-xg-Tq1" customClass="SuperCardViewController" sceneMemberID="viewController">
+                <viewController id="1XH-xg-Tq1" customClass="SuperSetCardViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IHO-rL-QrI"/>
                         <viewControllerLayoutGuide type="bottom" id="ifS-y4-VuA"/>
@@ -86,13 +111,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4g-ci-k6m">
-                                <rect key="frame" x="20" y="402" width="64" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1pm-Ce-Dgx">
                                 <rect key="frame" x="215" y="384" width="85" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -105,7 +123,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="touchForRedeal:" destination="1XH-xg-Tq1" eventType="touchUpInside" id="QTZ-c6-Ikl"/>
+                                    <action selector="touchForRedeal:" destination="1XH-xg-Tq1" eventType="touchUpInside" id="Ysl-ti-UeO"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AeY-yW-yNK">
@@ -114,38 +132,65 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PaR-yD-dUF">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PaR-yD-dUF" customClass="TableView">
                                 <rect key="frame" x="0.0" y="20" width="320" height="345"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PgS-qA-C3U">
+                                <rect key="frame" x="20" y="402" width="64" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="i4g-ci-k6m" firstAttribute="leading" secondItem="6hx-qd-MgU" secondAttribute="leading" constant="20" symbolic="YES" id="3Xw-fR-iqP"/>
                             <constraint firstItem="PaR-yD-dUF" firstAttribute="top" secondItem="6hx-qd-MgU" secondAttribute="top" constant="20" symbolic="YES" id="5LW-Ct-hqa"/>
                             <constraint firstAttribute="trailing" secondItem="PaR-yD-dUF" secondAttribute="trailing" id="CBo-Ko-2c7"/>
-                            <constraint firstItem="AeY-yW-yNK" firstAttribute="leading" secondItem="i4g-ci-k6m" secondAttribute="leading" id="Hg7-aG-IaS"/>
-                            <constraint firstItem="ifS-y4-VuA" firstAttribute="top" secondItem="1pm-Ce-Dgx" secondAttribute="bottom" constant="20" symbolic="YES" id="UUY-gu-vg6"/>
+                            <constraint firstAttribute="bottom" secondItem="1pm-Ce-Dgx" secondAttribute="bottom" constant="57" id="CNQ-sC-Oeq"/>
+                            <constraint firstAttribute="bottom" secondItem="PgS-qA-C3U" secondAttribute="bottom" constant="57" id="EaJ-zR-SuV"/>
+                            <constraint firstItem="PgS-qA-C3U" firstAttribute="top" secondItem="AeY-yW-yNK" secondAttribute="bottom" constant="8" symbolic="YES" id="TXu-sE-mkh"/>
                             <constraint firstItem="AeY-yW-yNK" firstAttribute="trailing" secondItem="1pm-Ce-Dgx" secondAttribute="trailing" id="WJ4-Xn-XBO"/>
                             <constraint firstItem="PaR-yD-dUF" firstAttribute="leading" secondItem="6hx-qd-MgU" secondAttribute="leading" id="X4U-ka-O3Q"/>
                             <constraint firstAttribute="trailing" secondItem="1pm-Ce-Dgx" secondAttribute="trailing" constant="20" symbolic="YES" id="XAf-ul-CRe"/>
-                            <constraint firstItem="ifS-y4-VuA" firstAttribute="top" secondItem="i4g-ci-k6m" secondAttribute="bottom" constant="20" symbolic="YES" id="XdR-Wu-PkG"/>
-                            <constraint firstItem="i4g-ci-k6m" firstAttribute="top" secondItem="AeY-yW-yNK" secondAttribute="bottom" constant="8" symbolic="YES" id="waE-TZ-BMw"/>
+                            <constraint firstItem="PgS-qA-C3U" firstAttribute="leading" secondItem="6hx-qd-MgU" secondAttribute="leading" constant="20" symbolic="YES" id="dRg-GS-E1d"/>
+                            <constraint firstItem="PgS-qA-C3U" firstAttribute="leading" secondItem="AeY-yW-yNK" secondAttribute="leading" id="hlX-U8-5ub"/>
                             <constraint firstItem="AeY-yW-yNK" firstAttribute="top" secondItem="PaR-yD-dUF" secondAttribute="bottom" constant="8" symbolic="YES" id="xnW-av-thd"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="pPM-ZW-E2R" appends="YES" id="FT9-GV-dAI"/>
+                            <outletCollection property="gestureRecognizers" destination="JZG-ch-aFq" appends="YES" id="bVZ-Tl-FcU"/>
+                            <outletCollection property="gestureRecognizers" destination="Afe-TW-Fcs" appends="YES" id="V0y-m5-cw2"/>
+                        </connections>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" image="set game" id="TDi-O5-NEE"/>
+                    <tabBarItem key="tabBarItem" title="Set" image="set game" id="TDi-O5-NEE"/>
                     <navigationItem key="navigationItem" title="Set Card Match" id="MhK-q0-2hu">
                         <barButtonItem key="rightBarButtonItem" title="Record" id="bDG-md-Lax"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="matchResult" destination="AeY-yW-yNK" id="QSa-ME-8nh"/>
-                        <outlet property="redealButton" destination="1pm-Ce-Dgx" id="Vzr-m0-8im"/>
-                        <outlet property="scoreLabel" destination="i4g-ci-k6m" id="tBW-aC-Bks"/>
+                        <outlet property="redealButton" destination="1pm-Ce-Dgx" id="gAd-qD-kdb"/>
+                        <outlet property="tableView" destination="PaR-yD-dUF" id="1Zl-wn-jhc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oUe-kg-vMz" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="pPM-ZW-E2R">
+                    <connections>
+                        <action selector="tap:" destination="1XH-xg-Tq1" id="yRJ-Fk-pvH"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <pinchGestureRecognizer id="JZG-ch-aFq">
+                    <connections>
+                        <action selector="pinch:" destination="1XH-xg-Tq1" id="dsF-HA-0lj"/>
+                    </connections>
+                </pinchGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="Afe-TW-Fcs">
+                    <connections>
+                        <action selector="pan:" destination="1XH-xg-Tq1" id="dsc-rc-gwF"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="788" y="-268"/>
         </scene>
@@ -153,7 +198,9 @@
         <scene sceneID="ZAR-6S-qG1">
             <objects>
                 <tabBarController storyboardIdentifier="bob" definesPresentationContext="YES" id="ZCR-q6-pgV" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="hdc-SY-aX6">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -166,7 +213,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8CU-6s-fVe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="286" y="84"/>
+            <point key="canvasLocation" x="288" y="72"/>
         </scene>
     </scenes>
     <resources>

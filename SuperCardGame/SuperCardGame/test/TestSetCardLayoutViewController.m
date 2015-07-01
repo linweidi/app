@@ -33,6 +33,11 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+}
+
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 }
@@ -49,8 +54,9 @@
 
 #pragma mark -- Gestures
 
+
 - (IBAction)tap:(UITapGestureRecognizer *)sender {
-    [super tap:sender];
+    
     CGPoint hitPoint = [sender locationInView:self.view];
     UIView * view = [self.view hitTest:hitPoint withEvent:nil];
     
@@ -87,6 +93,8 @@
             //none
         }
     }
+    
+    [super tap:sender];
 }
 
 - (void) startIndication {
@@ -124,17 +132,57 @@
     NSAssert([self.game isKindOfClass:[SetCardMatchingGame class]], @"the game is not set card matching game");
     SetCardMatchingGame *game = (SetCardMatchingGame *)self.game;
     
-    while ([game.removedCards count]>0) {
-        Card *card = [game.removedCards firstObject];
-        NSUInteger indexView = [(NSNumber *)([game.indexRemovedCards firstObject]) unsignedIntegerValue];
-        SetCardView *view = [self.tableView.subviews objectAtIndex:indexView];
-        [view animateDepartureCard];
+    if ([game.removedCards count]>0) {
+        int totalCount = [game.removedCards count];
+        for (int i = 0; i< totalCount; i++) {
+            Card *card = [game.removedCards firstObject];
+            NSUInteger indexView = [(NSNumber *)([game.indexRemovedCards firstObject]) unsignedIntegerValue];
+            SetCardView *view = [self.tableView.subviews objectAtIndex:indexView];
+
+            [self animateRemovedView:view];
+            
+            //clear removedCards array
+            [game removeRemovedCard:card];
+        }
+
         
-        //clear removedCards array
-        [game removeRemovedCard:card];
+        
+        NSAssert([game.removedCards count] ==0, @"removed card count is not zero, it is: %d", [game.removedCards count] );
     }
+    else {
+        [super updateUI];
+    }
+}
+
+- (void) animateRemovedView: (UIView *)view{
     
-    [super updateUI];
+    CGRect newFrame = view.frame;
+    //CGRect oldFrame = self.frame;
+    newFrame.origin.x += self.tableView.bounds.size.width;
+    //self.frame = oldFrame;
+    
+    [UIView animateWithDuration:2
+                          delay:0
+                        options:
+     UIViewAnimationOptionBeginFromCurrentState|
+     UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         view.frame = newFrame;
+                         self.redealButton.enabled = NO;
+                     }completion:^(BOOL finished){
+                         //[self layoutViewOnGrid];
+                         if (finished) {
+                             [super updateUI];
+                             if(![((SetCardMatchingGame *)self.game).removedCards count]) {
+                                 //small issue here
+                                 //TODO
+                                 self.redealButton.enabled = YES;
+                             }
+                             
+                         }
+                         
+                     }];
+
 }
 
 - (NSInteger) indexOfCardView:(Card *)card viewGroup:(NSArray *)views {
@@ -180,13 +228,7 @@
 //          color:%@, pattern:%@, shade:%d ", setCard.rank,
 //           setCard.shape, setCard.color, setCard.pattern, setCardView.shade);
     
-    if ([((SetCardMatchingGame *)self.game).dealCards containsObject:card]) {
-        [setCardView animateArrivingCard];
-        [((SetCardMatchingGame *)self.game).dealCards removeObject:card];
-    }
-    else {
-        [setCardView setNeedsDisplay];
-    }
+    [self animateDealCardsForView:setCardView card:setCard];
     
 }
 @end

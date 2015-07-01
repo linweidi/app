@@ -31,9 +31,15 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.grid.size = self.tableView.bounds.size;
+    
     self.grid.cellAspectRatio = 0.7;
 }
+
+- (void)viewDidLayoutSubviews {
+    [self.game.dealCards addObjectsFromArray:self.game.cards];
+    [self updateUI];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -73,6 +79,7 @@
             [self.game chooseCardAtIndex:indexOfView];
         
             //update the view
+            
             [self updateUI];
     
         }
@@ -88,9 +95,9 @@
     //re-grid
     
     int cardNumber = [self.game cardNumber];
-    if (cardNumber != self.grid.minimumNumberOfCells) {
+    if (cardNumber != self.grid.minimumNumberOfCells || !CGSizeEqualToSize(self.grid.size, self.tableView.bounds.size) ) {
         self.grid.minimumNumberOfCells = cardNumber;
-        
+        self.grid.size = self.tableView.bounds.size;
         //remove all the subview in the table view
         
         for (UIView *view in self.tableView.subviews) {
@@ -158,6 +165,7 @@
 }
 
 - (void) updateUI {
+
     [self layoutViewOnGrid];
     
     int indexCardView = 0;
@@ -212,7 +220,20 @@
 #pragma mark -- Gestures
 - (IBAction)touchForRedeal:(UIButton *)sender {
     self.game = [self createGame];
+    [self.game.dealCards addObjectsFromArray:self.game.cards];
+    
     [self updateUI];
+}
+
+- (void)animateDealCardsForView: (CardView *)view card:(Card*)card{
+    if ([self.game.dealCards containsObject:card]) {
+        [view animateArrivingCard];
+        [self.game.dealCards removeObject:card];
+        [view setNeedsDisplay];
+    }
+    else {
+        [view setNeedsDisplay];
+    }
 }
 
 

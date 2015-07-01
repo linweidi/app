@@ -9,7 +9,7 @@
 #import "Grid.h"
 
 @interface Grid()
-@property (nonatomic) BOOL resolved;
+
 @property (nonatomic) BOOL unresolvable;
 @property (nonatomic, readwrite) NSUInteger rowCount;
 @property (nonatomic, readwrite) NSUInteger columnCount;

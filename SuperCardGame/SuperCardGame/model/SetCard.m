@@ -139,7 +139,7 @@
         }
     }
     
-    return 4;
+    return score;
 }
 
 static const NSUInteger MAX_RANK = 3;

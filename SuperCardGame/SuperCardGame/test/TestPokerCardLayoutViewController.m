@@ -27,6 +27,11 @@
     return self;
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -139,7 +144,7 @@
     }
     
     
-    
+    [self animateDealCardsForView:playingCardView card:playingCard];
     
 
     

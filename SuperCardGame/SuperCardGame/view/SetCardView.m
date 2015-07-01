@@ -328,7 +328,6 @@ static const int STRIPE_LINE_INTERVAL = 10;
         bounds = [NSValue valueWithCGRect:rect];
         [array addObject:bounds];
         
-        
         //second
         rect.origin.y = self.imageBounds.origin.y +self.imageBounds.size.height/3;
         bounds = [NSValue valueWithCGRect:rect];
