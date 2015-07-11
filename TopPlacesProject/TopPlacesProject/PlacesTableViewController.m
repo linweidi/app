@@ -6,10 +6,11 @@
 //  Copyright (c) 2015 Linwei Ding. All rights reserved.
 //
 #import "FlickrFetcher.h"
+#import "PhotosTableViewController.h"
 #import "PlacesTableViewController.h"
 
 @interface PlacesTableViewController ()
-@property (weak, nonatomic) IBOutlet UIRefreshControl *refreshControl;
+
 
 @end
 
@@ -35,6 +36,45 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     
+    [self updateTable];
+
+}
+
+
+
+
+- (void)updatePlaceDictionary {
+    if (self.places) {
+        NSString * countryName = nil;
+        NSString * locName = nil;
+        for (NSDictionary * place in self.places) {
+            
+            
+            locName = [place valueForKeyPath:FLICKR_PLACE_NAME];
+            
+            countryName = [FlickrFetcher getCountryName:locName ];
+
+                
+            NSLog(@"the country name is %@", countryName);
+            // add country name into place dict
+            if (!self.placesDict[countryName]) {
+                self.placesDict[countryName] = [[NSMutableArray alloc]init];
+
+            }
+            [self.placesDict[countryName] addObject:place];
+                
+            
+        }
+        //clear update country names
+        self.countryNames = nil;
+    }
+    else  {
+        NSAssert(NO, @"place should not be nil" );
+    }
+}
+
+
+- (void) updateTable {
     NSURL *urlTopPlaces = [FlickrFetcher URLforTopPlaces];
     NSAssert(urlTopPlaces, @"url access fails!!\n");
     
@@ -43,20 +83,20 @@
     if (urlTopPlaces) {
         
         
-
+        
 #ifdef DEBUG_PLACE
-////        dispatch_async(downloadQueue, ^{
-//            NSData * dataTopPlaces = [NSData dataWithContentsOfURL:urlTopPlaces];
-//            NSAssert(urlTopPlaces, @"download of top places fails!!\n");
-//            if (dataTopPlaces) {
-//                NSDictionary *propertyListRes = [NSJSONSerialization JSONObjectWithData:dataTopPlaces options:0 error:NULL];
-////                dispatch_async(dispatch_get_main_queue(), ^{
-//                    [self.refreshControl endRefreshing];
-//                    self.places = [propertyListRes valueForKey:FLICKR_RESULTS_PLACES];
-//                    NSLog(@"the places is:\n%@", self.places);
-////                });
-//            }
-////        });
+        //        dispatch_async(downloadQueue, ^{
+        NSData * dataTopPlaces = [NSData dataWithContentsOfURL:urlTopPlaces];
+        NSAssert(urlTopPlaces, @"download of top places fails!!\n");
+        if (dataTopPlaces) {
+            NSDictionary *propertyListRes = [NSJSONSerialization JSONObjectWithData:dataTopPlaces options:0 error:NULL];
+            //                dispatch_async(dispatch_get_main_queue(), ^{
+            [self.refreshControl endRefreshing];
+            self.places = [propertyListRes valueForKeyPath:FLICKR_RESULTS_PLACES];
+            NSLog(@"the places is:\n%@", self.places);
+            //                });
+        }
+        //        });
 #endif
         
 #ifndef DEBUG_PLACE
@@ -69,7 +109,7 @@
                 NSDictionary *propertyListRes = [NSJSONSerialization JSONObjectWithData:dataTopPlaces options:0 error:NULL];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.refreshControl endRefreshing];
-                    self.places = [propertyListRes valueForKey:FLICKR_RESULTS_PLACES];
+                    self.places = [propertyListRes valueForKeyPath:FLICKR_RESULTS_PLACES];
                     NSLog(@"the places is:\n%@", self.places);
                 });
             }
@@ -77,10 +117,42 @@
         
 #endif
         
-        self.tableView.delegate = self;
-        self.tableView.dataSource = self;
     }
 }
+
+#pragma mark -- Actions
+
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+     if ([sender isKindOfClass:[UITableViewCell class]]) {
+         UITableViewCell *cell = (UITableViewCell *)sender;
+         if ([segue.destinationViewController isKindOfClass: [PhotosTableViewController class]]) {
+             PhotosTableViewController * dest = (PhotosTableViewController *)segue.destinationViewController;
+             NSIndexPath * path = [self.tableView indexPathForCell:cell];
+             
+             //get the place object
+             NSDictionary *place = [self placeObject:path];
+             
+             // set dest view controller
+             dest.title = [place valueForKey:FLICKR_PLACE_NAME];
+             dest.placeId = [place valueForKey:FLICKR_PLACE_ID];
+         }
+         else {
+             NSAssert(NO, @"segue destination is wrong");
+         }
+     }
+     else {
+         NSAssert(NO, @"segue sender is wrong");
+     }
+ }
+
+
+- (IBAction)fetchTable:(id)sender {
+    [self updateTable];
+}
+
 
 #pragma mark -- Properties
 //-(NSDictionary *)places {
@@ -96,33 +168,14 @@
     
     //update places dict
     if (places) {
-        NSString * countryName = nil;
-        for (NSDictionary * place in self.places) {
-            NSRange lastComma = [place.description rangeOfString:@"," options:NSBackwardsSearch];
-            if (lastComma.location != NSNotFound) {
-                countryName = [place.description substringWithRange:lastComma];
-                
-                NSLog(@"the country name is %@", countryName);
-                // add country name into place dict
-                if (!self.placesDict[countryName]) {
-                    self.placesDict[countryName] = [[NSMutableArray alloc]init];
-                    //clear update country names
-                    self.countryNames = nil;
-                }
-                [self.placesDict[countryName] addObject:place];
-                
-                
-            }
-            else {
-                NSAssert(NO,@"Country name in json is wrong!") ;
-            }
-        }
-    }
-    else  {
-        NSAssert(NO, @"place should not be nil" );
+        [self updatePlaceDictionary];
+        
+        [self.tableView reloadData];
     }
 
 }
+
+
 
 -(NSDictionary *)placesDict {
     if (!_placesDict) {
@@ -153,7 +206,7 @@
 {
 //#warning Potentially incomplete method implementation.
     // Return the number of sections.
-
+    NSLog(@"the total country count is %d", [self.countryNames count]);
     return [self.countryNames count];
 }
 
@@ -173,14 +226,29 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"place item" forIndexPath:indexPath];
     
-    NSString * countryName = [self.countryNames objectAtIndex:indexPath.section];
-    NSMutableArray * placesInSection = [self.placesDict objectForKey:countryName];
-    NSDictionary * place = [placesInSection objectAtIndex:indexPath.row];
+
+    NSDictionary * place = [self placeObject:indexPath];
+    
+    
     NSAssert(place, @"place does not exit!!");
-    cell.textLabel.text = place.description;
+    cell.textLabel.text = [FlickrFetcher getCityName: place[FLICKR_PLACE_NAME]];
+    cell.detailTextLabel.text = [FlickrFetcher getStateName:place[FLICKR_PLACE_NAME]];
     
     return cell;
 }
+
+- (NSDictionary *) placeObject:(NSIndexPath *)path {
+    NSString * countryName = [self.countryNames objectAtIndex:path.section];
+    NSMutableArray * placesInSection = [self.placesDict objectForKey:countryName];
+    NSDictionary * place = [placesInSection objectAtIndex:path.row];
+    return place;
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    
+    return [self.countryNames objectAtIndex:section];
+}
+
 
 
 /*
@@ -221,15 +289,5 @@
 }
 */
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

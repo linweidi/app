@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define DEBUG_PLACE
+//#define DEBUG_PLACE
 
 @interface PlacesTableViewController : UITableViewController
 

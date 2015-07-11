@@ -66,17 +66,7 @@
     return [self URLForQuery:[NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.places.getInfo&place_id=%@", flickrPlaceId]];
 }
 
-#define FLICKR_PLACE_NEIGHBORHOOD_NAME @"place.neighbourhood._content"
-#define FLICKR_PLACE_NEIGHBORHOOD_PLACE_ID @"place.neighbourhood.place_id"
-#define FLICKR_PLACE_LOCALITY_NAME @"place.locality._content"
-#define FLICKR_PLACE_LOCALITY_PLACE_ID @"place.locality.place_id"
-#define FLICKR_PLACE_REGION_NAME @"place.region._content"
-#define FLICKR_PLACE_REGION_PLACE_ID @"place.region.place_id"
-#define FLICKR_PLACE_COUNTY_NAME @"place.county._content"
-#define FLICKR_PLACE_COUNTY_PLACE_ID @"place.county.place_id"
-#define FLICKR_PLACE_COUNTRY_NAME @"place.country._content"
-#define FLICKR_PLACE_COUNTRY_PLACE_ID @"place.country.place_id"
-#define FLICKR_PLACE_REGION @"place.region"
+
 
 + (NSString *)extractNameOfPlace:(id)placeId fromPlaceInformation:(NSDictionary *)place
 {
@@ -100,6 +90,73 @@
 + (NSString *)extractRegionNameFromPlaceInformation:(NSDictionary *)place
 {
     return [place valueForKeyPath:FLICKR_PLACE_REGION_NAME];
+}
+
++ (NSString *) getCountryName:(NSString *)contents {
+    NSString * countryName = nil;
+    NSString * locName = nil;
+    
+    locName = contents;
+    NSRange lastComma = [locName rangeOfString:@"," options:NSBackwardsSearch];
+    if (lastComma.location != NSNotFound) {
+        
+        NSRange commaToEnd;
+        commaToEnd.location = lastComma.location + 1;
+        
+        if ([locName characterAtIndex:commaToEnd.location] == ' ') {
+            commaToEnd.location++;
+        }
+        commaToEnd.length = [locName length] - commaToEnd.location;
+        
+        // calcualte country name
+        countryName = [locName substringWithRange:commaToEnd];
+    }
+    
+    return countryName;
+}
+
++ (NSString *) getStateName:(NSString *)contents {
+    NSString * countryName = nil;
+    NSString * locName = nil;
+    
+    locName = contents;
+    NSRange lastComma = [locName rangeOfString:@"," options:NSBackwardsSearch];
+    NSRange firstComma =[locName rangeOfString:@","];
+    if (lastComma.location != NSNotFound && firstComma.location != NSNotFound) {
+        
+        NSRange commaToComma;
+        commaToComma.location = firstComma.location + 1;
+        
+        if ([locName characterAtIndex:commaToComma.location] == ' ') {
+            commaToComma.location++;
+        }
+        commaToComma.length = lastComma.location - firstComma.location;
+        
+        // calcualte country name
+        countryName = [locName substringWithRange:commaToComma];
+    }
+    
+    return countryName;
+}
+
++ (NSString *) getCityName:(NSString *)contents {
+    NSString * countryName = nil;
+    NSString * locName = nil;
+    
+    locName = contents;
+    NSRange firstComma = [locName rangeOfString:@","];
+    if (firstComma.location != NSNotFound) {
+        
+        NSRange beginToComma;
+        beginToComma.length = firstComma.location;
+        
+        beginToComma.location = 0;
+        
+        // calcualte country name
+        countryName = [locName substringWithRange:beginToComma];
+    }
+    
+    return countryName;
 }
 
 @end
