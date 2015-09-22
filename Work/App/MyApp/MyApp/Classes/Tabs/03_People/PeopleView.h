@@ -16,8 +16,10 @@
 #import "AddressBookView.h"
 #import "FacebookFriendsView.h"
 
+#import "TabTableViewController.h"
+
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-@interface PeopleView : UITableViewController <UIActionSheetDelegate, SelectSingleDelegate, SelectMultipleDelegate, AddressBookDelegate, FacebookFriendsDelegate>
+@interface PeopleView : TabTableViewController <UIActionSheetDelegate, SelectSingleDelegate, SelectMultipleDelegate, AddressBookDelegate, FacebookFriendsDelegate>
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 
 @end

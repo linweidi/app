@@ -16,9 +16,12 @@
 #import "AddressBookView.h"
 #import "FacebookFriendsView.h"
 
+#import "TabTableViewController.h"
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-@interface RecentView : UITableViewController <UIActionSheetDelegate, SelectSingleDelegate, SelectMultipleDelegate, AddressBookDelegate, FacebookFriendsDelegate>
+@interface RecentView : TabTableViewController <UIActionSheetDelegate, SelectSingleDelegate, SelectMultipleDelegate, AddressBookDelegate, FacebookFriendsDelegate>
 //-------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 - (void)loadRecents;
 

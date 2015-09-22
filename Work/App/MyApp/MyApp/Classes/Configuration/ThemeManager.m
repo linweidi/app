@@ -13,7 +13,7 @@
 
 + (void)applyNavigationBarTheme {
     [[UINavigationBar appearance] setTitleTextAttributes: @{NSForegroundColorAttributeName: [UIColor whiteColor],
-                                                            NSFontAttributeName: [UIFont fontWithName:@"KozGoPro-Light" size:18.0f]}];
+                NSFontAttributeName: [UIFont fontWithName:@"KozGoPro-Light" size:18.0f]}];
 
 }
 

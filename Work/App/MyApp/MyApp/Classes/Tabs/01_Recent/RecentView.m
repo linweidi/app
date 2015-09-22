@@ -30,6 +30,8 @@
 {
 	NSMutableArray *recents;
 }
+
+
 @end
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -79,6 +81,36 @@
 	}
 	else LoginUser(self);
 }
+
+
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    super.managedObjectContext = managedObjectContext;
+    
+    if (managedObjectContext) {
+        // init fetch request
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Region"];
+        request.predicate = nil;
+        request.fetchLimit = 50;
+        request.sortDescriptors = @[[NSSortDescriptor
+                                     sortDescriptorWithKey:@"popularity"
+                                     ascending:NO
+                                     selector:@selector(compare:)],
+                                    [NSSortDescriptor
+                                     sortDescriptorWithKey:@"name"
+                                     ascending:YES
+                                     selector:@selector(localizedStandardCompare:)]];
+        
+        
+        // init fetch result controller
+        self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                                            managedObjectContext:managedObjectContext
+                                                                              sectionNameKeyPath:nil
+                                                                                       cacheName:nil];
+    }
+    
+}
+
 
 #pragma mark - Backend methods
 

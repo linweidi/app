@@ -10,9 +10,10 @@
 // THE SOFTWARE.
 
 #import <UIKit/UIKit.h>
+#import "TabTableViewController.h"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-@interface SettingsView : UITableViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate>
+@interface SettingsView : TabTableViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate>
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 
 @end

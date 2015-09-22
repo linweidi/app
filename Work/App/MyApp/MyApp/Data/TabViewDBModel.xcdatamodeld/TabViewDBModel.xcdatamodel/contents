@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13A603" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Alert" representedClassName="Alert" syncable="YES"/>
+    <entity name="Event" representedClassName="Event" syncable="YES"/>
+    <entity name="Friend" representedClassName="Friend" syncable="YES">
+        <attribute name="friend" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Group" representedClassName="Group" syncable="YES">
+        <attribute name="members" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Place" representedClassName="Place" syncable="YES"/>
+    <entity name="Recent" representedClassName="Recent" syncable="YES">
+        <attribute name="chatId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="counter" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="details" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastMessage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastUser" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="member" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updateDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="user" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Recent" positionX="-369" positionY="-162" width="128" height="163"/>
+        <element name="Friend" positionX="-117" positionY="-99" width="128" height="73"/>
+        <element name="Group" positionX="-252" positionY="72" width="128" height="75"/>
+        <element name="Event" positionX="34" positionY="-9" width="128" height="45"/>
+        <element name="Place" positionX="-90" positionY="72" width="128" height="45"/>
+        <element name="Alert" positionX="36" positionY="99" width="128" height="45"/>
+    </elements>
+</model>
