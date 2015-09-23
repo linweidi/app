@@ -24,3 +24,10 @@ void			ClearRecentCounter		(NSString *groupId);
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 void			DeleteRecentItems		(PFUser *user1, PFUser *user2);
+
+@class RecentView;
+@interface RecentUtil : NSObject
+
++ (void) loadRecentFromParse:(RecentView *)recentView ;
+
+@end

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13A603" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="14F27" minimumToolsVersion="Xcode 4.3">
     <entity name="Alert" representedClassName="Alert" syncable="YES"/>
+    <entity name="CurrentUser" representedClassName="CurrentUser" syncable="YES"/>
     <entity name="Event" representedClassName="Event" syncable="YES"/>
     <entity name="Friend" representedClassName="Friend" syncable="YES">
         <attribute name="friend" optional="YES" attributeType="String" syncable="YES"/>
@@ -21,12 +22,15 @@
         <attribute name="updateDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="user" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="User" representedClassName="User" syncable="YES"/>
     <elements>
-        <element name="Recent" positionX="-369" positionY="-162" width="128" height="163"/>
+        <element name="Alert" positionX="36" positionY="99" width="128" height="45"/>
+        <element name="Event" positionX="34" positionY="-9" width="128" height="45"/>
         <element name="Friend" positionX="-117" positionY="-99" width="128" height="73"/>
         <element name="Group" positionX="-252" positionY="72" width="128" height="75"/>
-        <element name="Event" positionX="34" positionY="-9" width="128" height="45"/>
         <element name="Place" positionX="-90" positionY="72" width="128" height="45"/>
-        <element name="Alert" positionX="36" positionY="99" width="128" height="45"/>
+        <element name="Recent" positionX="-369" positionY="-162" width="128" height="163"/>
+        <element name="CurrentUser" positionX="-162" positionY="-27" width="128" height="45"/>
+        <element name="User" positionX="-153" positionY="-18" width="128" height="45"/>
     </elements>
 </model>

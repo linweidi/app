@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		282E4B011BB2604800743E04 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 282E4AFA1BB2604800743E04 /* User+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		282E4B021BB2604800743E04 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 282E4AFC1BB2604800743E04 /* User.m */; settings = {ASSET_TAGS = (); }; };
+		282E4B031BB2604800743E04 /* CurrentUser+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 282E4AFE1BB2604800743E04 /* CurrentUser+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		282E4B041BB2604800743E04 /* CurrentUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 282E4B001BB2604800743E04 /* CurrentUser.m */; settings = {ASSET_TAGS = (); }; };
+		282E4B351BB26E3A00743E04 /* Friend+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 282E4B2A1BB26E3A00743E04 /* Friend+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		282E4B361BB26E3A00743E04 /* Group+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 282E4B2C1BB26E3A00743E04 /* Group+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		282E4B371BB26E3A00743E04 /* Place+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 282E4B2E1BB26E3A00743E04 /* Place+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		282E4B381BB26E3A00743E04 /* Alert+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 282E4B301BB26E3A00743E04 /* Alert+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		282E4B391BB26E3A00743E04 /* Recent+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 282E4B321BB26E3A00743E04 /* Recent+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		282E4B3A1BB26E3A00743E04 /* Event+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 282E4B341BB26E3A00743E04 /* Event+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
 		E51D87BE1BB1CC1800470170 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D85571BB1CC1600470170 /* AFHTTPRequestOperation.m */; };
 		E51D87BF1BB1CC1800470170 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D85591BB1CC1600470170 /* AFHTTPRequestOperationManager.m */; };
 		E51D87C01BB1CC1800470170 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D855B1BB1CC1600470170 /* AFHTTPSessionManager.m */; };
@@ -295,7 +305,7 @@
 		E51D88DB1BB1CC1800470170 /* people.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D87251BB1CC1700470170 /* people.m */; };
 		E51D88DC1BB1CC1800470170 /* PFUser+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D87271BB1CC1700470170 /* PFUser+Util.m */; };
 		E51D88DD1BB1CC1800470170 /* push.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D87291BB1CC1700470170 /* push.m */; };
-		E51D88DE1BB1CC1800470170 /* recent.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D872B1BB1CC1700470170 /* recent.m */; };
+		E51D88DE1BB1CC1800470170 /* RecentUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D872B1BB1CC1700470170 /* RecentUtil.m */; };
 		E51D88DF1BB1CC1800470170 /* camera.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D872E1BB1CC1700470170 /* camera.m */; };
 		E51D88E01BB1CC1800470170 /* common.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D87301BB1CC1700470170 /* common.m */; };
 		E51D88E11BB1CC1800470170 /* converter.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D87321BB1CC1700470170 /* converter.m */; };
@@ -432,7 +442,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D9F12F961A6E7416003B1DCF /* MyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = MyApp.app; path = "/Users/linweidi/Documents/workspace/app/Work/App/MyApp/build/Debug-iphoneos/MyApp.app"; sourceTree = "<absolute>"; };
+		282E4AF81BB25B7A00743E04 /* MyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		282E4AF91BB2604800743E04 /* User+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataProperties.h"; sourceTree = "<group>"; };
+		282E4AFA1BB2604800743E04 /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataProperties.m"; sourceTree = "<group>"; };
+		282E4AFB1BB2604800743E04 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		282E4AFC1BB2604800743E04 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		282E4AFD1BB2604800743E04 /* CurrentUser+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CurrentUser+CoreDataProperties.h"; sourceTree = "<group>"; };
+		282E4AFE1BB2604800743E04 /* CurrentUser+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CurrentUser+CoreDataProperties.m"; sourceTree = "<group>"; };
+		282E4AFF1BB2604800743E04 /* CurrentUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentUser.h; sourceTree = "<group>"; };
+		282E4B001BB2604800743E04 /* CurrentUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentUser.m; sourceTree = "<group>"; };
+		282E4B291BB26E3A00743E04 /* Friend+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Friend+CoreDataProperties.h"; sourceTree = "<group>"; };
+		282E4B2A1BB26E3A00743E04 /* Friend+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Friend+CoreDataProperties.m"; sourceTree = "<group>"; };
+		282E4B2B1BB26E3A00743E04 /* Group+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Group+CoreDataProperties.h"; sourceTree = "<group>"; };
+		282E4B2C1BB26E3A00743E04 /* Group+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Group+CoreDataProperties.m"; sourceTree = "<group>"; };
+		282E4B2D1BB26E3A00743E04 /* Place+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Place+CoreDataProperties.h"; sourceTree = "<group>"; };
+		282E4B2E1BB26E3A00743E04 /* Place+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Place+CoreDataProperties.m"; sourceTree = "<group>"; };
+		282E4B2F1BB26E3A00743E04 /* Alert+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Alert+CoreDataProperties.h"; sourceTree = "<group>"; };
+		282E4B301BB26E3A00743E04 /* Alert+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Alert+CoreDataProperties.m"; sourceTree = "<group>"; };
+		282E4B311BB26E3A00743E04 /* Recent+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Recent+CoreDataProperties.h"; sourceTree = "<group>"; };
+		282E4B321BB26E3A00743E04 /* Recent+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Recent+CoreDataProperties.m"; sourceTree = "<group>"; };
+		282E4B331BB26E3A00743E04 /* Event+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Event+CoreDataProperties.h"; sourceTree = "<group>"; };
+		282E4B341BB26E3A00743E04 /* Event+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Event+CoreDataProperties.m"; sourceTree = "<group>"; };
 		E51D85561BB1CC1600470170 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		E51D85571BB1CC1600470170 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		E51D85581BB1CC1600470170 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -848,8 +878,8 @@
 		E51D87271BB1CC1700470170 /* PFUser+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PFUser+Util.m"; sourceTree = "<group>"; };
 		E51D87281BB1CC1700470170 /* push.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = push.h; sourceTree = "<group>"; };
 		E51D87291BB1CC1700470170 /* push.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = push.m; sourceTree = "<group>"; };
-		E51D872A1BB1CC1700470170 /* recent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = recent.h; sourceTree = "<group>"; };
-		E51D872B1BB1CC1700470170 /* recent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = recent.m; sourceTree = "<group>"; };
+		E51D872A1BB1CC1700470170 /* RecentUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentUtil.h; sourceTree = "<group>"; };
+		E51D872B1BB1CC1700470170 /* RecentUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentUtil.m; sourceTree = "<group>"; };
 		E51D872D1BB1CC1700470170 /* camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = camera.h; sourceTree = "<group>"; };
 		E51D872E1BB1CC1700470170 /* camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = camera.m; sourceTree = "<group>"; };
 		E51D872F1BB1CC1700470170 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
@@ -1035,6 +1065,7 @@
 				E51D874E1BB1CC1700470170 /* Info.plist */,
 				E51D874F1BB1CC1700470170 /* main.m */,
 				E51D87501BB1CC1700470170 /* Resources */,
+				282E4AF81BB25B7A00743E04 /* MyApp.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1651,6 +1682,26 @@
 		E51D86C01BB1CC1700470170 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				282E4B291BB26E3A00743E04 /* Friend+CoreDataProperties.h */,
+				282E4B2A1BB26E3A00743E04 /* Friend+CoreDataProperties.m */,
+				282E4B2B1BB26E3A00743E04 /* Group+CoreDataProperties.h */,
+				282E4B2C1BB26E3A00743E04 /* Group+CoreDataProperties.m */,
+				282E4B2D1BB26E3A00743E04 /* Place+CoreDataProperties.h */,
+				282E4B2E1BB26E3A00743E04 /* Place+CoreDataProperties.m */,
+				282E4B2F1BB26E3A00743E04 /* Alert+CoreDataProperties.h */,
+				282E4B301BB26E3A00743E04 /* Alert+CoreDataProperties.m */,
+				282E4B311BB26E3A00743E04 /* Recent+CoreDataProperties.h */,
+				282E4B321BB26E3A00743E04 /* Recent+CoreDataProperties.m */,
+				282E4B331BB26E3A00743E04 /* Event+CoreDataProperties.h */,
+				282E4B341BB26E3A00743E04 /* Event+CoreDataProperties.m */,
+				282E4AF91BB2604800743E04 /* User+CoreDataProperties.h */,
+				282E4AFA1BB2604800743E04 /* User+CoreDataProperties.m */,
+				282E4AFB1BB2604800743E04 /* User.h */,
+				282E4AFC1BB2604800743E04 /* User.m */,
+				282E4AFD1BB2604800743E04 /* CurrentUser+CoreDataProperties.h */,
+				282E4AFE1BB2604800743E04 /* CurrentUser+CoreDataProperties.m */,
+				282E4AFF1BB2604800743E04 /* CurrentUser.h */,
+				282E4B001BB2604800743E04 /* CurrentUser.m */,
 				E51D898C1BB2162900470170 /* Place.h */,
 				E51D898D1BB2162900470170 /* Place.m */,
 				E51D89891BB2162800470170 /* Event.h */,
@@ -1909,8 +1960,8 @@
 				E51D87271BB1CC1700470170 /* PFUser+Util.m */,
 				E51D87281BB1CC1700470170 /* push.h */,
 				E51D87291BB1CC1700470170 /* push.m */,
-				E51D872A1BB1CC1700470170 /* recent.h */,
-				E51D872B1BB1CC1700470170 /* recent.m */,
+				E51D872A1BB1CC1700470170 /* RecentUtil.h */,
+				E51D872B1BB1CC1700470170 /* RecentUtil.m */,
 			);
 			path = backend;
 			sourceTree = "<group>";
@@ -2188,7 +2239,7 @@
 			);
 			name = MyApp;
 			productName = Restaurant;
-			productReference = D9F12F961A6E7416003B1DCF /* MyApp.app */;
+			productReference = 282E4AF81BB25B7A00743E04 /* MyApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -2498,6 +2549,7 @@
 				E51D88691BB1CC1800470170 /* IDMTapDetectingView.m in Sources */,
 				E51D88921BB1CC1800470170 /* JSQMessagesToolbarContentView.m in Sources */,
 				E51D88991BB1CC1800470170 /* ProgressHUD.m in Sources */,
+				282E4B371BB26E3A00743E04 /* Place+CoreDataProperties.m in Sources */,
 				E51D88B41BB1CC1800470170 /* MenuTableViewCell.m in Sources */,
 				E51D88201BB1CC1800470170 /* all_69.js in Sources */,
 				E51D88BA1BB1CC1800470170 /* LeftMenuViewController.m in Sources */,
@@ -2510,11 +2562,12 @@
 				E51D881E1BB1CC1800470170 /* all_67.js in Sources */,
 				E51D88D81BB1CC1800470170 /* FacebookFriendsView.m in Sources */,
 				E51D88871BB1CC1800470170 /* JSQMessagesCollectionViewCell.m in Sources */,
+				282E4B391BB26E3A00743E04 /* Recent+CoreDataProperties.m in Sources */,
 				E51D88AD1BB1CC1800470170 /* MenuItem.m in Sources */,
 				E51D88761BB1CC1800470170 /* JSQMessagesAvatarImageFactory.m in Sources */,
 				E51D88C21BB1CC1800470170 /* CreateGroupView.m in Sources */,
 				E51D882C1BB1CC1800470170 /* classes_66.js in Sources */,
-				E51D88DE1BB1CC1800470170 /* recent.m in Sources */,
+				E51D88DE1BB1CC1800470170 /* RecentUtil.m in Sources */,
 				E51D88681BB1CC1800470170 /* IDMTapDetectingImageView.m in Sources */,
 				E51D88911BB1CC1800470170 /* JSQMessagesMediaPlaceholderView.m in Sources */,
 				E51D88371BB1CC1800470170 /* functions_65.js in Sources */,
@@ -2540,9 +2593,11 @@
 				E51D883F1BB1CC1800470170 /* functions_6c.js in Sources */,
 				E51D88431BB1CC1800470170 /* functions_72.js in Sources */,
 				E51D88861BB1CC1800470170 /* JSQMessagesCollectionView.m in Sources */,
+				282E4B381BB26E3A00743E04 /* Alert+CoreDataProperties.m in Sources */,
 				E51D88DC1BB1CC1800470170 /* PFUser+Util.m in Sources */,
 				E51D88BD1BB1CC1800470170 /* TabBarControllerViewController.m in Sources */,
 				E51D888E1BB1CC1800470170 /* JSQMessagesLabel.m in Sources */,
+				282E4B3A1BB26E3A00743E04 /* Event+CoreDataProperties.m in Sources */,
 				E51D87E01BB1CC1800470170 /* dir_191bbc312b17524397d6a9dc5f56d69f.js in Sources */,
 				E51D88671BB1CC1800470170 /* IDMPhotoBrowser.m in Sources */,
 				E51D88BE1BB1CC1800470170 /* RecentCell.m in Sources */,
@@ -2551,6 +2606,7 @@
 				E51D88A31BB1CC1800470170 /* ChatView.m in Sources */,
 				E51D889C1BB1CC1800470170 /* MSSlidingPanelController.m in Sources */,
 				E51D88451BB1CC1800470170 /* functions_73.js in Sources */,
+				282E4B021BB2604800743E04 /* User.m in Sources */,
 				E51D88B71BB1CC1800470170 /* ReservationLocationTableViewCell.m in Sources */,
 				E51D88A41BB1CC1800470170 /* PhotoMediaItem.m in Sources */,
 				E51D87CC1BB1CC1800470170 /* UIProgressView+AFNetworking.m in Sources */,
@@ -2561,9 +2617,11 @@
 				E51D881C1BB1CC1800470170 /* all_66.js in Sources */,
 				E51D898E1BB2162900470170 /* Place.m in Sources */,
 				E51D882F1BB1CC1800470170 /* functions_5f.js in Sources */,
+				282E4B361BB26E3A00743E04 /* Group+CoreDataProperties.m in Sources */,
 				E51D88121BB1CC1800470170 /* all_5f.js in Sources */,
 				E51D883D1BB1CC1800470170 /* functions_69.js in Sources */,
 				E51D88661BB1CC1800470170 /* IDMPhoto.m in Sources */,
+				282E4B041BB2604800743E04 /* CurrentUser.m in Sources */,
 				E51D88B11BB1CC1800470170 /* FeedbackTableViewCell.m in Sources */,
 				E51D88B31BB1CC1800470170 /* MenuItemTableViewCell.m in Sources */,
 				E51D88391BB1CC1800470170 /* functions_66.js in Sources */,
@@ -2619,6 +2677,7 @@
 				E51D88F51BB1CC1800470170 /* main.m in Sources */,
 				E51D88731BB1CC1800470170 /* JSQMessagesKeyboardController.m in Sources */,
 				E51D889B1BB1CC1800470170 /* EmptySegue.m in Sources */,
+				282E4B011BB2604800743E04 /* User+CoreDataProperties.m in Sources */,
 				E51D88701BB1CC1800470170 /* UIDevice+JSQMessages.m in Sources */,
 				E51D886E1BB1CC1800470170 /* NSString+JSQMessages.m in Sources */,
 				E51D889A1BB1CC1800470170 /* RNGridMenu.m in Sources */,
@@ -2635,6 +2694,7 @@
 				E51D88771BB1CC1800470170 /* JSQMessagesBubbleImageFactory.m in Sources */,
 				E51D88E21BB1CC1800470170 /* fileutil.m in Sources */,
 				E51D88331BB1CC1800470170 /* functions_63.js in Sources */,
+				282E4B351BB26E3A00743E04 /* Friend+CoreDataProperties.m in Sources */,
 				E51D88DA1BB1CC1800470170 /* group.m in Sources */,
 				E51D88311BB1CC1800470170 /* functions_61.js in Sources */,
 				E51D88CE1BB1CC1800470170 /* TermsView.m in Sources */,
@@ -2649,6 +2709,7 @@
 				E51D87BE1BB1CC1800470170 /* AFHTTPRequestOperation.m in Sources */,
 				E51D88A11BB1CC1800470170 /* ProfileView.m in Sources */,
 				E51D88D61BB1CC1800470170 /* AddressBookView.m in Sources */,
+				282E4B031BB2604800743E04 /* CurrentUser+CoreDataProperties.m in Sources */,
 				E51D88B81BB1CC1800470170 /* FeedbackViewController.m in Sources */,
 				E51D87E91BB1CC1800470170 /* dynsections.js in Sources */,
 				E51D88C41BB1CC1800470170 /* GroupSettingsView.m in Sources */,

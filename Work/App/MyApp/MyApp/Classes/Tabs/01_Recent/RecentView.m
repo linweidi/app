@@ -14,7 +14,9 @@
 
 #import "AppConstant.h"
 #import "common.h"
-#import "recent.h"
+#import "RecentUtil.h"
+
+#import "CurrentUser+CoreDataProperties.h"
 
 #import "RecentView.h"
 #import "RecentCell.h"
@@ -75,7 +77,7 @@
 {
 	[super viewDidAppear:animated];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	if ([PFUser currentUser] != nil)
+	if ([CurrentUser getCurrentUser] != nil)
 	{
 		[self loadRecents];
 	}
@@ -89,17 +91,14 @@
     
     if (managedObjectContext) {
         // init fetch request
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Region"];
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Recent"];
         request.predicate = nil;
         request.fetchLimit = 50;
         request.sortDescriptors = @[[NSSortDescriptor
-                                     sortDescriptorWithKey:@"popularity"
+                                     sortDescriptorWithKey:@"updateDate"
                                      ascending:NO
                                      selector:@selector(compare:)],
-                                    [NSSortDescriptor
-                                     sortDescriptorWithKey:@"name"
-                                     ascending:YES
-                                     selector:@selector(localizedStandardCompare:)]];
+                                    ];
         
         
         // init fetch result controller

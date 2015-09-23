@@ -14,7 +14,8 @@
 
 #import "AppConstant.h"
 
-#import "recent.h"
+#import "RecentView.h"
+#import "RecentUtil.h"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 NSString* StartPrivateChat(PFUser *user1, PFUser *user2)
@@ -178,3 +179,39 @@ void DeleteRecentItems(PFUser *user1, PFUser *user2)
 		else NSLog(@"DeleteMessages query error.");
 	}];
 }
+
+@implementation RecentUtil
+
++ (void) loadRecentFromParse:(RecentView *)recentView {
+    //NSMutableArray * recents = [[NSMutableArray alloc] init];
+    NSMutableDictionary * recents = [[NSMutableDictionary alloc] init];
+    
+    
+    
+    PFQuery *query = [PFQuery queryWithClassName:PF_RECENT_CLASS_NAME];
+    [query whereKey:PF_RECENT_USER equalTo:[PFUser currentUser]];
+    [query includeKey:PF_RECENT_LASTUSER];
+    [query orderByDescending:PF_RECENT_UPDATEDACTION];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+     {
+         if (error == nil)
+         {
+             //[recents removeAllObjects];
+             //[recents addObjectsFromArray:objects];
+             
+             for (PFObject * object in objects) {
+                 [recents setObject:object forKey:object[PF_RECENT_GROUPID]];
+             }
+             
+             // load the recents into core data
+             
+             [recentView.tableView reloadData];
+             [recentView updateTabCounter];
+         }
+         else [ProgressHUD showError:@"Network error."];
+         [self.refreshControl endRefreshing];
+     }];
+}
+
+
+@end

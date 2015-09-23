@@ -12,7 +12,11 @@
 @implementation Recent (Update)
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-+ (void)recentWithPFObject: (PFObject *)object
+// Create or get the object from data base
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+
+
++ (Recent *)recentWithPFObject: (PFObject *)object
     inManagedObjectContext: (NSManagedObjectContext *)context {
     Recent * recent = nil;
     
@@ -39,6 +43,8 @@
              
             
     }
+    
+    return recent;
              
              
     /*
@@ -87,42 +93,21 @@
      }];
      */
 }
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+// Create or get object from plist
+
              
 + (void) setRecent:(Recent *)recent withPFObject:(PFObject *)object {
-    //recent.user = recent[PF_RECENT_USER];
-    recent.chatId =  recent[PF_RECENT_GROUPID];
-    recent.chatId = recent[PF_RECENT_MEMBERS] ;
-    recent.chatId = recent[PF_RECENT_DESCRIPTION] ;
-    //recent.chatId = recent[PF_RECENT_LASTUSER] ;
-    recent.chatId = recent[PF_RECENT_LASTMESSAGE] ;
-    recent.chatId = recent[PF_RECENT_COUNTER] ;
-    recent.chatId = recent[PF_RECENT_UPDATEDACTION];
+    //recent.user = object[PF_RECENT_USER];
+    recent.chatId =  object[PF_RECENT_GROUPID];
+    recent.chatId = object[PF_RECENT_MEMBERS] ;
+    recent.chatId = object[PF_RECENT_DESCRIPTION] ;
+    //recent.chatId = object[PF_RECENT_LASTUSER] ;
+    recent.chatId = object[PF_RECENT_LASTMESSAGE] ;
+    recent.chatId = object[PF_RECENT_COUNTER] ;
+    recent.chatId = object[PF_RECENT_UPDATEDACTION];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)bindData:(PFObject *)recent_
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
-	recent = recent_;
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	imageUser.layer.cornerRadius = imageUser.frame.size.width/2;
-	imageUser.layer.masksToBounds = YES;
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	PFUser *lastUser = recent[PF_RECENT_LASTUSER];
-	[imageUser setFile:lastUser[PF_USER_PICTURE]];
-	[imageUser loadInBackground];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	labelDescription.text = recent[PF_RECENT_DESCRIPTION];
-	labelLastMessage.text = recent[PF_RECENT_LASTMESSAGE];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	NSTimeInterval seconds = [[NSDate date] timeIntervalSinceDate:recent[PF_RECENT_UPDATEDACTION]];
-	labelElapsed.text = TimeElapsed(seconds);
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	int counter = [recent[PF_RECENT_COUNTER] intValue];
-	labelCounter.text = (counter == 0) ? @"" : [NSString stringWithFormat:@"%d new", counter];
-}
 
-- (void)bindDataDemo:(PFObject *)recent_ {
-    
-}
 @end

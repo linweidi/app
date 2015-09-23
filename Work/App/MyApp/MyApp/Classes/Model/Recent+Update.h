@@ -10,6 +10,7 @@
 
 @interface Recent (Update)
 
-+ (void)update: (PFObject *)object;
++ (Recent *)recentWithPFObject: (PFObject *)object
+      inManagedObjectContext: (NSManagedObjectContext *)context;
 
 @end
