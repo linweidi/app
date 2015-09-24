@@ -3,15 +3,14 @@
 //  MyApp
 //
 //  Created by Linwei Ding on 9/23/15.
-//  Copyright (c) 2015 AppsFoundation. All rights reserved.
+//  Copyright © 2015 AppsFoundation. All rights reserved.
 //
 
 #import "Event.h"
 #import "User.h"
 
-
 @implementation Event
 
-@dynamic user;
+// Insert code here to add functionality to your managed object subclass
 
 @end

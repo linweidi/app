@@ -12,8 +12,8 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 
-#import "Recent.h"
-#import "AppConstant.h"
+#import "DataModelHeader.h"
+
 #import "converter.h"
 
 #import "RecentCell.h"
@@ -72,10 +72,21 @@
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	User *lastUser = recent.lastUser;
     
-    //TEMP
-    /// TODO
-	//[imageUser setFile:lastUser.picture ];
-	//[imageUser loadInBackground];
+
+//    PFQuery *query = [PFUser query];
+//    //[query whereKey:PF_USER_OBJECTID equalTo:@"female"]; // find all the women
+//    [query includeKey:PF_USER_PICTURE];
+//    [query getObjectInBackgroundWithId:lastUser.globalID block:^(PFObject * object, NSError *  error) {
+//        if (!error) {
+//            [imageUser setFile:object[PF_USER_PICTURE]];
+//            [imageUser loadInBackground];
+//        }else {
+//            
+//        }
+//    }];
+    [imageUser setImage:[UIImage imageWithData:lastUser.thumbnail.data]];
+    [imageUser loadInBackground];
+    
     
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	labelDescription.text = recent.details;

@@ -7,8 +7,8 @@
 //
 
 
-#import <Parse/Parse.h >
-
+#import <Parse/Parse.h>
+#import "Thumbnail.h"
 #import "AppConstant.h"
 #import "User+Util.h"
 
@@ -38,20 +38,20 @@
             //create a new one
             user = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
             //set the recent values
-            [user setWithPFUser:object];
+            [user setWithPFUser:object inManagedObjectContext:context];
         }
         else {
-            recent = [matches lastObject];
+            user = [matches lastObject];
             
         }
         
         
     }
     
-    return recent;
+    return user;
 }
 
-- (void) setWithPFUser:(PFUser *)user {
+- (void) setWithPFUser:(PFUser *)user inManagedObjectContext: (NSManagedObjectContext *)context{
 
     
     self.twitterID = user[PF_USER_TWITTERID];
@@ -68,9 +68,38 @@
     
     // this is a PFFile
     PFFile * filePicture = user[PF_USER_PICTURE];
-    self.picture = filePicture.name;
+    self.pictureName = filePicture.name;
+    
     PFFile * thumbnailPicture = user[PF_USER_THUMBNAIL];
-    self.thumbnail = thumbnailPicture.name;
+    //self.thumbnail = thumbnailPicture.name;
+    if (self.thumbnail) {
+        
+        if (self.thumbnail.name == thumbnailPicture.name ) {
+            // do nothing
+        }
+        else {
+            [context deleteObject:self.thumbnail];
+            self.thumbnail = nil;
+            
+            Thumbnail * newThumbNail = [NSEntityDescription insertNewObjectForEntityForName:thumbnailPicture.name inManagedObjectContext:context];
+            if (newThumbNail) {
+                self.thumbnail = newThumbNail ;
+            }
+            else {
+                NSAssert(NO, @"insert thumbnail fails");
+            }
+        }
+    }
+    else {
+        // no thumbnail exists
+        Thumbnail * newThumbNail = [NSEntityDescription insertNewObjectForEntityForName:thumbnailPicture.name inManagedObjectContext:context];
+        if (newThumbNail) {
+            self.thumbnail = newThumbNail ;
+        }
+        else {
+            NSAssert(NO, @"insert thumbnail fails");
+        }
+    }
 
 
 }

@@ -1,30 +1,32 @@
 //
-//  Recent+Update.m
+//  Recent+Util.m
 //  MyApp
 //
-//  Created by Linwei Ding on 9/22/15.
-//  Copyright (c) 2015 AppsFoundation. All rights reserved.
+//  Created by Linwei Ding on 9/23/15.
+//  Copyright © 2015 AppsFoundation. All rights reserved.
 //
+#import <Parse/Parse.h>
+
 #import "AppConstant.h"
 
-#import "Recent+Update.h"
+#import "Recent+Util.h"
 
-@implementation Recent (Update)
+@implementation Recent (Util)
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Create or get the object from data base
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 + (Recent *)createRecentEntityWithPFObject: (PFObject *)object
-        inManagedObjectContext: (NSManagedObjectContext *)context {
+                    inManagedObjectContext: (NSManagedObjectContext *)context {
     Recent * recent = nil;
     
     NSAssert(object, @"input is nil");
-
+    
     //create a new one
     recent = [NSEntityDescription insertNewObjectForEntityForName:@"Recent" inManagedObjectContext:context];
     //set the recent values
     [Recent setRecent:recent withPFObject:object];
-
+    
     
     return recent;
 }
@@ -32,7 +34,7 @@
 
 
 + (Recent *)recentEntityWithPFObject: (PFObject *)object
-    inManagedObjectContext: (NSManagedObjectContext *)context {
+              inManagedObjectContext: (NSManagedObjectContext *)context {
     Recent * recent = nil;
     
     NSAssert(object, @"input is nil");
@@ -49,18 +51,18 @@
         else if (![matches count]) {
             //create a new one
             recent = [NSEntityDescription insertNewObjectForEntityForName:@"Recent" inManagedObjectContext:context];
-             //set the recent values
+            //set the recent values
             [Recent setRecent:recent withPFObject:object];
         }
         else {
             recent = [matches lastObject];
         }
-             
-            
+        
+        
     }
     
     return recent;
-             
+    
 }
 
 + (BOOL) deleteRecentEntityWithPFObject:(PFObject *)object
@@ -147,7 +149,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // Create or get object from plist
 
-             
+
 + (void) setRecent:(Recent *)recent withPFObject:(PFObject *)object {
     PFUser * user = object[PF_RECENT_USER];
     
@@ -160,6 +162,7 @@
     recent.chatId = object[PF_RECENT_COUNTER] ;
     recent.chatId = object[PF_RECENT_UPDATEDACTION];
 }
+
 
 
 @end

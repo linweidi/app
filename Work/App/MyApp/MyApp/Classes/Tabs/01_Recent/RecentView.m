@@ -12,14 +12,12 @@
 #import <Parse/Parse.h>
 #import "ProgressHUD.h"
 
-#import "AppConstant.h"
+#import "DataModelHeader.h"
+
 #import "common.h"
 #import "RecentUtil.h"
-#import "Recent.h"
-#import "User.h"
 
-#import "CurrentUser+Util.h"
-#import "Recent+Update.h"
+
 
 
 #import "RecentView.h"
@@ -274,9 +272,17 @@
     
 	RecentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecentCell" forIndexPath:indexPath];
     
-    
-	[cell bindData:recents[indexPath.row]];
+    Recent * recent = [self.fetchedResultsController objectAtIndexPath:indexPath];
+	[cell bindData:recent];
 	return cell;
+    
+//    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Region Cell"];
+//    
+//    Region *region = [self.fetchedResultsController objectAtIndexPath:indexPath];
+//    cell.textLabel.text = region.name;
+//    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d photographers", [[region popularity] intValue]];
+//    
+//    return cell;
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -292,8 +298,8 @@
 {
     
     
-	PFObject *recent = recents[indexPath.row];
-	[recents removeObject:recent];
+	Recent *recent = [self.fetchedResultsController objectAtIndexPath:[indexPath.row]];
+	//[recents removeObject:recent];
 	[self updateTabCounter];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	[recent deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error)

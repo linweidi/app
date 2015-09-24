@@ -13,11 +13,8 @@
 #import "PFUser+Util.h"
 #import "ProgressHUD.h"
 
-#import "CurrentUser+Util.h"
-#import "User+Util.h"
-#import "Recent.h"
-#import "Recent+Update.h"
-#import "AppConstant.h"
+#import "DataModelHeader.h"
+
 
 #import "RecentView.h"
 #import "RecentUtil.h"
@@ -27,12 +24,12 @@ NSString* StartPrivateChat(CurrentUser *user1, User *user2)
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 
-	NSString *id1 = user1.objectId;
-	NSString *id2 = user2.objectId;
+	NSString *id1 = user1.globalID;
+	NSString *id2 = user2.globalID;
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	NSString *groupId = ([id1 compare:id2] < 0) ? [NSString stringWithFormat:@"%@%@", id1, id2] : [NSString stringWithFormat:@"%@%@", id2, id1];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	NSArray *members = @[user1.objectId, user2.objectId];
+	NSArray *members = @[user1.globalID, user2.globalID];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	CreateRecentItem(user1, groupId, members, user2.fullname);
 	CreateRecentItem(user2, groupId, members, user1.fullname);
@@ -53,7 +50,7 @@ NSString* StartMultipleChat(NSMutableArray *users)
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	for (User *user in users)
 	{
-		[userIds addObject: user.objectId];
+		[userIds addObject: user.globalID];
 	}
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	NSArray *sorted = [userIds sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
@@ -208,7 +205,7 @@ void DeleteRecentItems(User *user1, User *user2)
 {
 	PFQuery *query = [PFQuery queryWithClassName:PF_RECENT_CLASS_NAME];
 	[query whereKey:PF_RECENT_USER equalTo: [User convertFromUser:user1] ];
-	[query whereKey:PF_RECENT_MEMBERS equalTo:user2.objectId];
+	[query whereKey:PF_RECENT_MEMBERS equalTo:user2.globalID];
 	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
 	{
 		if (error == nil)
