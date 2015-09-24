@@ -12,6 +12,7 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 
+#import "Recent.h"
 #import "AppConstant.h"
 #import "converter.h"
 
@@ -20,7 +21,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 @interface RecentCell()
 {
-	PFObject *recent;
+//	PFObject *recent;
 }
 
 @property (strong, nonatomic) IBOutlet PFImageView *imageUser;
@@ -38,26 +39,52 @@
 @synthesize labelDescription, labelLastMessage;
 @synthesize labelElapsed, labelCounter;
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)bindData:(PFObject *)recent_
+////-------------------------------------------------------------------------------------------------------------------------------------------------
+//- (void)bindData:(PFObject *)recent_
+////-------------------------------------------------------------------------------------------------------------------------------------------------
+//{
+//	recent = recent_;
+//	//---------------------------------------------------------------------------------------------------------------------------------------------
+//	imageUser.layer.cornerRadius = imageUser.frame.size.width/2;
+//	imageUser.layer.masksToBounds = YES;
+//	//---------------------------------------------------------------------------------------------------------------------------------------------
+//	PFUser *lastUser = recent[PF_RECENT_LASTUSER];
+//	[imageUser setFile:lastUser[PF_USER_PICTURE]];
+//	[imageUser loadInBackground];
+//	//---------------------------------------------------------------------------------------------------------------------------------------------
+//	labelDescription.text = recent[PF_RECENT_DESCRIPTION];
+//	labelLastMessage.text = recent[PF_RECENT_LASTMESSAGE];
+//	//---------------------------------------------------------------------------------------------------------------------------------------------
+//	NSTimeInterval seconds = [[NSDate date] timeIntervalSinceDate:recent[PF_RECENT_UPDATEDACTION]];
+//	labelElapsed.text = TimeElapsed(seconds);
+//	//---------------------------------------------------------------------------------------------------------------------------------------------
+//	int counter = [recent[PF_RECENT_COUNTER] intValue];
+//	labelCounter.text = (counter == 0) ? @"" : [NSString stringWithFormat:@"%d new", counter];
+//}
+
+- (void)bindData:(Recent *)recent_
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	recent = recent_;
+	Recent * recent = recent_;
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	imageUser.layer.cornerRadius = imageUser.frame.size.width/2;
 	imageUser.layer.masksToBounds = YES;
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	PFUser *lastUser = recent[PF_RECENT_LASTUSER];
-	[imageUser setFile:lastUser[PF_USER_PICTURE]];
-	[imageUser loadInBackground];
+	User *lastUser = recent.lastUser;
+    
+    //TEMP
+    /// TODO
+	//[imageUser setFile:lastUser.picture ];
+	//[imageUser loadInBackground];
+    
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	labelDescription.text = recent[PF_RECENT_DESCRIPTION];
-	labelLastMessage.text = recent[PF_RECENT_LASTMESSAGE];
+	labelDescription.text = recent.details;
+	labelLastMessage.text = recent.lastMessage;
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	NSTimeInterval seconds = [[NSDate date] timeIntervalSinceDate:recent[PF_RECENT_UPDATEDACTION]];
+	NSTimeInterval seconds = [[NSDate date] timeIntervalSinceDate:recent.updateDate];
 	labelElapsed.text = TimeElapsed(seconds);
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	int counter = [recent[PF_RECENT_COUNTER] intValue];
+	int counter = [recent.counter intValue];
 	labelCounter.text = (counter == 0) ? @"" : [NSString stringWithFormat:@"%d new", counter];
 }
 

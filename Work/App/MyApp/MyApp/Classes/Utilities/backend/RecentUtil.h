@@ -11,23 +11,30 @@
 
 #import <Parse/Parse.h>
 
+@class User;
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-NSString*		StartPrivateChat		(PFUser *user1, PFUser *user2);
+NSString*		StartPrivateChat		(User *user1, User *user2);
 NSString*		StartMultipleChat		(NSMutableArray *users);
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-void			CreateRecentItem		(PFUser *user, NSString *groupId, NSArray *members, NSString *description);
+void			CreateRecentItem		(User *user, NSString *groupId, NSArray *members, NSString *description);
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 void			UpdateRecentCounter		(NSString *groupId, NSInteger amount, NSString *lastMessage);
 void			ClearRecentCounter		(NSString *groupId);
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-void			DeleteRecentItems		(PFUser *user1, PFUser *user2);
+void			DeleteRecentItems		(User *user1, User *user2);
 
 @class RecentView;
 @interface RecentUtil : NSObject
 
-+ (void) loadRecentFromParse:(RecentView *)recentView ;
+
+
+@property NSManagedObjectContext * context;
+
++ (RecentUtil *)sharedUtil;
+
++ (void) loadRecentFromParse:(RecentView *)recentView managedObjectContext:(NSManagedObjectContext *)context ;
 
 @end

@@ -7,16 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		282E4B011BB2604800743E04 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 282E4AFA1BB2604800743E04 /* User+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
-		282E4B021BB2604800743E04 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 282E4AFC1BB2604800743E04 /* User.m */; settings = {ASSET_TAGS = (); }; };
-		282E4B031BB2604800743E04 /* CurrentUser+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 282E4AFE1BB2604800743E04 /* CurrentUser+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
-		282E4B041BB2604800743E04 /* CurrentUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 282E4B001BB2604800743E04 /* CurrentUser.m */; settings = {ASSET_TAGS = (); }; };
-		282E4B351BB26E3A00743E04 /* Friend+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 282E4B2A1BB26E3A00743E04 /* Friend+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
-		282E4B361BB26E3A00743E04 /* Group+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 282E4B2C1BB26E3A00743E04 /* Group+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
-		282E4B371BB26E3A00743E04 /* Place+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 282E4B2E1BB26E3A00743E04 /* Place+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
-		282E4B381BB26E3A00743E04 /* Alert+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 282E4B301BB26E3A00743E04 /* Alert+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
-		282E4B391BB26E3A00743E04 /* Recent+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 282E4B321BB26E3A00743E04 /* Recent+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
-		282E4B3A1BB26E3A00743E04 /* Event+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 282E4B341BB26E3A00743E04 /* Event+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
 		E51D87BE1BB1CC1800470170 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D85571BB1CC1600470170 /* AFHTTPRequestOperation.m */; };
 		E51D87BF1BB1CC1800470170 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D85591BB1CC1600470170 /* AFHTTPRequestOperationManager.m */; };
 		E51D87C01BB1CC1800470170 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D855B1BB1CC1600470170 /* AFHTTPSessionManager.m */; };
@@ -432,37 +422,22 @@
 		E51D895D1BB1D32900470170 /* TabTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E51D895C1BB1D32900470170 /* TabTableViewController.xib */; };
 		E51D89611BB1F41500470170 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D89601BB1F41500470170 /* CoreDataTableViewController.m */; };
 		E51D89641BB1FA9900470170 /* TabViewDBModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E51D89621BB1FA9900470170 /* TabViewDBModel.xcdatamodeld */; };
-		E51D897C1BB2159C00470170 /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D897B1BB2159C00470170 /* Friend.m */; };
-		E51D897F1BB2159C00470170 /* Recent.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D897E1BB2159C00470170 /* Recent.m */; };
-		E51D89851BB2159D00470170 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D89841BB2159D00470170 /* Group.m */; };
-		E51D89881BB2159D00470170 /* Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D89871BB2159D00470170 /* Alert.m */; };
-		E51D898B1BB2162800470170 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D898A1BB2162800470170 /* Event.m */; };
-		E51D898E1BB2162900470170 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D898D1BB2162900470170 /* Place.m */; };
-		E51D89911BB2169400470170 /* Recent+Update.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D89901BB2169400470170 /* Recent+Update.m */; };
+		E5485D881BB34E5300801B05 /* CurrentUser+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = E5485D7A1BB34E5300801B05 /* CurrentUser+Util.m */; };
+		E5485D891BB34E5300801B05 /* Recent+Update.m in Sources */ = {isa = PBXBuildFile; fileRef = E5485D7C1BB34E5300801B05 /* Recent+Update.m */; };
+		E5485D8A1BB34E5300801B05 /* User+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = E5485D7E1BB34E5300801B05 /* User+Util.m */; };
+		E5485D901BB34EB900801B05 /* CurrentUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E5485D8F1BB34EB900801B05 /* CurrentUser.m */; };
+		E5485DC31BB385EC00801B05 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = E5485DC21BB385EC00801B05 /* Event.m */; };
+		E5485DC61BB385F700801B05 /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = E5485DC51BB385F700801B05 /* Friend.m */; };
+		E5485DC91BB385F800801B05 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = E5485DC81BB385F800801B05 /* Group.m */; };
+		E5485DCF1BB385F800801B05 /* Recent.m in Sources */ = {isa = PBXBuildFile; fileRef = E5485DCE1BB385F800801B05 /* Recent.m */; };
+		E5485DD21BB385F800801B05 /* Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = E5485DD11BB385F800801B05 /* Alert.m */; };
+		E5485DD51BB385F800801B05 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = E5485DD41BB385F800801B05 /* Place.m */; };
+		E5485DD81BB385F800801B05 /* EntityObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E5485DD71BB385F800801B05 /* EntityObject.m */; };
+		E5485DDB1BB3867F00801B05 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E5485DDA1BB3867F00801B05 /* User.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		282E4AF81BB25B7A00743E04 /* MyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		282E4AF91BB2604800743E04 /* User+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataProperties.h"; sourceTree = "<group>"; };
-		282E4AFA1BB2604800743E04 /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataProperties.m"; sourceTree = "<group>"; };
-		282E4AFB1BB2604800743E04 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		282E4AFC1BB2604800743E04 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		282E4AFD1BB2604800743E04 /* CurrentUser+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CurrentUser+CoreDataProperties.h"; sourceTree = "<group>"; };
-		282E4AFE1BB2604800743E04 /* CurrentUser+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CurrentUser+CoreDataProperties.m"; sourceTree = "<group>"; };
-		282E4AFF1BB2604800743E04 /* CurrentUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentUser.h; sourceTree = "<group>"; };
-		282E4B001BB2604800743E04 /* CurrentUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentUser.m; sourceTree = "<group>"; };
-		282E4B291BB26E3A00743E04 /* Friend+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Friend+CoreDataProperties.h"; sourceTree = "<group>"; };
-		282E4B2A1BB26E3A00743E04 /* Friend+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Friend+CoreDataProperties.m"; sourceTree = "<group>"; };
-		282E4B2B1BB26E3A00743E04 /* Group+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Group+CoreDataProperties.h"; sourceTree = "<group>"; };
-		282E4B2C1BB26E3A00743E04 /* Group+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Group+CoreDataProperties.m"; sourceTree = "<group>"; };
-		282E4B2D1BB26E3A00743E04 /* Place+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Place+CoreDataProperties.h"; sourceTree = "<group>"; };
-		282E4B2E1BB26E3A00743E04 /* Place+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Place+CoreDataProperties.m"; sourceTree = "<group>"; };
-		282E4B2F1BB26E3A00743E04 /* Alert+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Alert+CoreDataProperties.h"; sourceTree = "<group>"; };
-		282E4B301BB26E3A00743E04 /* Alert+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Alert+CoreDataProperties.m"; sourceTree = "<group>"; };
-		282E4B311BB26E3A00743E04 /* Recent+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Recent+CoreDataProperties.h"; sourceTree = "<group>"; };
-		282E4B321BB26E3A00743E04 /* Recent+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Recent+CoreDataProperties.m"; sourceTree = "<group>"; };
-		282E4B331BB26E3A00743E04 /* Event+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Event+CoreDataProperties.h"; sourceTree = "<group>"; };
-		282E4B341BB26E3A00743E04 /* Event+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Event+CoreDataProperties.m"; sourceTree = "<group>"; };
 		E51D85561BB1CC1600470170 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		E51D85571BB1CC1600470170 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		E51D85581BB1CC1600470170 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -1017,20 +992,30 @@
 		E51D895F1BB1F41500470170 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
 		E51D89601BB1F41500470170 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
 		E51D89631BB1FA9900470170 /* TabViewDBModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TabViewDBModel.xcdatamodel; sourceTree = "<group>"; };
-		E51D897A1BB2159C00470170 /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Friend.h; path = MyApp/Classes/Model/Friend.h; sourceTree = SOURCE_ROOT; };
-		E51D897B1BB2159C00470170 /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Friend.m; path = MyApp/Classes/Model/Friend.m; sourceTree = SOURCE_ROOT; };
-		E51D897D1BB2159C00470170 /* Recent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Recent.h; path = MyApp/Classes/Model/Recent.h; sourceTree = SOURCE_ROOT; };
-		E51D897E1BB2159C00470170 /* Recent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Recent.m; path = MyApp/Classes/Model/Recent.m; sourceTree = SOURCE_ROOT; };
-		E51D89831BB2159D00470170 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Group.h; path = MyApp/Classes/Model/Group.h; sourceTree = SOURCE_ROOT; };
-		E51D89841BB2159D00470170 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Group.m; path = MyApp/Classes/Model/Group.m; sourceTree = SOURCE_ROOT; };
-		E51D89861BB2159D00470170 /* Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Alert.h; path = MyApp/Classes/Model/Alert.h; sourceTree = SOURCE_ROOT; };
-		E51D89871BB2159D00470170 /* Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Alert.m; path = MyApp/Classes/Model/Alert.m; sourceTree = SOURCE_ROOT; };
-		E51D89891BB2162800470170 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
-		E51D898A1BB2162800470170 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
-		E51D898C1BB2162900470170 /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
-		E51D898D1BB2162900470170 /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
-		E51D898F1BB2169400470170 /* Recent+Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Recent+Update.h"; sourceTree = "<group>"; };
-		E51D89901BB2169400470170 /* Recent+Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Recent+Update.m"; sourceTree = "<group>"; };
+		E5485D791BB34E5300801B05 /* CurrentUser+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CurrentUser+Util.h"; sourceTree = "<group>"; };
+		E5485D7A1BB34E5300801B05 /* CurrentUser+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CurrentUser+Util.m"; sourceTree = "<group>"; };
+		E5485D7B1BB34E5300801B05 /* Recent+Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Recent+Update.h"; sourceTree = "<group>"; };
+		E5485D7C1BB34E5300801B05 /* Recent+Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Recent+Update.m"; sourceTree = "<group>"; };
+		E5485D7D1BB34E5300801B05 /* User+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+Util.h"; sourceTree = "<group>"; };
+		E5485D7E1BB34E5300801B05 /* User+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+Util.m"; sourceTree = "<group>"; };
+		E5485D8E1BB34EB900801B05 /* CurrentUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentUser.h; sourceTree = "<group>"; };
+		E5485D8F1BB34EB900801B05 /* CurrentUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentUser.m; sourceTree = "<group>"; };
+		E5485DC11BB385EC00801B05 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		E5485DC21BB385EC00801B05 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		E5485DC41BB385F700801B05 /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
+		E5485DC51BB385F700801B05 /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
+		E5485DC71BB385F800801B05 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
+		E5485DC81BB385F800801B05 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
+		E5485DCD1BB385F800801B05 /* Recent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recent.h; sourceTree = "<group>"; };
+		E5485DCE1BB385F800801B05 /* Recent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recent.m; sourceTree = "<group>"; };
+		E5485DD01BB385F800801B05 /* Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alert.h; sourceTree = "<group>"; };
+		E5485DD11BB385F800801B05 /* Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alert.m; sourceTree = "<group>"; };
+		E5485DD31BB385F800801B05 /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
+		E5485DD41BB385F800801B05 /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
+		E5485DD61BB385F800801B05 /* EntityObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityObject.h; sourceTree = "<group>"; };
+		E5485DD71BB385F800801B05 /* EntityObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityObject.m; sourceTree = "<group>"; };
+		E5485DD91BB3867F00801B05 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		E5485DDA1BB3867F00801B05 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1682,44 +1667,12 @@
 		E51D86C01BB1CC1700470170 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				282E4B291BB26E3A00743E04 /* Friend+CoreDataProperties.h */,
-				282E4B2A1BB26E3A00743E04 /* Friend+CoreDataProperties.m */,
-				282E4B2B1BB26E3A00743E04 /* Group+CoreDataProperties.h */,
-				282E4B2C1BB26E3A00743E04 /* Group+CoreDataProperties.m */,
-				282E4B2D1BB26E3A00743E04 /* Place+CoreDataProperties.h */,
-				282E4B2E1BB26E3A00743E04 /* Place+CoreDataProperties.m */,
-				282E4B2F1BB26E3A00743E04 /* Alert+CoreDataProperties.h */,
-				282E4B301BB26E3A00743E04 /* Alert+CoreDataProperties.m */,
-				282E4B311BB26E3A00743E04 /* Recent+CoreDataProperties.h */,
-				282E4B321BB26E3A00743E04 /* Recent+CoreDataProperties.m */,
-				282E4B331BB26E3A00743E04 /* Event+CoreDataProperties.h */,
-				282E4B341BB26E3A00743E04 /* Event+CoreDataProperties.m */,
-				282E4AF91BB2604800743E04 /* User+CoreDataProperties.h */,
-				282E4AFA1BB2604800743E04 /* User+CoreDataProperties.m */,
-				282E4AFB1BB2604800743E04 /* User.h */,
-				282E4AFC1BB2604800743E04 /* User.m */,
-				282E4AFD1BB2604800743E04 /* CurrentUser+CoreDataProperties.h */,
-				282E4AFE1BB2604800743E04 /* CurrentUser+CoreDataProperties.m */,
-				282E4AFF1BB2604800743E04 /* CurrentUser.h */,
-				282E4B001BB2604800743E04 /* CurrentUser.m */,
-				E51D898C1BB2162900470170 /* Place.h */,
-				E51D898D1BB2162900470170 /* Place.m */,
-				E51D89891BB2162800470170 /* Event.h */,
-				E51D898A1BB2162800470170 /* Event.m */,
-				E51D89861BB2159D00470170 /* Alert.h */,
-				E51D89871BB2159D00470170 /* Alert.m */,
-				E51D89831BB2159D00470170 /* Group.h */,
-				E51D89841BB2159D00470170 /* Group.m */,
-				E51D897D1BB2159C00470170 /* Recent.h */,
-				E51D897E1BB2159C00470170 /* Recent.m */,
-				E51D897A1BB2159C00470170 /* Friend.h */,
-				E51D897B1BB2159C00470170 /* Friend.m */,
+				E5485D651BB34E5300801B05 /* ModelDB */,
+				E5485D781BB34E5300801B05 /* ModelUtilDB */,
 				E51D86C11BB1CC1700470170 /* Feedback.h */,
 				E51D86C21BB1CC1700470170 /* Feedback.m */,
 				E51D86C31BB1CC1700470170 /* MenuItem.h */,
 				E51D86C41BB1CC1700470170 /* MenuItem.m */,
-				E51D898F1BB2169400470170 /* Recent+Update.h */,
-				E51D89901BB2169400470170 /* Recent+Update.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2006,7 +1959,6 @@
 			children = (
 				E51D87441BB1CC1700470170 /* Feedbacks.plist */,
 				E51D87451BB1CC1700470170 /* MenuItems.plist */,
-				E51D89621BB1FA9900470170 /* TabViewDBModel.xcdatamodeld */,
 			);
 			name = Data;
 			path = MyApp/Data;
@@ -2220,6 +2172,45 @@
 				E51D89601BB1F41500470170 /* CoreDataTableViewController.m */,
 			);
 			path = CoreDataTableViewController;
+			sourceTree = "<group>";
+		};
+		E5485D651BB34E5300801B05 /* ModelDB */ = {
+			isa = PBXGroup;
+			children = (
+				E51D89621BB1FA9900470170 /* TabViewDBModel.xcdatamodeld */,
+				E5485DD91BB3867F00801B05 /* User.h */,
+				E5485DDA1BB3867F00801B05 /* User.m */,
+				E5485DD61BB385F800801B05 /* EntityObject.h */,
+				E5485DD71BB385F800801B05 /* EntityObject.m */,
+				E5485DD31BB385F800801B05 /* Place.h */,
+				E5485DD41BB385F800801B05 /* Place.m */,
+				E5485DD01BB385F800801B05 /* Alert.h */,
+				E5485DD11BB385F800801B05 /* Alert.m */,
+				E5485DCD1BB385F800801B05 /* Recent.h */,
+				E5485DCE1BB385F800801B05 /* Recent.m */,
+				E5485DC71BB385F800801B05 /* Group.h */,
+				E5485DC81BB385F800801B05 /* Group.m */,
+				E5485DC41BB385F700801B05 /* Friend.h */,
+				E5485DC51BB385F700801B05 /* Friend.m */,
+				E5485DC11BB385EC00801B05 /* Event.h */,
+				E5485DC21BB385EC00801B05 /* Event.m */,
+				E5485D8E1BB34EB900801B05 /* CurrentUser.h */,
+				E5485D8F1BB34EB900801B05 /* CurrentUser.m */,
+			);
+			path = ModelDB;
+			sourceTree = "<group>";
+		};
+		E5485D781BB34E5300801B05 /* ModelUtilDB */ = {
+			isa = PBXGroup;
+			children = (
+				E5485D791BB34E5300801B05 /* CurrentUser+Util.h */,
+				E5485D7A1BB34E5300801B05 /* CurrentUser+Util.m */,
+				E5485D7B1BB34E5300801B05 /* Recent+Update.h */,
+				E5485D7C1BB34E5300801B05 /* Recent+Update.m */,
+				E5485D7D1BB34E5300801B05 /* User+Util.h */,
+				E5485D7E1BB34E5300801B05 /* User+Util.m */,
+			);
+			path = ModelUtilDB;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2528,41 +2519,42 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E51D89881BB2159D00470170 /* Alert.m in Sources */,
 				E51D887B1BB1CC1800470170 /* JSQMessagesCollectionViewFlowLayout.m in Sources */,
 				E51D88881BB1CC1800470170 /* JSQMessagesCollectionViewCellIncoming.m in Sources */,
 				E51D87CF1BB1CC1800470170 /* Appirater.m in Sources */,
 				E51D88831BB1CC1800470170 /* JSQPhotoMediaItem.m in Sources */,
 				E51D88BC1BB1CC1800470170 /* ReservationViewController.m in Sources */,
 				E51D888D1BB1CC1800470170 /* JSQMessagesInputToolbar.m in Sources */,
-				E51D89911BB2169400470170 /* Recent+Update.m in Sources */,
 				E51D88781BB1CC1800470170 /* JSQMessagesMediaViewBubbleImageMasker.m in Sources */,
 				E51D88DD1BB1CC1800470170 /* push.m in Sources */,
 				E51D88471BB1CC1800470170 /* functions_76.js in Sources */,
 				E51D888C1BB1CC1800470170 /* JSQMessagesComposerTextView.m in Sources */,
 				E51D89611BB1F41500470170 /* CoreDataTableViewController.m in Sources */,
 				E51D87C91BB1CC1800470170 /* UIAlertView+AFNetworking.m in Sources */,
+				E5485DC31BB385EC00801B05 /* Event.m in Sources */,
 				E51D88841BB1CC1800470170 /* JSQVideoMediaItem.m in Sources */,
 				E51D88AE1BB1CC1800470170 /* PremiumView.m in Sources */,
+				E5485DD51BB385F800801B05 /* Place.m in Sources */,
 				E51D88181BB1CC1800470170 /* all_64.js in Sources */,
 				E51D88801BB1CC1800470170 /* JSQMessage.m in Sources */,
 				E51D88691BB1CC1800470170 /* IDMTapDetectingView.m in Sources */,
 				E51D88921BB1CC1800470170 /* JSQMessagesToolbarContentView.m in Sources */,
+				E5485DDB1BB3867F00801B05 /* User.m in Sources */,
 				E51D88991BB1CC1800470170 /* ProgressHUD.m in Sources */,
-				282E4B371BB26E3A00743E04 /* Place+CoreDataProperties.m in Sources */,
 				E51D88B41BB1CC1800470170 /* MenuTableViewCell.m in Sources */,
 				E51D88201BB1CC1800470170 /* all_69.js in Sources */,
 				E51D88BA1BB1CC1800470170 /* LeftMenuViewController.m in Sources */,
 				E51D87C61BB1CC1800470170 /* AFURLSessionManager.m in Sources */,
 				E51D88721BB1CC1800470170 /* UIView+JSQMessages.m in Sources */,
+				E5485DC91BB385F800801B05 /* Group.m in Sources */,
 				E51D88141BB1CC1800470170 /* all_61.js in Sources */,
 				E51D88E11BB1CC1800470170 /* converter.m in Sources */,
 				E51D887F1BB1CC1800470170 /* JSQMediaItem.m in Sources */,
+				E5485D901BB34EB900801B05 /* CurrentUser.m in Sources */,
 				E51D88791BB1CC1800470170 /* JSQMessagesTimestampFormatter.m in Sources */,
 				E51D881E1BB1CC1800470170 /* all_67.js in Sources */,
 				E51D88D81BB1CC1800470170 /* FacebookFriendsView.m in Sources */,
 				E51D88871BB1CC1800470170 /* JSQMessagesCollectionViewCell.m in Sources */,
-				282E4B391BB26E3A00743E04 /* Recent+CoreDataProperties.m in Sources */,
 				E51D88AD1BB1CC1800470170 /* MenuItem.m in Sources */,
 				E51D88761BB1CC1800470170 /* JSQMessagesAvatarImageFactory.m in Sources */,
 				E51D88C21BB1CC1800470170 /* CreateGroupView.m in Sources */,
@@ -2593,20 +2585,17 @@
 				E51D883F1BB1CC1800470170 /* functions_6c.js in Sources */,
 				E51D88431BB1CC1800470170 /* functions_72.js in Sources */,
 				E51D88861BB1CC1800470170 /* JSQMessagesCollectionView.m in Sources */,
-				282E4B381BB26E3A00743E04 /* Alert+CoreDataProperties.m in Sources */,
 				E51D88DC1BB1CC1800470170 /* PFUser+Util.m in Sources */,
 				E51D88BD1BB1CC1800470170 /* TabBarControllerViewController.m in Sources */,
 				E51D888E1BB1CC1800470170 /* JSQMessagesLabel.m in Sources */,
-				282E4B3A1BB26E3A00743E04 /* Event+CoreDataProperties.m in Sources */,
 				E51D87E01BB1CC1800470170 /* dir_191bbc312b17524397d6a9dc5f56d69f.js in Sources */,
 				E51D88671BB1CC1800470170 /* IDMPhotoBrowser.m in Sources */,
+				E5485D8A1BB34E5300801B05 /* User+Util.m in Sources */,
 				E51D88BE1BB1CC1800470170 /* RecentCell.m in Sources */,
-				E51D897F1BB2159C00470170 /* Recent.m in Sources */,
 				E51D886A1BB1CC1800470170 /* IDMZoomingScrollView.m in Sources */,
 				E51D88A31BB1CC1800470170 /* ChatView.m in Sources */,
 				E51D889C1BB1CC1800470170 /* MSSlidingPanelController.m in Sources */,
 				E51D88451BB1CC1800470170 /* functions_73.js in Sources */,
-				282E4B021BB2604800743E04 /* User.m in Sources */,
 				E51D88B71BB1CC1800470170 /* ReservationLocationTableViewCell.m in Sources */,
 				E51D88A41BB1CC1800470170 /* PhotoMediaItem.m in Sources */,
 				E51D87CC1BB1CC1800470170 /* UIProgressView+AFNetworking.m in Sources */,
@@ -2615,13 +2604,10 @@
 				E51D88741BB1CC1800470170 /* JSQMessagesViewController.m in Sources */,
 				E51D88A71BB1CC1800470170 /* KeyboardListener.m in Sources */,
 				E51D881C1BB1CC1800470170 /* all_66.js in Sources */,
-				E51D898E1BB2162900470170 /* Place.m in Sources */,
 				E51D882F1BB1CC1800470170 /* functions_5f.js in Sources */,
-				282E4B361BB26E3A00743E04 /* Group+CoreDataProperties.m in Sources */,
 				E51D88121BB1CC1800470170 /* all_5f.js in Sources */,
 				E51D883D1BB1CC1800470170 /* functions_69.js in Sources */,
 				E51D88661BB1CC1800470170 /* IDMPhoto.m in Sources */,
-				282E4B041BB2604800743E04 /* CurrentUser.m in Sources */,
 				E51D88B11BB1CC1800470170 /* FeedbackTableViewCell.m in Sources */,
 				E51D88B31BB1CC1800470170 /* MenuItemTableViewCell.m in Sources */,
 				E51D88391BB1CC1800470170 /* functions_66.js in Sources */,
@@ -2637,24 +2623,29 @@
 				E51D88A81BB1CC1800470170 /* MenuItemsManager.m in Sources */,
 				E51D88B21BB1CC1800470170 /* MakeReservationTableViewCell.m in Sources */,
 				E51D88971BB1CC1800470170 /* JSQSystemSoundPlayer.m in Sources */,
+				E5485DCF1BB385F800801B05 /* Recent.m in Sources */,
 				E51D888F1BB1CC1800470170 /* JSQMessagesLoadEarlierHeaderView.m in Sources */,
 				E51D889D1BB1CC1800470170 /* MSViewControllerSlidingPanel.m in Sources */,
 				E51D88C81BB1CC1800470170 /* PeopleView.m in Sources */,
 				E51D88E91BB1CC1800470170 /* WelcomeView.m in Sources */,
 				E51D88DF1BB1CC1800470170 /* camera.m in Sources */,
 				E51D88041BB1CC1800470170 /* jquery.js in Sources */,
+				E5485DC61BB385F700801B05 /* Friend.m in Sources */,
 				E51D880A1BB1CC1800470170 /* navtreeindex0.js in Sources */,
+				E5485DD81BB385F800801B05 /* EntityObject.m in Sources */,
 				E51D88E31BB1CC1800470170 /* image.m in Sources */,
 				E51D87BF1BB1CC1800470170 /* AFHTTPRequestOperationManager.m in Sources */,
 				E51D88B51BB1CC1800470170 /* NumberOfGuestsTableViewCell.m in Sources */,
 				E51D88161BB1CC1800470170 /* all_63.js in Sources */,
 				E51D88941BB1CC1800470170 /* JSQMessagesTypingIndicatorFooterView.m in Sources */,
 				E51D887E1BB1CC1800470170 /* JSQLocationMediaItem.m in Sources */,
+				E5485D891BB34E5300801B05 /* Recent+Update.m in Sources */,
 				E51D87C71BB1CC1800470170 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				E51D87CE1BB1CC1800470170 /* UIWebView+AFNetworking.m in Sources */,
 				E51D884B1BB1CC1800470170 /* pages_64.js in Sources */,
 				E51D889E1BB1CC1800470170 /* AppDelegate.m in Sources */,
 				E51D895B1BB1D2F600470170 /* TabTableViewController.m in Sources */,
+				E5485DD21BB385F800801B05 /* Alert.m in Sources */,
 				E51D87E61BB1CC1800470170 /* dir_f396504afdc959660871b003fa10164d.js in Sources */,
 				E51D880F1BB1CC1800470170 /* protocol_flurry_ad_delegate-p.js in Sources */,
 				E51D882A1BB1CC1800470170 /* all_76.js in Sources */,
@@ -2668,20 +2659,17 @@
 				E51D886C1BB1CC1800470170 /* JSQSystemSoundPlayer+JSQMessages.m in Sources */,
 				E51D88281BB1CC1800470170 /* all_73.js in Sources */,
 				E51D87C11BB1CC1800470170 /* AFNetworkReachabilityManager.m in Sources */,
-				E51D89851BB2159D00470170 /* Group.m in Sources */,
 				E51D87D51BB1CC1800470170 /* annotated.js in Sources */,
-				E51D897C1BB2159C00470170 /* Friend.m in Sources */,
 				E51D87E41BB1CC1800470170 /* dir_ceb295545057469c14fd8838e824ee91.js in Sources */,
+				E5485D881BB34E5300801B05 /* CurrentUser+Util.m in Sources */,
 				E51D886F1BB1CC1800470170 /* UIColor+JSQMessages.m in Sources */,
 				E51D88B61BB1CC1800470170 /* PhoneNumberTableViewCell.m in Sources */,
 				E51D88F51BB1CC1800470170 /* main.m in Sources */,
 				E51D88731BB1CC1800470170 /* JSQMessagesKeyboardController.m in Sources */,
 				E51D889B1BB1CC1800470170 /* EmptySegue.m in Sources */,
-				282E4B011BB2604800743E04 /* User+CoreDataProperties.m in Sources */,
 				E51D88701BB1CC1800470170 /* UIDevice+JSQMessages.m in Sources */,
 				E51D886E1BB1CC1800470170 /* NSString+JSQMessages.m in Sources */,
 				E51D889A1BB1CC1800470170 /* RNGridMenu.m in Sources */,
-				E51D898B1BB2162800470170 /* Event.m in Sources */,
 				E51D87EB1BB1CC1800470170 /* files.js in Sources */,
 				E51D88CA1BB1CC1800470170 /* BlockedView.m in Sources */,
 				E51D88D21BB1CC1800470170 /* SelectSingleView.m in Sources */,
@@ -2694,7 +2682,6 @@
 				E51D88771BB1CC1800470170 /* JSQMessagesBubbleImageFactory.m in Sources */,
 				E51D88E21BB1CC1800470170 /* fileutil.m in Sources */,
 				E51D88331BB1CC1800470170 /* functions_63.js in Sources */,
-				282E4B351BB26E3A00743E04 /* Friend+CoreDataProperties.m in Sources */,
 				E51D88DA1BB1CC1800470170 /* group.m in Sources */,
 				E51D88311BB1CC1800470170 /* functions_61.js in Sources */,
 				E51D88CE1BB1CC1800470170 /* TermsView.m in Sources */,
@@ -2709,7 +2696,6 @@
 				E51D87BE1BB1CC1800470170 /* AFHTTPRequestOperation.m in Sources */,
 				E51D88A11BB1CC1800470170 /* ProfileView.m in Sources */,
 				E51D88D61BB1CC1800470170 /* AddressBookView.m in Sources */,
-				282E4B031BB2604800743E04 /* CurrentUser+CoreDataProperties.m in Sources */,
 				E51D88B81BB1CC1800470170 /* FeedbackViewController.m in Sources */,
 				E51D87E91BB1CC1800470170 /* dynsections.js in Sources */,
 				E51D88C41BB1CC1800470170 /* GroupSettingsView.m in Sources */,
@@ -2895,7 +2881,8 @@
 				E51D89631BB1FA9900470170 /* TabViewDBModel.xcdatamodel */,
 			);
 			currentVersion = E51D89631BB1FA9900470170 /* TabViewDBModel.xcdatamodel */;
-			path = TabViewDBModel.xcdatamodeld;
+			name = TabViewDBModel.xcdatamodeld;
+			path = ../../../Data/TabViewDBModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

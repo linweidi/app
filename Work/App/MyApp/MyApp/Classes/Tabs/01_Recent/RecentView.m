@@ -15,8 +15,12 @@
 #import "AppConstant.h"
 #import "common.h"
 #import "RecentUtil.h"
+#import "Recent.h"
+#import "User.h"
 
-#import "CurrentUser+CoreDataProperties.h"
+#import "CurrentUser+Util.h"
+#import "Recent+Update.h"
+
 
 #import "RecentView.h"
 #import "RecentCell.h"
@@ -30,7 +34,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 @interface RecentView()
 {
-	NSMutableArray *recents;
+	//NSMutableArray *recents;
 }
 
 
@@ -68,7 +72,7 @@
 	self.refreshControl = [[UIRefreshControl alloc] init];
 	[self.refreshControl addTarget:self action:@selector(loadRecents) forControlEvents:UIControlEventValueChanged];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	recents = [[NSMutableArray alloc] init];
+	//recents = [[NSMutableArray alloc] init];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -99,9 +103,10 @@
                                      ascending:NO
                                      selector:@selector(compare:)],
                                     ];
-        
+        	
         
         // init fetch result controller
+        /// TODO change section name
         self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                                             managedObjectContext:managedObjectContext
                                                                               sectionNameKeyPath:nil
@@ -117,35 +122,33 @@
 - (void)loadRecents
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	PFQuery *query = [PFQuery queryWithClassName:PF_RECENT_CLASS_NAME];
-	[query whereKey:PF_RECENT_USER equalTo:[PFUser currentUser]];
-	[query includeKey:PF_RECENT_LASTUSER];
-	[query orderByDescending:PF_RECENT_UPDATEDACTION];
-	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-	{
-		if (error == nil)
-		{
-			[recents removeAllObjects];
-			[recents addObjectsFromArray:objects];
-			[self.tableView reloadData];
-			[self updateTabCounter];
-		}
-		else [ProgressHUD showError:@"Network error."];
-		[self.refreshControl endRefreshing];
-	}];
+#ifdef PARSE_MODE
+    [RecentUtil loadRecentFromParse:self managedObjectContext:[super managedObjectContext]];
+#elif DEMO_MODE
+    
+#endif
+    
 }
 
 #pragma mark - Helper methods
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)updateTabCounter
+- (void)updateTabCounter:(NSArray *)recents
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	int total = 0;
-	for (PFObject *recent in recents)
+	for (Recent *recent in recents)
 	{
-		total += [recent[PF_RECENT_COUNTER] intValue];
+		total += [recent.counter intValue];
 	}
+	UITabBarItem *item = self.tabBarController.tabBar.items[0];
+	item.badgeValue = (total == 0) ? nil : [NSString stringWithFormat:@"%d", total];
+}
+
+- (void)clearTabCounter
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+{
+	int total = 0;
 	UITabBarItem *item = self.tabBarController.tabBar.items[0];
 	item.badgeValue = (total == 0) ? nil : [NSString stringWithFormat:@"%d", total];
 }
@@ -157,7 +160,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	ChatView *chatView = [[ChatView alloc] initWith:groupId];
-	chatView.hidesBottomBarWhenPushed = YES;
+	chatView.hidesBottomBarWhenPushed = NO;
 	[self.navigationController pushViewController:chatView animated:YES];
 }
 
@@ -165,9 +168,10 @@
 - (void)actionCleanup
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	[recents removeAllObjects];
+	//[recents removeAllObjects];
+    [Recent clearRecentEntityAll:[super managedObjectContext]];
 	[self.tableView reloadData];
-	[self updateTabCounter];
+	[self clearTabCounter];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -221,10 +225,10 @@
 #pragma mark - SelectSingleDelegate
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)didSelectSingleUser:(PFUser *)user2
+- (void)didSelectSingleUser:(User *)user2
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	PFUser *user1 = [PFUser currentUser];
+	CurrentUser *user1 = [CurrentUser getCurrentUser];
 	NSString *groupId = StartPrivateChat(user1, user2);
 	[self actionChat:groupId];
 }
@@ -242,10 +246,10 @@
 #pragma mark - AddressBookDelegate
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)didSelectAddressBookUser:(PFUser *)user2
+- (void)didSelectAddressBookUser:(User *)user2
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	PFUser *user1 = [PFUser currentUser];
+	User *user1 = [CurrentUser getCurrentUser];
 	NSString *groupId = StartPrivateChat(user1, user2);
 	[self actionChat:groupId];
 }
@@ -253,10 +257,10 @@
 #pragma mark - FacebookFriendsDelegate
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)didSelectFacebookUser:(PFUser *)user2
+- (void)didSelectFacebookUser:(User *)user2
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	PFUser *user1 = [PFUser currentUser];
+	User *user1 = [CurrentUser getCurrentUser];
 	NSString *groupId = StartPrivateChat(user1, user2);
 	[self actionChat:groupId];
 }
@@ -264,24 +268,13 @@
 #pragma mark - Table view data source
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
-	return 1;
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
-	return [recents count];
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
+    
 	RecentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecentCell" forIndexPath:indexPath];
+    
+    
 	[cell bindData:recents[indexPath.row]];
 	return cell;
 }
@@ -297,6 +290,8 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
+    
+    
 	PFObject *recent = recents[indexPath.row];
 	[recents removeObject:recent];
 	[self updateTabCounter];

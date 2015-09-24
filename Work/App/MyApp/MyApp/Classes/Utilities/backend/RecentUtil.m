@@ -11,16 +11,22 @@
 
 #import <Parse/Parse.h>
 #import "PFUser+Util.h"
+#import "ProgressHUD.h"
 
+#import "CurrentUser+Util.h"
+#import "User+Util.h"
+#import "Recent.h"
+#import "Recent+Update.h"
 #import "AppConstant.h"
 
 #import "RecentView.h"
 #import "RecentUtil.h"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-NSString* StartPrivateChat(PFUser *user1, PFUser *user2)
+NSString* StartPrivateChat(CurrentUser *user1, User *user2)
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
+
 	NSString *id1 = user1.objectId;
 	NSString *id2 = user2.objectId;
 	//---------------------------------------------------------------------------------------------------------------------------------------------
@@ -28,8 +34,8 @@ NSString* StartPrivateChat(PFUser *user1, PFUser *user2)
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	NSArray *members = @[user1.objectId, user2.objectId];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	CreateRecentItem(user1, groupId, members, user2[PF_USER_FULLNAME]);
-	CreateRecentItem(user2, groupId, members, user1[PF_USER_FULLNAME]);
+	CreateRecentItem(user1, groupId, members, user2.fullname);
+	CreateRecentItem(user2, groupId, members, user1.fullname);
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	return groupId;
 }
@@ -41,29 +47,31 @@ NSString* StartMultipleChat(NSMutableArray *users)
 	NSString *groupId = @"";
 	NSString *description = @"";
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	[users addObject:[PFUser currentUser]];
+	[users addObject:[CurrentUser getCurrentUser]];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	NSMutableArray *userIds = [[NSMutableArray alloc] init];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	for (PFUser *user in users)
+	for (User *user in users)
 	{
-		[userIds addObject:user.objectId];
+		[userIds addObject: user.objectId];
 	}
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	NSArray *sorted = [userIds sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	for (NSString *userId in sorted)
+	
+    // Create group id
+    for (NSString *userId in sorted)
 	{
 		groupId = [groupId stringByAppendingString:userId];
 	}
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	for (PFUser *user in users)
+	for (User *user in users)
 	{
 		if ([description length] != 0) description = [description stringByAppendingString:@" & "];
-		description = [description stringByAppendingString:user[PF_USER_FULLNAME]];
+		description = [description stringByAppendingString:user.fullname];
 	}
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	for (PFUser *user in users)
+	for (User *user in users)
 	{
 		CreateRecentItem(user, groupId, userIds, description);
 	}
@@ -72,11 +80,12 @@ NSString* StartMultipleChat(NSMutableArray *users)
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-void CreateRecentItem(PFUser *user, NSString *groupId, NSArray *members, NSString *description)
+void CreateRecentItem(User *user, NSString *groupId, NSArray *members, NSString *description)
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
+    //creat the remote query
 	PFQuery *query = [PFQuery queryWithClassName:PF_RECENT_CLASS_NAME];
-	[query whereKey:PF_RECENT_USER equalTo:user];
+	[query whereKey:PF_RECENT_USER equalTo:[user convertToPFUser]];
 	[query whereKey:PF_RECENT_GROUPID equalTo:groupId];
 	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
 	{
@@ -96,15 +105,31 @@ void CreateRecentItem(PFUser *user, NSString *groupId, NSArray *members, NSStrin
 				[recent saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
 				{
 					if (error != nil) NSLog(@"CreateRecentItem save error.");
+                    else if (succeeded){
+                        if ([user isEqual: [CurrentUser getCurrentUser]]) {
+                            Recent * obj = [Recent recentEntityWithPFObject:recent inManagedObjectContext:[RecentUtil sharedUtil].context];
+                            
+                            if (!obj) {
+                                NSLog(@"CreateRecentItem does not insert into core data.");
+                            }
+                        }
+                    }
 				}];
+                
+                
+                
+ 
 			}
 		}
-		else NSLog(@"CreateRecentItem query error.");
+		else {
+            NSLog(@"CreateRecentItem query error.");
+        }
+        
 	}];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-void UpdateRecentCounter(NSString *groupId, NSInteger amount, NSString *lastMessage)
+void UpdateRecentAndCounter(NSString *groupId, NSInteger amount, NSString *lastMessage)
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	PFQuery *query = [PFQuery queryWithClassName:PF_RECENT_CLASS_NAME];
@@ -117,8 +142,11 @@ void UpdateRecentCounter(NSString *groupId, NSInteger amount, NSString *lastMess
 		{
 			for (PFObject *recent in objects)
 			{
-				if ([recent[PF_RECENT_USER] isEqualTo:[PFUser currentUser]] == NO)
-					[recent incrementKey:PF_RECENT_COUNTER byAmount:[NSNumber numberWithInteger:amount]];
+				if ([recent[PF_RECENT_USER] isEqualTo:[PFUser currentUser]] == NO) {
+                    // update the counter of others only
+                    [recent incrementKey:PF_RECENT_COUNTER byAmount:[NSNumber numberWithInteger:amount]];
+                }
+					
 				//---------------------------------------------------------------------------------------------------------------------------------
 				recent[PF_RECENT_LASTUSER] = [PFUser currentUser];
 				recent[PF_RECENT_LASTMESSAGE] = lastMessage;
@@ -126,6 +154,15 @@ void UpdateRecentCounter(NSString *groupId, NSInteger amount, NSString *lastMess
 				[recent saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
 				{
 					if (error != nil) NSLog(@"UpdateRecentCounter save error.");
+                    else if(succeeded){
+                        /// TODO only update
+                        Recent * obj = [Recent recentEntityWithPFObject:recent inManagedObjectContext:[[RecentUtil sharedUtil] context]];
+                        
+                        if (!obj) {
+                            NSLog(@"CreateRecentItem does not insert into core data.");
+                        }
+                    }
+
 				}];
 			}
 		}
@@ -150,6 +187,14 @@ void ClearRecentCounter(NSString *groupId)
 				[recent saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
 				{
 					if (error != nil) NSLog(@"ClearRecentCounter save error.");
+                    else if(succeeded){
+                        /// TODO only update
+                        Recent * obj = [Recent recentEntityWithPFObject:recent inManagedObjectContext:[[RecentUtil sharedUtil] context]];
+                        
+                        if (!obj) {
+                            NSLog(@"CreateRecentItem does not insert into core data.");
+                        }
+                    }
 				}];
 			}
 		}
@@ -158,11 +203,11 @@ void ClearRecentCounter(NSString *groupId)
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-void DeleteRecentItems(PFUser *user1, PFUser *user2)
+void DeleteRecentItems(User *user1, User *user2)
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	PFQuery *query = [PFQuery queryWithClassName:PF_RECENT_CLASS_NAME];
-	[query whereKey:PF_RECENT_USER equalTo:user1];
+	[query whereKey:PF_RECENT_USER equalTo: [User convertFromUser:user1] ];
 	[query whereKey:PF_RECENT_MEMBERS equalTo:user2.objectId];
 	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
 	{
@@ -173,6 +218,15 @@ void DeleteRecentItems(PFUser *user1, PFUser *user2)
 				[recent deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
 				{
 					if (error != nil) NSLog(@"DeleteMessageItem delete error.");
+                    else if(succeeded){
+                        /// TODO only update
+                        BOOL deleted = [Recent deleteRecentEntityWithPFObject:recent inManagedObjectContext:[[RecentUtil sharedUtil] context]];
+                        
+                        if (!deleted) {
+                            NSLog(@"CreateRecentItem does not delete into core data.");
+                            /// TODO REDO
+                        }
+                    }
 				}];
 			}
 		}
@@ -182,36 +236,79 @@ void DeleteRecentItems(PFUser *user1, PFUser *user2)
 
 @implementation RecentUtil
 
-+ (void) loadRecentFromParse:(RecentView *)recentView {
-    //NSMutableArray * recents = [[NSMutableArray alloc] init];
-    NSMutableDictionary * recents = [[NSMutableDictionary alloc] init];
++ (RecentUtil *)sharedUtil {
+    static dispatch_once_t predicate = 0;
+    static RecentUtil *sharedObject;
+    
+    dispatch_once(&predicate, ^{
+        //initializing singleton object
+        sharedObject = [[self alloc] init];
+        
+    });
+    return sharedObject;
+}
+
++ (void) loadRecentFromParse:(RecentView *)recentView managedObjectContext:(NSManagedObjectContext *)context{
+    NSMutableArray * recents = [[NSMutableArray alloc] init];
+    //NSMutableDictionary * recents = [[NSMutableDictionary alloc] init];
+    
+    NSDate * latestUpdateDate = nil;
+    Recent * latestRecent = nil;
+    
+    latestRecent = [Recent latestRecentEntity:context];
     
     
     
+    // load from parse
     PFQuery *query = [PFQuery queryWithClassName:PF_RECENT_CLASS_NAME];
     [query whereKey:PF_RECENT_USER equalTo:[PFUser currentUser]];
     [query includeKey:PF_RECENT_LASTUSER];
     [query orderByDescending:PF_RECENT_UPDATEDACTION];
+    
+    if (latestRecent) {
+        //found any recent itme
+        latestUpdateDate = latestRecent.updateDate;
+        [query whereKey:PF_RECENT_UPDATEDACTION greaterThan:latestUpdateDate];
+    }
+    else {
+        // a new load
+
+    }
+    
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
      {
          if (error == nil)
          {
              //[recents removeAllObjects];
              //[recents addObjectsFromArray:objects];
-             
+             Recent * recent = nil;
              for (PFObject * object in objects) {
-                 [recents setObject:object forKey:object[PF_RECENT_GROUPID]];
+                 //[recents setObject:object forKey:object[PF_RECENT_GROUPID]];
+                 if (latestRecent) {
+                     
+                     recent = [Recent recentEntityWithPFObject:object inManagedObjectContext:[[RecentUtil sharedUtil] context]];
+                 }
+                 else {
+                     recent = [Recent createRecentEntityWithPFObject:object inManagedObjectContext:[[RecentUtil sharedUtil] context]];
+                 }
+
+
+                 [recents addObject:recent];
              }
+             
              
              // load the recents into core data
              
              [recentView.tableView reloadData];
-             [recentView updateTabCounter];
+             [recentView updateTabCounter:recents];
          }
-         else [ProgressHUD showError:@"Network error."];
-         [self.refreshControl endRefreshing];
+         else {
+             [ProgressHUD showError:@"Network error."];
+         }
+         [recentView.refreshControl endRefreshing];
      }];
 }
+
 
 
 @end
