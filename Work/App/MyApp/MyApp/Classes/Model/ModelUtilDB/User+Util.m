@@ -8,6 +8,7 @@
 
 
 #import <Parse/Parse.h>
+
 #import "Thumbnail.h"
 #import "AppConstant.h"
 #import "User+Util.h"
@@ -19,14 +20,14 @@
     return [self.globalID isEqualToString:user.globalID];
 }
 
-+ (User *) userEntityWithPFUser:(PFUser *)object inManagedObjectContext: (NSManagedObjectContext *)context {
++ (User *) userEntityWithPFUser:(PFUser *)object inManagedObjectContext: (NSManagedObjectContext *)context updateUser:(BOOL)updateUser{
     
     User * user = nil;
     
     NSAssert(object, @"input is nil");
     
     if (object) {
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"User"] ;
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:PF_USER_CLASS_NAME] ;
         request.predicate = [NSPredicate predicateWithFormat:@"globalID = %@", object.objectId];
         NSError *error;
         NSArray *matches = [context executeFetchRequest:request error:&error   ];
@@ -36,13 +37,17 @@
         }
         else if (![matches count]) {
             //create a new one
-            user = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
+            user = [NSEntityDescription insertNewObjectForEntityForName:PF_USER_CLASS_NAME inManagedObjectContext:context];
             //set the recent values
             [user setWithPFUser:object inManagedObjectContext:context];
         }
         else {
             user = [matches lastObject];
-            
+            // if match, still update the user
+            if (updateUser) {
+                [user setWithPFUser:object inManagedObjectContext:context];
+            }
+
         }
         
         
@@ -53,7 +58,7 @@
 
 - (void) setWithPFUser:(PFUser *)user inManagedObjectContext: (NSManagedObjectContext *)context{
 
-    
+    self.globalID = user[PF_USER_OBJECTID];
     self.twitterID = user[PF_USER_TWITTERID];
     self.username = user[PF_USER_USERNAME];
     
@@ -62,7 +67,7 @@
     self.facebookID = user[PF_USER_FACEBOOKID];
     self.fullname = user[PF_USER_FULLNAME];
     self.fullnameLower = user[PF_USER_FULLNAME_LOWER];
-    self.globalID = user[PF_USER_OBJECTID];
+
     //self.picture = user[PF_USER_PASSWORD];
     
     
@@ -75,14 +80,24 @@
     if (self.thumbnail) {
         
         if (self.thumbnail.name == thumbnailPicture.name ) {
+            //thumbnail already exists
             // do nothing
         }
         else {
+            //thumbnail different
             [context deleteObject:self.thumbnail];
             self.thumbnail = nil;
             
             Thumbnail * newThumbNail = [NSEntityDescription insertNewObjectForEntityForName:thumbnailPicture.name inManagedObjectContext:context];
             if (newThumbNail) {
+                newThumbNail.name = thumbnailPicture.name;
+                
+                [thumbnailPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                    if (!error) {
+                        newThumbNail.data = data;
+                    }
+                }];
+                
                 self.thumbnail = newThumbNail ;
             }
             else {
@@ -91,9 +106,18 @@
         }
     }
     else {
+        // thumbnail is not initialized
         // no thumbnail exists
         Thumbnail * newThumbNail = [NSEntityDescription insertNewObjectForEntityForName:thumbnailPicture.name inManagedObjectContext:context];
         if (newThumbNail) {
+            newThumbNail.name = thumbnailPicture.name;
+            
+            [thumbnailPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                if (!error) {
+                    newThumbNail.data = data;
+                }
+            }];
+            
             self.thumbnail = newThumbNail ;
         }
         else {

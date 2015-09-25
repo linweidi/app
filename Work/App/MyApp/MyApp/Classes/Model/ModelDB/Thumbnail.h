@@ -2,8 +2,8 @@
 //  Thumbnail.h
 //  MyApp
 //
-//  Created by Linwei Ding on 9/23/15.
-//  Copyright © 2015 AppsFoundation. All rights reserved.
+//  Created by Linwei Ding on 9/24/15.
+//  Copyright (c) 2015 AppsFoundation. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -11,14 +11,10 @@
 
 @class User;
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface Thumbnail : NSManagedObject
 
-// Insert code here to declare functionality of your managed object subclass
+@property (nonatomic, retain) NSData * data;
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) User *user;
 
 @end
-
-NS_ASSUME_NONNULL_END
-
-#import "Thumbnail+CoreDataProperties.h"

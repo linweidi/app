@@ -2,15 +2,24 @@
 //  Recent.m
 //  MyApp
 //
-//  Created by Linwei Ding on 9/23/15.
-//  Copyright © 2015 AppsFoundation. All rights reserved.
+//  Created by Linwei Ding on 9/24/15.
+//  Copyright (c) 2015 AppsFoundation. All rights reserved.
 //
 
 #import "Recent.h"
 #import "User.h"
 
+
 @implementation Recent
 
-// Insert code here to add functionality to your managed object subclass
+@dynamic chatID;
+@dynamic counter;
+@dynamic details;
+@dynamic fullname;
+@dynamic lastMessage;
+@dynamic member;
+@dynamic updateDate;
+@dynamic lastUser;
+@dynamic user;
 
 @end

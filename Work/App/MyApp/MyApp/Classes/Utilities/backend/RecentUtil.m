@@ -20,7 +20,7 @@
 #import "RecentUtil.h"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-NSString* StartPrivateChat(CurrentUser *user1, User *user2)
+NSString* StartPrivateChat(User *user1, User *user2)
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 
@@ -80,7 +80,8 @@ NSString* StartMultipleChat(NSMutableArray *users)
 void CreateRecentItem(User *user, NSString *groupId, NSArray *members, NSString *description)
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-    //creat the remote query
+    //create the remote query
+    // HERE, checking the existence of recent on server is required. because the other users may have already deleted the item.
 	PFQuery *query = [PFQuery queryWithClassName:PF_RECENT_CLASS_NAME];
 	[query whereKey:PF_RECENT_USER equalTo:[user convertToPFUser]];
 	[query whereKey:PF_RECENT_GROUPID equalTo:groupId];
@@ -90,8 +91,9 @@ void CreateRecentItem(User *user, NSString *groupId, NSArray *members, NSString 
 		{
 			if ([objects count] == 0)
 			{
+                // create a new chat
 				PFObject *recent = [PFObject objectWithClassName:PF_RECENT_CLASS_NAME];
-				recent[PF_RECENT_USER] = user;
+				recent[PF_RECENT_USER] = [user convertToPFUser];
 				recent[PF_RECENT_GROUPID] = groupId;
 				recent[PF_RECENT_MEMBERS] = members;
 				recent[PF_RECENT_DESCRIPTION] = description;
@@ -108,6 +110,9 @@ void CreateRecentItem(User *user, NSString *groupId, NSArray *members, NSString 
                             
                             if (!obj) {
                                 NSLog(@"CreateRecentItem does not insert into core data.");
+                                [ProgressHUD showError:@"CreateRecentItem does not insert into core data."];
+                                ///TODO delete the saved data on server or redo the local save
+                            
                             }
                         }
                     }
@@ -120,6 +125,7 @@ void CreateRecentItem(User *user, NSString *groupId, NSArray *members, NSString 
 		}
 		else {
             NSLog(@"CreateRecentItem query error.");
+            [ProgressHUD showError:@"Network error."];
         }
         
 	}];
@@ -132,7 +138,7 @@ void UpdateRecentAndCounter(NSString *groupId, NSInteger amount, NSString *lastM
 	PFQuery *query = [PFQuery queryWithClassName:PF_RECENT_CLASS_NAME];
 	[query whereKey:PF_RECENT_GROUPID equalTo:groupId];
 	[query includeKey:PF_RECENT_USER];
-	[query setLimit:1000];
+	//[query setLimit:1000];
 	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
 	{
 		if (error == nil)
@@ -297,7 +303,7 @@ void DeleteRecentItems(User *user1, User *user2)
              // load the recents into core data
              
              [recentView.tableView reloadData];
-             [recentView updateTabCounter:recents];
+             [recentView updateTabCounter];
          }
          else {
              [ProgressHUD showError:@"Network error."];

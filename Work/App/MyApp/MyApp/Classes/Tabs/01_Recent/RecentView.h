@@ -24,6 +24,8 @@
 
 - (void)updateTabCounter:(NSArray *)recents;
 
+- (void)updateTabCounter;
+
 - (void)loadRecents;
 
 @end

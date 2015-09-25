@@ -10,4 +10,9 @@
 
 @interface Thumbnail (Util)
 
++ (Thumbnail *) thumbnailEntityWithPFUser:(PFFile *)thumbFile withUser:(User *)user inManagedObjectContext: (NSManagedObjectContext *)context;
+
+
++ (Thumbnail *) thumbnailEntity:(NSString *)name inManagedObjectContext: (NSManagedObjectContext *)context ;
+
 @end

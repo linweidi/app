@@ -19,6 +19,5 @@
 
 - (BOOL) isEqual: (User *)user;
 
-+ (User *) userEntityWithPFUser:(PFUser *)object       inManagedObjectContext: (NSManagedObjectContext *)context;
-
++ (User *) userEntityWithPFUser:(PFUser *)object inManagedObjectContext: (NSManagedObjectContext *)context updateUser:(BOOL)updateUser;
 @end

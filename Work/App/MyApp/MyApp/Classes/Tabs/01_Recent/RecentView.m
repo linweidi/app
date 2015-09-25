@@ -143,6 +143,19 @@
 	item.badgeValue = (total == 0) ? nil : [NSString stringWithFormat:@"%d", total];
 }
 
+- (void)updateTabCounter
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+{
+	int total = 0;
+    NSArray *recents = [self.fetchedResultsController fetchedObjects];
+	for (Recent *recent in recents)
+	{
+		total += [recent.counter intValue];
+	}
+	UITabBarItem *item = self.tabBarController.tabBar.items[0];
+	item.badgeValue = (total == 0) ? nil : [NSString stringWithFormat:@"%d", total];
+}
+
 - (void)clearTabCounter
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
@@ -167,6 +180,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	//[recents removeAllObjects];
+    // only delete local 
     [Recent clearRecentEntityAll:[super managedObjectContext]];
 	[self.tableView reloadData];
 	[self clearTabCounter];
@@ -274,6 +288,8 @@
     
     Recent * recent = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	[cell bindData:recent];
+    
+    
 	return cell;
     
 //    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Region Cell"];
@@ -298,13 +314,25 @@
 {
     
     
-	Recent *recent = [self.fetchedResultsController objectAtIndexPath:[indexPath.row]];
-	//[recents removeObject:recent];
-	[self updateTabCounter];
+	Recent *recent = [self.fetchedResultsController objectAtIndexPath:indexPath];
+
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	[recent deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+    PFObject * recentRmt = [PFObject objectWithClassName:PF_RECENT_CLASS_NAME];
+    /// TODO confirm if this is ok
+    recentRmt.objectId = recent.globalID;
+	[recentRmt deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
 	{
 		if (error != nil) [ProgressHUD showError:@"Network error."];
+        else if (succeeded) {
+            
+            [self.managedObjectContext deleteObject:recent];
+            
+            //[recents removeObject:recent];
+            [self updateTabCounter];
+        }
+        else {
+            [ProgressHUD showError:@"Network error."];
+        }
 	}];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -318,8 +346,9 @@
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	PFObject *recent = recents[indexPath.row];
-	[self actionChat:recent[PF_RECENT_GROUPID]];
+	//PFObject *recent = recents[indexPath.row];
+    Recent *recent = [self.fetchedResultsController objectAtIndexPath:indexPath];
+	[self actionChat:recent.chatID];
 }
 
 @end

@@ -2,8 +2,8 @@
 //  User.m
 //  MyApp
 //
-//  Created by Linwei Ding on 9/23/15.
-//  Copyright © 2015 AppsFoundation. All rights reserved.
+//  Created by Linwei Ding on 9/24/15.
+//  Copyright (c) 2015 AppsFoundation. All rights reserved.
 //
 
 #import "User.h"
@@ -15,8 +15,24 @@
 #import "Recent.h"
 #import "Thumbnail.h"
 
+
 @implementation User
 
-// Insert code here to add functionality to your managed object subclass
+@dynamic email;
+@dynamic emailCopy;
+@dynamic facebookID;
+@dynamic fullname;
+@dynamic fullnameLower;
+@dynamic password;
+@dynamic pictureName;
+@dynamic twitterID;
+@dynamic username;
+@dynamic alerts;
+@dynamic events;
+@dynamic friends;
+@dynamic groups;
+@dynamic places;
+@dynamic recents;
+@dynamic thumbnail;
 
 @end

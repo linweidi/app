@@ -9,10 +9,17 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
 #define     DEBUG_MODE                          1
 #define     PARSE_MODE                          2
 #define     SERVER_MODE                         3
 //#define  NS_BLOCK_ASSERTIONS
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+#define     RECENTVIEW_ITEM_NUM                 50
+#define     RECENTVIEW_DISPLAY_ITEM_NUM         50
+
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 #define HEXCOLOR(c) [UIColor colorWithRed:((c>>24)&0xFF)/255.0 green:((c>>16)&0xFF)/255.0 blue:((c>>8)&0xFF)/255.0 alpha:((c)&0xFF)/255.0]
 

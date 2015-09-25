@@ -2,21 +2,16 @@
 //  EntityObject.h
 //  MyApp
 //
-//  Created by Linwei Ding on 9/23/15.
-//  Copyright © 2015 AppsFoundation. All rights reserved.
+//  Created by Linwei Ding on 9/24/15.
+//  Copyright (c) 2015 AppsFoundation. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-NS_ASSUME_NONNULL_BEGIN
 
 @interface EntityObject : NSManagedObject
 
-// Insert code here to declare functionality of your managed object subclass
+@property (nonatomic, retain) NSString * globalID;
 
 @end
-
-NS_ASSUME_NONNULL_END
-
-#import "EntityObject+CoreDataProperties.h"

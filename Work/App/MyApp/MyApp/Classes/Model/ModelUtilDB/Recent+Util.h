@@ -21,10 +21,22 @@
                  inManagedObjectContext: (NSManagedObjectContext *)context;
 
 #pragma method -- data base method
++ (Recent *)createRecentEntity:(NSManagedObjectContext *)context;
+
+
++ (Recent *)recentEntitywithChatID:(NSString *)chatID
+            inManagedObjectContext: (NSManagedObjectContext *)context;
+
++ (BOOL) deleteRecentEntityWithChatID:(NSString *)chatID
+               inManagedObjectContext: (NSManagedObjectContext *)context;
+
 + (NSArray *) fetchRecentEntityAll:(NSManagedObjectContext *)context;
 
 + (void) clearRecentEntityAll:(NSManagedObjectContext *)context;
 
+#pragma method -- other utility methods
 + (Recent *) latestRecentEntity:(NSManagedObjectContext *)context;
+
++ (void) setRecent:(Recent *)recent withPFObject:(PFObject *)object;
 
 @end
