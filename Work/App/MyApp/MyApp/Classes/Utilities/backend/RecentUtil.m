@@ -132,6 +132,7 @@ void CreateRecentItem(User *user, NSString *groupId, NSArray *members, NSString 
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
+// Update all users' recent and counter
 void UpdateRecentAndCounter(NSString *groupId, NSInteger amount, NSString *lastMessage)
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
@@ -168,12 +169,15 @@ void UpdateRecentAndCounter(NSString *groupId, NSInteger amount, NSString *lastM
 
 				}];
 			}
+            ///TODO if not existed, we need create one recent item for that user
+            //use sorted user and update the user group each update, eventually the rest of user group is the ones to be created
 		}
 		else NSLog(@"UpdateRecentCounter query error.");
 	}];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
+// clear only my recent counter
 void ClearRecentCounter(NSString *groupId)
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
@@ -211,6 +215,7 @@ void DeleteRecentItems(User *user1, User *user2)
 {
 	PFQuery *query = [PFQuery queryWithClassName:PF_RECENT_CLASS_NAME];
 	[query whereKey:PF_RECENT_USER equalTo: [User convertFromUser:user1] ];
+    ///TODO maybe wrong here
 	[query whereKey:PF_RECENT_MEMBERS equalTo:user2.globalID];
 	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
 	{

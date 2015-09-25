@@ -180,7 +180,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	//[recents removeAllObjects];
-    // only delete local 
+    // only delete local
     [Recent clearRecentEntityAll:[super managedObjectContext]];
 	[self.tableView reloadData];
 	[self clearTabCounter];
