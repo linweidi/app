@@ -2,7 +2,7 @@
 //  Thumbnail.m
 //  MyApp
 //
-//  Created by Linwei Ding on 9/24/15.
+//  Created by Linwei Ding on 9/30/15.
 //  Copyright (c) 2015 AppsFoundation. All rights reserved.
 //
 
@@ -14,6 +14,7 @@
 
 @dynamic data;
 @dynamic name;
+@dynamic url;
 @dynamic user;
 
 @end

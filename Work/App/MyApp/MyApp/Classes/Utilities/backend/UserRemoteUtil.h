@@ -12,6 +12,8 @@
 
 + (UserRemoteUtil *)sharedUtil;
 
-- (void) loadUserFromParse:(NSString *)userId completionHandler:(PARSE_ARRAY_BLOCK)block ;
+- (void) loadUserFromParse:(NSString *)userId completionHandler:(REMOTE_ARRAY_BLOCK)block;
+
+- (void) loadRemoteUser:(NSString *)userId completionHandler:(REMOTE_ARRAY_BLOCK)block ;
 
 @end

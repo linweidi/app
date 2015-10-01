@@ -7,41 +7,54 @@
 //
 #import <Parse/Parse.h>
 #import "User.h"
+#import "UserManager.h"
 #import "Thumbnail+Util.h"
 
 @implementation Thumbnail (Util)
 
-+ (Thumbnail *) thumbnailEntityWithPFUser:(PFFile *)thumbFile withUser:(User *)user inManagedObjectContext: (NSManagedObjectContext *)context {
-
++ (Thumbnail *) thumbnailEntityWithPFUser:(PFFile *)thumbFile withUserID:(NSString *)userID inManagedObjectContext: (NSManagedObjectContext *)context {
+    UserManager * manager = [UserManager sharedUtil];
 
     
     
     PFFile * thumbnailPicture = thumbFile;
-    //self.thumbnail = thumbnailPicture.name;
+
     
-    Thumbnail *newThumbNail = nil   ;
-    if ([user thumbnail]) {
+    Thumbnail *thumbObj = nil   ;
+    NSString * thumbName = nil;
+    UserContext * userContext = nil;
+    User * user = nil;
+    if ([manager exists:userID]) {
+        //thumb exists in core data
+        userContext = [manager getContext:userID];
+        user = userContext.user;
+        thumbObj = userContext.thumb;
+        thumbName = userContext.thumbName;
         
-        if (user.thumbnail.name == thumbnailPicture.name ) {
+        if (thumbName == thumbnailPicture.name ) {
             //thumbnail already exists
             // do nothing
         }
         else {
-            //thumbnail different
-            [context deleteObject:user.thumbnail];
+            //thumbnail different, so update
+            [context deleteObject: thumbObj];
             user.thumbnail = nil;
+            userContext.thumb = nil;
             
-            newThumbNail = [NSEntityDescription insertNewObjectForEntityForName:thumbnailPicture.name inManagedObjectContext:context];
-            if (newThumbNail) {
-                newThumbNail.name = thumbnailPicture.name;
+            thumbObj = [NSEntityDescription insertNewObjectForEntityForName:thumbnailPicture.name inManagedObjectContext:context];
+            if (thumbObj) {
                 
-                [thumbnailPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-                    if (!error) {
-                        newThumbNail.data = data;
-                    }
-                }];
+                //populate thumb's values
+                [thumbObj setThumbnailByPFFile:thumbnailPicture];
                 
-                user.thumbnail = newThumbNail ;
+                //update user 's link
+                user.thumbnail = thumbObj ;
+                
+                //update user manager's link
+                userContext.thumbName = thumbnailPicture.name;
+                userContext.thumb = thumbObj;
+                
+
             }
             else {
                 NSAssert(NO, @"insert thumbnail fails");
@@ -50,31 +63,34 @@
     }
     else {
         // thumbnail is not initialized
-        // no thumbnail exists
-        newThumbNail = [NSEntityDescription insertNewObjectForEntityForName:thumbnailPicture.name inManagedObjectContext:context];
-        if (newThumbNail) {
-            newThumbNail.name = thumbnailPicture.name;
-            
-            [thumbnailPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-                if (!error) {
-                    newThumbNail.data = data;
-                }
-            }];
-            
-            user.thumbnail = newThumbNail ;
+        // no thumbnail exists, no user exists
+        thumbObj = [NSEntityDescription insertNewObjectForEntityForName:thumbnailPicture.name inManagedObjectContext:context];
+        if (thumbObj) {
+            [thumbObj setThumbnailByPFFile:thumbnailPicture];
         }
         else {
             NSAssert(NO, @"insert thumbnail fails");
         }
     }
     
-    return newThumbNail;
+    return thumbObj;
+}
+
+- (void) setThumbnailByPFFile:(PFFile *)thumb {
+    self.name = thumb.name;
+    self.url = thumb.url;
+    
+    [thumb getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        if (!error) {
+            self.data = data;
+        }
+    }];
 }
 
 + (Thumbnail *) thumbnailEntity:(NSString *)name inManagedObjectContext: (NSManagedObjectContext *)context {
     Thumbnail *newThumbNail = nil   ;
 
-
+/*
     NSAssert(name, @"input is nil");
 
     if (name) {
@@ -91,6 +107,7 @@
             newThumbNail = [NSEntityDescription insertNewObjectForEntityForName:@"Thumbnail" inManagedObjectContext:context];
             //set the recent values
             newThumbNail.name = name;
+            newThumbNail
         }
         else {
             newThumbNail = [matches lastObject];
@@ -99,7 +116,7 @@
         
         
     }
-    
+    */
     return newThumbNail;
 }
 

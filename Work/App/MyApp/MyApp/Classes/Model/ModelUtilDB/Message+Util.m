@@ -136,7 +136,11 @@
     return message;
 }
 
-- (void) setWithPFObject:(PFObject *)object {
+- (void) setWithRemoteObject:(RemoteObject *)object inManagedObjectContext: (NSManagedObjectContext *)context{
+    [self setWithPFObject:object];
+}
+
+- (void) setWithPFObject:(PFObject *)object inManagedObjectContext: (NSManagedObjectContext *)context{
     self.globalID = object.objectId;
     self.chatID = object[PF_MESSAGE_GROUPID];
     self.createdTime = object[PF_MESSAGE_CREATEDAT];
@@ -147,7 +151,8 @@
     self.videoName = file.name;
     self.videoURL = file.url;
     self.text =  object[PF_MESSAGE_TEXT];
-    self.user = [User convertFromPFUser: object[PF_MESSAGE_USER]];
+    
+    self.user = [User convertFromRemoteUser:object[PF_MESSAGE_USER] inManagedObjectContext:context];
 
 }
 

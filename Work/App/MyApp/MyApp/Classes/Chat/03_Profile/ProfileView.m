@@ -13,6 +13,7 @@
 #import "common.h"
 
 #import "UserRemoteUtil.h"
+#import "User+Util.h"
 
 #import "ProfileView.h"
 #import "NavigationController.h"
@@ -21,7 +22,6 @@
 @interface ProfileView()
 {
 	NSString *userId;
-	PFUser *user;
 }
 
 @property (strong, nonatomic) IBOutlet UIView *viewHeader;
@@ -77,16 +77,18 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
     
-    [[UserRemoteUtil sharedUtil] loadUserFromParse:userId completionHandler:^(NSArray *objects, NSError *error) {
+    [[UserRemoteUtil sharedUtil] loadRemoteUser:userId completionHandler:^(NSArray *objects, NSError *error) {
         if (error == nil)
 		{
-			user = [objects firstObject];
+			RemoteUser * userRemote = [objects firstObject];
+            User * user = [User convertFromPFUser:userRemote];
 			if (user != nil)
 			{
-				[imageUser setFile:user[PF_USER_PICTURE]];
+                PFFile * filePicture = [PFFile fileWithName:user.pictureName contentsAtPath:user.pictureURL];
+				[imageUser setFile:filePicture];
 				[imageUser loadInBackground];
 				
-				labelName.text = user[PF_USER_FULLNAME];
+				labelName.text = user.fullname;
 			}
 		}
 		else [ProgressHUD showError:@"Network error."];
@@ -131,7 +133,7 @@
 {
 	if (buttonIndex != actionSheet.cancelButtonIndex)
 	{
-		if (user != nil)
+		if ([[UserManager sharedUtil ] exists:userId])
 		{
 			ActionPremium(self);
 		}
@@ -144,7 +146,7 @@
 {
 	if (buttonIndex != actionSheet.cancelButtonIndex)
 	{
-		if (user != nil)
+		if ([[UserManager sharedUtil ] exists:userId])
 		{
 			ActionPremium(self);
 		}

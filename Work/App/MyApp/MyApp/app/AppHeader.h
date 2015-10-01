@@ -15,6 +15,8 @@
 #import "AppConstant.h"
 #import "DataModelHeader.h"
 
+#import "UserManager.h"
+
 
 typedef void (^REMOTE_BOOL_BLOCK)(BOOL succeeded, NSError * error);
 
@@ -23,5 +25,7 @@ typedef void (^REMOTE_ARRAY_BLOCK)(NSArray * objects, NSError * error);
 typedef void (^REMOTE_DATA_BLOCK)(NSData * data, NSError * error);
 
 typedef PFObject RemoteObject;
+
+typedef PFUser RemoteUser;
 
 #endif

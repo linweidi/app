@@ -23,7 +23,7 @@
     return sharedObject;
 }
 
-- (void) loadUserFromParse:(NSString *)userId completionHandler:(PARSE_ARRAY_BLOCK)block {
+- (void) loadUserFromParse:(NSString *)userId completionHandler:(REMOTE_ARRAY_BLOCK)block {
     NSAssert(userId, @"userId is nil") ;
     
 	PFQuery *query = [PFQuery queryWithClassName:PF_USER_CLASS_NAME];
@@ -31,4 +31,7 @@
 	[query findObjectsInBackgroundWithBlock:block];
 }
 
+- (void) loadRemoteUser:(NSString *)userId completionHandler:(REMOTE_ARRAY_BLOCK)block  {
+    [self loadUserFromParse:userId completionHandler:block];
+}
 @end

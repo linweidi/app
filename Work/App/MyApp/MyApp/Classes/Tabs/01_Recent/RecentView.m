@@ -95,7 +95,7 @@
         // init fetch request
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Recent"];
         request.predicate = nil;
-        request.fetchLimit = 50;
+        request.fetchLimit = RECENTVIEW_DISPLAY_ITEM_NUM;
         request.sortDescriptors = @[[NSSortDescriptor
                                      sortDescriptorWithKey:@"updateDate"
                                      ascending:NO
@@ -127,8 +127,8 @@
     
     latestRecent = [Recent latestRecentEntity:self.managedObjectContext];
     
-#ifdef PARSE_MODE
-    [[RecentRemoteUtil sharedUtil] loadRecentFromParse:latestRecent completionHandler:^(NSArray *objects, NSError *error) {
+
+    [[RecentRemoteUtil sharedUtil] loadRemoteRecent:latestRecent completionHandler:^(NSArray *objects, NSError *error) {
         if (error == nil)
         {
             //[recents removeAllObjects];
@@ -138,10 +138,11 @@
                 //[recents setObject:object forKey:object[PF_RECENT_GROUPID]];
                 if (latestRecent) {
                     
-                    recent = [Recent recentEntityWithPFObject:object inManagedObjectContext:[[RecentRemoteUtil sharedUtil] context]];
+                    // even if recent is new, but it can be a update result, so we may need update old existed recent
+                    recent = [Recent recentEntityWithPFObject:object inManagedObjectContext:self.managedObjectContext];
                 }
                 else {
-                    recent = [Recent createRecentEntityWithPFObject:object inManagedObjectContext:[[RecentRemoteUtil sharedUtil] context]];
+                    recent = [Recent createRecentEntityWithPFObject:object inManagedObjectContext:self.managedObjectContext];
                 }
                 
                 
@@ -159,9 +160,8 @@
         }
         [self.refreshControl endRefreshing];
     }];
-#elif DEMO_MODE
-    
-#endif
+
+
     
 }
 
@@ -368,7 +368,7 @@
         }
     }];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+	//[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 #pragma mark - Table view delegate

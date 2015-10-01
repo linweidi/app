@@ -2,7 +2,7 @@
 //  Group.h
 //  MyApp
 //
-//  Created by Linwei Ding on 9/24/15.
+//  Created by Linwei Ding on 10/1/15.
 //  Copyright (c) 2015 AppsFoundation. All rights reserved.
 //
 
@@ -15,6 +15,9 @@
 @interface Group : EntityObject
 
 @property (nonatomic, retain) NSString * members;
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSDate * createTime;
+@property (nonatomic, retain) NSDate * updateTime;
 @property (nonatomic, retain) User *user;
 
 @end

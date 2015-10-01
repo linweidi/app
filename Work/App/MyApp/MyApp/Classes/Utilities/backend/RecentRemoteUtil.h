@@ -10,7 +10,7 @@
 // THE SOFTWARE.
 
 #import <Parse/Parse.h>
-
+#import "AppHeader.h"
 @class User;
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 NSString*		StartPrivateChat		(User *user1, User *user2);
@@ -35,8 +35,10 @@ void			DeleteRecentItems		(User *user1, User *user2);
 
 + (RecentRemoteUtil *)sharedUtil;
 
-- (void) deleteRecentFromParse:(Recent *)recent completionHandler:(PARSE_BLOCK)block;
+- (void) deleteRecentFromParse:(Recent *)recent completionHandler:(REMOTE_BOOL_BLOCK)block;
 
-- (void) loadRecentFromParse:(Recent *) latestRecent completionHandler:(PARSE_ARRAY_BLOCK)block  ;
+- (void) loadRecentFromParse:(Recent *) latestRecent completionHandler:(REMOTE_ARRAY_BLOCK)block  ;
 
+
+- (void) loadRemoteRecent:(Recent *) latestRecent completionHandler:(REMOTE_ARRAY_BLOCK)block;
 @end

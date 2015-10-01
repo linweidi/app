@@ -18,15 +18,19 @@
 #import "group.h"
 #import "recent.h"
 
-#import "GroupsView.h"
+
 #import "CreateGroupView.h"
 #import "GroupSettingsView.h"
 #import "NavigationController.h"
 
+#import "GroupRemoteUtil.h"
+#import "Group+Util.h"
+
+#import "GroupsView.h"
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 @interface GroupsView()
 {
-	NSMutableArray *groups;
+	//NSMutableArray *groups;
 }
 @end
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -61,7 +65,7 @@
 	self.refreshControl = [[UIRefreshControl alloc] init];
 	[self.refreshControl addTarget:self action:@selector(loadGroups) forControlEvents:UIControlEventValueChanged];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	groups = [[NSMutableArray alloc] init];
+	//groups = [[NSMutableArray alloc] init];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -80,24 +84,75 @@
 #pragma mark - Backend actions
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
+
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    super.managedObjectContext = managedObjectContext;
+    
+    if (managedObjectContext) {
+        // init fetch request
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Group"];
+        request.predicate = nil;
+        request.fetchLimit = GROUPVIEW_DISPLAY_ITEM_NUM;
+        request.sortDescriptors = @[[NSSortDescriptor
+                                     sortDescriptorWithKey:@"updateTime"
+                                     ascending:NO
+                                     selector:@selector(compare:)],
+                                    ];
+        
+        
+        // init fetch result controller
+        /// TODO change section name
+        self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                                            managedObjectContext:managedObjectContext
+                                                                              sectionNameKeyPath:nil
+                                                                                       cacheName:nil];
+    }
+    
+}
+
+
+
 - (void)loadGroups
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	PFUser *user = [PFUser currentUser];
-
-	PFQuery *query = [PFQuery queryWithClassName:PF_GROUP_CLASS_NAME];
-	[query whereKey:PF_GROUP_MEMBERS equalTo:user.objectId];
-	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-	{
-		if (error == nil)
+    NSMutableArray * groups = [[NSMutableArray alloc] init];
+    
+    Group * latestGroup = nil;
+    
+    latestGroup = [Group latestGroupEntity :self.managedObjectContext];
+    
+    [[GroupRemoteUtil sharedUtil] loadRemoteGroups: latestGroup  completionHandler:^(NSArray *objects, NSError *error) {
+        if (error == nil)
 		{
-			[groups removeAllObjects];
-			[groups addObjectsFromArray:objects];
-			[self.tableView reloadData];
+			//[groups removeAllObjects];
+			//[groups addObjectsFromArray:objects];
+			//[self.tableView reloadData];
+            
+            Group * group = nil;
+            for (RemoteObject * object in objects) {
+                //[recents setObject:object forKey:object[PF_RECENT_GROUPID]];
+                if (latestGroup) {
+                    
+                    group = [Group groupEntityWithRemoteObject:object inManagedObjectContext:self.managedObjectContext];
+                }
+                else {
+                    group = [Group createGroupEntityWithPFObject:object inManagedObjectContext:self.managedObjectContext];
+                }
+                
+                
+                [groups addObject:group];
+            }
+            
+            
+            // load the recents into core data
+            
+            [self.tableView reloadData];
+          
 		}
 		else [ProgressHUD showError:@"Network error."];
 		[self.refreshControl endRefreshing];
-	}];
+    }];
 }
 
 #pragma mark - User actions
@@ -115,25 +170,25 @@
 - (void)actionCleanup
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	[groups removeAllObjects];
+	//[groups removeAllObjects];
 	[self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
-	return 1;
-}
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+////-------------------------------------------------------------------------------------------------------------------------------------------------
+//{
+//	return 1;
+//}
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
-	return [groups count];
-}
+////-------------------------------------------------------------------------------------------------------------------------------------------------
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+////-------------------------------------------------------------------------------------------------------------------------------------------------
+//{
+//	return [groups count];
+//}
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -142,10 +197,11 @@
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
 	if (cell == nil) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
 
-	PFObject *group = groups[indexPath.row];
-	cell.textLabel.text = group[PF_GROUP_NAME];
+	Group  *group = [self.fetchedResultsController objectAtIndexPath:indexPath];
+	cell.textLabel.text = group.name;
 
-	cell.detailTextLabel.text = [NSString stringWithFormat:@"%d members", (int) [group[PF_GROUP_MEMBERS] count]];
+    
+	cell.detailTextLabel.text = [NSString stringWithFormat:@"%d members", (int) [group.members count]];
 	cell.detailTextLabel.textColor = [UIColor lightGrayColor];
 
 	return cell;
@@ -170,7 +226,8 @@
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	if ([user1 isEqualTo:user2]) RemoveGroupItem(group); else RemoveGroupMember(group, user1);
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+	//[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+#warning notify others that you have quit the group
 }
 
 #pragma mark - Table view delegate

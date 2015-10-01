@@ -2,7 +2,7 @@
 //  Thumbnail.h
 //  MyApp
 //
-//  Created by Linwei Ding on 9/24/15.
+//  Created by Linwei Ding on 9/30/15.
 //  Copyright (c) 2015 AppsFoundation. All rights reserved.
 //
 
@@ -15,6 +15,7 @@
 
 @property (nonatomic, retain) NSData * data;
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * url;
 @property (nonatomic, retain) User *user;
 
 @end

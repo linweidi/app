@@ -25,7 +25,7 @@
     return sharedObject;
 }
 
-- (void) loadMessageFromParse:(NSString *)chatId lastMessage:(JSQMessage *)lastMessage completionHandler:(REMOTE_ARRAY_BLOCK)block {
+- (void) loadMessagesFromParse:(NSString *)chatId lastMessage:(JSQMessage *)lastMessage completionHandler:(REMOTE_ARRAY_BLOCK)block {
     //lastMessage can be nil;
     PFQuery *query = [PFQuery queryWithClassName:PF_MESSAGE_CLASS_NAME];
     [query whereKey:PF_MESSAGE_GROUPID equalTo:chatId];
@@ -37,6 +37,10 @@
     [query setLimit:50];
     [query findObjectsInBackgroundWithBlock:block];
     
+}
+
+- (void) loadRemoteMessages:(NSString *)chatId lastMessage:(JSQMessage *)lastMessage completionHandler:(REMOTE_ARRAY_BLOCK)block {
+    [self loadMessagesFromParse:chatId lastMessage:lastMessage completionHandler:block];
 }
 
 - (PFObject *) createMessageRemote:(NSString *)chatId text:(NSString *)text Video:(RemoteFile *)video Picture:(RemoteFile *)picture completionHandler:(REMOTE_BOOL_BLOCK)block{

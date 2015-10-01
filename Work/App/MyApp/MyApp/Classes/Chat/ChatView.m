@@ -30,6 +30,9 @@
 
 #import "MessageRemoteUtil.h"
 #import "Message+Util.h"
+#import "UserRemoteUtil.h"
+
+#import "User+Util.h"
 
 #import "ChatView.h"
 #import "ProfileView.h"
@@ -45,7 +48,7 @@
 
 	NSString *groupId;
 
-	NSMutableArray *users;
+	//NSMutableArray *users;
 	NSMutableArray *messages;
 	NSMutableDictionary *avatars;
 
@@ -74,7 +77,7 @@
 	[super viewDidLoad];
 	self.title = @"Chat";
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	users = [[NSMutableArray alloc] init];
+	//users = [[NSMutableArray alloc] init];
 	//messages = [[NSMutableArray alloc] init];
 	avatars = [[NSMutableDictionary alloc] init];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
@@ -99,7 +102,7 @@
 {
 	[super viewDidAppear:animated];
 	self.collectionView.collectionViewLayout.springinessEnabled = YES;
-	timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(loadMessages) userInfo:nil repeats:YES];
+	timer = [NSTimer scheduledTimerWithTimeInterval:MESSAGEVIEW_REFRESH_TIME target:self selector:@selector(loadMessages) userInfo:nil repeats:YES];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -125,6 +128,7 @@
 		isLoading = YES;
 		JSQMessage *lastMessageJSQ = [messages lastObject];
         
+        //INITIALIZATION
         NSArray * messageDataArray;
         if (!lastMessageJSQ) {
             //initialization
@@ -135,11 +139,13 @@
                 [messages addObject:jsqMessage];
             }
             lastMessageJSQ = [messages lastObject];
+            
+            //lastMessageJSQ may be nil;
         }
         
         
-
-        [[MessageRemoteUtil sharedUtil] loadMessageFromParse:groupId lastMessage:lastMessageJSQ completionHandler:^(NSArray *objects, NSError *error) {
+        // Load new messages
+        [[MessageRemoteUtil sharedUtil] loadRemoteMessages:groupId lastMessage:lastMessageJSQ completionHandler:^(NSArray *objects, NSError *error) {
             
             if (error == nil)
 			{
@@ -156,7 +162,7 @@
                     
                     
                     Message * messageData = [Message createMessageEntity:object inManagedObjectContext:self.managedObjectContext];
-                    
+                    [messageData setWithPFObject:object];
                     
 					JSQMessage *message = [self addMessage:messageData];
 					if ([self incoming:message]) incoming = YES;
@@ -189,6 +195,7 @@
 {
 	JSQMessage *message;
 	//---------------------------------------------------------------------------------------------------------------------------------------------
+    // core data only read user data once, so that is ok
 	User *user = object.user;
 	NSString *name = user.fullname;
 	//---------------------------------------------------------------------------------------------------------------------------------------------
@@ -228,9 +235,11 @@
     
     
 	//---------------------------------------------------------------------------------------------------------------------------------------------
+/*
 #warning users hold the object from core data, in future move this into UserManager
     /// TODO
 	[users addObject:user];
+ */
 	[messages addObject:message];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	return message;
@@ -240,6 +249,9 @@
 - (void)loadAvatar:(User *)user
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
+#warning Maybe I can use thumbnail here
+    /*
+    ///legacy: this is the code for loading picture
 	RemoteFile *file = [RemoteFile fileWithName:user.pictureName url:user.pictureURL];
 	[file getDataAsync:^(NSData *imageData, NSError *error)
 	{
@@ -249,6 +261,19 @@
 			[self.collectionView reloadData];
 		}
 	}];
+     */
+    
+    NSString * userID = user.globalID;
+    
+    UserContext * context = [[UserManager sharedUtil] getContext:userID];
+    
+    NSAssert(context, @"conext is nil");
+    if (context) {
+        NSData * imageData = context.thumb.data;
+        avatars[user.globalID] = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageWithData:imageData] diameter:30.0];
+        [self.collectionView reloadData];
+    }
+
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -349,13 +374,44 @@
 					avatarImageDataForItemAtIndexPath:(NSIndexPath *)indexPath
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	User *user = users[indexPath.item];
-	if (avatars[user.globalID] == nil)
-	{
-		[self loadAvatar:user];
-		return avatarImageBlank;
-	}
-	else return avatars[user.globalID];
+    
+    JSQMessage * message = messages[indexPath.item];
+    NSString *userID = message.senderId;
+    
+	__block User *user = [[UserManager sharedUtil] getUser:userID];
+    if (user) {
+
+    }
+    else {
+        //get the user remotely
+        [[UserRemoteUtil sharedUtil] loadRemoteUser:userID completionHandler:^(NSArray *objects, NSError *error) {
+            if (!error) {
+                RemoteUser * userRemote = [objects firstObject];
+                if (userRemote) {
+                    user = [User convertFromRemoteUser:userRemote inManagedObjectContext:self.managedObjectContext];
+                    [self loadAvatar:user];
+                }
+                else {
+                    [ProgressHUD showError:@"User does not exist, user id is wrong."];
+
+                }
+            }
+            else {
+                [ProgressHUD showError:@"Network error."];
+
+            }
+
+        }];
+    }
+    
+    
+    if (avatars[user.globalID] == nil) {
+        [self loadAvatar:user];
+        return avatarImageBlank;
+    }
+    else {
+        return avatars[user.globalID];
+    }
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------

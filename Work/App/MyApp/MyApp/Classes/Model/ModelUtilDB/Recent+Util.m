@@ -221,7 +221,7 @@
     recent.globalID = object.objectId;
     
     /// TODO may not need update user here
-    User * user = [User userEntityWithPFUser:object[PF_RECENT_USER] inManagedObjectContext:context updateUser:YES];
+    User * user = [User convertFromRemoteUser:object[PF_RECENT_USER] inManagedObjectContext:context];
     recent.user = user;
     
     recent.chatID =  object[PF_RECENT_GROUPID];
@@ -229,7 +229,7 @@
     recent.details = object[PF_RECENT_DESCRIPTION] ;
 
     /// TODO may not need update user here
-    User * lastUser = [User userEntityWithPFUser:object[PF_RECENT_USER] inManagedObjectContext:context updateUser:YES];
+    User * lastUser = [User convertFromRemoteUser:object[PF_RECENT_LASTUSER] inManagedObjectContext:context];
     recent.lastUser = lastUser;
 
     

@@ -11,13 +11,24 @@
 
 @interface User (Util)
 
-+ (User *) convertFromPFUser:(PFUser *)user;
 
-+ (PFUser * )convertFromUser: (User *)user;
+- (RemoteUser *) convertToRemoteUser;
 
 - (PFUser *) convertToPFUser;
 
-- (BOOL) isEqual: (User *)user;
++ (User *) convertFromPFUser:(PFUser *)user inManagedObjectContext:(NSManagedObjectContext *) context;
 
+
++ (User *) convertFromRemoteUser:(RemoteUser *)user inManagedObjectContext:(NSManagedObjectContext *) context;
+
+
+- (BOOL) isEqual: (User *)user;
+/*  legacy
 + (User *) userEntityWithPFUser:(PFUser *)object inManagedObjectContext: (NSManagedObjectContext *)context updateUser:(BOOL)updateUser;
+*/
++ (User *) createUserEntity:(NSManagedObjectContext *)context;
+
+- (void) setWithPFUser:(PFUser *)user inManagedObjectContext: (NSManagedObjectContext *)context;
+
+
 @end

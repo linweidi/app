@@ -10,6 +10,7 @@
 // THE SOFTWARE.
 
 #import <Parse/Parse.h>
+#import "AppHeader.h"
 #import "PFUser+Util.h"
 #import "ProgressHUD.h"
 
@@ -256,7 +257,7 @@ void DeleteRecentItems(User *user1, User *user2)
     return sharedObject;
 }
 
-- (void) deleteRecentFromParse:(Recent *)recent completionHandler:(PARSE_BLOCK)block {
+- (void) deleteRecentFromParse:(Recent *)recent completionHandler:(REMOTE_BOOL_BLOCK)block {
     
     PFObject * recentRmt = [PFObject objectWithClassName:PF_RECENT_CLASS_NAME];
     /// TODO confirm if this is ok
@@ -264,7 +265,7 @@ void DeleteRecentItems(User *user1, User *user2)
 	[recentRmt deleteInBackgroundWithBlock:block];
 }
 
-- (void) loadRecentFromParse:(Recent *) latestRecent completionHandler:(PARSE_ARRAY_BLOCK)block  {
+- (void) loadRecentFromParse:(Recent *) latestRecent completionHandler:(REMOTE_ARRAY_BLOCK)block  {
 
     
     NSDate * latestUpdateDate = nil;
@@ -288,6 +289,8 @@ void DeleteRecentItems(User *user1, User *user2)
     [query findObjectsInBackgroundWithBlock:block];
 }
 
-
+- (void) loadRemoteRecent:(Recent *) latestRecent completionHandler:(REMOTE_ARRAY_BLOCK)block  {
+    [self loadRemoteRecent:latestRecent completionHandler:block];
+}
 
 @end

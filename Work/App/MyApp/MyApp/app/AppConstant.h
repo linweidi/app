@@ -10,7 +10,7 @@
 // THE SOFTWARE.
 
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//----------------- SYSTEM CONFIG --------------------------------------------------------------------------------------------------------------------------------
 
 #define     DEBUG_MODE                          1
 #define     PARSE_MODE                          2
@@ -18,12 +18,26 @@
 //#define  NS_BLOCK_ASSERTIONS
 
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//-------------------- Recent VIEW -----------------------------------------------------------------------------------------------------------------------------
 #define     RECENTVIEW_ITEM_NUM                 50
 #define     RECENTVIEW_DISPLAY_ITEM_NUM         50
 
+#define     RECENTVIEW_REFRESH_TIME             5.0
+
+
+//--------------- MESSAGE VIEW -----------------------------------------------------------------------------------------------------------------------------------
 #define     MESSAGEVIEW_ITEM_NUM                 50
 #define     MESSAGEVIEW_DISPLAY_ITEM_NUM         50
+
+
+#define     MESSAGEVIEW_REFRESH_TIME            5.0
+
+//--------------- GROUP VIEW -----------------------------------------------------------------------------------------------------------------------------------
+#define     GROUPVIEW_ITEM_NUM                 50
+#define     GROUPVIEW_DISPLAY_ITEM_NUM         50
+
+
+#define     GROUPVIEW_REFRESH_TIME            5.0
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 #define HEXCOLOR(c) [UIColor colorWithRed:((c>>24)&0xFF)/255.0 green:((c>>16)&0xFF)/255.0 blue:((c>>8)&0xFF)/255.0 alpha:((c)&0xFF)/255.0]
@@ -73,9 +87,15 @@
 #define		PF_BLOCKED_USERID2					@"userId2"				//	String
 //-----------------------------------------------------------------------
 #define		PF_GROUP_CLASS_NAME					@"Group"				//	Class name
+
+#define		PF_GROUP_OBJECTID					@"objectId"
+
 #define		PF_GROUP_USER						@"user"					//	Pointer to User Class
 #define		PF_GROUP_NAME						@"name"					//	String
 #define		PF_GROUP_MEMBERS					@"members"				//	Array
+#define     PF_GROUP_CREATE_TIME                @"createTime"
+
+#define     PF_GROUP_UPDATE_TIME                @"updateTime"
 //-----------------------------------------------------------------------
 #define		PF_MESSAGE_CLASS_NAME				@"Message"				//	Class name
 #define		PF_MESSAGE_USER						@"user"					//	Pointer to User Class
