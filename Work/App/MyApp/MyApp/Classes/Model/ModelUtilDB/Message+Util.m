@@ -1,0 +1,154 @@
+//
+//  Message+Util.m
+//  MyApp
+//
+//  Created by Linwei Ding on 9/30/15.
+//  Copyright (c) 2015 AppsFoundation. All rights reserved.
+//
+#import "AppHeader.h"
+#import "Message+Util.h"
+
+@implementation Message (Util)
+
++ (NSArray *)messageEntities:(NSString *)chatID inManagedObjectContext: (NSManagedObjectContext *)context {
+
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:PF_MESSAGE_CLASS_NAME] ;
+    request.predicate = [NSPredicate predicateWithFormat:@"chatID = %@", chatID];
+    request.fetchLimit = MESSAGEVIEW_DISPLAY_ITEM_NUM;
+    request.sortDescriptors = @[[NSSortDescriptor
+                                 sortDescriptorWithKey:PF_MESSAGE_CREATEDAT
+                                 ascending:NO
+                                 selector:@selector(compare:)],
+                                ];
+    NSError *error;
+    NSArray *matches = [context executeFetchRequest:request error:&error   ];
+    
+    if (!matches ) {
+        NSAssert(NO, @"match does not exist");
+  
+    }
+    
+    return matches;
+}
+
++ (BOOL) existsMessageEntity:(NSString *)chatID createdTime:(NSDate *)date inManagedObjectContext: (NSManagedObjectContext *)context {
+    BOOL ret = NO;
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:PF_MESSAGE_CLASS_NAME] ;
+    request.predicate = [NSPredicate predicateWithFormat:@"chatID = %@ && createdTime > %@", chatID, date];
+    request.fetchLimit = MESSAGEVIEW_DISPLAY_ITEM_NUM;
+    request.sortDescriptors = @[[NSSortDescriptor
+                                 sortDescriptorWithKey:PF_MESSAGE_CREATEDAT
+                                 ascending:NO
+                                 selector:@selector(compare:)],
+                                ];
+    NSError *error;
+    NSArray *matches = [context executeFetchRequest:request error:&error   ];
+    
+    if (!matches ) {
+        NSAssert(NO, @"match does not exist");
+        
+    }
+    else if ([matches count] > 0) {
+        ret = YES;
+    }
+    
+    return ret;
+}
+
++ (Message *) createMessageEntity:(PFObject *)object inManagedObjectContext: (NSManagedObjectContext *)context {
+    
+    Message * message = nil;
+    
+    NSAssert(object, @"input is nil");
+
+    //create a new one
+    message = [NSEntityDescription insertNewObjectForEntityForName:PF_MESSAGE_CLASS_NAME inManagedObjectContext:context];
+
+    [message setWithPFObject:object];
+    
+    return message;
+}
+
+
++ (NSArray *) messageEntities:(NSString *)chatID createdTime:(NSDate *)date inManagedObjectContext: (NSManagedObjectContext *)context {
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:PF_MESSAGE_CLASS_NAME] ;
+    request.predicate = [NSPredicate predicateWithFormat:@"chatID = %@ && createdTime > %@", chatID, date];
+    request.fetchLimit = MESSAGEVIEW_DISPLAY_ITEM_NUM;
+    request.sortDescriptors = @[[NSSortDescriptor
+                                 sortDescriptorWithKey:PF_MESSAGE_CREATEDAT
+                                 ascending:NO
+                                 selector:@selector(compare:)],
+                                ];
+    NSError *error;
+    NSArray *matches = [context executeFetchRequest:request error:&error   ];
+    
+    if (!matches ) {
+        NSAssert(NO, @"match does not exist");
+        
+    }
+    
+    return matches;
+}
+
+
++ (Message *) messageEntityWithPFObject:(PFObject *)object inManagedObjectContext: (NSManagedObjectContext *)context {
+    
+    Message * message = nil;
+    
+    message = [Message messageEntityWithChatID:object.objectId inManagedObjectContext:context];
+    
+    NSAssert(message, @"returned message is nil");
+    
+    [message setWithPFObject:object];
+    
+    return message;
+}
+
++ (Message *) messageEntityWithGlobalID:(NSString *)globalID inManagedObjectContext: (NSManagedObjectContext *)context {
+    
+    Message * message = nil;
+    
+    NSAssert(globalID, @"input is nil");
+    
+
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:PF_MESSAGE_CLASS_NAME] ;
+    request.predicate = [NSPredicate predicateWithFormat:@"globalID = %@", globalID];
+    NSError *error;
+    NSArray *matches = [context executeFetchRequest:request error:&error   ];
+    
+    if (!matches || ([matches count]>1)) {
+        NSAssert(NO, @"match count is not unique");
+    }
+    else if (![matches count]) {
+        //create a new one
+        message = [NSEntityDescription insertNewObjectForEntityForName:PF_MESSAGE_CLASS_NAME inManagedObjectContext:context];
+
+    }
+    else {
+        message = [matches lastObject];
+
+    }
+        
+    
+    
+    return message;
+}
+
+- (void) setWithPFObject:(PFObject *)object {
+    self.globalID = object.objectId;
+    self.chatID = object[PF_MESSAGE_GROUPID];
+    self.createdTime = object[PF_MESSAGE_CREATEDAT];
+    PFFile * file = object[PF_MESSAGE_PICTURE];
+    self.pictureName = file.name;
+    self.pictureURL = file.url;
+    file = object[PF_MESSAGE_VIDEO];
+    self.videoName = file.name;
+    self.videoURL = file.url;
+    self.text =  object[PF_MESSAGE_TEXT];
+    self.user = [User convertFromPFUser: object[PF_MESSAGE_USER]];
+
+}
+
+@end

@@ -17,7 +17,7 @@
 
 
 #import "RecentView.h"
-#import "RecentUtil.h"
+#import "RecentRemoteUtil.h"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 NSString* StartPrivateChat(User *user1, User *user2)
@@ -106,7 +106,7 @@ void CreateRecentItem(User *user, NSString *groupId, NSArray *members, NSString 
 					if (error != nil) NSLog(@"CreateRecentItem save error.");
                     else if (succeeded){
                         if ([user isEqual: [CurrentUser getCurrentUser]]) {
-                            Recent * obj = [Recent recentEntityWithPFObject:recent inManagedObjectContext:[RecentUtil sharedUtil].context];
+                            Recent * obj = [Recent recentEntityWithPFObject:recent inManagedObjectContext:[RecentRemoteUtil sharedUtil].context];
                             
                             if (!obj) {
                                 NSLog(@"CreateRecentItem does not insert into core data.");
@@ -160,7 +160,7 @@ void UpdateRecentAndCounter(NSString *groupId, NSInteger amount, NSString *lastM
 					if (error != nil) NSLog(@"UpdateRecentCounter save error.");
                     else if(succeeded){
                         /// TODO only update
-                        Recent * obj = [Recent recentEntityWithPFObject:recent inManagedObjectContext:[[RecentUtil sharedUtil] context]];
+                        Recent * obj = [Recent recentEntityWithPFObject:recent inManagedObjectContext:[[RecentRemoteUtil sharedUtil] context]];
                         
                         if (!obj) {
                             NSLog(@"CreateRecentItem does not insert into core data.");
@@ -196,7 +196,7 @@ void ClearRecentCounter(NSString *groupId)
 					if (error != nil) NSLog(@"ClearRecentCounter save error.");
                     else if(succeeded){
                         /// TODO only update
-                        Recent * obj = [Recent recentEntityWithPFObject:recent inManagedObjectContext:[[RecentUtil sharedUtil] context]];
+                        Recent * obj = [Recent recentEntityWithPFObject:recent inManagedObjectContext:[[RecentRemoteUtil sharedUtil] context]];
                         
                         if (!obj) {
                             NSLog(@"CreateRecentItem does not insert into core data.");
@@ -228,7 +228,7 @@ void DeleteRecentItems(User *user1, User *user2)
 					if (error != nil) NSLog(@"DeleteMessageItem delete error.");
                     else if(succeeded){
                         /// TODO only update
-                        BOOL deleted = [Recent deleteRecentEntityWithPFObject:recent inManagedObjectContext:[[RecentUtil sharedUtil] context]];
+                        BOOL deleted = [Recent deleteRecentEntityWithPFObject:recent inManagedObjectContext:[[RecentRemoteUtil sharedUtil] context]];
                         
                         if (!deleted) {
                             NSLog(@"CreateRecentItem does not delete into core data.");
@@ -242,11 +242,11 @@ void DeleteRecentItems(User *user1, User *user2)
 	}];
 }
 
-@implementation RecentUtil
+@implementation RecentRemoteUtil
 
-+ (RecentUtil *)sharedUtil {
++ (RecentRemoteUtil *)sharedUtil {
     static dispatch_once_t predicate = 0;
-    static RecentUtil *sharedObject;
+    static RecentRemoteUtil *sharedObject;
     
     dispatch_once(&predicate, ^{
         //initializing singleton object
@@ -256,16 +256,18 @@ void DeleteRecentItems(User *user1, User *user2)
     return sharedObject;
 }
 
-+ (void) loadRecentFromParse:(RecentView *)recentView managedObjectContext:(NSManagedObjectContext *)context{
-    NSMutableArray * recents = [[NSMutableArray alloc] init];
-    //NSMutableDictionary * recents = [[NSMutableDictionary alloc] init];
+- (void) deleteRecentFromParse:(Recent *)recent completionHandler:(PARSE_BLOCK)block {
+    
+    PFObject * recentRmt = [PFObject objectWithClassName:PF_RECENT_CLASS_NAME];
+    /// TODO confirm if this is ok
+    recentRmt.objectId = recent.globalID;
+	[recentRmt deleteInBackgroundWithBlock:block];
+}
+
+- (void) loadRecentFromParse:(Recent *) latestRecent completionHandler:(PARSE_ARRAY_BLOCK)block  {
+
     
     NSDate * latestUpdateDate = nil;
-    Recent * latestRecent = nil;
-    
-    latestRecent = [Recent latestRecentEntity:context];
-    
-    
     
     // load from parse
     PFQuery *query = [PFQuery queryWithClassName:PF_RECENT_CLASS_NAME];
@@ -283,38 +285,7 @@ void DeleteRecentItems(User *user1, User *user2)
 
     }
     
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-     {
-         if (error == nil)
-         {
-             //[recents removeAllObjects];
-             //[recents addObjectsFromArray:objects];
-             Recent * recent = nil;
-             for (PFObject * object in objects) {
-                 //[recents setObject:object forKey:object[PF_RECENT_GROUPID]];
-                 if (latestRecent) {
-                     
-                     recent = [Recent recentEntityWithPFObject:object inManagedObjectContext:[[RecentUtil sharedUtil] context]];
-                 }
-                 else {
-                     recent = [Recent createRecentEntityWithPFObject:object inManagedObjectContext:[[RecentUtil sharedUtil] context]];
-                 }
-
-
-                 [recents addObject:recent];
-             }
-             
-             
-             // load the recents into core data
-             
-             [recentView.tableView reloadData];
-             [recentView updateTabCounter];
-         }
-         else {
-             [ProgressHUD showError:@"Network error."];
-         }
-         [recentView.refreshControl endRefreshing];
-     }];
+    [query findObjectsInBackgroundWithBlock:block];
 }
 
 

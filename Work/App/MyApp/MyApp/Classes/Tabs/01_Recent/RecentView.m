@@ -15,7 +15,7 @@
 #import "DataModelHeader.h"
 
 #import "common.h"
-#import "RecentUtil.h"
+#import "RecentRemoteUtil.h"
 
 
 
@@ -120,8 +120,45 @@
 - (void)loadRecents
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
+    
+    NSMutableArray * recents = [[NSMutableArray alloc] init];
+    
+    Recent * latestRecent = nil;
+    
+    latestRecent = [Recent latestRecentEntity:self.managedObjectContext];
+    
 #ifdef PARSE_MODE
-    [RecentUtil loadRecentFromParse:self managedObjectContext:[super managedObjectContext]];
+    [[RecentRemoteUtil sharedUtil] loadRecentFromParse:latestRecent completionHandler:^(NSArray *objects, NSError *error) {
+        if (error == nil)
+        {
+            //[recents removeAllObjects];
+            //[recents addObjectsFromArray:objects];
+            Recent * recent = nil;
+            for (PFObject * object in objects) {
+                //[recents setObject:object forKey:object[PF_RECENT_GROUPID]];
+                if (latestRecent) {
+                    
+                    recent = [Recent recentEntityWithPFObject:object inManagedObjectContext:[[RecentRemoteUtil sharedUtil] context]];
+                }
+                else {
+                    recent = [Recent createRecentEntityWithPFObject:object inManagedObjectContext:[[RecentRemoteUtil sharedUtil] context]];
+                }
+                
+                
+                [recents addObject:recent];
+            }
+            
+            
+            // load the recents into core data
+            
+            [self.tableView reloadData];
+            [self updateTabCounter];
+        }
+        else {
+            [ProgressHUD showError:@"Network error."];
+        }
+        [self.refreshControl endRefreshing];
+    }];
 #elif DEMO_MODE
     
 #endif
@@ -317,12 +354,8 @@
 	Recent *recent = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-    PFObject * recentRmt = [PFObject objectWithClassName:PF_RECENT_CLASS_NAME];
-    /// TODO confirm if this is ok
-    recentRmt.objectId = recent.globalID;
-	[recentRmt deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-	{
-		if (error != nil) [ProgressHUD showError:@"Network error."];
+    [[RecentRemoteUtil sharedUtil] deleteRecentFromParse:recent completionHandler:^(BOOL succeeded, NSError *error) {
+        if (error != nil) [ProgressHUD showError:@"Network error."];
         else if (succeeded) {
             
             [self.managedObjectContext deleteObject:recent];
@@ -333,7 +366,7 @@
         else {
             [ProgressHUD showError:@"Network error."];
         }
-	}];
+    }];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }

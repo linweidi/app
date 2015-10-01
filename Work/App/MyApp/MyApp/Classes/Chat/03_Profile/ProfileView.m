@@ -9,12 +9,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Parse/Parse.h>
-#import <ParseUI/ParseUI.h>
-#import "ProgressHUD.h"
-
-#import "AppConstant.h"
+#import "AppHeader.h"
 #import "common.h"
+
+#import "UserRemoteUtil.h"
 
 #import "ProfileView.h"
 #import "NavigationController.h"
@@ -78,11 +76,9 @@
 - (void)loadUser
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	PFQuery *query = [PFQuery queryWithClassName:PF_USER_CLASS_NAME];
-	[query whereKey:PF_USER_OBJECTID equalTo:userId];
-	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-	{
-		if (error == nil)
+    
+    [[UserRemoteUtil sharedUtil] loadUserFromParse:userId completionHandler:^(NSArray *objects, NSError *error) {
+        if (error == nil)
 		{
 			user = [objects firstObject];
 			if (user != nil)
@@ -94,7 +90,7 @@
 			}
 		}
 		else [ProgressHUD showError:@"Network error."];
-	}];
+    }];
 }
 
 #pragma mark - User actions

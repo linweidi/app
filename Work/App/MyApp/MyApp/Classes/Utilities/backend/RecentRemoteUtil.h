@@ -20,21 +20,23 @@ NSString*		StartMultipleChat		(NSMutableArray *users);
 void			CreateRecentItem		(User *user, NSString *groupId, NSArray *members, NSString *description);
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-void			UpdateRecentCounter		(NSString *groupId, NSInteger amount, NSString *lastMessage);
+void            UpdateRecentAndCounter  (NSString *groupId, NSInteger amount, NSString *lastMessage);
 void			ClearRecentCounter		(NSString *groupId);
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 void			DeleteRecentItems		(User *user1, User *user2);
 
 @class RecentView;
-@interface RecentUtil : NSObject
+@interface RecentRemoteUtil : NSObject
 
 
 
 @property NSManagedObjectContext * context;
 
-+ (RecentUtil *)sharedUtil;
++ (RecentRemoteUtil *)sharedUtil;
 
-+ (void) loadRecentFromParse:(RecentView *)recentView managedObjectContext:(NSManagedObjectContext *)context ;
+- (void) deleteRecentFromParse:(Recent *)recent completionHandler:(PARSE_BLOCK)block;
+
+- (void) loadRecentFromParse:(Recent *) latestRecent completionHandler:(PARSE_ARRAY_BLOCK)block  ;
 
 @end

@@ -18,6 +18,8 @@
 @interface ChatView : JSQMessagesViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, RNGridMenuDelegate>
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 
+@property (nonatomic,strong) NSManagedObjectContext *managedObjectContext;
+
 - (id)initWith:(NSString *)groupId_;
 
 @end

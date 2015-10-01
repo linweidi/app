@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="14F27" minimumToolsVersion="Xcode 4.3">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13A603" minimumToolsVersion="Xcode 4.3">
     <entity name="Alert" representedClassName="Alert" parentEntity="EntityObject" syncable="YES">
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="alerts" inverseEntity="User" syncable="YES"/>
     </entity>
@@ -17,6 +17,20 @@
     <entity name="Group" representedClassName="Group" parentEntity="EntityObject" syncable="YES">
         <attribute name="members" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="groups" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Message" representedClassName="Message" parentEntity="EntityObject" syncable="YES">
+        <attribute name="chatID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="pictureName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pictureURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="videoName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="videoURL" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Picture" representedClassName="Picture" parentEntity="EntityObject" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Place" representedClassName="Place" parentEntity="EntityObject" syncable="YES">
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="places" inverseEntity="User" syncable="YES"/>
@@ -44,7 +58,9 @@
         <attribute name="fullname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fullnameLower" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pictureID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pictureName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pictureURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="twitterID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="alerts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Alert" inverseName="user" inverseEntity="Alert" syncable="YES"/>
@@ -55,8 +71,13 @@
         <relationship name="recents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recent" inverseName="user" inverseEntity="Recent" syncable="YES"/>
         <relationship name="thumbnail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Thumbnail" inverseName="user" inverseEntity="Thumbnail" syncable="YES"/>
     </entity>
+    <entity name="Video" representedClassName="Video" parentEntity="EntityObject" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Alert" positionX="36" positionY="99" width="128" height="58"/>
+        <element name="CurrentUser" positionX="-369" positionY="-270" width="128" height="45"/>
         <element name="EntityObject" positionX="-245" positionY="-418" width="128" height="60"/>
         <element name="Event" positionX="45" positionY="-180" width="128" height="58"/>
         <element name="Friend" positionX="-117" positionY="-99" width="128" height="73"/>
@@ -64,7 +85,9 @@
         <element name="Place" positionX="-90" positionY="72" width="128" height="58"/>
         <element name="Recent" positionX="-567" positionY="-358" width="128" height="178"/>
         <element name="Thumbnail" positionX="-351" positionY="-252" width="128" height="90"/>
-        <element name="User" positionX="-344" positionY="-144" width="128" height="285"/>
-        <element name="CurrentUser" positionX="-369" positionY="-270" width="128" height="45"/>
+        <element name="User" positionX="-344" positionY="-144" width="128" height="315"/>
+        <element name="Message" positionX="-369" positionY="-270" width="128" height="163"/>
+        <element name="Picture" positionX="-360" positionY="-261" width="128" height="73"/>
+        <element name="Video" positionX="-351" positionY="-252" width="128" height="73"/>
     </elements>
 </model>

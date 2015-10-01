@@ -11,10 +11,12 @@
 
 #import "Thumbnail.h"
 #import "AppConstant.h"
+#import "Thumbnail+Util.h"
 #import "User+Util.h"
 
 @implementation User (Util)
 
+///TODO store an array of existed user id
 
 - (BOOL) isEqual: (User *)user {
     return [self.globalID isEqualToString:user.globalID];
@@ -74,57 +76,11 @@
     // this is a PFFile
     PFFile * filePicture = user[PF_USER_PICTURE];
     self.pictureName = filePicture.name;
+    self.pictureURL = filePicture.url;
     
     PFFile * thumbnailPicture = user[PF_USER_THUMBNAIL];
     //self.thumbnail = thumbnailPicture.name;
-    if (self.thumbnail) {
-        
-        if (self.thumbnail.name == thumbnailPicture.name ) {
-            //thumbnail already exists
-            // do nothing
-        }
-        else {
-            //thumbnail different
-            [context deleteObject:self.thumbnail];
-            self.thumbnail = nil;
-            
-            Thumbnail * newThumbNail = [NSEntityDescription insertNewObjectForEntityForName:thumbnailPicture.name inManagedObjectContext:context];
-            if (newThumbNail) {
-                newThumbNail.name = thumbnailPicture.name;
-                
-                [thumbnailPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-                    if (!error) {
-                        newThumbNail.data = data;
-                    }
-                }];
-                
-                self.thumbnail = newThumbNail ;
-            }
-            else {
-                NSAssert(NO, @"insert thumbnail fails");
-            }
-        }
-    }
-    else {
-        // thumbnail is not initialized
-        // no thumbnail exists
-        Thumbnail * newThumbNail = [NSEntityDescription insertNewObjectForEntityForName:thumbnailPicture.name inManagedObjectContext:context];
-        if (newThumbNail) {
-            newThumbNail.name = thumbnailPicture.name;
-            
-            [thumbnailPicture getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-                if (!error) {
-                    newThumbNail.data = data;
-                }
-            }];
-            
-            self.thumbnail = newThumbNail ;
-        }
-        else {
-            NSAssert(NO, @"insert thumbnail fails");
-        }
-    }
-
+    [Thumbnail thumbnailEntityWithPFUser:thumbnailPicture withUser:self inManagedObjectContext:context ];
 
 }
 

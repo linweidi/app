@@ -302,7 +302,7 @@
 		E51D88DB1BB1CC1800470170 /* people.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D87251BB1CC1700470170 /* people.m */; };
 		E51D88DC1BB1CC1800470170 /* PFUser+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D87271BB1CC1700470170 /* PFUser+Util.m */; };
 		E51D88DD1BB1CC1800470170 /* push.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D87291BB1CC1700470170 /* push.m */; };
-		E51D88DE1BB1CC1800470170 /* RecentUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D872B1BB1CC1700470170 /* RecentUtil.m */; };
+		E51D88DE1BB1CC1800470170 /* RecentRemoteUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D872B1BB1CC1700470170 /* RecentRemoteUtil.m */; };
 		E51D88DF1BB1CC1800470170 /* camera.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D872E1BB1CC1700470170 /* camera.m */; };
 		E51D88E01BB1CC1800470170 /* common.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D87301BB1CC1700470170 /* common.m */; };
 		E51D88E11BB1CC1800470170 /* converter.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D87321BB1CC1700470170 /* converter.m */; };
@@ -429,6 +429,16 @@
 		E51D895D1BB1D32900470170 /* TabTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E51D895C1BB1D32900470170 /* TabTableViewController.xib */; };
 		E51D89611BB1F41500470170 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D89601BB1F41500470170 /* CoreDataTableViewController.m */; };
 		E51D89641BB1FA9900470170 /* TabViewDBModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E51D89621BB1FA9900470170 /* TabViewDBModel.xcdatamodeld */; };
+		E523F0EC1BBC534400328565 /* UserRemoteUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E523F0EB1BBC534400328565 /* UserRemoteUtil.m */; };
+		E523F0F01BBC5F8200328565 /* MessageRemoteUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E523F0EF1BBC5F8200328565 /* MessageRemoteUtil.m */; };
+		E523F0F61BBC668800328565 /* Message+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = E523F0F51BBC668800328565 /* Message+Util.m */; };
+		E523F1021BBC9BDF00328565 /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = E523F1011BBC9BDF00328565 /* Video.m */; };
+		E523F10B1BBC9C8900328565 /* Picture.m in Sources */ = {isa = PBXBuildFile; fileRef = E523F10A1BBC9C8900328565 /* Picture.m */; };
+		E523F11A1BBC9DB500328565 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E523F1191BBC9DB500328565 /* User.m */; };
+		E523F11D1BBC9E9E00328565 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E523F11C1BBC9E9E00328565 /* UserManager.m */; };
+		E523F1231BBC9F4600328565 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = E523F1221BBC9F4600328565 /* Message.m */; };
+		E523F1261BBCA58F00328565 /* FileRemoteUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E523F1251BBCA58F00328565 /* FileRemoteUtil.m */; };
+		E523F12D1BBCA68500328565 /* RemoteFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E523F12C1BBCA68500328565 /* RemoteFile.m */; };
 		E5485D881BB34E5300801B05 /* CurrentUser+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = E5485D7A1BB34E5300801B05 /* CurrentUser+Util.m */; };
 		E5485D8A1BB34E5300801B05 /* User+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = E5485D7E1BB34E5300801B05 /* User+Util.m */; };
 		E551E6281BB49F56002641E4 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = E551E6271BB49F56002641E4 /* Place.m */; };
@@ -438,7 +448,6 @@
 		E551E6431BB4AA28002641E4 /* Recent.m in Sources */ = {isa = PBXBuildFile; fileRef = E551E6421BB4AA28002641E4 /* Recent.m */; };
 		E551E6461BB4AA29002641E4 /* Thumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = E551E6451BB4AA29002641E4 /* Thumbnail.m */; };
 		E551E6491BB4AA29002641E4 /* CurrentUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E551E6481BB4AA29002641E4 /* CurrentUser.m */; };
-		E551E64C1BB4AA29002641E4 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E551E64B1BB4AA29002641E4 /* User.m */; };
 		E551E64F1BB4AA2A002641E4 /* Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = E551E64E1BB4AA2A002641E4 /* Alert.m */; };
 		E551E6521BB4AA2A002641E4 /* EntityObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E551E6511BB4AA2A002641E4 /* EntityObject.m */; };
 /* End PBXBuildFile section */
@@ -876,8 +885,8 @@
 		E51D87271BB1CC1700470170 /* PFUser+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PFUser+Util.m"; sourceTree = "<group>"; };
 		E51D87281BB1CC1700470170 /* push.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = push.h; sourceTree = "<group>"; };
 		E51D87291BB1CC1700470170 /* push.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = push.m; sourceTree = "<group>"; };
-		E51D872A1BB1CC1700470170 /* RecentUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentUtil.h; sourceTree = "<group>"; };
-		E51D872B1BB1CC1700470170 /* RecentUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentUtil.m; sourceTree = "<group>"; };
+		E51D872A1BB1CC1700470170 /* RecentRemoteUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentRemoteUtil.h; sourceTree = "<group>"; };
+		E51D872B1BB1CC1700470170 /* RecentRemoteUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentRemoteUtil.m; sourceTree = "<group>"; };
 		E51D872D1BB1CC1700470170 /* camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = camera.h; sourceTree = "<group>"; };
 		E51D872E1BB1CC1700470170 /* camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = camera.m; sourceTree = "<group>"; };
 		E51D872F1BB1CC1700470170 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
@@ -1015,6 +1024,27 @@
 		E51D895F1BB1F41500470170 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
 		E51D89601BB1F41500470170 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
 		E51D89631BB1FA9900470170 /* TabViewDBModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TabViewDBModel.xcdatamodel; sourceTree = "<group>"; };
+		E523F0EA1BBC534400328565 /* UserRemoteUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserRemoteUtil.h; sourceTree = "<group>"; };
+		E523F0EB1BBC534400328565 /* UserRemoteUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserRemoteUtil.m; sourceTree = "<group>"; };
+		E523F0ED1BBC544C00328565 /* AppHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppHeader.h; sourceTree = "<group>"; };
+		E523F0EE1BBC5F8200328565 /* MessageRemoteUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageRemoteUtil.h; sourceTree = "<group>"; };
+		E523F0EF1BBC5F8200328565 /* MessageRemoteUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageRemoteUtil.m; sourceTree = "<group>"; };
+		E523F0F41BBC668800328565 /* Message+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Message+Util.h"; sourceTree = "<group>"; };
+		E523F0F51BBC668800328565 /* Message+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Message+Util.m"; sourceTree = "<group>"; };
+		E523F1001BBC9BDF00328565 /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
+		E523F1011BBC9BDF00328565 /* Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Video.m; sourceTree = "<group>"; };
+		E523F1091BBC9C8900328565 /* Picture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Picture.h; sourceTree = "<group>"; };
+		E523F10A1BBC9C8900328565 /* Picture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Picture.m; sourceTree = "<group>"; };
+		E523F1181BBC9DB500328565 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		E523F1191BBC9DB500328565 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		E523F11B1BBC9E9E00328565 /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
+		E523F11C1BBC9E9E00328565 /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
+		E523F1211BBC9F4600328565 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		E523F1221BBC9F4600328565 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		E523F1241BBCA58F00328565 /* FileRemoteUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileRemoteUtil.h; sourceTree = "<group>"; };
+		E523F1251BBCA58F00328565 /* FileRemoteUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileRemoteUtil.m; sourceTree = "<group>"; };
+		E523F12B1BBCA68500328565 /* RemoteFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteFile.h; sourceTree = "<group>"; };
+		E523F12C1BBCA68500328565 /* RemoteFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteFile.m; sourceTree = "<group>"; };
 		E5485D791BB34E5300801B05 /* CurrentUser+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CurrentUser+Util.h"; sourceTree = "<group>"; };
 		E5485D7A1BB34E5300801B05 /* CurrentUser+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CurrentUser+Util.m"; sourceTree = "<group>"; };
 		E5485D7D1BB34E5300801B05 /* User+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+Util.h"; sourceTree = "<group>"; };
@@ -1033,8 +1063,6 @@
 		E551E6451BB4AA29002641E4 /* Thumbnail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Thumbnail.m; sourceTree = "<group>"; };
 		E551E6471BB4AA29002641E4 /* CurrentUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentUser.h; sourceTree = "<group>"; };
 		E551E6481BB4AA29002641E4 /* CurrentUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentUser.m; sourceTree = "<group>"; };
-		E551E64A1BB4AA29002641E4 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		E551E64B1BB4AA29002641E4 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		E551E64D1BB4AA2A002641E4 /* Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alert.h; sourceTree = "<group>"; };
 		E551E64E1BB4AA2A002641E4 /* Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alert.m; sourceTree = "<group>"; };
 		E551E6501BB4AA2A002641E4 /* EntityObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityObject.h; sourceTree = "<group>"; };
@@ -1587,6 +1615,7 @@
 				E51D869D1BB1CC1700470170 /* AppConstant.h */,
 				E51D869E1BB1CC1700470170 /* AppDelegate.h */,
 				E51D869F1BB1CC1700470170 /* AppDelegate.m */,
+				E523F0ED1BBC544C00328565 /* AppHeader.h */,
 			);
 			name = app;
 			path = MyApp/app;
@@ -1605,12 +1634,12 @@
 			isa = PBXGroup;
 			children = (
 				E51D86A41BB1CC1700470170 /* Application */,
-				E51D86A71BB1CC1700470170 /* Chat */,
 				E51D86B31BB1CC1700470170 /* Common */,
 				E51D86BA1BB1CC1700470170 /* Configuration */,
-				E51D86C01BB1CC1700470170 /* Model */,
-				E51D86C51BB1CC1700470170 /* Premium */,
 				E51D86C91BB1CC1700470170 /* SlidingPanel */,
+				E51D86C51BB1CC1700470170 /* Premium */,
+				E51D86C01BB1CC1700470170 /* Model */,
+				E51D86A71BB1CC1700470170 /* Chat */,
 				E51D86E71BB1CC1700470170 /* Tabs */,
 				E51D870F1BB1CC1700470170 /* Users */,
 				E51D87201BB1CC1700470170 /* Utilities */,
@@ -1919,6 +1948,7 @@
 		E51D87201BB1CC1700470170 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				E523F12A1BBCA65200328565 /* wrapper */,
 				E51D87211BB1CC1700470170 /* backend */,
 				E51D872C1BB1CC1700470170 /* general */,
 			);
@@ -1936,8 +1966,14 @@
 				E51D87271BB1CC1700470170 /* PFUser+Util.m */,
 				E51D87281BB1CC1700470170 /* push.h */,
 				E51D87291BB1CC1700470170 /* push.m */,
-				E51D872A1BB1CC1700470170 /* RecentUtil.h */,
-				E51D872B1BB1CC1700470170 /* RecentUtil.m */,
+				E51D872A1BB1CC1700470170 /* RecentRemoteUtil.h */,
+				E51D872B1BB1CC1700470170 /* RecentRemoteUtil.m */,
+				E523F0EA1BBC534400328565 /* UserRemoteUtil.h */,
+				E523F0EB1BBC534400328565 /* UserRemoteUtil.m */,
+				E523F0EE1BBC5F8200328565 /* MessageRemoteUtil.h */,
+				E523F0EF1BBC5F8200328565 /* MessageRemoteUtil.m */,
+				E523F1241BBCA58F00328565 /* FileRemoteUtil.h */,
+				E523F1251BBCA58F00328565 /* FileRemoteUtil.m */,
 			);
 			path = backend;
 			sourceTree = "<group>";
@@ -2197,16 +2233,31 @@
 			path = CoreDataTableViewController;
 			sourceTree = "<group>";
 		};
+		E523F12A1BBCA65200328565 /* wrapper */ = {
+			isa = PBXGroup;
+			children = (
+				E523F12B1BBCA68500328565 /* RemoteFile.h */,
+				E523F12C1BBCA68500328565 /* RemoteFile.m */,
+			);
+			path = wrapper;
+			sourceTree = "<group>";
+		};
 		E5485D651BB34E5300801B05 /* ModelDB */ = {
 			isa = PBXGroup;
 			children = (
+				E523F1001BBC9BDF00328565 /* Video.h */,
+				E523F1011BBC9BDF00328565 /* Video.m */,
+				E523F1181BBC9DB500328565 /* User.h */,
+				E523F1191BBC9DB500328565 /* User.m */,
+				E523F1211BBC9F4600328565 /* Message.h */,
+				E523F1221BBC9F4600328565 /* Message.m */,
 				E51D89621BB1FA9900470170 /* TabViewDBModel.xcdatamodeld */,
+				E523F1091BBC9C8900328565 /* Picture.h */,
+				E523F10A1BBC9C8900328565 /* Picture.m */,
 				E551E6501BB4AA2A002641E4 /* EntityObject.h */,
 				E551E6511BB4AA2A002641E4 /* EntityObject.m */,
 				E551E64D1BB4AA2A002641E4 /* Alert.h */,
 				E551E64E1BB4AA2A002641E4 /* Alert.m */,
-				E551E64A1BB4AA29002641E4 /* User.h */,
-				E551E64B1BB4AA29002641E4 /* User.m */,
 				E551E6471BB4AA29002641E4 /* CurrentUser.h */,
 				E551E6481BB4AA29002641E4 /* CurrentUser.m */,
 				E551E6441BB4AA29002641E4 /* Thumbnail.h */,
@@ -2248,6 +2299,10 @@
 				282E4BA61BB3C26E00743E04 /* Thumbnail+Util.m */,
 				28C0D55C1BB3D6C50088052F /* DataModelHeader.h */,
 				28C0D55D1BB3D87B0088052F /* DataModelPrefix.pch */,
+				E523F0F41BBC668800328565 /* Message+Util.h */,
+				E523F0F51BBC668800328565 /* Message+Util.m */,
+				E523F11B1BBC9E9E00328565 /* UserManager.h */,
+				E523F11C1BBC9E9E00328565 /* UserManager.m */,
 			);
 			path = ModelUtilDB;
 			sourceTree = "<group>";
@@ -2574,6 +2629,7 @@
 				E51D88841BB1CC1800470170 /* JSQVideoMediaItem.m in Sources */,
 				E51D88AE1BB1CC1800470170 /* PremiumView.m in Sources */,
 				E51D88181BB1CC1800470170 /* all_64.js in Sources */,
+				E523F0EC1BBC534400328565 /* UserRemoteUtil.m in Sources */,
 				282E4B4D1BB3AE5F00743E04 /* Event+Util.m in Sources */,
 				E51D88801BB1CC1800470170 /* JSQMessage.m in Sources */,
 				E51D88691BB1CC1800470170 /* IDMTapDetectingView.m in Sources */,
@@ -2596,15 +2652,17 @@
 				E51D88761BB1CC1800470170 /* JSQMessagesAvatarImageFactory.m in Sources */,
 				E51D88C21BB1CC1800470170 /* CreateGroupView.m in Sources */,
 				E51D882C1BB1CC1800470170 /* classes_66.js in Sources */,
-				E51D88DE1BB1CC1800470170 /* RecentUtil.m in Sources */,
+				E51D88DE1BB1CC1800470170 /* RecentRemoteUtil.m in Sources */,
 				E51D88681BB1CC1800470170 /* IDMTapDetectingImageView.m in Sources */,
 				E51D88911BB1CC1800470170 /* JSQMessagesMediaPlaceholderView.m in Sources */,
 				E51D88371BB1CC1800470170 /* functions_65.js in Sources */,
 				E51D88AA1BB1CC1800470170 /* ConfigurationManager.m in Sources */,
 				E51D88411BB1CC1800470170 /* functions_70.js in Sources */,
 				E51D87CD1BB1CC1800470170 /* UIRefreshControl+AFNetworking.m in Sources */,
+				E523F11A1BBC9DB500328565 /* User.m in Sources */,
 				E51D87DE1BB1CC1800470170 /* dir_0e3cfda86e78f68c86cdf657eb28e2b6.js in Sources */,
 				E551E6431BB4AA28002641E4 /* Recent.m in Sources */,
+				E523F10B1BBC9C8900328565 /* Picture.m in Sources */,
 				282E4BA71BB3C26E00743E04 /* Thumbnail+Util.m in Sources */,
 				E51D88D41BB1CC1800470170 /* SelectMultipleView.m in Sources */,
 				E51D89641BB1FA9900470170 /* TabViewDBModel.xcdatamodeld in Sources */,
@@ -2620,17 +2678,18 @@
 				E51D88711BB1CC1800470170 /* UIImage+JSQMessages.m in Sources */,
 				E51D883B1BB1CC1800470170 /* functions_67.js in Sources */,
 				E51D87C21BB1CC1800470170 /* AFSecurityPolicy.m in Sources */,
+				E523F0F01BBC5F8200328565 /* MessageRemoteUtil.m in Sources */,
 				E51D88351BB1CC1800470170 /* functions_64.js in Sources */,
 				E51D88091BB1CC1800470170 /* navtree.js in Sources */,
 				E51D883F1BB1CC1800470170 /* functions_6c.js in Sources */,
 				E51D88431BB1CC1800470170 /* functions_72.js in Sources */,
 				E51D88861BB1CC1800470170 /* JSQMessagesCollectionView.m in Sources */,
+				E523F12D1BBCA68500328565 /* RemoteFile.m in Sources */,
 				E51D88DC1BB1CC1800470170 /* PFUser+Util.m in Sources */,
 				E51D88BD1BB1CC1800470170 /* TabBarControllerViewController.m in Sources */,
 				E51D888E1BB1CC1800470170 /* JSQMessagesLabel.m in Sources */,
 				E51D87E01BB1CC1800470170 /* dir_191bbc312b17524397d6a9dc5f56d69f.js in Sources */,
 				E51D88671BB1CC1800470170 /* IDMPhotoBrowser.m in Sources */,
-				E551E64C1BB4AA29002641E4 /* User.m in Sources */,
 				E5485D8A1BB34E5300801B05 /* User+Util.m in Sources */,
 				E551E6281BB49F56002641E4 /* Place.m in Sources */,
 				E51D88BE1BB1CC1800470170 /* RecentCell.m in Sources */,
@@ -2643,6 +2702,7 @@
 				E51D88A41BB1CC1800470170 /* PhotoMediaItem.m in Sources */,
 				E51D87CC1BB1CC1800470170 /* UIProgressView+AFNetworking.m in Sources */,
 				E51D88CC1BB1CC1800470170 /* PrivacyView.m in Sources */,
+				E523F1261BBCA58F00328565 /* FileRemoteUtil.m in Sources */,
 				E51D887D1BB1CC1800470170 /* JSQMessagesCollectionViewLayoutAttributes.m in Sources */,
 				E51D88741BB1CC1800470170 /* JSQMessagesViewController.m in Sources */,
 				E51D88A71BB1CC1800470170 /* KeyboardListener.m in Sources */,
@@ -2665,6 +2725,7 @@
 				E51D887A1BB1CC1800470170 /* JSQMessagesToolbarButtonFactory.m in Sources */,
 				E51D88001BB1CC1800470170 /* hierarchy.js in Sources */,
 				E51D88B91BB1CC1800470170 /* FindUsViewController.m in Sources */,
+				E523F11D1BBC9E9E00328565 /* UserManager.m in Sources */,
 				E51D88C61BB1CC1800470170 /* GroupsView.m in Sources */,
 				E551E6461BB4AA29002641E4 /* Thumbnail.m in Sources */,
 				E51D88A81BB1CC1800470170 /* MenuItemsManager.m in Sources */,
@@ -2675,6 +2736,7 @@
 				E51D88C81BB1CC1800470170 /* PeopleView.m in Sources */,
 				E51D88E91BB1CC1800470170 /* WelcomeView.m in Sources */,
 				E51D88DF1BB1CC1800470170 /* camera.m in Sources */,
+				E523F1231BBC9F4600328565 /* Message.m in Sources */,
 				E51D88041BB1CC1800470170 /* jquery.js in Sources */,
 				E51D880A1BB1CC1800470170 /* navtreeindex0.js in Sources */,
 				E51D88E31BB1CC1800470170 /* image.m in Sources */,
@@ -2708,6 +2770,7 @@
 				E5485D881BB34E5300801B05 /* CurrentUser+Util.m in Sources */,
 				E51D886F1BB1CC1800470170 /* UIColor+JSQMessages.m in Sources */,
 				E51D88B61BB1CC1800470170 /* PhoneNumberTableViewCell.m in Sources */,
+				E523F1021BBC9BDF00328565 /* Video.m in Sources */,
 				E51D88F51BB1CC1800470170 /* main.m in Sources */,
 				E51D88731BB1CC1800470170 /* JSQMessagesKeyboardController.m in Sources */,
 				E551E62E1BB49F56002641E4 /* Group.m in Sources */,
@@ -2730,6 +2793,7 @@
 				E51D88331BB1CC1800470170 /* functions_63.js in Sources */,
 				E51D88DA1BB1CC1800470170 /* group.m in Sources */,
 				E51D88311BB1CC1800470170 /* functions_61.js in Sources */,
+				E523F0F61BBC668800328565 /* Message+Util.m in Sources */,
 				E51D88CE1BB1CC1800470170 /* TermsView.m in Sources */,
 				E51D87C51BB1CC1800470170 /* AFURLResponseSerialization.m in Sources */,
 				E51D88261BB1CC1800470170 /* all_72.js in Sources */,

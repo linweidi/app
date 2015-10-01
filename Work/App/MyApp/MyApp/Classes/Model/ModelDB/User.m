@@ -2,7 +2,7 @@
 //  User.m
 //  MyApp
 //
-//  Created by Linwei Ding on 9/24/15.
+//  Created by Linwei Ding on 9/30/15.
 //  Copyright (c) 2015 AppsFoundation. All rights reserved.
 //
 
@@ -24,15 +24,17 @@
 @dynamic fullname;
 @dynamic fullnameLower;
 @dynamic password;
-@dynamic pictureName;
 @dynamic twitterID;
 @dynamic username;
+@dynamic pictureID;
+@dynamic pictureName;
+@dynamic pictureURL;
 @dynamic alerts;
 @dynamic events;
 @dynamic friends;
-@dynamic groups;
 @dynamic places;
-@dynamic recents;
 @dynamic thumbnail;
+@dynamic groups;
+@dynamic recents;
 
 @end

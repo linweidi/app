@@ -10,10 +10,13 @@
 #define DataModelHeader_h
 
 #import <Foundation/Foundation.h>
-#import "ProgressHUD.h"
 
 #import <Parse/Parse.h>
+#import <ParseUI/ParseUI.h>
+#import "ProgressHUD.h"
+
 #import "AppConstant.h"
+
 #import "CurrentUser+Util.h"
 #import "User+Util.h"
 #import "Place+Util.h"
