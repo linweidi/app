@@ -19,7 +19,9 @@ void LoginUser(id target)
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	NavigationController *navigationController = [[NavigationController alloc] initWithRootViewController:[[WelcomeView alloc] init]];
+    navigationController.hidesBottomBarWhenPushed = YES;
 	[target presentViewController:navigationController animated:YES completion:nil];
+   
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------

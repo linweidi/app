@@ -13,17 +13,23 @@
 #import <ParseUI/ParseUI.h>
 #import "ProgressHUD.h"
 
-#import "AppConstant.h"
+#import "AppHeader.h"
 #import "camera.h"
 #import "common.h"
 #import "image.h"
 #import "push.h"
 
-#import "SettingsView.h"
+
 #import "BlockedView.h"
 #import "PrivacyView.h"
 #import "TermsView.h"
 #import "NavigationController.h"
+
+#import "User+Util.h"
+#import "CurrentUser+Util.h"
+#import "UserRemoteUtil.h"
+
+#import "SettingsView.h"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 @interface SettingsView()
@@ -82,7 +88,9 @@
 	{
 		[self loadUser];
 	}
-	else LoginUser(self);
+	else {
+       LoginUser(self); 
+    }
 }
 
 #pragma mark - Backend actions
@@ -91,12 +99,18 @@
 - (void)loadUser
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	PFUser *user = [PFUser currentUser];
+	//PFUser *user = [PFUser currentUser];
+    
+    User * user = [CurrentUser getCurrentUser];
+    
+    
+    
+    RemoteFile * filePicture = [RemoteFile fileWithName:user.pictureName url:user.pictureURL];
 
-	[imageUser setFile:user[PF_USER_PICTURE]];
+	[imageUser setFile:filePicture.file];
 	[imageUser loadInBackground];
 
-	labelName.text = user[PF_USER_FULLNAME];
+	labelName.text = user.fullname;
 }
 
 #pragma mark - User actions
@@ -153,7 +167,7 @@
 {
 	if (buttonIndex != actionSheet.cancelButtonIndex)
 	{
-		[PFUser logOut];
+		[[UserRemoteUtil sharedUtil] logOut];
 		ParsePushUserResign();
 		PostNotification(NOTIFICATION_USER_LOGGED_OUT);
 		[self actionCleanup];
@@ -181,19 +195,23 @@
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	imageUser.image = picture;
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	PFFile *filePicture = [PFFile fileWithName:@"picture.jpg" data:UIImageJPEGRepresentation(picture, 0.6)];
-	[filePicture saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+    
+    RemoteFile * filePicture = [RemoteFile fileWithName:@"picture.jpg" data:UIImageJPEGRepresentation(picture, 0.6)];
+
+	[filePicture.file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
 	{
 		if (error != nil) [ProgressHUD showError:@"Network error."];
 	}];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	PFFile *fileThumbnail = [PFFile fileWithName:@"thumbnail.jpg" data:UIImageJPEGRepresentation(thumbnail, 0.6)];
-	[fileThumbnail saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+    
+    RemoteFile * fileThumbnail = [RemoteFile fileWithName:@"thumbnail.jpg" data:UIImageJPEGRepresentation(thumbnail, 0.6)];
+
+	[fileThumbnail.file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
 	{
 		if (error != nil) [ProgressHUD showError:@"Network error."];
 	}];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	PFUser *user = [PFUser currentUser];
+	RemoteUser *user = [RemoteUser currentUser];
 	user[PF_USER_PICTURE] = filePicture;
 	user[PF_USER_THUMBNAIL] = fileThumbnail;
 	[user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)

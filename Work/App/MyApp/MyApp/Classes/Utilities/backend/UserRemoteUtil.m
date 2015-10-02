@@ -6,6 +6,9 @@
 //  Copyright (c) 2015 AppsFoundation. All rights reserved.
 //
 #import "AppHeader.h"
+#import "Foundation/Foundation.h"
+
+//#import "NavigationController.h"
 #import "UserRemoteUtil.h"
 
 @implementation UserRemoteUtil
@@ -34,4 +37,15 @@
 - (void) loadRemoteUser:(NSString *)userId completionHandler:(REMOTE_ARRAY_BLOCK)block  {
     [self loadUserFromParse:userId completionHandler:block];
 }
+
+//- (void) logInUser:(id)target  {
+//   	NavigationController *navigationController = [[NavigationController alloc] initWithRootViewController:[[WelcomeView alloc] init]];
+//    navigationController.hidesBottomBarWhenPushed = YES;
+//	[target presentViewController:navigationController animated:YES completion:nil];
+//}
+
+- (void) logOut {
+    [PFUser logOut];
+}
+
 @end

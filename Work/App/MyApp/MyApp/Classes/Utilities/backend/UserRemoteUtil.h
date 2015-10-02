@@ -12,6 +12,11 @@
 
 + (UserRemoteUtil *)sharedUtil;
 
+//- (void) logInUser:(id)target;
+
+- (void) logOut ;
+
+
 - (void) loadUserFromParse:(NSString *)userId completionHandler:(REMOTE_ARRAY_BLOCK)block;
 
 - (void) loadRemoteUser:(NSString *)userId completionHandler:(REMOTE_ARRAY_BLOCK)block ;

@@ -15,6 +15,8 @@
 #import "AppConstant.h"
 #import "DataModelHeader.h"
 
+#import "RemoteFile.h"
+
 #import "UserManager.h"
 
 
