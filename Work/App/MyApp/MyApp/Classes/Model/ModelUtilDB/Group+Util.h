@@ -8,7 +8,9 @@
 #import <Parse/Parse.h>
 #import "Group.h"
 
-@interface Group (Util)
+@interface Group (Util) 
+
+//@property (nonatomic, retain) id members;
 
 # pragma method -- sever method
 

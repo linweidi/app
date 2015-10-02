@@ -15,7 +15,7 @@
 
 #import "AppConstant.h"
 #import "common.h"
-#import "group.h"
+#import "GroupRemoteUtil.h"
 #import "recent.h"
 
 
@@ -47,7 +47,7 @@
 		[self.tabBarItem setImage:[UIImage imageNamed:@"tab_groups"]];
 		self.tabBarItem.title = @"Groups";
 		//-----------------------------------------------------------------------------------------------------------------------------------------
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(actionCleanup) name:NOTIFICATION_USER_LOGGED_OUT object:nil];
+//		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(actionCleanup) name:NOTIFICATION_USER_LOGGED_OUT object:nil];
 	}
 	return self;
 }
@@ -218,13 +218,20 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	PFObject *group = groups[indexPath.row];
-	[groups removeObject:group];
+	Group *group = [self.fetchedResultsController objectAtIndexPath:indexPath];
+	//[groups removeObject:group];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	PFUser *user1 = [PFUser currentUser];
-	PFUser *user2 = group[PF_GROUP_USER];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	if ([user1 isEqualTo:user2]) RemoveGroupItem(group); else RemoveGroupMember(group, user1);
+//	User *user1 = [CurrentUser getCurrentUser];
+//	User *user2 = group.user;
+//	//---------------------------------------------------------------------------------------------------------------------------------------------
+//	if ([user1 isEqual:user2]) {
+//        [[GroupRemoteUtil sharedUtil] removeGroupItem:group];
+//    }
+//    else {
+//        [[GroupRemoteUtil sharedUtil] removeGroupMember:group user:user1];
+//    }
+    User * user = [CurrentUser getCurrentUser];
+    [[GroupRemoteUtil sharedUtil] removeGroupMember:group user:user];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	//[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 #warning notify others that you have quit the group
@@ -238,7 +245,8 @@
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	GroupSettingsView *groupSettingsView = [[GroupSettingsView alloc] initWith:groups[indexPath.row]];
+    Group * group = [self.fetchedResultsController objectAtIndexPath:indexPath];
+	GroupSettingsView *groupSettingsView = [[GroupSettingsView alloc] initWith:group];
 	groupSettingsView.hidesBottomBarWhenPushed = YES;
 	[self.navigationController pushViewController:groupSettingsView animated:YES];
 }

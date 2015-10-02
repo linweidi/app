@@ -1,21 +1,22 @@
 //
-//  Group.m
+//  People.m
 //  MyApp
 //
 //  Created by Linwei Ding on 10/1/15.
 //  Copyright (c) 2015 AppsFoundation. All rights reserved.
 //
 
-#import "Group.h"
+#import "People.h"
 #import "User.h"
 
 
-@implementation Group
+@implementation People
 
-@dynamic createTime;
-@dynamic members;
 @dynamic name;
+@dynamic createTime;
 @dynamic updateTime;
+@dynamic userID;
 @dynamic user;
+@dynamic contact;
 
 @end

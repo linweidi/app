@@ -298,8 +298,6 @@
 		E51D88D71BB1CC1800470170 /* AddressBookView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E51D871B1BB1CC1700470170 /* AddressBookView.xib */; };
 		E51D88D81BB1CC1800470170 /* FacebookFriendsView.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D871E1BB1CC1700470170 /* FacebookFriendsView.m */; };
 		E51D88D91BB1CC1800470170 /* FacebookFriendsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E51D871F1BB1CC1700470170 /* FacebookFriendsView.xib */; };
-		E51D88DA1BB1CC1800470170 /* group.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D87231BB1CC1700470170 /* group.m */; };
-		E51D88DB1BB1CC1800470170 /* people.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D87251BB1CC1700470170 /* people.m */; };
 		E51D88DC1BB1CC1800470170 /* PFUser+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D87271BB1CC1700470170 /* PFUser+Util.m */; };
 		E51D88DD1BB1CC1800470170 /* push.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D87291BB1CC1700470170 /* push.m */; };
 		E51D88DE1BB1CC1800470170 /* RecentRemoteUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D872B1BB1CC1700470170 /* RecentRemoteUtil.m */; };
@@ -435,14 +433,13 @@
 		E523F1021BBC9BDF00328565 /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = E523F1011BBC9BDF00328565 /* Video.m */; };
 		E523F10B1BBC9C8900328565 /* Picture.m in Sources */ = {isa = PBXBuildFile; fileRef = E523F10A1BBC9C8900328565 /* Picture.m */; };
 		E523F11A1BBC9DB500328565 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E523F1191BBC9DB500328565 /* User.m */; };
-		E523F11D1BBC9E9E00328565 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E523F11C1BBC9E9E00328565 /* UserManager.m */; };
 		E523F1261BBCA58F00328565 /* FileRemoteUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E523F1251BBCA58F00328565 /* FileRemoteUtil.m */; };
 		E523F12D1BBCA68500328565 /* RemoteFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E523F12C1BBCA68500328565 /* RemoteFile.m */; };
 		E523F1301BBCD57400328565 /* Thumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = E523F12F1BBCD57400328565 /* Thumbnail.m */; };
-		E523F1331BBCD8BE00328565 /* ThumbnailManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E523F1321BBCD8BE00328565 /* ThumbnailManager.m */; };
 		E523F1361BBD03FE00328565 /* GroupRemoteUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E523F1351BBD03FE00328565 /* GroupRemoteUtil.m */; };
 		E523F13C1BBD184B00328565 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = E523F13B1BBD184B00328565 /* Message.m */; };
-		E523F13F1BBD184B00328565 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = E523F13E1BBD184B00328565 /* Group.m */; };
+		E523F1451BBD2C8300328565 /* ThumbnailManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E523F1421BBD2C8300328565 /* ThumbnailManager.m */; };
+		E523F1461BBD2C8300328565 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E523F1441BBD2C8300328565 /* UserManager.m */; };
 		E5485D881BB34E5300801B05 /* CurrentUser+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = E5485D7A1BB34E5300801B05 /* CurrentUser+Util.m */; };
 		E5485D8A1BB34E5300801B05 /* User+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = E5485D7E1BB34E5300801B05 /* User+Util.m */; };
 		E551E6281BB49F56002641E4 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = E551E6271BB49F56002641E4 /* Place.m */; };
@@ -452,6 +449,16 @@
 		E551E6491BB4AA29002641E4 /* CurrentUser.m in Sources */ = {isa = PBXBuildFile; fileRef = E551E6481BB4AA29002641E4 /* CurrentUser.m */; };
 		E551E64F1BB4AA2A002641E4 /* Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = E551E64E1BB4AA2A002641E4 /* Alert.m */; };
 		E551E6521BB4AA2A002641E4 /* EntityObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E551E6511BB4AA2A002641E4 /* EntityObject.m */; };
+		E5B268251BBD4EA800B76485 /* PeopleRemoteUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B268241BBD4EA800B76485 /* PeopleRemoteUtil.m */; };
+		E5B2682E1BBD4FF200B76485 /* People+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B2682D1BBD4FF200B76485 /* People+Util.m */; };
+		E5B268371BBD6D9300B76485 /* People.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B268361BBD6D9300B76485 /* People.m */; };
+		E5B2683A1BBD6D9400B76485 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B268391BBD6D9400B76485 /* Group.m */; };
+		E5B2683F1BBE431E00B76485 /* SelectPeopleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B2683D1BBE431E00B76485 /* SelectPeopleView.m */; };
+		E5B268401BBE431E00B76485 /* SelectPeopleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5B2683E1BBE431E00B76485 /* SelectPeopleView.xib */; };
+		E5B268461BBE452800B76485 /* SelectSinglePeopleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B268441BBE452800B76485 /* SelectSinglePeopleView.m */; };
+		E5B268471BBE452800B76485 /* SelectSinglePeopleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5B268451BBE452800B76485 /* SelectSinglePeopleView.xib */; };
+		E5B2684B1BBE5C3100B76485 /* SelectMultiplePeopleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5B268491BBE5C3100B76485 /* SelectMultiplePeopleView.m */; };
+		E5B2684C1BBE5C3100B76485 /* SelectMultiplePeopleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5B2684A1BBE5C3100B76485 /* SelectMultiplePeopleView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -879,10 +886,6 @@
 		E51D871D1BB1CC1700470170 /* FacebookFriendsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookFriendsView.h; sourceTree = "<group>"; };
 		E51D871E1BB1CC1700470170 /* FacebookFriendsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookFriendsView.m; sourceTree = "<group>"; };
 		E51D871F1BB1CC1700470170 /* FacebookFriendsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FacebookFriendsView.xib; sourceTree = "<group>"; };
-		E51D87221BB1CC1700470170 /* group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = group.h; sourceTree = "<group>"; };
-		E51D87231BB1CC1700470170 /* group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = group.m; sourceTree = "<group>"; };
-		E51D87241BB1CC1700470170 /* people.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = people.h; sourceTree = "<group>"; };
-		E51D87251BB1CC1700470170 /* people.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = people.m; sourceTree = "<group>"; };
 		E51D87261BB1CC1700470170 /* PFUser+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PFUser+Util.h"; sourceTree = "<group>"; };
 		E51D87271BB1CC1700470170 /* PFUser+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PFUser+Util.m"; sourceTree = "<group>"; };
 		E51D87281BB1CC1700470170 /* push.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = push.h; sourceTree = "<group>"; };
@@ -1039,22 +1042,20 @@
 		E523F10A1BBC9C8900328565 /* Picture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Picture.m; sourceTree = "<group>"; };
 		E523F1181BBC9DB500328565 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		E523F1191BBC9DB500328565 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		E523F11B1BBC9E9E00328565 /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
-		E523F11C1BBC9E9E00328565 /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
 		E523F1241BBCA58F00328565 /* FileRemoteUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileRemoteUtil.h; sourceTree = "<group>"; };
 		E523F1251BBCA58F00328565 /* FileRemoteUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileRemoteUtil.m; sourceTree = "<group>"; };
 		E523F12B1BBCA68500328565 /* RemoteFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteFile.h; sourceTree = "<group>"; };
 		E523F12C1BBCA68500328565 /* RemoteFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteFile.m; sourceTree = "<group>"; };
 		E523F12E1BBCD57400328565 /* Thumbnail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Thumbnail.h; sourceTree = "<group>"; };
 		E523F12F1BBCD57400328565 /* Thumbnail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Thumbnail.m; sourceTree = "<group>"; };
-		E523F1311BBCD8BE00328565 /* ThumbnailManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumbnailManager.h; sourceTree = "<group>"; };
-		E523F1321BBCD8BE00328565 /* ThumbnailManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumbnailManager.m; sourceTree = "<group>"; };
 		E523F1341BBD03FE00328565 /* GroupRemoteUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupRemoteUtil.h; sourceTree = "<group>"; };
 		E523F1351BBD03FE00328565 /* GroupRemoteUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupRemoteUtil.m; sourceTree = "<group>"; };
 		E523F13A1BBD184B00328565 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		E523F13B1BBD184B00328565 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
-		E523F13D1BBD184B00328565 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
-		E523F13E1BBD184B00328565 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
+		E523F1411BBD2C8300328565 /* ThumbnailManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumbnailManager.h; sourceTree = "<group>"; };
+		E523F1421BBD2C8300328565 /* ThumbnailManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumbnailManager.m; sourceTree = "<group>"; };
+		E523F1431BBD2C8300328565 /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
+		E523F1441BBD2C8300328565 /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
 		E5485D791BB34E5300801B05 /* CurrentUser+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CurrentUser+Util.h"; sourceTree = "<group>"; };
 		E5485D7A1BB34E5300801B05 /* CurrentUser+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CurrentUser+Util.m"; sourceTree = "<group>"; };
 		E5485D7D1BB34E5300801B05 /* User+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+Util.h"; sourceTree = "<group>"; };
@@ -1073,6 +1074,23 @@
 		E551E64E1BB4AA2A002641E4 /* Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alert.m; sourceTree = "<group>"; };
 		E551E6501BB4AA2A002641E4 /* EntityObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityObject.h; sourceTree = "<group>"; };
 		E551E6511BB4AA2A002641E4 /* EntityObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityObject.m; sourceTree = "<group>"; };
+		E5B268231BBD4EA800B76485 /* PeopleRemoteUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleRemoteUtil.h; sourceTree = "<group>"; };
+		E5B268241BBD4EA800B76485 /* PeopleRemoteUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleRemoteUtil.m; sourceTree = "<group>"; };
+		E5B2682C1BBD4FF200B76485 /* People+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "People+Util.h"; sourceTree = "<group>"; };
+		E5B2682D1BBD4FF200B76485 /* People+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "People+Util.m"; sourceTree = "<group>"; };
+		E5B268351BBD6D9300B76485 /* People.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = People.h; sourceTree = "<group>"; };
+		E5B268361BBD6D9300B76485 /* People.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = People.m; sourceTree = "<group>"; };
+		E5B268381BBD6D9400B76485 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
+		E5B268391BBD6D9400B76485 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
+		E5B2683C1BBE431E00B76485 /* SelectPeopleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPeopleView.h; sourceTree = "<group>"; };
+		E5B2683D1BBE431E00B76485 /* SelectPeopleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPeopleView.m; sourceTree = "<group>"; };
+		E5B2683E1BBE431E00B76485 /* SelectPeopleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectPeopleView.xib; sourceTree = "<group>"; };
+		E5B268431BBE452800B76485 /* SelectSinglePeopleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectSinglePeopleView.h; sourceTree = "<group>"; };
+		E5B268441BBE452800B76485 /* SelectSinglePeopleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectSinglePeopleView.m; sourceTree = "<group>"; };
+		E5B268451BBE452800B76485 /* SelectSinglePeopleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectSinglePeopleView.xib; sourceTree = "<group>"; };
+		E5B268481BBE5C3100B76485 /* SelectMultiplePeopleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectMultiplePeopleView.h; sourceTree = "<group>"; };
+		E5B268491BBE5C3100B76485 /* SelectMultiplePeopleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectMultiplePeopleView.m; sourceTree = "<group>"; };
+		E5B2684A1BBE5C3100B76485 /* SelectMultiplePeopleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectMultiplePeopleView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1903,6 +1921,9 @@
 		E51D870F1BB1CC1700470170 /* Users */ = {
 			isa = PBXGroup;
 			children = (
+				E5B268411BBE44D000B76485 /* SelectMultiplePeopleView */,
+				E5B268421BBE44D000B76485 /* SelectSinglePeopleView */,
+				E5B2683B1BBE430600B76485 /* SelectPeopleView */,
 				E51D87101BB1CC1700470170 /* 01_SelectSingle */,
 				E51D87141BB1CC1700470170 /* 02_SelectMultiple */,
 				E51D87181BB1CC1700470170 /* 03_AddressBook */,
@@ -1954,6 +1975,7 @@
 		E51D87201BB1CC1700470170 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				E523F1401BBD2C8300328565 /* container */,
 				E523F12A1BBCA65200328565 /* wrapper */,
 				E51D87211BB1CC1700470170 /* backend */,
 				E51D872C1BB1CC1700470170 /* general */,
@@ -1964,10 +1986,6 @@
 		E51D87211BB1CC1700470170 /* backend */ = {
 			isa = PBXGroup;
 			children = (
-				E51D87221BB1CC1700470170 /* group.h */,
-				E51D87231BB1CC1700470170 /* group.m */,
-				E51D87241BB1CC1700470170 /* people.h */,
-				E51D87251BB1CC1700470170 /* people.m */,
 				E51D87261BB1CC1700470170 /* PFUser+Util.h */,
 				E51D87271BB1CC1700470170 /* PFUser+Util.m */,
 				E51D87281BB1CC1700470170 /* push.h */,
@@ -1982,6 +2000,8 @@
 				E523F1251BBCA58F00328565 /* FileRemoteUtil.m */,
 				E523F1341BBD03FE00328565 /* GroupRemoteUtil.h */,
 				E523F1351BBD03FE00328565 /* GroupRemoteUtil.m */,
+				E5B268231BBD4EA800B76485 /* PeopleRemoteUtil.h */,
+				E5B268241BBD4EA800B76485 /* PeopleRemoteUtil.m */,
 			);
 			path = backend;
 			sourceTree = "<group>";
@@ -2250,6 +2270,17 @@
 			path = wrapper;
 			sourceTree = "<group>";
 		};
+		E523F1401BBD2C8300328565 /* container */ = {
+			isa = PBXGroup;
+			children = (
+				E523F1411BBD2C8300328565 /* ThumbnailManager.h */,
+				E523F1421BBD2C8300328565 /* ThumbnailManager.m */,
+				E523F1431BBD2C8300328565 /* UserManager.h */,
+				E523F1441BBD2C8300328565 /* UserManager.m */,
+			);
+			path = container;
+			sourceTree = "<group>";
+		};
 		E5485D651BB34E5300801B05 /* ModelDB */ = {
 			isa = PBXGroup;
 			children = (
@@ -2258,9 +2289,11 @@
 				E523F1181BBC9DB500328565 /* User.h */,
 				E523F1191BBC9DB500328565 /* User.m */,
 				E51D89621BB1FA9900470170 /* TabViewDBModel.xcdatamodeld */,
+				E5B268381BBD6D9400B76485 /* Group.h */,
+				E5B268391BBD6D9400B76485 /* Group.m */,
+				E5B268351BBD6D9300B76485 /* People.h */,
+				E5B268361BBD6D9300B76485 /* People.m */,
 				E523F13A1BBD184B00328565 /* Message.h */,
-				E523F13D1BBD184B00328565 /* Group.h */,
-				E523F13E1BBD184B00328565 /* Group.m */,
 				E523F13B1BBD184B00328565 /* Message.m */,
 				E523F12E1BBCD57400328565 /* Thumbnail.h */,
 				E523F12F1BBCD57400328565 /* Thumbnail.m */,
@@ -2309,12 +2342,40 @@
 				28C0D55D1BB3D87B0088052F /* DataModelPrefix.pch */,
 				E523F0F41BBC668800328565 /* Message+Util.h */,
 				E523F0F51BBC668800328565 /* Message+Util.m */,
-				E523F11B1BBC9E9E00328565 /* UserManager.h */,
-				E523F11C1BBC9E9E00328565 /* UserManager.m */,
-				E523F1311BBCD8BE00328565 /* ThumbnailManager.h */,
-				E523F1321BBCD8BE00328565 /* ThumbnailManager.m */,
+				E5B2682C1BBD4FF200B76485 /* People+Util.h */,
+				E5B2682D1BBD4FF200B76485 /* People+Util.m */,
 			);
 			path = ModelUtilDB;
+			sourceTree = "<group>";
+		};
+		E5B2683B1BBE430600B76485 /* SelectPeopleView */ = {
+			isa = PBXGroup;
+			children = (
+				E5B2683C1BBE431E00B76485 /* SelectPeopleView.h */,
+				E5B2683D1BBE431E00B76485 /* SelectPeopleView.m */,
+				E5B2683E1BBE431E00B76485 /* SelectPeopleView.xib */,
+			);
+			path = SelectPeopleView;
+			sourceTree = "<group>";
+		};
+		E5B268411BBE44D000B76485 /* SelectMultiplePeopleView */ = {
+			isa = PBXGroup;
+			children = (
+				E5B268481BBE5C3100B76485 /* SelectMultiplePeopleView.h */,
+				E5B268491BBE5C3100B76485 /* SelectMultiplePeopleView.m */,
+				E5B2684A1BBE5C3100B76485 /* SelectMultiplePeopleView.xib */,
+			);
+			path = SelectMultiplePeopleView;
+			sourceTree = "<group>";
+		};
+		E5B268421BBE44D000B76485 /* SelectSinglePeopleView */ = {
+			isa = PBXGroup;
+			children = (
+				E5B268431BBE452800B76485 /* SelectSinglePeopleView.h */,
+				E5B268441BBE452800B76485 /* SelectSinglePeopleView.m */,
+				E5B268451BBE452800B76485 /* SelectSinglePeopleView.xib */,
+			);
+			path = SelectSinglePeopleView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2519,6 +2580,7 @@
 				E51D890C1BB1CC1800470170 /* arrow_left.png in Resources */,
 				E51D87FE1BB1CC1800470170 /* functions_func.html in Resources */,
 				E51D88191BB1CC1800470170 /* all_65.html in Resources */,
+				E5B2684C1BBE5C3100B76485 /* SelectMultiplePeopleView.xib in Resources */,
 				E51D89381BB1CC1800470170 /* photo_item2@3x.png in Resources */,
 				E51D893F1BB1CC1800470170 /* reservation.png in Resources */,
 				E51D88481BB1CC1800470170 /* mag_sel.png in Resources */,
@@ -2552,6 +2614,7 @@
 				E51D88151BB1CC1800470170 /* all_63.html in Resources */,
 				E51D885F1BB1CC1800470170 /* Flurry for Advertisers TOS.pdf in Resources */,
 				E51D88BF1BB1CC1800470170 /* RecentCell.xib in Resources */,
+				E5B268401BBE431E00B76485 /* SelectPeopleView.xib in Resources */,
 				E51D89541BB1CC1800470170 /* tab_people@2x.png in Resources */,
 				E51D894A1BB1CC1800470170 /* star_chosen@3x.png in Resources */,
 				E51D88301BB1CC1800470170 /* functions_61.html in Resources */,
@@ -2598,6 +2661,7 @@
 				E51D88D31BB1CC1800470170 /* SelectSingleView.xib in Resources */,
 				E51D89491BB1CC1800470170 /* star_chosen@2x.png in Resources */,
 				E51D89021BB1CC1800470170 /* premium03@2x.png in Resources */,
+				E5B268471BBE452800B76485 /* SelectSinglePeopleView.xib in Resources */,
 				E51D89161BB1CC1800470170 /* chosen_menu_item@2x.png in Resources */,
 				E51D885B1BB1CC1800470170 /* FlurryiOSAnalyticsREADMEv5.4.0.pdf in Resources */,
 				E51D891C1BB1CC1800470170 /* find_us@2x.png in Resources */,
@@ -2623,6 +2687,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E523F1451BBD2C8300328565 /* ThumbnailManager.m in Sources */,
 				E51D887B1BB1CC1800470170 /* JSQMessagesCollectionViewFlowLayout.m in Sources */,
 				E51D88881BB1CC1800470170 /* JSQMessagesCollectionViewCellIncoming.m in Sources */,
 				E51D87CF1BB1CC1800470170 /* Appirater.m in Sources */,
@@ -2654,6 +2719,7 @@
 				E51D88141BB1CC1800470170 /* all_61.js in Sources */,
 				E51D88E11BB1CC1800470170 /* converter.m in Sources */,
 				E51D887F1BB1CC1800470170 /* JSQMediaItem.m in Sources */,
+				E5B268371BBD6D9300B76485 /* People.m in Sources */,
 				E51D88791BB1CC1800470170 /* JSQMessagesTimestampFormatter.m in Sources */,
 				E51D881E1BB1CC1800470170 /* all_67.js in Sources */,
 				E51D88D81BB1CC1800470170 /* FacebookFriendsView.m in Sources */,
@@ -2663,17 +2729,20 @@
 				E51D88C21BB1CC1800470170 /* CreateGroupView.m in Sources */,
 				E51D882C1BB1CC1800470170 /* classes_66.js in Sources */,
 				E51D88DE1BB1CC1800470170 /* RecentRemoteUtil.m in Sources */,
+				E5B268461BBE452800B76485 /* SelectSinglePeopleView.m in Sources */,
 				E51D88681BB1CC1800470170 /* IDMTapDetectingImageView.m in Sources */,
 				E523F1361BBD03FE00328565 /* GroupRemoteUtil.m in Sources */,
 				E51D88911BB1CC1800470170 /* JSQMessagesMediaPlaceholderView.m in Sources */,
 				E51D88371BB1CC1800470170 /* functions_65.js in Sources */,
 				E51D88AA1BB1CC1800470170 /* ConfigurationManager.m in Sources */,
+				E5B2683A1BBD6D9400B76485 /* Group.m in Sources */,
 				E51D88411BB1CC1800470170 /* functions_70.js in Sources */,
 				E51D87CD1BB1CC1800470170 /* UIRefreshControl+AFNetworking.m in Sources */,
 				E523F11A1BBC9DB500328565 /* User.m in Sources */,
 				E51D87DE1BB1CC1800470170 /* dir_0e3cfda86e78f68c86cdf657eb28e2b6.js in Sources */,
 				E551E6431BB4AA28002641E4 /* Recent.m in Sources */,
 				E523F10B1BBC9C8900328565 /* Picture.m in Sources */,
+				E5B2684B1BBE5C3100B76485 /* SelectMultiplePeopleView.m in Sources */,
 				282E4BA71BB3C26E00743E04 /* Thumbnail+Util.m in Sources */,
 				E51D88D41BB1CC1800470170 /* SelectMultipleView.m in Sources */,
 				E51D89641BB1FA9900470170 /* TabViewDBModel.xcdatamodeld in Sources */,
@@ -2719,10 +2788,8 @@
 				E51D88A71BB1CC1800470170 /* KeyboardListener.m in Sources */,
 				E51D881C1BB1CC1800470170 /* all_66.js in Sources */,
 				E51D882F1BB1CC1800470170 /* functions_5f.js in Sources */,
-				E523F1331BBCD8BE00328565 /* ThumbnailManager.m in Sources */,
 				E523F13C1BBD184B00328565 /* Message.m in Sources */,
 				E51D88121BB1CC1800470170 /* all_5f.js in Sources */,
-				E523F13F1BBD184B00328565 /* Group.m in Sources */,
 				E551E64F1BB4AA2A002641E4 /* Alert.m in Sources */,
 				E51D883D1BB1CC1800470170 /* functions_69.js in Sources */,
 				E51D88661BB1CC1800470170 /* IDMPhoto.m in Sources */,
@@ -2736,10 +2803,10 @@
 				E51D88851BB1CC1800470170 /* JSQMessagesCellTextView.m in Sources */,
 				E51D88AC1BB1CC1800470170 /* Feedback.m in Sources */,
 				E51D87CB1BB1CC1800470170 /* UIImageView+AFNetworking.m in Sources */,
+				E5B2683F1BBE431E00B76485 /* SelectPeopleView.m in Sources */,
 				E51D887A1BB1CC1800470170 /* JSQMessagesToolbarButtonFactory.m in Sources */,
 				E51D88001BB1CC1800470170 /* hierarchy.js in Sources */,
 				E51D88B91BB1CC1800470170 /* FindUsViewController.m in Sources */,
-				E523F11D1BBC9E9E00328565 /* UserManager.m in Sources */,
 				E51D88C61BB1CC1800470170 /* GroupsView.m in Sources */,
 				E51D88A81BB1CC1800470170 /* MenuItemsManager.m in Sources */,
 				E51D88B21BB1CC1800470170 /* MakeReservationTableViewCell.m in Sources */,
@@ -2757,6 +2824,7 @@
 				E51D88161BB1CC1800470170 /* all_63.js in Sources */,
 				E51D88941BB1CC1800470170 /* JSQMessagesTypingIndicatorFooterView.m in Sources */,
 				E523F1301BBCD57400328565 /* Thumbnail.m in Sources */,
+				E5B2682E1BBD4FF200B76485 /* People+Util.m in Sources */,
 				E51D887E1BB1CC1800470170 /* JSQLocationMediaItem.m in Sources */,
 				E51D87C71BB1CC1800470170 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				E51D87CE1BB1CC1800470170 /* UIWebView+AFNetworking.m in Sources */,
@@ -2803,17 +2871,17 @@
 				E51D88771BB1CC1800470170 /* JSQMessagesBubbleImageFactory.m in Sources */,
 				E51D88E21BB1CC1800470170 /* fileutil.m in Sources */,
 				E51D88331BB1CC1800470170 /* functions_63.js in Sources */,
-				E51D88DA1BB1CC1800470170 /* group.m in Sources */,
 				E51D88311BB1CC1800470170 /* functions_61.js in Sources */,
 				E523F0F61BBC668800328565 /* Message+Util.m in Sources */,
 				E51D88CE1BB1CC1800470170 /* TermsView.m in Sources */,
 				E51D87C51BB1CC1800470170 /* AFURLResponseSerialization.m in Sources */,
 				E51D88261BB1CC1800470170 /* all_72.js in Sources */,
+				E5B268251BBD4EA800B76485 /* PeopleRemoteUtil.m in Sources */,
 				E51D88221BB1CC1800470170 /* all_6c.js in Sources */,
+				E523F1461BBD2C8300328565 /* UserManager.m in Sources */,
 				E51D88BB1BB1CC1800470170 /* OurMenuViewController.m in Sources */,
 				E51D88AB1BB1CC1800470170 /* ThemeManager.m in Sources */,
 				E51D87CA1BB1CC1800470170 /* UIButton+AFNetworking.m in Sources */,
-				E51D88DB1BB1CC1800470170 /* people.m in Sources */,
 				E51D88A01BB1CC1800470170 /* NavigationController.m in Sources */,
 				E51D87BE1BB1CC1800470170 /* AFHTTPRequestOperation.m in Sources */,
 				E51D88A11BB1CC1800470170 /* ProfileView.m in Sources */,

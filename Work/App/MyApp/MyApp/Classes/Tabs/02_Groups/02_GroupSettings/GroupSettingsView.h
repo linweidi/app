@@ -10,11 +10,12 @@
 // THE SOFTWARE.
 
 #import <Parse/Parse.h>
-
+#import "CoreDataTableViewController.h"
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-@interface GroupSettingsView : UITableViewController
+@class Group;
+@interface GroupSettingsView : CoreDataTableViewController
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 
-- (id)initWith:(PFObject *)group_;
+- (id)initWith:(Group *)group_;
 
 @end

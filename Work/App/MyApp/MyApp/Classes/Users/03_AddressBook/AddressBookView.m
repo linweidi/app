@@ -67,16 +67,21 @@
 	{
 		CFErrorRef *error = NULL;
 		ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, error);
+        // copy the record of address book
 		ABRecordRef sourceBook = ABAddressBookCopyDefaultSource(addressBook);
+        //get the array of people, and sorted by first name
 		CFArrayRef allPeople = ABAddressBookCopyArrayOfAllPeopleInSourceWithSortOrdering(addressBook, sourceBook, kABPersonFirstNameProperty);
+        // get the count of array
 		CFIndex personCount = CFArrayGetCount(allPeople);
 
 		[users1 removeAllObjects];
 		for (int i=0; i<personCount; i++)
 		{
+            //get one person
 			ABMultiValueRef tmp;
 			ABRecordRef person = CFArrayGetValueAtIndex(allPeople, i);
 
+            // Get all the attributes
 			NSString *first = @"";
 			tmp = ABRecordCopyValue(person, kABPersonFirstNameProperty);
 			if (tmp != nil) first = [NSString stringWithFormat:@"%@", tmp];
@@ -101,9 +106,12 @@
 				if (tmp != nil) [phones addObject:[NSString stringWithFormat:@"%@", tmp]];
 			}
 
+            // add into user array
 			NSString *name = [NSString stringWithFormat:@"%@ %@", first, last];
 			[users1 addObject:@{@"name":name, @"emails":emails, @"phones":phones}];
 		}
+        
+        // release array and created address book
 		CFRelease(allPeople);
 		CFRelease(addressBook);
 		[self loadUsers];

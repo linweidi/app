@@ -15,6 +15,9 @@
 
 #import "AppConstant.h"
 
+#import "User+Util.h"
+#import "ConfigurationManager.h"
+
 #import "FacebookFriendsView.h"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -55,11 +58,17 @@
 	{
 		if (error == nil)
 		{
+            // facebook id
 			NSMutableArray *fbids = [[NSMutableArray alloc] init];
+            
+            // data
 			NSDictionary *userData = (NSDictionary *)result;
+            // get all user array
 			NSArray *fbusers = [userData objectForKey:@"data"];
+            // each user
 			for (NSDictionary *fbuser in fbusers)
 			{
+                //load all facebook id
 				[fbids addObject:[fbuser valueForKey:@"id"]];
 			}
 			[self loadUsers:fbids];
@@ -141,7 +150,11 @@
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	[self dismissViewControllerAnimated:YES completion:^{
-		if (delegate != nil) [delegate didSelectFacebookUser:users[indexPath.row]];
+		if (delegate != nil) {
+            PFUser * userPF = users[indexPath.row];
+            User * userObj = [User convertFromRemoteUser:userPF inManagedObjectContext:[[ConfigurationManager sharedManager] managedObjectContext]];
+            [delegate didSelectFacebookUser:userObj];
+        }
 	}];
 }
 

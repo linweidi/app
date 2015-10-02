@@ -13,25 +13,23 @@
 #import "AppHeader.h"
 @class User;
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-NSString*		StartPrivateChat		(User *user1, User *user2);
-NSString*		StartMultipleChat		(NSMutableArray *users);
+NSString*		StartPrivateChat		(User *user1, User *user2, NSManagedObjectContext * context);
+NSString*		StartMultipleChat		(NSMutableArray *users, NSManagedObjectContext * context);
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-void			CreateRecentItem		(User *user, NSString *groupId, NSArray *members, NSString *description);
+void			CreateRecentItem		(User *user, NSString *groupId, NSArray *members, NSString *description, NSManagedObjectContext * context);
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-void            UpdateRecentAndCounter  (NSString *groupId, NSInteger amount, NSString *lastMessage);
-void			ClearRecentCounter		(NSString *groupId);
+void            UpdateRecentAndCounter  (NSString *groupId, NSInteger amount, NSString *lastMessage, NSManagedObjectContext * context);
+void			ClearRecentCounter		(NSString *groupId, NSManagedObjectContext * context);
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-void			DeleteRecentItems		(User *user1, User *user2);
+void			DeleteRecentItems		(User *user1, User *user2, NSManagedObjectContext * context);
 
 @class RecentView;
 @interface RecentRemoteUtil : NSObject
 
 
-
-@property NSManagedObjectContext * context;
 
 + (RecentRemoteUtil *)sharedUtil;
 

@@ -10,9 +10,10 @@
 // THE SOFTWARE.
 
 #import <UIKit/UIKit.h>
+#import "CoreDataTableViewController.h"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-@interface CreateGroupView : UITableViewController
+@interface CreateGroupView : CoreDataTableViewController
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 
 @end

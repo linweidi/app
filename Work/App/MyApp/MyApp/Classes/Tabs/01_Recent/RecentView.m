@@ -50,7 +50,7 @@
 		[self.tabBarItem setImage:[UIImage imageNamed:@"tab_recent"]];
 		self.tabBarItem.title = @"Recent";
 		//-----------------------------------------------------------------------------------------------------------------------------------------
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(actionCleanup) name:NOTIFICATION_USER_LOGGED_OUT object:nil];
+//		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(actionCleanup) name:NOTIFICATION_USER_LOGGED_OUT object:nil];
 	}
 	return self;
 }
@@ -218,7 +218,7 @@
 {
 	//[recents removeAllObjects];
     // only delete local
-    [Recent clearRecentEntityAll:[super managedObjectContext]];
+    [Recent clearRecentEntityAll:[self managedObjectContext]];
 	[self.tableView reloadData];
 	[self clearTabCounter];
 }

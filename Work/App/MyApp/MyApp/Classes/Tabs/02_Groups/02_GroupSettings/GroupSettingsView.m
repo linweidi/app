@@ -16,15 +16,24 @@
 #import "AppConstant.h"
 #import "recent.h"
 
-#import "GroupSettingsView.h"
+
 #import "ChatView.h"
+
+#import "Group+Util.h"
+#import "GroupRemoteUtil.h"
+
+#import "GroupSettingsView.h"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 @interface GroupSettingsView()
 {
-	PFObject *group;
-	NSMutableArray *users;
+
+	//NSMutableArray *users;
 }
+
+@property (weak, nonatomic) Group * group;
+
+@property (strong, nonatomic) NSMutableArray * userIDs;
 
 @property (strong, nonatomic) IBOutlet UITableViewCell *cellName;
 
@@ -39,11 +48,11 @@
 @synthesize labelName;
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (id)initWith:(PFObject *)group_
+- (id)initWith:(Group *)group_
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	self = [super init];
-	group = group_;
+	self.group = group_;
 	return self;
 }
 
@@ -54,10 +63,39 @@
 	[super viewDidLoad];
 	self.title = @"Group Settings";
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	users = [[NSMutableArray alloc] init];
+	self.userIDs = [[NSMutableArray alloc] init];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	[self loadGroup];
 	[self loadUsers];
+}
+
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    super.managedObjectContext = managedObjectContext;
+    
+    if (managedObjectContext) {
+        // init fetch request
+        NSAssert(self.group!= nil, @"group is nil")  ;
+        
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"User"];
+        request.predicate = [NSPredicate predicateWithFormat:@"globalID IN %@", self.group.members];
+        request.fetchLimit = GROUPVIEW_USER_ITEM_NUM;
+
+        request.sortDescriptors = @[[NSSortDescriptor
+                                     sortDescriptorWithKey:@"name"
+                                     ascending:YES
+                                     selector:@selector(compare:)],
+                                    ];
+        
+        
+        // init fetch result controller
+        /// TODO change section name
+        self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                                            managedObjectContext:managedObjectContext
+                                                                              sectionNameKeyPath:nil
+                                                                                       cacheName:nil];
+    }
+    
 }
 
 #pragma mark - Backend actions
@@ -66,27 +104,28 @@
 - (void)loadGroup
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	labelName.text = group[PF_GROUP_NAME];
+    
+	labelName.text = self.group.name;
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)loadUsers
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	PFQuery *query = [PFQuery queryWithClassName:PF_USER_CLASS_NAME];
-	[query whereKey:PF_USER_OBJECTID containedIn:group[PF_GROUP_MEMBERS]];
-	[query orderByAscending:PF_USER_FULLNAME];
-	[query setLimit:1000];
-	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-	{
-		if (error == nil)
+    [[GroupRemoteUtil sharedUtil] loadRemoteUsersByGroup:self.group completionHandler:^(NSArray *objects, NSError *error) {
+        if (error == nil)
 		{
-			[users removeAllObjects];
-			[users addObjectsFromArray:objects];
+            //			[users removeAllObjects];
+            //			[users addObjectsFromArray:objects];
+            [self.userIDs removeAllObjects];
+            NSArray * users = [User convertFromRemoteUserArray:objects inManagedObjectContext:self.managedObjectContext];
+            for (User * user in users) {
+                [self.userIDs addObject:user.globalID];
+            }
 			[self.tableView reloadData];
 		}
 		else [ProgressHUD showError:@"Network error."];
-	}];
+    }];
 }
 
 #pragma mark - User actions
@@ -95,11 +134,12 @@
 - (void)actionChat
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	NSString *groupId = group.objectId;
+	NSString *groupId = self.group.globalID;
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	CreateRecentItem([PFUser currentUser], groupId, group[PF_GROUP_MEMBERS], group[PF_GROUP_NAME]);
+	CreateRecentItem([CurrentUser getCurrentUser], groupId, self.group.members, self.group.name);
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	ChatView *chatView = [[ChatView alloc] initWith:groupId];
+#warning move this new view controller to recent tab
 	[self.navigationController pushViewController:chatView animated:YES];
 }
 
@@ -117,7 +157,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	if (section == 0) return 1;
-	if (section == 1) return [users count];
+	if (section == 1) return [super tableView:tableView numberOfRowsInSection:section];
 	return 0;
 }
 
@@ -139,9 +179,13 @@
 	{
 		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
 		if (cell == nil) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
-
-		PFUser *user = users[indexPath.row];
-		cell.textLabel.text = user[PF_USER_FULLNAME];
+        
+        
+        
+        NSIndexPath * newIndexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:0];
+		User *user = [self.fetchedResultsController objectAtIndexPath:newIndexPath];
+        
+		cell.textLabel.text = user.fullname;
 
 		return cell;
 	}
@@ -157,6 +201,8 @@
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	if ((indexPath.section == 0) && (indexPath.row == 0)) [self actionChat];
+    
+#warning add new user chat to start
 }
 
 @end

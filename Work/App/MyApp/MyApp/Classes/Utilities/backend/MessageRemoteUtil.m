@@ -25,6 +25,7 @@
     return sharedObject;
 }
 
+
 - (void) loadMessagesFromParse:(NSString *)chatId lastMessage:(JSQMessage *)lastMessage completionHandler:(REMOTE_ARRAY_BLOCK)block {
     //lastMessage can be nil;
     PFQuery *query = [PFQuery queryWithClassName:PF_MESSAGE_CLASS_NAME];

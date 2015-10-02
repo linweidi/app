@@ -10,6 +10,14 @@
 #import "Group+Util.h"
 
 @implementation Group (Util)
+//#pragma property method
+//- (id)members {
+//    return <#expression#>
+//}
+//
+//-(void)setMembers:(id)members {
+//    
+//}
 
 + (Group *)createGroupEntityWithPFObject: (PFObject *)object
                     inManagedObjectContext: (NSManagedObjectContext *)context {
@@ -181,8 +189,8 @@
     
     group.members = object[PF_GROUP_MEMBERS] ;
     group.name = object[PF_GROUP_NAME] ;
-        group.createTime = object[PF_GROUP_CREATE_TIME] ;
-        group.updateTime = object[PF_GROUP_UPDATE_TIME] ;
+        group.createTime = object.createdAt ;
+        group.updateTime = object.updatedAt ;
 
 }
 
@@ -193,4 +201,6 @@
 - (void) setGroupWithRemoteObject:(RemoteObject *)object inManagedObjectContext: (NSManagedObjectContext *)context {
     [self setGroupWithRemoteObject:object inManagedObjectContext:context];
 }
+
+
 @end

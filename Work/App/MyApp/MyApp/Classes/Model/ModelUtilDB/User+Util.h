@@ -18,6 +18,7 @@
 
 + (User *) convertFromPFUser:(PFUser *)user inManagedObjectContext:(NSManagedObjectContext *) context;
 
++ (NSArray *) convertFromRemoteUserArray:(NSArray *)users inManagedObjectContext:(NSManagedObjectContext *) context;
 
 + (User *) convertFromRemoteUser:(RemoteUser *)user inManagedObjectContext:(NSManagedObjectContext *) context;
 

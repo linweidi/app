@@ -18,7 +18,7 @@
 #import "people.h"
 #import "recent.h"
 
-#import "PeopleView.h"
+
 #import "ChatView.h"
 #import "SelectSingleView.h"
 #import "SelectMultipleView.h"
@@ -26,14 +26,24 @@
 #import "FacebookFriendsView.h"
 #import "NavigationController.h"
 
+#import "PeopleRemoteUtil.h"
+#import "People+Util.h"
+#import "User+Util.h"
+#import "CurrentUser+Util.h"
+
+#import "UserManager.h"
+
+#import "PeopleView.h"
+
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 @interface PeopleView()
 {
 	BOOL skipLoading;
-	NSMutableArray *users;
-	NSMutableArray *userIds;
-	NSMutableArray *sections;
+	//NSMutableArray *users;
+
+	//NSMutableArray *sections;
 }
+@property (strong, nonatomic) NSMutableArray *userIds;
 @end
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -48,7 +58,7 @@
 		[self.tabBarItem setImage:[UIImage imageNamed:@"tab_people"]];
 		self.tabBarItem.title = @"People";
 		//-----------------------------------------------------------------------------------------------------------------------------------------
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(actionCleanup) name:NOTIFICATION_USER_LOGGED_OUT object:nil];
+//		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(actionCleanup) name:NOTIFICATION_USER_LOGGED_OUT object:nil];
 	}
 	return self;
 }
@@ -65,7 +75,7 @@
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	self.tableView.tableFooterView = [[UIView alloc] init];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	users = [[NSMutableArray alloc] init];
+	//users = [[NSMutableArray alloc] init];
 	userIds = [[NSMutableArray alloc] init];
 }
 
@@ -75,12 +85,42 @@
 {
 	[super viewDidAppear:animated];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	if ([PFUser currentUser] != nil)
+	if ([CurrentUser getCurrentUser] != nil)
 	{
-		if (skipLoading) skipLoading = NO; else [self loadPeople];
+		if (skipLoading) {
+            
+            skipLoading = NO;
+        }else {
+            [self loadPeople];
+        }
 	}
-	else LoginUser(self);
+	else {
+        LoginUser(self);
+    }
 }
+
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    super.managedObjectContext = managedObjectContext;
+    
+    if (managedObjectContext) {
+        // init fetch request
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"People"];
+        //request.predicate = [NSPredicate predicateWithFormat:@"string"];
+        request.fetchLimit = PEOPLEVIEW_DISPLAY_ITEM_NUM;
+        request.sortDescriptors = @[[NSSortDescriptor
+                                     sortDescriptorWithKey:@"name"
+                                     ascending:YES
+                                     selector:@selector(localizedCompare:)],
+                                    ];
+        
+        
+        // init fetch result controller
+        self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"name" cacheName:nil];
+    }
+    
+}
+
 
 #pragma mark - User actions
 
@@ -88,56 +128,98 @@
 - (void)loadPeople
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	PFQuery *query = [PFQuery queryWithClassName:PF_PEOPLE_CLASS_NAME];
-	[query whereKey:PF_PEOPLE_USER1 equalTo:[PFUser currentUser]];
-	[query includeKey:PF_PEOPLE_USER2];
-	[query setLimit:1000];
-	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-	{
-		if (error == nil)
+    
+    NSMutableArray * peoples = [[NSMutableArray alloc] init];
+    
+    People * latestPeople = nil;
+    
+    latestPeople = [People latestPeopleEntity :self.managedObjectContext];
+    
+    [[PeopleRemoteUtil sharedUtil] loadRemotePeoples: latestPeople completionHandler:^(NSArray *objects, NSError *error) {
+        if (error == nil)
 		{
-			[users removeAllObjects];
-			[userIds removeAllObjects];
-			for (PFObject *people in objects)
-			{
-				PFUser *user = people[PF_PEOPLE_USER2];
-				[users addObject:user];
-				[userIds addObject:user.objectId];
-			}
-			[self setObjects:users];
-			[self.tableView reloadData];
+			//[peoples removeAllObjects];
+			//[peoples addObjectsFromArray:objects];
+			//[self.tableView reloadData];
+            
+            People * people = nil;
+            for (RemoteObject * object in objects) {
+                //[recents setObject:object forKey:object[PF_RECENT_GROUPID]];
+                if (latestPeople) {
+                    
+                    people = [People peopleEntityWithRemoteObject:object inManagedObjectContext:self.managedObjectContext];
+                }
+                else {
+                    people = [People createPeopleEntityWithPFObject:object inManagedObjectContext:self.managedObjectContext];
+                }
+                
+                
+                [peoples addObject:people];
+            }
+            
+            
+            // load the recents into core data
+            
+            [self.tableView reloadData];
+            
 		}
 		else [ProgressHUD showError:@"Network error."];
-	}];
+		[self.refreshControl endRefreshing];
+    }];
+    
+    
+    
+//    [PeopleRemoteUtil sharedUtil] lo
+//	PFQuery *query = [PFQuery queryWithClassName:PF_PEOPLE_CLASS_NAME];
+//	[query whereKey:PF_PEOPLE_USER1 equalTo:[PFUser currentUser]];
+//	[query includeKey:PF_PEOPLE_USER2];
+//	[query setLimit:1000];
+//	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+//	{
+//		if (error == nil)
+//		{
+//			[users removeAllObjects];
+//			[userIds removeAllObjects];
+//			for (PFObject *people in objects)
+//			{
+//				PFUser *user = people[PF_PEOPLE_USER2];
+//				[users addObject:user];
+//				[userIds addObject:user.objectId];
+//			}
+//			[self setObjects:users];
+//			[self.tableView reloadData];
+//		}
+//		else [ProgressHUD showError:@"Network error."];
+//	}];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)setObjects:(NSArray *)objects
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
-	if (sections != nil) [sections removeAllObjects];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	NSInteger sectionTitlesCount = [[[UILocalizedIndexedCollation currentCollation] sectionTitles] count];
-	sections = [[NSMutableArray alloc] initWithCapacity:sectionTitlesCount];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	for (NSUInteger i=0; i<sectionTitlesCount; i++)
-	{
-		[sections addObject:[NSMutableArray array]];
-	}
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	NSArray *sorted = [objects sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2)
-	{
-		PFUser *user1 = (PFUser *)obj1;
-		PFUser *user2 = (PFUser *)obj2;
-		return [user1[PF_USER_FULLNAME] compare:user2[PF_USER_FULLNAME]];
-	}];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	for (PFUser *object in sorted)
-	{
-		NSInteger section = [[UILocalizedIndexedCollation currentCollation] sectionForObject:object collationStringSelector:@selector(fullname)];
-		[sections[section] addObject:object];
-	}
-}
+////-------------------------------------------------------------------------------------------------------------------------------------------------
+//- (void)setObjects:(NSArray *)objects
+////-------------------------------------------------------------------------------------------------------------------------------------------------
+//{
+//	if (sections != nil) [sections removeAllObjects];
+//	//---------------------------------------------------------------------------------------------------------------------------------------------
+//	NSInteger sectionTitlesCount = [[[UILocalizedIndexedCollation currentCollation] sectionTitles] count];
+//	sections = [[NSMutableArray alloc] initWithCapacity:sectionTitlesCount];
+//	//---------------------------------------------------------------------------------------------------------------------------------------------
+//	for (NSUInteger i=0; i<sectionTitlesCount; i++)
+//	{
+//		[sections addObject:[NSMutableArray array]];
+//	}
+//	//---------------------------------------------------------------------------------------------------------------------------------------------
+//	NSArray *sorted = [objects sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2)
+//	{
+//		PFUser *user1 = (PFUser *)obj1;
+//		PFUser *user2 = (PFUser *)obj2;
+//		return [user1[PF_USER_FULLNAME] compare:user2[PF_USER_FULLNAME]];
+//	}];
+//	//---------------------------------------------------------------------------------------------------------------------------------------------
+//	for (PFUser *object in sorted)
+//	{
+//		NSInteger section = [[UILocalizedIndexedCollation currentCollation] sectionForObject:object collationStringSelector:@selector(fullname)];
+//		[sections[section] addObject:object];
+//	}
+//}
 
 #pragma mark - User actions
 
@@ -145,11 +227,13 @@
 - (void)actionCleanup
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	[users removeAllObjects];
-	[userIds removeAllObjects];
-	[sections removeAllObjects];
+//	[users removeAllObjects];
+//	[userIds removeAllObjects];
+//	[sections removeAllObjects];
+    [People clearPeopleEntityAll:[self managedObjectContext]];
 	[self.tableView reloadData];
 }
+
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)actionAdd
@@ -203,7 +287,7 @@
 #pragma mark - SelectSingleDelegate
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)didSelectSingleUser:(PFUser *)user
+- (void)didSelectSingleUser:(User *)user
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	[self addUser:user];
@@ -215,7 +299,7 @@
 - (void)didSelectMultipleUsers:(NSMutableArray *)users_
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	for (PFUser *user in users_)
+	for (User *user in users_)
 	{
 		[self addUser:user];
 	}
@@ -224,7 +308,7 @@
 #pragma mark - AddressBookDelegate
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)didSelectAddressBookUser:(PFUser *)user
+- (void)didSelectAddressBookUser:(User *)user
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	[self addUser:user];
@@ -233,7 +317,7 @@
 #pragma mark - FacebookFriendsDelegate
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)didSelectFacebookUser:(PFUser *)user
+- (void)didSelectFacebookUser:(User *)user
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	[self addUser:user];
@@ -242,70 +326,92 @@
 #pragma mark - Helper methods
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)addUser:(PFUser *)user
+- (void)addUser:(User *)user
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	if ([userIds containsObject:user.objectId] == NO)
+	if ([self.userIds containsObject:user.globalID] == NO)
 	{
-		PeopleSave([PFUser currentUser], user);
-		[users addObject:user];
-		[userIds addObject:user.objectId];
-		[self setObjects:users];
-		[self.tableView reloadData];
+		//PeopleSave([PFUser currentUser], user);
+        
+        [[PeopleRemoteUtil sharedUtil] createRemotePeople:user.fullname user:user completionHandler:^(BOOL succeeded, NSError *error, PFObject *object) {
+            if (error != nil) {
+                [ProgressHUD showError:@"CreateRemotePeople save error."];
+            }
+            else if (succeeded){
+                People * people =
+                [People peopleEntityWithRemoteObject:object inManagedObjectContext:self.managedObjectContext];
+                
+                if (!people) {
+                    [ProgressHUD showError:@"CreateRemotePeople does not insert into core data."];
+                    ///TODO delete the saved data on server or redo the local save
+                    
+                }
+                else {
+                    //[users addObject:user];
+                    [self.userIds addObject:user.globalID];
+                    //[self setObjects:users];
+                    [self.tableView reloadData];
+                }
+            }
+        }];
+
 	}
 }
 
 #pragma mark - Table view data source
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
-	return [sections count];
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
-	return [sections[section] count];
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
-	if ([sections[section] count] != 0)
-	{
-		return [[[UILocalizedIndexedCollation currentCollation] sectionTitles] objectAtIndex:section];
-	}
-	else return nil;
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
-	return [[UILocalizedIndexedCollation currentCollation] sectionIndexTitles];
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
-	return [[UILocalizedIndexedCollation currentCollation] sectionForSectionIndexTitleAtIndex:index];
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+////-------------------------------------------------------------------------------------------------------------------------------------------------
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+////-------------------------------------------------------------------------------------------------------------------------------------------------
+//{
+//	return [sections count];
+//}
+//
+////-------------------------------------------------------------------------------------------------------------------------------------------------
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+////-------------------------------------------------------------------------------------------------------------------------------------------------
+//{
+//	return [sections[section] count];
+//}
+//
+////-------------------------------------------------------------------------------------------------------------------------------------------------
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+////-------------------------------------------------------------------------------------------------------------------------------------------------
+//{
+//	if ([sections[section] count] != 0)
+//	{
+//		return [[[UILocalizedIndexedCollation currentCollation] sectionTitles] objectAtIndex:section];
+//	}
+//	else return nil;
+//}
+//
+////-------------------------------------------------------------------------------------------------------------------------------------------------
+//- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+////-------------------------------------------------------------------------------------------------------------------------------------------------
+//{
+//	return [[UILocalizedIndexedCollation currentCollation] sectionIndexTitles];
+//}
+//
+////-------------------------------------------------------------------------------------------------------------------------------------------------
+//- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
+////-------------------------------------------------------------------------------------------------------------------------------------------------
+//{
+//	return [[UILocalizedIndexedCollation currentCollation] sectionForSectionIndexTitleAtIndex:index];
+//}
+//
+////-------------------------------------------------------------------------------------------------------------------------------------------------
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
 	if (cell == nil) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
 
-	NSMutableArray *userstemp = sections[indexPath.section];
-	PFUser *user = userstemp[indexPath.row];
-	cell.textLabel.text = user[PF_USER_FULLNAME];
+//	NSMutableArray *userstemp =  sections[indexPath.section];
+//	PFUser *user = userstemp[indexPath.row];
+    
+    People * people = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+	cell.textLabel.text = people.name;
 
 	return cell;
 }
@@ -321,16 +427,27 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	NSMutableArray *userstemp = sections[indexPath.section];
-	PFUser *user = userstemp[indexPath.row];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	PeopleDelete([PFUser currentUser], user);
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	[users removeObject:user];
-	[userIds removeObject:user.objectId];
-	[self setObjects:users];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    People * people = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    User * user = people.contact;
+    
+    [[PeopleRemoteUtil sharedUtil] deleteRemotePeople:user completionHandler:^(BOOL succeeded, NSError *error, PFObject *object) {
+        if (error != nil) {
+            [ProgressHUD showError:@"PeopleDelete delete error"];
+        }
+        else if (succeeded ){
+            [People deletePeopleEntityWithRemoteObject:object inManagedObjectContext:self.managedObjectContext];
+            
+            //---------------------------------------------------------------------------------------------------------------------------------------------
+            //[users removeObject:user];
+            [self.userIds removeObject:user.globalID];
+            //[self setObjects:users];
+            //---------------------------------------------------------------------------------------------------------------------------------------------
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }
+    }];
+    
+
 }
 
 #pragma mark - Table view delegate
@@ -340,10 +457,13 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	PFUser *user1 = [PFUser currentUser];
+	User *user1 = [CurrentUser  getCurrentUser];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	NSMutableArray *userstemp = sections[indexPath.section];
-	PFUser *user2 = userstemp[indexPath.row];
+	//NSMutableArray *userstemp = sections[indexPath.section];
+	
+    People * people = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    User *user2 = people.contact;
+    //userstemp[indexPath.row];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	NSString *groupId = StartPrivateChat(user1, user2);
 	//---------------------------------------------------------------------------------------------------------------------------------------------

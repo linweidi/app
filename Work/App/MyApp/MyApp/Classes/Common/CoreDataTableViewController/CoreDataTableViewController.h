@@ -35,4 +35,7 @@
 // Set to YES to get some debugging output in the console.
 @property BOOL debug;
 
+@property (nonatomic,strong) NSManagedObjectContext *managedObjectContext;
+
+
 @end

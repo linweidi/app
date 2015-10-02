@@ -35,9 +35,19 @@
 //--------------- GROUP VIEW -----------------------------------------------------------------------------------------------------------------------------------
 #define     GROUPVIEW_ITEM_NUM                 50
 #define     GROUPVIEW_DISPLAY_ITEM_NUM         50
-
+#define     GROUPVIEW_USER_ITEM_NUM            1000
 
 #define     GROUPVIEW_REFRESH_TIME            5.0
+
+
+//--------------- PEOPLE VIEW -----------------------------------------------------------------------------------------------------------------------------------
+#define     PEOPLEVIEW_ITEM_NUM                 1000
+#define     PEOPLEVIEW_DISPLAY_ITEM_NUM         1000
+
+//--------------- USER VIEW -----------------------------------------------------------------------------------------------------------------------------------
+#define     USERVIEW_ITEM_NUM                 1000
+#define     USERVIEW_DISPLAY_ITEM_NUM         1000
+
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 #define HEXCOLOR(c) [UIColor colorWithRed:((c>>24)&0xFF)/255.0 green:((c>>16)&0xFF)/255.0 blue:((c>>8)&0xFF)/255.0 alpha:((c)&0xFF)/255.0]
@@ -60,7 +70,7 @@
 #define		PREMIUM_LINK						@"http://www.relatedcode.com/realtimepremium"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-#define		MESSAGE_INVITE						@"Check out chatexamples.com"
+#define		MESSAGE_INVITE						@"Please accept our invitation"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 #define		PF_INSTALLATION_CLASS_NAME			@"_Installation"		//	Class name
@@ -93,9 +103,9 @@
 #define		PF_GROUP_USER						@"user"					//	Pointer to User Class
 #define		PF_GROUP_NAME						@"name"					//	String
 #define		PF_GROUP_MEMBERS					@"members"				//	Array
-#define     PF_GROUP_CREATE_TIME                @"createTime"
+#define     PF_GROUP_CREATE_TIME                @"createAt"
 
-#define     PF_GROUP_UPDATE_TIME                @"updateTime"
+#define     PF_GROUP_UPDATE_TIME                @"updateAt"
 //-----------------------------------------------------------------------
 #define		PF_MESSAGE_CLASS_NAME				@"Message"				//	Class name
 #define		PF_MESSAGE_USER						@"user"					//	Pointer to User Class
@@ -108,6 +118,15 @@
 #define		PF_PEOPLE_CLASS_NAME				@"People"				//	Class name
 #define		PF_PEOPLE_USER1						@"user1"				//	Pointer to User Class
 #define		PF_PEOPLE_USER2						@"user2"				//	Pointer to User Class
+
+#define		PF_PEOPLE_OBJECTID					@"objectId"
+
+#define		PF_PEOPLE_NAME						@"name"
+
+#define     PF_PEOPLE_CREATE_TIME                @"createAt"
+
+#define     PF_PEOPLE_UPDATE_TIME                @"updateAt"
+
 //-----------------------------------------------------------------------
 #define		PF_RECENT_CLASS_NAME				@"Recent"				//	Class name
 #define		PF_RECENT_USER						@"user"					//	Pointer to User Class

@@ -97,4 +97,10 @@
     
     return user;
 }
+
+- (void) loadUsers: (NSArray *) users {
+    for (User * user in users) {
+        [self addUser:user];
+    }
+}
 @end

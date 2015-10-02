@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CoreData/CoreData.h"
 
 @interface ConfigurationManager : NSObject
 
@@ -16,5 +17,7 @@
 @property (nonatomic,readonly,copy) NSString *flurrySessionID;
 
 + (ConfigurationManager *)sharedManager;
+
+@property (nonatomic,strong) NSManagedObjectContext *managedObjectContext;
 
 @end

@@ -10,74 +10,53 @@
 // THE SOFTWARE.
 
 #import <Parse/Parse.h>
+#import "AppHeader.h"
 #import "ProgressHUD.h"
-#import "PFUser+Util.h"
 
 #import "AppConstant.h"
-#import "common.h"
 
-#import "GroupRemoteUtil.h"
-#import "Group+Util.h"
-
-#import "PeopleRemoteUtil.h"
-#import "People+Util.h"
 #import "User+Util.h"
 #import "CurrentUser+Util.h"
 
+#import "People+Util.h"
+#import "PeopleRemoteUtil.h"
+
 #import "UserManager.h"
 
-#import "CreateGroupView.h"
+#import "SelectPeopleView.h"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-@interface CreateGroupView()
-{
-	//NSMutableArray *users;
-	//NSMutableArray *sections;
-	NSMutableArray *selection;
-}
+@interface SelectPeopleView()
+
 
 @property (strong, nonatomic) IBOutlet UIView *viewHeader;
-@property (strong, nonatomic) IBOutlet UITextField *fieldName;
+@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 
 @end
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 
-@implementation CreateGroupView
+@implementation SelectPeopleView
 
-@synthesize viewHeader, fieldName;
+//@synthesize delegate;
+@synthesize viewHeader, searchBar;
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidLoad
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	[super viewDidLoad];
-	self.title = @"Create Group";
+	self.title = @"Select Single";
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self
 																						  action:@selector(actionCancel)];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self
-																						   action:@selector(actionDone)];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
-	[self.tableView addGestureRecognizer:gestureRecognizer];
-	gestureRecognizer.cancelsTouchesInView = NO;
-	//---------------------------------------------------------------------------------------------------------------------------------------------
 	self.tableView.tableHeaderView = viewHeader;
-	self.tableView.tableFooterView = [[UIView alloc] init];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	//users = [[NSMutableArray alloc] init];
-	selection = [[NSMutableArray alloc] init];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	[self loadPeople];
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)viewDidAppear:(BOOL)animated
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
-	[super viewDidAppear:animated];
-	[fieldName becomeFirstResponder];
+    selection = [[NSMutableArray alloc] init];
+    
+	[self loadUsers];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -85,13 +64,6 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	[super viewWillDisappear:animated];
-	[self dismissKeyboard];
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)dismissKeyboard
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
 	[self.view endEditing:YES];
 }
 
@@ -103,7 +75,7 @@
         // init fetch request
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"People"];
         //request.predicate = [NSPredicate predicateWithFormat:@"string"];
-        request.fetchLimit = PEOPLEVIEW_DISPLAY_ITEM_NUM;
+        request.fetchLimit = USERVIEW_DISPLAY_ITEM_NUM;
         request.sortDescriptors = @[[NSSortDescriptor
                                      sortDescriptorWithKey:@"name"
                                      ascending:YES
@@ -117,13 +89,12 @@
     
 }
 
-#pragma mark - Backend actions
+#pragma mark - Backend methods
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)loadPeople
+- (void)loadUsers
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-
-{ 
+{
     
     NSMutableArray * peoples = [[NSMutableArray alloc] init];
     
@@ -162,60 +133,51 @@
 		else [ProgressHUD showError:@"Network error."];
 		[self.refreshControl endRefreshing];
     }];
-    
-    
-    
-//    [[GroupRemoteUtil sharedUtil] loadRemotePeoplesWithCompletionHandler:^(NSArray *objects, NSError *error) {
-//        if (error == nil)
+//    
+//    
+//	PFUser *user = [PFUser currentUser];
+//
+//	PFQuery *query1 = [PFQuery queryWithClassName:PF_BLOCKED_CLASS_NAME];
+//	[query1 whereKey:PF_BLOCKED_USER1 equalTo:user];
+//
+//	PFQuery *query2 = [PFQuery queryWithClassName:PF_USER_CLASS_NAME];
+//	[query2 whereKey:PF_USER_OBJECTID notEqualTo:user.objectId];
+//	[query2 whereKey:PF_USER_OBJECTID doesNotMatchKey:PF_BLOCKED_USERID2 inQuery:query1];
+//	[query2 orderByAscending:PF_USER_FULLNAME];
+//	[query2 setLimit:1000];
+//	[query2 findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+//	{
+//		if (error == nil)
 //		{
-//            
-////            [User convertFromRemoteUserArray:objects inManagedObjectContext:self.managedObjectContext];
-////            [self.tableView reloadData];
-//            
 //			[users removeAllObjects];
-//			for (PFObject *people in objects)
-//			{
-//				PFUser *user = people[PF_PEOPLE_USER2];
-//                User * userObj = [User convertFromRemoteUser:user inManagedObjectContext:self.managedObjectContext];
-//				[users addObject:user];
-//			}
-//			[self setObjects:users];
+//			[users addObjectsFromArray:objects];
 //			[self.tableView reloadData];
 //		}
 //		else [ProgressHUD showError:@"Network error."];
-//    }];
+//	}];
 }
 
-////-------------------------------------------------------------------------------------------------------------------------------------------------
-//- (void)setObjects:(NSArray *)objects
-////-------------------------------------------------------------------------------------------------------------------------------------------------
-//{
-//    /* legacy use UILocalizedIndexedCollation
-//	if (sections != nil) [sections removeAllObjects];
-//	//---------------------------------------------------------------------------------------------------------------------------------------------
-//    // update sections
-//	NSInteger sectionTitlesCount = [[[UILocalizedIndexedCollation currentCollation] sectionTitles] count];
-//	sections = [[NSMutableArray alloc] initWithCapacity:sectionTitlesCount];
-//	//---------------------------------------------------------------------------------------------------------------------------------------------
-//	for (NSUInteger i=0; i<sectionTitlesCount; i++)
-//	{
-//		[sections addObject:[NSMutableArray array]];
-//	}
-//	//---------------------------------------------------------------------------------------------------------------------------------------------
-//	NSArray *sorted = [objects sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2)
-//	{
-//		PFUser *user1 = (PFUser *)obj1;
-//		PFUser *user2 = (PFUser *)obj2;
-//		return [user1[PF_USER_FULLNAME] compare:user2[PF_USER_FULLNAME]];
-//	}];
-//	//---------------------------------------------------------------------------------------------------------------------------------------------
-//	for (PFUser *object in sorted)
-//	{
-//		NSInteger section = [[UILocalizedIndexedCollation currentCollation] sectionForObject:object collationStringSelector:@selector(fullname)];
-//		[sections[section] addObject:object];
-//	}
-//     */
-//}
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+- (void)searchUsers:(NSString *)search_lower
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+{
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"People"];
+    //request.predicate = [NSPredicate predicateWithFormat:@"string"];
+    request.fetchLimit = USERVIEW_DISPLAY_ITEM_NUM;
+    request.sortDescriptors = @[[NSSortDescriptor
+                                 sortDescriptorWithKey:@"name"
+                                 ascending:YES
+                                 selector:@selector(localizedCompare:)],
+                                ];
+    
+    request.predicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", search_lower];
+    
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"name" cacheName:nil];
+    
+    [self performFetch];
+
+}
 
 #pragma mark - User actions
 
@@ -226,64 +188,22 @@
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)actionDone
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
-	NSString *name = fieldName.text;
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	if ([name length] == 0)		{
-        [ProgressHUD showError:@"Group name must be set."];
-        return;
-    }
-	if ([selection count] == 0) {
-        [ProgressHUD showError:@"Please select some users."];
-        return;
-    }
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	User *user = [CurrentUser getCurrentUser];
-    
-	[selection addObject: user.globalID];
-    
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-    [[GroupRemoteUtil sharedUtil] createRemoteGroup:name members:selection completionHandler:^(BOOL succeeded, NSError *error) {
-        if (error == nil)
-		{
-			[self dismissViewControllerAnimated:YES completion:nil];
-		}
-		else {
-            [ProgressHUD showError:@"Network error."];
-        }
-    }];
-}
+
 
 #pragma mark - Table view data source
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//
+////-------------------------------------------------------------------------------------------------------------------------------------------------
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 ////-------------------------------------------------------------------------------------------------------------------------------------------------
 //{
-//	if ([sections[section] count] != 0)
-//	{
-//		return [[[UILocalizedIndexedCollation currentCollation] sectionTitles] objectAtIndex:section];
-//	}
-//	else return nil;
+//	return 1;
 //}
 //
 ////-------------------------------------------------------------------------------------------------------------------------------------------------
-//- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 ////-------------------------------------------------------------------------------------------------------------------------------------------------
 //{
-//	return [[UILocalizedIndexedCollation currentCollation] sectionIndexTitles];
-//}
-//
-////-------------------------------------------------------------------------------------------------------------------------------------------------
-//- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
-////-------------------------------------------------------------------------------------------------------------------------------------------------
-//{
-//	return [[UILocalizedIndexedCollation currentCollation] sectionForSectionIndexTitleAtIndex:index];
+//	return [users count];
 //}
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -294,10 +214,10 @@
 	if (cell == nil) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
 
     People * people= [self.fetchedResultsController objectAtIndexPath:indexPath];
-//    User * contact = [[UserManager sharedUtil] getUser:people.userID];
-//    if (!contact) {
-//        contact = people.contact;
-//    }
+    //    User * contact = [[UserManager sharedUtil] getUser:people.userID];
+    //    if (!contact) {
+    //        contact = people.contact;
+    //    }
     User * contact = people.contact;
     
     if ([people.name length]) {
@@ -307,9 +227,7 @@
         cell.textLabel.text = contact.fullname;
     }
     
-	
-
-	BOOL selected = [selection containsObject:contact.globalID];
+    BOOL selected = [selection containsObject:contact.globalID];
 	cell.accessoryType = selected ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
 
 	return cell;
@@ -334,6 +252,64 @@
     }
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	[self.tableView reloadData];
+    
+    //select one user and dismiss
+//	[self dismissViewControllerAnimated:YES completion:^{
+//		if (delegate != nil) {
+//            [delegate didSelectPeople:contact];
+//        }
+//	}];
+}
+
+#pragma mark - UISearchBarDelegate
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+{
+	if ([searchText length] > 0)
+	{
+		[self searchUsers:[searchText lowercaseString]];
+	}
+	else [self loadUsers];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar_
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+{
+	[searchBar_ setShowsCancelButton:YES animated:YES];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar_
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+{
+	[searchBar_ setShowsCancelButton:NO animated:YES];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar_
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+{
+	[self searchBarCancelled];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar_
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+{
+	[searchBar_ resignFirstResponder];
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+- (void)searchBarCancelled
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+{
+	searchBar.text = @"";
+	[searchBar resignFirstResponder];
+
+	[self loadUsers];
 }
 
 @end

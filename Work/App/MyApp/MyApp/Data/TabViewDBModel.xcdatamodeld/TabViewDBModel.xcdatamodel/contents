@@ -16,7 +16,7 @@
     </entity>
     <entity name="Group" representedClassName="Group" parentEntity="EntityObject" syncable="YES">
         <attribute name="createTime" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="members" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="members" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updateTime" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="groups" inverseEntity="User" syncable="YES"/>
@@ -30,6 +30,14 @@
         <attribute name="videoName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="videoURL" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="People" representedClassName="People" parentEntity="EntityObject" syncable="YES">
+        <attribute name="createTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updateTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="contact" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="peoples" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Picture" representedClassName="Picture" parentEntity="EntityObject" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -71,6 +79,7 @@
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="user" inverseEntity="Event" syncable="YES"/>
         <relationship name="friends" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Friend" inverseName="user" inverseEntity="Friend" syncable="YES"/>
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="user" inverseEntity="Group" syncable="YES"/>
+        <relationship name="peoples" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="People" inverseName="user" inverseEntity="People" syncable="YES"/>
         <relationship name="places" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Place" inverseName="user" inverseEntity="Place" syncable="YES"/>
         <relationship name="recents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recent" inverseName="user" inverseEntity="Recent" syncable="YES"/>
         <relationship name="thumbnail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Thumbnail" inverseName="user" inverseEntity="Thumbnail" syncable="YES"/>
@@ -85,13 +94,14 @@
         <element name="EntityObject" positionX="-245" positionY="-418" width="128" height="60"/>
         <element name="Event" positionX="45" positionY="-180" width="128" height="58"/>
         <element name="Friend" positionX="-117" positionY="-99" width="128" height="73"/>
-        <element name="Group" positionX="-252" positionY="72" width="128" height="118"/>
+        <element name="Group" positionX="-252" positionY="72" width="128" height="120"/>
+        <element name="Message" positionX="-369" positionY="-270" width="128" height="163"/>
+        <element name="Picture" positionX="-360" positionY="-261" width="128" height="73"/>
         <element name="Place" positionX="-90" positionY="72" width="128" height="58"/>
         <element name="Recent" positionX="-567" positionY="-358" width="128" height="178"/>
         <element name="Thumbnail" positionX="-351" positionY="-252" width="128" height="103"/>
-        <element name="User" positionX="-344" positionY="-144" width="128" height="315"/>
-        <element name="Message" positionX="-369" positionY="-270" width="128" height="163"/>
-        <element name="Picture" positionX="-360" positionY="-261" width="128" height="73"/>
+        <element name="User" positionX="-344" positionY="-144" width="128" height="328"/>
         <element name="Video" positionX="-351" positionY="-252" width="128" height="73"/>
+        <element name="People" positionX="-369" positionY="-270" width="128" height="133"/>
     </elements>
 </model>

@@ -11,6 +11,5 @@
 #import "CoreDataTableViewController.h"
 
 @interface TabTableViewController : CoreDataTableViewController
-@property (nonatomic,strong) NSManagedObjectContext *managedObjectContext;
 
 @end

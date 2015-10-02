@@ -41,4 +41,6 @@
 - (UserContext *) getContext: (NSString *) userID ;
 
 - (Thumbnail *) getThumbnail: (NSString *) userID ;
+
+- (void) loadUsers: (NSArray *) users;
 @end

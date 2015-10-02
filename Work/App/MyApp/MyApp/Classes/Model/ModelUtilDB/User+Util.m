@@ -126,6 +126,21 @@
     return userEntity;
 }
 
++ (NSArray *) convertFromRemoteUserArray:(NSArray *)users inManagedObjectContext:(NSManagedObjectContext *) context {
+    NSAssert(!users, @"input is nil;");
+    [self convertFromPFUserArray:users inManagedObjectContext:context];
+}
+
++ (NSArray *) convertFromPFUserArray:(NSArray *)users inManagedObjectContext:(NSManagedObjectContext *) context {
+    NSMutableArray * userArray = [[NSMutableArray alloc] init];
+    
+    for (PFUser * userPF in users) {
+        User * user = [User convertFromRemoteUser:userPF inManagedObjectContext:context];
+        [userArray addObject:user];
+    }
+    
+    return userArray;
+}
 
 - (PFUser *) convertToPFUser {
     PFUser * user = [PFUser user];
