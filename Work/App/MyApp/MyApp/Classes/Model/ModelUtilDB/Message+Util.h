@@ -17,9 +17,9 @@
 
 + (Message *) messageEntityWithPFObject:(PFObject *)object inManagedObjectContext: (NSManagedObjectContext *)context;
 
-+ (Message *) messageEntityWithChatID:(NSString *)chatID inManagedObjectContext: (NSManagedObjectContext *)context;
++ (Message *) messageEntityWithGlobalID:(NSString *)globalID inManagedObjectContext: (NSManagedObjectContext *)context;
 
-- (void) setWithPFObject:(PFObject *)object;
+- (void) setWithPFObject:(PFObject *)object inManagedObjectContext: (NSManagedObjectContext *)context;
 
 + (BOOL) existsMessageEntity:(NSString *)chatID createdTime:(NSDate *)date inManagedObjectContext: (NSManagedObjectContext *)context ;
 

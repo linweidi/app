@@ -20,16 +20,6 @@
 #import "UserManager.h"
 
 
-typedef void (^REMOTE_BOOL_BLOCK)(BOOL succeeded, NSError * error);
-
-typedef void (^REMOTE_OBJECT_BLOCK)(BOOL succeeded, NSError * error, PFObject * object);
-
-typedef void (^REMOTE_ARRAY_BLOCK)(NSArray * objects, NSError * error);
-
-typedef void (^REMOTE_DATA_BLOCK)(NSData * data, NSError * error);
-
-typedef PFObject RemoteObject;
-
-typedef PFUser RemoteUser;
+#include "RemoteHeader.h"
 
 #endif

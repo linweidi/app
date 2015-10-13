@@ -27,7 +27,7 @@
     recent = [NSEntityDescription insertNewObjectForEntityForName:PF_RECENT_CLASS_NAME
                                            inManagedObjectContext:context];
     //set the recent values
-    [Recent setRecent:recent withPFObject:object];
+    [Recent setRecent:recent withPFObject:object inManagedObjectContext:context];
     
     
     return recent;
@@ -54,11 +54,11 @@
             //create a new one
             recent = [NSEntityDescription insertNewObjectForEntityForName:PF_RECENT_CLASS_NAME inManagedObjectContext:context];
             //set the recent values
-            [Recent setRecent:recent withPFObject:object];
+            [Recent setRecent:recent withPFObject:object inManagedObjectContext:context];
         }
         else {
             recent = [matches lastObject];
-            [Recent setRecent:recent withPFObject:object];
+            [Recent setRecent:recent withPFObject:object inManagedObjectContext:context];
         }
         
         

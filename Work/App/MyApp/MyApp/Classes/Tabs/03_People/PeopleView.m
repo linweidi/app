@@ -33,6 +33,8 @@
 
 #import "UserManager.h"
 
+#import "RecentRemoteUtil.h"
+
 #import "PeopleView.h"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -76,7 +78,7 @@
 	self.tableView.tableFooterView = [[UIView alloc] init];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	//users = [[NSMutableArray alloc] init];
-	userIds = [[NSMutableArray alloc] init];
+	self.userIds = [[NSMutableArray alloc] init];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -465,7 +467,7 @@
     User *user2 = people.contact;
     //userstemp[indexPath.row];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	NSString *groupId = StartPrivateChat(user1, user2);
+	NSString *groupId = StartPrivateChat(user1, user2, self.managedObjectContext);
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	ChatView *chatView = [[ChatView alloc] initWith:groupId];
 	chatView.hidesBottomBarWhenPushed = YES;

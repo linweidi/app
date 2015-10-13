@@ -11,6 +11,8 @@
 
 #import <Parse/Parse.h>
 #import "AppHeader.h"
+#import "Recent+Util.h"
+
 @class User;
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 NSString*		StartPrivateChat		(User *user1, User *user2, NSManagedObjectContext * context);

@@ -11,12 +11,13 @@
 #import "AppDelegate.h"
 
 typedef enum {
-    MenuItemOurItem = 0,
+    //Try
+    MenuItemTabBar = 0,
+    MenuItemOurItem ,
     MenuItemReservation,
     MenuItemFindUs,
     MenuItemFeedback,
-    //Try
-    MenuItemTabBar
+
 }MenuItem;
 
 @interface LeftMenuViewController ()

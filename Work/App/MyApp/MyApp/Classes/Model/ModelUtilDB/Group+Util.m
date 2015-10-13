@@ -7,6 +7,7 @@
 //
 
 #import "AppHeader.h"
+#import "User+Util.h"
 #import "Group+Util.h"
 
 @implementation Group (Util)

@@ -6,7 +6,11 @@
 //  Copyright (c) 2015 AppsFoundation. All rights reserved.
 //
 #import "AppHeader.h"
+#import "User+Util.h"
+
+#import "CurrentUser+Util.h"
 #import "People+Util.h"
+
 
 @implementation People (Util)
 + (People *)createPeopleEntityWithPFObject: (PFObject *)object

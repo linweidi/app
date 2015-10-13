@@ -37,6 +37,6 @@
 #pragma method -- other utility methods
 + (Recent *) latestRecentEntity:(NSManagedObjectContext *)context;
 
-+ (void) setRecent:(Recent *)recent withPFObject:(PFObject *)object;
++ (void) setRecent:(Recent *)recent withPFObject:(PFObject *)object inManagedObjectContext: (NSManagedObjectContext *)context;
 
 @end

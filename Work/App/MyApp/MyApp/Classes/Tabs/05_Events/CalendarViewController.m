@@ -48,7 +48,7 @@
     NSMutableArray * rightBarButtons = [[NSMutableArray alloc] init];
     
     // add compose button
-    [rightBarButtons addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(actionNew)]];
+//    [rightBarButtons addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(actionNew)]];
     // add compose button
     [rightBarButtons addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(didChangeModeTouch)]];
     // add today button
@@ -74,13 +74,13 @@
 - (void)viewDidAppear:(BOOL)animated
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	[super viewDidAppear:animated];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	if ([PFUser currentUser] != nil)
-	{
-		[self loadGroups];
-	}
-	else LoginUser(self);
+//	[super viewDidAppear:animated];
+//	//---------------------------------------------------------------------------------------------------------------------------------------------
+//	if ([PFUser currentUser] != nil)
+//	{
+//		[self loadGroups];
+//	}
+//	else LoginUser(self);
 }
 
 #pragma mark -- private method

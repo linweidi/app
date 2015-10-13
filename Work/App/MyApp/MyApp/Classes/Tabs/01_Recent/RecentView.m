@@ -27,6 +27,10 @@
 #import "SelectMultipleView.h"
 #import "AddressBookView.h"
 #import "FacebookFriendsView.h"
+
+#import "CurrentUser+Util.h"
+#import "User+Util.h"
+
 #import "NavigationController.h"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -278,7 +282,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	CurrentUser *user1 = [CurrentUser getCurrentUser];
-	NSString *groupId = StartPrivateChat(user1, user2);
+	NSString *groupId = StartPrivateChat(user1, user2, self.managedObjectContext);
 	[self actionChat:groupId];
 }
 
@@ -288,7 +292,7 @@
 - (void)didSelectMultipleUsers:(NSMutableArray *)users
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	NSString *groupId = StartMultipleChat(users);
+	NSString *groupId = StartMultipleChat(users,  self.managedObjectContext);
 	[self actionChat:groupId];
 }
 
@@ -299,7 +303,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	User *user1 = [CurrentUser getCurrentUser];
-	NSString *groupId = StartPrivateChat(user1, user2);
+	NSString *groupId = StartPrivateChat(user1, user2,  self.managedObjectContext);
 	[self actionChat:groupId];
 }
 
@@ -310,7 +314,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	User *user1 = [CurrentUser getCurrentUser];
-	NSString *groupId = StartPrivateChat(user1, user2);
+	NSString *groupId = StartPrivateChat(user1, user2,  self.managedObjectContext);
 	[self actionChat:groupId];
 }
 

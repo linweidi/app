@@ -6,6 +6,7 @@
 //  Copyright © 2015 AppsFoundation. All rights reserved.
 //
 #import <Parse/Parse.h>
+#import "RemoteHeader.h"
 #import "Group.h"
 
 @interface Group (Util) 

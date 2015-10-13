@@ -19,8 +19,13 @@
 
 #import "ChatView.h"
 
+#import "User+Util.h"
+#import "CurrentUser+Util.h"
+
 #import "Group+Util.h"
 #import "GroupRemoteUtil.h"
+
+#import "RecentRemoteUtil.h"
 
 #import "GroupSettingsView.h"
 
@@ -136,7 +141,7 @@
 {
 	NSString *groupId = self.group.globalID;
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	CreateRecentItem([CurrentUser getCurrentUser], groupId, self.group.members, self.group.name);
+	CreateRecentItem([CurrentUser getCurrentUser], groupId, self.group.members, self.group.name, self.managedObjectContext);
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	ChatView *chatView = [[ChatView alloc] initWith:groupId];
 #warning move this new view controller to recent tab

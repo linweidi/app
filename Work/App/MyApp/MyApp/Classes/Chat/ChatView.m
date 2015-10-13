@@ -33,9 +33,11 @@
 #import "UserRemoteUtil.h"
 
 #import "User+Util.h"
+#import "Thumbnail+Util.h"
 
 #import "ChatView.h"
 #import "ProfileView.h"
+#import "RecentRemoteUtil.h"
 
 #import "RemoteFile.h"
 
@@ -111,7 +113,7 @@
 {
 	[super viewWillDisappear:animated];
 
-	ClearRecentCounter(groupId);
+	ClearRecentCounter(groupId, self.managedObjectContext);
 	[timer invalidate];
 }
 
@@ -162,7 +164,7 @@
                     
                     
                     Message * messageData = [Message createMessageEntity:object inManagedObjectContext:self.managedObjectContext];
-                    [messageData setWithPFObject:object];
+                    [messageData setWithPFObject:object inManagedObjectContext:self.managedObjectContext];
                     
 					JSQMessage *message = [self addMessage:messageData];
 					if ([self incoming:message]) incoming = YES;
@@ -314,7 +316,7 @@
     }];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	SendPushNotification(groupId, text);
-	UpdateRecentAndCounter(groupId, 1, text);
+	UpdateRecentAndCounter(groupId, 1, text, self.managedObjectContext);
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	[self finishSendingMessage];
 }

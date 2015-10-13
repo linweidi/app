@@ -13,10 +13,10 @@
 #import "AppHeader.h"
 #import "PFUser+Util.h"
 #import "ProgressHUD.h"
-
+#import "CurrentUser+Util.h"
 #import "DataModelHeader.h"
 
-
+#import "User+Util.h"
 #import "RecentView.h"
 #import "RecentRemoteUtil.h"
 

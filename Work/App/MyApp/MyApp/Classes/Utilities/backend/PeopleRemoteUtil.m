@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 AppsFoundation. All rights reserved.
 //
 #import "People+Util.h"
-
+#import "User+Util.h"
 #import "PeopleRemoteUtil.h"
-
+#import "CurrentUser+Util.h"
 #import <Parse/Parse.h>
 
 #import "AppConstant.h"

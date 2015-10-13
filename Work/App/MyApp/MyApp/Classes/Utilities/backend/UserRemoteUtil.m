@@ -5,10 +5,12 @@
 //  Created by Linwei Ding on 9/30/15.
 //  Copyright (c) 2015 AppsFoundation. All rights reserved.
 //
-#import "AppHeader.h"
-#import "Foundation/Foundation.h"
 
+#import <Foundation/Foundation.h>
+#import <Parse/Parse.h>
 //#import "NavigationController.h"
+#import "RemoteHeader.h"
+#import "AppConstant.h"
 #import "UserRemoteUtil.h"
 
 @implementation UserRemoteUtil

@@ -12,6 +12,7 @@
 #import <Parse/Parse.h>
 #import "ProgressHUD.h"
 #import "PFUser+Util.h"
+#import "CurrentUser+Util.h"
 
 #import "AppConstant.h"
 #import "common.h"

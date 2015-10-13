@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 AppsFoundation. All rights reserved.
 //
 
+#import "RemoteHeader.h"
 #import "People.h"
 
 @interface People (Util)

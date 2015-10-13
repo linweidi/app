@@ -12,7 +12,7 @@
 @protocol SelectMultiplePeopleDelegate
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 
-- (void)didSelectMultiplePeople:(User *)user;
+- (void)didSelectMultipleUsers:(NSMutableArray *)users;
 
 @end
 

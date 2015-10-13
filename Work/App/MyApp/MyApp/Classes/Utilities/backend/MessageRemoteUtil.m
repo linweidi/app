@@ -53,6 +53,7 @@
 	if (picture != nil) object[PF_MESSAGE_PICTURE] = picture.file;
 	[object saveInBackgroundWithBlock:block];
     
+    return object;
 }
 
 

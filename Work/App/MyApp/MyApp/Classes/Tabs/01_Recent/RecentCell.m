@@ -13,7 +13,9 @@
 #import <ParseUI/ParseUI.h>
 
 #import "DataModelHeader.h"
-
+#import "User+Util.h"
+#import "Recent+Util.h"
+#import "Thumbnail+Util.h"
 #import "converter.h"
 
 #import "RecentCell.h"

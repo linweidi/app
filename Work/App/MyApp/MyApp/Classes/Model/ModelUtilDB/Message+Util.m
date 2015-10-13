@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 AppsFoundation. All rights reserved.
 //
 #import "AppHeader.h"
+#import "User+Util.h"
+#import "CurrentUser+Util.h"
 #import "Message+Util.h"
 
 @implementation Message (Util)
@@ -65,7 +67,7 @@
     //create a new one
     message = [NSEntityDescription insertNewObjectForEntityForName:PF_MESSAGE_CLASS_NAME inManagedObjectContext:context];
 
-    [message setWithPFObject:object];
+    [message setWithPFObject:object inManagedObjectContext:context];
     
     return message;
 }
@@ -97,11 +99,11 @@
     
     Message * message = nil;
     
-    message = [Message messageEntityWithChatID:object.objectId inManagedObjectContext:context];
+    message = [Message messageEntityWithGlobalID:object.objectId inManagedObjectContext:context];
     
     NSAssert(message, @"returned message is nil");
     
-    [message setWithPFObject:object];
+    [message setWithPFObject:object inManagedObjectContext:context];
     
     return message;
 }
@@ -137,7 +139,7 @@
 }
 
 - (void) setWithRemoteObject:(RemoteObject *)object inManagedObjectContext: (NSManagedObjectContext *)context{
-    [self setWithPFObject:object];
+    [self setWithPFObject:object inManagedObjectContext:context];
 }
 
 - (void) setWithPFObject:(PFObject *)object inManagedObjectContext: (NSManagedObjectContext *)context{

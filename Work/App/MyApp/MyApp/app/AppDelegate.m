@@ -96,7 +96,8 @@ typedef enum {
     NavigationController *navController4 = [[NavigationController alloc] initWithRootViewController:self.settingsView];
     
     self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:navController0, navController1, navController2, navController3, navController4, nil];
+    
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects: navController0, navController1, navController2, navController3, navController4, nil];
     self.tabBarController.tabBar.translucent = NO;
     self.tabBarController.selectedIndex = DEFAULT_TAB;
     

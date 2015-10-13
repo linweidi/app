@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class User;
+@class Thumbnail;
 
 @interface UserContext : NSObject
 

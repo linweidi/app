@@ -7,7 +7,10 @@
 //
 
 #import <Parse/Parse.h>
+#import <Foundation/Foundation.h>
+#import "RemoteHeader.h"
 #import "User.h"
+
 
 @interface User (Util)
 

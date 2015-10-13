@@ -6,7 +6,10 @@
 //  Copyright (c) 2015 AppsFoundation. All rights reserved.
 //
 
+
 #import <Foundation/Foundation.h>
+//#import "AppHeader.h"
+#import "RemoteHeader.h"
 
 @interface RemoteFile : NSObject
 

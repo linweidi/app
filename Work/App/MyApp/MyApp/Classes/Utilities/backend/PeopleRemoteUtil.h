@@ -7,6 +7,7 @@
 //
 #import <Parse/Parse.h>
 #import "AppHeader.h"
+#import "People+Util.h"
 #import <Foundation/Foundation.h>
 
 void			PeopleSave				(PFUser *user1, PFUser *user2);

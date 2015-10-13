@@ -15,6 +15,7 @@
 #import "AppHeader.h"
 
 #import "Thumbnail+Util.h"
+
 #import "User+Util.h"
 
 @implementation User (Util)
@@ -96,7 +97,7 @@
     
     PFFile * thumbnailPicture = user[PF_USER_THUMBNAIL];
     //self.thumbnail = thumbnailPicture.name;
-    Thumbnail * thumb =[Thumbnail thumbnailEntityWithPFUser:thumbnailPicture withUser:self inManagedObjectContext:context ];
+    Thumbnail * thumb =[Thumbnail thumbnailEntityWithPFUser:thumbnailPicture withUserID:user.objectId inManagedObjectContext:context ];
     self.thumbnail = thumb;
     //if create, add user to User Manager
     [[UserManager sharedUtil] addUser:self];
@@ -128,7 +129,7 @@
 
 + (NSArray *) convertFromRemoteUserArray:(NSArray *)users inManagedObjectContext:(NSManagedObjectContext *) context {
     NSAssert(!users, @"input is nil;");
-    [self convertFromPFUserArray:users inManagedObjectContext:context];
+    return [self convertFromPFUserArray:users inManagedObjectContext:context];
 }
 
 + (NSArray *) convertFromPFUserArray:(NSArray *)users inManagedObjectContext:(NSManagedObjectContext *) context {
