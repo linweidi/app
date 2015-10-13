@@ -83,18 +83,20 @@ typedef enum {
     //---------------------------------------------------------------------------------------------------------------------------------------------
     //self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    self.calendarView = [[CalendarViewController alloc] init];
     self.recentView = [[RecentView alloc] init];
     self.groupsView = [[GroupsView alloc] init];
     self.peopleView = [[PeopleView alloc] init];
     self.settingsView = [[SettingsView alloc] init];
     
+    NavigationController *navController0 = [[NavigationController alloc] initWithRootViewController:self.calendarView];
     NavigationController *navController1 = [[NavigationController alloc] initWithRootViewController:self.recentView];
     NavigationController *navController2 = [[NavigationController alloc] initWithRootViewController:self.groupsView];
     NavigationController *navController3 = [[NavigationController alloc] initWithRootViewController:self.peopleView];
     NavigationController *navController4 = [[NavigationController alloc] initWithRootViewController:self.settingsView];
     
     self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:navController1, navController2, navController3, navController4, nil];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:navController0, navController1, navController2, navController3, navController4, nil];
     self.tabBarController.tabBar.translucent = NO;
     self.tabBarController.selectedIndex = DEFAULT_TAB;
     

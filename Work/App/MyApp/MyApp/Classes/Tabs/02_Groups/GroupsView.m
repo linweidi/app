@@ -93,7 +93,7 @@
         // init fetch request
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Group"];
         request.predicate = nil;
-        request.fetchLimit = GROUPVIEW_DISPLAY_ITEM_NUM;
+        request.fetchLimit = GROUPVIEW_ITEM_NUM;
         request.sortDescriptors = @[[NSSortDescriptor
                                      sortDescriptorWithKey:@"updateTime"
                                      ascending:NO
