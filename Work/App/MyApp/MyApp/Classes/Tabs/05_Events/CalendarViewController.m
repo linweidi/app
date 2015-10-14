@@ -20,6 +20,7 @@
     NSMutableArray *_datesSelected;
 }
 
+
 //@property (strong, nonatomic)     NSMutableArray * eventDates;    //of NSDate
 @end
 
@@ -29,7 +30,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if(!self){
-		[self.tabBarItem setImage:[UIImage imageNamed:@"tab_groups"]];
+		[self.tabBarItem setImage:[UIImage imageNamed:@"tab_recents"]];
 		self.tabBarItem.title = @"Events";
     }
     
@@ -41,6 +42,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"Events";
     
     _calendarManager = [JTCalendarManager new];
     _calendarManager.delegate = self;
@@ -74,13 +76,13 @@
 - (void)viewDidAppear:(BOOL)animated
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-//	[super viewDidAppear:animated];
-//	//---------------------------------------------------------------------------------------------------------------------------------------------
-//	if ([PFUser currentUser] != nil)
-//	{
-//		[self loadGroups];
-//	}
-//	else LoginUser(self);
+	[super viewDidAppear:animated];
+	//---------------------------------------------------------------------------------------------------------------------------------------------
+	if ([PFUser currentUser] != nil)
+	{
+		//[self loadGroups];
+	}
+	//else LoginUser(self);
 }
 
 #pragma mark -- private method
@@ -284,6 +286,30 @@
 //    
 //    return view;
 //}
+
+#pragma mark - Table view data source
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+{
+    
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecentCell" forIndexPath:indexPath];
+//    
+//    Recent * recent = [self.fetchedResultsController objectAtIndexPath:indexPath];
+//    [cell bindData:recent];
+    
+    
+    return nil;
+    
+    //    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Region Cell"];
+    //
+    //    Region *region = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    //    cell.textLabel.text = region.name;
+    //    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d photographers", [[region popularity] intValue]];
+    //    
+    //    return cell;
+}
 
 #pragma mark - Date selection
 

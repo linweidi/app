@@ -87,7 +87,7 @@
 	{
 		[self loadRecents];
 	}
-	else LoginUser(self);
+	//else LoginUser(self);
 }
 
 
