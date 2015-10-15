@@ -23,6 +23,7 @@
 #import "CalendarViewController.h"
 #import "BasicViewController.h"
 #import "NavigationController.h"
+#import "TestViewController.h"
 
 #import "Appirater.h"
 #import "ConfigurationManager.h"
@@ -77,8 +78,8 @@ typedef enum {
     
     //apply all theme
     //configuration
-    [ThemeManager applyNavigationBarTheme];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+    //[ThemeManager applyNavigationBarTheme];
+    //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     
 	//---------------------------------------------------------------------------------------------------------------------------------------------
     [PFImageView class];
@@ -93,7 +94,8 @@ typedef enum {
 - (void)createTabViewController {
     //self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    self.calendarView = [[BasicViewController alloc] init];
+    //self.calendarView = [[TestViewController alloc] init];
+    self.calendarView = [[CalendarViewController alloc] init];
     self.recentView = [[RecentView alloc] init];
     self.groupsView = [[GroupsView alloc] init];
     self.peopleView = [[PeopleView alloc] init];
@@ -107,7 +109,7 @@ typedef enum {
     
     self.tabBarController = [[UITabBarController alloc] init];
     
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects: navController1, navController2, navController3, navController4, nil];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:navController0, navController1, navController2, navController3, navController4, nil];
     self.tabBarController.tabBar.translucent = NO;
     self.tabBarController.selectedIndex = DEFAULT_TAB;
     

@@ -13,14 +13,17 @@
 #import "PeopleView.h"
 #import "SettingsView.h"
 #import "CalendarViewController.h"
+#import "TestViewController.h"
 #import "BasicViewController.h"
+
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UITabBarController *tabBarController;
 
-@property (strong, nonatomic) BasicViewController *calendarView;
+//@property (strong, nonatomic) TestViewController *calendarView;
+@property (strong, nonatomic) CalendarViewController *calendarView;
 @property (strong, nonatomic) RecentView *recentView;
 @property (strong, nonatomic) GroupsView *groupsView;
 @property (strong, nonatomic) PeopleView *peopleView;

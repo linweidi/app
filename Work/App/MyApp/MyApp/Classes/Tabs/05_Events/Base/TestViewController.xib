@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TestViewController">
+            <connections>
+                <outlet property="calendarContentView" destination="4XQ-lA-WvV" id="ARf-P9-8Im"/>
+                <outlet property="calendarContentViewHeight" destination="BVU-nn-572" id="IU6-7F-s1d"/>
+                <outlet property="calendarMenuView" destination="9JF-oI-TN0" id="6se-UE-XzT"/>
+                <outlet property="view" destination="Ut9-zc-mXB" id="9AR-US-Es9"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Ut9-zc-mXB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9JF-oI-TN0" customClass="JTCalendarMenuView">
+                    <rect key="frame" x="0.0" y="20" width="600" height="50"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="pxL-Ob-ZUJ"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4XQ-lA-WvV" customClass="JTHorizontalCalendarView">
+                    <rect key="frame" x="0.0" y="70" width="600" height="300"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="300" id="BVU-nn-572"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HPI-Kt-C8B">
+                    <rect key="frame" x="30" y="400" width="46" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="46" id="KMX-Dr-k3m"/>
+                        <constraint firstAttribute="height" constant="30" id="OoD-7P-7Ga"/>
+                    </constraints>
+                    <state key="normal" title="Today">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LAa-76-7Gy">
+                    <rect key="frame" x="448" y="400" width="122" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="4qV-zY-FjD"/>
+                        <constraint firstAttribute="width" constant="122" id="rIk-rJ-DQX"/>
+                    </constraints>
+                    <state key="normal" title="Change mode">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="LAa-76-7Gy" firstAttribute="top" secondItem="4XQ-lA-WvV" secondAttribute="bottom" constant="30" id="1oW-dP-ACf"/>
+                <constraint firstItem="HPI-Kt-C8B" firstAttribute="leading" secondItem="Ut9-zc-mXB" secondAttribute="leading" constant="30" id="GZy-qy-xcV"/>
+                <constraint firstAttribute="trailing" secondItem="9JF-oI-TN0" secondAttribute="trailing" id="Sq2-Fy-OCw"/>
+                <constraint firstAttribute="trailing" secondItem="LAa-76-7Gy" secondAttribute="trailing" constant="30" id="VRc-Cp-GnA"/>
+                <constraint firstItem="HPI-Kt-C8B" firstAttribute="top" secondItem="4XQ-lA-WvV" secondAttribute="bottom" constant="30" id="XrX-FE-fiL"/>
+                <constraint firstItem="4XQ-lA-WvV" firstAttribute="top" secondItem="9JF-oI-TN0" secondAttribute="bottom" id="bZc-na-pcY"/>
+                <constraint firstItem="9JF-oI-TN0" firstAttribute="leading" secondItem="Ut9-zc-mXB" secondAttribute="leading" id="fm4-n1-Cmc"/>
+                <constraint firstAttribute="trailing" secondItem="4XQ-lA-WvV" secondAttribute="trailing" id="gcL-Sy-azo"/>
+                <constraint firstItem="4XQ-lA-WvV" firstAttribute="leading" secondItem="Ut9-zc-mXB" secondAttribute="leading" id="tma-Fn-1BU"/>
+                <constraint firstItem="9JF-oI-TN0" firstAttribute="top" secondItem="Ut9-zc-mXB" secondAttribute="top" constant="20" id="w0K-ir-JhK"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+</document>

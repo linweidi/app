@@ -6,8 +6,9 @@
 //  Copyright (c) 2015 AppsFoundation. All rights reserved.
 //
 #import <Parse/Parse.h>
-
+#import "AppHeader.h"
 #import "CurrentUser.h"
+
 
 @interface CurrentUser (Util)
 

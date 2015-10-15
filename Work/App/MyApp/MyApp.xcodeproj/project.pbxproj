@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		282A276D1BCF68B90012332E /* DocumentHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 282A276C1BCF68B90012332E /* DocumentHelper.m */; settings = {ASSET_TAGS = (); }; };
+		282A27701BCF692F0012332E /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 282A276F1BCF692F0012332E /* NavigationController.m */; settings = {ASSET_TAGS = (); }; };
+		282A27741BCF750D0012332E /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 282A27721BCF750D0012332E /* TestViewController.m */; settings = {ASSET_TAGS = (); }; };
+		282A27751BCF750D0012332E /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 282A27731BCF750D0012332E /* TestViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		282A27781BCF7E290012332E /* CoreDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 282A27771BCF7E290012332E /* CoreDataViewController.m */; settings = {ASSET_TAGS = (); }; };
+		282A277B1BCF7EF30012332E /* BaseCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 282A277A1BCF7EF30012332E /* BaseCalendarViewController.m */; settings = {ASSET_TAGS = (); }; };
 		28EECB2C1BCCD3890001654E /* JTCalendarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E550EBB31BCC6DE800C37FA1 /* JTCalendarManager.m */; };
 		28EECB2E1BCCD3890001654E /* JTCalendarSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = E550EBB51BCC6DE800C37FA1 /* JTCalendarSettings.m */; };
 		28EECB301BCCD3890001654E /* JTDateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E550EBB71BCC6DE800C37FA1 /* JTDateHelper.m */; };
@@ -85,7 +91,6 @@
 		28EECB791BCCD3E90001654E /* MSSlidingPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D86991BB1CC1700470170 /* MSSlidingPanelController.m */; };
 		28EECB7A1BCCD3E90001654E /* MSViewControllerSlidingPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D869B1BB1CC1700470170 /* MSViewControllerSlidingPanel.m */; };
 		28EECB7B1BCCD3E90001654E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D869F1BB1CC1700470170 /* AppDelegate.m */; };
-		28EECB7C1BCCD3E90001654E /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D86A61BB1CC1700470170 /* NavigationController.m */; };
 		28EECB7D1BCCD3E90001654E /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D89601BB1F41500470170 /* CoreDataTableViewController.m */; };
 		28EECB7E1BCCD3E90001654E /* FeedbacksManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D86B51BB1CC1700470170 /* FeedbacksManager.m */; };
 		28EECB7F1BCCD3E90001654E /* KeyboardListener.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D86B71BB1CC1700470170 /* KeyboardListener.m */; };
@@ -452,7 +457,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		282E4AF81BB25B7A00743E04 /* MyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = MyApp.app; path = "/Users/linweiding/Documents/workspace/app/Work/App/MyApp/build/Debug-iphoneos/MyApp.app"; sourceTree = "<absolute>"; };
+		282A276A1BCF66FC0012332E /* MyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		282A276B1BCF68B90012332E /* DocumentHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentHelper.h; sourceTree = "<group>"; };
+		282A276C1BCF68B90012332E /* DocumentHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentHelper.m; sourceTree = "<group>"; };
+		282A276E1BCF692F0012332E /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
+		282A276F1BCF692F0012332E /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
+		282A27711BCF750D0012332E /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		282A27721BCF750D0012332E /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		282A27731BCF750D0012332E /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
+		282A27761BCF7E290012332E /* CoreDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataViewController.h; sourceTree = "<group>"; };
+		282A27771BCF7E290012332E /* CoreDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataViewController.m; sourceTree = "<group>"; };
+		282A27791BCF7EF30012332E /* BaseCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCalendarViewController.h; sourceTree = "<group>"; };
+		282A277A1BCF7EF30012332E /* BaseCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCalendarViewController.m; sourceTree = "<group>"; };
 		282E4B3C1BB3AABF00743E04 /* Place+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Place+Util.h"; sourceTree = "<group>"; };
 		282E4B3D1BB3AABF00743E04 /* Place+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Place+Util.m"; sourceTree = "<group>"; };
 		282E4B3F1BB3AAD400743E04 /* Alert+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Alert+Util.h"; sourceTree = "<group>"; };
@@ -791,8 +807,6 @@
 		E51D869E1BB1CC1700470170 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E51D869F1BB1CC1700470170 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E51D86A21BB1CC1700470170 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
-		E51D86A51BB1CC1700470170 /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
-		E51D86A61BB1CC1700470170 /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		E51D86A91BB1CC1700470170 /* ProfileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileView.h; sourceTree = "<group>"; };
 		E51D86AA1BB1CC1700470170 /* ProfileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileView.m; sourceTree = "<group>"; };
 		E51D86AB1BB1CC1700470170 /* ProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
@@ -1189,6 +1203,7 @@
 				E51D874E1BB1CC1700470170 /* Info.plist */,
 				E51D874F1BB1CC1700470170 /* main.m */,
 				E51D87501BB1CC1700470170 /* Resources */,
+				282A276A1BCF66FC0012332E /* MyApp.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1721,7 +1736,6 @@
 		E51D86A31BB1CC1700470170 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				E51D86A41BB1CC1700470170 /* Application */,
 				E51D86B31BB1CC1700470170 /* Common */,
 				E51D86BA1BB1CC1700470170 /* Configuration */,
 				E51D86C91BB1CC1700470170 /* SlidingPanel */,
@@ -1735,15 +1749,6 @@
 			);
 			name = Classes;
 			path = MyApp/Classes;
-			sourceTree = "<group>";
-		};
-		E51D86A41BB1CC1700470170 /* Application */ = {
-			isa = PBXGroup;
-			children = (
-				E51D86A51BB1CC1700470170 /* NavigationController.h */,
-				E51D86A61BB1CC1700470170 /* NavigationController.m */,
-			);
-			path = Application;
 			sourceTree = "<group>";
 		};
 		E51D86A71BB1CC1700470170 /* Chat */ = {
@@ -1784,11 +1789,17 @@
 				E51D895E1BB1F41500470170 /* CoreDataTableViewController */,
 				E51D86B41BB1CC1700470170 /* FeedbacksManager.h */,
 				E51D86B51BB1CC1700470170 /* FeedbacksManager.m */,
+				282A276E1BCF692F0012332E /* NavigationController.h */,
+				282A276F1BCF692F0012332E /* NavigationController.m */,
+				282A276B1BCF68B90012332E /* DocumentHelper.h */,
+				282A276C1BCF68B90012332E /* DocumentHelper.m */,
 				E51D86B61BB1CC1700470170 /* KeyboardListener.h */,
 				E51D86B71BB1CC1700470170 /* KeyboardListener.m */,
 				E51D86B81BB1CC1700470170 /* MenuItemsManager.h */,
 				E51D86B91BB1CC1700470170 /* MenuItemsManager.m */,
 				28EECB281BCCAEC90001654E /* RemoteHeader.h */,
+				282A27791BCF7EF30012332E /* BaseCalendarViewController.h */,
+				282A277A1BCF7EF30012332E /* BaseCalendarViewController.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -2336,6 +2347,8 @@
 			children = (
 				E51D895F1BB1F41500470170 /* CoreDataTableViewController.h */,
 				E51D89601BB1F41500470170 /* CoreDataTableViewController.m */,
+				282A27761BCF7E290012332E /* CoreDataViewController.h */,
+				282A27771BCF7E290012332E /* CoreDataViewController.m */,
 			);
 			path = CoreDataTableViewController;
 			sourceTree = "<group>";
@@ -2516,6 +2529,9 @@
 				E550EC1A1BCC7EF200C37FA1 /* VerticalViewController.h */,
 				E550EC1B1BCC7EF200C37FA1 /* VerticalViewController.m */,
 				E550EC1C1BCC7EF200C37FA1 /* VerticalViewController.xib */,
+				282A27711BCF750D0012332E /* TestViewController.h */,
+				282A27721BCF750D0012332E /* TestViewController.m */,
+				282A27731BCF750D0012332E /* TestViewController.xib */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -2567,7 +2583,7 @@
 			);
 			name = MyApp;
 			productName = Restaurant;
-			productReference = 282E4AF81BB25B7A00743E04 /* MyApp.app */;
+			productReference = 282A276A1BCF66FC0012332E /* MyApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -2650,6 +2666,7 @@
 				E51D88421BB1CC1800470170 /* functions_72.html in Resources */,
 				E51D89411BB1CC1800470170 /* reservation@3x.png in Resources */,
 				E51D87EA1BB1CC1800470170 /* files.html in Resources */,
+				282A27751BCF750D0012332E /* TestViewController.xib in Resources */,
 				E51D88341BB1CC1800470170 /* functions_64.html in Resources */,
 				E51D88361BB1CC1800470170 /* functions_65.html in Resources */,
 				E51D893A1BB1CC1800470170 /* photo_item3@2x.png in Resources */,
@@ -2889,6 +2906,7 @@
 				28EECB481BCCD3E90001654E /* UIProgressView+AFNetworking.m in Sources */,
 				28EECB491BCCD3E90001654E /* UIRefreshControl+AFNetworking.m in Sources */,
 				28EECB4A1BCCD3E90001654E /* UIWebView+AFNetworking.m in Sources */,
+				282A276D1BCF68B90012332E /* DocumentHelper.m in Sources */,
 				28EECB4B1BCCD3E90001654E /* Appirater.m in Sources */,
 				28EECB4C1BCCD3E90001654E /* IDMPhoto.m in Sources */,
 				28EECB4D1BCCD3E90001654E /* IDMPhotoBrowser.m in Sources */,
@@ -2908,6 +2926,7 @@
 				28EECB5B1BCCD3E90001654E /* JSQMessagesBubbleImageFactory.m in Sources */,
 				28EECB5C1BCCD3E90001654E /* JSQMessagesMediaViewBubbleImageMasker.m in Sources */,
 				28EECB5D1BCCD3E90001654E /* JSQMessagesTimestampFormatter.m in Sources */,
+				282A277B1BCF7EF30012332E /* BaseCalendarViewController.m in Sources */,
 				28EECB5E1BCCD3E90001654E /* JSQMessagesToolbarButtonFactory.m in Sources */,
 				28EECB5F1BCCD3E90001654E /* JSQMessagesCollectionViewFlowLayout.m in Sources */,
 				28EECB601BCCD3E90001654E /* JSQMessagesCollectionViewFlowLayoutInvalidationContext.m in Sources */,
@@ -2938,7 +2957,6 @@
 				28EECB791BCCD3E90001654E /* MSSlidingPanelController.m in Sources */,
 				28EECB7A1BCCD3E90001654E /* MSViewControllerSlidingPanel.m in Sources */,
 				28EECB7B1BCCD3E90001654E /* AppDelegate.m in Sources */,
-				28EECB7C1BCCD3E90001654E /* NavigationController.m in Sources */,
 				28EECB7D1BCCD3E90001654E /* CoreDataTableViewController.m in Sources */,
 				28EECB7E1BCCD3E90001654E /* FeedbacksManager.m in Sources */,
 				28EECB7F1BCCD3E90001654E /* KeyboardListener.m in Sources */,
@@ -2946,6 +2964,7 @@
 				28EECB811BCCD3E90001654E /* ConfigurationManager.m in Sources */,
 				28EECB821BCCD3E90001654E /* ThemeManager.m in Sources */,
 				28EECB831BCCD3E90001654E /* FeedbackTableViewCell.m in Sources */,
+				282A27701BCF692F0012332E /* NavigationController.m in Sources */,
 				28EECB841BCCD3E90001654E /* MakeReservationTableViewCell.m in Sources */,
 				28EECB851BCCD3E90001654E /* MenuItemTableViewCell.m in Sources */,
 				28EECB861BCCD3E90001654E /* MenuTableViewCell.m in Sources */,
@@ -2970,6 +2989,7 @@
 				28EECB991BCCD3E90001654E /* EntityObject.m in Sources */,
 				28EECB9A1BCCD3E90001654E /* Alert.m in Sources */,
 				28EECB9B1BCCD3E90001654E /* CurrentUser.m in Sources */,
+				282A27741BCF750D0012332E /* TestViewController.m in Sources */,
 				28EECB9C1BCCD3E90001654E /* Recent.m in Sources */,
 				28EECB9D1BCCD3E90001654E /* Friend.m in Sources */,
 				28EECB9E1BCCD3E90001654E /* Event.m in Sources */,
@@ -3004,6 +3024,7 @@
 				28EECBBB1BCCD3E90001654E /* SettingsView.m in Sources */,
 				28EECBBC1BCCD3E90001654E /* BasicViewController.m in Sources */,
 				28EECBBD1BCCD3E90001654E /* CustomViewController.m in Sources */,
+				282A27781BCF7E290012332E /* CoreDataViewController.m in Sources */,
 				28EECBBE1BCCD3E90001654E /* SelectionViewController.m in Sources */,
 				28EECBBF1BCCD3E90001654E /* VerticalViewController.m in Sources */,
 				28EECBC01BCCD3E90001654E /* CalendarViewController.m in Sources */,

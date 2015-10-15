@@ -10,7 +10,8 @@
                 <outlet property="calendarContentView" destination="yQL-1Z-hdX" id="5et-ff-b76"/>
                 <outlet property="calendarContentViewHeight" destination="uwb-kE-Xo8" id="FyG-kJ-H45"/>
                 <outlet property="calendarMenuView" destination="450-a2-Hou" id="VSj-Ub-O3Q"/>
-                <outlet property="tableView" destination="mXd-qR-cMV" id="Yir-ni-YJd"/>
+                <outlet property="tableView" destination="mXd-qR-cMV" id="d4P-Tg-HIC"/>
+                <outlet property="view" destination="Xdf-MM-ta3" id="9ns-ej-BIb"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -32,12 +33,9 @@
                         <constraint firstAttribute="height" constant="300" id="uwb-kE-Xo8"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mXd-qR-cMV">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mXd-qR-cMV">
                     <rect key="frame" x="20" y="370" width="560" height="210"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" priority="250" constant="100" id="BYB-I4-Guu"/>
-                    </constraints>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="XBb-CO-qpj"/>
                         <outlet property="delegate" destination="-1" id="M9w-KI-tan"/>
@@ -59,6 +57,7 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="398" y="410"/>
         </view>
     </objects>
 </document>
