@@ -20,6 +20,12 @@
 
 @implementation TabTableViewController
 
+- (void)awakeFromNib {
+    //listen to managedObjectContext when ready
+    [[NSNotificationCenter defaultCenter] addObserverForName:MainDatabaseAvailableNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+        self.managedObjectContext = note.userInfo[MainDatabaseAvailableContext];
+    }];
+}
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

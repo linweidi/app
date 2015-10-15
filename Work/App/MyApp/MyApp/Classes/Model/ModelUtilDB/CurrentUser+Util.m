@@ -5,8 +5,10 @@
 //  Created by Linwei Ding on 9/23/15.
 //  Copyright (c) 2015 AppsFoundation. All rights reserved.
 //
+#import "AppHeader.h"
 
 #import "CurrentUser+Util.h"
+
 
 @implementation CurrentUser (Util)
 
@@ -14,7 +16,7 @@
     return nil;
 }
 
-+ (PFUser *) convertFromCurrentUser: (CurrentUser *)currentUser {
++ (RemoteUser *) convertFromCurrentUser: (CurrentUser *)currentUser {
     return nil;
 }
 

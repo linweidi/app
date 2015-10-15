@@ -44,4 +44,7 @@
 - (Thumbnail *) getThumbnail: (NSString *) userID ;
 
 - (void) loadUsers: (NSArray *) users;
+
+@property (nonatomic) BOOL userLoggedIn;
+
 @end
