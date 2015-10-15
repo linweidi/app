@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "CoreData/CoreData.h"
 
+@class CurrentUser;
 @interface ConfigurationManager : NSObject
 
 @property (nonatomic,readonly,copy) NSString *appId;
@@ -18,6 +19,17 @@
 
 + (ConfigurationManager *)sharedManager;
 
+
 @property (nonatomic,strong) NSManagedObjectContext *managedObjectContext;
+
+@property (nonatomic) BOOL isLoggedIn;
+
+@property (strong, nonatomic) NSString * currentUserID;
+
+- (CurrentUser *)getCurrentUser;
+
+- (void)setCurrentUser: (CurrentUser *) user;
+
+- (void)clearCurrentUserContext;
 
 @end

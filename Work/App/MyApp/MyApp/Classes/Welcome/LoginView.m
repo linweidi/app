@@ -15,6 +15,8 @@
 #import "AppConstant.h"
 #import "push.h"
 
+#import "UserRemoteUtil.h"
+
 #import "LoginView.h"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -75,16 +77,9 @@
 	if ([password length] == 0)	{ [ProgressHUD showError:@"Password must be set."]; return; }
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	[ProgressHUD show:@"Signing in..." Interaction:NO];
-	[PFUser logInWithUsernameInBackground:email password:password block:^(PFUser *user, NSError *error)
-	{
-		if (user != nil)
-		{
-			ParsePushUserAssign();
-			[ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome back %@!", user[PF_USER_FULLNAME]]];
-			[self dismissViewControllerAnimated:YES completion:nil];
-		}
-		else [ProgressHUD showError:error.userInfo[@"error"]];
-	}];
+    [[UserRemoteUtil sharedUtil] logInWithUsername:email password:password completionHandler:^(BOOL succeeded, NSError *error) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
 }
 
 #pragma mark - Table view data source

@@ -85,8 +85,11 @@
 #define		PF_INSTALLATION_CLASS_NAME			@"_Installation"		//	Class name
 #define		PF_INSTALLATION_OBJECTID			@"objectId"				//	String
 #define		PF_INSTALLATION_USER				@"user"					//	Pointer to User Class
+
+#define		PF_CURRENT_USER_CLASS_NAME					@"CurrentUser"
+
 //-----------------------------------------------------------------------
-#define		PF_USER_CLASS_NAME					@"_User"				//	Class name
+#define		PF_USER_CLASS_NAME					@"User"				//	Class name
 #define		PF_USER_OBJECTID					@"objectId"				//	String
 #define		PF_USER_USERNAME					@"username"				//	String
 #define		PF_USER_PASSWORD					@"password"				//	String
