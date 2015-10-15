@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface FileRemoteUtil : NSObject
-+ (MessageRemoteUtil *)sharedUtil;
++ (FileRemoteUtil *)sharedUtil;
 
 @end

@@ -81,6 +81,14 @@ typedef enum {
 	//---------------------------------------------------------------------------------------------------------------------------------------------
     [PFImageView class];
     //---------------------------------------------------------------------------------------------------------------------------------------------
+    if (!self.tabBarController) {
+        [self createTabViewController];
+    }
+    
+    return YES;
+}
+
+- (void)createTabViewController {
     //self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     self.calendarView = [[CalendarViewController alloc] init];
@@ -100,10 +108,13 @@ typedef enum {
     self.tabBarController.tabBar.translucent = NO;
     self.tabBarController.selectedIndex = DEFAULT_TAB;
     
+    //1. remove all the themes to see if the calendar view can show up
+    //2. default sliding window main view should be main view of calendar view
+    //3.
+    
     //self.window.rootViewController = self.tabBarController;
     //[self.window makeKeyAndVisible];
     
-    return YES;
 }
 
 + (AppDelegate *)sharedDelegate {
@@ -115,7 +126,9 @@ typedef enum {
 
 - (void)openMainMenu {
     MSSlidingPanelController *rootController = (MSSlidingPanelController *)self.window.rootViewController;
-    
+    if (!self.tabBarController) {
+        [self createTabViewController];
+    }
     [rootController setCenterViewController:self.tabBarController];
     [rootController closePanel];
 }

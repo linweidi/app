@@ -79,7 +79,7 @@
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="user" inverseEntity="Event" syncable="YES"/>
         <relationship name="friends" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Friend" inverseName="user" inverseEntity="Friend" syncable="YES"/>
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="user" inverseEntity="Group" syncable="YES"/>
-        <relationship name="peoples" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="People" inverseName="user" inverseEntity="People" syncable="YES"/>
+        <relationship name="peoples" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="People" inverseName="user" inverseEntity="People" syncable="YES"/>
         <relationship name="places" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Place" inverseName="user" inverseEntity="Place" syncable="YES"/>
         <relationship name="recents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recent" inverseName="user" inverseEntity="Recent" syncable="YES"/>
         <relationship name="thumbnail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Thumbnail" inverseName="user" inverseEntity="Thumbnail" syncable="YES"/>
@@ -96,12 +96,12 @@
         <element name="Friend" positionX="-117" positionY="-99" width="128" height="73"/>
         <element name="Group" positionX="-252" positionY="72" width="128" height="120"/>
         <element name="Message" positionX="-369" positionY="-270" width="128" height="163"/>
+        <element name="People" positionX="-369" positionY="-270" width="128" height="133"/>
         <element name="Picture" positionX="-360" positionY="-261" width="128" height="73"/>
         <element name="Place" positionX="-90" positionY="72" width="128" height="58"/>
         <element name="Recent" positionX="-567" positionY="-358" width="128" height="178"/>
         <element name="Thumbnail" positionX="-351" positionY="-252" width="128" height="103"/>
         <element name="User" positionX="-344" positionY="-144" width="128" height="328"/>
         <element name="Video" positionX="-351" positionY="-252" width="128" height="73"/>
-        <element name="People" positionX="-369" positionY="-270" width="128" height="133"/>
     </elements>
 </model>

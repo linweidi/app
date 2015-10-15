@@ -17,6 +17,9 @@
 #define     SERVER_MODE                         3
 //#define  NS_BLOCK_ASSERTIONS
 
+#define     MainDatabaseAvailableContext            @"main data base available context"
+#define     MainDatabaseAvailableNotification            @"main data base available notif"
+
 //--------------- Event VIEW -----------------------------------------------------------------------------------------------------------------------------------
 #define     EVENTVIEW_ITEM_NUM                 1000
 #define     EVENTVIEW_DISPLAY_ITEM_NUM         1000

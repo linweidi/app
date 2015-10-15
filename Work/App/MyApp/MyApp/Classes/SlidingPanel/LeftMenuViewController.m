@@ -36,7 +36,7 @@ typedef enum {
     // Do any additional setup after loading the view.
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];
-    self.menuItems = @[@"GoParty", @"OUR MENU",@"RESERVATION",@"FIND US",@"FEEDBACK"];
+    self.menuItems = @[@"GO PARTY", @"OUR MENU",@"RESERVATION",@"FIND US",@"FEEDBACK"];
     self.menuItemsImages = @[@"our_menu", @"our_menu",@"reservation",@"find_us",@"feedback"];
 }
 

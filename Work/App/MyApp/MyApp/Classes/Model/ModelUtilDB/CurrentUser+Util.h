@@ -14,6 +14,6 @@
 
 + (CurrentUser *) getCurrentUser;
 
-+ (PFUser *)convertFromCurrentUser:(CurrentUser *)currentUser;
++ (RemoteUser *)convertFromCurrentUser:(CurrentUser *)currentUser;
 
 @end
