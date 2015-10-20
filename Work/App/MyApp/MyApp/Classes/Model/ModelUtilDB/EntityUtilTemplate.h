@@ -9,21 +9,35 @@
 #import <Foundation/Foundation.h>
 
 #import <Parse/Parse.h>
-#import "Alert.h"
+
 
 #ifndef ENTITY_UTIL_TEMPLATE_CLASS
-#define ENTITY_UTIL_TEMPLATE_CLASS Alert
+#define ENTITY_UTIL_TEMPLATE_CLASS UserEntity
 #endif
 
 #ifndef ENTITY_UTIL_TEMPLATE_CLASS_NAME
-#define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"Alert"
+#define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"UserEntity"
 #endif
 
 #ifndef ENTITY_UTIL_TEMPLATE_CLASS_UPDATE_TIME
 #define ENTITY_UTIL_TEMPLATE_CLASS_UPDATE_TIME @"updateTime"
 #endif
 
-@interface ENTITY_UTIL_TEMPLATE_CLASS (Util)
 
-@end
+//@class UserEntity;
+//@interface ENTITY_UTIL_TEMPLATE_CLASS (Util)
++ (ENTITY_UTIL_TEMPLATE_CLASS *)createEntity: (NSManagedObjectContext *)context ;
+
++ (ENTITY_UTIL_TEMPLATE_CLASS *)entityWithID:(NSString *)globalID inManagedObjectContext:  (NSManagedObjectContext *)context;
+
++ (BOOL) deleteEntityWithID:(NSString *)globalID
+     inManagedObjectContext: (NSManagedObjectContext *)context;
+
++ (NSArray *) fetchEntityAll:(NSManagedObjectContext *)context ;
+
++ (void) clearEntityAll:(NSManagedObjectContext *)context;
+
++ (ENTITY_UTIL_TEMPLATE_CLASS *) latestEntity:(NSManagedObjectContext *)context ;
+
+//@end
 

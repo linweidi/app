@@ -3,16 +3,16 @@
 //  MyApp
 //
 //  Created by Linwei Ding on 10/19/15.
-//  Copyright (c) 2015 AppsFoundation. All rights reserved.
+//  Copyright (c) 2015 Linweiding. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "EntityObject.h"
+#import "UserEntity.h"
 
 @class User;
 
-@interface Group : EntityObject
+@interface Group : UserEntity
 
 @property (nonatomic, retain) id members;
 @property (nonatomic, retain) NSString * name;

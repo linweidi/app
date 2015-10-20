@@ -3,10 +3,11 @@
 //  MyApp
 //
 //  Created by Linwei Ding on 10/19/15.
-//  Copyright (c) 2015 AppsFoundation. All rights reserved.
+//  Copyright (c) 2015 Linweiding. All rights reserved.
 //
 
 #import "EventVoting.h"
+#import "EventVoteItem.h"
 #import "User.h"
 
 

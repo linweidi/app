@@ -1,20 +1,18 @@
 //
-//  SystemEntity.m
+//  UserEntity.m
 //  MyApp
 //
 //  Created by Linwei Ding on 10/19/15.
 //  Copyright (c) 2015 Linweiding. All rights reserved.
 //
 
-#import "SystemEntity.h"
+#import "UserEntity.h"
 
 
-@implementation SystemEntity
+@implementation UserEntity
 
 @dynamic createTime;
 @dynamic globalID;
-@dynamic systemID;
 @dynamic updateTime;
-@dynamic versionID;
 
 @end

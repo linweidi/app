@@ -3,16 +3,16 @@
 //  MyApp
 //
 //  Created by Linwei Ding on 10/19/15.
-//  Copyright (c) 2015 AppsFoundation. All rights reserved.
+//  Copyright (c) 2015 Linweiding. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "EntityObject.h"
+#import "UserEntity.h"
 
 @class Alert, Event, Group, People, Place, Recent, Thumbnail;
 
-@interface User : EntityObject
+@interface User : UserEntity
 
 @property (nonatomic, retain) NSString * email;
 @property (nonatomic, retain) NSString * emailCopy;
@@ -27,7 +27,6 @@
 @property (nonatomic, retain) NSString * username;
 @property (nonatomic, retain) NSSet *alerts;
 @property (nonatomic, retain) NSSet *events;
-@property (nonatomic, retain) NSSet *friends;
 @property (nonatomic, retain) NSSet *groups;
 @property (nonatomic, retain) NSSet *peoples;
 @property (nonatomic, retain) NSSet *places;
@@ -46,11 +45,6 @@
 - (void)removeEventsObject:(Event *)value;
 - (void)addEvents:(NSSet *)values;
 - (void)removeEvents:(NSSet *)values;
-
-- (void)addFriendsObject:(NSManagedObject *)value;
-- (void)removeFriendsObject:(NSManagedObject *)value;
-- (void)addFriends:(NSSet *)values;
-- (void)removeFriends:(NSSet *)values;
 
 - (void)addGroupsObject:(Group *)value;
 - (void)removeGroupsObject:(Group *)value;

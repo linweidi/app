@@ -3,33 +3,34 @@
 //  MyApp
 //
 //  Created by Linwei Ding on 10/19/15.
-//  Copyright (c) 2015 AppsFoundation. All rights reserved.
+//  Copyright (c) 2015 Linweiding. All rights reserved.
 //
 
 #import "Event.h"
 #import "Alert.h"
+#import "EventCategory.h"
 #import "Place.h"
 #import "User.h"
 
 
 @implementation Event
 
+@dynamic boardIDs;
 @dynamic endTime;
+@dynamic groupIDs;
 @dynamic invitees;
 @dynamic isAlert;
+@dynamic isVoting;
 @dynamic location;
+@dynamic members;
 @dynamic notes;
+@dynamic scope;
 @dynamic startTime;
 @dynamic title;
-@dynamic scope;
-@dynamic boardIDs;
 @dynamic votingID;
-@dynamic members;
-@dynamic groupIDs;
-@dynamic isVoting;
 @dynamic alert;
+@dynamic category;
 @dynamic place;
 @dynamic user;
-@dynamic category;
 
 @end

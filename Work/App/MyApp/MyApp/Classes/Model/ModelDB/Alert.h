@@ -2,23 +2,20 @@
 //  Alert.h
 //  MyApp
 //
-//  Created by Linwei Ding on 10/20/15.
-//  Copyright © 2015 AppsFoundation. All rights reserved.
+//  Created by Linwei Ding on 10/19/15.
+//  Copyright (c) 2015 Linweiding. All rights reserved.
 //
-// new template
+
 #import <Foundation/Foundation.h>
-#import "EntityObject.h"
+#import <CoreData/CoreData.h>
+#import "UserEntity.h"
 
 @class Event;
 
+@interface Alert : UserEntity
 
-
-@interface Alert : EntityObject
-
-@property (nullable, nonatomic, retain) NSDate *time;
-@property (nullable, nonatomic, retain) NSString *type;
-@property (nullable, nonatomic, retain) Event *event;
-
+@property (nonatomic, retain) NSDate * time;
+@property (nonatomic, retain) NSString * type;
+@property (nonatomic, retain) Event *event;
 
 @end
-

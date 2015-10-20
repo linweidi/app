@@ -5,10 +5,23 @@
 //  Created by Linwei Ding on 10/20/15.
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
+#import "UserEntity.h"
+#import <CoreData/CoreData.h>
+//#import "EntityUtilTemplate.h"
 
-#import "EntityUtilTemplate.h"
+#ifndef ENTITY_UTIL_TEMPLATE_CLASS
+#define ENTITY_UTIL_TEMPLATE_CLASS UserEntity
+#endif
 
-@implementation ENTITY_UTIL_TEMPLATE_CLASS (Util)
+#ifndef ENTITY_UTIL_TEMPLATE_CLASS_NAME
+#define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"UserEntity"
+#endif
+
+#ifndef ENTITY_UTIL_TEMPLATE_CLASS_UPDATE_TIME
+#define ENTITY_UTIL_TEMPLATE_CLASS_UPDATE_TIME @"updateTime"
+#endif
+
+//@implementation ENTITY_UTIL_TEMPLATE_CLASS (Util)
 + (ENTITY_UTIL_TEMPLATE_CLASS *)createEntity: (NSManagedObjectContext *)context {
     ENTITY_UTIL_TEMPLATE_CLASS * object = nil;
     
@@ -103,7 +116,7 @@
     request.predicate = nil;
     request.fetchLimit = 1;
     request.sortDescriptors = @[[NSSortDescriptor
-                                 sortDescriptorWithKey:PF_EVENT_UPDATE_TIME
+                                 sortDescriptorWithKey:ENTITY_UTIL_TEMPLATE_CLASS_UPDATE_TIME
                                  ascending:NO
                                  selector:@selector(compare:)],
                                 ];
@@ -136,4 +149,4 @@
 
 
 
-@end
+//@end

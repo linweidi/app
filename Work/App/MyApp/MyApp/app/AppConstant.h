@@ -99,6 +99,7 @@
 
 #define		PF_CURRENT_USER_CLASS_NAME					@"CurrentUser"
 
+
 //-----------------------------------------------------------------------
 //---------------------------   USER    --------------------------------------
 //-----------------------------------------------------------------------
@@ -149,7 +150,10 @@
 //-----------------------------------------------------------------------
 //---------------------------   EVENT    --------------------------------------
 //-----------------------------------------------------------------------
-#define		PF_EVENT_CLASS_NAME                 @"Event"				//	Class name
+#define		PF_EVENT_CLASS_NAME                 @"Event"
+
+
+#define		PF_EVENT_OBJECTID					@"objectId"//	Class name
 #define		PF_EVENT_CREATE_TIME                @"createTime"			//	Date
 #define		PF_EVENT_UPDATE_TIME                @"updateTime"			//	Date
 #define		PF_EVENT_START_TIME                 @"startTime"			//	Date

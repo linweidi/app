@@ -101,7 +101,7 @@
     
     Event * latestEvent = nil;
     
-    latestEvent = [Event latestEventEntity :self.managedObjectContext];
+    latestEvent = [Event latestEntity:self.managedObjectContext];
     
     [[EventRemoteUtil sharedUtil] loadRemoteEvents: latestEvent  completionHandler:^(NSArray *objects, NSError *error) {
         if (error == nil)
