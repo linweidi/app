@@ -10,16 +10,23 @@
 // THE SOFTWARE.
 
 
-//----------------- SYSTEM CONFIG --------------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------
+//---------------------------   APP CONFIG    --------------------------------------
+//-----------------------------------------------------------------------
 
 #define     DEBUG_MODE                          1
 #define     PARSE_MODE                          2
 #define     SERVER_MODE                         3
 //#define  NS_BLOCK_ASSERTIONS
 
+
 #define     MainDatabaseAvailableContext            @"main data base available context"
 #define     MainDatabaseAvailableNotification            @"main data base available notif"
 
+
+//-----------------------------------------------------------------------
+//---------------------------   VIEW CONTROLLER    --------------------------------------
+//-----------------------------------------------------------------------
 //--------------- Event VIEW -----------------------------------------------------------------------------------------------------------------------------------
 #define     EVENTVIEW_ITEM_NUM                 1000
 #define     EVENTVIEW_DISPLAY_ITEM_NUM         1000
@@ -58,7 +65,9 @@
 
 
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------
+//---------------------------   SYSTEM    --------------------------------------
+//-----------------------------------------------------------------------
 #define HEXCOLOR(c) [UIColor colorWithRed:((c>>24)&0xFF)/255.0 green:((c>>16)&0xFF)/255.0 blue:((c>>8)&0xFF)/255.0 alpha:((c)&0xFF)/255.0]
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -81,13 +90,17 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 #define		MESSAGE_INVITE						@"Please accept our invitation"
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------
+//---------------------------   INSTALLATION    --------------------------------------
+//-----------------------------------------------------------------------
 #define		PF_INSTALLATION_CLASS_NAME			@"_Installation"		//	Class name
 #define		PF_INSTALLATION_OBJECTID			@"objectId"				//	String
 #define		PF_INSTALLATION_USER				@"user"					//	Pointer to User Class
 
 #define		PF_CURRENT_USER_CLASS_NAME					@"CurrentUser"
 
+//-----------------------------------------------------------------------
+//---------------------------   USER    --------------------------------------
 //-----------------------------------------------------------------------
 #define		PF_USER_CLASS_NAME					@"User"				//	Class name
 #define		PF_USER_OBJECTID					@"objectId"				//	String
@@ -102,11 +115,15 @@
 #define		PF_USER_PICTURE						@"picture"				//	File
 #define		PF_USER_THUMBNAIL					@"thumbnail"			//	File
 //-----------------------------------------------------------------------
+//---------------------------   BLOCK    --------------------------------------
+//-----------------------------------------------------------------------
 #define		PF_BLOCKED_CLASS_NAME				@"Blocked"				//	Class name
 #define		PF_BLOCKED_USER						@"user"					//	Pointer to User Class
 #define		PF_BLOCKED_USER1					@"user1"				//	Pointer to User Class
 #define		PF_BLOCKED_USER2					@"user2"				//	Pointer to User Class
 #define		PF_BLOCKED_USERID2					@"userId2"				//	String
+//-----------------------------------------------------------------------
+//---------------------------   GROUP    --------------------------------------
 //-----------------------------------------------------------------------
 #define		PF_GROUP_CLASS_NAME					@"Group"				//	Class name
 
@@ -119,6 +136,8 @@
 
 #define     PF_GROUP_UPDATE_TIME                @"updateAt"
 //-----------------------------------------------------------------------
+//---------------------------   MESSAGE    --------------------------------------
+//-----------------------------------------------------------------------
 #define		PF_MESSAGE_CLASS_NAME				@"Message"				//	Class name
 #define		PF_MESSAGE_USER						@"user"					//	Pointer to User Class
 #define		PF_MESSAGE_GROUPID					@"groupId"				//	String
@@ -128,18 +147,31 @@
 #define		PF_MESSAGE_CREATEDAT				@"createdAt"			//	Date
 
 //-----------------------------------------------------------------------
+//---------------------------   EVENT    --------------------------------------
+//-----------------------------------------------------------------------
 #define		PF_EVENT_CLASS_NAME                 @"Event"				//	Class name
-#define		PF_EVENT_CREATE_TIME                  @"createTime"			//	Date
-#define		PF_EVENT_CREATE_TIME                  @"createTime"			//	Date
-#define		PF_EVENT_CREATE_TIME                  @"createTime"			//	Date
-#define		PF_EVENT_CREATE_TIME                  @"createTime"			//	Date
-#define		PF_EVENT_CREATE_TIME                  @"createTime"			//	Date
-#define		PF_EVENT_CREATE_TIME                  @"createTime"			//	Date
-#define		PF_EVENT_CREATE_TIME                  @"createTime"			//	Date
-#define		PF_EVENT_CREATE_TIME                  @"createTime"			//	Date
+#define		PF_EVENT_CREATE_TIME                @"createTime"			//	Date
+#define		PF_EVENT_UPDATE_TIME                @"updateTime"			//	Date
+#define		PF_EVENT_START_TIME                 @"startTime"			//	Date
+#define		PF_EVENT_END_TIME                   @"endTime"			//	Date
+#define		PF_EVENT_INVITEES                   @"invitees"			//	Date
+#define		PF_EVENT_IS_ALERT                   @"isAlert"			//	Date
+#define		PF_EVENT_LOCATION                   @"location"			//	Date
+#define		PF_EVENT_NOTES                      @"notes"			//	Date
+#define		PF_EVENT_TITLE                      @"title"			//	Date
+#define		PF_EVENT_SCOPE                      @"scope"			//	Date
+#define		PF_EVENT_BOARD_IDS                  @"boardIDs"			//	Date
+#define		PF_EVENT_VOTING_ID                  @"votingID"			//	Date
+#define		PF_EVENT_MEMBERS                    @"members"			//	Date
+#define		PF_EVENT_GROUP_IDS                  @"groupIDs"			//	Date
+#define		PF_EVENT_IS_VOTING                  @"isVoting"			//	Date
+#define		PF_EVENT_ALERT                      @"alert"			//	Date
+#define		PF_EVENT_PLACE                      @"place"			//	Date
+#define		PF_EVENT_CREATE_USER                @"createUser"			//	Date
+#define		PF_EVENT_CATEGORY                   @"category"			//	Date
 
-#define		PF_EVENT_CREATE_TIME                  @"createTime"			//	Date
-
+//-----------------------------------------------------------------------
+//---------------------------   PEOPLE    --------------------------------------
 //-----------------------------------------------------------------------
 #define		PF_PEOPLE_CLASS_NAME				@"People"				//	Class name
 #define		PF_PEOPLE_USER1						@"user1"				//	Pointer to User Class
@@ -149,10 +181,12 @@
 
 #define		PF_PEOPLE_NAME						@"name"
 
-#define     PF_PEOPLE_CREATE_TIME                @"createAt"
+#define     PF_PEOPLE_CREATE_TIME               @"createAt"
 
-#define     PF_PEOPLE_UPDATE_TIME                @"updateAt"
+#define     PF_PEOPLE_UPDATE_TIME               @"updateAt"
 
+//-----------------------------------------------------------------------
+//---------------------------   RECENT    --------------------------------------
 //-----------------------------------------------------------------------
 #define		PF_RECENT_CLASS_NAME				@"Recent"				//	Class name
 #define		PF_RECENT_USER						@"user"					//	Pointer to User Class
@@ -164,10 +198,15 @@
 #define		PF_RECENT_COUNTER					@"counter"				//	Number
 #define		PF_RECENT_UPDATEDACTION				@"updatedAction"		//	Date
 //-----------------------------------------------------------------------
+//---------------------------   REPORT    --------------------------------------
+//-----------------------------------------------------------------------
 #define		PF_REPORT_CLASS_NAME				@"Report"				//	Class name
 #define		PF_REPORT_USER1						@"user1"				//	Pointer to User Class
 #define		PF_REPORT_USER2						@"user2"				//	Pointer to User Class
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------
+//---------------------------   NOTIFICATION    --------------------------------------
+//-----------------------------------------------------------------------
 #define		NOTIFICATION_APP_STARTED			@"NCAppStarted"
 #define		NOTIFICATION_USER_LOGGED_IN			@"NCUserLoggedIn"
 #define		NOTIFICATION_USER_LOGGED_OUT		@"NCUserLoggedOut"

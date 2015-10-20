@@ -6,6 +6,7 @@
 //  Copyright © 2015 AppsFoundation. All rights reserved.
 //
 
+#import "AppConstant.h"
 #import "Event+Util.h"
 
 @implementation Event (Util)
@@ -41,7 +42,6 @@
         }
         else {
             event = [matches lastObject];
-            [event setEventWithPFObject:object inManagedObjectContext:context];
         }
     
     return event;
