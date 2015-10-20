@@ -2,7 +2,7 @@
 //  Message.m
 //  MyApp
 //
-//  Created by Linwei Ding on 10/1/15.
+//  Created by Linwei Ding on 10/19/15.
 //  Copyright (c) 2015 AppsFoundation. All rights reserved.
 //
 
@@ -12,12 +12,11 @@
 
 @implementation Message
 
-@dynamic createdTime;
-@dynamic text;
 @dynamic chatID;
-@dynamic videoName;
 @dynamic pictureName;
 @dynamic pictureURL;
+@dynamic text;
+@dynamic videoName;
 @dynamic videoURL;
 @dynamic user;
 

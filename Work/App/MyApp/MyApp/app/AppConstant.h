@@ -85,8 +85,11 @@
 #define		PF_INSTALLATION_CLASS_NAME			@"_Installation"		//	Class name
 #define		PF_INSTALLATION_OBJECTID			@"objectId"				//	String
 #define		PF_INSTALLATION_USER				@"user"					//	Pointer to User Class
+
+#define		PF_CURRENT_USER_CLASS_NAME					@"CurrentUser"
+
 //-----------------------------------------------------------------------
-#define		PF_USER_CLASS_NAME					@"_User"				//	Class name
+#define		PF_USER_CLASS_NAME					@"User"				//	Class name
 #define		PF_USER_OBJECTID					@"objectId"				//	String
 #define		PF_USER_USERNAME					@"username"				//	String
 #define		PF_USER_PASSWORD					@"password"				//	String
@@ -123,6 +126,20 @@
 #define		PF_MESSAGE_PICTURE					@"picture"				//	File
 #define		PF_MESSAGE_VIDEO					@"video"				//	File
 #define		PF_MESSAGE_CREATEDAT				@"createdAt"			//	Date
+
+//-----------------------------------------------------------------------
+#define		PF_EVENT_CLASS_NAME                 @"Event"				//	Class name
+#define		PF_EVENT_CREATE_TIME                  @"createTime"			//	Date
+#define		PF_EVENT_CREATE_TIME                  @"createTime"			//	Date
+#define		PF_EVENT_CREATE_TIME                  @"createTime"			//	Date
+#define		PF_EVENT_CREATE_TIME                  @"createTime"			//	Date
+#define		PF_EVENT_CREATE_TIME                  @"createTime"			//	Date
+#define		PF_EVENT_CREATE_TIME                  @"createTime"			//	Date
+#define		PF_EVENT_CREATE_TIME                  @"createTime"			//	Date
+#define		PF_EVENT_CREATE_TIME                  @"createTime"			//	Date
+
+#define		PF_EVENT_CREATE_TIME                  @"createTime"			//	Date
+
 //-----------------------------------------------------------------------
 #define		PF_PEOPLE_CLASS_NAME				@"People"				//	Class name
 #define		PF_PEOPLE_USER1						@"user1"				//	Pointer to User Class

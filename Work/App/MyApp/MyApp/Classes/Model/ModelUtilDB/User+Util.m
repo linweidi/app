@@ -25,7 +25,7 @@
 - (BOOL) isEqual: (User *)user {
     return [self.globalID isEqualToString:user.globalID];
 }
-
+/* legacy
 + (User *) userEntityWithPFUser:(PFUser *)object inManagedObjectContext: (NSManagedObjectContext *)context updateUser:(BOOL)updateUser{
     
     User * user = nil;
@@ -61,6 +61,7 @@
     
     return user;
 }
+ */
 
 + (User *) createUserEntity:(NSManagedObjectContext *)context{
     
@@ -180,5 +181,12 @@
     return user;
 }
 
++ (RemoteUser *) convertToRemoteUser:(User *)user {
+    RemoteUser * userRT = nil;
+    
+    userRT = [user convertToPFUser];
+    
+    return userRT;
+}
 
 @end

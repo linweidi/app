@@ -10,6 +10,8 @@
 
 // multiple secltions
 #import "AppHeader.h"
+#import "Event+Util.h"
+#import "EventRemoteUtil.h"
 #import "CalendarViewController.h"
 
 @interface CalendarViewController (){
@@ -18,6 +20,8 @@
 
     
     NSMutableArray *_datesSelected;
+    
+    NSDate *_datesSelectedLast;
 }
 
 
@@ -72,6 +76,8 @@
     [_calendarManager setDate:[NSDate date]];
     
     _datesSelected = [NSMutableArray new];
+    
+    _datesSelectedLast = [NSDate date];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -81,12 +87,56 @@
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	if ([PFUser currentUser] != nil)
 	{
-		//[self loadGroups];
+		//[self loadEvents];
 	}
 	//else LoginUser(self);
 }
 
 #pragma mark -- private method
+
+- (void)loadEvents
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+{
+    NSMutableArray * events = [[NSMutableArray alloc] init];
+    
+    Event * latestEvent = nil;
+    
+    latestEvent = [Event latestEventEntity :self.managedObjectContext];
+    
+    [[EventRemoteUtil sharedUtil] loadRemoteEvents: latestEvent  completionHandler:^(NSArray *objects, NSError *error) {
+        if (error == nil)
+		{
+			//[events removeAllObjects];
+			//[events addObjectsFromArray:objects];
+			//[self.tableView reloadData];
+            
+            Event * event = nil;
+            for (RemoteObject * object in objects) {
+                //[recents setObject:object forKey:object[PF_RECENT_EVENTID]];
+                if (latestEvent) {
+                    
+                    event = [Event eventEntityWithRemoteObject:object inManagedObjectContext:self.managedObjectContext];
+                }
+                else {
+                    event = [Event createEventEntityWithPFObject:object inManagedObjectContext:self.managedObjectContext];
+                }
+                
+                
+                [events addObject:event];
+            }
+            
+            
+            // load the recents into core data
+            
+            [self.tableView reloadData];
+            
+		}
+		else [ProgressHUD showError:@"Network error."];
+		[self.refreshControl endRefreshing];
+    }];
+}
+
+
 - (void)updateFetchedResultsController {
     
     if (self.managedObjectContext) {

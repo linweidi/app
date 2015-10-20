@@ -1,5 +1,5 @@
 //
-//  Alert.h
+//  Board.h
 //  MyApp
 //
 //  Created by Linwei Ding on 10/19/15.
@@ -8,14 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "EntityObject.h"
+#import "SystemEntity.h"
 
-@class Event;
 
-@interface Alert : EntityObject
+@interface Board : SystemEntity
 
-@property (nonatomic, retain) NSDate * time;
 @property (nonatomic, retain) NSString * type;
-@property (nonatomic, retain) Event *event;
+@property (nonatomic, retain) NSString * city;
+@property (nonatomic, retain) id eventIDs;
+@property (nonatomic, retain) NSNumber * categoryID;
 
 @end

@@ -27,6 +27,7 @@
 
 #import "Appirater.h"
 #import "ConfigurationManager.h"
+#import "DocumentHelper.h"
 #import "MSSlidingPanelController.h"
 #import "Flurry.h"
 #import "ThemeManager.h"
@@ -76,10 +77,23 @@ typedef enum {
     [self initRateAppTimer];
     
     
-    //apply all theme
     //configuration
-    //[ThemeManager applyNavigationBarTheme];
-    //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+    ConfigurationManager * configManager = [ConfigurationManager sharedManager];
+    
+    configManager.managedObjectContext = [[DocumentHelper sharedManager] createMainQueueManagedObjectContext:^(BOOL succeeded) {
+        if (succeeded) {
+            // nothing
+        }
+        else {
+            NSAssert(NO, @"Managed Object Context create fails");
+        }
+    }];
+
+
+    
+    //apply all theme
+    [ThemeManager applyNavigationBarTheme];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     
 	//---------------------------------------------------------------------------------------------------------------------------------------------
     [PFImageView class];

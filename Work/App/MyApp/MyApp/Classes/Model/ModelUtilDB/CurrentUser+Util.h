@@ -10,11 +10,20 @@
 #import "CurrentUser.h"
 
 
-@interface CurrentUser (Util)
+@interface CurrentUser (Util) 
 
 
 + (CurrentUser *) getCurrentUser;
+//
+//+ (RemoteUser *)convertFromCurrentUser:(CurrentUser *)currentUser;
+//
+//- (RemoteUser *) convertToRemoteUser;
 
-+ (RemoteUser *)convertFromCurrentUser:(CurrentUser *)currentUser;
++ (CurrentUser *) createCurrentUserEntity:(NSManagedObjectContext *)context;
 
++ (CurrentUser *) fetchCurrentUserEntityWithUserID:(NSString *)userID inManagedObjectContext:(NSManagedObjectContext *)context;
+
++ (CurrentUser *) fetchCurrentUserEntityWithUsername:(NSString *)username inManagedObjectContext:(NSManagedObjectContext *)context;
+
+- (void) setWithRemoteUser:(RemoteUser *)user inManagedObjectContext: (NSManagedObjectContext *)context
 @end
