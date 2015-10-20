@@ -2,7 +2,7 @@
 //  Recent.h
 //  MyApp
 //
-//  Created by Linwei Ding on 10/15/15.
+//  Created by Linwei Ding on 10/19/15.
 //  Copyright (c) 2015 AppsFoundation. All rights reserved.
 //
 
@@ -19,8 +19,6 @@
 @property (nonatomic, retain) NSString * details;
 @property (nonatomic, retain) NSString * fullname;
 @property (nonatomic, retain) NSString * lastMessage;
-@property (nonatomic, retain) NSString * member;
-@property (nonatomic, retain) NSDate * updateDate;
 @property (nonatomic, retain) User *lastUser;
 @property (nonatomic, retain) User *user;
 

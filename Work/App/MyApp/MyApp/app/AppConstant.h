@@ -126,6 +126,20 @@
 #define		PF_MESSAGE_PICTURE					@"picture"				//	File
 #define		PF_MESSAGE_VIDEO					@"video"				//	File
 #define		PF_MESSAGE_CREATEDAT				@"createdAt"			//	Date
+
+//-----------------------------------------------------------------------
+#define		PF_EVENT_CLASS_NAME                 @"Event"				//	Class name
+#define		PF_EVENT_CREATE_TIME                  @"createTime"			//	Date
+#define		PF_EVENT_CREATE_TIME                  @"createTime"			//	Date
+#define		PF_EVENT_CREATE_TIME                  @"createTime"			//	Date
+#define		PF_EVENT_CREATE_TIME                  @"createTime"			//	Date
+#define		PF_EVENT_CREATE_TIME                  @"createTime"			//	Date
+#define		PF_EVENT_CREATE_TIME                  @"createTime"			//	Date
+#define		PF_EVENT_CREATE_TIME                  @"createTime"			//	Date
+#define		PF_EVENT_CREATE_TIME                  @"createTime"			//	Date
+
+#define		PF_EVENT_CREATE_TIME                  @"createTime"			//	Date
+
 //-----------------------------------------------------------------------
 #define		PF_PEOPLE_CLASS_NAME				@"People"				//	Class name
 #define		PF_PEOPLE_USER1						@"user1"				//	Pointer to User Class

@@ -2,7 +2,7 @@
 //  Event.m
 //  MyApp
 //
-//  Created by Linwei Ding on 10/15/15.
+//  Created by Linwei Ding on 10/19/15.
 //  Copyright (c) 2015 AppsFoundation. All rights reserved.
 //
 
@@ -14,16 +14,22 @@
 
 @implementation Event
 
-@dynamic title;
-@dynamic location;
-@dynamic allDay;
-@dynamic starts;
-@dynamic ends;
-@dynamic isAlert;
-@dynamic notes;
+@dynamic endTime;
 @dynamic invitees;
-@dynamic user;
+@dynamic isAlert;
+@dynamic location;
+@dynamic notes;
+@dynamic startTime;
+@dynamic title;
+@dynamic scope;
+@dynamic boardIDs;
+@dynamic votingID;
+@dynamic members;
+@dynamic groupIDs;
+@dynamic isVoting;
 @dynamic alert;
 @dynamic place;
+@dynamic user;
+@dynamic category;
 
 @end

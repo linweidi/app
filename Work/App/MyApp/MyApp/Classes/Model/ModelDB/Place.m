@@ -2,20 +2,28 @@
 //  Place.m
 //  MyApp
 //
-//  Created by Linwei Ding on 10/15/15.
+//  Created by Linwei Ding on 10/19/15.
 //  Copyright (c) 2015 AppsFoundation. All rights reserved.
 //
 
 #import "Place.h"
-#import "Event.h"
-#import "User.h"
+#import "Thumbnail.h"
 
 
 @implementation Place
 
-@dynamic name;
 @dynamic location;
-@dynamic user;
-@dynamic event;
+@dynamic name;
+@dynamic price;
+@dynamic parking;
+@dynamic rankings;
+@dynamic openTime;
+@dynamic closeTime;
+@dynamic map;
+@dynamic tips;
+@dynamic type;
+@dynamic photos;
+@dynamic like;
+@dynamic thumbs;
 
 @end

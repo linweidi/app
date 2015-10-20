@@ -2,14 +2,13 @@
 //  User.m
 //  MyApp
 //
-//  Created by Linwei Ding on 10/15/15.
+//  Created by Linwei Ding on 10/19/15.
 //  Copyright (c) 2015 AppsFoundation. All rights reserved.
 //
 
 #import "User.h"
 #import "Alert.h"
 #import "Event.h"
-#import "Friend.h"
 #import "Group.h"
 #import "People.h"
 #import "Place.h"

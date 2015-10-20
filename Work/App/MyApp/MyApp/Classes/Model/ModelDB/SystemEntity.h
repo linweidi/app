@@ -1,5 +1,5 @@
 //
-//  EntityObject.h
+//  SystemEntity.h
 //  MyApp
 //
 //  Created by Linwei Ding on 10/19/15.
@@ -10,10 +10,12 @@
 #import <CoreData/CoreData.h>
 
 
-@interface EntityObject : NSManagedObject
+@interface SystemEntity : NSManagedObject
 
-@property (nonatomic, retain) NSString * globalID;
 @property (nonatomic, retain) NSDate * createTime;
 @property (nonatomic, retain) NSDate * updateTime;
+@property (nonatomic, retain) NSString * globalID;
+@property (nonatomic, retain) NSString * systemID;
+@property (nonatomic, retain) NSString * versionID;
 
 @end

@@ -2,7 +2,7 @@
 //  User.h
 //  MyApp
 //
-//  Created by Linwei Ding on 10/15/15.
+//  Created by Linwei Ding on 10/19/15.
 //  Copyright (c) 2015 AppsFoundation. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "EntityObject.h"
 
-@class Alert, Event, Friend, Group, People, Place, Recent, Thumbnail;
+@class Alert, Event, Group, People, Place, Recent, Thumbnail;
 
 @interface User : EntityObject
 
@@ -47,8 +47,8 @@
 - (void)addEvents:(NSSet *)values;
 - (void)removeEvents:(NSSet *)values;
 
-- (void)addFriendsObject:(Friend *)value;
-- (void)removeFriendsObject:(Friend *)value;
+- (void)addFriendsObject:(NSManagedObject *)value;
+- (void)removeFriendsObject:(NSManagedObject *)value;
 - (void)addFriends:(NSSet *)values;
 - (void)removeFriends:(NSSet *)values;
 
