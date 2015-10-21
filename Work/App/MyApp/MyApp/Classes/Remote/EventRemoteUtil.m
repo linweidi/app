@@ -10,15 +10,16 @@
 #import "UserRemoteUtil.h"
 #import "User+Util.h"
 #import "Alert+Util.h"
+#import "Place+Util.h"
+#import "EventCategory+Util.h"
 #import "EventRemoteUtil.h"
 
 @implementation EventRemoteUtil
 
-- (void) setRemoteEvent:(RemoteObject *)object withEvent:(Event *)event {
+- (void) setUpdateRemoteEvent:(RemoteObject *)object withEvent:(Event *)event {
 
-    if ([event.globalID length]) {
-        object[PF_EVENT_OBJECTID] = event.globalID;
-    }
+    object[PF_EVENT_OBJECTID] = event.globalID;
+    
     
     /// TODO may not need update user here
     
@@ -38,7 +39,47 @@
     object[PF_EVENT_GROUP_IDS] = event.groupIDs ;
     object[PF_EVENT_IS_VOTING] = event.isVoting ;
     
-    event.alert = nil;  //generate new alert
+    PFObject * alertPF = [PFObject objectWithoutDataWithClassName:PF_EVENT_ALERT objectId:event.alert.globalID];
+    object[PF_EVENT_ALERT] = alertPF;  //generate new alert
+    
+    PFObject * placePF = [PFObject objectWithoutDataWithClassName:PF_EVENT_PLACE objectId:event.place.globalID];
+    object[PF_EVENT_PLACE] = placePF;
+    
+    object[PF_EVENT_CREATE_USER] = [User convertToRemoteUser:event.user];
+    
+    PFObject * cateogoryPF = [PFObject objectWithoutDataWithClassName:PF_EVENT_CATEGORY objectId:event.category.globalID];
+    object[PF_EVENT_CATEGORY] = cateogoryPF;   //get a new category
+    
+}
+
+- (void) setCreateRemoteEvent:(RemoteObject *)object withEvent:(Event *)event {
+    
+//    if ([event.globalID length]) {
+//        object[PF_EVENT_OBJECTID] = event.globalID;
+//    }
+    
+    /// TODO may not need update user here
+    
+    //object.createdAt = event.createTime;
+    //object.updatedAt  = event.updateTime ;
+    object[PF_EVENT_START_TIME] = event.startTime ;
+    object[PF_EVENT_END_TIME] = event.endTime ;
+    object[PF_EVENT_INVITEES] = event.invitees ;
+    object[PF_EVENT_IS_ALERT] = event.isAlert ;
+    object[PF_EVENT_LOCATION] = event.location ;
+    object[PF_EVENT_NOTES] = event.notes ;
+    object[PF_EVENT_TITLE] = event.title ;
+    object[PF_EVENT_SCOPE] = event.scope ;
+    object[PF_EVENT_BOARD_IDS] = event.boardIDs ;    //array
+    object[PF_EVENT_VOTING_ID] = event.votingID ;
+    object[PF_EVENT_MEMBERS] = event.members ;
+    object[PF_EVENT_GROUP_IDS] = event.groupIDs ;
+    object[PF_EVENT_IS_VOTING] = event.isVoting ;
+    
+    PFObject * alertPF = [PFObject objectWithClassName:PF_EVENT_ALERT];
+    object[PF_EVENT_ALERT] = alertPF;
+
+    
     event.place = nil;  //generate a new place
     
     object[PF_EVENT_CREATE_USER] = [User convertToRemoteUser:event.user];
@@ -70,28 +111,31 @@
     event.groupIDs = object[PF_EVENT_GROUP_IDS];
     event.isVoting = object[PF_EVENT_IS_VOTING];
     
+#warning this may be not right
+    // alert is one to one mapping, so we can use this pattern
     if (event.alert) {
+        //update
         [self setAlert:event.alert withRemoteObject:object inManagedObjectContext:context];
     }
     else {
+        //create
+        // if event.alert is nil pointer, that means it does not exist in our core data, so we can create one
         event.alert = [Alert createEntity:context];
+        [self setAlert:event.alert withRemoteObject:object inManagedObjectContext:context];
     }
-    //event.alert = nil;  //generate new alert
     
-    event.place = nil;  //generate a new place
+    // Place should have been fetched
+    // this cannot use the pattern for alert
+    // because place is a system entity, it may have existed in our data storage but we cannot create another same one
+    PFObject * placePF = object[PF_EVENT_PLACE];
+    event.place = [Place entityWithID:placePF.objectId   inManagedObjectContext:context];
+    
     
     User * user = [User convertFromRemoteUser:object[PF_EVENT_CREATE_USER] inManagedObjectContext:context];
     event.user = user;
+    
     event.category = nil;   //get a new category
     
-}
-
-- (void) setAlert:(Alert *)alert withRemoteObject:(RemoteObject *)object inManagedObjectContext: (NSManagedObjectContext *)context {
-    alert.globalID = object[PF_ALERT_CLASS_NAME];
-    alert.createTime = object[PF_ALERT_CREATE_TIME];
-    alert.updateTime = object[PF_ALERT_UPDATE_TIME];
-    alert.time = object[PF_ALERT_TIME];
-    alert.type = object[PF_ALERT_TYPE];
 }
 
 

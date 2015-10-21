@@ -16,7 +16,7 @@
 #define ENTITY_UTIL_TEMPLATE_CLASS Event
 #define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"Event"
 
-#include "EntityUtilTemplate.mh"
+#include "../Template/EntityUtilTemplate.mh"
 
 @end
 
