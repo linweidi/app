@@ -154,8 +154,9 @@
 
 
 #define		PF_EVENT_OBJECTID					@"objectId"//	Class name
-#define		PF_EVENT_CREATE_TIME                @"createTime"			//	Date
-#define		PF_EVENT_UPDATE_TIME                @"updateTime"			//	Date
+#define		PF_EVENT_CREATE_TIME                @"createAt"			//	Date
+#define		PF_EVENT_UPDATE_TIME                @"updateAt"			//	Date
+
 #define		PF_EVENT_START_TIME                 @"startTime"			//	Date
 #define		PF_EVENT_END_TIME                   @"endTime"			//	Date
 #define		PF_EVENT_INVITEES                   @"invitees"			//	Date
@@ -173,6 +174,72 @@
 #define		PF_EVENT_PLACE                      @"place"			//	Date
 #define		PF_EVENT_CREATE_USER                @"createUser"			//	Date
 #define		PF_EVENT_CATEGORY                   @"category"			//	Date
+
+//-----------------------------------------------------------------------
+//---------------------------   ALERT    --------------------------------------
+//-----------------------------------------------------------------------
+#define		PF_ALERT_CLASS_NAME                 @"Alert"
+
+
+#define		PF_ALERT_OBJECTID					@"objectId"//	Class name
+#define		PF_ALERT_CREATE_TIME                @"createAt"			//	Date
+#define		PF_ALERT_UPDATE_TIME                @"updateAt"			//	Date
+
+#define		PF_ALERT_TIME                       @"time"			//	Date
+#define		PF_ALERT_TYPE                       @"type"			//	Date
+
+//-----------------------------------------------------------------------
+//---------------------------   EVENT CATEGORY    --------------------------------------
+//-----------------------------------------------------------------------
+#define		PF_EVENT_CATEGORY_CLASS_NAME        @"EventCategory"
+
+
+#define		PF_EVENT_CATEGORY_OBJECTID			@"objectId"//	Class name
+#define		PF_EVENT_CATEGORY_CREATE_TIME       @"createAt"			//	Date
+#define		PF_EVENT_CATEGORY_UPDATE_TIME       @"updateAt"			//	Date
+
+#define		PF_EVENT_CATEGORY_CHILD_ARRAY       @"childArray"			//	Date
+#define		PF_EVENT_CATEGORY_CHILD_COUNT       @"childCount"			//	Date
+#define		PF_EVENT_CATEGORY_LEVEL             @"level"			//	Date
+#define		PF_EVENT_CATEGORY_NAME              @"name"			//	Date
+#define		PF_EVENT_CATEGORY_NOTES             @"notes"			//	Date
+#define		PF_EVENT_CATEGORY_PARENT            @"parent"			//	Date
+#define		PF_EVENT_CATEGORY_RELATED_ARRAY     @"relatedArray"			//	Date
+#define		PF_EVENT_CATEGORY_SUB_ARRAY         @"subArray"			//	Date
+
+//-----------------------------------------------------------------------
+//---------------------------   EVENT VOTING    --------------------------------------
+//-----------------------------------------------------------------------
+#define		PF_EVENT_VOTING_CLASS_NAME          @"EventCategory"
+
+
+#define		PF_EVENT_VOTING_OBJECTID			@"objectId"//	Class name
+#define		PF_EVENT_VOTING_CREATE_TIME         @"createAt"			//	Date
+#define		PF_EVENT_VOTING_UPDATE_TIME         @"updateAt"			//	Date
+
+#define		PF_EVENT_VOTING_INSTRUCTION         @"instruction"			//	Date
+#define		PF_EVENT_VOTING_IS_PRIORITY         @"isPriority"			//	Date
+#define		PF_EVENT_VOTING_SELECT_NUM          @"selectNum"			//	Date
+#define		PF_EVENT_VOTING_TIME_SPAN           @"timeSpan"			//	Date
+
+#define		PF_EVENT_VOTING_VOTE_ITEMS          @"voteItems"			//	Date
+#define		PF_EVENT_VOTING_VOTER_LIST          @"voterList"			//	Date
+
+//-----------------------------------------------------------------------
+//---------------------------   EVENT VOTE ITEM    --------------------------------------
+//-----------------------------------------------------------------------
+#define		PF_EVENT_VOTE_ITEM_CLASS_NAME       @"EventCategory"
+
+
+#define		PF_EVENT_VOTE_ITEM_OBJECTID			@"objectId"//	Class name
+#define		PF_EVENT_VOTE_ITEM_CREATE_TIME      @"createAt"			//	Date
+#define		PF_EVENT_VOTE_ITEM_UPDATE_TIME      @"updateAt"			//	Date
+
+#define		PF_EVENT_VOTE_ITEM_SCORE            @"score"			//	Date
+#define		PF_EVENT_VOTE_ITEM_VOTE_NUM         @"voteNum"			//	Date
+#define		PF_EVENT_VOTE_ITEM_VOTER_NAME       @"voterName"			//	Date
+#define		PF_EVENT_VOTE_ITEM_VOTING_ID        @"votingID"			//	Date
+
 
 //-----------------------------------------------------------------------
 //---------------------------   PEOPLE    --------------------------------------

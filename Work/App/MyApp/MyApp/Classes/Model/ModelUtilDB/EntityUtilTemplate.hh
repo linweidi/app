@@ -6,9 +6,7 @@
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 
-#import <Parse/Parse.h>
 
 
 #ifndef ENTITY_UTIL_TEMPLATE_CLASS

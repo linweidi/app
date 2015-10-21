@@ -10,4 +10,10 @@
 
 @implementation Alert (Util)
 
+
+#define ENTITY_UTIL_TEMPLATE_CLASS Alert
+#define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"Alert"
+
+#include "EntityUtilTemplate.mh"
+
 @end

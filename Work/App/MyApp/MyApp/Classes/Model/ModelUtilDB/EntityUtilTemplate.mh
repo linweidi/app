@@ -5,8 +5,7 @@
 //  Created by Linwei Ding on 10/20/15.
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
-#import "UserEntity.h"
-#import <CoreData/CoreData.h>
+
 //#import "EntityUtilTemplate.h"
 
 #ifndef ENTITY_UTIL_TEMPLATE_CLASS
