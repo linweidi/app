@@ -12,117 +12,118 @@
 #import "Alert+Util.h"
 #import "Place+Util.h"
 #import "EventCategory+Util.h"
+#import "AlertRemoteUtil.h"
 #import "EventRemoteUtil.h"
 
 @implementation EventRemoteUtil
 
-- (void) setUpdateRemoteEvent:(RemoteObject *)object withEvent:(Event *)event {
-
-    object[PF_EVENT_OBJECTID] = event.globalID;
++ (EventRemoteUtil *)sharedUtil {
+    static dispatch_once_t predicate = 0;
+    static EventRemoteUtil *sharedObject;
     
-    
-    /// TODO may not need update user here
-    
-    //object.createdAt = event.createTime;
-    //object.updatedAt  = event.updateTime ;
-    object[PF_EVENT_START_TIME] = event.startTime ;
-    object[PF_EVENT_END_TIME] = event.endTime ;
-    object[PF_EVENT_INVITEES] = event.invitees ;
-    object[PF_EVENT_IS_ALERT] = event.isAlert ;
-    object[PF_EVENT_LOCATION] = event.location ;
-    object[PF_EVENT_NOTES] = event.notes ;
-    object[PF_EVENT_TITLE] = event.title ;
-    object[PF_EVENT_SCOPE] = event.scope ;
-    object[PF_EVENT_BOARD_IDS] = event.boardIDs ;    //array
-    object[PF_EVENT_VOTING_ID] = event.votingID ;
-    object[PF_EVENT_MEMBERS] = event.members ;
-    object[PF_EVENT_GROUP_IDS] = event.groupIDs ;
-    object[PF_EVENT_IS_VOTING] = event.isVoting ;
-    
-    PFObject * alertPF = [PFObject objectWithoutDataWithClassName:PF_EVENT_ALERT objectId:event.alert.globalID];
-    object[PF_EVENT_ALERT] = alertPF;  //generate new alert
-    
-    PFObject * placePF = [PFObject objectWithoutDataWithClassName:PF_EVENT_PLACE objectId:event.place.globalID];
-    object[PF_EVENT_PLACE] = placePF;
-    
-    object[PF_EVENT_CREATE_USER] = [User convertToRemoteUser:event.user];
-    
-    PFObject * cateogoryPF = [PFObject objectWithoutDataWithClassName:PF_EVENT_CATEGORY objectId:event.category.globalID];
-    object[PF_EVENT_CATEGORY] = cateogoryPF;   //get a new category
-    
+    dispatch_once(&predicate, ^{
+        //initializing singleton object
+        sharedObject = [[self alloc] init];
+        
+        sharedObject.className = PF_EVENT_CLASS_NAME;
+    });
+    return sharedObject;
 }
 
-- (void) setCreateRemoteEvent:(RemoteObject *)object withEvent:(Event *)event {
-    
-//    if ([event.globalID length]) {
-//        object[PF_EVENT_OBJECTID] = event.globalID;
-//    }
-    
-    /// TODO may not need update user here
-    
-    //object.createdAt = event.createTime;
-    //object.updatedAt  = event.updateTime ;
-    object[PF_EVENT_START_TIME] = event.startTime ;
-    object[PF_EVENT_END_TIME] = event.endTime ;
-    object[PF_EVENT_INVITEES] = event.invitees ;
-    object[PF_EVENT_IS_ALERT] = event.isAlert ;
-    object[PF_EVENT_LOCATION] = event.location ;
-    object[PF_EVENT_NOTES] = event.notes ;
-    object[PF_EVENT_TITLE] = event.title ;
-    object[PF_EVENT_SCOPE] = event.scope ;
-    object[PF_EVENT_BOARD_IDS] = event.boardIDs ;    //array
-    object[PF_EVENT_VOTING_ID] = event.votingID ;
-    object[PF_EVENT_MEMBERS] = event.members ;
-    object[PF_EVENT_GROUP_IDS] = event.groupIDs ;
-    object[PF_EVENT_IS_VOTING] = event.isVoting ;
+- (void) setCommonObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext: (NSManagedObjectContext *)context{
+    NSAssert([object isKindOfClass:[Event class]], @"Type casting is wrong");
+    Event * event = (Event *)object;
+    remoteObj[PF_EVENT_START_TIME] = event.startTime ;
+    remoteObj[PF_EVENT_END_TIME] = event.endTime ;
+    remoteObj[PF_EVENT_INVITEES] = event.invitees ;
+    remoteObj[PF_EVENT_IS_ALERT] = event.isAlert ;
+    remoteObj[PF_EVENT_LOCATION] = event.location ;
+    remoteObj[PF_EVENT_NOTES] = event.notes ;
+    remoteObj[PF_EVENT_TITLE] = event.title ;
+    remoteObj[PF_EVENT_SCOPE] = event.scope ;
+    remoteObj[PF_EVENT_BOARD_IDS] = event.boardIDs ;    //array
+    remoteObj[PF_EVENT_VOTING_ID] = event.votingID ;
+    remoteObj[PF_EVENT_MEMBERS] = event.members ;
+    remoteObj[PF_EVENT_GROUP_IDS] = event.groupIDs ;
+    remoteObj[PF_EVENT_IS_VOTING] = event.isVoting ;
+}
+
+- (void) setCommonRemoteObject:(RemoteObject *)remoteObj withAlert:(BASE_REMOTE_UTIL_OBJ_TYPE)object {
+    NSAssert([object isKindOfClass:[Event class]], @"Type casting is wrong");
+    Event * event = (Event *)object;
+    remoteObj[PF_EVENT_START_TIME] = event.startTime ;
+    remoteObj[PF_EVENT_END_TIME] = event.endTime ;
+    remoteObj[PF_EVENT_INVITEES] = event.invitees ;
+    remoteObj[PF_EVENT_IS_ALERT] = event.isAlert ;
+    remoteObj[PF_EVENT_LOCATION] = event.location ;
+    remoteObj[PF_EVENT_NOTES] = event.notes ;
+    remoteObj[PF_EVENT_TITLE] = event.title ;
+    remoteObj[PF_EVENT_SCOPE] = event.scope ;
+    remoteObj[PF_EVENT_BOARD_IDS] = event.boardIDs ;    //array
+    remoteObj[PF_EVENT_VOTING_ID] = event.votingID ;
+    remoteObj[PF_EVENT_MEMBERS] = event.members ;
+    remoteObj[PF_EVENT_GROUP_IDS] = event.groupIDs ;
+    remoteObj[PF_EVENT_IS_VOTING] = event.isVoting ;
+}
+
+- (void)setNewRemoteObject:(RemoteObject *)remoteObj withObject:(UserEntity *)object {
+    [super setNewRemoteObject:remoteObj withObject:object];
+    NSAssert([object isKindOfClass:[Event class]], @"Type casting is wrong");
+    Event * event = (Event *)object;
     
     PFObject * alertPF = [PFObject objectWithClassName:PF_EVENT_ALERT];
-    object[PF_EVENT_ALERT] = alertPF;
-
+    remoteObj[PF_EVENT_ALERT] = alertPF;
+    
     
     event.place = nil;  //generate a new place
     
-    object[PF_EVENT_CREATE_USER] = [User convertToRemoteUser:event.user];
+    remoteObj[PF_EVENT_CREATE_USER] = [User convertToRemoteUser:event.user];
     event.category = nil;   //get a new category
-    
 }
 
+- (void)setExistedRemoteObject:(RemoteObject *)remoteObj withObject:(UserEntity *)object {
+    [super setExistedRemoteObject:remoteObj withObject:object];
+    NSAssert([object isKindOfClass:[Event class]], @"Type casting is wrong");
+    Event * event = (Event *)object;
+    
+    PFObject * alertPF = [PFObject objectWithoutDataWithClassName:PF_EVENT_ALERT objectId:event.alert.globalID];
+    remoteObj[PF_EVENT_ALERT] = alertPF;  //generate new alert
+    
+    PFObject * placePF = [PFObject objectWithoutDataWithClassName:PF_EVENT_PLACE objectId:event.place.globalID];
+    remoteObj[PF_EVENT_PLACE] = placePF;
+    
+    remoteObj[PF_EVENT_CREATE_USER] = [User convertToRemoteUser:event.user];
+    
+    PFObject * cateogoryPF = [PFObject objectWithoutDataWithClassName:PF_EVENT_CATEGORY objectId:event.category.globalID];
+    remoteObj[PF_EVENT_CATEGORY] = cateogoryPF;   //get a new category
+
+}
+
+- (void)setNewObject:(UserEntity *)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext:(NSManagedObjectContext *)context {
+    [super setNewObject:object withRemoteObject:remoteObj inManagedObjectContext:context];
+    NSAssert([object isKindOfClass:[Event class]], @"Type casting is wrong");
+    Event * event = (Event *)object;
+    
+    event.alert = [Alert createEntity:context];
+    [[AlertRemoteUtil sharedUtil] setNewObject:event.alert withRemoteObject:remoteObj[PF_EVENT_ALERT] inManagedObjectContext:context];
+    
+    PFObject * placePF = remoteObj[PF_EVENT_PLACE];
+    event.place = [Place createEntity:context];
+    [[PlaceRemoteUtil]]
+}
+
+- (void)setExistedObject:(UserEntity *)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext:(NSManagedObjectContext *)context {
+    [super setExistedObject:object withRemoteObject:remoteObj inManagedObjectContext:context];
+    NSAssert([object isKindOfClass:[Event class]], @"Type casting is wrong");
+    Event * event = (Event *)object;
+    
+    [[AlertRemoteUtil sharedUtil] setExistedObject:event.alert withRemoteObject:remoteObj[PF_EVENT_ALERT] inManagedObjectContext:context];
+}
 
 - (void) setEvent:(Event *)event withRemoteObject:(RemoteObject *)object inManagedObjectContext: (NSManagedObjectContext *)context{
     event.globalID = object[PF_EVENT_OBJECTID];
     
-    /// TODO may not need update user here
-    
 
-    
-    event.createTime = object.createdAt ;
-    event.updateTime = object.updatedAt ;
-    event.startTime = object[PF_EVENT_START_TIME];
-    event.endTime = object[PF_EVENT_END_TIME];
-    event.invitees = object[PF_EVENT_INVITEES];
-    event.isAlert = object[PF_EVENT_IS_ALERT];
-    event.location = object[PF_EVENT_LOCATION];
-    event.notes = object[PF_EVENT_NOTES];
-    event.title = object[PF_EVENT_TITLE];
-    event.scope = object[PF_EVENT_SCOPE];
-    event.boardIDs = object[PF_EVENT_BOARD_IDS];    //array
-    event.votingID = object[PF_EVENT_VOTING_ID];
-    event.members = object[PF_EVENT_MEMBERS];
-    event.groupIDs = object[PF_EVENT_GROUP_IDS];
-    event.isVoting = object[PF_EVENT_IS_VOTING];
-    
-#warning this may be not right
-    // alert is one to one mapping, so we can use this pattern
-    if (event.alert) {
-        //update
-        [self setAlert:event.alert withRemoteObject:object inManagedObjectContext:context];
-    }
-    else {
-        //create
-        // if event.alert is nil pointer, that means it does not exist in our core data, so we can create one
-        event.alert = [Alert createEntity:context];
-        [self setAlert:event.alert withRemoteObject:object inManagedObjectContext:context];
-    }
     
     // Place should have been fetched
     // this cannot use the pattern for alert

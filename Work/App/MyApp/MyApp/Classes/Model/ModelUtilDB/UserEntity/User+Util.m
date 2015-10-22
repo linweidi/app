@@ -15,12 +15,15 @@
 #import "AppHeader.h"
 
 #import "Thumbnail+Util.h"
-
+#import "UserRemoteUtil.h"
 #import "User+Util.h"
 
 @implementation User (Util)
 
-///TODO store an array of existed user id
+#define ENTITY_UTIL_TEMPLATE_CLASS User
+#define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"User"
+
+#include "../Template/EntityUtilTemplate.mh"
 
 - (BOOL) isEqual: (User *)user {
     return [self.globalID isEqualToString:user.globalID];
@@ -63,6 +66,7 @@
 }
  */
 
+/*
 + (User *) createUserEntity:(NSManagedObjectContext *)context{
     
     User * user = nil;
@@ -146,29 +150,30 @@
 
 - (PFUser *) convertToPFUser {
     PFUser * user = [PFUser user];
-
     
-    user[PF_USER_OBJECTID] = self.globalID ;
- 
-    user[PF_USER_USERNAME] = self.username;
-    user[PF_USER_PASSWORD] = self.password ;
-    
-    user[PF_USER_EMAIL] = self.email ;
-    user[PF_USER_EMAILCOPY] = self.emailCopy ;
-
-    user[PF_USER_FULLNAME] = self.fullname ;
-    user[PF_USER_FULLNAME_LOWER] = self.fullnameLower ;
-    
-    user[PF_USER_FACEBOOKID] = self.facebookID ;
-    user[PF_USER_TWITTERID] = self.twitterID ;
-    
-    
-    // this is a PFFile
-    PFFile * filePicture = [PFFile fileWithName:self.pictureName contentsAtPath:self.pictureURL];
-    user[PF_USER_PICTURE] = filePicture;
-    
-    PFFile * thumbnailPicture = [PFFile fileWithName:self.thumbnail.name contentsAtPath:self.thumbnail.url];
-    user[PF_USER_THUMBNAIL] = thumbnailPicture;
+    [UserRemoteUtil sharedUtil]
+//    
+//    user[PF_USER_OBJECTID] = self.globalID ;
+// 
+//    user[PF_USER_USERNAME] = self.username;
+//    user[PF_USER_PASSWORD] = self.password ;
+//    
+//    user[PF_USER_EMAIL] = self.email ;
+//    user[PF_USER_EMAILCOPY] = self.emailCopy ;
+//
+//    user[PF_USER_FULLNAME] = self.fullname ;
+//    user[PF_USER_FULLNAME_LOWER] = self.fullnameLower ;
+//    
+//    user[PF_USER_FACEBOOKID] = self.facebookID ;
+//    user[PF_USER_TWITTERID] = self.twitterID ;
+//    
+//    
+//    // this is a PFFile
+//    PFFile * filePicture = [PFFile fileWithName:self.pictureName contentsAtPath:self.pictureURL];
+//    user[PF_USER_PICTURE] = filePicture;
+//    
+//    PFFile * thumbnailPicture = [PFFile fileWithName:self.thumbnail.name contentsAtPath:self.thumbnail.url];
+//    user[PF_USER_THUMBNAIL] = thumbnailPicture;
     
     return user;
 }
@@ -188,5 +193,6 @@
     
     return userRT;
 }
+ */
 
 @end

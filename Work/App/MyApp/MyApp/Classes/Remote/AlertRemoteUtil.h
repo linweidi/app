@@ -9,7 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "Alert+Util.h"
 #import "AppHeader.h"
-@interface AlertRemoteUtil : NSObject
+#import "BaseRemoteUtil.h"
+
+@interface AlertRemoteUtil : BaseRemoteUtil
+
++ (AlertRemoteUtil *)sharedUtil;
+
+- (void) setCommonObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext: (NSManagedObjectContext *)context;
+
+- (void) setCommonRemoteObject:(RemoteObject *)remoteObj withAlert:(BASE_REMOTE_UTIL_OBJ_TYPE)object ;
 
 
 @end

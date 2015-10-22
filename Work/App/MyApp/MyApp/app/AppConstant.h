@@ -198,6 +198,31 @@
 #define		PF_ALERT_TYPE                       @"type"			//	Date
 
 //-----------------------------------------------------------------------
+//---------------------------   PLACE    --------------------------------------
+//-----------------------------------------------------------------------
+#define		PF_PLACE_CLASS_NAME                 @"Alert"
+
+
+#define		PF_PLACE_OBJECTID					@"objectId"//	Class name
+#define		PF_PLACE_CREATE_TIME                @"createAt"			//	Date
+#define		PF_PLACE_UPDATE_TIME                @"updateAt"			//	Date
+
+#define		PF_PLACE_CLOSE_TIME                 @"closeTime"			//	Date
+#define		PF_PLACE_LIKES                      @"likes"			//	Date
+#define		PF_PLACE_LOCATION                   @"location"			//	Date
+#define		PF_PLACE_MAP                        @"map"			//	Date
+#define		PF_PLACE_NAME                       @"name"			//	Date
+#define		PF_PLACE_OPEN_TIME                  @"openTime"			//	Date
+#define		PF_PLACE_PARKING                    @"parking"			//	Date
+#define		PF_PLACE_PHOTOS                     @"photos"			//	Date
+#define		PF_PLACE_PRICE                      @"price"			//	Date
+#define		PF_PLACE_RANKINGS                   @"rankings"			//	Date
+#define		PF_PLACE_TIPS                       @"tips"			//	Date
+#define		PF_PLACE_TYPE                       @"type"			//	Date
+#define		PF_PLACE_THUMB                      @"thumb"			//	Date
+
+
+//-----------------------------------------------------------------------
 //---------------------------   EVENT CATEGORY    --------------------------------------
 //-----------------------------------------------------------------------
 #define		PF_EVENT_CATEGORY_CLASS_NAME        @"EventCategory"

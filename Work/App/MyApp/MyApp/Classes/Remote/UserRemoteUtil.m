@@ -13,6 +13,7 @@
 
 #import "AppConstant.h"
 #import "CurrentUser+Util.h"
+#import "Thumbnail+Util.h"
 #import "User+Util.h"
 #import "ConfigurationManager.h"
 #import "push.h"
@@ -29,8 +30,153 @@
         //initializing singleton object
         sharedObject = [[self alloc] init];
         
+        sharedObject.className = PF_USER_CLASS_NAME;
+        
     });
     return sharedObject;
+}
+
+- (void) setCommonObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext: (NSManagedObjectContext *)context{
+    NSAssert([object isKindOfClass:[User class]], @"Type casting is wrong");
+    User * user = (User *)object;
+    user.username = remoteObj[PF_USER_USERNAME];
+    user.password = remoteObj[PF_USER_PASSWORD];
+    
+    user.email = remoteObj[PF_USER_EMAIL];
+    user.emailCopy = remoteObj[PF_USER_EMAILCOPY];
+    
+    user.fullname = remoteObj[PF_USER_FULLNAME];
+    user.fullnameLower = remoteObj[PF_USER_FULLNAME_LOWER];
+    
+    user.facebookID = remoteObj[PF_USER_FACEBOOKID];
+    user.twitterID = remoteObj[PF_USER_TWITTERID];
+
+}
+
+- (void) setCommonRemoteObject:(RemoteObject *)remoteObj withObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object {
+    NSAssert([object isKindOfClass:[User class]], @"Type casting is wrong");
+    User * user = (User *)object;
+    remoteObj[PF_USER_USERNAME] = user.username;
+    remoteObj[PF_USER_PASSWORD] = user.password ;
+    
+    remoteObj[PF_USER_EMAIL] = user.email ;
+    remoteObj[PF_USER_EMAILCOPY] = user.emailCopy ;
+    
+    remoteObj[PF_USER_FULLNAME] = user.fullname ;
+    remoteObj[PF_USER_FULLNAME_LOWER] = user.fullnameLower ;
+    
+    remoteObj[PF_USER_FACEBOOKID] = user.facebookID ;
+    remoteObj[PF_USER_TWITTERID] = user.twitterID ;
+}
+
+- (void)setNewRemoteObject:(RemoteObject *)remoteObj withObject:(UserEntity *)object {
+    [super setNewRemoteObject:remoteObj withObject:object];
+    NSAssert([object isKindOfClass:[User class]], @"Type casting is wrong");
+    User * user = (User *)object;
+    
+    // this is a PFFile
+    PFFile * filePicture = [PFFile fileWithName:user.pictureName contentsAtPath:user.pictureURL];
+    remoteObj[PF_USER_PICTURE] = filePicture;
+    
+    PFFile * thumbnailPicture = [PFFile fileWithName:user.thumbnail.name contentsAtPath:user.thumbnail.url];
+    remoteObj[PF_USER_THUMBNAIL] = thumbnailPicture;
+}
+
+- (void)setExistedRemoteObject:(RemoteObject *)remoteObj withObject:(UserEntity *)object {
+    [super setExistedRemoteObject:remoteObj withObject:object];
+    NSAssert([object isKindOfClass:[User class]], @"Type casting is wrong");
+    User * user = (User *)object;
+    
+    // this is a PFFile
+    PFFile * filePicture = [PFFile fileWithName:user.pictureName contentsAtPath:user.pictureURL];
+    remoteObj[PF_USER_PICTURE] = filePicture;
+    
+    PFFile * thumbnailPicture = [PFFile fileWithName:user.thumbnail.name contentsAtPath:user.thumbnail.url];
+    remoteObj[PF_USER_THUMBNAIL] = thumbnailPicture;
+    
+}
+
+- (void)setNewObject:(UserEntity *)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext:(NSManagedObjectContext *)context {
+    [super setNewObject:object withRemoteObject:remoteObj inManagedObjectContext:context];
+    NSAssert([object isKindOfClass:[User class]], @"Type casting is wrong");
+    User * user = (User *)object;
+    
+    PFFile * filePicture = remoteObj[PF_USER_PICTURE];
+    user.pictureName = filePic
+    ture.name;
+    user.pictureURL = filePicture.url;
+    
+    PFFile * thumbnailPicture = remoteObj[PF_USER_THUMBNAIL];
+    //self.thumbnail = thumbnailPicture.name;
+    Thumbnail * thumb =
+    
+    [Thumbnail thumbnailEntityWithPFUser:thumbnailPicture withUserID:remoteObj.objectId inManagedObjectContext:context ];
+    user.thumbnail = thumb;
+    
+    //if create, add user to User Manager
+    [[UserManager sharedUtil] addUser:user];
+}
+
+- (void)setExistedObject:(UserEntity *)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext:(NSManagedObjectContext *)context {
+    [super setExistedObject:object withRemoteObject:remoteObj inManagedObjectContext:context];
+    NSAssert([object isKindOfClass:[User class]], @"Type casting is wrong");
+    User * user = (User *)object;
+    
+    PFFile * filePicture = remoteObj[PF_USER_PICTURE];
+    user.pictureName = filePicture.name;
+    user.pictureURL = filePicture.url;
+    
+    PFFile * thumbnailPicture = remoteObj[PF_USER_THUMBNAIL];
+    //self.thumbnail = thumbnailPicture.name;
+    Thumbnail * thumb =
+    
+    [Thumbnail thumbnailEntityWithPFUser:thumbnailPicture withUserID:remoteObj.objectId inManagedObjectContext:context ];
+    user.thumbnail = thumb;
+}
+
+
+- (User *) convertToUser:(RemoteUser *)user inManagedObjectContext:(NSManagedObjectContext *) context {
+    User * userEntity = nil;
+    
+    UserManager * manager = [UserManager sharedUtil];
+    if ([manager exists:user[PF_USER_OBJECTID]]) {
+        userEntity = [manager getUser:user[PF_USER_OBJECTID]];
+    }
+    else {
+        // not exist
+        userEntity = [User createEntity:context];
+        [self setExistedObject:userEntity withRemoteObject:user inManagedObjectContext:context];
+    }
+    
+    return userEntity;
+}
+
+- (RemoteUser *) convertToRemoteUser:(User *)user {
+    RemoteUser * userRT = [PFUser user];
+    
+    if ([user.globalID length]) {
+        //existed remote object
+        [self setExistedRemoteObject:userRT withObject:user];
+    }
+    else {
+        // new remote object
+        [self setNewRemoteObject:userRT withObject:user];
+    }
+    
+    
+    return userRT;
+}
+
+- (NSArray *) convertToUserArray:(NSArray *)users inManagedObjectContext:(NSManagedObjectContext *) context {
+    NSAssert(!users, @"input is nil;");
+    NSMutableArray * userArray = [[NSMutableArray alloc] init];
+    
+    for (PFUser * userPF in users) {
+        User * user = [self convertToUser:userPF inManagedObjectContext:context];
+        [userArray addObject:user];
+    }
+    
+    return userArray;
 }
 
 - (void) loadUserFromParse:(NSString *)userId completionHandler:(REMOTE_ARRAY_BLOCK)block {
@@ -61,7 +207,7 @@
 
 - (void) signUp:(CurrentUser *)user completionHandler:(LOCAL_BOOL_BLOCK)block {
 
-    PFUser * userRT = [UserRemoteUtil convertFromCurrentUser:user];
+    PFUser * userRT = [[UserRemoteUtil sharedUtil] convertToRemoteUser:user];
     ConfigurationManager * config = [ConfigurationManager sharedManager];
     
     // here, it will check if the username and email has already existed
@@ -147,11 +293,11 @@
 //    currentUser.fullnameLower = [user.username lowercaseString];
 //}
 
-+ (RemoteUser *) convertFromCurrentUser: (CurrentUser *)currentUser {
-    RemoteUser * user = [User convertToRemoteUser:currentUser];
-    // more specific for CurrentUser of Remote
-    return user;
-}
+//+ (RemoteUser *) convertFromCurrentUser: (CurrentUser *)currentUser {
+//    RemoteUser * user = [User convertToRemoteUser:currentUser];
+//    // more specific for CurrentUser of Remote
+//    return user;
+//}
 //- (RemoteUser *) convertToRemoteUser {
 //    return [self convertToPFUser];
 //}

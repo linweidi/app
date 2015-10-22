@@ -6,8 +6,9 @@
 //  Copyright (c) 2015 Linweiding. All rights reserved.
 //
 
+#import "SystemBaseRemoteUtil.h"
 #import <Foundation/Foundation.h>
 
-@interface PlaceRemoteUtil : NSObject
+@interface PlaceRemoteUtil : SystemBaseRemoteUtil
 
 @end

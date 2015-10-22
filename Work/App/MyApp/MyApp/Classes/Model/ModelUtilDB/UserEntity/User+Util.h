@@ -14,27 +14,33 @@
 
 @interface User (Util)
 
+#define ENTITY_UTIL_TEMPLATE_CLASS User
+#define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"User"
 
-- (RemoteUser *) convertToRemoteUser;
-
-- (PFUser *) convertToPFUser;
-
-+ (User *) convertFromPFUser:(PFUser *)user inManagedObjectContext:(NSManagedObjectContext *) context;
-
-+ (RemoteUser *) convertToRemoteUser:(User *)user;
-
-+ (NSArray *) convertFromRemoteUserArray:(NSArray *)users inManagedObjectContext:(NSManagedObjectContext *) context;
-
-+ (User *) convertFromRemoteUser:(RemoteUser *)user inManagedObjectContext:(NSManagedObjectContext *) context;
+#include "../Template/EntityUtilTemplate.hh"
 
 
 - (BOOL) isEqual: (User *)user;
-/*  legacy
-+ (User *) userEntityWithPFUser:(PFUser *)object inManagedObjectContext: (NSManagedObjectContext *)context updateUser:(BOOL)updateUser;
-*/
-+ (User *) createUserEntity:(NSManagedObjectContext *)context;
 
-- (void) setWithPFUser:(PFUser *)user inManagedObjectContext: (NSManagedObjectContext *)context;
+//- (RemoteUser *) convertToRemoteUser;
+//
+//- (PFUser *) convertToPFUser;
+//
+//+ (User *) convertFromPFUser:(PFUser *)user inManagedObjectContext:(NSManagedObjectContext *) context;
+//
+//+ (RemoteUser *) convertToRemoteUser:(User *)user;
+//
+//+ (NSArray *) convertFromRemoteUserArray:(NSArray *)users inManagedObjectContext:(NSManagedObjectContext *) context;
+//
+//+ (User *) convertFromRemoteUser:(RemoteUser *)user inManagedObjectContext:(NSManagedObjectContext *) context;
+//
+//
+///*  legacy
+//+ (User *) userEntityWithPFUser:(PFUser *)object inManagedObjectContext: (NSManagedObjectContext *)context updateUser:(BOOL)updateUser;
+//*/
+//+ (User *) createUserEntity:(NSManagedObjectContext *)context;
+//
+//- (void) setWithPFUser:(PFUser *)user inManagedObjectContext: (NSManagedObjectContext *)context;
 
 
 @end

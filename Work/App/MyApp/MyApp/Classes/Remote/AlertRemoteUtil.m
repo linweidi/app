@@ -9,57 +9,33 @@
 #import "AlertRemoteUtil.h"
 
 @implementation AlertRemoteUtil
-- (void) setNewAlert:(Alert *)alert withRemoteObject:(RemoteObject *)object inManagedObjectContext: (NSManagedObjectContext *)context {
-    alert.globalID = object[PF_ALERT_OBJECTID];
-    alert.createTime = object[PF_ALERT_CREATE_TIME];
-    alert.updateTime = object[PF_ALERT_UPDATE_TIME];
-    [self setCommonAlert:alert withRemoteObject:object];
-}
 
-- (void) setExistedAlert:(Alert *)alert withRemoteObject:(RemoteObject *)object inManagedObjectContext: (NSManagedObjectContext *)context {
-    //alert.globalID = object[PF_ALERT_OBJECTID];
-    //alert.createTime = object[PF_ALERT_CREATE_TIME];
-    alert.updateTime = object[PF_ALERT_UPDATE_TIME];
++ (AlertRemoteUtil *)sharedUtil {
+    static dispatch_once_t predicate = 0;
+    static AlertRemoteUtil *sharedObject;
     
-    [self setCommonAlert:alert withRemoteObject:object];
-}
-
-- (void) setNewRemoteAlert:(RemoteObject *)object withAlert:(Alert *)alert inManagedObjectContext: (NSManagedObjectContext *)context{
-    object[PF_ALERT_CREATE_TIME] = alert.createTime;
-    object[PF_ALERT_UPDATE_TIME] = alert.updateTime;
-    [self setCommonRemoteAlert:object withAlert:alert];
-}
-
-- (void) setExistedRemoteAlert:(RemoteObject *)object withAlert:(Alert *)alert inManagedObjectContext: (NSManagedObjectContext *)context{
-    object[PF_ALERT_UPDATE_TIME] = alert.updateTime;
-    [self setCommonRemoteAlert:object withAlert:alert];
-}
-
-- (RemoteObject *) createNewRemoteAlert:(Alert *)alert inManagedObjectContext: (NSManagedObjectContext *)context{
-    PFObject * object = [PFObject objectWithClassName:PF_ALERT_CLASS_NAME];
-#warning how to see the globalID?
-#warning how to see the createdAt?
-    [self setNewRemoteAlert:object withAlert:alert inManagedObjectContext:context];
-    
-    return object;
-}
-
-- (RemoteObject *) createExistedRemoteAlert:(Alert *)alert inManagedObjectContext: (NSManagedObjectContext *)context{
-    PFObject * object = [PFObject objectWithoutDataWithClassName:PF_ALERT_CLASS_NAME objectId:PF_ALERT_OBJECTID];
-    [self setExistedRemoteAlert:object withAlert:alert inManagedObjectContext:context];
-    return object;
+    dispatch_once(&predicate, ^{
+        //initializing singleton object
+        sharedObject = [[self alloc] init];
+        
+        sharedObject.className = PF_ALERT_CLASS_NAME;
+    });
+    return sharedObject;
 }
 
 #pragma mark -- private method
 
-- (void) setCommonAlert:(Alert *)alert withRemoteObject:(RemoteObject *)object {
-    
-    alert.time = object[PF_ALERT_TIME];
-    alert.type = object[PF_ALERT_TYPE];
+- (void) setCommonObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext: (NSManagedObjectContext *)context{
+    NSAssert([object isKindOfClass:[Alert class]], @"Type casting is wrong");
+    Alert * alert = (Alert *)object;
+    alert.time = remoteObj[PF_ALERT_TIME];
+    alert.type = remoteObj[PF_ALERT_TYPE];
 }
 
-- (void) setCommonRemoteAlert:(RemoteObject *)object withAlert:(Alert *)alert {
-    object[PF_ALERT_TIME] = alert.time;
-    object[PF_ALERT_TYPE] = alert.type;
+- (void) setCommonRemoteObject:(RemoteObject *)remoteObj withAlert:(BASE_REMOTE_UTIL_OBJ_TYPE)object {
+    NSAssert([object isKindOfClass:[Alert class]], @"Type casting is wrong");
+    Alert * alert = (Alert *)object;
+    remoteObj[PF_ALERT_TIME] = alert.time;
+    remoteObj[PF_ALERT_TYPE] = alert.type;
 }
 @end

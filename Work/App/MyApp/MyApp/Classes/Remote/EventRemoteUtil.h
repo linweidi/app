@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BaseRemoteUtil.h"
 
-@interface EventRemoteUtil : NSObject
+@interface EventRemoteUtil : BaseRemoteUtil 
++ (EventRemoteUtil *)sharedUtil;
 
+- (void) setCommonObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext: (NSManagedObjectContext *)context;
+
+- (void) setCommonRemoteObject:(RemoteObject *)remoteObj withAlert:(BASE_REMOTE_UTIL_OBJ_TYPE)object ;
 @end
