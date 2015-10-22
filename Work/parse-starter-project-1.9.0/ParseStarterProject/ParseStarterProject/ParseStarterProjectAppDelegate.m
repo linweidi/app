@@ -27,9 +27,13 @@
 #pragma mark UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [Parse setApplicationId:@"8d0sUdiZXcxKIOZ9MS66xbTZQ4A7gm1hMSlSUAUi"
+                  clientKey:@"uUF9zfFh6Rm83ycEwef2a9k2H37HAKMHf9nei1xX"];
+    
     // Enable storing and querying data from Local Datastore. Remove this line if you don't want to
     // use Local Datastore features or want to use cachePolicy.
-    [Parse enableLocalDatastore];
+    //[Parse enableLocalDatastore];
 
     // ****************************************************************************
     // Uncomment this line if you want to enable Crash Reporting
@@ -50,7 +54,7 @@
     // If you would like all objects to be private by default, remove this line.
     [defaultACL setPublicReadAccess:YES];
 
-    [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
+    //[PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
 
     // Override point for customization after application launch.
 
