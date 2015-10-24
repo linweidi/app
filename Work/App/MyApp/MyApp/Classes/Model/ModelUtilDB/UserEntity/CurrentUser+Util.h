@@ -12,6 +12,10 @@
 
 @interface CurrentUser (Util) 
 
+#define ENTITY_UTIL_TEMPLATE_CLASS CurrentUser
+#define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"CurrentUser"
+
+#include "../Template/EntityUtilTemplate.hh"
 
 + (CurrentUser *) getCurrentUser;
 //

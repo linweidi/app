@@ -32,7 +32,7 @@
     alert.type = remoteObj[PF_ALERT_TYPE];
 }
 
-- (void) setCommonRemoteObject:(RemoteObject *)remoteObj withAlert:(BASE_REMOTE_UTIL_OBJ_TYPE)object {
+- (void) setCommonRemoteObject:(RemoteObject *)remoteObj withObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object {
     NSAssert([object isKindOfClass:[Alert class]], @"Type casting is wrong");
     Alert * alert = (Alert *)object;
     remoteObj[PF_ALERT_TIME] = alert.time;

@@ -12,6 +12,12 @@
 
 @implementation Thumbnail (Util)
 
+
+#define ENTITY_UTIL_TEMPLATE_CLASS Thumbnail
+#define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"Thumbnail"
+
+#include "../Template/EntityUtilTemplate.mh"
+
 + (Thumbnail *) thumbnailEntityWithPFUser:(PFFile *)thumbFile withUserID:(NSString *)userID inManagedObjectContext: (NSManagedObjectContext *)context {
     UserManager * manager = [UserManager sharedUtil];
 
@@ -87,10 +93,11 @@
     }];
 }
 
+/*
 + (Thumbnail *) thumbnailEntity:(NSString *)name inManagedObjectContext: (NSManagedObjectContext *)context {
     Thumbnail *newThumbNail = nil   ;
 
-/*
+
     NSAssert(name, @"input is nil");
 
     if (name) {
@@ -116,8 +123,9 @@
         
         
     }
-    */
+ 
     return newThumbNail;
 }
+*/
 
 @end

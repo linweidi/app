@@ -12,16 +12,22 @@
 #import <Parse/Parse.h>
 #import <Foundation/Foundation.h>
 
+
+typedef PFObject RemoteObject;
+
+typedef PFUser RemoteUser;
+
+typedef PFFile RemoteFile;
+
 typedef void (^REMOTE_BOOL_BLOCK)(BOOL succeeded, NSError * error);
 
-typedef void (^REMOTE_OBJECT_BLOCK)(BOOL succeeded, NSError * error, PFObject * object);
+typedef void (^REMOTE_RT_OBJECT_BLOCK)(RemoteObject object, NSError * error);
+
+typedef void (^REMOTE_OBJECT_BLOCK)(id object, NSError * error);
 
 typedef void (^REMOTE_ARRAY_BLOCK)(NSArray * objects, NSError * error);
 
 typedef void (^REMOTE_DATA_BLOCK)(NSData * data, NSError * error);
 
-typedef PFObject RemoteObject;
-
-typedef PFUser RemoteUser;
 
 #endif /* RemoteHeader_h */

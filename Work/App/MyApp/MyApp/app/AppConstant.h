@@ -106,14 +106,17 @@
 //---------------------------   COMMON    --------------------------------------
 //-----------------------------------------------------------------------
 #define		PF_COMMON_OBJECTID					@"objectId"//	Class name
-#define		PF_COMMON_CREATE_TIME                @"createAt"			//	Date
-#define		PF_COMMON_UPDATE_TIME                @"updateAt"			//	Date
+#define		PF_COMMON_CREATE_TIME               @"createAt"			//	Date
+#define		PF_COMMON_UPDATE_TIME               @"updateAt"			//	Date
+#define		PF_COMMON_USER                      @"user"			//	Date
+
 
 //-----------------------------------------------------------------------
 //---------------------------   USER    --------------------------------------
 //-----------------------------------------------------------------------
 #define		PF_USER_CLASS_NAME					@"User"				//	Class name
-#define		PF_USER_OBJECTID					@"objectId"				//	String
+#define		PF_USER_OBJECTID					PF_COMMON_OBJECTID				//	String
+
 #define		PF_USER_USERNAME					@"username"				//	String
 #define		PF_USER_PASSWORD					@"password"				//	String
 #define		PF_USER_EMAIL						@"email"				//	String
@@ -137,14 +140,14 @@
 //-----------------------------------------------------------------------
 #define		PF_GROUP_CLASS_NAME					@"Group"				//	Class name
 
-#define		PF_GROUP_OBJECTID					@"objectId"
+#define		PF_GROUP_OBJECTID					PF_COMMON_OBJECTID
 
 #define		PF_GROUP_USER						@"user"					//	Pointer to User Class
 #define		PF_GROUP_NAME						@"name"					//	String
 #define		PF_GROUP_MEMBERS					@"members"				//	Array
-#define     PF_GROUP_CREATE_TIME                @"createAt"
+#define     PF_GROUP_CREATE_TIME                PF_COMMON_CREATE_TIME
 
-#define     PF_GROUP_UPDATE_TIME                @"updateAt"
+#define     PF_GROUP_UPDATE_TIME                PF_COMMON_UPDATE_TIME
 //-----------------------------------------------------------------------
 //---------------------------   MESSAGE    --------------------------------------
 //-----------------------------------------------------------------------
@@ -162,9 +165,9 @@
 #define		PF_EVENT_CLASS_NAME                 @"Event"
 
 
-#define		PF_EVENT_OBJECTID					@"objectId"//	Class name
-#define		PF_EVENT_CREATE_TIME                @"createAt"			//	Date
-#define		PF_EVENT_UPDATE_TIME                @"updateAt"			//	Date
+#define		PF_EVENT_OBJECTID					PF_EVENT_OBJECTID//	Class name
+#define		PF_EVENT_CREATE_TIME                PF_COMMON_CREATE_TIME			//	Date
+#define		PF_EVENT_UPDATE_TIME                PF_COMMON_UPDATE_TIME			//	Date
 
 #define		PF_EVENT_START_TIME                 @"startTime"			//	Date
 #define		PF_EVENT_END_TIME                   @"endTime"			//	Date
@@ -181,7 +184,7 @@
 #define		PF_EVENT_IS_VOTING                  @"isVoting"			//	Date
 #define		PF_EVENT_ALERT                      @"alert"			//	Date
 #define		PF_EVENT_PLACE                      @"place"			//	Date
-#define		PF_EVENT_CREATE_USER                @"createUser"			//	Date
+#define		PF_EVENT_CREATE_USER                @"user"			//	Date
 #define		PF_EVENT_CATEGORY                   @"category"			//	Date
 
 //-----------------------------------------------------------------------
@@ -190,9 +193,9 @@
 #define		PF_ALERT_CLASS_NAME                 @"Alert"
 
 
-#define		PF_ALERT_OBJECTID					@"objectId"//	Class name
-#define		PF_ALERT_CREATE_TIME                @"createAt"			//	Date
-#define		PF_ALERT_UPDATE_TIME                @"updateAt"			//	Date
+#define		PF_ALERT_OBJECTID					PF_EVENT_OBJECTID//	Class name
+#define		PF_ALERT_CREATE_TIME                PF_COMMON_CREATE_TIME			//	Date
+#define		PF_ALERT_UPDATE_TIME                PF_COMMON_UPDATE_TIME			//	Date
 
 #define		PF_ALERT_TIME                       @"time"			//	Date
 #define		PF_ALERT_TYPE                       @"type"			//	Date
@@ -203,9 +206,9 @@
 #define		PF_PLACE_CLASS_NAME                 @"Alert"
 
 
-#define		PF_PLACE_OBJECTID					@"objectId"//	Class name
-#define		PF_PLACE_CREATE_TIME                @"createAt"			//	Date
-#define		PF_PLACE_UPDATE_TIME                @"updateAt"			//	Date
+#define		PF_PLACE_OBJECTID					PF_EVENT_OBJECTID//	Class name
+#define		PF_PLACE_CREATE_TIME                PF_COMMON_CREATE_TIME			//	Date
+#define		PF_PLACE_UPDATE_TIME                PF_COMMON_UPDATE_TIME			//	Date
 
 #define		PF_PLACE_CLOSE_TIME                 @"closeTime"			//	Date
 #define		PF_PLACE_LIKES                      @"likes"			//	Date
@@ -228,9 +231,9 @@
 #define		PF_EVENT_CATEGORY_CLASS_NAME        @"EventCategory"
 
 
-#define		PF_EVENT_CATEGORY_OBJECTID			@"objectId"//	Class name
-#define		PF_EVENT_CATEGORY_CREATE_TIME       @"createAt"			//	Date
-#define		PF_EVENT_CATEGORY_UPDATE_TIME       @"updateAt"			//	Date
+#define		PF_EVENT_CATEGORY_OBJECTID			PF_EVENT_OBJECTID//	Class name
+#define		PF_EVENT_CATEGORY_CREATE_TIME       PF_COMMON_CREATE_TIME			//	Date
+#define		PF_EVENT_CATEGORY_UPDATE_TIME       PF_COMMON_UPDATE_TIME			//	Date
 
 #define		PF_EVENT_CATEGORY_CHILD_ARRAY       @"childArray"			//	Date
 #define		PF_EVENT_CATEGORY_CHILD_COUNT       @"childCount"			//	Date
@@ -247,9 +250,9 @@
 #define		PF_EVENT_VOTING_CLASS_NAME          @"EventCategory"
 
 
-#define		PF_EVENT_VOTING_OBJECTID			@"objectId"//	Class name
-#define		PF_EVENT_VOTING_CREATE_TIME         @"createAt"			//	Date
-#define		PF_EVENT_VOTING_UPDATE_TIME         @"updateAt"			//	Date
+#define		PF_EVENT_VOTING_OBJECTID			PF_EVENT_OBJECTID//	Class name
+#define		PF_EVENT_VOTING_CREATE_TIME         PF_COMMON			//	Date
+#define		PF_EVENT_VOTING_UPDATE_TIME         PF_COMMON_UPDATE_TIME			//	Date
 
 #define		PF_EVENT_VOTING_INSTRUCTION         @"instruction"			//	Date
 #define		PF_EVENT_VOTING_IS_PRIORITY         @"isPriority"			//	Date
@@ -265,9 +268,9 @@
 #define		PF_EVENT_VOTE_ITEM_CLASS_NAME       @"EventCategory"
 
 
-#define		PF_EVENT_VOTE_ITEM_OBJECTID			@"objectId"//	Class name
-#define		PF_EVENT_VOTE_ITEM_CREATE_TIME      @"createAt"			//	Date
-#define		PF_EVENT_VOTE_ITEM_UPDATE_TIME      @"updateAt"			//	Date
+#define		PF_EVENT_VOTE_ITEM_OBJECTID			PF_EVENT_OBJECTID//	Class name
+#define		PF_EVENT_VOTE_ITEM_CREATE_TIME      PF_COMMON_CREATE_TIME			//	Date
+#define		PF_EVENT_VOTE_ITEM_UPDATE_TIME      PF_COMMON_UPDATE_TIME			//	Date
 
 #define		PF_EVENT_VOTE_ITEM_SCORE            @"score"			//	Date
 #define		PF_EVENT_VOTE_ITEM_VOTE_NUM         @"voteNum"			//	Date
@@ -279,16 +282,16 @@
 //---------------------------   PEOPLE    --------------------------------------
 //-----------------------------------------------------------------------
 #define		PF_PEOPLE_CLASS_NAME				@"People"				//	Class name
-#define		PF_PEOPLE_USER1						@"user1"				//	Pointer to User Class
+#define		PF_PEOPLE_USER1						@"user"				//	Pointer to User Class
 #define		PF_PEOPLE_USER2						@"user2"				//	Pointer to User Class
 
-#define		PF_PEOPLE_OBJECTID					@"objectId"
+#define		PF_PEOPLE_OBJECTID					PF_EVENT_OBJECTID
 
 #define		PF_PEOPLE_NAME						@"name"
 
-#define     PF_PEOPLE_CREATE_TIME               @"createAt"
+#define     PF_PEOPLE_CREATE_TIME               PF_COMMON_CREATE_TIME
 
-#define     PF_PEOPLE_UPDATE_TIME               @"updateAt"
+#define     PF_PEOPLE_UPDATE_TIME               PF_COMMON_UPDATE_TIME
 
 //-----------------------------------------------------------------------
 //---------------------------   RECENT    --------------------------------------
@@ -302,6 +305,27 @@
 #define		PF_RECENT_LASTMESSAGE				@"lastMessage"			//	String
 #define		PF_RECENT_COUNTER					@"counter"				//	Number
 #define		PF_RECENT_UPDATEDACTION				@"updatedAction"		//	Date
+
+//-----------------------------------------------------------------------
+//---------------------------   THUMBNAIL    --------------------------------------
+//-----------------------------------------------------------------------
+#define		PF_THUMBNAIL_CLASS_NAME				@"Recent"				//	Class name
+
+#define		PF_THUMBNAIL_NAME					@"name"				//	String
+//#define		PF_THUMBNAIL_FILENAME				@"fileName"				//	String
+#define		PF_THUMBNAIL_URL					@"url"				//	Array
+#define		PF_THUMBNAIL_FILE                   @"file"			//	String
+
+//-----------------------------------------------------------------------
+//---------------------------   PICTURE    --------------------------------------
+//-----------------------------------------------------------------------
+#define		PF_PICTURE_CLASS_NAME				@"Recent"				//	Class name
+
+#define		PF_PICTURE_NAME					@"name"				//	String
+#define		PF_PICTURE_URL					@"url"				//	Array
+#define		PF_PICTURE_FILE                   @"file"			//	String
+
+
 //-----------------------------------------------------------------------
 //---------------------------   REPORT    --------------------------------------
 //-----------------------------------------------------------------------

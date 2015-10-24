@@ -2,22 +2,22 @@
 //  EventCategory.m
 //  MyApp
 //
-//  Created by Linwei Ding on 10/19/15.
-//  Copyright (c) 2015 AppsFoundation. All rights reserved.
+//  Created by Linwei Ding on 10/23/15.
+//  Copyright © 2015 Linweiding. All rights reserved.
 //
 
 #import "EventCategory.h"
 
-
 @implementation EventCategory
 
-@dynamic name;
-@dynamic childCount;
 @dynamic childArray;
+@dynamic childCount;
+@dynamic level;
+@dynamic name;
+@dynamic notes;
 @dynamic parent;
 @dynamic relatedArray;
-@dynamic notes;
-@dynamic level;
 @dynamic subArray;
+
 
 @end

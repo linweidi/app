@@ -71,14 +71,20 @@
     NSAssert([object isKindOfClass:[Event class]], @"Type casting is wrong");
     Event * event = (Event *)object;
     
-    PFObject * alertPF = [PFObject objectWithClassName:PF_EVENT_ALERT];
+    PFObject * alertPF = [PFObject objectWithClassName:PF_ALERT_CLASS_NAME];
+    [[AlertRemoteUtil sharedUtil] setNewRemoteObject:alertPF withObject:event.alert];
     remoteObj[PF_EVENT_ALERT] = alertPF;
     
+    PFObject * placePF = [PFObject objectWithClassName:PF_PLACE_CLASS_NAME];
+    [[PlaceRemoteUtil sharedUtil] setExistedRemoteObject:placePF withObject:event.alert];
+    placePF
+    remoteObj[PF_EVENT_PLACE] = placePF;
     
-    event.place = nil;  //generate a new place
+    remoteObj[PF_EVENT_CREATE_USER] = [[UserRemoteUtil sharedUtil] convertToRemoteUser:event.user];
     
-    remoteObj[PF_EVENT_CREATE_USER] = [User convertToRemoteUser:event.user];
-    event.category = nil;   //get a new category
+    PFObject * categoryPF = [PFObject objectWithClassName:PF_EVENT_CATEGORY_CLASS_NAME];
+    [[EventCategoryRemoteUtil sharedUtil] setExistedRemoteObject:categoryPF withObject:event.category];
+    remoteObj[PF_EVENT_PLACE] = categoryPF;   //get a new category
 }
 
 - (void)setExistedRemoteObject:(RemoteObject *)remoteObj withObject:(UserEntity *)object {
@@ -140,18 +146,6 @@
 }
 
 
-
-+ (EventRemoteUtil *)sharedUtil {
-    static dispatch_once_t predicate = 0;
-    static EventRemoteUtil *sharedObject;
-    
-    dispatch_once(&predicate, ^{
-        //initializing singleton object
-        sharedObject = [[self alloc] init];
-        
-    });
-    return sharedObject;
-}
 
 
 

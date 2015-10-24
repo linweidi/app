@@ -49,10 +49,10 @@
 - (BOOL) addUser:(User *)user  {
     BOOL ret = NO;
     NSString * userID = user.globalID  ;
-    if ([self exists:userID]) {
+    //if (![self exists:userID]) {
         self.allUsers[userID] = [UserContext userContext:user thumbName:user.thumbnail.name thumb:user.thumbnail];
         ret = YES;
-    }
+    //}
     
     return ret;
 }

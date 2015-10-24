@@ -11,4 +11,12 @@
 
 @interface PlaceRemoteUtil : SystemBaseRemoteUtil
 
++ (PlaceRemoteUtil *)sharedUtil;
+
+- (void)setCommonObject:(SystemEntity *)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext:(NSManagedObjectContext *)context ;
+
+- (void)setExistedObject:(SystemEntity *)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext:(NSManagedObjectContext *)context ;
+
+- (void)setNewObject:(SystemEntity *)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext:(NSManagedObjectContext *)context ;
+
 @end

@@ -22,6 +22,11 @@
 
 @implementation CurrentUser (Util)
 
+#define ENTITY_UTIL_TEMPLATE_CLASS CurrentUser
+#define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"CurrentUser"
+
+#include "../Template/EntityUtilTemplate.mh"
+
 - (BOOL) isEqual: (CurrentUser *)user {
     return [self.globalID isEqualToString:user.globalID];
 }

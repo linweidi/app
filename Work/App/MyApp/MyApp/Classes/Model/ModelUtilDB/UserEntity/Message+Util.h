@@ -10,18 +10,23 @@
 
 @interface Message (Util)
 
+#define ENTITY_UTIL_TEMPLATE_CLASS Message
+#define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"Message"
 
-+ (NSArray *)messageEntities:(NSString *)chatID inManagedObjectContext: (NSManagedObjectContext *)context;
-
-+ (NSArray *) messageEntities:(NSString *)chatID createdTime:(NSDate *)date inManagedObjectContext: (NSManagedObjectContext *)context;
-
-+ (Message *) messageEntityWithPFObject:(PFObject *)object inManagedObjectContext: (NSManagedObjectContext *)context;
-
-+ (Message *) messageEntityWithGlobalID:(NSString *)globalID inManagedObjectContext: (NSManagedObjectContext *)context;
-
-- (void) setWithPFObject:(PFObject *)object inManagedObjectContext: (NSManagedObjectContext *)context;
+#include "../Template/EntityUtilTemplate.hh"
 
 + (BOOL) existsMessageEntity:(NSString *)chatID createdTime:(NSDate *)date inManagedObjectContext: (NSManagedObjectContext *)context ;
 
-+ (Message *) createMessageEntity:(PFObject *)object inManagedObjectContext: (NSManagedObjectContext *)context;
+//+ (NSArray *)messageEntities:(NSString *)chatID inManagedObjectContext: (NSManagedObjectContext *)context;
+//
+//+ (NSArray *) messageEntities:(NSString *)chatID createdTime:(NSDate *)date inManagedObjectContext: (NSManagedObjectContext *)context;
+//
+//+ (Message *) messageEntityWithPFObject:(PFObject *)object inManagedObjectContext: (NSManagedObjectContext *)context;
+//
+//+ (Message *) messageEntityWithGlobalID:(NSString *)globalID inManagedObjectContext: (NSManagedObjectContext *)context;
+//
+//- (void) setWithPFObject:(PFObject *)object inManagedObjectContext: (NSManagedObjectContext *)context;
+//
+//
+//+ (Message *) createMessageEntity:(PFObject *)object inManagedObjectContext: (NSManagedObjectContext *)context;
 @end

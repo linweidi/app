@@ -87,6 +87,7 @@
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" syncable="YES"/>
     </entity>
     <entity name="Picture" representedClassName="Picture" parentEntity="UserEntity" syncable="YES">
+        <attribute name="fileName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
@@ -114,7 +115,7 @@
         <relationship name="lastUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" syncable="YES"/>
     </entity>
-    <entity name="SystemEntity" representedClassName="SystemEntity" syncable="YES">
+    <entity name="SystemEntity" representedClassName="SystemEntity" isAbstract="YES" syncable="YES">
         <attribute name="createTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="globalID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="systemID" optional="YES" attributeType="String" syncable="YES"/>
@@ -123,6 +124,7 @@
     </entity>
     <entity name="Thumbnail" representedClassName="Thumbnail" parentEntity="UserEntity" syncable="YES">
         <attribute name="data" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="fileName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="thumbnail" inverseEntity="User" syncable="YES"/>
@@ -147,7 +149,7 @@
         <relationship name="recents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recent" syncable="YES"/>
         <relationship name="thumbnail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Thumbnail" inverseName="user" inverseEntity="Thumbnail" syncable="YES"/>
     </entity>
-    <entity name="UserEntity" representedClassName="UserEntity" syncable="YES">
+    <entity name="UserEntity" representedClassName="UserEntity" isAbstract="YES" syncable="YES">
         <attribute name="createTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="globalID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updateTime" optional="YES" attributeType="Date" syncable="YES"/>
@@ -157,7 +159,7 @@
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Alert" positionX="36" positionY="99" width="128" height="88"/>
+        <element name="Alert" positionX="36" positionY="99" width="128" height="90"/>
         <element name="Board" positionX="-360" positionY="-261" width="128" height="103"/>
         <element name="CurrentUser" positionX="-369" positionY="-270" width="128" height="43"/>
         <element name="Event" positionX="45" positionY="-180" width="128" height="298"/>
@@ -168,13 +170,13 @@
         <element name="Group" positionX="-252" positionY="72" width="128" height="90"/>
         <element name="Message" positionX="-369" positionY="-270" width="128" height="148"/>
         <element name="People" positionX="-369" positionY="-270" width="128" height="103"/>
-        <element name="Picture" positionX="-360" positionY="-261" width="128" height="73"/>
+        <element name="Picture" positionX="-360" positionY="-261" width="128" height="90"/>
         <element name="Place" positionX="-90" positionY="72" width="128" height="240"/>
         <element name="Recent" positionX="-567" positionY="-358" width="128" height="148"/>
-        <element name="SystemEntity" positionX="-333" positionY="-234" width="128" height="118"/>
-        <element name="Thumbnail" positionX="-351" positionY="-252" width="128" height="103"/>
+        <element name="SystemEntity" positionX="-333" positionY="-234" width="128" height="120"/>
+        <element name="Thumbnail" positionX="-351" positionY="-252" width="128" height="120"/>
         <element name="User" positionX="-344" positionY="-144" width="128" height="313"/>
-        <element name="UserEntity" positionX="-245" positionY="-418" width="128" height="88"/>
+        <element name="UserEntity" positionX="-245" positionY="-418" width="128" height="90"/>
         <element name="Video" positionX="-351" positionY="-252" width="128" height="73"/>
     </elements>
 </model>

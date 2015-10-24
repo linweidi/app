@@ -12,6 +12,7 @@
 #import <Parse/Parse.h>
 #import "AppHeader.h"
 #import "Recent+Util.h"
+#import "BaseRemoteUtil.h"
 
 @class User;
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -29,7 +30,7 @@ void			ClearRecentCounter		(NSString *groupId, NSManagedObjectContext * context)
 void			DeleteRecentItems		(User *user1, User *user2, NSManagedObjectContext * context);
 
 @class RecentView;
-@interface RecentRemoteUtil : NSObject
+@interface RecentRemoteUtil : BaseRemoteUtil
 
 
 

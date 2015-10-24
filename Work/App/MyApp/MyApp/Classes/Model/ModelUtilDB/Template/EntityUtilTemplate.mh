@@ -6,7 +6,7 @@
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 
-//#import "EntityUtilTemplate.h"
+//#import "EntityUtilTemplate.hh"
 
 #ifndef ENTITY_UTIL_TEMPLATE_CLASS
 #define ENTITY_UTIL_TEMPLATE_CLASS UserEntity
@@ -56,6 +56,26 @@
     
     return object;
     
+}
+
++ (BOOL) existEntity:(NSString *)globalID inManagedObjectContext: (NSManagedObjectContext *)context {
+    BOOL ret = NO;
+
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:ENTITY_UTIL_TEMPLATE_CLASS_NAME] ;
+    request.predicate = [NSPredicate predicateWithFormat:@"globalID = %@", globalID];
+    request.fetchLimit = 1;
+    NSError *error;
+    NSArray *matches = [context executeFetchRequest:request error:&error   ];
+
+    if (!matches ) {
+        //NSAssert(NO, @"match does not exist");
+
+    }
+    else if ([matches count] > 0) {
+        ret = YES;
+    }
+
+    return ret;
 }
 
 

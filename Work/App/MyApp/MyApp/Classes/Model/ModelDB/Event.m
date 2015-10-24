@@ -2,8 +2,8 @@
 //  Event.m
 //  MyApp
 //
-//  Created by Linwei Ding on 10/19/15.
-//  Copyright (c) 2015 Linweiding. All rights reserved.
+//  Created by Linwei Ding on 10/23/15.
+//  Copyright © 2015 Linweiding. All rights reserved.
 //
 
 #import "Event.h"
@@ -11,7 +11,6 @@
 #import "EventCategory.h"
 #import "Place.h"
 #import "User.h"
-
 
 @implementation Event
 
@@ -32,5 +31,6 @@
 @dynamic category;
 @dynamic place;
 @dynamic user;
+
 
 @end
