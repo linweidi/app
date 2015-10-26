@@ -83,7 +83,7 @@
 }
 
 - (void)setExistedRemoteObject:(RemoteObject *)remoteObj withObject:(UserEntity *)object {
-    [super setExistedRemoteObject:remoteObj withObject:object];
+    [super setExistedRemoteObject:remoteObj withObject:object ];
     NSAssert([object isKindOfClass:[User class]], @"Type casting is wrong");
     User * user = (User *)object;
     
@@ -102,8 +102,7 @@
     User * user = (User *)object;
     
     PFFile * filePicture = remoteObj[PF_USER_PICTURE];
-    user.pictureName = filePic
-    ture.name;
+    user.pictureName = filePicture.name;
     user.pictureURL = filePicture.url;
     
     PFFile * thumbnailPicture = remoteObj[PF_USER_THUMBNAIL];

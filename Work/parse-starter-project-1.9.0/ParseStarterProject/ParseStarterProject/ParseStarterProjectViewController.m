@@ -25,6 +25,7 @@
     NSLog(@"before save: the testObject's globalID is:%@", testObject.objectId);
     testObject[@"date"] = [NSDate date];
     NSLog(@"before save: the testObject's date is:%@", testObject[@"date"]);
+    testObject.objectId = nil;
     [testObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             NSLog(@"After save: the testObject's date is:%@", testObject.createdAt);

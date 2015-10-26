@@ -30,9 +30,9 @@
 
 - (void)setNewRemoteObject:(RemoteObject *)remoteObj withObject:(UserEntity *)object;
 
-- (void)setNewRemoteObject:(RemoteObject *)remoteObj withObject:(UserEntity *)object withData:(NSData *)data;
+//- (void)setNewRemoteObject:(RemoteObject *)remoteObj withObject:(UserEntity *)object withData:(NSData *)data;
 
-- (void)setExistedRemoteObject:(RemoteObject *)remoteObj withObject:(UserEntity *)object ;
+- (void)setExistedRemoteObject:(RemoteObject *)remoteObj withObject:(UserEntity *)object;
 
 
 @end

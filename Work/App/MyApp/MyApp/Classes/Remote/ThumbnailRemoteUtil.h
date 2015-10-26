@@ -25,7 +25,7 @@
 
 - (void)setNewRemoteObject:(RemoteObject *)remoteObj withObject:(UserEntity *)object;
 
-- (void)setExistedRemoteObject:(RemoteObject *)remoteObj withObject:(UserEntity *)object;
+- (void)setExistedRemoteObject:(RemoteObject *)remoteObj withObject:(UserEntity *)object ;
 
 
 

@@ -38,6 +38,7 @@
     // these attributes are not necessary to update
     // here, only updatedAt is returned for update upload
     object.globalID = remoteObj.objectId;
+    // createdAt is not downloaded here
     //object.createTime = remoteObj.createdAt;
     object.updateTime = remoteObj.updatedAt;
     
@@ -50,6 +51,7 @@
 // Note: object can be data model or core data model
 - (void) setNewRemoteObject:(RemoteObject *)remoteObj withObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object{
     // these attributes should be updated after object model is created
+    remoteObj.objectId = object.globalID;
     //remoteObj[PF_ALERT_CREATE_TIME] = object.createTime;
     //remoteObj[PF_ALERT_UPDATE_TIME] = object.updateTime;
     [self setCommonRemoteObject:remoteObj withObject:object];
@@ -58,7 +60,7 @@
 // 1. provide update attribute dictionary
 // 2. create and populate remote object, set objectID and createTime
 // 3. after save, populate updateTime to data model, update data model
-- (void) setExistedRemoteObject:(RemoteObject *)remoteObj withObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object{
+- (void) setExistedRemoteObject:(RemoteObject *)remoteObj withObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object {
     //remoteObj id should be used when the remote remoteObj is created
     // these attributes should be updated after object model is created
     remoteObj.objectId = object.globalID;
@@ -67,15 +69,15 @@
     [self setCommonRemoteObject:remoteObj withObject:object];
 }
 
-// Modify remoteObj externally
-- (void) setExistedRemoteObject:(RemoteObject *)remoteObj withGlobalID:(NSString *)globalID {
-    //remoteObj id should be used when the remote remoteObj is created
-    // these attributes should be updated after object model is created
-    remoteObj.objectId = globalID;
-    //remoteObj[PF_COMMON_CREATE_TIME] = object.createTime;
-    //remoteObj[PF_ALERT_UPDATE_TIME] = object.updateTime;
-    //[self setCommonRemoteObject:remoteObj withObject:object];
-}
+//// Modify remoteObj externally
+//- (void) setExistedRemoteObject:(RemoteObject *)remoteObj withGlobalID:(NSString *)globalID {
+//    //remoteObj id should be used when the remote remoteObj is created
+//    // these attributes should be updated after object model is created
+//    remoteObj.objectId = globalID;
+//    //remoteObj[PF_COMMON_CREATE_TIME] = object.createTime;
+//    //remoteObj[PF_ALERT_UPDATE_TIME] = object.updateTime;
+//    //[self setCommonRemoteObject:remoteObj withObject:object];
+//}
 
 #pragma mark -- networking functions
 
@@ -86,6 +88,7 @@
         if (succeeded) {
             // create a new core data entity object
             BASE_REMOTE_UTIL_OBJ_TYPE newObject = [NSEntityDescription insertNewObjectForEntityForName:self.className inManagedObjectContext:context];
+            [self setNewObject:object withRemoteObject:remoteObj inManagedObjectContext:context];
             newObject.globalID = remoteObj.objectId;
             newObject.createTime = remoteObj.createdAt;
             newObject.updateTime = remoteObj.updatedAt;
@@ -105,9 +108,9 @@
     [self setRemoteObject:remoteObj updateAttrs:updateAttrs];
     
     [remoteObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        //object.globalID = remoteObj.objectId;
-        //object.createTime = remoteObj.createdAt;
+
         if (succeeded) {
+            [self setExistedObject:object withRemoteObject:remoteObj inManagedObjectContext:object.managedObjectContext];
             object.updateTime = remoteObj.updatedAt;
             [self setObject:object updateAttrs:updateAttrs];
             block(object, error);
@@ -125,9 +128,9 @@
     [self setRemoteObject:remoteObj updateAttrs:updateAttrs];
     
     [remoteObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        //object.globalID = remoteObj.objectId;
-        //object.createTime = remoteObj.createdAt;
+
         if (succeeded) {
+            [self setExistedObject:object withRemoteObject:remoteObj inManagedObjectContext:object.managedObjectContext];
             object.updateTime = remoteObj.updatedAt;
             [self setObject:object updateAttrs:updateAttrs];
             block(object, error);
@@ -301,7 +304,7 @@
 
 - (RemoteObject *) createAndPopulateExistedRemoteObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object {
     PFObject * remoteObj = [PFObject objectWithoutDataWithClassName:self.className objectId:object.globalID];
-    [self setExistedRemoteObject:remoteObj withObject:object];
+    [self setNewRemoteObject:remoteObj withObject:object];
     return remoteObj;
 }
 

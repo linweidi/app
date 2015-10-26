@@ -48,26 +48,29 @@
 }
 
 - (void)setNewRemoteObject:(RemoteObject *)remoteObj withObject:(UserEntity *)object {
-    NSAssert(NO, @"Not implemented on purpose");
-    
-}
-
-- (void)setNewRemoteObject:(RemoteObject *)remoteObj withObject:(UserEntity *)object withData:(NSData *)data {
     [super setNewRemoteObject:remoteObj withObject:object];
     NSAssert([object isKindOfClass:[Picture class]], @"Type casting is wrong");
     Picture * picture = (Picture *)object;
-    PFFile * filePF = [PFFile fileWithName:picture.name data:data];
+    PFFile * filePF = [PFFile fileWithName:picture.name data:picture.data];
     remoteObj[PF_PICTURE_FILE] = filePF;
-    //    [filePF saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-    //        if (!error) {
-    //            picture.fileName = picture.name;
-    //            picture.url = filePF.url;
-    //        }
-    //    }];
 }
 
+//- (void)setNewRemoteObject:(RemoteObject *)remoteObj withObject:(UserEntity *)object withData:(NSData *)data {
+//    [super setNewRemoteObject:remoteObj withObject:object];
+//    NSAssert([object isKindOfClass:[Picture class]], @"Type casting is wrong");
+//    Picture * picture = (Picture *)object;
+//    PFFile * filePF = [PFFile fileWithName:picture.name data:data];
+//    remoteObj[PF_PICTURE_FILE] = filePF;
+//    //    [filePF saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+//    //        if (!error) {
+//    //            picture.fileName = picture.name;
+//    //            picture.url = filePF.url;
+//    //        }
+//    //    }];
+//}
+
 - (void)setExistedRemoteObject:(RemoteObject *)remoteObj withObject:(UserEntity *)object {
-    [super setExistedRemoteObject:remoteObj withObject:object];
+    [super setExistedRemoteObject:remoteObj withObject:object ];
     NSAssert([object isKindOfClass:[Picture class]], @"Type casting is wrong");
     Picture * picture = (Picture *)object;
     
@@ -76,6 +79,7 @@
         PFFile * filePF = [PFFile fileWithName:picture.fileName data:picture.data];
         remoteObj[PF_PICTURE_FILE] = filePF;
     }
+    
     
     
     

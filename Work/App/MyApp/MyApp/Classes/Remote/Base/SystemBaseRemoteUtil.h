@@ -50,7 +50,7 @@
 // 1. update data model
 // 2. populate remote object
 // 3. after save, populate updateTime to data model
-- (void) setExistedRemoteObject:(RemoteObject *)remoteObj withObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object;
+- (void) setExistedRemoteObject:(RemoteObject *)remoteObj withObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object ;
 
 
 

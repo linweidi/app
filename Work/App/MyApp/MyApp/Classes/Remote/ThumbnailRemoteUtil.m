@@ -139,7 +139,6 @@
     remoteObj[PF_THUMBNAIL_URL] = thumb.url;
 }
 
-#warning remember to save file name to fileName after async save
 - (void)setNewRemoteObject:(RemoteObject *)remoteObj withObject:(UserEntity *)object {
     [super setNewRemoteObject:remoteObj withObject:object];
     NSAssert([object isKindOfClass:[Thumbnail class]], @"Type casting is wrong");
@@ -154,9 +153,8 @@
 //    }];
 }
 
-#warning remember to save file name to fileName after async save
 - (void)setExistedRemoteObject:(RemoteObject *)remoteObj withObject:(UserEntity *)object {
-    [super setExistedRemoteObject:remoteObj withObject:object];
+    [super setExistedRemoteObject:remoteObj withObject:object ];
     NSAssert([object isKindOfClass:[Thumbnail class]], @"Type casting is wrong");
     Thumbnail * thumb = (Thumbnail *)object;
     

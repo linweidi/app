@@ -58,7 +58,7 @@
 // 1. provide update attribute dictionary
 // 2. create and populate remote object, set objectID and createTime
 // 3. after save, populate updateTime to data model, update data model
-- (void) setExistedRemoteObject:(RemoteObject *)remoteObj withObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object{
+- (void) setExistedRemoteObject:(RemoteObject *)remoteObj withObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object {
     //remoteObj id should be used when the remote remoteObj is created
     // these attributes should be updated after object model is created
     remoteObj.objectId = object.globalID;
@@ -67,15 +67,15 @@
     [self setCommonRemoteObject:remoteObj withObject:object];
 }
 
-// Modify remoteObj externally
-- (void) setExistedRemoteObject:(RemoteObject *)remoteObj withGlobalID:(NSString *)globalID {
-    //remoteObj id should be used when the remote remoteObj is created
-    // these attributes should be updated after object model is created
-    remoteObj.objectId = globalID;
-    //remoteObj[PF_COMMON_CREATE_TIME] = object.createTime;
-    //remoteObj[PF_ALERT_UPDATE_TIME] = object.updateTime;
-    //[self setCommonRemoteObject:remoteObj withObject:object];
-}
+//// Modify remoteObj externally
+//- (void) setExistedRemoteObject:(RemoteObject *)remoteObj withGlobalID:(NSString *)globalID {
+//    //remoteObj id should be used when the remote remoteObj is created
+//    // these attributes should be updated after object model is created
+//    remoteObj.objectId = globalID;
+//    //remoteObj[PF_COMMON_CREATE_TIME] = object.createTime;
+//    //remoteObj[PF_ALERT_UPDATE_TIME] = object.updateTime;
+//    //[self setCommonRemoteObject:remoteObj withObject:object];
+//}
 
 #pragma mark -- networking functions
 

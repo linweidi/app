@@ -87,6 +87,7 @@
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" syncable="YES"/>
     </entity>
     <entity name="Picture" representedClassName="Picture" parentEntity="UserEntity" syncable="YES">
+        <attribute name="data" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="fileName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
@@ -170,7 +171,7 @@
         <element name="Group" positionX="-252" positionY="72" width="128" height="90"/>
         <element name="Message" positionX="-369" positionY="-270" width="128" height="148"/>
         <element name="People" positionX="-369" positionY="-270" width="128" height="103"/>
-        <element name="Picture" positionX="-360" positionY="-261" width="128" height="90"/>
+        <element name="Picture" positionX="-360" positionY="-261" width="128" height="105"/>
         <element name="Place" positionX="-90" positionY="72" width="128" height="240"/>
         <element name="Recent" positionX="-567" positionY="-358" width="128" height="148"/>
         <element name="SystemEntity" positionX="-333" positionY="-234" width="128" height="120"/>

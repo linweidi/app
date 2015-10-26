@@ -33,19 +33,19 @@
 - (void) setCommonObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext: (NSManagedObjectContext *)context{
     NSAssert([object isKindOfClass:[Event class]], @"Type casting is wrong");
     Event * event = (Event *)object;
-    remoteObj[PF_EVENT_START_TIME] = event.startTime ;
-    remoteObj[PF_EVENT_END_TIME] = event.endTime ;
-    remoteObj[PF_EVENT_INVITEES] = event.invitees ;
-    remoteObj[PF_EVENT_IS_ALERT] = event.isAlert ;
-    remoteObj[PF_EVENT_LOCATION] = event.location ;
-    remoteObj[PF_EVENT_NOTES] = event.notes ;
-    remoteObj[PF_EVENT_TITLE] = event.title ;
-    remoteObj[PF_EVENT_SCOPE] = event.scope ;
-    remoteObj[PF_EVENT_BOARD_IDS] = event.boardIDs ;    //array
-    remoteObj[PF_EVENT_VOTING_ID] = event.votingID ;
-    remoteObj[PF_EVENT_MEMBERS] = event.members ;
-    remoteObj[PF_EVENT_GROUP_IDS] = event.groupIDs ;
-    remoteObj[PF_EVENT_IS_VOTING] = event.isVoting ;
+    event.startTime  = remoteObj[PF_EVENT_START_TIME] ;
+    event.endTime  = remoteObj[PF_EVENT_END_TIME] ;
+     event.invitees = remoteObj[PF_EVENT_INVITEES] ;
+    event.isAlert = remoteObj[PF_EVENT_IS_ALERT] ;
+    event.location  = remoteObj[PF_EVENT_LOCATION] ;
+    event.notes  = remoteObj[PF_EVENT_NOTES] ;
+    event.title = remoteObj[PF_EVENT_TITLE] ;
+    event.scope  = remoteObj[PF_EVENT_SCOPE] ;
+    event.boardIDs  = remoteObj[PF_EVENT_BOARD_IDS] ;    //array
+    event.votingID  = remoteObj[PF_EVENT_VOTING_ID] ;
+    event.members  = remoteObj[PF_EVENT_MEMBERS] ;
+    event.groupIDs  = remoteObj[PF_EVENT_GROUP_IDS] ;
+    event.isVoting  = remoteObj[PF_EVENT_IS_VOTING] ;
 }
 
 - (void) setCommonRemoteObject:(RemoteObject *)remoteObj withAlert:(BASE_REMOTE_UTIL_OBJ_TYPE)object {
