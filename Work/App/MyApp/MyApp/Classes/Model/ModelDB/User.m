@@ -3,7 +3,7 @@
 //  MyApp
 //
 //  Created by Linwei Ding on 10/27/15.
-//  Copyright (c) 2015 Linweiding. All rights reserved.
+//  Copyright © 2015 Linweiding. All rights reserved.
 //
 
 #import "User.h"
@@ -14,7 +14,6 @@
 #import "Place.h"
 #import "Recent.h"
 #import "Thumbnail.h"
-
 
 @implementation User
 
@@ -36,5 +35,6 @@
 @dynamic places;
 @dynamic recents;
 @dynamic thumbnail;
+
 
 @end

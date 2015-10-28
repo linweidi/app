@@ -3,21 +3,33 @@
 //  MyApp
 //
 //  Created by Linwei Ding on 10/27/15.
-//  Copyright (c) 2015 Linweiding. All rights reserved.
+//  Copyright © 2015 Linweiding. All rights reserved.
 //
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
 #import "UserEntity.h"
 
 @class User;
 
+
+NS_ASSUME_NONNULL_BEGIN
+
 @interface Thumbnail : UserEntity
 
-@property (nonatomic, retain) NSData * data;
-@property (nonatomic, retain) NSString * fileName;
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * url;
-@property (nonatomic, retain) User *user;
+@property (nullable, nonatomic, retain) NSData *data;
+@property (nullable, nonatomic, retain) NSString *fileName;
+@property (nullable, nonatomic, retain) NSString *name;
+@property (nullable, nonatomic, retain) NSString *url;
+@property (nullable, nonatomic, retain) User *user;
+
 
 @end
+
+NS_ASSUME_NONNULL_END

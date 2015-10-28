@@ -7,9 +7,12 @@
 //
 #import "AppHeader.h"
 #import "UserEntity.h"
+#import "UpdateAttributeContext.h"
+#import "UpdateAttrObjCtxt.h"
+#import "UpdateAttrRmtCtxt.h"
 #import "BaseRemoteUtil.h"
 
-#define BASE_REMOTE_UTIL_OBJ_TYPE UserEntity*
+
 @implementation BaseRemoteUtil
 
 //NOTE: for download, we should fetch the remote object firstly, and then process data model
@@ -125,19 +128,52 @@
     }];
 }
 
+//- (void) uploadUpdateRemoteObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object inManagedObjectContext:(NSManagedObjectContext *)context completionHandler:(REMOTE_OBJECT_BLOCK)block {
+//    RemoteObject * remoteObj = [self createAndPopulateNewRemoteObject:object];
+//    [remoteObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+//        if (succeeded) {
+//            // create a new core data entity object
+//            BASE_REMOTE_UTIL_OBJ_TYPE newObject = [NSEntityDescription insertNewObjectForEntityForName:self.className inManagedObjectContext:context];
+//            [self setExistedObject:newObject withRemoteObject:remoteObj inManagedObjectContext:context];
+//            // not necessary, already set in setNewObject:
+//            //newObject.globalID = remoteObj.objectId;
+//            //newObject.createTime = remoteObj.createdAt;
+//            //newObject.updateTime = remoteObj.updatedAt;
+//            block(newObject, error);
+//        }
+//        else {
+//            
+//            [ProgressHUD showError:@"Network Error."];
+//        }
+//    }];
+//}
+
 // @param[IN] remoteObj: this remote object is created and popualted externally. If remote object has been update, we can just pass nil to modifiedObject
-- (void) uploadUpdateRemoteObject:(RemoteObject *)remoteObj modifiedObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object updateAttrs:(NSDictionary *)updateAttrs completionHandler:(REMOTE_OBJECT_BLOCK)block {
-    //RemoteObject * remoteObj = [self createAndPopulateExistedRemoteObject:object];
-    
-    [self setRemoteObject:remoteObj updateAttrs:updateAttrs];
+//- (void) uploadUpdateRemoteObject:(RemoteObject *)remoteObj modifiedObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object updateAttrs:(NSDictionary *)updateAttrs completionHandler:(REMOTE_OBJECT_BLOCK)block {
+//    //RemoteObject * remoteObj = [self createAndPopulateExistedRemoteObject:object];
+//    
+//    [self setRemoteObject:remoteObj updateAttrs:updateAttrs];
+//    
+//    [remoteObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+//
+//        if (succeeded) {
+//            //No need to set all attribute, even it is wrong, remoteObj does not has all attributes
+//            //[self setExistedObject:object withRemoteObject:remoteObj inManagedObjectContext:object.managedObjectContext];
+//            object.updateTime = remoteObj.updatedAt;
+//            [self setObject:object updateAttrs:updateAttrs];
+//            block(object, error);
+//        }
+//        else {
+//            [ProgressHUD showError:@"Network Error."];
+//        }
+//    }];
+//}
+
+- (void) uploadUpdateRemoteObject:(RemoteObject *)remoteObj modifiedObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object completionHandler:(REMOTE_OBJECT_BLOCK)block {
     
     [remoteObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-
         if (succeeded) {
-            //No need to set all attribute, even it is wrong, remoteObj does not has all attributes
-            //[self setExistedObject:object withRemoteObject:remoteObj inManagedObjectContext:object.managedObjectContext];
             object.updateTime = remoteObj.updatedAt;
-            [self setObject:object updateAttrs:updateAttrs];
             block(object, error);
         }
         else {
@@ -170,7 +206,7 @@
     RemoteObject * remoteObj = [PFObject objectWithoutDataWithClassName:self.className objectId:object.globalID];
     [remoteObj deleteInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
-            [object.context deleteObject:object];
+            [object.managedObjectContext deleteObject:object];
             block(succeeded, error);
         }
         else {
@@ -186,6 +222,11 @@
 
 - (void) downloadCreateObject:(NSString *)globalID includeKeys:(NSArray *)keys inManagedObjectContext:(NSManagedObjectContext *)context completionHandler:(REMOTE_OBJECT_BLOCK)block {
     PFQuery *query = [PFQuery queryWithClassName:self.className];
+    
+    for (NSString * key in keys) {
+        [query includeKey:key];
+    }
+    
     [query getObjectInBackgroundWithId:globalID block:^(PFObject *remoteObj, NSError *error) {
         if (!error) {
             BASE_REMOTE_UTIL_OBJ_TYPE object = [NSEntityDescription insertNewObjectForEntityForName:self.className inManagedObjectContext:context ];
@@ -201,12 +242,16 @@
 }
 
 - (void) downloadUpdateObject:(BASE_REMOTE_UTIL_OBJ_TYPE)entity completionHandler:(REMOTE_OBJECT_BLOCK)block {
-    [self downloadUpdateObject:entity includeKeys:nil inManagedObjectContext:entity.managedObjectContext completionHandler:block];
+    [self downloadUpdateObject:entity includeKeys:nil completionHandler:block];
 }
 
 
 - (void) downloadUpdateObject:(BASE_REMOTE_UTIL_OBJ_TYPE)entity includeKeys:(NSArray *)keys completionHandler:(REMOTE_OBJECT_BLOCK)block {
     PFQuery *query = [PFQuery queryWithClassName:self.className];
+    for (NSString * key in keys) {
+        [query includeKey:key];
+    }
+    
     [query getObjectInBackgroundWithId:entity.globalID block:^(PFObject *remoteObj, NSError *error) {
         if (!error) {
             
@@ -269,33 +314,52 @@
 //    
 //}
 
-- (void) setRemoteObject:(RemoteObject *)object updateAttrs:(NSDictionary *)updateAttrs {
-    for (NSString * key in updateAttrs) {
-        if ([updateAttrs[key] isKindOfClass:[NSDictionary class]]) {
-            NSDictionary * attrSecLayer = updateAttrs[key];
-            for (NSString * keySecLayer in updateAttrs) {
-                RemoteObject * objectNext = [object objectForKey:key];
-                [objectNext setObject:attrSecLayer[keySecLayer] forKey:keySecLayer];
+- (void) setRemoteObject:(RemoteObject *)remoteObj updateAttrs:(NSArray *)updateAttrs {
+    
+    //@[@[ (NSArray)keys, object], @{@"value"}, @{ object}]
+    RemoteObject * rmtObj = remoteObj;
+    
+    for (NSArray * actionItem in updateAttrs) {
+        NSArray * keys = actionItem[0];
+        id object = actionItem[1];
+        
+        NSUInteger keyCount = [keys count];
+        int count = 0;
+        for (NSString * key in keys) {
+            if (keyCount == count + 1) {
+
+                rmtObj[key] = object;
+ 
             }
+            else {
+                rmtObj = rmtObj[key];
+            }
+            count++;
         }
-        else {
-            [object setObject:updateAttrs[key] forKey:key];
-        }
+        
     }
 }
 
-- (void) setObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object updateAttrs:(NSDictionary *)updateAttrs {
-    for (NSString * key in updateAttrs) {
-        if ([updateAttrs[key] isKindOfClass:[NSDictionary class]]) {
-            NSDictionary * attrSecLayer = updateAttrs[key];
-            for (NSString * keySecLayer in updateAttrs) {
-                BASE_REMOTE_UTIL_OBJ_TYPE * objectNext = [object valueForKey:key];
-                [objectNext setValue:attrSecLayer[keySecLayer] forKey:keySecLayer];
+- (void) setObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object updateAttrs:(NSArray *)updateAttrs {
+    BASE_REMOTE_UTIL_OBJ_TYPE obj = object;
+    
+    for (NSArray * actionItem in updateAttrs) {
+        NSArray * keys = actionItem[0];
+        id object = actionItem[1];
+        
+        NSUInteger keyCount = [keys count];
+        int count = 0;
+        for (NSString * key in keys) {
+            if (keyCount == count + 1) {
+                [obj setValue:object forKey:key];
+
             }
+            else {
+                obj = [obj valueForKey:key];
+            }
+            count++;
         }
-        else {
-            [object setValue:updateAttrs[key] forKey:key];
-        }
+        
     }
 }
 

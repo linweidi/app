@@ -11,7 +11,10 @@
 
 #define BASE_REMOTE_UTIL_OBJ_TYPE UserEntity*
 
-@class UserEntity;
+
+
+
+@class BASE_REMOTE_UTIL_OBJ_TYPE;
 //DOWNLOAD
 //NOTE: for download, we should fetch the remote object firstly, and then process data model
 //UPLOAD
@@ -59,7 +62,7 @@
 - (void) uploadUpdateRemoteObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object updateAttrs:(NSDictionary *)updateAttrs completionHandler:(REMOTE_OBJECT_BLOCK)block;
 
 // @param[IN] remoteObj: this remote object is created and popualted externally. If remote object has been update, we can just pass nil to modifiedObject
-- (void) uploadUpdateRemoteObject:(RemoteObject *)remoteObj modifiedObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object updateAttrs:(NSDictionary *)updateAttrs completionHandler:(REMOTE_OBJECT_BLOCK)block
+- (void) uploadUpdateRemoteObject:(RemoteObject *)remoteObj modifiedObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object completionHandler:(REMOTE_OBJECT_BLOCK)block
 
 //// note: remember to update the updateTime
 //- (void) uploadUpdateRemoteObject:(NSString *)globalID updateAttrHandler:(REMOTE_RT_OBJECT_BLOCK)updateBlock completionHandler:(REMOTE_RT_OBJECT_BLOCK)block ;
@@ -68,17 +71,17 @@
 
 - (void) downloadCreateObject:(NSString *)globalID inManagedObjectContext:(NSManagedObjectContext *)context completionHandler:(REMOTE_OBJECT_BLOCK)block;
 
-- (void) downloadUpdateObject:(BASE_REMOTE_UTIL_OBJ_TYPE)entity inManagedObjectContext:(NSManagedObjectContext *)context completionHandler:(REMOTE_OBJECT_BLOCK)block;
+- (void) downloadUpdateObject:(BASE_REMOTE_UTIL_OBJ_TYPE)entity completionHandler:(REMOTE_OBJECT_BLOCK)block;
 
 - (void) downloadCreateObject:(NSString *)globalID includeKeys:(NSArray *)keys inManagedObjectContext:(NSManagedObjectContext *)context completionHandler:(REMOTE_OBJECT_BLOCK)block;
 
-- (void) downloadUpdateObject:(BASE_REMOTE_UTIL_OBJ_TYPE)entity includeKeys:(NSArray *)keys inManagedObjectContext:(NSManagedObjectContext *)context completionHandler:(REMOTE_OBJECT_BLOCK)block;
+- (void) downloadUpdateObject:(BASE_REMOTE_UTIL_OBJ_TYPE)entity includeKeys:(NSArray *)keys completionHandler:(REMOTE_OBJECT_BLOCK)block;
 
 - (void) downloadCreateObjectsWithLatest:(BASE_REMOTE_UTIL_OBJ_TYPE)latest includeKeys:(NSArray *)keys inManagedObjectContext:(NSManagedObjectContext *)context completionHandler:(REMOTE_ARRAY_BLOCK)block;
 
 //- (void) downloadAllObjects:(RemoteObject *)remoteObj includeKeys:(NSArray *)keys completionHandler:(REMOTE_ARRAY_BLOCK)block;
 
-- (void) setRemoteObject:(RemoteObject *)object updateAttrs:(NSDictionary *)updateAttrs;
+- (void) setRemoteObject:(RemoteObject *)remoteObj updateAttrs:(NSDictionary *)updateAttrs;
 
 - (void) setObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object updateAttrs:(NSDictionary *)updateAttrs ;
 

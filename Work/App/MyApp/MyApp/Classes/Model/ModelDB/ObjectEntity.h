@@ -1,5 +1,5 @@
 //
-//  Group.h
+//  ObjectEntity.h
 //  MyApp
 //
 //  Created by Linwei Ding on 10/27/15.
@@ -14,18 +14,16 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import "UserEntity.h"
-
-@class User;
+#import <CoreData/CoreData.h>
 
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Group : UserEntity
+@interface ObjectEntity : NSManagedObject
 
-@property (nullable, nonatomic, retain) id members;
-@property (nullable, nonatomic, retain) NSString *name;
-@property (nullable, nonatomic, retain) User *user;
+@property (nullable, nonatomic, retain) NSDate *createTime;
+@property (nullable, nonatomic, retain) NSDate *updateTime;
+@property (nullable, nonatomic, retain) NSString *globalID;
 
 
 @end

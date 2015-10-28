@@ -3,11 +3,10 @@
 //  MyApp
 //
 //  Created by Linwei Ding on 10/27/15.
-//  Copyright (c) 2015 Linweiding. All rights reserved.
+//  Copyright © 2015 Linweiding. All rights reserved.
 //
 
 #import "EventCategory.h"
-
 
 @implementation EventCategory
 
@@ -19,5 +18,6 @@
 @dynamic parent;
 @dynamic relatedArray;
 @dynamic subArray;
+
 
 @end
