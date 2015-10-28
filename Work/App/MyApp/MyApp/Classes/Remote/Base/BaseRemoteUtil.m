@@ -58,7 +58,7 @@
 }
 
 // 1. provide update attribute dictionary
-// 2. create and populate remote object, set objectID and createTime
+// 2. create and populate remote object, set objectID
 // 3. after save, populate updateTime to data model, update data model
 - (void) setExistedRemoteObject:(RemoteObject *)remoteObj withObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object {
     //remoteObj id should be used when the remote remoteObj is created
@@ -88,10 +88,11 @@
         if (succeeded) {
             // create a new core data entity object
             BASE_REMOTE_UTIL_OBJ_TYPE newObject = [NSEntityDescription insertNewObjectForEntityForName:self.className inManagedObjectContext:context];
-            [self setNewObject:object withRemoteObject:remoteObj inManagedObjectContext:context];
-            newObject.globalID = remoteObj.objectId;
-            newObject.createTime = remoteObj.createdAt;
-            newObject.updateTime = remoteObj.updatedAt;
+            [self setNewObject:newObject withRemoteObject:remoteObj inManagedObjectContext:context];
+            // not necessary, already set in setNewObject:
+            //newObject.globalID = remoteObj.objectId;
+            //newObject.createTime = remoteObj.createdAt;
+            //newObject.updateTime = remoteObj.updatedAt;
             block(newObject, error);
         }
         else {
@@ -103,16 +104,19 @@
 
 // @param[IN]: we assume the argument object is core data model, not data model
 - (void) uploadUpdateRemoteObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object updateAttrs:(NSDictionary *)updateAttrs completionHandler:(REMOTE_OBJECT_BLOCK)block {
-    RemoteObject * remoteObj = [self createAndPopulateExistedRemoteObject:object];
+    RemoteObject * remoteObj = [PFObject objectWithoutDataWithClassName:self.className objectId:object.globalID];
     
     [self setRemoteObject:remoteObj updateAttrs:updateAttrs];
     
     [remoteObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
 
         if (succeeded) {
-            [self setExistedObject:object withRemoteObject:remoteObj inManagedObjectContext:object.managedObjectContext];
-            object.updateTime = remoteObj.updatedAt;
+            //No need to set all attribute, even it is wrong, remoteObj does not has all attributes
+            //[self setExistedObject:object withRemoteObject:remoteObj inManagedObjectContext:object.managedObjectContext];
+            // already set in setExistedObject:
+            //object.updateTime = remoteObj.updatedAt;
             [self setObject:object updateAttrs:updateAttrs];
+            object.updateTime = remoteObj.updatedAt;
             block(object, error);
         }
         else {
@@ -130,7 +134,8 @@
     [remoteObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
 
         if (succeeded) {
-            [self setExistedObject:object withRemoteObject:remoteObj inManagedObjectContext:object.managedObjectContext];
+            //No need to set all attribute, even it is wrong, remoteObj does not has all attributes
+            //[self setExistedObject:object withRemoteObject:remoteObj inManagedObjectContext:object.managedObjectContext];
             object.updateTime = remoteObj.updatedAt;
             [self setObject:object updateAttrs:updateAttrs];
             block(object, error);
@@ -161,11 +166,11 @@
 //    }];
 //}
 
-- (void) uploadRemoveRemoteObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object inManagedObjectContext:(NSManagedObjectContext *)context completionHandler:(REMOTE_BOOL_BLOCK)block {
-    RemoteObject * remoteObj = [self createAndPopulateExistedRemoteObject:object];
+- (void) uploadRemoveRemoteObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object completionHandler:(REMOTE_BOOL_BLOCK)block {
+    RemoteObject * remoteObj = [PFObject objectWithoutDataWithClassName:self.className objectId:object.globalID];
     [remoteObj deleteInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
-            [context deleteObject:object];
+            [object.context deleteObject:object];
             block(succeeded, error);
         }
         else {
@@ -195,18 +200,18 @@
     }];
 }
 
-- (void) downloadUpdateObject:(BASE_REMOTE_UTIL_OBJ_TYPE)entity inManagedObjectContext:(NSManagedObjectContext *)context completionHandler:(REMOTE_OBJECT_BLOCK)block {
-    [self downloadUpdateObject:entity includeKeys:nil inManagedObjectContext:context completionHandler:block];
+- (void) downloadUpdateObject:(BASE_REMOTE_UTIL_OBJ_TYPE)entity completionHandler:(REMOTE_OBJECT_BLOCK)block {
+    [self downloadUpdateObject:entity includeKeys:nil inManagedObjectContext:entity.managedObjectContext completionHandler:block];
 }
 
 
-- (void) downloadUpdateObject:(BASE_REMOTE_UTIL_OBJ_TYPE)entity includeKeys:(NSArray *)keys inManagedObjectContext:(NSManagedObjectContext *)context completionHandler:(REMOTE_OBJECT_BLOCK)block {
+- (void) downloadUpdateObject:(BASE_REMOTE_UTIL_OBJ_TYPE)entity includeKeys:(NSArray *)keys completionHandler:(REMOTE_OBJECT_BLOCK)block {
     PFQuery *query = [PFQuery queryWithClassName:self.className];
     [query getObjectInBackgroundWithId:entity.globalID block:^(PFObject *remoteObj, NSError *error) {
         if (!error) {
             
             if ([entity.updateTime compare: remoteObj.updatedAt] != NSOrderedSame) {
-                [self setExistedObject:entity withRemoteObject:remoteObj inManagedObjectContext:context];
+                [self setExistedObject:entity withRemoteObject:remoteObj inManagedObjectContext:entity.managedObjectContext];
             }
             
             block(entity, error);
@@ -284,7 +289,7 @@
         if ([updateAttrs[key] isKindOfClass:[NSDictionary class]]) {
             NSDictionary * attrSecLayer = updateAttrs[key];
             for (NSString * keySecLayer in updateAttrs) {
-                RemoteObject * objectNext = [object valueForKey:key];
+                BASE_REMOTE_UTIL_OBJ_TYPE * objectNext = [object valueForKey:key];
                 [objectNext setValue:attrSecLayer[keySecLayer] forKey:keySecLayer];
             }
         }
@@ -304,7 +309,7 @@
 
 - (RemoteObject *) createAndPopulateExistedRemoteObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object {
     PFObject * remoteObj = [PFObject objectWithoutDataWithClassName:self.className objectId:object.globalID];
-    [self setNewRemoteObject:remoteObj withObject:object];
+    //[self setExistedRemoteObject:remoteObj withObject:object];
     return remoteObj;
 }
 

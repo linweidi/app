@@ -2,13 +2,14 @@
 //  EventTemplate.m
 //  MyApp
 //
-//  Created by Linwei Ding on 10/23/15.
-//  Copyright © 2015 Linweiding. All rights reserved.
+//  Created by Linwei Ding on 10/27/15.
+//  Copyright (c) 2015 Linweiding. All rights reserved.
 //
 
 #import "EventTemplate.h"
 #import "EventCategory.h"
 #import "Place.h"
+
 
 @implementation EventTemplate
 
@@ -21,6 +22,5 @@
 @dynamic title;
 @dynamic category;
 @dynamic place;
-
 
 @end
