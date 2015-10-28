@@ -6,12 +6,16 @@
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 #import "AppHeader.h"
-#import "UserEntity.h"
+#import "UserEntity+Util.h"
 #import "UpdateAttributeContext.h"
 #import "UpdateAttrObjCtxt.h"
 #import "UpdateAttrRmtCtxt.h"
+#import "ObjectEntity+Util.h"
+
+#import "ConfigurationManager.h"
 #import "BaseRemoteUtil.h"
 
+#define BASE_REMOTE_UTIL_OBJ_TYPE ObjectEntity*
 
 @implementation BaseRemoteUtil
 
@@ -85,13 +89,13 @@
 #pragma mark -- networking functions
 
 // @param[IN]: we assume the argument object is data model, not core data model
-- (void) uploadCreateRemoteObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object inManagedObjectContext:(NSManagedObjectContext *)context completionHandler:(REMOTE_OBJECT_BLOCK)block {
+- (void) uploadCreateRemoteObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object completionHandler:(REMOTE_OBJECT_BLOCK)block {
     RemoteObject * remoteObj = [self createAndPopulateNewRemoteObject:object];
     [remoteObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             // create a new core data entity object
-            BASE_REMOTE_UTIL_OBJ_TYPE newObject = [NSEntityDescription insertNewObjectForEntityForName:self.className inManagedObjectContext:context];
-            [self setNewObject:newObject withRemoteObject:remoteObj inManagedObjectContext:context];
+            BASE_REMOTE_UTIL_OBJ_TYPE newObject = [NSEntityDescription insertNewObjectForEntityForName:self.className inManagedObjectContext:self.managedObjectContext];
+            [self setNewObject:newObject withRemoteObject:remoteObj inManagedObjectContext:self.managedObjectContext];
             // not necessary, already set in setNewObject:
             //newObject.globalID = remoteObj.objectId;
             //newObject.createTime = remoteObj.createdAt;
@@ -104,7 +108,7 @@
         }
     }];
 }
-
+//@[@[ (NSArray)keys, object]
 // @param[IN]: we assume the argument object is core data model, not data model
 - (void) uploadUpdateRemoteObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object updateAttrs:(NSDictionary *)updateAttrs completionHandler:(REMOTE_OBJECT_BLOCK)block {
     RemoteObject * remoteObj = [PFObject objectWithoutDataWithClassName:self.className objectId:object.globalID];
@@ -182,25 +186,6 @@
     }];
 }
 
-// note: remember to update the updateTime
-//- (void) uploadUpdateRemoteObject:(NSString *)globalID updateAttrHandler:(REMOTE_RT_OBJECT_BLOCK)updateBlock completionHandler:(REMOTE_RT_OBJECT_BLOCK)block {
-//    PFObject * remoteObj = [PFObject objectWithoutDataWithClassName:self.className objectId:globalID];
-//    //[self setExistedRemoteObject:remoteObj withObject:object];
-//    
-//    updateBlock(remoteObj, nil);
-//    
-//    [remoteObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-//        //object.globalID = remoteObj.objectId;
-//        //object.createTime = remoteObj.createdAt;
-//        if (succeeded) {
-//            //object.updateTime = remoteObj.updatedAt;
-//            block(remoteObj, error);
-//        }
-//        else {
-//            [ProgressHUD showError:@"Network Error."];
-//        }
-//    }];
-//}
 
 - (void) uploadRemoveRemoteObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object completionHandler:(REMOTE_BOOL_BLOCK)block {
     RemoteObject * remoteObj = [PFObject objectWithoutDataWithClassName:self.className objectId:object.globalID];
@@ -215,12 +200,12 @@
     }];
 }
 
-- (void) downloadCreateObject:(NSString *)globalID inManagedObjectContext:(NSManagedObjectContext *)context completionHandler:(REMOTE_OBJECT_BLOCK)block {
-    [self downloadCreateObject:globalID includeKeys:nil inManagedObjectContext:context completionHandler:block];
+- (void) downloadCreateObject:(NSString *)globalID completionHandler:(REMOTE_OBJECT_BLOCK)block {
+    [self downloadCreateObject:globalID includeKeys:nil completionHandler:block];
     
 }
 
-- (void) downloadCreateObject:(NSString *)globalID includeKeys:(NSArray *)keys inManagedObjectContext:(NSManagedObjectContext *)context completionHandler:(REMOTE_OBJECT_BLOCK)block {
+- (void) downloadCreateObject:(NSString *)globalID includeKeys:(NSArray *)keys completionHandler:(REMOTE_OBJECT_BLOCK)block {
     PFQuery *query = [PFQuery queryWithClassName:self.className];
     
     for (NSString * key in keys) {
@@ -229,9 +214,9 @@
     
     [query getObjectInBackgroundWithId:globalID block:^(PFObject *remoteObj, NSError *error) {
         if (!error) {
-            BASE_REMOTE_UTIL_OBJ_TYPE object = [NSEntityDescription insertNewObjectForEntityForName:self.className inManagedObjectContext:context ];
+            BASE_REMOTE_UTIL_OBJ_TYPE object = [NSEntityDescription insertNewObjectForEntityForName:self.className inManagedObjectContext:self.managedObjectContext ];
             
-            [self setNewObject:object withRemoteObject:remoteObj inManagedObjectContext:context];
+            [self setNewObject:object withRemoteObject:remoteObj inManagedObjectContext:self.managedObjectContext];
             
             block(object, error);
         }
@@ -267,7 +252,11 @@
     }];
 }
 
-- (void) downloadCreateObjectsWithLatest:(BASE_REMOTE_UTIL_OBJ_TYPE)latest  includeKeys:(NSArray *)keys inManagedObjectContext:(NSManagedObjectContext *)context completionHandler:(REMOTE_ARRAY_BLOCK)block; {
+- (void) downloadCreateObjectsWithLatest:(BASE_REMOTE_UTIL_OBJ_TYPE)latest includeKeys:(NSArray *)keys orders:(NSArray *)orders completionHandler:(REMOTE_ARRAY_BLOCK)block {
+    [self downloadCreateObjectsWithLatest:latest includeKeys:keys orders:orders updateQueryHandler:nil completionHandler:block];
+}
+
+- (void) downloadCreateObjectsWithLatest:(BASE_REMOTE_UTIL_OBJ_TYPE)latest includeKeys:(NSArray *)keys orders:(NSArray *)orders updateQueryHandler:(REMOTE_OBJECT_BLOCK)queryHandler completionHandler:(REMOTE_ARRAY_BLOCK)block; {
     NSDate * latestUpdateDate = nil;
     
     // load from parse
@@ -278,8 +267,31 @@
             [query includeKey:key];
         }
     }
-
-    [query orderByDescending:PF_COMMON_UPDATE_TIME];
+    
+    // order
+    if (orders) {
+        for (id order in orders) {
+            if ([order isKindOfClass:[NSArray class]]) {
+                BOOL ascend = (BOOL)[order firstObject];
+                if (ascend) {
+                    [query orderByAscending:[order lastObject]];
+                }
+                else {
+                    [query orderByDescending:[order lastObject]];
+                }
+            }
+            else {
+                //string
+                [query orderByDescending:order];
+            }
+        }
+    }
+    else {
+        [query orderByDescending:PF_COMMON_UPDATE_TIME];
+    }
+    
+    // other query
+    queryHandler(query, nil);
     
     if (latest) {
         //found any recent itme
@@ -296,9 +308,50 @@
             NSMutableArray * array = [[NSMutableArray alloc] init];
             BASE_REMOTE_UTIL_OBJ_TYPE entity = nil;
             for (PFObject * objectRT in objects) {
-                entity = [NSEntityDescription insertNewObjectForEntityForName:self.className inManagedObjectContext:context ];
+                //objectRT.objectId
                 
-                [self setNewObject:entity withRemoteObject:objectRT inManagedObjectContext:context];
+                entity = [ObjectEntity entityWithID:objectRT.objectId inManagedObjectContext:self.managedObjectContext];
+                if (!entity) {
+                    entity = [NSEntityDescription insertNewObjectForEntityForName:self.className inManagedObjectContext:self.managedObjectContext ];
+                    
+                    [self setNewObject:entity withRemoteObject:objectRT inManagedObjectContext:self.managedObjectContext];
+                }
+                else {
+                    //exist
+                    [self setExistedObject:entity withRemoteObject:objectRT inManagedObjectContext:self.managedObjectContext];
+                }
+
+                
+                [array addObject:entity];
+                block(array, error);
+            }
+        }
+        else {
+            [ProgressHUD showError:@"Network Error."];
+        }
+    }];
+}
+
+- (void) downloadCreateObjectsWithQuery:(PFQuery *)query completionHandler:(REMOTE_ARRAY_BLOCK)block; {
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (!error) {
+            NSMutableArray * array = [[NSMutableArray alloc] init];
+            BASE_REMOTE_UTIL_OBJ_TYPE entity = nil;
+            for (PFObject * objectRT in objects) {
+                //objectRT.objectId
+                
+                entity = [ObjectEntity entityWithID:objectRT.objectId inManagedObjectContext:self.managedObjectContext];
+                if (!entity) {
+                    entity = [NSEntityDescription insertNewObjectForEntityForName:self.className inManagedObjectContext:self.managedObjectContext ];
+                    
+                    [self setNewObject:entity withRemoteObject:objectRT inManagedObjectContext:self.managedObjectContext];
+                }
+                else {
+                    //exist
+                    [self setExistedObject:entity withRemoteObject:objectRT inManagedObjectContext:self.managedObjectContext];
+                }
+                
                 
                 [array addObject:entity];
                 block(array, error);
@@ -316,7 +369,7 @@
 
 - (void) setRemoteObject:(RemoteObject *)remoteObj updateAttrs:(NSArray *)updateAttrs {
     
-    //@[@[ (NSArray)keys, object], @{@"value"}, @{ object}]
+    //@[@[ (NSArray)keys, object]
     RemoteObject * rmtObj = remoteObj;
     
     for (NSArray * actionItem in updateAttrs) {
@@ -386,5 +439,12 @@
 
 - (void) setCommonRemoteObject:(RemoteObject *)remoteObj withObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object {
     NSAssert(NO, @"virtual function");
+}
+
+- (NSManagedObjectContext *)managedObjectContext {
+    if (!_managedObjectContext) {
+        _managedObjectContext = [[ConfigurationManager sharedManager] managedObjectContext];
+    }
+    return _managedObjectContext;
 }
 @end

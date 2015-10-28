@@ -7,13 +7,17 @@
 //
 #import "Event+Util.h"
 #import "AppHeader.h"
-#import "UserRemoteUtil.h"
 #import "User+Util.h"
 #import "Alert+Util.h"
 #import "Place+Util.h"
+#import "UserEntity.h"
 #import "EventCategory+Util.h"
 #import "AlertRemoteUtil.h"
+#import "PlaceRemoteUtil.h"
+#import "UserRemoteUtil.h"
 #import "EventRemoteUtil.h"
+
+#define BASE_REMOTE_UTIL_OBJ_TYPE ObjectEntity*
 
 @implementation EventRemoteUtil
 
@@ -46,6 +50,8 @@
     event.members  = remoteObj[PF_EVENT_MEMBERS] ;
     event.groupIDs  = remoteObj[PF_EVENT_GROUP_IDS] ;
     event.isVoting  = remoteObj[PF_EVENT_IS_VOTING] ;
+    
+    
 }
 
 - (void) setCommonRemoteObject:(RemoteObject *)remoteObj withAlert:(BASE_REMOTE_UTIL_OBJ_TYPE)object {
@@ -75,33 +81,30 @@
     [[AlertRemoteUtil sharedUtil] setNewRemoteObject:alertPF withObject:event.alert];
     remoteObj[PF_EVENT_ALERT] = alertPF;
     
-    PFObject * placePF = [PFObject objectWithClassName:PF_PLACE_CLASS_NAME];
-    [[PlaceRemoteUtil sharedUtil] setExistedRemoteObject:placePF withObject:event.alert];
-    placePF
+    PFObject * placePF = [PFObject objectWithoutDataWithClassName:PF_PLACE_CLASS_NAME objectId:event.place.globalID];
     remoteObj[PF_EVENT_PLACE] = placePF;
     
     remoteObj[PF_EVENT_CREATE_USER] = [[UserRemoteUtil sharedUtil] convertToRemoteUser:event.user];
     
-    PFObject * categoryPF = [PFObject objectWithClassName:PF_EVENT_CATEGORY_CLASS_NAME];
-    [[EventCategoryRemoteUtil sharedUtil] setExistedRemoteObject:categoryPF withObject:event.category];
+    PFObject * categoryPF = [PFObject objectWithoutDataWithClassName:PF_EVENT_CATEGORY_CLASS_NAME objectId:event.category.globalID];
     remoteObj[PF_EVENT_PLACE] = categoryPF;   //get a new category
 }
 
 - (void)setExistedRemoteObject:(RemoteObject *)remoteObj withObject:(UserEntity *)object {
     [super setExistedRemoteObject:remoteObj withObject:object];
     NSAssert([object isKindOfClass:[Event class]], @"Type casting is wrong");
-    Event * event = (Event *)object;
+    //Event * event = (Event *)object;
     
-    PFObject * alertPF = [PFObject objectWithoutDataWithClassName:PF_EVENT_ALERT objectId:event.alert.globalID];
-    remoteObj[PF_EVENT_ALERT] = alertPF;  //generate new alert
-    
-    PFObject * placePF = [PFObject objectWithoutDataWithClassName:PF_EVENT_PLACE objectId:event.place.globalID];
-    remoteObj[PF_EVENT_PLACE] = placePF;
-    
-    remoteObj[PF_EVENT_CREATE_USER] = [User convertToRemoteUser:event.user];
-    
-    PFObject * cateogoryPF = [PFObject objectWithoutDataWithClassName:PF_EVENT_CATEGORY objectId:event.category.globalID];
-    remoteObj[PF_EVENT_CATEGORY] = cateogoryPF;   //get a new category
+//    PFObject * alertPF = [PFObject objectWithoutDataWithClassName:PF_EVENT_ALERT objectId:event.alert.globalID];
+//    remoteObj[PF_EVENT_ALERT] = alertPF;  //generate new alert
+//    
+//    PFObject * placePF = [PFObject objectWithoutDataWithClassName:PF_EVENT_PLACE objectId:event.place.globalID];
+//    remoteObj[PF_EVENT_PLACE] = placePF;
+//    
+//    remoteObj[PF_EVENT_CREATE_USER] =[[UserRemoteUtil sharedUtil] convertToRemoteUser:event.user];
+//    
+//    PFObject * cateogoryPF = [PFObject objectWithoutDataWithClassName:PF_EVENT_CATEGORY objectId:event.category.globalID];
+//    remoteObj[PF_EVENT_CATEGORY] = cateogoryPF;   //get a new category
 
 }
 
@@ -110,12 +113,17 @@
     NSAssert([object isKindOfClass:[Event class]], @"Type casting is wrong");
     Event * event = (Event *)object;
     
+    // alert
     event.alert = [Alert createEntity:context];
     [[AlertRemoteUtil sharedUtil] setNewObject:event.alert withRemoteObject:remoteObj[PF_EVENT_ALERT] inManagedObjectContext:context];
     
+    // place
     PFObject * placePF = remoteObj[PF_EVENT_PLACE];
-    event.place = [Place createEntity:context];
-    [[PlaceRemoteUtil]]
+    event.place = [Place entityWithID:placePF.objectId inManagedObjectContext:context];
+    
+    // category
+    PFObject * categoryPF = remoteObj[PF_EVENT_CATEGORY];
+    event.category = [EventCategory entityWithID:categoryPF.objectId inManagedObjectContext:context];
 }
 
 - (void)setExistedObject:(UserEntity *)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext:(NSManagedObjectContext *)context {
@@ -124,105 +132,79 @@
     Event * event = (Event *)object;
     
     [[AlertRemoteUtil sharedUtil] setExistedObject:event.alert withRemoteObject:remoteObj[PF_EVENT_ALERT] inManagedObjectContext:context];
+    
+    // place
+    PFObject * placePF = remoteObj[PF_EVENT_PLACE];
+    event.place = [Place entityWithID:placePF.objectId inManagedObjectContext:context];
+    
+    // category
+    PFObject * categoryPF = remoteObj[PF_EVENT_CATEGORY];
+    event.category = [EventCategory entityWithID:categoryPF.objectId inManagedObjectContext:context];
 }
-
-- (void) setEvent:(Event *)event withRemoteObject:(RemoteObject *)object inManagedObjectContext: (NSManagedObjectContext *)context{
-    event.globalID = object[PF_EVENT_OBJECTID];
-    
-
-    
-    // Place should have been fetched
-    // this cannot use the pattern for alert
-    // because place is a system entity, it may have existed in our data storage but we cannot create another same one
-    PFObject * placePF = object[PF_EVENT_PLACE];
-    event.place = [Place entityWithID:placePF.objectId   inManagedObjectContext:context];
-    
-    
-    User * user = [User convertFromRemoteUser:object[PF_EVENT_CREATE_USER] inManagedObjectContext:context];
-    event.user = user;
-    
-    event.category = nil;   //get a new category
-    
-}
-
-
-
-
 
 - (void) loadRemoteUsersByEvent:(Event *)event  completionHandler:(REMOTE_ARRAY_BLOCK)block{
-    PFQuery *query = [PFQuery queryWithClassName:PF_USER_CLASS_NAME];
+    PFQuery *query = [PFUser query];
 	[query whereKey:PF_USER_OBJECTID containedIn:event.members];
 	[query orderByAscending:PF_USER_FULLNAME];
 	[query setLimit:EVENTVIEW_ITEM_NUM];
-	[query findObjectsInBackgroundWithBlock:block];
+	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        NSArray * userObjArray = [[UserRemoteUtil sharedUtil] convertToUserArray:objects inManagedObjectContext:self.managedObjectContext];
+//        for (PFUser * object in objects) {
+//
+//        }
+        block(userObjArray, error);
+    }];
 }
 
 - (void) loadRemoteEvents:(Event *)latestEvent completionHandler:(REMOTE_ARRAY_BLOCK)block {
-    [self loadEventsFromParse:latestEvent completionHandler:block];
-}
-
-- (void) loadEventsFromParse:(Event *)latestEvent completionHandler:(REMOTE_ARRAY_BLOCK)block {
+    //[self loadRemoteEventsFromParse:latestEvent completionHandler:block];
     
-    
-	PFUser *user = [PFUser currentUser];
-    
-	PFQuery *query = [PFQuery queryWithClassName:PF_EVENT_CLASS_NAME];
-	[query whereKey:PF_EVENT_MEMBERS equalTo:user.objectId];
-    
-    [query includeKey:PF_EVENT_CREATE_USER];
-    
-    [query orderByDescending:PF_EVENT_START_TIME];
-    
-    if (latestEvent) {
-        //found any recent itme
-        [query whereKey:PF_EVENT_UPDATE_TIME greaterThan:latestEvent.updateTime];
-    }
-    
-	[query findObjectsInBackgroundWithBlock:block];
-    
-}
-
-- (void) createRemoteEvent:(Event *)event completionHandler:(REMOTE_BOOL_BLOCK)block {
-    [self createPFEvent:event completionHandler:block];
-}
-
-- (void) createPFEvent:(Event *)event completionHandler:(REMOTE_BOOL_BLOCK)block {
-    PFObject *object = [PFObject objectWithClassName:PF_EVENT_CLASS_NAME];
-
-    [self setRemoteEvent:object withEvent:event];
-	[object saveInBackgroundWithBlock:block];
+    [self downloadCreateObjectsWithLatest:latestEvent includeKeys:@[PF_EVENT_CREATE_USER] orders:@[PF_EVENT_START_TIME] completionHandler:block ];
 }
 
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // delete the user in the event
-- (void) removeEventMember:(Event *)event user:(User *)user completionHandler:(REMOTE_BOOL_BLOCK)block {
-    //PFObject * eventPF = [PFObject objectWithoutDataWithClassName:PF_EVENT_CLASS_NAME objectId:event.globalID];
-    //[eventPF getO]
-    
-    PFQuery *query = [PFQuery queryWithClassName:PF_EVENT_CLASS_NAME];
-    [query getObjectInBackgroundWithId:event.globalID block:^(PFObject *object, NSError *error) {
+- (void) removeRemoteEventMember:(Event *)event user:(User *)user completionHandler:(REMOTE_BOOL_BLOCK)block {
+
+    [self downloadUpdateObject:event includeKeys:nil completionHandler:^(id object, NSError *error) {
         if ([object[PF_EVENT_MEMBERS] containsObject:user.globalID])
         {
             if ([object[PF_EVENT_MEMBERS] count] == 1) {
                 // only the user is left, delete the remote object
-                [object deleteInBackgroundWithBlock:block];
+                [self uploadRemoveRemoteObject:event completionHandler:block];
+                //[object deleteInBackgroundWithBlock:block];
             }
             else {
                 // other users are left, just remove the member of the user
                 [object[PF_EVENT_MEMBERS] removeObject:user.globalID];
-                [object saveInBackgroundWithBlock:block];
+                [self uploadUpdateRemoteObject:object modifiedObject:event completionHandler:^(id object, NSError *error) {
+                    block(!error, error);
+                }];
             }
         }
     }];
+    
+//    PFQuery *query = [PFQuery queryWithClassName:PF_EVENT_CLASS_NAME];
+//    [query getObjectInBackgroundWithId:event.globalID block:^(PFObject *object, NSError *error) {
+//        if ([object[PF_EVENT_MEMBERS] containsObject:user.globalID])
+//        {
+//            if ([object[PF_EVENT_MEMBERS] count] == 1) {
+//                // only the user is left, delete the remote object
+//                [object deleteInBackgroundWithBlock:block];
+//            }
+//            else {
+//                // other users are left, just remove the member of the user
+//                [object[PF_EVENT_MEMBERS] removeObject:user.globalID];
+//                [object saveInBackgroundWithBlock:block];
+//            }
+//        }
+//    }];
 }
 
 // delete the event
-- (void) removeEventItem:(Event *) event completionHandler:(REMOTE_BOOL_BLOCK)block {
-    PFQuery *query = [PFQuery queryWithClassName:PF_EVENT_CLASS_NAME];
-    [query getObjectInBackgroundWithId:event.globalID block:^(PFObject *object, NSError *error) {
-        [object deleteInBackgroundWithBlock:block];
-    }];
+- (void) removeRemoteEventItem:(Event *) event completionHandler:(REMOTE_BOOL_BLOCK)block {
+    [self uploadRemoveRemoteObject:event completionHandler:block];
 }
 
 @end

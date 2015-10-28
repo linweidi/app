@@ -68,40 +68,13 @@
     return user;
 }
  */
-- (void) setWithRemoteUser:(RemoteUser *)user inManagedObjectContext: (NSManagedObjectContext *)context{
-    
-    [self setWithRemoteUser:user inManagedObjectContext:context];
-}
 
 + (NSArray *) fetchAllCurrentUserEntities:(NSManagedObjectContext *)context {
     return nil;
 }
 
-+ (CurrentUser *) fetchCurrentUserEntityWithUserID:(NSString *)userID inManagedObjectContext:(NSManagedObjectContext *)context {
-    
-    CurrentUser * user = nil;
-    
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:PF_CURRENT_USER_CLASS_NAME] ;
-    request.predicate = [NSPredicate predicateWithFormat:@"globalID = %@", userID];
-    NSError *error;
-    NSArray *matches = [context executeFetchRequest:request error:&error   ];
-    
-    if (!matches || ([matches count]>1)) {
-        NSAssert(NO, @"match count is not unique");
-    }
-    else if (![matches count]) {
-        //create a new one
-        user = nil;
-    }
-    else {
-        user = [matches lastObject];
-        
-    }
-    
-    return user;
-}
 
-+ (CurrentUser *) fetchCurrentUserEntityWithUsername:(NSString *)username inManagedObjectContext:(NSManagedObjectContext *)context {
++ (CurrentUser *) entityWithUsername:(NSString *)username inManagedObjectContext:(NSManagedObjectContext *)context {
     
     CurrentUser * user = nil;
     
@@ -125,22 +98,13 @@
     return user;
 }
 
-+ (CurrentUser *) createCurrentUserEntity:(NSManagedObjectContext *)context{
-    
-    CurrentUser * user = nil;
-    
-    
-    //create a new one
-    user = [NSEntityDescription insertNewObjectForEntityForName:PF_USER_CLASS_NAME inManagedObjectContext:context];
-    
-    return user;
-}
+
 
 /// legacy code, TODO remove this
-+ (CurrentUser *) getCurrentUser {
-    ConfigurationManager *manager = [ConfigurationManager sharedManager];
-    return [manager getCurrentUser];
-}
+//+ (CurrentUser *) getCurrentUser {
+//    ConfigurationManager *manager = [ConfigurationManager sharedManager];
+//    return [manager getCurrentUser];
+//}
 
 
 

@@ -134,7 +134,7 @@
 }
 
 
-- (User *) convertToUser:(RemoteUser *)user inManagedObjectContext:(NSManagedObjectContext *) context {
+- (User *) convertToUser:(RemoteUser *)user {
     User * userEntity = nil;
     
     UserManager * manager = [UserManager sharedUtil];
@@ -143,8 +143,9 @@
     }
     else {
         // not exist
-        userEntity = [User createEntity:context];
-        [self setExistedObject:userEntity withRemoteObject:user inManagedObjectContext:context];
+        userEntity = [User createEntity:self.managedObjectContext];
+        [self setNewObject:userEntity withRemoteObject:user inManagedObjectContext:self.managedObjectContext];
+        [manager addUser:userEntity];
     }
     
     return userEntity;
@@ -155,7 +156,8 @@
     
     if ([user.globalID length]) {
         //existed remote object
-        [self setExistedRemoteObject:userRT withObject:user];
+        //[self setExistedRemoteObject:userRT withObject:user];
+        userRT.objectId = user.globalID;
     }
     else {
         // new remote object
@@ -166,28 +168,52 @@
     return userRT;
 }
 
-- (NSArray *) convertToUserArray:(NSArray *)users inManagedObjectContext:(NSManagedObjectContext *) context {
+- (NSArray *) convertToUserArray:(NSArray *)users {
     NSAssert(!users, @"input is nil;");
     NSMutableArray * userArray = [[NSMutableArray alloc] init];
     
     for (PFUser * userPF in users) {
-        User * user = [self convertToUser:userPF inManagedObjectContext:context];
+        User * user = [self convertToUser:userPF inManagedObjectContext:self.managedObjectContext];
         [userArray addObject:user];
     }
     
     return userArray;
 }
 
-- (void) loadUserFromParse:(NSString *)userId completionHandler:(REMOTE_ARRAY_BLOCK)block {
+- (void) loadUserFromParse:(NSString *)userId completionHandler:(REMOTE_OBJECT_BLOCK)block {
     NSAssert(userId, @"userId is nil") ;
+    UserManager * manager = [UserManager sharedUtil];
     
-	PFQuery *query = [PFQuery queryWithClassName:PF_USER_CLASS_NAME];
-	[query whereKey:PF_USER_OBJECTID equalTo:userId];
-	[query findObjectsInBackgroundWithBlock:block];
+    
+    BOOL existed = [manager exists:userId];
+    
+    if (existed) {
+        User * user = [manager getUser:userId];
+        [self downloadUpdateObject:user completionHandler:block];
+    }
+    else {
+        [self downloadCreateObject:userId completionHandler:block];
+    }
+
 }
 
-- (void) loadRemoteUser:(NSString *)userId completionHandler:(REMOTE_ARRAY_BLOCK)block  {
+- (void) loadRemoteUser:(NSString *)userId completionHandler:(REMOTE_OBJECT_BLOCK)block  {
     [self loadUserFromParse:userId completionHandler:block];
+}
+
+- (void) loadRemoteUsers:(NSArray *)userIDs completionHandler:(REMOTE_ARRAY_BLOCK)block  {
+    PFQuery *query = [PFUser query];
+	[query whereKey:PF_USER_OBJECTID containedIn:userIDs];
+	[query orderByAscending:PF_USER_FULLNAME];
+	[query setLimit:EVENTVIEW_ITEM_NUM];
+	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        NSArray * userObjArray = [[UserRemoteUtil sharedUtil] convertToUserArray:objects inManagedObjectContext:self.managedObjectContext];
+        //        for (PFUser * object in objects) {
+        //
+        //        }
+        block(userObjArray, error);
+    }];
+    
 }
 
 //- (void) logInUser:(id)target  {
@@ -204,7 +230,7 @@
     return ret;
 }
 
-- (void) signUp:(CurrentUser *)user completionHandler:(LOCAL_BOOL_BLOCK)block {
+- (void) signUp:(CurrentUser *)user completionHandler:(REMOTE_BOOL_BLOCK)block {
 
     PFUser * userRT = [[UserRemoteUtil sharedUtil] convertToRemoteUser:user];
     ConfigurationManager * config = [ConfigurationManager sharedManager];
@@ -216,9 +242,9 @@
             
             
             // remote create the local current user
-            CurrentUser * currentUser = [CurrentUser createCurrentUserEntity:config.managedObjectContext];
+            CurrentUser * currentUser = [CurrentUser createEntity:config.managedObjectContext];
             // update current user and add inot user manager
-            [currentUser setWithRemoteUser:userRT inManagedObjectContext:config.managedObjectContext];
+            [[UserRemoteUtil sharedUtil] setNewObject:currentUser withRemoteObject:userRT inManagedObjectContext:config.managedObjectContext];
             
 
             
@@ -227,16 +253,22 @@
                 config.currentUserID = currentUser.globalID;
                 [config setCurrentUser:currentUser];
                 
+                ParsePushUserAssign();
+                [ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome back %@!", user.fullname]];
+                
                 block(succeeded, error);
                 
                 config.isLoggedIn = YES;
             }
 
         }
+        else {
+            [ProgressHUD showError:@"sign up failes"];
+        }
     }];
 }
 
-- (void)logInWithUsername: (NSString *)username password:(NSString *)password completionHandler:(LOCAL_BOOL_BLOCK)block {
+- (void)logInWithUsername: (NSString *)username password:(NSString *)password completionHandler:(REMOTE_BOOL_BLOCK)block {
     
     ConfigurationManager * config = [ConfigurationManager sharedManager];
     
@@ -249,11 +281,13 @@
              CurrentUser * currentUser = nil;
              
              // remote create the local current user
-             currentUser  = [CurrentUser fetchCurrentUserEntityWithUsername:username inManagedObjectContext:config.managedObjectContext ];
+             currentUser  = [CurrentUser entityWithUsername:username inManagedObjectContext:config.managedObjectContext];
              if (!currentUser) {
-                 currentUser = [CurrentUser createCurrentUserEntity:config.managedObjectContext];
+                 currentUser = [CurrentUser createEntity:config.managedObjectContext];
                  // update current user and add inot user manager
-                 [currentUser setWithRemoteUser:user inManagedObjectContext:config.managedObjectContext];
+                 
+                 
+                 [[UserRemoteUtil sharedUtil] setNewObject:currentUser withRemoteObject:user inManagedObjectContext:config.managedObjectContext];
              }
              
              

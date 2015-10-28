@@ -49,9 +49,9 @@
 - (NSArray *) convertToUserArray:(NSArray *)users inManagedObjectContext:(NSManagedObjectContext *) context ;
 
 
-- (void) loadUserFromParse:(NSString *)userId completionHandler:(REMOTE_ARRAY_BLOCK)block;
+- (void) loadUserFromParse:(NSString *)userId completionHandler:(REMOTE_OBJECT_BLOCK)block;
 
-- (void) loadRemoteUser:(NSString *)userId completionHandler:(REMOTE_ARRAY_BLOCK)block ;
+- (void) loadRemoteUser:(NSString *)userId completionHandler:(REMOTE_OBJECT_BLOCK)block ;
 
 - (void) signUp:(CurrentUser *)user completionHandler:(LOCAL_BOOL_BLOCK)block ;
 

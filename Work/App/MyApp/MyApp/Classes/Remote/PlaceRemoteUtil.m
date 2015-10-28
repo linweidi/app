@@ -11,6 +11,8 @@
 #import "Picture+Util.h"
 #import "ThumbnailRemoteUtil.h"
 #import "PictureRemoteUtil.h"
+#import "UserEntity.h"
+#import "SystemEntity.h"
 #import "PlaceRemoteUtil.h"
 
 @implementation PlaceRemoteUtil
@@ -26,6 +28,9 @@
         sharedObject.className = PF_PLACE_CLASS_NAME;
     });
     return sharedObject;
+}
+- (void)setCommonObject:(SystemEntity *)object withRemoteObject:(PFObject *)remoteObj inManagedObjectContext:(NSManagedObjectContext *)context {
+    [object]
 }
 
 - (void)setCommonObject:(SystemEntity *)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext:(NSManagedObjectContext *)context {
@@ -217,5 +222,18 @@
     remoteObj[PF_PLACE_THUMB] = thumbRMT;
 }
 
+
+- (void) loadRemotePlaces:(Place *)latestPlace completionHandler:(REMOTE_ARRAY_BLOCK)block {
+    //[self loadRemoteEventsFromParse:latestEvent completionHandler:block];
+    
+    [self downloadCreateObjectsWithLatest:latestPlace includeKeys:@[PF_PLACE_CLASS_NAME] orders:nil completionHandler:block ];
+}
+
+- (void) createRemotePlaces:(NSArray *)placeObjArray completionHandler:(REMOTE_OBJECT_BLOCK)block{
+    for (Place * place in placeObjArray) {
+        [self uploadCreateRemoteObject:place completionHandler:block];
+    }
+    
+}
 
 @end

@@ -7,7 +7,7 @@
 //
 #import "AppHeader.h"
 #import <Foundation/Foundation.h>
-
+#import "BaseRemoteUtil.h"
 #import <Parse/Parse.h>
 
 @class Group;
@@ -18,17 +18,19 @@ void			RemoveGroupMembers		(PFUser *user1, PFUser *user2);
 void			RemoveGroupMember		(PFObject *group, PFUser *user);
 void			RemoveGroupItem			(PFObject *group);
 
-@interface GroupRemoteUtil : NSObject
+@interface GroupRemoteUtil : BaseRemoteUtil
 + (GroupRemoteUtil *)sharedUtil;
 
+#pragma mark -- private functions
 
+#pragma mark -- external functions
 - (void) loadRemoteGroups:(Group *)latestGroup completionHandler:(REMOTE_ARRAY_BLOCK)block ;
 
 - (void) loadRemoteUsersByGroup:(Group *)group  completionHandler:(REMOTE_ARRAY_BLOCK)block;
 
-- (void) createRemoteGroup:(NSString *)name members:(NSArray *)members completionHandler:(REMOTE_BOOL_BLOCK)block ;
+- (void) createRemoteGroup:(NSString *)name members:(NSArray *)members completionHandler:(REMOTE_OBJECT_BLOCK)block ;
 
-- (void) removeGroupMember:(Group *)group user:(User *)user ;
+- (void) removeGroupMember:(Group *)group user:(User *)user completionHandler:(REMOTE_BOOL_BLOCK)block;
 
-- (void) removeGroupItem:(Group *) group;
+- (void) removeGroupItem:(Group *) group completionHandler:(REMOTE_BOOL_BLOCK)block;
 @end

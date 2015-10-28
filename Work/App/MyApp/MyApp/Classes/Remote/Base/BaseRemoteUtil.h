@@ -9,7 +9,7 @@
 #import "AppHeader.h"
 #import <Foundation/Foundation.h>
 
-#define BASE_REMOTE_UTIL_OBJ_TYPE UserEntity*
+#define BASE_REMOTE_UTIL_OBJ_TYPE ObjectEntity*
 
 
 
@@ -56,29 +56,30 @@
 
 #pragma mark -- networking functions
 // @param[IN]: we assume the argument object is data model, not core data model
-- (void) uploadCreateRemoteObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object inManagedObjectContext:(NSManagedObjectContext *)context completionHandler:(REMOTE_OBJECT_BLOCK)block;
+- (void) uploadCreateRemoteObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object  completionHandler:(REMOTE_OBJECT_BLOCK)block;
 
 // @param[IN]: we assume the argument object is core data model, not data model
 - (void) uploadUpdateRemoteObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object updateAttrs:(NSDictionary *)updateAttrs completionHandler:(REMOTE_OBJECT_BLOCK)block;
 
 // @param[IN] remoteObj: this remote object is created and popualted externally. If remote object has been update, we can just pass nil to modifiedObject
-- (void) uploadUpdateRemoteObject:(RemoteObject *)remoteObj modifiedObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object completionHandler:(REMOTE_OBJECT_BLOCK)block
+- (void) uploadUpdateRemoteObject:(RemoteObject *)remoteObj modifiedObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object completionHandler:(REMOTE_OBJECT_BLOCK)block;
 
-//// note: remember to update the updateTime
-//- (void) uploadUpdateRemoteObject:(NSString *)globalID updateAttrHandler:(REMOTE_RT_OBJECT_BLOCK)updateBlock completionHandler:(REMOTE_RT_OBJECT_BLOCK)block ;
+- (void) uploadRemoveRemoteObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object completionHandler:(REMOTE_BOOL_BLOCK)block;
 
-- (void) uploadRemoveRemoteObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object inManagedObjectContext:(NSManagedObjectContext *)context completionHandler:(REMOTE_BOOL_BLOCK)block;
+- (void) downloadCreateObject:(NSString *)globalID completionHandler:(REMOTE_OBJECT_BLOCK)block;
 
-- (void) downloadCreateObject:(NSString *)globalID inManagedObjectContext:(NSManagedObjectContext *)context completionHandler:(REMOTE_OBJECT_BLOCK)block;
+- (void) downloadCreateObject:(NSString *)globalID includeKeys:(NSArray *)keys completionHandler:(REMOTE_OBJECT_BLOCK)block;
+
+- (void) downloadCreateObjectsWithQuery:(PFQuery *)query completionHandler:(REMOTE_ARRAY_BLOCK)block;
 
 - (void) downloadUpdateObject:(BASE_REMOTE_UTIL_OBJ_TYPE)entity completionHandler:(REMOTE_OBJECT_BLOCK)block;
+    
+- (void) downloadUpdateObject:(BASE_REMOTE_UTIL_OBJ_TYPE)entity includeKeys:(NSArray *)keys  completionHandler:(REMOTE_OBJECT_BLOCK)block;
 
-- (void) downloadCreateObject:(NSString *)globalID includeKeys:(NSArray *)keys inManagedObjectContext:(NSManagedObjectContext *)context completionHandler:(REMOTE_OBJECT_BLOCK)block;
 
-- (void) downloadUpdateObject:(BASE_REMOTE_UTIL_OBJ_TYPE)entity includeKeys:(NSArray *)keys completionHandler:(REMOTE_OBJECT_BLOCK)block;
+- (void) downloadCreateObjectsWithLatest:(BASE_REMOTE_UTIL_OBJ_TYPE)latest includeKeys:(NSArray *)keys orders:(NSArray *)orders completionHandler:(REMOTE_ARRAY_BLOCK)block;
 
-- (void) downloadCreateObjectsWithLatest:(BASE_REMOTE_UTIL_OBJ_TYPE)latest includeKeys:(NSArray *)keys inManagedObjectContext:(NSManagedObjectContext *)context completionHandler:(REMOTE_ARRAY_BLOCK)block;
-
+- (void) downloadCreateObjectsWithLatest:(BASE_REMOTE_UTIL_OBJ_TYPE)latest includeKeys:(NSArray *)keys orders:(NSArray *)orders updateQueryHandler:(REMOTE_OBJECT_BLOCK)queryHandler completionHandler:(REMOTE_ARRAY_BLOCK)block; 
 //- (void) downloadAllObjects:(RemoteObject *)remoteObj includeKeys:(NSArray *)keys completionHandler:(REMOTE_ARRAY_BLOCK)block;
 
 - (void) setRemoteObject:(RemoteObject *)remoteObj updateAttrs:(NSDictionary *)updateAttrs;
@@ -96,5 +97,7 @@
 - (void) setCommonRemoteObject:(RemoteObject *)remoteObj withObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object;
 
 @property (strong, nonatomic) NSString * className;
+
+@property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
 
 @end

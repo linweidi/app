@@ -17,17 +17,20 @@
 
 #include "../Template/EntityUtilTemplate.hh"
 
-+ (CurrentUser *) getCurrentUser;
++ (CurrentUser *) entityWithUsername:(NSString *)username inManagedObjectContext:(NSManagedObjectContext *)context;
+
+
+//+ (CurrentUser *) getCurrentUser;
 //
 //+ (RemoteUser *)convertFromCurrentUser:(CurrentUser *)currentUser;
 //
 //- (RemoteUser *) convertToRemoteUser;
+//
+//+ (CurrentUser *) createCurrentUserEntity:(NSManagedObjectContext *)context;
+//
+//+ (CurrentUser *) fetchCurrentUserEntityWithUserID:(NSString *)userID inManagedObjectContext:(NSManagedObjectContext *)context;
+//
+//+ (CurrentUser *) fetchCurrentUserEntityWithUsername:(NSString *)username inManagedObjectContext:(NSManagedObjectContext *)context;
 
-+ (CurrentUser *) createCurrentUserEntity:(NSManagedObjectContext *)context;
-
-+ (CurrentUser *) fetchCurrentUserEntityWithUserID:(NSString *)userID inManagedObjectContext:(NSManagedObjectContext *)context;
-
-+ (CurrentUser *) fetchCurrentUserEntityWithUsername:(NSString *)username inManagedObjectContext:(NSManagedObjectContext *)context;
-
-- (void) setWithRemoteUser:(RemoteUser *)user inManagedObjectContext: (NSManagedObjectContext *)context
+//- (void) setWithRemoteUser:(RemoteUser *)user inManagedObjectContext: (NSManagedObjectContext *)context
 @end

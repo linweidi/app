@@ -10,9 +10,10 @@
 #import "GroupRemoteUtil.h"
 
 #import <Parse/Parse.h>
-
 #import "AppConstant.h"
 #import "User+Util.h"
+#import "CurrentUser+Util.h"
+#import "UserRemoteUtil.h"
 #import "Group+Util.h"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -69,9 +70,32 @@ void RemoveGroupItem(PFObject *group)
         //initializing singleton object
         sharedObject = [[self alloc] init];
         
+        sharedObject.className = PF_GROUP_CLASS_NAME;
     });
     return sharedObject;
 }
+
+
+- (void) setCommonObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext: (NSManagedObjectContext *)context{
+    NSAssert([object isKindOfClass:[Group class]], @"Type casting is wrong");
+    Group * group = (Group *)object;
+    
+	group.user = [[ConfigurationManager sharedManager] getCurrentUser];
+	group.name = remoteObj[PF_GROUP_NAME] ;
+    group.members = remoteObj[PF_GROUP_MEMBERS];
+    
+    
+}
+
+- (void) setCommonRemoteObject:(RemoteObject *)remoteObj withAlert:(BASE_REMOTE_UTIL_OBJ_TYPE)object {
+    NSAssert([object isKindOfClass:[Group class]], @"Type casting is wrong");
+    Group * group = (Group *)object;
+	remoteObj[PF_GROUP_USER] = [[ConfigurationManager sharedManager] getCurrentUser];
+	remoteObj[PF_GROUP_NAME] = group.name;
+	remoteObj[PF_GROUP_MEMBERS] = group.members;
+}
+
+
 
 
 
@@ -80,7 +104,14 @@ void RemoveGroupItem(PFObject *group)
 	[query whereKey:PF_USER_OBJECTID containedIn:group.members];
 	[query orderByAscending:PF_USER_FULLNAME];
 	[query setLimit:GROUPVIEW_USER_ITEM_NUM];
-	[query findObjectsInBackgroundWithBlock:block];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        NSArray * userObjArray = [[UserRemoteUtil sharedUtil] convertToUserArray:objects inManagedObjectContext:self.managedObjectContext];
+        //        for (PFUser * object in objects) {
+        //
+        //        }
+        block(userObjArray, error);
+    }];
 }
 
 - (void) loadRemoteGroups:(Group *)latestGroup completionHandler:(REMOTE_ARRAY_BLOCK)block {
@@ -104,60 +135,59 @@ void RemoveGroupItem(PFObject *group)
         [query whereKey:PF_GROUP_UPDATE_TIME greaterThan:latestGroup.updateTime];
     }
     
-	[query findObjectsInBackgroundWithBlock:block];
+    [self downloadCreateObjectsWithQuery:query completionHandler:block];
     
 }
 
-- (void) createRemoteGroup:(NSString *)name members:(NSArray *)members completionHandler:(REMOTE_BOOL_BLOCK)block {
-    [self createPFGroup:name members:members completionHandler:block];
+- (void) createRemoteGroup:(NSString *)name members:(NSArray *)members completionHandler:(REMOTE_OBJECT_BLOCK)block {
+    [self createGroupPF:name members:members completionHandler:block];
 }
 
-- (void) createPFGroup:(NSString *)name members:(NSArray *)members completionHandler:(REMOTE_BOOL_BLOCK)block {
-    PFObject *object = [PFObject objectWithClassName:PF_GROUP_CLASS_NAME];
-	object[PF_GROUP_USER] = [PFUser currentUser];
-	object[PF_GROUP_NAME] = name;
-	object[PF_GROUP_MEMBERS] = members;
-	[object saveInBackgroundWithBlock:block];
+- (void) createGroupPF:(NSString *)name members:(NSArray *)members completionHandler:(REMOTE_OBJECT_BLOCK)block {
+//    PFObject *object = [PFObject objectWithClassName:PF_GROUP_CLASS_NAME];
+//	object[PF_GROUP_USER] = [PFUser currentUser];
+//	object[PF_GROUP_NAME] = name;
+//	object[PF_GROUP_MEMBERS] = members;
+//	[object saveInBackgroundWithBlock:block];
+    
+    Group * group  = [Group createEntity:nil];
+    group.user = [[ConfigurationManager sharedManager] getCurrentUser];
+    group.name = name;
+    group.members = members;
+    [self uploadCreateRemoteObject:group  completionHandler:block];
+    
 }
 
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // delete the user in the group
-- (void) removeGroupMember:(Group *)group user:(User *)user {
+- (void) removeGroupMember:(Group *)group user:(User *)user completionHandler:(REMOTE_BOOL_BLOCK)block {
     //PFObject * groupPF = [PFObject objectWithoutDataWithClassName:PF_GROUP_CLASS_NAME objectId:group.globalID];
     //[groupPF getO]
+
     
-    PFQuery *query = [PFQuery queryWithClassName:PF_GROUP_CLASS_NAME];
-    [query getObjectInBackgroundWithId:group.globalID block:^(PFObject *object, NSError *error) {
+    [self downloadUpdateObject:group includeKeys:nil completionHandler:^(id object, NSError *error) {
         if ([object[PF_GROUP_MEMBERS] containsObject:user.globalID])
         {
             if ([object[PF_GROUP_MEMBERS] count] == 1) {
                 // only the user is left, delete the remote object
-                [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                    if (error != nil) NSLog(@"RemoveGroupItem delete error.");
-                }];
+                [self uploadRemoveRemoteObject:group completionHandler:block];
+                //[object deleteInBackgroundWithBlock:block];
             }
             else {
                 // other users are left, just remove the member of the user
                 [object[PF_GROUP_MEMBERS] removeObject:user.globalID];
-                [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-                 {
-                     if (error != nil) NSLog(@"RemoveGroupMember save error.");
-                 }];
+                [self uploadUpdateRemoteObject:object modifiedObject:group completionHandler:^(id object, NSError *error) {
+                    block(!error, error);
+                }];
             }
         }
     }];
 }
 
 // delete the group
-- (void) removeGroupItem:(Group *) group {
-    PFQuery *query = [PFQuery queryWithClassName:PF_GROUP_CLASS_NAME];
-    [query getObjectInBackgroundWithId:group.globalID block:^(PFObject *object, NSError *error) {
-        [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-         {
-             if (error != nil) NSLog(@"RemoveGroupItem delete error.");
-         }];
-    }];
+- (void) removeGroupItem:(Group *) group completionHandler:(REMOTE_BOOL_BLOCK)block {
+    [self uploadRemoveRemoteObject:group completionHandler:block];
 }
 
 @end

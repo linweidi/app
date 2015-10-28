@@ -13,6 +13,7 @@
 
 + (PlaceRemoteUtil *)sharedUtil;
 
+#pragma mark -- private functions
 - (void)setCommonObject:(SystemEntity *)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext:(NSManagedObjectContext *)context ;
 
 - (void)setExistedObject:(SystemEntity *)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext:(NSManagedObjectContext *)context ;
@@ -25,4 +26,8 @@
 
 - (void)setNewRemoteObject:(RemoteObject *)remoteObj withObject:(SystemEntity *)object;
 
+#pragma mark -- external functions
+- (void) loadRemotePlaces:(Place *)latestPlace completionHandler:(REMOTE_ARRAY_BLOCK)block ;
+
+- (void) createRemotePlaces:(NSArray *)placeObjArray completionHandler:(REMOTE_OBJECT_BLOCK)block;
 @end

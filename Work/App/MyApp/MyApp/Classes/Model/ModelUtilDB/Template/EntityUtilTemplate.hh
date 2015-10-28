@@ -28,6 +28,8 @@
 
 + (ENTITY_UTIL_TEMPLATE_CLASS *)entityWithID:(NSString *)globalID inManagedObjectContext:  (NSManagedObjectContext *)context;
 
++ (BOOL) existEntity:(NSString *)globalID inManagedObjectContext: (NSManagedObjectContext *)context ;
+
 + (BOOL) deleteEntityWithID:(NSString *)globalID
      inManagedObjectContext: (NSManagedObjectContext *)context;
 

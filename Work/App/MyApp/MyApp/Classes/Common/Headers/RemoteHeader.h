@@ -21,7 +21,7 @@ typedef PFFile RemoteFile;
 
 typedef void (^REMOTE_BOOL_BLOCK)(BOOL succeeded, NSError * error);
 
-typedef void (^REMOTE_RT_OBJECT_BLOCK)(RemoteObject object, NSError * error);
+typedef void (^REMOTE_RT_OBJECT_BLOCK)(RemoteObject * object, NSError * error);
 
 typedef void (^REMOTE_OBJECT_BLOCK)(id object, NSError * error);
 
