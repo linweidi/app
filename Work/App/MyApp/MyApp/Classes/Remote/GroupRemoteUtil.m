@@ -16,49 +16,50 @@
 #import "UserRemoteUtil.h"
 #import "Group+Util.h"
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-void RemoveGroupMembers(PFUser *user1, PFUser *user2)
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
-	PFQuery *query = [PFQuery queryWithClassName:PF_GROUP_CLASS_NAME];
-	[query whereKey:PF_GROUP_USER equalTo:user1];
-	[query whereKey:PF_GROUP_MEMBERS equalTo:user2.objectId];
-	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-     {
-         if (error == nil)
-         {
-             for (PFObject *group in objects)
-             {
-                 RemoveGroupMember(group, user2);
-             }
-         }
-         else NSLog(@"RemoveGroupMembers query error.");
-     }];
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-void RemoveGroupMember(PFObject *group, PFUser *user)
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
-	if ([group[PF_GROUP_MEMBERS] containsObject:user.objectId])
-	{
-		[group[PF_GROUP_MEMBERS] removeObject:user.objectId];
-		[group saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-         {
-             if (error != nil) NSLog(@"RemoveGroupMember save error.");
-         }];
-	}
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-void RemoveGroupItem(PFObject *group)
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
-	[group deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-     {
-         if (error != nil) NSLog(@"RemoveGroupItem delete error.");
-     }];
-}
+////-------------------------------------------------------------------------------------------------------------------------------------------------
+//void RemoveGroupMembers(PFUser *user1, PFUser *user2)
+////-------------------------------------------------------------------------------------------------------------------------------------------------
+//{
+//	PFQuery *query = [PFQuery queryWithClassName:PF_GROUP_CLASS_NAME];
+//	[query whereKey:PF_GROUP_USER equalTo:user1];
+//	[query whereKey:PF_GROUP_MEMBERS equalTo:user2.objectId];
+//	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+//     {
+//         if (error == nil)
+//         {
+//             for (PFObject *group in objects)
+//             {
+//                 RemoveGroupMember(group, user2);
+//             }
+//         }
+//         else NSLog(@"RemoveGroupMembers query error.");
+//     }];
+//}
+//
+////-------------------------------------------------------------------------------------------------------------------------------------------------
+//void RemoveGroupMember(PFObject *group, PFUser *user)
+////-------------------------------------------------------------------------------------------------------------------------------------------------
+//{
+//    
+//	if ([group[PF_GROUP_MEMBERS] containsObject:user.objectId])
+//	{
+//		[group[PF_GROUP_MEMBERS] removeObject:user.objectId];
+//		[group saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+//         {
+//             if (error != nil) NSLog(@"RemoveGroupMember save error.");
+//         }];
+//	}
+//}
+//
+////-------------------------------------------------------------------------------------------------------------------------------------------------
+//void RemoveGroupItem(PFObject *group)
+////-------------------------------------------------------------------------------------------------------------------------------------------------
+//{
+//	[group deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+//     {
+//         if (error != nil) NSLog(@"RemoveGroupItem delete error.");
+//     }];
+//}
 
 @implementation GroupRemoteUtil
 
@@ -130,12 +131,22 @@ void RemoveGroupItem(PFObject *group)
     
     [query orderByDescending:PF_GROUP_NAME];
     
+    [query setLimit:GROUPVIEW_ITEM_NUM];
+    
     if (latestGroup) {
         //found any recent itme
         [query whereKey:PF_GROUP_UPDATE_TIME greaterThan:latestGroup.updateTime];
+        [self downloadObjectsWithQuery:query completionHandler:^(NSArray *remoteObjs, NSArray *objects, NSError *error) {
+            block(objects, error);
+        }];
+    }
+    else {
+        [self downloadCreateObjectsWithQuery:query completionHandler:^(NSArray *remoteObjs, NSArray *objects, NSError *error) {
+            block(objects, error);
+        }];
     }
     
-    [self downloadCreateObjectsWithQuery:query completionHandler:block];
+    
     
 }
 
@@ -166,21 +177,65 @@ void RemoveGroupItem(PFObject *group)
     //[groupPF getO]
 
     
-    [self downloadUpdateObject:group includeKeys:nil completionHandler:^(id object, NSError *error) {
-        if ([object[PF_GROUP_MEMBERS] containsObject:user.globalID])
+    [self downloadUpdateObject:group includeKeys:nil completionHandler:^(PFObject *remoteObj, id object, NSError *error) {
+        if ([remoteObj[PF_GROUP_MEMBERS] containsObject:user.globalID])
         {
-            if ([object[PF_GROUP_MEMBERS] count] == 1) {
+            if ([remoteObj[PF_GROUP_MEMBERS] count] == 1) {
                 // only the user is left, delete the remote object
                 [self uploadRemoveRemoteObject:group completionHandler:block];
                 //[object deleteInBackgroundWithBlock:block];
             }
             else {
                 // other users are left, just remove the member of the user
-                [object[PF_GROUP_MEMBERS] removeObject:user.globalID];
-                [self uploadUpdateRemoteObject:object modifiedObject:group completionHandler:^(id object, NSError *error) {
+                [remoteObj[PF_GROUP_MEMBERS] removeObject:user.globalID];
+                [self uploadUpdateRemoteObject:remoteObj modifiedObject:group completionHandler:^(id object, NSError *error) {
                     block(!error, error);
                 }];
             }
+        }
+    }];
+}
+
+
+// delete the user in the group
+- (void) removeGroupMemberAll:(User *)createdUser user:(User *)user completionHandler:(REMOTE_BOOL_BLOCK)block {
+    //PFObject * groupPF = [PFObject objectWithoutDataWithClassName:PF_GROUP_CLASS_NAME objectId:group.globalID];
+    //[groupPF getO]
+    
+	PFQuery *query = [PFQuery queryWithClassName:PF_GROUP_CLASS_NAME];
+	[query whereKey:PF_GROUP_USER equalTo:[PFUser currentUser]];
+	[query whereKey:PF_GROUP_MEMBERS equalTo:user.globalID];
+    
+    [self downloadObjectsWithQuery:query completionHandler:^(NSArray *remoteObjs, NSArray *objects, NSError *error) {
+        if (!error) {
+            int count = 0;
+            Group * group = objects[count];
+            for (PFObject *groupRMT in remoteObjs)
+            {
+                
+                if ([groupRMT[PF_GROUP_MEMBERS] containsObject:user.globalID])
+                {
+                    if ([groupRMT[PF_GROUP_MEMBERS] count] == 1) {
+                        // only the user is left, delete the remote object
+                        [self uploadRemoveRemoteObject:group completionHandler:block];
+                        //[object deleteInBackgroundWithBlock:block];
+                    }
+                    else {
+                        // other users are left, just remove the member of the user
+                        [groupRMT removeObject:user.globalID forKey:PF_GROUP_MEMBERS];
+                        [self uploadUpdateRemoteObject:groupRMT modifiedObject:group completionHandler:^(id object, NSError *error) {
+#warning this is array rather than mutable array. TODO to verify here
+                            [group.members removeObject:user.globalID];
+                            block(!error, error);
+                        }];
+                    }
+                }
+                
+                count++;
+            }
+        }
+        else {
+            [ProgressHUD showError:@"Network Error."];
         }
     }];
 }

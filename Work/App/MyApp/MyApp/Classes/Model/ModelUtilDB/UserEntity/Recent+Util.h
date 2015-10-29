@@ -10,6 +10,11 @@
 
 @interface Recent (Util)
 
+
+#define ENTITY_UTIL_TEMPLATE_CLASS Recent
+#define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"Recent"
+
+#include "../Template/EntityUtilTemplate.hh"
 // PFObject's method
 # pragma method -- sever method
 //+ (Recent *)recentEntityWithPFObject: (PFObject *)object

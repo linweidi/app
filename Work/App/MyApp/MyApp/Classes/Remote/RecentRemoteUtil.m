@@ -246,6 +246,9 @@ void DeleteRecentItems(User *user1, User *user2, NSManagedObjectContext * contex
 	}];
 }
 
+#import "UserRemoteUtil.h"
+#define BASE_REMOTE_UTIL_OBJ_TYPE ObjectEntity*
+
 @implementation RecentRemoteUtil
 
 + (RecentRemoteUtil *)sharedUtil {
@@ -256,40 +259,66 @@ void DeleteRecentItems(User *user1, User *user2, NSManagedObjectContext * contex
         //initializing singleton object
         sharedObject = [[self alloc] init];
         
+        sharedObject.className = PF_RECENT_CLASS_NAME;
     });
     return sharedObject;
 }
 
-- (void) deleteRecentFromParse:(Recent *)recent completionHandler:(REMOTE_BOOL_BLOCK)block {
+- (void) setCommonObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext: (NSManagedObjectContext *)context{
+    NSAssert([object isKindOfClass:[Recent class]], @"Type casting is wrong");
+    Recent * recent = (Recent *)object;
+
+    recent.user = [[UserRemoteUtil sharedUtil] convertToUser:remoteObj[PF_RECENT_USER] inManagedObjectContext:context];
+    recent.chatID = remoteObj[PF_RECENT_GROUPID];
+    recent.members = [NSArray arrayWithArray:remoteObj[PF_RECENT_MEMBERS]] ;
+    recent.details = remoteObj[PF_RECENT_DESCRIPTION] ;
+    recent.lastUser = [[UserRemoteUtil sharedUtil] convertToUser:remoteObj[PF_RECENT_LASTUSER] inManagedObjectContext:context];
+    recent.lastMessage = remoteObj[PF_RECENT_LASTMESSAGE] ;
+    recent.counter = remoteObj[PF_RECENT_COUNTER] ;
     
-    PFObject * recentRmt = [PFObject objectWithClassName:PF_RECENT_CLASS_NAME];
-    /// TODO confirm if this is ok
-    recentRmt.objectId = recent.globalID;
-	[recentRmt deleteInBackgroundWithBlock:block];
+}
+
+- (void) setCommonRemoteObject:(RemoteObject *)remoteObj withAlert:(BASE_REMOTE_UTIL_OBJ_TYPE)object {
+    NSAssert([object isKindOfClass:[Recent class]], @"Type casting is wrong");
+    Recent * recent = (Recent *)object;
+    
+    remoteObj[PF_RECENT_USER] = [[UserRemoteUtil sharedUtil] convertToRemoteUser:recent.user];
+    remoteObj[PF_RECENT_GROUPID] = recent.chatID;
+    remoteObj[PF_RECENT_MEMBERS] = [NSArray arrayWithArray:recent.members];
+    remoteObj[PF_RECENT_DESCRIPTION] = recent.details;
+    remoteObj[PF_RECENT_LASTUSER] = [[UserRemoteUtil sharedUtil] convertToRemoteUser:recent.lastUser];
+    remoteObj[PF_RECENT_LASTMESSAGE] = recent.lastMessage;
+    remoteObj[PF_RECENT_COUNTER] = recent.counter;
+    
+}
+
+- (void) deleteRemoteRecent:(Recent *)recent completionHandler:(REMOTE_BOOL_BLOCK)block {
+    
+    [self uploadRemoveRemoteObject:event completionHandler:block];
 }
 
 - (void) loadRecentFromParse:(Recent *) latestRecent completionHandler:(REMOTE_ARRAY_BLOCK)block  {
 
     
-    NSDate * latestUpdateDate = nil;
-    
     // load from parse
     PFQuery *query = [PFQuery queryWithClassName:PF_RECENT_CLASS_NAME];
     [query whereKey:PF_RECENT_USER equalTo:[PFUser currentUser]];
     [query includeKey:PF_RECENT_LASTUSER];
-    [query orderByDescending:PF_RECENT_UPDATEDACTION];
+    [query setLimit:RECENTVIEW_ITEM_NUM];
+    [query orderByDescending:PF_COMMON_UPDATE_TIME];
     
     if (latestRecent) {
         //found any recent itme
-        latestUpdateDate = latestRecent.updateDate;
-        [query whereKey:PF_RECENT_UPDATEDACTION greaterThan:latestUpdateDate];
+        [query whereKey:PF_COMMON_UPDATE_TIME greaterThan:latestRecent.updateTime];
+        [self downloadObjectsWithQuery:query completionHandler:^(NSArray *remoteObjs, NSArray *objects, NSError *error) {
+            block(objects, error);
+        }];
     }
     else {
-        // a new load
-
+        [self downloadCreateObjectsWithQuery:query completionHandler:^(NSArray *remoteObjs, NSArray *objects, NSError *error) {
+            block(objects, error);
+        }];
     }
-    
-    [query findObjectsInBackgroundWithBlock:block];
 }
 
 - (void) loadRemoteRecent:(Recent *) latestRecent completionHandler:(REMOTE_ARRAY_BLOCK)block  {

@@ -25,7 +25,11 @@ typedef void (^REMOTE_RT_OBJECT_BLOCK)(RemoteObject *object, NSError * error);
 
 typedef void (^REMOTE_OBJECT_BLOCK)(id object, NSError * error);
 
+typedef void (^REMOTE_BOTH_OBJECT_BLOCK)(RemoteObject *remoteObj, id object, NSError * error);
+
 typedef void (^REMOTE_ARRAY_BLOCK)(NSArray * objects, NSError * error);
+
+typedef void (^REMOTE_BOTH_ARRAY_BLOCK)(NSArray * remoteObjs, NSArray * objects, NSError * error);
 
 typedef void (^REMOTE_DATA_BLOCK)(NSData * data, NSError * error);
 

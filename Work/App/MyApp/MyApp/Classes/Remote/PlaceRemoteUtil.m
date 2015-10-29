@@ -226,7 +226,9 @@
 - (void) loadRemotePlaces:(Place *)latestPlace completionHandler:(REMOTE_ARRAY_BLOCK)block {
     //[self loadRemoteEventsFromParse:latestEvent completionHandler:block];
     
-    [self downloadCreateObjectsWithLatest:latestPlace includeKeys:@[PF_PLACE_CLASS_NAME] orders:nil completionHandler:block ];
+    [self downloadCreateObjectsWithLatest:latestPlace includeKeys:@[PF_PLACE_CLASS_NAME] orders:nil completionHandler:^(NSArray *remoteObjs, NSArray *objects, NSError *error) {
+        block(objects, error);
+    }];
 }
 
 - (void) createRemotePlaces:(NSArray *)placeObjArray completionHandler:(REMOTE_OBJECT_BLOCK)block{

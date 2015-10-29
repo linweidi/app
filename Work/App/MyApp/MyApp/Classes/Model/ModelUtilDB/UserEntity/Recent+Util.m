@@ -14,6 +14,10 @@
 
 @implementation Recent (Util)
 
+#define ENTITY_UTIL_TEMPLATE_CLASS Recent
+#define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"Recent"
+
+#include "../Template/EntityUtilTemplate.mh"
 ////-------------------------------------------------------------------------------------------------------------------------------------------------
 //// Create or get the object from data base
 ////-------------------------------------------------------------------------------------------------------------------------------------------------

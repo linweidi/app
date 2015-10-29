@@ -306,7 +306,7 @@
 #define		PF_RECENT_LASTUSER					@"lastUser"				//	Pointer to User Class
 #define		PF_RECENT_LASTMESSAGE				@"lastMessage"			//	String
 #define		PF_RECENT_COUNTER					@"counter"				//	Number
-#define		PF_RECENT_UPDATEDACTION				@"updatedAction"		//	Date
+//#define		PF_RECENT_UPDATEDACTION				@"updatedAction"		//	Date
 
 //-----------------------------------------------------------------------
 //---------------------------   THUMBNAIL    --------------------------------------

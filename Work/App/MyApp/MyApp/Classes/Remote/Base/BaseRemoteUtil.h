@@ -56,6 +56,7 @@
 
 
 #pragma mark -- networking functions
+#pragma mark -- upload object
 // @param[IN]: we assume the argument object is data model, not core data model
 - (void) uploadCreateRemoteObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object  completionHandler:(REMOTE_OBJECT_BLOCK)block;
 
@@ -67,25 +68,25 @@
 
 - (void) uploadRemoveRemoteObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object completionHandler:(REMOTE_BOOL_BLOCK)block;
 
-- (void) downloadCreateObject:(NSString *)globalID completionHandler:(REMOTE_OBJECT_BLOCK)block;
+#pragma mark -- download one object
+- (void) downloadCreateObject:(NSString *)globalID completionHandler:(REMOTE_BOTH_OBJECT_BLOCK)block;
 
-- (void) downloadCreateObject:(NSString *)globalID includeKeys:(NSArray *)keys completionHandler:(REMOTE_OBJECT_BLOCK)block;
+- (void) downloadCreateObject:(NSString *)globalID includeKeys:(NSArray *)keys completionHandler:(REMOTE_BOTH_OBJECT_BLOCK)block;
 
-- (void) downloadCreateObjectsWithQuery:(PFQuery *)query completionHandler:(REMOTE_ARRAY_BLOCK)block;
-
-- (void) downloadUpdateObject:(BASE_REMOTE_UTIL_OBJ_TYPE)entity completionHandler:(REMOTE_OBJECT_BLOCK)block;
+- (void) downloadUpdateObject:(BASE_REMOTE_UTIL_OBJ_TYPE)entity completionHandler:(REMOTE_BOTH_OBJECT_BLOCK)block;
     
-- (void) downloadUpdateObject:(BASE_REMOTE_UTIL_OBJ_TYPE)entity includeKeys:(NSArray *)keys  completionHandler:(REMOTE_OBJECT_BLOCK)block;
+- (void) downloadUpdateObject:(BASE_REMOTE_UTIL_OBJ_TYPE)entity includeKeys:(NSArray *)keys  completionHandler:(REMOTE_BOTH_OBJECT_BLOCK)block;
 
+#pragma mark -- download many objects
+- (void) downloadCreateObjectsWithQuery:(PFQuery *)query completionHandler:(REMOTE_BOTH_ARRAY_BLOCK)block;
 
-- (void) downloadCreateObjectsWithLatest:(BASE_REMOTE_UTIL_OBJ_TYPE)latest includeKeys:(NSArray *)keys orders:(NSArray *)orders completionHandler:(REMOTE_ARRAY_BLOCK)block;
+- (void) downloadObjectsWithQuery:(PFQuery *)query completionHandler:(REMOTE_BOTH_ARRAY_BLOCK)block;
 
-- (void) downloadCreateObjectsWithLatest:(BASE_REMOTE_UTIL_OBJ_TYPE)latest includeKeys:(NSArray *)keys orders:(NSArray *)orders updateQueryHandler:(REMOTE_OBJECT_BLOCK)queryHandler completionHandler:(REMOTE_ARRAY_BLOCK)block; 
+- (void) downloadCreateObjectsWithLatest:(BASE_REMOTE_UTIL_OBJ_TYPE)latest includeKeys:(NSArray *)keys orders:(NSArray *)orders completionHandler:(REMOTE_BOTH_ARRAY_BLOCK)block;
+
+- (void) downloadCreateObjectsWithLatest:(BASE_REMOTE_UTIL_OBJ_TYPE)latest includeKeys:(NSArray *)keys orders:(NSArray *)orders updateQueryHandler:(REMOTE_OBJECT_BLOCK)queryHandler completionHandler:(REMOTE_BOTH_ARRAY_BLOCK)block;
 //- (void) downloadAllObjects:(RemoteObject *)remoteObj includeKeys:(NSArray *)keys completionHandler:(REMOTE_ARRAY_BLOCK)block;
 
-- (void) setRemoteObject:(RemoteObject *)remoteObj updateAttrs:(NSDictionary *)updateAttrs;
-
-- (void) setObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object updateAttrs:(NSDictionary *)updateAttrs ;
 
 #pragma mark -- private method
 

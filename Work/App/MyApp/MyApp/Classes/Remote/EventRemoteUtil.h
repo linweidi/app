@@ -39,6 +39,6 @@
 
 - (void) removeRemoteEventMember:(Event *)event user:(User *)user completionHandler:(REMOTE_BOOL_BLOCK)block ;
 
-- (void) removeRemoteEventItem:(Event *) event completionHandler:(REMOTE_BOOL_BLOCK)block ;
+- (void) deleteRemoteEventItem:(Event *) event completionHandler:(REMOTE_BOOL_BLOCK)block ;
 
 @end

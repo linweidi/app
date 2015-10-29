@@ -11,12 +11,12 @@
 #import <Parse/Parse.h>
 
 @class Group;
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-void			RemoveGroupMembers		(PFUser *user1, PFUser *user2);
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-void			RemoveGroupMember		(PFObject *group, PFUser *user);
-void			RemoveGroupItem			(PFObject *group);
+////-------------------------------------------------------------------------------------------------------------------------------------------------
+//void			RemoveGroupMembers		(PFUser *user1, PFUser *user2);
+//
+////-------------------------------------------------------------------------------------------------------------------------------------------------
+//void			RemoveGroupMember		(PFObject *group, PFUser *user);
+//void			RemoveGroupItem			(PFObject *group);
 
 @interface GroupRemoteUtil : UserBaseRemoteUtil
 + (GroupRemoteUtil *)sharedUtil;
@@ -36,4 +36,7 @@ void			RemoveGroupItem			(PFObject *group);
 - (void) removeGroupMember:(Group *)group user:(User *)user completionHandler:(REMOTE_BOOL_BLOCK)block;
 
 - (void) removeGroupItem:(Group *) group completionHandler:(REMOTE_BOOL_BLOCK)block;
+
+- (void) removeGroupMemberAll:(User *)createdUser user:(User *)user completionHandler:(REMOTE_BOOL_BLOCK)block ;
+
 @end

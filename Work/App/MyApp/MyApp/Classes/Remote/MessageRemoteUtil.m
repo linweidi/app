@@ -12,7 +12,7 @@
 #import "CurrentUser+Util.h"
 #import "ConfigurationManager.h"
 #import "Picture+Util.h"
-#import "Video.h"
+#import "Video+Util.h"
 #import "MessageRemoteUtil.h"
 
 #define BASE_REMOTE_UTIL_OBJ_TYPE ObjectEntity*
@@ -28,7 +28,7 @@
         //initializing singleton object
         sharedObject = [[self alloc] init];
         
-        
+        sharedObject.className = PF_MESSAGE_CLASS_NAME;
     });
     return sharedObject;
 }
@@ -48,7 +48,7 @@
     Message * message = (Message *)object;
     
     
-    remoteObj[PF_MESSAGE_USER] = [[ConfigurationManager sharedManager] getCurrentUser];
+    remoteObj[PF_MESSAGE_USER] = [PFUser currentUser];
     remoteObj[PF_MESSAGE_GROUPID] = message.chatID;
     
     remoteObj[PF_MESSAGE_TEXT] = message.text;
@@ -95,17 +95,30 @@
     
     //picture
     Picture * picture;
-    PFFile * pictFile = remoteObj[PF_MESSAGE_PICTURE];
-    if (pictFile) {
-        picture = [Picture createEntity:<#(NSManagedObjectContext *)#>]
+    PFObject * pictureRMT= remoteObj[PF_MESSAGE_PICTURE];
+    if (pictureRMT) {
+        PFFile * pictFile = pictureRMT[PF_PICTURE_FILE];
+        picture = [Picture createEntity:object.managedObjectContext];
+        picture.name = pictureRMT[PF_PICTURE_NAME];
+        picture.url = pictureRMT[PF_PICTURE_URL];
+        picture.fileName = pictFile.name;
+        picture.url = pictFile.url;
+        
+        message.picture = picture;
     }
     
-    message.picture;
-    
-    
-    //video
     Video * video;
-    message.video;
+    PFObject * videoRMT= remoteObj[PF_MESSAGE_PICTURE];
+    if (pictureRMT) {
+        PFFile * videoFile = videoRMT[PF_PICTURE_FILE];
+        video = [Video createEntity:object.managedObjectContext];
+        video.name = videoRMT[PF_PICTURE_NAME];
+        video.url = videoRMT[PF_PICTURE_URL];
+        video.fileName = videoFile.name;
+        video.url = videoFile.url;
+        
+        message.video = video;
+    }
     
 }
 
@@ -114,19 +127,66 @@
     NSAssert([object isKindOfClass:[Message class]], @"Type casting is wrong");
     Message * message = (Message *)object;
     
+    // not necessary to update message object
+    // only create when locally deleted
+    
+    //picture
+    Picture * picture;
+    PFObject * pictureRMT= remoteObj[PF_MESSAGE_PICTURE];
+    if (pictureRMT ) {
+        if (!message.picture ) {
+            PFFile * pictFile = pictureRMT[PF_PICTURE_FILE];
+            picture = [Picture createEntity:object.managedObjectContext];
+            picture.name = pictureRMT[PF_PICTURE_NAME];
+            picture.url = pictureRMT[PF_PICTURE_URL];
+            picture.fileName = pictFile.name;
+            picture.url = pictFile.url;
+            
+            message.picture = picture;
+        }
+
+    }
+    
+    Video * video;
+    PFObject * videoRMT= remoteObj[PF_MESSAGE_PICTURE];
+    if (pictureRMT) {
+        if (message.video) {
+            PFFile * videoFile = videoRMT[PF_PICTURE_FILE];
+            video = [Video createEntity:object.managedObjectContext];
+            video.name = videoRMT[PF_PICTURE_NAME];
+            video.url = videoRMT[PF_PICTURE_URL];
+            video.fileName = videoFile.name;
+            video.url = videoFile.url;
+            
+            message.video = video;
+        }
+
+    }
 }
 
 - (void) loadMessagesFromParse:(NSString *)chatId lastMessage:(JSQMessage *)lastMessage completionHandler:(REMOTE_ARRAY_BLOCK)block {
     //lastMessage can be nil;
     PFQuery *query = [PFQuery queryWithClassName:PF_MESSAGE_CLASS_NAME];
     [query whereKey:PF_MESSAGE_GROUPID equalTo:chatId];
+
+    [query includeKey:PF_MESSAGE_USER];
+    
+    [query orderByDescending:PF_MESSAGE_CREATEDAT];
+    
+    [query setLimit:MESSAGEVIEW_ITEM_NUM];
     if (lastMessage != nil) {
         [query whereKey:PF_MESSAGE_CREATEDAT greaterThan:lastMessage.date];
+        [self downloadObjectsWithQuery:query completionHandler:^(NSArray *remoteObjs, NSArray *objects, NSError *error) {
+            block(objects, error);
+        }];
     }
-    [query includeKey:PF_MESSAGE_USER];
-    [query orderByDescending:PF_MESSAGE_CREATEDAT];
-    [query setLimit:50];
-    [query findObjectsInBackgroundWithBlock:block];
+    else {
+        [self downloadCreateObjectsWithQuery:query completionHandler:^(NSArray *remoteObjs, NSArray *objects, NSError *error) {
+            block(objects, error);
+        }];
+    }
+    
+    
     
 }
 
@@ -134,16 +194,16 @@
     [self loadMessagesFromParse:chatId lastMessage:lastMessage completionHandler:block];
 }
 
-- (PFObject *) createMessageRemote:(NSString *)chatId text:(NSString *)text Video:(RemoteFile *)video Picture:(RemoteFile *)picture completionHandler:(REMOTE_BOOL_BLOCK)block{
-    PFObject *object = [PFObject objectWithClassName:PF_MESSAGE_CLASS_NAME];
-	object[PF_MESSAGE_USER] = [PFUser currentUser];
-	object[PF_MESSAGE_GROUPID] = chatId;
-	object[PF_MESSAGE_TEXT] = text;
-	if (video != nil) object[PF_MESSAGE_VIDEO] = video.file;
-	if (picture != nil) object[PF_MESSAGE_PICTURE] = picture.file;
-	[object saveInBackgroundWithBlock:block];
+- (void) createMessageRemote:(NSString *)chatId text:(NSString *)text Video:(Video *)video Picture:(Picture *)picture completionHandler:(REMOTE_OBJECT_BLOCK)block{
     
-    return object;
+    Message * message = [Message createEntity:nil];
+    message.user = [[ConfigurationManager sharedManager] getCurrentUser];
+    message.chatID = chatId;
+    message.text = text;
+    message.picture = picture;
+    message.video = video;
+    [self uploadCreateRemoteObject:message  completionHandler:block];
+
 }
 
 

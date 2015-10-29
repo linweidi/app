@@ -198,12 +198,12 @@
     }];
 }
 
-- (void) downloadCreateObject:(NSString *)globalID completionHandler:(REMOTE_OBJECT_BLOCK)block {
+- (void) downloadCreateObject:(NSString *)globalID completionHandler:(REMOTE_BOTH_OBJECT_BLOCK)block {
     [self downloadCreateObject:globalID includeKeys:nil completionHandler:block];
     
 }
 
-- (void) downloadCreateObject:(NSString *)globalID includeKeys:(NSArray *)keys completionHandler:(REMOTE_OBJECT_BLOCK)block {
+- (void) downloadCreateObject:(NSString *)globalID includeKeys:(NSArray *)keys completionHandler:(REMOTE_BOTH_OBJECT_BLOCK)block {
     PFQuery *query = [PFQuery queryWithClassName:self.className];
     
     for (NSString * key in keys) {
@@ -216,7 +216,7 @@
             
             [self setNewObject:object withRemoteObject:remoteObj inManagedObjectContext:self.managedObjectContext];
             
-            block(object, error);
+            block(remoteObj, object, error);
         }
         else {
             [ProgressHUD showError:@"Network Error."];
@@ -224,12 +224,12 @@
     }];
 }
 
-- (void) downloadUpdateObject:(BASE_REMOTE_UTIL_OBJ_TYPE)entity completionHandler:(REMOTE_OBJECT_BLOCK)block {
+- (void) downloadUpdateObject:(BASE_REMOTE_UTIL_OBJ_TYPE)entity completionHandler:(REMOTE_BOTH_OBJECT_BLOCK)block {
     [self downloadUpdateObject:entity includeKeys:nil completionHandler:block];
 }
 
 
-- (void) downloadUpdateObject:(BASE_REMOTE_UTIL_OBJ_TYPE)entity includeKeys:(NSArray *)keys completionHandler:(REMOTE_OBJECT_BLOCK)block {
+- (void) downloadUpdateObject:(BASE_REMOTE_UTIL_OBJ_TYPE)entity includeKeys:(NSArray *)keys completionHandler:(REMOTE_BOTH_OBJECT_BLOCK)block {
     PFQuery *query = [PFQuery queryWithClassName:self.className];
     for (NSString * key in keys) {
         [query includeKey:key];
@@ -242,7 +242,7 @@
                 [self setExistedObject:entity withRemoteObject:remoteObj inManagedObjectContext:entity.managedObjectContext];
             }
             
-            block(entity, error);
+            block(remoteObj, entity, error);
         }
         else {
             [ProgressHUD showError:@"Network Error."];
@@ -250,11 +250,11 @@
     }];
 }
 
-- (void) downloadCreateObjectsWithLatest:(BASE_REMOTE_UTIL_OBJ_TYPE)latest includeKeys:(NSArray *)keys orders:(NSArray *)orders completionHandler:(REMOTE_ARRAY_BLOCK)block {
+- (void) downloadCreateObjectsWithLatest:(BASE_REMOTE_UTIL_OBJ_TYPE)latest includeKeys:(NSArray *)keys orders:(NSArray *)orders completionHandler:(REMOTE_BOTH_ARRAY_BLOCK)block {
     [self downloadCreateObjectsWithLatest:latest includeKeys:keys orders:orders updateQueryHandler:nil completionHandler:block];
 }
 
-- (void) downloadCreateObjectsWithLatest:(BASE_REMOTE_UTIL_OBJ_TYPE)latest includeKeys:(NSArray *)keys orders:(NSArray *)orders updateQueryHandler:(REMOTE_OBJECT_BLOCK)queryHandler completionHandler:(REMOTE_ARRAY_BLOCK)block; {
+- (void) downloadCreateObjectsWithLatest:(BASE_REMOTE_UTIL_OBJ_TYPE)latest includeKeys:(NSArray *)keys orders:(NSArray *)orders updateQueryHandler:(REMOTE_OBJECT_BLOCK)queryHandler completionHandler:(REMOTE_BOTH_ARRAY_BLOCK)block; {
     NSDate * latestUpdateDate = nil;
     
     // load from parse
@@ -321,7 +321,7 @@
 
                 
                 [array addObject:entity];
-                block(array, error);
+                block(objects, array, error);
             }
         }
         else {
@@ -330,7 +330,7 @@
     }];
 }
 
-- (void) downloadCreateObjectsWithQuery:(PFQuery *)query completionHandler:(REMOTE_ARRAY_BLOCK)block; {
+- (void) downloadObjectsWithQuery:(PFQuery *)query completionHandler:(REMOTE_BOTH_ARRAY_BLOCK)block; {
     
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (!error) {
@@ -352,7 +352,7 @@
                 
                 
                 [array addObject:entity];
-                block(array, error);
+                block(objects, array, error);
             }
         }
         else {
@@ -361,6 +361,31 @@
     }];
 }
 
+- (void) downloadCreateObjectsWithQuery:(PFQuery *)query completionHandler:(REMOTE_BOTH_ARRAY_BLOCK)block; {
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if (!error) {
+            NSMutableArray * array = [[NSMutableArray alloc] init];
+            BASE_REMOTE_UTIL_OBJ_TYPE entity = nil;
+            for (PFObject * objectRT in objects) {
+                //objectRT.objectId
+                
+
+                entity = [NSEntityDescription insertNewObjectForEntityForName:self.className inManagedObjectContext:self.managedObjectContext ];
+                
+                [self setNewObject:entity withRemoteObject:objectRT inManagedObjectContext:self.managedObjectContext];
+
+                
+                
+                [array addObject:entity];
+                block(objects, array, error);
+            }
+        }
+        else {
+            [ProgressHUD showError:@"Network Error."];
+        }
+    }];
+}
 //- (void) downloadAllObjects:(RemoteObject *)remoteObj completionHandler:(REMOTE_ARRAY_BLOCK)block {
 //    
 //}
@@ -371,17 +396,29 @@
     RemoteObject * rmtObj = remoteObj;
     
     for (NSArray * actionItem in updateAttrs) {
+        //NSString * operation = actionItem[0];
         NSArray * keys = actionItem[0];
         id object = actionItem[1];
         
         NSUInteger keyCount = [keys count];
         int count = 0;
+        rmtObj = remoteObj;
         for (NSString * key in keys) {
             if (keyCount == count + 1) {
 
                 rmtObj[key] = object;
  
             }
+//            else if (keyCount == count + 2) {
+//                if ([operation isEqualToString:@"add"]) {
+//                    //NSAssert([obj isKindOfClass:[NSArray Class] ], @"add for not array type");
+//                    [(PFObject *)rmtObj addUniqueObject:value forKey:[keys lastObject]];
+//                }
+//                if ([operation isEqualToString:@"remove"]) {
+//                    //NSAssert([obj isKindOfClass:[NSArray Class] ], @"add for not array type");
+//                    [(PFObject *)rmtObj removeObject:value forKey:[keys lastObject]];
+//                }
+//            }
             else {
                 rmtObj = rmtObj[key];
             }
@@ -396,15 +433,35 @@
     
     for (NSArray * actionItem in updateAttrs) {
         NSArray * keys = actionItem[0];
-        id object = actionItem[1];
+        //NSString * operation = actionItem[0];
+        id value = actionItem[1];
+        
         
         NSUInteger keyCount = [keys count];
         int count = 0;
+        
+        obj = object;
         for (NSString * key in keys) {
             if (keyCount == count + 1) {
-                [obj setValue:object forKey:key];
+
+                [obj setValue:value forKey:key];
+                
+//                if ([operation isEqualToString:@"add"]) {
+//                    //NSAssert([obj isKindOfClass:[NSArray Class] ], @"add for not array type");
+//                    [object add ];
+//                }
 
             }
+//            else if (keyCount == count + 2) {
+//                if ([operation isEqualToString:@"add"]) {
+//                    //NSAssert([obj isKindOfClass:[NSArray Class] ], @"add for not array type");
+//                    [(PFObject *)obj addUniqueObject:value forKey:[keys lastObject]];
+//                }
+//                if ([operation isEqualToString:@"remove"]) {
+//                    //NSAssert([obj isKindOfClass:[NSArray Class] ], @"add for not array type");
+//                    [(PFObject *)obj removeObject:value forKey:[keys lastObject]];
+//                }
+//            }
             else {
                 obj = [obj valueForKey:key];
             }

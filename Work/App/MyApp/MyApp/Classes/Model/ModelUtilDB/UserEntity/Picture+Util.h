@@ -5,7 +5,8 @@
 //  Created by Linwei Ding on 10/22/15.
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
-
+#import <Parse/Parse.h>
+#import <Foundation/Foundation.h>
 #import "Picture.h"
 
 @interface Picture (Util)

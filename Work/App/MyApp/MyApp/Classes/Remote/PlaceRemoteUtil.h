@@ -16,11 +16,11 @@
 #pragma mark -- private functions
 - (void)setCommonObject:(SystemEntity *)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext:(NSManagedObjectContext *)context ;
 
+- (void)setCommonRemoteObject:(RemoteObject *)remoteObj withObject:(SystemEntity *)object;
+
 - (void)setExistedObject:(SystemEntity *)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext:(NSManagedObjectContext *)context ;
 
 - (void)setNewObject:(SystemEntity *)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext:(NSManagedObjectContext *)context ;
-
-- (void)setCommonRemoteObject:(RemoteObject *)remoteObj withObject:(SystemEntity *)object;
 
 - (void)setExistedRemoteObject:(RemoteObject *)remoteObj withObject:(SystemEntity *)object;
 

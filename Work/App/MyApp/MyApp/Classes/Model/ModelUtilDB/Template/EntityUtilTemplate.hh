@@ -7,7 +7,9 @@
 //
 
 
-
+#import <Parse/Parse.h>
+#import <Foundation/Foundation.h>
+#import "RemoteHeader.h"
 
 #ifndef ENTITY_UTIL_TEMPLATE_CLASS
 #define ENTITY_UTIL_TEMPLATE_CLASS UserEntity
