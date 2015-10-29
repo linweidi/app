@@ -2,7 +2,7 @@
 //  Message.h
 //  MyApp
 //
-//  Created by Linwei Ding on 10/27/15.
+//  Created by Linwei Ding on 10/28/15.
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -16,7 +16,7 @@
 #import <Foundation/Foundation.h>
 #import "UserEntity.h"
 
-@class User;
+@class Picture, User, Video;
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -24,12 +24,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Message : UserEntity
 
 @property (nullable, nonatomic, retain) NSString *chatID;
-@property (nullable, nonatomic, retain) NSString *pictureName;
-@property (nullable, nonatomic, retain) NSString *pictureURL;
 @property (nullable, nonatomic, retain) NSString *text;
-@property (nullable, nonatomic, retain) NSString *videoName;
-@property (nullable, nonatomic, retain) NSString *videoURL;
 @property (nullable, nonatomic, retain) User *user;
+@property (nullable, nonatomic, retain) Picture *picture;
+@property (nullable, nonatomic, retain) Video *video;
 
 
 @end

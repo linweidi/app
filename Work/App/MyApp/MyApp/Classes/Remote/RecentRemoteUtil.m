@@ -18,6 +18,7 @@
 
 #import "User+Util.h"
 #import "RecentView.h"
+#import "ConfigurationManager.h"
 #import "RecentRemoteUtil.h"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -45,7 +46,7 @@ NSString* StartMultipleChat(NSMutableArray *users, NSManagedObjectContext * cont
 	NSString *groupId = @"";
 	NSString *description = @"";
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	[users addObject:[CurrentUser getCurrentUser]];
+	[users addObject:[[ConfigurationManager sharedManager] getCurrentUser]];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	NSMutableArray *userIds = [[NSMutableArray alloc] init];
 	//---------------------------------------------------------------------------------------------------------------------------------------------

@@ -105,7 +105,7 @@
 //    
 //    PFObject * cateogoryPF = [PFObject objectWithoutDataWithClassName:PF_EVENT_CATEGORY objectId:event.category.globalID];
 //    remoteObj[PF_EVENT_CATEGORY] = cateogoryPF;   //get a new category
-
+    NSAssert(NO, @"should not user setExistedRemoteObject");
 }
 
 - (void)setNewObject:(UserEntity *)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext:(NSManagedObjectContext *)context {

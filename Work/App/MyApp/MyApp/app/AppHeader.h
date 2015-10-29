@@ -15,11 +15,11 @@
 #import "AppConstant.h"
 #import "DataModelHeader.h"
 #import "ConfigurationManager.h"
-#import "RemoteFile.h"
+//#import "RemoteFile.h"
 
 #import "UserManager.h"
 
-
+#import "TypeHeader.h"
 #include "RemoteHeader.h"
 
 #endif

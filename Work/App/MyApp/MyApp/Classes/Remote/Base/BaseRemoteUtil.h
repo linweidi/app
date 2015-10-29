@@ -9,12 +9,13 @@
 #import "AppHeader.h"
 #import <Foundation/Foundation.h>
 
+
+
+
 #define BASE_REMOTE_UTIL_OBJ_TYPE ObjectEntity*
 
+@class ObjectEntity;
 
-
-
-@class BASE_REMOTE_UTIL_OBJ_TYPE;
 //DOWNLOAD
 //NOTE: for download, we should fetch the remote object firstly, and then process data model
 //UPLOAD

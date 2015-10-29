@@ -12,5 +12,6 @@
 #define ENTITY_UTIL_TEMPLATE_CLASS EventVoteItem
 #define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"EventVoteItem"
 
-#include "../Template/EntityUtilTemplate.hh"
+#include "../Template/EntityUtilTemplate.mh"
+
 @end

@@ -2,7 +2,7 @@
 //  Video.h
 //  MyApp
 //
-//  Created by Linwei Ding on 10/27/15.
+//  Created by Linwei Ding on 10/28/15.
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, retain) NSString *name;
 @property (nullable, nonatomic, retain) NSString *url;
+@property (nullable, nonatomic, retain) NSData *data;
+@property (nullable, nonatomic, retain) NSString *fileName;
 
 
 @end

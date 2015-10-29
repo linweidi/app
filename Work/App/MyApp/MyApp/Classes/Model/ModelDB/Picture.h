@@ -2,7 +2,7 @@
 //  Picture.h
 //  MyApp
 //
-//  Created by Linwei Ding on 10/27/15.
+//  Created by Linwei Ding on 10/28/15.
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR

@@ -6,19 +6,17 @@
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 #import "AppHeader.h"
-#import "UserEntity+Util.h"
-#import "UpdateAttributeContext.h"
-#import "UpdateAttrObjCtxt.h"
-#import "UpdateAttrRmtCtxt.h"
+#import "UserEntity.h"
 #import "ObjectEntity+Util.h"
 
 #import "ConfigurationManager.h"
 #import "BaseRemoteUtil.h"
 
-#define BASE_REMOTE_UTIL_OBJ_TYPE ObjectEntity*
+
 
 @implementation BaseRemoteUtil
 
+#define BASE_REMOTE_UTIL_OBJ_TYPE ObjectEntity*
 //NOTE: for download, we should fetch the remote object firstly, and then process data model
 // NOTE: for upload, we should create or update data model firstly, and then upload remote object. For create, then we get objectID and createTime and updateTime. For update, then we get updateTime
 
