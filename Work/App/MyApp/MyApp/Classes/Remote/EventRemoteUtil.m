@@ -206,7 +206,7 @@
             }
         }
     }];
-    
+     
 //    PFQuery *query = [PFQuery queryWithClassName:PF_EVENT_CLASS_NAME];
 //    [query getObjectInBackgroundWithId:event.globalID block:^(PFObject *object, NSError *error) {
 //        if ([object[PF_EVENT_MEMBERS] containsObject:user.globalID])
