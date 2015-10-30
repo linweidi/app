@@ -9,7 +9,8 @@
 #import "Message.h"
 
 @interface Message (Util)
-
+#undef ENTITY_UTIL_TEMPLATE_CLASS
+#undef ENTITY_UTIL_TEMPLATE_CLASS_NAME
 #define ENTITY_UTIL_TEMPLATE_CLASS Message
 #define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"Message"
 

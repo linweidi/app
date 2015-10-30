@@ -15,7 +15,7 @@
 #define ENTITY_UTIL_TEMPLATE_CLASS Message
 #define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"Message"
 
-#include "../Template/EntityUtilTemplate.hh"
+#include "../Template/EntityUtilTemplate.mh"
 
 
 

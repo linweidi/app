@@ -9,8 +9,8 @@
 #import "ObjectEntity+Util.h"
 
 @implementation ObjectEntity (Util)
-#define ENTITY_UTIL_TEMPLATE_CLASS ObjectEntity
-#define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"ObjectEntity"
+//#define ENTITY_UTIL_TEMPLATE_CLASS ObjectEntity
+//#define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"ObjectEntity"
 
 #include "../Template/EntityUtilTemplate.mh"
 @end

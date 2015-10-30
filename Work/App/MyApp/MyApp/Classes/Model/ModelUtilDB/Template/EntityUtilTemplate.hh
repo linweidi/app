@@ -7,16 +7,14 @@
 //
 
 
-#import <Parse/Parse.h>
-#import <Foundation/Foundation.h>
-#import "RemoteHeader.h"
+
 
 #ifndef ENTITY_UTIL_TEMPLATE_CLASS
-#define ENTITY_UTIL_TEMPLATE_CLASS UserEntity
+#define ENTITY_UTIL_TEMPLATE_CLASS ObjectEntity
 #endif
 
 #ifndef ENTITY_UTIL_TEMPLATE_CLASS_NAME
-#define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"UserEntity"
+#define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"ObjectEntity"
 #endif
 
 #ifndef ENTITY_UTIL_TEMPLATE_CLASS_UPDATE_TIME

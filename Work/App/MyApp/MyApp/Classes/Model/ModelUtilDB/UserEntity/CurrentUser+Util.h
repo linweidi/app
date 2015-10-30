@@ -6,12 +6,14 @@
 //  Copyright (c) 2015 AppsFoundation. All rights reserved.
 //
 #import <Parse/Parse.h>
-#import "AppHeader.h"
+#import <Foundation/Foundation.h>
+#import "RemoteHeader.h"
 #import "CurrentUser.h"
 
 
 @interface CurrentUser (Util) 
-
+#undef ENTITY_UTIL_TEMPLATE_CLASS
+#undef ENTITY_UTIL_TEMPLATE_CLASS_NAME
 #define ENTITY_UTIL_TEMPLATE_CLASS CurrentUser
 #define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"CurrentUser"
 

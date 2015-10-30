@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		280C28F61BE335F90062CEE0 /* Alert+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 280C28DB1BE335F80062CEE0 /* Alert+Util.m */; settings = {ASSET_TAGS = (); }; };
+		280C28F71BE335F90062CEE0 /* CurrentUser+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 280C28DD1BE335F90062CEE0 /* CurrentUser+Util.m */; settings = {ASSET_TAGS = (); }; };
+		280C28F81BE335F90062CEE0 /* Event+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 280C28DF1BE335F90062CEE0 /* Event+Util.m */; settings = {ASSET_TAGS = (); }; };
+		280C28F91BE335F90062CEE0 /* EventVoteItem+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 280C28E11BE335F90062CEE0 /* EventVoteItem+Util.m */; settings = {ASSET_TAGS = (); }; };
+		280C28FA1BE335F90062CEE0 /* EventVoting+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 280C28E31BE335F90062CEE0 /* EventVoting+Util.m */; settings = {ASSET_TAGS = (); }; };
+		280C28FB1BE335F90062CEE0 /* Group+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 280C28E51BE335F90062CEE0 /* Group+Util.m */; settings = {ASSET_TAGS = (); }; };
+		280C28FC1BE335F90062CEE0 /* Message+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 280C28E71BE335F90062CEE0 /* Message+Util.m */; settings = {ASSET_TAGS = (); }; };
+		280C28FD1BE335F90062CEE0 /* ObjectEntity+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 280C28E91BE335F90062CEE0 /* ObjectEntity+Util.m */; settings = {ASSET_TAGS = (); }; };
+		280C28FE1BE335F90062CEE0 /* People+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 280C28EB1BE335F90062CEE0 /* People+Util.m */; settings = {ASSET_TAGS = (); }; };
+		280C28FF1BE335F90062CEE0 /* Picture+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 280C28ED1BE335F90062CEE0 /* Picture+Util.m */; settings = {ASSET_TAGS = (); }; };
+		280C29001BE335F90062CEE0 /* Recent+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 280C28EF1BE335F90062CEE0 /* Recent+Util.m */; settings = {ASSET_TAGS = (); }; };
+		280C29011BE335F90062CEE0 /* Thumbnail+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 280C28F11BE335F90062CEE0 /* Thumbnail+Util.m */; settings = {ASSET_TAGS = (); }; };
+		280C29021BE335F90062CEE0 /* User+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 280C28F31BE335F90062CEE0 /* User+Util.m */; settings = {ASSET_TAGS = (); }; };
+		280C29031BE335F90062CEE0 /* Video+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 280C28F51BE335F90062CEE0 /* Video+Util.m */; settings = {ASSET_TAGS = (); }; };
 		282A276D1BCF68B90012332E /* DocumentHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 282A276C1BCF68B90012332E /* DocumentHelper.m */; settings = {ASSET_TAGS = (); }; };
 		282A27701BCF692F0012332E /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 282A276F1BCF692F0012332E /* NavigationController.m */; settings = {ASSET_TAGS = (); }; };
 		282A27741BCF750D0012332E /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 282A27721BCF750D0012332E /* TestViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -488,6 +502,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		280C28DA1BE335F80062CEE0 /* Alert+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Alert+Util.h"; sourceTree = "<group>"; };
+		280C28DB1BE335F80062CEE0 /* Alert+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Alert+Util.m"; sourceTree = "<group>"; };
+		280C28DC1BE335F90062CEE0 /* CurrentUser+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CurrentUser+Util.h"; sourceTree = "<group>"; };
+		280C28DD1BE335F90062CEE0 /* CurrentUser+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CurrentUser+Util.m"; sourceTree = "<group>"; };
+		280C28DE1BE335F90062CEE0 /* Event+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Event+Util.h"; sourceTree = "<group>"; };
+		280C28DF1BE335F90062CEE0 /* Event+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Event+Util.m"; sourceTree = "<group>"; };
+		280C28E01BE335F90062CEE0 /* EventVoteItem+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EventVoteItem+Util.h"; sourceTree = "<group>"; };
+		280C28E11BE335F90062CEE0 /* EventVoteItem+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EventVoteItem+Util.m"; sourceTree = "<group>"; };
+		280C28E21BE335F90062CEE0 /* EventVoting+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EventVoting+Util.h"; sourceTree = "<group>"; };
+		280C28E31BE335F90062CEE0 /* EventVoting+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EventVoting+Util.m"; sourceTree = "<group>"; };
+		280C28E41BE335F90062CEE0 /* Group+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Group+Util.h"; sourceTree = "<group>"; };
+		280C28E51BE335F90062CEE0 /* Group+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Group+Util.m"; sourceTree = "<group>"; };
+		280C28E61BE335F90062CEE0 /* Message+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Message+Util.h"; sourceTree = "<group>"; };
+		280C28E71BE335F90062CEE0 /* Message+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Message+Util.m"; sourceTree = "<group>"; };
+		280C28E81BE335F90062CEE0 /* ObjectEntity+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ObjectEntity+Util.h"; sourceTree = "<group>"; };
+		280C28E91BE335F90062CEE0 /* ObjectEntity+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ObjectEntity+Util.m"; sourceTree = "<group>"; };
+		280C28EA1BE335F90062CEE0 /* People+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "People+Util.h"; sourceTree = "<group>"; };
+		280C28EB1BE335F90062CEE0 /* People+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "People+Util.m"; sourceTree = "<group>"; };
+		280C28EC1BE335F90062CEE0 /* Picture+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Picture+Util.h"; sourceTree = "<group>"; };
+		280C28ED1BE335F90062CEE0 /* Picture+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Picture+Util.m"; sourceTree = "<group>"; };
+		280C28EE1BE335F90062CEE0 /* Recent+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Recent+Util.h"; sourceTree = "<group>"; };
+		280C28EF1BE335F90062CEE0 /* Recent+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Recent+Util.m"; sourceTree = "<group>"; };
+		280C28F01BE335F90062CEE0 /* Thumbnail+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Thumbnail+Util.h"; sourceTree = "<group>"; };
+		280C28F11BE335F90062CEE0 /* Thumbnail+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Thumbnail+Util.m"; sourceTree = "<group>"; };
+		280C28F21BE335F90062CEE0 /* User+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+Util.h"; sourceTree = "<group>"; };
+		280C28F31BE335F90062CEE0 /* User+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+Util.m"; sourceTree = "<group>"; };
+		280C28F41BE335F90062CEE0 /* Video+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Video+Util.h"; sourceTree = "<group>"; };
+		280C28F51BE335F90062CEE0 /* Video+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Video+Util.m"; sourceTree = "<group>"; };
 		282A276A1BCF66FC0012332E /* MyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		282A276B1BCF68B90012332E /* DocumentHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentHelper.h; sourceTree = "<group>"; };
 		282A276C1BCF68B90012332E /* DocumentHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentHelper.m; sourceTree = "<group>"; };
@@ -1432,6 +1474,34 @@
 		28D85E9B1BD84B0200A48E87 /* UserEntity */ = {
 			isa = PBXGroup;
 			children = (
+				280C28DA1BE335F80062CEE0 /* Alert+Util.h */,
+				280C28DB1BE335F80062CEE0 /* Alert+Util.m */,
+				280C28DC1BE335F90062CEE0 /* CurrentUser+Util.h */,
+				280C28DD1BE335F90062CEE0 /* CurrentUser+Util.m */,
+				280C28DE1BE335F90062CEE0 /* Event+Util.h */,
+				280C28DF1BE335F90062CEE0 /* Event+Util.m */,
+				280C28E01BE335F90062CEE0 /* EventVoteItem+Util.h */,
+				280C28E11BE335F90062CEE0 /* EventVoteItem+Util.m */,
+				280C28E21BE335F90062CEE0 /* EventVoting+Util.h */,
+				280C28E31BE335F90062CEE0 /* EventVoting+Util.m */,
+				280C28E41BE335F90062CEE0 /* Group+Util.h */,
+				280C28E51BE335F90062CEE0 /* Group+Util.m */,
+				280C28E61BE335F90062CEE0 /* Message+Util.h */,
+				280C28E71BE335F90062CEE0 /* Message+Util.m */,
+				280C28E81BE335F90062CEE0 /* ObjectEntity+Util.h */,
+				280C28E91BE335F90062CEE0 /* ObjectEntity+Util.m */,
+				280C28EA1BE335F90062CEE0 /* People+Util.h */,
+				280C28EB1BE335F90062CEE0 /* People+Util.m */,
+				280C28EC1BE335F90062CEE0 /* Picture+Util.h */,
+				280C28ED1BE335F90062CEE0 /* Picture+Util.m */,
+				280C28EE1BE335F90062CEE0 /* Recent+Util.h */,
+				280C28EF1BE335F90062CEE0 /* Recent+Util.m */,
+				280C28F01BE335F90062CEE0 /* Thumbnail+Util.h */,
+				280C28F11BE335F90062CEE0 /* Thumbnail+Util.m */,
+				280C28F21BE335F90062CEE0 /* User+Util.h */,
+				280C28F31BE335F90062CEE0 /* User+Util.m */,
+				280C28F41BE335F90062CEE0 /* Video+Util.h */,
+				280C28F51BE335F90062CEE0 /* Video+Util.m */,
 				28C0C1611BE1E5750069027C /* Alert+Util.h */,
 				28C0C1621BE1E5750069027C /* Alert+Util.m */,
 				28C0C1631BE1E5750069027C /* CurrentUser+Util.h */,
@@ -3097,7 +3167,9 @@
 				28EECB381BCCD3E90001654E /* JTHorizontalCalendarView.m in Sources */,
 				28EECB391BCCD3E90001654E /* JTVerticalCalendarView.m in Sources */,
 				28EECB3A1BCCD3E90001654E /* AFHTTPRequestOperation.m in Sources */,
+				280C28FB1BE335F90062CEE0 /* Group+Util.m in Sources */,
 				28EECB3B1BCCD3E90001654E /* AFHTTPRequestOperationManager.m in Sources */,
+				280C28F91BE335F90062CEE0 /* EventVoteItem+Util.m in Sources */,
 				28C0C17E1BE1E5750069027C /* EventVoteItem+Util.m in Sources */,
 				28EECB3C1BCCD3E90001654E /* AFHTTPSessionManager.m in Sources */,
 				28EECB3D1BCCD3E90001654E /* AFNetworkReachabilityManager.m in Sources */,
@@ -3124,7 +3196,9 @@
 				28C0C1841BE1E5750069027C /* Picture+Util.m in Sources */,
 				28D85EB21BD84B0200A48E87 /* Feedback.m in Sources */,
 				28EECB4E1BCCD3E90001654E /* IDMTapDetectingImageView.m in Sources */,
+				280C28F71BE335F90062CEE0 /* CurrentUser+Util.m in Sources */,
 				28D85D1A1BD60F4200A48E87 /* ConfigurationManager.m in Sources */,
+				280C28FE1BE335F90062CEE0 /* People+Util.m in Sources */,
 				28EECB4F1BCCD3E90001654E /* IDMTapDetectingView.m in Sources */,
 				28EECB501BCCD3E90001654E /* IDMZoomingScrollView.m in Sources */,
 				28EECB511BCCD3E90001654E /* JSQSystemSoundPlayer+JSQMessages.m in Sources */,
@@ -3148,6 +3222,7 @@
 				28EECB5B1BCCD3E90001654E /* JSQMessagesBubbleImageFactory.m in Sources */,
 				28EECB5C1BCCD3E90001654E /* JSQMessagesMediaViewBubbleImageMasker.m in Sources */,
 				28C0C1481BE08C260069027C /* CurrentUser.m in Sources */,
+				280C29001BE335F90062CEE0 /* Recent+Util.m in Sources */,
 				28EECB5D1BCCD3E90001654E /* JSQMessagesTimestampFormatter.m in Sources */,
 				28C0C1831BE1E5750069027C /* People+Util.m in Sources */,
 				28EECB5E1BCCD3E90001654E /* JSQMessagesToolbarButtonFactory.m in Sources */,
@@ -3159,6 +3234,7 @@
 				28EECB641BCCD3E90001654E /* JSQMessage.m in Sources */,
 				28EECB651BCCD3E90001654E /* JSQMessagesAvatarImage.m in Sources */,
 				28EECB661BCCD3E90001654E /* JSQMessagesBubbleImage.m in Sources */,
+				280C28FD1BE335F90062CEE0 /* ObjectEntity+Util.m in Sources */,
 				28C0C1601BE0B07F0069027C /* SystemEntity.m in Sources */,
 				28EECB671BCCD3E90001654E /* JSQPhotoMediaItem.m in Sources */,
 				28D85EC81BD84B0200A48E87 /* EventCategory+Util.m in Sources */,
@@ -3182,6 +3258,7 @@
 				28EECB731BCCD3E90001654E /* JSQMessagesToolbarContentView.m in Sources */,
 				28C0C17B1BE1E5750069027C /* Alert+Util.m in Sources */,
 				28EECB741BCCD3E90001654E /* JSQMessagesTypingIndicatorFooterView.m in Sources */,
+				280C28FC1BE335F90062CEE0 /* Message+Util.m in Sources */,
 				28D85ED01BD84B0200A48E87 /* Group+Util.m in Sources */,
 				28D85F701BDAFE1C00A48E87 /* PictureRemoteUtil.m in Sources */,
 				28EECB751BCCD3E90001654E /* JSQSystemSoundPlayer.m in Sources */,
@@ -3195,6 +3272,7 @@
 				28EECB791BCCD3E90001654E /* MSSlidingPanelController.m in Sources */,
 				28EECB7A1BCCD3E90001654E /* MSViewControllerSlidingPanel.m in Sources */,
 				28EECB7B1BCCD3E90001654E /* AppDelegate.m in Sources */,
+				280C29021BE335F90062CEE0 /* User+Util.m in Sources */,
 				28EECB7D1BCCD3E90001654E /* CoreDataTableViewController.m in Sources */,
 				28EECB7E1BCCD3E90001654E /* FeedbacksManager.m in Sources */,
 				28D85F0D1BD84B5B00A48E87 /* AlertRemoteUtil.m in Sources */,
@@ -3205,6 +3283,7 @@
 				28D85F171BD84B5B00A48E87 /* UserRemoteUtil.m in Sources */,
 				28C0C14E1BE08C260069027C /* User.m in Sources */,
 				28D85F311BD8C32100A48E87 /* Picture+Util.m in Sources */,
+				280C29011BE335F90062CEE0 /* Thumbnail+Util.m in Sources */,
 				28C0C1531BE08C260069027C /* EventVoteItem.m in Sources */,
 				28EECB841BCCD3E90001654E /* MakeReservationTableViewCell.m in Sources */,
 				28EECB851BCCD3E90001654E /* MenuItemTableViewCell.m in Sources */,
@@ -3235,6 +3314,7 @@
 				28EECBAF1BCCD3E90001654E /* PhotoMediaItem.m in Sources */,
 				28EECBB01BCCD3E90001654E /* VideoMediaItem.m in Sources */,
 				28EECBB11BCCD3E90001654E /* TabTableViewController.m in Sources */,
+				280C28F81BE335F90062CEE0 /* Event+Util.m in Sources */,
 				28EECBB21BCCD3E90001654E /* RecentCell.m in Sources */,
 				28EECBB31BCCD3E90001654E /* RecentView.m in Sources */,
 				28EECBB41BCCD3E90001654E /* CreateGroupView.m in Sources */,
@@ -3243,6 +3323,7 @@
 				28D85F151BD84B5B00A48E87 /* push.m in Sources */,
 				28EECBB71BCCD3E90001654E /* PeopleView.m in Sources */,
 				28C0C14D1BE08C260069027C /* Alert.m in Sources */,
+				280C29031BE335F90062CEE0 /* Video+Util.m in Sources */,
 				28C0C1871BE1E5750069027C /* User+Util.m in Sources */,
 				28EECBB81BCCD3E90001654E /* BlockedView.m in Sources */,
 				28EECBB91BCCD3E90001654E /* PrivacyView.m in Sources */,
@@ -3266,6 +3347,7 @@
 				28C0C1821BE1E5750069027C /* ObjectEntity+Util.m in Sources */,
 				28EECBC11BCCD3E90001654E /* SelectMultiplePeopleView.m in Sources */,
 				28EECBC21BCCD3E90001654E /* SelectSinglePeopleView.m in Sources */,
+				280C28FA1BE335F90062CEE0 /* EventVoting+Util.m in Sources */,
 				28EECBC31BCCD3E90001654E /* SelectPeopleView.m in Sources */,
 				28EECBC41BCCD3E90001654E /* SelectSingleView.m in Sources */,
 				28C0C1421BE08C260069027C /* EventTemplate.m in Sources */,
@@ -3283,6 +3365,7 @@
 				28EECBD81BCCD3EA0001654E /* video.m in Sources */,
 				28D85F0E1BD84B5B00A48E87 /* EventRemoteUtil.m in Sources */,
 				28EECBD91BCCD3EA0001654E /* LoginView.m in Sources */,
+				280C28FF1BE335F90062CEE0 /* Picture+Util.m in Sources */,
 				28EECBDA1BCCD3EA0001654E /* RegisterView.m in Sources */,
 				28D85D1B1BD60F4200A48E87 /* ThemeManager.m in Sources */,
 				28EECBDB1BCCD3EA0001654E /* WelcomeView.m in Sources */,
@@ -3290,6 +3373,7 @@
 				28C0C1491BE08C260069027C /* Place.m in Sources */,
 				28EECB2C1BCCD3890001654E /* JTCalendarManager.m in Sources */,
 				28EECB2E1BCCD3890001654E /* JTCalendarSettings.m in Sources */,
+				280C28F61BE335F90062CEE0 /* Alert+Util.m in Sources */,
 				28EECB301BCCD3890001654E /* JTDateHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

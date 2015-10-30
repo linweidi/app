@@ -33,6 +33,6 @@ typedef void (^REMOTE_BOTH_ARRAY_BLOCK)(NSArray * remoteObjs, NSArray * objects,
 
 typedef void (^REMOTE_DATA_BLOCK)(NSData * data, NSError * error);
 
-#define BASE_REMOTE_UTIL_OBJ_TYPE ObjectEntity*
+//#define BASE_REMOTE_UTIL_OBJ_TYPE ObjectEntity*
 
 #endif /* RemoteHeader_h */

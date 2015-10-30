@@ -8,7 +8,9 @@
 #import <Parse/Parse.h>
 #import "Event.h"
 
-
+#import <Parse/Parse.h>
+#import <Foundation/Foundation.h>
+#import "RemoteHeader.h"
 
 
 @interface Event (Util)

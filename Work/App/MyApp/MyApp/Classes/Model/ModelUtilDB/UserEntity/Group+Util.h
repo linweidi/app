@@ -6,20 +6,23 @@
 //  Copyright © 2015 AppsFoundation. All rights reserved.
 //
 #import <Parse/Parse.h>
+#import <Foundation/Foundation.h>
 #import "RemoteHeader.h"
 #import "Group.h"
 
-@interface Group (Util)
 
+
+@interface Group (Util)
+#undef ENTITY_UTIL_TEMPLATE_CLASS
+#undef ENTITY_UTIL_TEMPLATE_CLASS_NAME
 #define ENTITY_UTIL_TEMPLATE_CLASS Group
 #define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"Group"
 
 #include "../Template/EntityUtilTemplate.hh"
 
-//@property (nonatomic, retain) id members;
 
-# pragma method -- sever method
 
+@end
 //+ (Group *)createGroupEntityWithRemoteObject: (RemoteObject *)object
 //                      inManagedObjectContext: (NSManagedObjectContext *)context;
 //
@@ -57,4 +60,4 @@
 //
 //+ (Group *) latestGroupEntity:(NSManagedObjectContext *)context;
 
-@end
+

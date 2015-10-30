@@ -5,13 +5,15 @@
 //  Created by Linwei Ding on 10/1/15.
 //  Copyright (c) 2015 AppsFoundation. All rights reserved.
 //
-
+#import <Parse/Parse.h>
+#import <Foundation/Foundation.h>
 #import "RemoteHeader.h"
 #import "People.h"
 
 @interface People (Util)
 
-
+#undef ENTITY_UTIL_TEMPLATE_CLASS
+#undef ENTITY_UTIL_TEMPLATE_CLASS_NAME
 #define ENTITY_UTIL_TEMPLATE_CLASS People
 #define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"People"
 
