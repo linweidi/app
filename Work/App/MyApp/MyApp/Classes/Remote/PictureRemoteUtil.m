@@ -25,6 +25,7 @@
     return sharedObject;
 }
 
+
 #pragma mark -- private method
 
 - (void)setCommonObject:(UserEntity *)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext:(NSManagedObjectContext *)context {

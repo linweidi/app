@@ -122,6 +122,7 @@
     
 }
 
+
 - (void)setExistedObject:(UserEntity *)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext:(NSManagedObjectContext *)context {
     [super setExistedObject:object withRemoteObject:remoteObj inManagedObjectContext:context];
     NSAssert([object isKindOfClass:[Message class]], @"Type casting is wrong");

@@ -13,6 +13,7 @@
 @class JSQMessage;
 @interface MessageRemoteUtil : UserBaseRemoteUtil
 
+
 + (MessageRemoteUtil *)sharedUtil;
 
 #pragma mark -- private functions

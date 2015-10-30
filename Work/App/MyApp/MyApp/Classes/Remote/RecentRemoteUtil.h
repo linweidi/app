@@ -14,6 +14,7 @@
 #import "Recent+Util.h"
 #import "BaseRemoteUtil.h"
 
+
 @class User;
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 NSString*		StartPrivateChat		(User *user1, User *user2, NSManagedObjectContext * context);

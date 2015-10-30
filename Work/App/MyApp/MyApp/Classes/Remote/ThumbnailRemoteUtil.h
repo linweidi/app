@@ -23,6 +23,7 @@
 //
 //- (void)setNewObject:(UserEntity *)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext:(NSManagedObjectContext *)context ;
 
+
 - (void)setNewRemoteObject:(RemoteObject *)remoteObj withObject:(UserEntity *)object;
 
 - (void)setExistedRemoteObject:(RemoteObject *)remoteObj withObject:(UserEntity *)object ;

@@ -292,6 +292,7 @@ void DeleteRecentItems(User *user1, User *user2, NSManagedObjectContext * contex
     
 }
 
+
 - (void) deleteRemoteRecent:(Recent *)recent completionHandler:(REMOTE_BOOL_BLOCK)block {
     
     [self uploadRemoveRemoteObject:event completionHandler:block];

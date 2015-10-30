@@ -24,6 +24,7 @@
 //
 
 
+
 - (void)setCommonRemoteObject:(RemoteObject *)remoteObj withObject:(UserEntity *)object;
 
 - (void)setCommonObject:(UserEntity *)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext:(NSManagedObjectContext *)context;

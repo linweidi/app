@@ -10,6 +10,7 @@
 
 @implementation AlertRemoteUtil
 
+
 + (AlertRemoteUtil *)sharedUtil {
     static dispatch_once_t predicate = 0;
     static AlertRemoteUtil *sharedObject;

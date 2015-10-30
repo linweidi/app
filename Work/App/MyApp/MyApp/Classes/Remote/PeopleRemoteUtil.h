@@ -15,6 +15,7 @@
 //void			PeopleDelete			(PFUser *user1, PFUser *user2);
 
 
+
 @interface PeopleRemoteUtil : UserBaseRemoteUtil
 
 + (PeopleRemoteUtil *)sharedUtil;

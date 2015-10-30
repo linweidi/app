@@ -88,6 +88,7 @@
 //- (void) downloadAllObjects:(RemoteObject *)remoteObj includeKeys:(NSArray *)keys completionHandler:(REMOTE_ARRAY_BLOCK)block;
 
 
+
 #pragma mark -- private method
 
 - (RemoteObject *) createAndPopulateNewRemoteObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object;

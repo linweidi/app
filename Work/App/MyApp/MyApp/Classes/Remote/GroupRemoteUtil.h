@@ -10,6 +10,7 @@
 #import "UserBaseRemoteUtil.h"
 #import <Parse/Parse.h>
 
+
 @class Group;
 ////-------------------------------------------------------------------------------------------------------------------------------------------------
 //void			RemoveGroupMembers		(PFUser *user1, PFUser *user2);

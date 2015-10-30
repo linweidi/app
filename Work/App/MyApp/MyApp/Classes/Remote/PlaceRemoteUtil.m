@@ -17,6 +17,7 @@
 
 @implementation PlaceRemoteUtil
 
+
 + (PlaceRemoteUtil *)sharedUtil {
     static dispatch_once_t predicate = 0;
     static PlaceRemoteUtil *sharedObject;

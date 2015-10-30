@@ -182,6 +182,7 @@
     }];
 }
 
+
 - (void) deleteRemotePeople:(User *)user2  completionHandler:(REMOTE_BOOL_BLOCK)block{
     PFQuery *query = [PFQuery queryWithClassName:PF_PEOPLE_CLASS_NAME];
 	[query whereKey:PF_PEOPLE_USER1 equalTo:[PFUser currentUser]];

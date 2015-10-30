@@ -170,6 +170,7 @@
 }
 
 
+
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // delete the user in the group
 - (void) removeGroupMember:(Group *)group user:(User *)user completionHandler:(REMOTE_BOOL_BLOCK)block {
