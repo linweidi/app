@@ -17,6 +17,7 @@
 
 #import "User+Util.h"
 #import "ConfigurationManager.h"
+#import "UserRemoteUtil.h"
 
 #import "FacebookFriendsView.h"
 
@@ -152,7 +153,7 @@
 	[self dismissViewControllerAnimated:YES completion:^{
 		if (delegate != nil) {
             PFUser * userPF = users[indexPath.row];
-            User * userObj = [User convertFromRemoteUser:userPF inManagedObjectContext:[[ConfigurationManager sharedManager] managedObjectContext]];
+            User * userObj = [[UserRemoteUtil sharedUtil] convertToUser:userPF];
             [delegate didSelectFacebookUser:userObj];
         }
 	}];

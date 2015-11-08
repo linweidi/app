@@ -28,6 +28,7 @@
 #import "User+Util.h"
 #import "CurrentUser+Util.h"
 #import "UserRemoteUtil.h"
+#import "Picture+Util.h"
 
 #import "SettingsView.h"
 
@@ -96,18 +97,17 @@
 #pragma mark - Backend actions
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)loadUser
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
+- (void)loadUser {
 	//PFUser *user = [PFUser currentUser];
     
-    User * user = [CurrentUser getCurrentUser];
+    User * user = [[ConfigurationManager sharedManager] getCurrentUser];
     
     
     
-    RemoteFile * filePicture = [RemoteFile fileWithName:user.pictureName url:user.pictureURL];
+    RemoteFile * filePicture = [RemoteFile fileWithName:user.picture.fileName contentsAtPath:user.picture.url];
+    
 
-	[imageUser setFile:filePicture.file];
+	[imageUser setFile:filePicture];
 	[imageUser loadInBackground];
 
 	labelName.text = user.fullname;
@@ -198,7 +198,7 @@
     
     RemoteFile * filePicture = [RemoteFile fileWithName:@"picture.jpg" data:UIImageJPEGRepresentation(picture, 0.6)];
 
-	[filePicture.file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+	[filePicture saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
 	{
 		if (error != nil) [ProgressHUD showError:@"Network error."];
 	}];
@@ -206,7 +206,7 @@
     
     RemoteFile * fileThumbnail = [RemoteFile fileWithName:@"thumbnail.jpg" data:UIImageJPEGRepresentation(thumbnail, 0.6)];
 
-	[fileThumbnail.file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+	[fileThumbnail saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
 	{
 		if (error != nil) [ProgressHUD showError:@"Network error."];
 	}];

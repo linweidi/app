@@ -9,6 +9,10 @@
 
 
 // multiple secltions
+
+#import <Parse/Parse.h>
+#import "ProgressHUD.h"
+#import <UIKit/UIKit.h>
 #import "AppHeader.h"
 #import "Event+Util.h"
 #import "EventRemoteUtil.h"
@@ -78,6 +82,13 @@
     _datesSelected = [NSMutableArray new];
     
     _datesSelectedLast = [NSDate date];
+    
+
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(loadEvents) forControlEvents:UIControlEventValueChanged];
+    
+    [self.tableView addSubview:self.refreshControl];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -94,45 +105,28 @@
 
 #pragma mark -- private method
 
-- (void)loadEvents
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
-    NSMutableArray * events = [[NSMutableArray alloc] init];
+- (void)loadEvents {
+
     
     Event * latestEvent = nil;
     
     latestEvent = [Event latestEntity:self.managedObjectContext];
     
-    [[EventRemoteUtil sharedUtil] loadRemoteEvents: latestEvent  completionHandler:^(NSArray *objects, NSError *error) {
-        if (error == nil)
-		{
-			//[events removeAllObjects];
-			//[events addObjectsFromArray:objects];
-			//[self.tableView reloadData];
-            
-            Event * event = nil;
-            for (RemoteObject * object in objects) {
-                //[recents setObject:object forKey:object[PF_RECENT_EVENTID]];
-                if (latestEvent) {
-                    
-                    event = [Event eventEntityWithRemoteObject:object inManagedObjectContext:self.managedObjectContext];
-                }
-                else {
-                    event = [Event createEventEntityWithPFObject:object inManagedObjectContext:self.managedObjectContext];
-                }
-                
-                
-                [events addObject:event];
-            }
-            
+    [[EventRemoteUtil sharedUtil] loadRemoteEvents:latestEvent completionHandler:^(NSArray *objects, NSError *error) {
+        if (error == nil) {
+            //[events removeAllObjects];
+            //[events addObjectsFromArray:objects];
+            //[self.tableView reloadData];
             
             // load the recents into core data
             
             [self.tableView reloadData];
             
-		}
-		else [ProgressHUD showError:@"Network error."];
-		[self.refreshControl endRefreshing];
+        }
+        else {
+            [ProgressHUD showError:@"Network error."];
+        }
+        [self.refreshControl endRefreshing];
     }];
 }
 

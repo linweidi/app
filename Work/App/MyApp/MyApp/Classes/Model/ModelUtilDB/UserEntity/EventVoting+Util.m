@@ -9,7 +9,8 @@
 #import "EventVoting+Util.h"
 
 @implementation EventVoting (Util)
-
+#undef ENTITY_UTIL_TEMPLATE_CLASS
+#undef ENTITY_UTIL_TEMPLATE_CLASS_NAME
 #define ENTITY_UTIL_TEMPLATE_CLASS EventVoting
 #define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"EventVoting"
 

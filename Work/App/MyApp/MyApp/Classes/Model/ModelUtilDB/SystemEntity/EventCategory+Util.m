@@ -10,6 +10,8 @@
 
 @implementation EventCategory (Util)
 
+#undef ENTITY_UTIL_TEMPLATE_CLASS
+#undef ENTITY_UTIL_TEMPLATE_CLASS_NAME
 #define ENTITY_UTIL_TEMPLATE_CLASS EventCategory
 #define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"EventCategory"
 

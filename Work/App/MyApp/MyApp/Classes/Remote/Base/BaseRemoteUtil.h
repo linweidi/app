@@ -60,11 +60,13 @@
 // @param[IN]: we assume the argument object is data model, not core data model
 - (void) uploadCreateRemoteObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object  completionHandler:(REMOTE_OBJECT_BLOCK)block;
 
+- (void) uploadCreateRemoteObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object localSyncs:(BOOL)localSync completionHandler:(REMOTE_OBJECT_BLOCK)block;
+
 // @param[IN]: we assume the argument object is core data model, not data model
-- (void) uploadUpdateRemoteObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object updateAttrs:(NSDictionary *)updateAttrs completionHandler:(REMOTE_OBJECT_BLOCK)block;
+- (void) uploadUpdateRemoteObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object updateAttrs:(NSArray *)updateAttrs completionHandler:(REMOTE_OBJECT_BLOCK)block;
 
 // @param[IN] remoteObj: this remote object is created and popualted externally. If remote object has been update, we can just pass nil to modifiedObject
-- (void) uploadUpdateRemoteObject:(RemoteObject *)remoteObj modifiedObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object completionHandler:(REMOTE_OBJECT_BLOCK)block;
+- (void) uploadUpdateRemoteObject:(RemoteObject *)remoteObj modifyObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object completionHandler:(REMOTE_OBJECT_BLOCK)block;
 
 - (void) uploadRemoveRemoteObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object completionHandler:(REMOTE_BOOL_BLOCK)block;
 

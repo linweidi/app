@@ -89,14 +89,11 @@
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)dismissKeyboard
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
+- (void)dismissKeyboard {
 	[self.view endEditing:YES];
 }
 
-- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
-{
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
     super.managedObjectContext = managedObjectContext;
     
     if (managedObjectContext) {
@@ -120,48 +117,28 @@
 #pragma mark - Backend actions
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)loadPeople
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-
-{ 
+- (void)loadPeople {
     
-    NSMutableArray * peoples = [[NSMutableArray alloc] init];
+    //NSMutableArray * peoples = [[NSMutableArray alloc] init];
     
     People * latestPeople = nil;
     
-    latestPeople = [People latestPeopleEntity :self.managedObjectContext];
+    latestPeople = [People latestEntity:self.managedObjectContext];
     
-    [[PeopleRemoteUtil sharedUtil] loadRemotePeoples: latestPeople completionHandler:^(NSArray *objects, NSError *error) {
-        if (error == nil)
-		{
-			//[peoples removeAllObjects];
-			//[peoples addObjectsFromArray:objects];
-			//[self.tableView reloadData];
-            
-            People * people = nil;
-            for (RemoteObject * object in objects) {
-                //[recents setObject:object forKey:object[PF_RECENT_GROUPID]];
-                if (latestPeople) {
-                    
-                    people = [People peopleEntityWithRemoteObject:object inManagedObjectContext:self.managedObjectContext];
-                }
-                else {
-                    people = [People createPeopleEntityWithPFObject:object inManagedObjectContext:self.managedObjectContext];
-                }
-                
-                
-                [peoples addObject:people];
-            }
-            
+    [[PeopleRemoteUtil sharedUtil] loadRemotePeoples:latestPeople completionHandler:^(NSArray *objects, NSError *error) {
+        if (error == nil){
             
             // load the recents into core data
             
             [self.tableView reloadData];
             
-		}
-		else [ProgressHUD showError:@"Network error."];
-		[self.refreshControl endRefreshing];
+        }
+        else {
+           [ProgressHUD showError:@"Network error."];
+        }
+        [self.refreshControl endRefreshing];
     }];
+    
     
     
     
@@ -220,16 +197,12 @@
 #pragma mark - User actions
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)actionCancel
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
+- (void)actionCancel {
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)actionDone
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
+- (void)actionDone {
 	NSString *name = fieldName.text;
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	if ([name length] == 0)		{
@@ -241,17 +214,16 @@
         return;
     }
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	User *user = [CurrentUser getCurrentUser];
+	User *user = [[ConfigurationManager sharedManager] getCurrentUser];
     
 	[selection addObject: user.globalID];
     
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-    [[GroupRemoteUtil sharedUtil] createRemoteGroup:name members:selection completionHandler:^(BOOL succeeded, NSError *error) {
-        if (error == nil)
-		{
-			[self dismissViewControllerAnimated:YES completion:nil];
-		}
-		else {
+    [[GroupRemoteUtil sharedUtil] createRemoteGroup:name members:selection completionHandler:^(id object, NSError *error) {
+        if (error == nil) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+        else {
             [ProgressHUD showError:@"Network error."];
         }
     }];
@@ -287,9 +259,8 @@
 //}
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
 	if (cell == nil) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
 
@@ -318,9 +289,7 @@
 #pragma mark - Table view delegate
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
     People * people= [self.fetchedResultsController objectAtIndexPath:indexPath];

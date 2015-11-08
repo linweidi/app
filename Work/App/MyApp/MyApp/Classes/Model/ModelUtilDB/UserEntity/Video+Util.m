@@ -9,6 +9,9 @@
 #import "Video+Util.h"
 
 @implementation Video (Util)
+
+#undef ENTITY_UTIL_TEMPLATE_CLASS
+#undef ENTITY_UTIL_TEMPLATE_CLASS_NAME
 #define ENTITY_UTIL_TEMPLATE_CLASS Video
 #define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"Video"
 

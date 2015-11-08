@@ -10,6 +10,8 @@
 
 @interface Message (Util)
 
+#undef ENTITY_UTIL_TEMPLATE_CLASS
+#undef ENTITY_UTIL_TEMPLATE_CLASS_NAME
 #define ENTITY_UTIL_TEMPLATE_CLASS Message
 #define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"Message"
 
@@ -17,9 +19,9 @@
 
 + (BOOL) existsMessageEntity:(NSString *)chatID createdTime:(NSDate *)date inManagedObjectContext: (NSManagedObjectContext *)context ;
 
-//+ (NSArray *)messageEntities:(NSString *)chatID inManagedObjectContext: (NSManagedObjectContext *)context;
++ (NSArray *)messageEntities:(NSString *)chatID inManagedObjectContext: (NSManagedObjectContext *)context;
 //
-//+ (NSArray *) messageEntities:(NSString *)chatID createdTime:(NSDate *)date inManagedObjectContext: (NSManagedObjectContext *)context;
++ (NSArray *) messageEntities:(NSString *)chatID createdTime:(NSDate *)date inManagedObjectContext: (NSManagedObjectContext *)context;
 //
 //+ (Message *) messageEntityWithPFObject:(PFObject *)object inManagedObjectContext: (NSManagedObjectContext *)context;
 //

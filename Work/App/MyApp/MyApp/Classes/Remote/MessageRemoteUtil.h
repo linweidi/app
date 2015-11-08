@@ -10,7 +10,12 @@
 #import <Foundation/Foundation.h>
 #import "UserBaseRemoteUtil.h"
 
+@class Picture;
+@class Video;
 @class JSQMessage;
+
+#define BASE_REMOTE_UTIL_OBJ_TYPE ObjectEntity*
+
 @interface MessageRemoteUtil : UserBaseRemoteUtil
 
 
@@ -21,19 +26,19 @@
 
 - (void) setCommonRemoteObject:(RemoteObject *)remoteObj withAlert:(BASE_REMOTE_UTIL_OBJ_TYPE)object;
 
-- (void)setExistedObject:(SystemEntity *)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext:(NSManagedObjectContext *)context ;
+- (void)setExistedObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext:(NSManagedObjectContext *)context ;
 
-- (void)setNewObject:(SystemEntity *)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext:(NSManagedObjectContext *)context ;
+- (void)setNewObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext:(NSManagedObjectContext *)context ;
 
 //- (void)setExistedRemoteObject:(RemoteObject *)remoteObj withObject:(SystemEntity *)object;
 
-- (void)setNewRemoteObject:(RemoteObject *)remoteObj withObject:(SystemEntity *)object;
+- (void)setNewRemoteObject:(RemoteObject *)remoteObj withObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object;
 
 #pragma mark -- external functions
 - (void) loadRemoteMessages:(NSString *)chatId lastMessage:(JSQMessage *)lastMessage completionHandler:(REMOTE_ARRAY_BLOCK)block;
 
 - (void) loadMessagesFromParse:(NSString *)chatId lastMessage:(JSQMessage *)lastMessage completionHandler:(REMOTE_ARRAY_BLOCK)block;
 
-- (void) createMessageRemote:(NSString *)chatId text:(NSString *)text Video:(Video *)video Picture:(Picture *)picture completionHandler:(REMOTE_OBJECT_BLOCK)block;
+- (void) createRemoteMessage:(NSString *)chatId text:(NSString *)text Video:(Video *)video Picture:(Picture *)picture completionHandler:(REMOTE_OBJECT_BLOCK)block;
 
 @end

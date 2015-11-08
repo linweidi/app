@@ -26,6 +26,7 @@
 #import "GroupRemoteUtil.h"
 
 #import "RecentRemoteUtil.h"
+#import "UserRemoteUtil.h"
 
 #import "GroupSettingsView.h"
 
@@ -118,32 +119,32 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
     [[GroupRemoteUtil sharedUtil] loadRemoteUsersByGroup:self.group completionHandler:^(NSArray *objects, NSError *error) {
-        if (error == nil)
-		{
+        if (error == nil) {
             //			[users removeAllObjects];
             //			[users addObjectsFromArray:objects];
             [self.userIDs removeAllObjects];
-            NSArray * users = [User convertFromRemoteUserArray:objects inManagedObjectContext:self.managedObjectContext];
-            for (User * user in users) {
+            for (User * user in objects) {
                 [self.userIDs addObject:user.globalID];
             }
 			[self.tableView reloadData];
 		}
-		else [ProgressHUD showError:@"Network error."];
+        else {
+            [ProgressHUD showError:@"Network error."];
+        }
     }];
 }
 
 #pragma mark - User actions
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)actionChat
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
+- (void)actionChat {
 	NSString *groupId = self.group.globalID;
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	CreateRecentItem([CurrentUser getCurrentUser], groupId, self.group.members, self.group.name, self.managedObjectContext);
+    [[RecentRemoteUtil sharedUtil] createRemoteRecentItem:[[ConfigurationManager sharedManager] getCurrentUser] groupId:groupId members:self.group.members desciption:self.group.name lastMessage:nil];
+    
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	ChatView *chatView = [[ChatView alloc] initWith:groupId];
+    
 #warning move this new view controller to recent tab
 	[self.navigationController pushViewController:chatView animated:YES];
 }

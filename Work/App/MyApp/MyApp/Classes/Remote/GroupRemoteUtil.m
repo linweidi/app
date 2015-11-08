@@ -81,7 +81,7 @@
     NSAssert([object isKindOfClass:[Group class]], @"Type casting is wrong");
     Group * group = (Group *)object;
     
-	group.user = [[ConfigurationManager sharedManager] getCurrentUser];
+	//group.user = [[ConfigurationManager sharedManager] getCurrentUser];
 	group.name = remoteObj[PF_GROUP_NAME] ;
     group.members = remoteObj[PF_GROUP_MEMBERS];
     
@@ -91,7 +91,7 @@
 - (void) setCommonRemoteObject:(RemoteObject *)remoteObj withAlert:(BASE_REMOTE_UTIL_OBJ_TYPE)object {
     NSAssert([object isKindOfClass:[Group class]], @"Type casting is wrong");
     Group * group = (Group *)object;
-	remoteObj[PF_GROUP_USER] = [[ConfigurationManager sharedManager] getCurrentUser];
+	remoteObj[PF_GROUP_USER] = [PFUser currentUser];
 	remoteObj[PF_GROUP_NAME] = group.name;
 	remoteObj[PF_GROUP_MEMBERS] = group.members;
 }
@@ -107,7 +107,7 @@
 	[query setLimit:GROUPVIEW_USER_ITEM_NUM];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        NSArray * userObjArray = [[UserRemoteUtil sharedUtil] convertToUserArray:objects inManagedObjectContext:self.managedObjectContext];
+        NSArray * userObjArray = [[UserRemoteUtil sharedUtil] convertToUserArray:objects];
         //        for (PFUser * object in objects) {
         //
         //        }
@@ -162,7 +162,7 @@
 //	[object saveInBackgroundWithBlock:block];
     
     Group * group  = [Group createEntity:nil];
-    group.user = [[ConfigurationManager sharedManager] getCurrentUser];
+    group.userVolatile = [[ConfigurationManager sharedManager] getCurrentUser];
     group.name = name;
     group.members = members;
     [self uploadCreateRemoteObject:group  completionHandler:block];
@@ -189,7 +189,7 @@
             else {
                 // other users are left, just remove the member of the user
                 [remoteObj[PF_GROUP_MEMBERS] removeObject:user.globalID];
-                [self uploadUpdateRemoteObject:remoteObj modifiedObject:group completionHandler:^(id object, NSError *error) {
+                [self uploadUpdateRemoteObject:remoteObj modifyObject:group completionHandler:^(id object, NSError *error) {
                     block(!error, error);
                 }];
             }
@@ -211,6 +211,7 @@
         if (!error) {
             int count = 0;
             Group * group = objects[count];
+            
             for (PFObject *groupRMT in remoteObjs)
             {
                 
@@ -224,9 +225,12 @@
                     else {
                         // other users are left, just remove the member of the user
                         [groupRMT removeObject:user.globalID forKey:PF_GROUP_MEMBERS];
-                        [self uploadUpdateRemoteObject:groupRMT modifiedObject:group completionHandler:^(id object, NSError *error) {
-#warning this is array rather than mutable array. TODO to verify here
-                            [group.members removeObject:user.globalID];
+                        [self uploadUpdateRemoteObject:groupRMT modifyObject:group completionHandler:^(id object, NSError *error) {
+                            NSMutableArray * memberIDs = [[NSMutableArray alloc] init];
+                            memberIDs = [group.members mutableCopy];
+                            [memberIDs removeObject:user.globalID];
+                            group.members = memberIDs;
+                            
                             block(!error, error);
                         }];
                     }

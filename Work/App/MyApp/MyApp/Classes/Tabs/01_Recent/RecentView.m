@@ -83,8 +83,7 @@
 {
 	[super viewDidAppear:animated];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	if ([CurrentUser getCurrentUser] != nil)
-	{
+	if ([[ConfigurationManager sharedManager] getCurrentUser] != nil) {
 		[self loadRecents];
 	}
 	//else LoginUser(self);
@@ -121,38 +120,16 @@
 #pragma mark - Backend methods
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)loadRecents
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
-    
-    NSMutableArray * recents = [[NSMutableArray alloc] init];
-    
+- (void)loadRecents {
     Recent * latestRecent = nil;
     
-    latestRecent = [Recent latestRecentEntity:self.managedObjectContext];
+    latestRecent = [Recent latestEntity:self.managedObjectContext];
     
 
     [[RecentRemoteUtil sharedUtil] loadRemoteRecent:latestRecent completionHandler:^(NSArray *objects, NSError *error) {
-        if (error == nil)
-        {
+        if (error == nil) {
             //[recents removeAllObjects];
             //[recents addObjectsFromArray:objects];
-            Recent * recent = nil;
-            for (PFObject * object in objects) {
-                //[recents setObject:object forKey:object[PF_RECENT_GROUPID]];
-                if (latestRecent) {
-                    
-                    // even if recent is new, but it can be a update result, so we may need update old existed recent
-                    recent = [Recent recentEntityWithPFObject:object inManagedObjectContext:self.managedObjectContext];
-                }
-                else {
-                    recent = [Recent createRecentEntityWithPFObject:object inManagedObjectContext:self.managedObjectContext];
-                }
-                
-                
-                [recents addObject:recent];
-            }
-            
             
             // load the recents into core data
             
@@ -164,8 +141,6 @@
         }
         [self.refreshControl endRefreshing];
     }];
-
-
     
 }
 
@@ -222,7 +197,7 @@
 {
 	//[recents removeAllObjects];
     // only delete local
-    [Recent clearRecentEntityAll:[self managedObjectContext]];
+    [Recent clearEntityAll:self.managedObjectContext];
 	[self.tableView reloadData];
 	[self clearTabCounter];
 }
@@ -281,8 +256,9 @@
 - (void)didSelectSingleUser:(User *)user2
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	CurrentUser *user1 = [CurrentUser getCurrentUser];
-	NSString *groupId = StartPrivateChat(user1, user2, self.managedObjectContext);
+    CurrentUser *user1 = [[ConfigurationManager sharedManager] getCurrentUser];
+    NSString *groupId = [[RecentRemoteUtil sharedUtil] startRemotePrivateChat:user1 user2:user2];
+    //StartPrivateChat(user1, user2, self.managedObjectContext);
 	[self actionChat:groupId];
 }
 
@@ -292,7 +268,8 @@
 - (void)didSelectMultipleUsers:(NSMutableArray *)users
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	NSString *groupId = StartMultipleChat(users,  self.managedObjectContext);
+    NSString *groupId = [[RecentRemoteUtil sharedUtil] startRemoteMultipleChat:users];
+    //StartMultipleChat(users,  self.managedObjectContext);
 	[self actionChat:groupId];
 }
 
@@ -302,8 +279,8 @@
 - (void)didSelectAddressBookUser:(User *)user2
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	User *user1 = [CurrentUser getCurrentUser];
-	NSString *groupId = StartPrivateChat(user1, user2,  self.managedObjectContext);
+	User *user1 = [[ConfigurationManager sharedManager] getCurrentUser];
+	NSString *groupId = [[RecentRemoteUtil sharedUtil] startRemotePrivateChat:user1 user2:user2];
 	[self actionChat:groupId];
 }
 
@@ -313,8 +290,8 @@
 - (void)didSelectFacebookUser:(User *)user2
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	User *user1 = [CurrentUser getCurrentUser];
-	NSString *groupId = StartPrivateChat(user1, user2,  self.managedObjectContext);
+	User *user1 = [[ConfigurationManager sharedManager] getCurrentUser];
+	NSString *groupId = [[RecentRemoteUtil sharedUtil] startRemotePrivateChat:user1 user2:user2];
 	[self actionChat:groupId];
 }
 
@@ -357,12 +334,8 @@
     
 	Recent *recent = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-    [[RecentRemoteUtil sharedUtil] deleteRecentFromParse:recent completionHandler:^(BOOL succeeded, NSError *error) {
-        if (error != nil) [ProgressHUD showError:@"Network error."];
-        else if (succeeded) {
-            
-            [self.managedObjectContext deleteObject:recent];
+    [[RecentRemoteUtil sharedUtil] deleteRemoteRecent:recent completionHandler:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
             
             //[recents removeObject:recent];
             [self updateTabCounter];

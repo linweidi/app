@@ -25,6 +25,9 @@
 #import "recent.h"
 #import "video.h"
 
+#import "Video+Util.h"
+#import "Picture+Util.h"
+
 #import "PhotoMediaItem.h"
 #import "VideoMediaItem.h"
 
@@ -34,13 +37,11 @@
 
 #import "User+Util.h"
 #import "Thumbnail+Util.h"
+#import "AppHeader.h"
 
 #import "ChatView.h"
 #import "ProfileView.h"
 #import "RecentRemoteUtil.h"
-
-#import "RemoteFile.h"
-
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 @interface ChatView()
 {
@@ -113,7 +114,8 @@
 {
 	[super viewWillDisappear:animated];
 
-	ClearRecentCounter(groupId, self.managedObjectContext);
+    [[RecentRemoteUtil sharedUtil] clearRemoteRecentCounter:groupId];
+	//ClearRecentCounter(groupId, self.managedObjectContext);
 	[timer invalidate];
 }
 
@@ -122,9 +124,7 @@
 #pragma mark - Backend methods
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)loadMessages
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
+- (void)loadMessages {
 	if (isLoading == NO)
 	{
 		isLoading = YES;
@@ -134,7 +134,7 @@
         NSArray * messageDataArray;
         if (!lastMessageJSQ) {
             //initialization
-             messageDataArray = [Message messageEntities:groupId inManagedObjectContext:self.managedObjectContext];
+            [Message messageEntities:groupId inManagedObjectContext:self.managedObjectContext];
             
             for (Message * object in messageDataArray) {
                 JSQMessage * jsqMessage = [self addMessage:object];
@@ -149,28 +149,24 @@
         // Load new messages
         [[MessageRemoteUtil sharedUtil] loadRemoteMessages:groupId lastMessage:lastMessageJSQ completionHandler:^(NSArray *objects, NSError *error) {
             
-            if (error == nil)
-			{
+            if (error == nil) {
 				BOOL incoming = NO;
 				self.automaticallyScrollsToMostRecentMessage = NO;
                 
-				for (RemoteObject *object in [objects reverseObjectEnumerator])
-				{
-#warning test code here
+                
+                
+                
+				for (Message *object in [objects reverseObjectEnumerator]) {
                     /// TODO remove this code here
                     // check if there is message later than lastest message
-                    BOOL check = [Message existsMessageEntity:groupId createdTime:lastMessageJSQ.date inManagedObjectContext:self.managedObjectContext];
-                    NSAssert(!check, @"new message already exists in core data");
+//                    BOOL check = [Message existsMessageEntity:groupId createdTime:lastMessageJSQ.date inManagedObjectContext:self.managedObjectContext];
+//                    NSAssert(!check, @"new message already exists in core data");
                     
                     
-                    Message * messageData = [Message createMessageEntity:object inManagedObjectContext:self.managedObjectContext];
-                    [messageData setWithPFObject:object inManagedObjectContext:self.managedObjectContext];
-                    
-					JSQMessage *message = [self addMessage:messageData];
+					JSQMessage *message = [self addMessage:object];
 					if ([self incoming:message]) incoming = YES;
 				}
-				if ([objects count] != 0)
-				{
+				if ([objects count] != 0) {
 					if (initialized && incoming) {
                         [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
                     }
@@ -192,47 +188,45 @@
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (JSQMessage *)addMessage:(Message *)object
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
+- (JSQMessage *)addMessage:(Message *)object {
 	JSQMessage *message;
 	//---------------------------------------------------------------------------------------------------------------------------------------------
     // core data only read user data once, so that is ok
 	User *user = object.user;
 	NSString *name = user.fullname;
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	RemoteFile *fileVideo =[RemoteFile fileWithName:object.videoName url:object.videoURL];
-    
-    RemoteFile *filePicture = [RemoteFile fileWithName:object.pictureName url:object.pictureURL];
+//	RemoteFile *fileVideo =[RemoteFile fileWithName:object.videoName url:object.videoURL];
+//    
+//    RemoteFile *filePicture = [RemoteFile fileWithName:object.pictureName url:object.pictureURL];
     
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	if ((filePicture.name == nil) && (fileVideo.name == nil))
+	if ((object.picture == nil) && (object.video == nil))
 	{
-		message = [[JSQMessage alloc] initWithSenderId:user.globalID senderDisplayName:name date:object.createdTime text:object.text];
+		message = [[JSQMessage alloc] initWithSenderId:user.globalID senderDisplayName:name date:object.createTime text:object.text];
 	}
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	if (fileVideo.name != nil)
+	if (object.video != nil)
 	{
-		JSQVideoMediaItem *mediaItem = [[JSQVideoMediaItem alloc] initWithFileURL:[NSURL URLWithString:fileVideo.url] isReadyToPlay:YES];
+		JSQVideoMediaItem *mediaItem = [[JSQVideoMediaItem alloc] initWithFileURL:[NSURL URLWithString:object.video.name] isReadyToPlay:YES];
 		mediaItem.appliesMediaViewMaskAsOutgoing = [user.globalID isEqualToString:self.senderId];
-		message = [[JSQMessage alloc] initWithSenderId:user.globalID senderDisplayName:name date:object.createdTime media:mediaItem];
+		message = [[JSQMessage alloc] initWithSenderId:user.globalID senderDisplayName:name date:object.createTime media:mediaItem];
 	}
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	if (filePicture.name != nil)
+	if (object.picture  != nil)
 	{
-		JSQPhotoMediaItem *mediaItem = [[JSQPhotoMediaItem alloc] initWithImage:nil];
+		JSQPhotoMediaItem *mediaItem = [[JSQPhotoMediaItem alloc] initWithImage:[UIImage imageWithData:object.picture.dataVolatile]];
 		mediaItem.appliesMediaViewMaskAsOutgoing = [user.globalID isEqualToString:self.senderId];
-		message = [[JSQMessage alloc] initWithSenderId:user.globalID senderDisplayName:name date:object.createdTime media:mediaItem];
+		message = [[JSQMessage alloc] initWithSenderId:user.globalID senderDisplayName:name date:object.createTime media:mediaItem];
 		//-----------------------------------------------------------------------------------------------------------------------------------------
 
-		[filePicture getDataAsync:^(NSData *imageData, NSError *error)
-		{
-			if (error == nil)
-			{
-				mediaItem.image = [UIImage imageWithData:imageData];
-				[self.collectionView reloadData];
-			}
-		}];
+//		[filePicture getDataAsync:^(NSData *imageData, NSError *error)
+//		{
+//			if (error == nil)
+//			{
+//				mediaItem.image = [UIImage imageWithData:imageData];
+//				[self.collectionView reloadData];
+//			}
+//		}];
 	}
     
     
@@ -248,9 +242,7 @@
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)loadAvatar:(User *)user
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
+- (void)loadAvatar:(User *)user {
 #warning Maybe I can use thumbnail here
     /*
     ///legacy: this is the code for loading picture
@@ -279,44 +271,65 @@
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)sendMessage:(NSString *)text Video:(NSURL *)video Picture:(UIImage *)picture
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
-	RemoteFile *fileVideo = nil;
-	RemoteFile *filePicture = nil;
+- (void)sendMessage:(NSString *)text Video:(NSURL *)videoURL Picture:(UIImage *)pictureData {
+//	RemoteFile *fileVideo = nil;
+//	RemoteFile *filePicture = nil;
+    
+    Video * video = nil;
+    Picture * picture = nil;
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	if (video != nil)
-	{
-		text = @"[Video message]";
-		fileVideo = [RemoteFile fileWithName:@"video.mp4" data:[[NSFileManager defaultManager] contentsAtPath:video.path]];
-		[fileVideo saveDataAsync:^(BOOL succeeded, NSError *error)
-		{
-			if (error != nil) [ProgressHUD showError:@"Network error."];
-		}];
-	}
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	if (picture != nil)
-	{
-		text = @"[Picture message]";
-		filePicture = [RemoteFile fileWithName:@"picture.jpg" data:UIImageJPEGRepresentation(picture, 0.6)];
-		[filePicture saveDataAsync:^(BOOL succeeded, NSError *error)
-		{
-			if (error != nil) [ProgressHUD showError:@"Picture save error."];
-		}];
-	}
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+//	if (videoURL != nil)
+//	{
+//		text = @"[Video message]";
+//		fileVideo = [RemoteFile fileWithName:@"video.mp4" data:[[NSFileManager defaultManager] contentsAtPath:videoURL.path]];
+//		[fileVideo saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+//            if (error != nil) {
+//               [ProgressHUD showError:@"Network error."];
+//            }
+//        }];
+//	}
+//	//---------------------------------------------------------------------------------------------------------------------------------------------
+//	if (pictureData != nil)
+//	{
+//		text = @"[Picture message]";
+//		filePicture = [RemoteFile fileWithName:@"picture.jpg" data:UIImageJPEGRepresentation(picture, 0.6)];
+//		[filePicture saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+//            if (error != nil) {
+//                [ProgressHUD showError:@"Picture save error."];
+//            }
+//        }];
+//	}
+    
+    if (videoURL != nil) {
+        text = @"[Video message]";
+        video = [Video createEntity:nil];
+        video.name = @"video.mp4";
+        video.dataVolatile = [[NSFileManager defaultManager] contentsAtPath:videoURL.path];
+    }
+    
+    if (pictureData != nil) {
+        text = @"[Picture message]";
+        picture = [Picture createEntity:nil];
+        picture.name = @"picture.jpg";
+        picture.dataVolatile = UIImageJPEGRepresentation(pictureData, 0.6);
+    }
+
+    
 	//RemoteObject *object =
-    [[MessageRemoteUtil sharedUtil] createMessageRemote:groupId text:text Video:fileVideo Picture:filePicture completionHandler:^(BOOL succeeded, NSError *error) {
-        if (error == nil)
-		{
-			[JSQSystemSoundPlayer jsq_playMessageSentSound];
-			[self loadMessages];
-		}
-		else [ProgressHUD showError:@"Network error."];;
+    [[MessageRemoteUtil sharedUtil] createRemoteMessage:groupId text:text Video:video Picture:picture completionHandler:^(id object, NSError *error) {
+        if (error == nil) {
+            [JSQSystemSoundPlayer jsq_playMessageSentSound];
+            [self loadMessages];
+        }
+        else {
+            [ProgressHUD showError:@"Network error."];
+        }
     }];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	SendPushNotification(groupId, text);
-	UpdateRecentAndCounter(groupId, 1, text, self.managedObjectContext);
+    
+    [[RecentRemoteUtil sharedUtil] updateRemoteRecentAndCounter:groupId amount:1 lastMessage:text members:nil];
+	//UpdateRecentAndCounter(groupId, 1, text, self.managedObjectContext);
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	[self finishSendingMessage];
 }
@@ -390,7 +403,8 @@
             if (!error) {
                 RemoteUser * userRemote = [objects firstObject];
                 if (userRemote) {
-                    user = [User convertFromRemoteUser:userRemote inManagedObjectContext:self.managedObjectContext];
+                    user = [[UserRemoteUtil sharedUtil] convertToUser:userRemote];
+                    //[User convertFromRemoteUser:userRemote inManagedObjectContext:self.managedObjectContext];
                     [self loadAvatar:user];
                 }
                 else {

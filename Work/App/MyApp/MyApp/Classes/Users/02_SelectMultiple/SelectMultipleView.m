@@ -19,7 +19,7 @@
 #import "User+Util.h"
 
 #import "ConfigurationManager.h"
-
+#import "UserRemoteUtil.h"
 #import "SelectMultipleView.h"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -130,7 +130,7 @@
 			{
                 
 				if ([selection containsObject:user.objectId]) {
-                    User * userObj = [User convertFromRemoteUser:user inManagedObjectContext:[[ConfigurationManager sharedManager] managedObjectContext]];
+                    User * userObj = [[UserRemoteUtil sharedUtil] convertToUser:user ];
                     [selectedUsers addObject:userObj];
                 }
 					

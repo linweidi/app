@@ -88,17 +88,30 @@
 
 // @param[IN]: we assume the argument object is data model, not core data model
 - (void) uploadCreateRemoteObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object completionHandler:(REMOTE_OBJECT_BLOCK)block {
+    [self uploadCreateRemoteObject:object completionHandler:block];
+
+}
+
+// @param[IN]: we assume the argument object is data model, not core data model
+- (void) uploadCreateRemoteObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object localSyncs:(BOOL)localSync completionHandler:(REMOTE_OBJECT_BLOCK)block {
     RemoteObject * remoteObj = [self createAndPopulateNewRemoteObject:object];
     [remoteObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             // create a new core data entity object
-            BASE_REMOTE_UTIL_OBJ_TYPE newObject = [NSEntityDescription insertNewObjectForEntityForName:self.className inManagedObjectContext:self.managedObjectContext];
-            [self setNewObject:newObject withRemoteObject:remoteObj inManagedObjectContext:self.managedObjectContext];
+            if (localSync) {
+                BASE_REMOTE_UTIL_OBJ_TYPE newObject = [NSEntityDescription insertNewObjectForEntityForName:self.className inManagedObjectContext:self.managedObjectContext];
+                [self setNewObject:newObject withRemoteObject:remoteObj inManagedObjectContext:self.managedObjectContext];
+                block(newObject, error);
+            }
+            else {
+                block(nil, error);
+            }
+
             // not necessary, already set in setNewObject:
             //newObject.globalID = remoteObj.objectId;
             //newObject.createTime = remoteObj.createdAt;
             //newObject.updateTime = remoteObj.updatedAt;
-            block(newObject, error);
+            
         }
         else {
             
@@ -106,9 +119,10 @@
         }
     }];
 }
+
 //@[@[ (NSArray)keys, object]
 // @param[IN]: we assume the argument object is core data model, not data model
-- (void) uploadUpdateRemoteObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object updateAttrs:(NSDictionary *)updateAttrs completionHandler:(REMOTE_OBJECT_BLOCK)block {
+- (void) uploadUpdateRemoteObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object updateAttrs:(NSArray *)updateAttrs completionHandler:(REMOTE_OBJECT_BLOCK)block {
     RemoteObject * remoteObj = [PFObject objectWithoutDataWithClassName:self.className objectId:object.globalID];
     
     [self setRemoteObject:remoteObj updateAttrs:updateAttrs];
@@ -171,12 +185,19 @@
 //    }];
 //}
 
-- (void) uploadUpdateRemoteObject:(RemoteObject *)remoteObj modifiedObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object completionHandler:(REMOTE_OBJECT_BLOCK)block {
+- (void) uploadUpdateRemoteObject:(RemoteObject *)remoteObj modifyObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object completionHandler:(REMOTE_OBJECT_BLOCK)block {
     
     [remoteObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
-            object.updateTime = remoteObj.updatedAt;
-            block(object, error);
+            if (object) {
+                [self setExistedObject:object withRemoteObject:remoteObj inManagedObjectContext:self.managedObjectContext];
+                object.updateTime = remoteObj.updatedAt;
+                block(object, error);
+            }
+            else {
+                block(nil, error);
+            }
+            
         }
         else {
             [ProgressHUD showError:@"Network Error."];

@@ -16,19 +16,19 @@
 
 
 @class User;
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-NSString*		StartPrivateChat		(User *user1, User *user2, NSManagedObjectContext * context);
-NSString*		StartMultipleChat		(NSMutableArray *users, NSManagedObjectContext * context);
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-void			CreateRecentItem		(User *user, NSString *groupId, NSArray *members, NSString *description, NSManagedObjectContext * context);
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-void            UpdateRecentAndCounter  (NSString *groupId, NSInteger amount, NSString *lastMessage, NSManagedObjectContext * context);
-void			ClearRecentCounter		(NSString *groupId, NSManagedObjectContext * context);
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-void			DeleteRecentItems		(User *user1, User *user2, NSManagedObjectContext * context);
+////-------------------------------------------------------------------------------------------------------------------------------------------------
+//NSString*		StartPrivateChat		(User *user1, User *user2, NSManagedObjectContext * context);
+//NSString*		StartMultipleChat		(NSMutableArray *users, NSManagedObjectContext * context);
+//
+////-------------------------------------------------------------------------------------------------------------------------------------------------
+//void			CreateRecentItem		(User *user, NSString *groupId, NSArray *members, NSString *description, NSManagedObjectContext * context);
+//
+////-------------------------------------------------------------------------------------------------------------------------------------------------
+//void            UpdateRecentAndCounter  (NSString *groupId, NSInteger amount, NSString *lastMessage, NSManagedObjectContext * context);
+//void			ClearRecentCounter		(NSString *groupId, NSManagedObjectContext * context);
+//
+////-------------------------------------------------------------------------------------------------------------------------------------------------
+//void			DeleteRecentItems		(User *user1, User *user2, NSManagedObjectContext * context);
 
 @class RecentView;
 @interface RecentRemoteUtil : BaseRemoteUtil
@@ -45,10 +45,20 @@ void			DeleteRecentItems		(User *user1, User *user2, NSManagedObjectContext * co
 
 #pragma mark -- external functions
 
-- (void) deleteRecentFromParse:(Recent *)recent completionHandler:(REMOTE_BOOL_BLOCK)block;
-
-- (void) loadRecentFromParse:(Recent *) latestRecent completionHandler:(REMOTE_ARRAY_BLOCK)block  ;
-
 
 - (void) loadRemoteRecent:(Recent *) latestRecent completionHandler:(REMOTE_ARRAY_BLOCK)block;
+
+- (NSString *) startRemotePrivateChat:(User *)user1 user2:(User *)user2;
+
+- (NSString *) startRemoteMultipleChat:(NSMutableArray *)users;
+
+- (void) createRemoteRecentItem:(User *)user  groupId:(NSString *)groupId members:(NSArray *)members desciption:(NSString *)description lastMessage:(NSString *)lastMessage;
+
+- (void) updateRemoteRecentAndCounter:(NSString *)groupId amount:(NSInteger)amount lastMessage:(NSString *)lastMessage members:(NSArray *)members;
+
+- (void) clearRemoteRecentCounter:(NSString *)groupId;
+
+- (void) deleteRemoteRecentItem:(User *)user1 user2:(User *)user2 ;
+
+- (void) deleteRemoteRecent:(Recent *)recent completionHandler:(REMOTE_BOOL_BLOCK)block ;
 @end

@@ -14,6 +14,7 @@
 
 #import "UserRemoteUtil.h"
 #import "User+Util.h"
+#import "Picture+Util.h"
 
 #import "ConfigurationManager.h"
 
@@ -83,10 +84,10 @@
         if (error == nil)
 		{
 			RemoteUser * userRemote = [objects firstObject];
-            User * user = [User convertFromPFUser:userRemote inManagedObjectContext:[[ConfigurationManager sharedManager] managedObjectContext]];
+            User * user = [[UserRemoteUtil sharedUtil] convertToUser:userRemote];
 			if (user != nil)
 			{
-                PFFile * filePicture = [PFFile fileWithName:user.pictureName contentsAtPath:user.pictureURL];
+                PFFile * filePicture = [PFFile fileWithName:user.picture.fileName contentsAtPath:user.picture.url];
 				[imageUser setFile:filePicture];
 				[imageUser loadInBackground];
 				

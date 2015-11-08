@@ -9,6 +9,8 @@
 #import "Place.h"
 
 @interface Place (Util)
+#undef ENTITY_UTIL_TEMPLATE_CLASS
+#undef ENTITY_UTIL_TEMPLATE_CLASS_NAME
 #define ENTITY_UTIL_TEMPLATE_CLASS Place
 #define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"Place"
 

@@ -16,7 +16,7 @@
 #import "User+Util.h"
 
 #import "ConfigurationManager.h"
-
+#import "UserRemoteUtil.h"
 #import "SelectSingleView.h"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -164,7 +164,7 @@
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	[self dismissViewControllerAnimated:YES completion:^{
         PFUser * userPF = users[indexPath.row];
-		if (delegate != nil) [delegate didSelectSingleUser:[User convertFromRemoteUser:userPF inManagedObjectContext:[[ConfigurationManager sharedManager] managedObjectContext]] ];
+		if (delegate != nil) [delegate didSelectSingleUser:[[UserRemoteUtil sharedUtil] convertToUser:userPF]];
 	}];
 }
 

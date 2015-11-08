@@ -12,10 +12,12 @@
 
 @implementation Message (Util)
 
+#undef ENTITY_UTIL_TEMPLATE_CLASS
+#undef ENTITY_UTIL_TEMPLATE_CLASS_NAME
 #define ENTITY_UTIL_TEMPLATE_CLASS Message
 #define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"Message"
 
-#include "../Template/EntityUtilTemplate.hh"
+#include "../Template/EntityUtilTemplate.mh"
 
 
 
@@ -45,27 +47,27 @@
     return ret;
 }
 
-//+ (NSArray *)messageEntities:(NSString *)chatID inManagedObjectContext: (NSManagedObjectContext *)context {
-//    
-//    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:PF_MESSAGE_CLASS_NAME] ;
-//    request.predicate = [NSPredicate predicateWithFormat:@"chatID = %@", chatID];
-//    request.fetchLimit = MESSAGEVIEW_DISPLAY_ITEM_NUM;
-//    request.sortDescriptors = @[[NSSortDescriptor
-//                                 sortDescriptorWithKey:PF_MESSAGE_CREATEDAT
-//                                 ascending:NO
-//                                 selector:@selector(compare:)],
-//                                ];
-//    NSError *error;
-//    NSArray *matches = [context executeFetchRequest:request error:&error   ];
-//    
-//    if (!matches ) {
-//        NSAssert(NO, @"match does not exist");
-//        
-//    }
-//    
-//    return matches;
-//}
-//
++ (NSArray *)messageEntities:(NSString *)chatID inManagedObjectContext: (NSManagedObjectContext *)context {
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:PF_MESSAGE_CLASS_NAME] ;
+    request.predicate = [NSPredicate predicateWithFormat:@"chatID = %@", chatID];
+    request.fetchLimit = MESSAGEVIEW_DISPLAY_ITEM_NUM;
+    request.sortDescriptors = @[[NSSortDescriptor
+                                 sortDescriptorWithKey:PF_MESSAGE_CREATEDAT
+                                 ascending:NO
+                                 selector:@selector(compare:)],
+                                ];
+    NSError *error;
+    NSArray *matches = [context executeFetchRequest:request error:&error   ];
+    
+    if (!matches ) {
+        NSAssert(NO, @"match does not exist");
+        
+    }
+    
+    return matches;
+}
+
 //+ (Message *) createMessageEntity:(PFObject *)object inManagedObjectContext: (NSManagedObjectContext *)context {
 //    
 //    Message * message = nil;
@@ -79,29 +81,29 @@
 //    
 //    return message;
 //}
-//
-//
-//+ (NSArray *) messageEntities:(NSString *)chatID createdTime:(NSDate *)date inManagedObjectContext: (NSManagedObjectContext *)context {
-//    
-//    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:PF_MESSAGE_CLASS_NAME] ;
-//    request.predicate = [NSPredicate predicateWithFormat:@"chatID = %@ && createdTime > %@", chatID, date];
-//    request.fetchLimit = MESSAGEVIEW_DISPLAY_ITEM_NUM;
-//    request.sortDescriptors = @[[NSSortDescriptor
-//                                 sortDescriptorWithKey:PF_MESSAGE_CREATEDAT
-//                                 ascending:NO
-//                                 selector:@selector(compare:)],
-//                                ];
-//    NSError *error;
-//    NSArray *matches = [context executeFetchRequest:request error:&error   ];
-//    
-//    if (!matches ) {
-//        NSAssert(NO, @"match does not exist");
-//        
-//    }
-//    
-//    return matches;
-//}
-//
+
+
++ (NSArray *) messageEntities:(NSString *)chatID createdTime:(NSDate *)date inManagedObjectContext: (NSManagedObjectContext *)context {
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:PF_MESSAGE_CLASS_NAME] ;
+    request.predicate = [NSPredicate predicateWithFormat:@"chatID = %@ && createdTime > %@", chatID, date];
+    request.fetchLimit = MESSAGEVIEW_DISPLAY_ITEM_NUM;
+    request.sortDescriptors = @[[NSSortDescriptor
+                                 sortDescriptorWithKey:PF_MESSAGE_CREATEDAT
+                                 ascending:NO
+                                 selector:@selector(compare:)],
+                                ];
+    NSError *error;
+    NSArray *matches = [context executeFetchRequest:request error:&error   ];
+    
+    if (!matches ) {
+        NSAssert(NO, @"match does not exist");
+        
+    }
+    
+    return matches;
+}
+
 //
 //+ (Message *) messageEntityWithPFObject:(PFObject *)object inManagedObjectContext: (NSManagedObjectContext *)context {
 //    

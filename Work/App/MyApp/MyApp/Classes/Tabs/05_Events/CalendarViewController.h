@@ -14,7 +14,7 @@
 @interface CalendarViewController : BaseCalendarViewController<JTCalendarDelegate>
 
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+//@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (weak, nonatomic) IBOutlet JTCalendarMenuView *calendarMenuView;
 @property (weak, nonatomic) IBOutlet JTHorizontalCalendarView *calendarContentView;
@@ -22,6 +22,9 @@
 @property (strong, nonatomic) JTCalendarManager *calendarManager;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *calendarContentViewHeight;
+
+@property (strong, nonatomic) UIRefreshControl * refreshControl;
+
 
 
 @end

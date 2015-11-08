@@ -9,6 +9,9 @@
 #import "ObjectEntity.h"
 
 @interface ObjectEntity (Util)
+
+#undef ENTITY_UTIL_TEMPLATE_CLASS
+#undef ENTITY_UTIL_TEMPLATE_CLASS_NAME
 #define ENTITY_UTIL_TEMPLATE_CLASS ObjectEntity
 #define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"ObjectEntity"
 

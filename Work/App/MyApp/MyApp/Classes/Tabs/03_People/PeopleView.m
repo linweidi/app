@@ -87,8 +87,7 @@
 {
 	[super viewDidAppear:animated];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	if ([CurrentUser getCurrentUser] != nil)
-	{
+	if ([[ConfigurationManager sharedManager] getCurrentUser] != nil) {
 		if (skipLoading) {
             
             skipLoading = NO;
@@ -127,48 +126,28 @@
 #pragma mark - User actions
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)loadPeople
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
-    
-    NSMutableArray * peoples = [[NSMutableArray alloc] init];
-    
+- (void)loadPeople {
+
     People * latestPeople = nil;
     
-    latestPeople = [People latestPeopleEntity :self.managedObjectContext];
+    latestPeople = [People latestEntity:self.managedObjectContext];
     
-    [[PeopleRemoteUtil sharedUtil] loadRemotePeoples: latestPeople completionHandler:^(NSArray *objects, NSError *error) {
-        if (error == nil)
-		{
-			//[peoples removeAllObjects];
-			//[peoples addObjectsFromArray:objects];
-			//[self.tableView reloadData];
-            
-            People * people = nil;
-            for (RemoteObject * object in objects) {
-                //[recents setObject:object forKey:object[PF_RECENT_GROUPID]];
-                if (latestPeople) {
-                    
-                    people = [People peopleEntityWithRemoteObject:object inManagedObjectContext:self.managedObjectContext];
-                }
-                else {
-                    people = [People createPeopleEntityWithPFObject:object inManagedObjectContext:self.managedObjectContext];
-                }
-                
-                
-                [peoples addObject:people];
-            }
-            
+    [[PeopleRemoteUtil sharedUtil] loadRemotePeoples:latestPeople completionHandler:^(NSArray *objects, NSError *error) {
+        if (error == nil) {
+            //[peoples removeAllObjects];
+            //[peoples addObjectsFromArray:objects];
+            //[self.tableView reloadData];
             
             // load the recents into core data
             
             [self.tableView reloadData];
             
-		}
-		else [ProgressHUD showError:@"Network error."];
-		[self.refreshControl endRefreshing];
+        }
+        else {
+           [ProgressHUD showError:@"Network error."];
+        }
+        [self.refreshControl endRefreshing];
     }];
-    
     
     
 //    [PeopleRemoteUtil sharedUtil] lo
@@ -232,7 +211,7 @@
 //	[users removeAllObjects];
 //	[userIds removeAllObjects];
 //	[sections removeAllObjects];
-    [People clearPeopleEntityAll:[self managedObjectContext]];
+    [People clearEntityAll:self.managedObjectContext];
 	[self.tableView reloadData];
 }
 
@@ -328,27 +307,16 @@
 #pragma mark - Helper methods
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)addUser:(User *)user
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
-	if ([self.userIds containsObject:user.globalID] == NO)
-	{
+- (void)addUser:(User *)user {
+	if ([self.userIds containsObject:user.globalID] == NO) {
 		//PeopleSave([PFUser currentUser], user);
         
-        [[PeopleRemoteUtil sharedUtil] createRemotePeople:user.fullname user:user completionHandler:^(BOOL succeeded, NSError *error, PFObject *object) {
+        [[PeopleRemoteUtil sharedUtil] createRemotePeople:user.fullname user:user completionHandler:^(id object, NSError *error) {
             if (error != nil) {
                 [ProgressHUD showError:@"CreateRemotePeople save error."];
             }
-            else if (succeeded){
-                People * people =
-                [People peopleEntityWithRemoteObject:object inManagedObjectContext:self.managedObjectContext];
-                
-                if (!people) {
-                    [ProgressHUD showError:@"CreateRemotePeople does not insert into core data."];
-                    ///TODO delete the saved data on server or redo the local save
-                    
-                }
-                else {
+            else if (!error){
+                if (object) {
                     //[users addObject:user];
                     [self.userIds addObject:user.globalID];
                     //[self setObjects:users];
@@ -433,15 +401,12 @@
     
     User * user = people.contact;
     
-    [[PeopleRemoteUtil sharedUtil] deleteRemotePeople:user completionHandler:^(BOOL succeeded, NSError *error, PFObject *object) {
+    [[PeopleRemoteUtil sharedUtil] deleteRemotePeople:user completionHandler:^(BOOL succeeded, NSError *error) {
         if (error != nil) {
             [ProgressHUD showError:@"PeopleDelete delete error"];
         }
         else if (succeeded ){
-            [People deletePeopleEntityWithRemoteObject:object inManagedObjectContext:self.managedObjectContext];
-            
-            //---------------------------------------------------------------------------------------------------------------------------------------------
-            //[users removeObject:user];
+
             [self.userIds removeObject:user.globalID];
             //[self setObjects:users];
             //---------------------------------------------------------------------------------------------------------------------------------------------
@@ -459,7 +424,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	User *user1 = [CurrentUser  getCurrentUser];
+	User *user1 = [[ConfigurationManager sharedManager] getCurrentUser];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	//NSMutableArray *userstemp = sections[indexPath.section];
 	
@@ -467,7 +432,8 @@
     User *user2 = people.contact;
     //userstemp[indexPath.row];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	NSString *groupId = StartPrivateChat(user1, user2, self.managedObjectContext);
+    NSString *groupId = [[RecentRemoteUtil sharedUtil] startRemotePrivateChat:user1 user2:user2];
+    //StartPrivateChat(user1, user2, self.managedObjectContext);
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	ChatView *chatView = [[ChatView alloc] initWith:groupId];
 	chatView.hidesBottomBarWhenPushed = YES;

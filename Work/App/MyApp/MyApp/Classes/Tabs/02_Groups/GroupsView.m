@@ -114,45 +114,28 @@
 
 
 
-- (void)loadGroups
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
-    NSMutableArray * groups = [[NSMutableArray alloc] init];
+- (void)loadGroups {
     
     Group * latestGroup = nil;
     
-    latestGroup = [Group latestGroupEntity :self.managedObjectContext];
+    latestGroup = [Group latestEntity:self.managedObjectContext];
     
-    [[GroupRemoteUtil sharedUtil] loadRemoteGroups: latestGroup  completionHandler:^(NSArray *objects, NSError *error) {
-        if (error == nil)
-		{
-			//[groups removeAllObjects];
-			//[groups addObjectsFromArray:objects];
-			//[self.tableView reloadData];
-            
-            Group * group = nil;
-            for (RemoteObject * object in objects) {
-                //[recents setObject:object forKey:object[PF_RECENT_GROUPID]];
-                if (latestGroup) {
-                    
-                    group = [Group groupEntityWithRemoteObject:object inManagedObjectContext:self.managedObjectContext];
-                }
-                else {
-                    group = [Group createGroupEntityWithPFObject:object inManagedObjectContext:self.managedObjectContext];
-                }
-                
-                
-                [groups addObject:group];
-            }
-            
+    [[GroupRemoteUtil sharedUtil] loadRemoteGroups:latestGroup completionHandler:^(NSArray *objects, NSError *error) {
+        if (error == nil) {
+            //[groups removeAllObjects];
+            //[groups addObjectsFromArray:objects];
+            //[self.tableView reloadData];
+
             
             // load the recents into core data
             
             [self.tableView reloadData];
-          
-		}
-		else [ProgressHUD showError:@"Network error."];
-		[self.refreshControl endRefreshing];
+            
+        }
+        else {
+            [ProgressHUD showError:@"Network error."];
+        }
+        [self.refreshControl endRefreshing];
     }];
 }
 
@@ -231,8 +214,8 @@
 //    else {
 //        [[GroupRemoteUtil sharedUtil] removeGroupMember:group user:user1];
 //    }
-    User * user = [CurrentUser getCurrentUser];
-    [[GroupRemoteUtil sharedUtil] removeGroupMember:group user:user];
+    User * user = [[ConfigurationManager sharedManager] getCurrentUser];
+    [[GroupRemoteUtil sharedUtil] removeGroupMember:group user:user completionHandler:nil];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	//[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 #warning notify others that you have quit the group

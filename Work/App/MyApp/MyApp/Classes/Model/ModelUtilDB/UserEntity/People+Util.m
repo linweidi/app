@@ -14,7 +14,8 @@
 
 @implementation People (Util)
 
-
+#undef ENTITY_UTIL_TEMPLATE_CLASS
+#undef ENTITY_UTIL_TEMPLATE_CLASS_NAME
 #define ENTITY_UTIL_TEMPLATE_CLASS People
 #define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"People"
 

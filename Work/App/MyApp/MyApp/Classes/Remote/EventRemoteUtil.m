@@ -41,7 +41,7 @@
     Event * event = (Event *)object;
     event.startTime  = remoteObj[PF_EVENT_START_TIME] ;
     event.endTime  = remoteObj[PF_EVENT_END_TIME] ;
-     event.invitees = remoteObj[PF_EVENT_INVITEES] ;
+    event.invitees = remoteObj[PF_EVENT_INVITEES] ;
     event.isAlert = remoteObj[PF_EVENT_IS_ALERT] ;
     event.location  = remoteObj[PF_EVENT_LOCATION] ;
     event.notes  = remoteObj[PF_EVENT_NOTES] ;
@@ -53,7 +53,7 @@
     event.groupIDs  = remoteObj[PF_EVENT_GROUP_IDS] ;
     event.isVoting  = remoteObj[PF_EVENT_IS_VOTING] ;
     
-    event.user = [[UserRemoteUtil sharedUtil] convertToUser:remoteObj[PF_EVENT_CREATE_USER] inManagedObjectContext:context];
+    //event.user = [[UserRemoteUtil sharedUtil] convertToUser:remoteObj[PF_EVENT_CREATE_USER] inManagedObjectContext:context];
 }
 
 - (void) setCommonRemoteObject:(RemoteObject *)remoteObj withAlert:(BASE_REMOTE_UTIL_OBJ_TYPE)object {
@@ -73,7 +73,8 @@
     remoteObj[PF_EVENT_GROUP_IDS] = event.groupIDs ;
     remoteObj[PF_EVENT_IS_VOTING] = event.isVoting ;
     
-    remoteObj[PF_EVENT_CREATE_USER] = [[UserRemoteUtil sharedUtil] convertToRemoteUser:event.user];
+    //remoteObj[PF_EVENT_CREATE_USER] = [[UserRemoteUtil sharedUtil] convertToRemoteUser:event.user];
+    remoteObj[PF_EVENT_CREATE_USER] = [PFUser currentUser];
     
 }
 
@@ -82,16 +83,21 @@
     NSAssert([object isKindOfClass:[Event class]], @"Type casting is wrong");
     Event * event = (Event *)object;
     
-    PFObject * alertPF = [PFObject objectWithClassName:PF_ALERT_CLASS_NAME];
-    [[AlertRemoteUtil sharedUtil] setNewRemoteObject:alertPF withObject:event.alert];
-    remoteObj[PF_EVENT_ALERT] = alertPF;
-    
-    PFObject * placePF = [PFObject objectWithoutDataWithClassName:PF_PLACE_CLASS_NAME objectId:event.place.globalID];
-    remoteObj[PF_EVENT_PLACE] = placePF;
+    if (event.alert) {
+        PFObject * alertPF = [PFObject objectWithClassName:PF_ALERT_CLASS_NAME];
+        [[AlertRemoteUtil sharedUtil] setNewRemoteObject:alertPF withObject:event.alert];
+        remoteObj[PF_EVENT_ALERT] = alertPF;
+    }
 
-    
-    PFObject * categoryPF = [PFObject objectWithoutDataWithClassName:PF_EVENT_CATEGORY_CLASS_NAME objectId:event.category.globalID];
-    remoteObj[PF_EVENT_PLACE] = categoryPF;   //get a new category
+    if (event.place) {
+        PFObject * placePF = [PFObject objectWithoutDataWithClassName:PF_PLACE_CLASS_NAME objectId:event.place.globalID];
+        remoteObj[PF_EVENT_PLACE] = placePF;
+    }
+
+    if (event.category) {
+        PFObject * categoryPF = [PFObject objectWithoutDataWithClassName:PF_EVENT_CATEGORY_CLASS_NAME objectId:event.category.globalID];
+        remoteObj[PF_EVENT_PLACE] = categoryPF;   //get a new category
+    }
 }
 
 - (void)setExistedRemoteObject:(RemoteObject *)remoteObj withObject:(UserEntity *)object {
@@ -118,12 +124,19 @@
     Event * event = (Event *)object;
     
     // alert
-    event.alert = [Alert createEntity:context];
-    [[AlertRemoteUtil sharedUtil] setNewObject:event.alert withRemoteObject:remoteObj[PF_EVENT_ALERT] inManagedObjectContext:context];
+
+    PFObject * alertRMT = remoteObj[PF_EVENT_ALERT];
+    if (alertRMT.updatedAt) {
+        event.alert = [Alert createEntity:context];
+        [[AlertRemoteUtil sharedUtil] setNewObject:event.alert withRemoteObject: alertRMT inManagedObjectContext:context];
+    }
+
     
     // place
     PFObject * placePF = remoteObj[PF_EVENT_PLACE];
     event.place = [Place entityWithID:placePF.objectId inManagedObjectContext:context];
+
+
     
     // category
     PFObject * categoryPF = remoteObj[PF_EVENT_CATEGORY];
@@ -135,7 +148,21 @@
     NSAssert([object isKindOfClass:[Event class]], @"Type casting is wrong");
     Event * event = (Event *)object;
     
-    [[AlertRemoteUtil sharedUtil] setExistedObject:event.alert withRemoteObject:remoteObj[PF_EVENT_ALERT] inManagedObjectContext:context];
+    //alert
+    PFObject * alertRMT = remoteObj[PF_EVENT_ALERT];
+    if (alertRMT.updatedAt) {
+        Alert * alert = event.alert;
+        if (alert) {
+            if ([alertRMT.updatedAt compare:alert.updateTime] == NSOrderedDescending) {
+                [[AlertRemoteUtil sharedUtil] setExistedObject:alert withRemoteObject:remoteObj[PF_EVENT_ALERT] inManagedObjectContext:context];
+            }
+        }
+        else {
+            alert = [Alert createEntity:self.managedObjectContext];
+            [[AlertRemoteUtil sharedUtil] setNewObject:alert withRemoteObject:remoteObj[PF_EVENT_ALERT] inManagedObjectContext:context];
+        }
+        event.alert = alert;
+    }
     
     // place
     PFObject * placePF = remoteObj[PF_EVENT_PLACE];
@@ -152,7 +179,7 @@
 	[query orderByAscending:PF_USER_FULLNAME];
 	[query setLimit:EVENTVIEW_ITEM_NUM];
 	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        NSArray * userObjArray = [[UserRemoteUtil sharedUtil] convertToUserArray:objects inManagedObjectContext:self.managedObjectContext];
+        NSArray * userObjArray = [[UserRemoteUtil sharedUtil] convertToUserArray:objects];
 //        for (PFUser * object in objects) {
 //
 //        }
@@ -201,7 +228,7 @@
             else {
                 // other users are left, just remove the member of the user
                 [remoteObj[PF_EVENT_MEMBERS] removeObject:user.globalID];
-                [self uploadUpdateRemoteObject:remoteObj modifiedObject:event completionHandler:^(id object, NSError *error) {
+                [self uploadUpdateRemoteObject:remoteObj modifyObject:event completionHandler:^(id object, NSError *error) {
                     block(!error, error);
                 }];
             }
@@ -226,95 +253,6 @@
 //    }];
 }
 
-- (NSString *) startPrivateChat:(User *)user1 user2:(User *)user2 {
-    NSString *id1 = user1.globalID;
-	NSString *id2 = user2.globalID;
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	NSString *groupId = ([id1 compare:id2] < 0) ? [NSString stringWithFormat:@"%@%@", id1, id2] : [NSString stringWithFormat:@"%@%@", id2, id1];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	NSArray *members = @[user1.globalID, user2.globalID];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	//CreateRecentItem(user1, groupId, members, user2.fullname, context);
-	//CreateRecentItem(user2, groupId, members, user1.fullname, context);
-    [self createRemoteRecentItem:user1 groupId:groupId members:members desciption:user2.fullname];
-    [self createRemoteRecentItem:user2 groupId:groupId members:members desciption:user1.fullname];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	return groupId;
-}
-- (NSString *) startMultipleChat:(NSMutableArray *)users {
-    NSString *groupId = @"";
-	NSString *description = @"";
-	
-    // add current user
-	if (![users containsObject:[[ConfigurationManager sharedManager] getCurrentUser]]) {
-        [users addObject:[[ConfigurationManager sharedManager] getCurrentUser]];
-    }
-
-	
-    //user Ids
-	NSMutableArray *userIds = [[NSMutableArray alloc] init];
-	for (User *user in users) {
-		[userIds addObject: user.globalID];
-	}
-	//sort user id
-	NSArray *sorted = [userIds sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-	
-    // Create group id
-    for (NSString *userId in sorted) {
-		groupId = [groupId stringByAppendingString:userId];
-	}
-    
-	//create description
-	for (User *user in users) {
-		if ([description length] != 0) description = [description stringByAppendingString:@" & "];
-		description = [description stringByAppendingString:user.fullname];
-	}
-	//create recent item
-	for (User *user in users) {
-		//CreateRecentItem(user, groupId, userIds, description, context);
-        [self createRemoteRecentItem:user groupId:groupId members:userIds desciption:description];
-	}
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	return groupId;
-}
-
-- (void) createRemoteRecentItem:(User *)user  groupId:(NSString *)groupId members:(NSArray *)members desciption:(NSString *)description {
-    PFQuery *query = [PFQuery queryWithClassName:PF_RECENT_CLASS_NAME];
-	[query whereKey:PF_RECENT_USER equalTo:[[UserRemoteUtil sharedUtil] convertToRemoteUser:user] ];
-	[query whereKey:PF_RECENT_GROUPID equalTo:groupId];
-	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-         if (error == nil) {
-             Recent * recent = nil;
-             if ([objects count] == 0) {
-                 // create a new chat
-                 recent = [Recent createEntity:nil];
-                 
-                 recent.user = user;
-                 recent.chatID = groupId;
-                 recent.members = members;
-                 recent.details = description;
-                 recent.lastUser = [[ConfigurationManager sharedManager] getCurrentUser];
-                 recent.lastMessage = @"";
-                 recent.counter = @0;
-                 [self uploadCreateRemoteObject:recent completionHandler:^(id object, NSError *error) {
-                     //nil temp
-                 }];
-
-             }
-             else {
-                 //already exist
-                 NSAssert([objects count]>1, @"recent item is not unique remotely");
-                 recent = [objects firstObject];
-                 //block(recent, nil);
-             }
-         }
-         else {
-             NSLog(@"CreateRecentItem query error.");
-             [ProgressHUD showError:@"Network error."];
-         }
-         
-     }];
-}
 
 // delete the event
 - (void) deleteRemoteEventItem:(Event *) event completionHandler:(REMOTE_BOOL_BLOCK)block {

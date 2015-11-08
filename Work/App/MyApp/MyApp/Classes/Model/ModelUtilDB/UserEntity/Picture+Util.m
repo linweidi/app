@@ -10,6 +10,8 @@
 
 @implementation Picture (Util)
 
+#undef ENTITY_UTIL_TEMPLATE_CLASS
+#undef ENTITY_UTIL_TEMPLATE_CLASS_NAME
 #define ENTITY_UTIL_TEMPLATE_CLASS Picture
 #define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"Picture"
 

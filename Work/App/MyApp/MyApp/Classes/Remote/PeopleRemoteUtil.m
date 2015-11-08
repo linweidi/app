@@ -87,8 +87,8 @@
     NSAssert([object isKindOfClass:[People class]], @"Type casting is wrong");
     People * people = (People *)object;
     
-    people.user = [[ConfigurationManager sharedManager] getCurrentUser];
-    people.contact  = [[UserRemoteUtil sharedUtil] convertToUser:remoteObj[PF_PEOPLE_USER2] inManagedObjectContext:context];
+    //people.user = [[ConfigurationManager sharedManager] getCurrentUser];
+    people.contact  = [[UserRemoteUtil sharedUtil] convertToUser:remoteObj[PF_PEOPLE_USER2]];
     people.name = remoteObj[PF_PEOPLE_NAME];
     
 }
@@ -167,7 +167,7 @@
             if ([objects count] == 0)
             {
                 People * people = [People createEntity:nil];
-                people.user = [[ConfigurationManager sharedManager] getCurrentUser];
+                people.userVolatile = [[ConfigurationManager sharedManager] getCurrentUser];
                 people.contact = user2;
                 people.name = name;
                 [self uploadCreateRemoteObject:people completionHandler:block];

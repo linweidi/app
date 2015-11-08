@@ -11,7 +11,8 @@
 #import "Group+Util.h"
 
 @implementation Group (Util)
-
+#undef ENTITY_UTIL_TEMPLATE_CLASS
+#undef ENTITY_UTIL_TEMPLATE_CLASS_NAME
 #define ENTITY_UTIL_TEMPLATE_CLASS Group
 #define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"Group"
 

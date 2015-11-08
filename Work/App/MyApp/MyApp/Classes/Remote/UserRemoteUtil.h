@@ -42,12 +42,12 @@
 - (void) setCommonRemoteObject:(RemoteObject *)remoteObj withObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object;
 
 
-- (User *) convertToUser:(RemoteUser *)user inManagedObjectContext:(NSManagedObjectContext *) context ;
+- (User *) convertToUser:(RemoteUser *)user;
 
 
 - (RemoteUser *) convertToRemoteUser:(User *)user;
 
-- (NSArray *) convertToUserArray:(NSArray *)users inManagedObjectContext:(NSManagedObjectContext *) context ;
+- (NSArray *) convertToUserArray:(NSArray *)users;
 
 
 - (void) loadUserFromParse:(NSString *)userId completionHandler:(REMOTE_OBJECT_BLOCK)block;

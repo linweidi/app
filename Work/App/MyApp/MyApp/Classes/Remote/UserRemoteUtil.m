@@ -17,6 +17,9 @@
 #import "User+Util.h"
 #import "ConfigurationManager.h"
 #import "push.h"
+#import "ThumbnailRemoteUtil.h"
+#import "PictureRemoteUtil.h"
+#import "Picture+Util.h"
 #import "UserRemoteUtil.h"
 
 @implementation UserRemoteUtil
@@ -75,24 +78,39 @@
     User * user = (User *)object;
     
     // this is a PFFile
-    PFFile * filePicture = [PFFile fileWithName:user.pictureName contentsAtPath:user.pictureURL];
-    remoteObj[PF_USER_PICTURE] = filePicture;
+    Picture * picture = user.picture;
+    if (picture) {
+        
+//        PFObject * pictureRMT = [PFObject objectWithClassName:PF_PICTURE_CLASS_NAME];
+//        pictureRMT[PF_PICTURE_NAME] = picture.name;
+//        pictureRMT[PF_PICTURE_URL] = picture.url;
+//        PFFile * pictFile = [PFFile fileWithName:picture.fileName data:picture.dataVolatile contentType:picture.url];
+//        pictureRMT[PF_PICTURE_FILE] = pictFile;
+//        remoteObj[PF_USER_PICTURE] = pictureRMT;
+        
+        PFObject * pictureRMT = [PFObject objectWithClassName:PF_PICTURE_CLASS_NAME];
+        [[PictureRemoteUtil sharedUtil] setNewRemoteObject:pictureRMT withObject:user.picture];
+        remoteObj[PF_USER_PICTURE] = pictureRMT;
+    }
     
-    PFFile * thumbnailPicture = [PFFile fileWithName:user.thumbnail.name contentsAtPath:user.thumbnail.url];
-    remoteObj[PF_USER_THUMBNAIL] = thumbnailPicture;
+    if (user.thumbnail) {
+        PFObject * thumbRMT = [PFObject objectWithClassName:PF_THUMBNAIL_CLASS_NAME];
+        [[ThumbnailRemoteUtil sharedUtil] setNewRemoteObject:thumbRMT withObject:user.thumbnail];
+        remoteObj[PF_USER_THUMBNAIL] = thumbRMT;
+    }
 }
 
 - (void)setExistedRemoteObject:(RemoteObject *)remoteObj withObject:(UserEntity *)object {
     [super setExistedRemoteObject:remoteObj withObject:object ];
     NSAssert([object isKindOfClass:[User class]], @"Type casting is wrong");
-    User * user = (User *)object;
-    
-    // this is a PFFile
-    PFFile * filePicture = [PFFile fileWithName:user.pictureName contentsAtPath:user.pictureURL];
-    remoteObj[PF_USER_PICTURE] = filePicture;
-    
-    PFFile * thumbnailPicture = [PFFile fileWithName:user.thumbnail.name contentsAtPath:user.thumbnail.url];
-    remoteObj[PF_USER_THUMBNAIL] = thumbnailPicture;
+//    User * user = (User *)object;
+//    
+//    // this is a PFFile
+//    PFFile * filePicture = [PFFile fileWithName:user.pictureName contentsAtPath:user.pictureURL];
+//    remoteObj[PF_USER_PICTURE] = filePicture;
+//    
+//    PFFile * thumbnailPicture = [PFFile fileWithName:user.thumbnail.name contentsAtPath:user.thumbnail.url];
+//    remoteObj[PF_USER_THUMBNAIL] = thumbnailPicture;
     
 }
 
@@ -101,16 +119,31 @@
     NSAssert([object isKindOfClass:[User class]], @"Type casting is wrong");
     User * user = (User *)object;
     
-    PFFile * filePicture = remoteObj[PF_USER_PICTURE];
-    user.pictureName = filePicture.name;
-    user.pictureURL = filePicture.url;
+//    PFFile * filePicture = remoteObj[PF_USER_PICTURE];
+//    user.pictureName = filePicture.name;
+//    user.pictureURL = filePicture.url;
     
-    PFFile * thumbnailPicture = remoteObj[PF_USER_THUMBNAIL];
+    PFObject * pictureRMT = remoteObj[PF_USER_PICTURE];
+    if (pictureRMT.updatedAt) {
+        Picture * picture = [Picture createEntity:context];
+        [[PictureRemoteUtil sharedUtil] setNewObject:picture withRemoteObject:pictureRMT inManagedObjectContext:context];
+        user.picture = picture;
+    }
+    
+//    PFFile * thumbnailPicture = remoteObj[PF_USER_THUMBNAIL];
+//    //self.thumbnail = thumbnailPicture.name;
+//    Thumbnail * thumb =
+//    
+//    [Thumbnail thumbnailEntityWithPFUser:thumbnailPicture withUserID:remoteObj.objectId inManagedObjectContext:context ];
+//    user.thumbnail = thumb;
+    
+    PFObject * thumbnailPicture = remoteObj[PF_USER_THUMBNAIL];
     //self.thumbnail = thumbnailPicture.name;
-    Thumbnail * thumb =
-    
-    [Thumbnail thumbnailEntityWithPFUser:thumbnailPicture withUserID:remoteObj.objectId inManagedObjectContext:context ];
-    user.thumbnail = thumb;
+    if (thumbnailPicture.updatedAt) {
+        Thumbnail * thumb = [Thumbnail createEntity:context];
+        [[ThumbnailRemoteUtil sharedUtil] setNewObject:thumb withRemoteObject:thumbnailPicture inManagedObjectContext:context];
+        user.thumbnail = thumb;
+    }
     
     //if create, add user to User Manager
     [[UserManager sharedUtil] addUser:user];
@@ -121,16 +154,46 @@
     NSAssert([object isKindOfClass:[User class]], @"Type casting is wrong");
     User * user = (User *)object;
     
-    PFFile * filePicture = remoteObj[PF_USER_PICTURE];
-    user.pictureName = filePicture.name;
-    user.pictureURL = filePicture.url;
+//    PFFile * filePicture = remoteObj[PF_USER_PICTURE];
+//    user.pictureName = filePicture.name;
+//    user.pictureURL = filePicture.url;
+    PFObject * pictureRMT = remoteObj[PF_USER_PICTURE];
+    if (pictureRMT.updatedAt) {
+        Picture * picture = user.picture;
+        if (picture) {
+            if ([pictureRMT.updatedAt compare:picture.updateTime] == NSOrderedDescending) {
+                [[PictureRemoteUtil sharedUtil] setExistedObject:picture withRemoteObject:pictureRMT inManagedObjectContext:context];
+            }
+        }
+        else {
+            picture = [Picture createEntity:context];
+            [[PictureRemoteUtil sharedUtil] setNewObject:picture withRemoteObject:pictureRMT inManagedObjectContext:context];
+        }
+
+        user.picture = picture;
+    }
+//    PFFile * thumbnailPicture = remoteObj[PF_USER_THUMBNAIL];
+//    //self.thumbnail = thumbnailPicture.name;
+//    Thumbnail * thumb =
+//    
+//    [Thumbnail thumbnailEntityWithPFUser:thumbnailPicture withUserID:remoteObj.objectId inManagedObjectContext:context ];
+//    user.thumbnail = thumb;
     
-    PFFile * thumbnailPicture = remoteObj[PF_USER_THUMBNAIL];
-    //self.thumbnail = thumbnailPicture.name;
-    Thumbnail * thumb =
+    PFObject * thumbnailPicture = remoteObj[PF_USER_THUMBNAIL];
+    if (thumbnailPicture.updatedAt ) {
+        Thumbnail * thumb = user.thumbnail;
+        if (thumb) {
+            if ([thumbnailPicture.updatedAt compare:thumb.updateTime] == NSOrderedDescending) {
+                [[ThumbnailRemoteUtil sharedUtil] setExistedObject:user.thumbnail withRemoteObject:thumbnailPicture inManagedObjectContext:context];
+            }
+        }
+        else {
+            thumb = [Thumbnail createEntity:self.managedObjectContext];
+            [[ThumbnailRemoteUtil sharedUtil] setExistedObject:thumb withRemoteObject:thumbnailPicture inManagedObjectContext:context];
+        }
+        user.thumbnail = thumb;
+    }
     
-    [Thumbnail thumbnailEntityWithPFUser:thumbnailPicture withUserID:remoteObj.objectId inManagedObjectContext:context ];
-    user.thumbnail = thumb;
 }
 
 
@@ -150,6 +213,7 @@
     
     return userEntity;
 }
+
 
 
 - (RemoteUser *) convertToRemoteUser:(User *)user {
@@ -174,7 +238,7 @@
     NSMutableArray * userArray = [[NSMutableArray alloc] init];
     
     for (PFUser * userPF in users) {
-        User * user = [self convertToUser:userPF inManagedObjectContext:self.managedObjectContext];
+        User * user = [self convertToUser:userPF];
         [userArray addObject:user];
     }
     
@@ -190,10 +254,14 @@
     
     if (existed) {
         User * user = [manager getUser:userId];
-        [self downloadUpdateObject:user completionHandler:block];
+        [self downloadUpdateObject:user completionHandler:^(RemoteObject *remoteObj, id object, NSError *error) {
+            block(object, error);
+        }];
     }
     else {
-        [self downloadCreateObject:userId completionHandler:block];
+        [self downloadCreateObject:userId completionHandler:^(RemoteObject *remoteObj, id object, NSError *error) {
+            block(object, error);
+        }];
     }
 
 }
@@ -208,7 +276,7 @@
 	[query orderByAscending:PF_USER_FULLNAME];
 	[query setLimit:EVENTVIEW_ITEM_NUM];
 	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        NSArray * userObjArray = [[UserRemoteUtil sharedUtil] convertToUserArray:objects inManagedObjectContext:self.managedObjectContext];
+        NSArray * userObjArray = [[UserRemoteUtil sharedUtil] convertToUserArray:objects];
         //        for (PFUser * object in objects) {
         //
         //        }

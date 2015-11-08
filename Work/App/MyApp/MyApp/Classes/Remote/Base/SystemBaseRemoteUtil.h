@@ -12,7 +12,7 @@
 
 
 @class SystemEntity;
-
+#undef BASE_REMOTE_UTIL_OBJ_TYPE
 #define BASE_REMOTE_UTIL_OBJ_TYPE SystemEntity*
 
 

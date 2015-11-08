@@ -40,7 +40,7 @@
 
 - (void) createRemotePeople:(NSString *)name user:(User *)user2 completionHandler:(REMOTE_OBJECT_BLOCK)block;
 
-- (void) createRemotePeople:(NSString *)name user:(User *)user2 completionHandler:(REMOTE_OBJECT_BLOCK)block ;
+//- (void) createRemotePeople:(NSString *)name user:(User *)user2 completionHandler:(REMOTE_OBJECT_BLOCK)block ;
 
 - (void) deleteRemotePeople:(User *)user2  completionHandler:(REMOTE_BOOL_BLOCK)block;
 

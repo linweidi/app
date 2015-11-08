@@ -142,5 +142,10 @@
     [self.tableView endUpdates];
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSAssert(NO, @"virtual functions");
+    return nil;
+}
+
 @end
 

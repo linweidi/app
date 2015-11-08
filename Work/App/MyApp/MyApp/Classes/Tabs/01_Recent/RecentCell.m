@@ -94,7 +94,7 @@
 	labelDescription.text = recent.details;
 	labelLastMessage.text = recent.lastMessage;
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	NSTimeInterval seconds = [[NSDate date] timeIntervalSinceDate:recent.updateDate];
+	NSTimeInterval seconds = [[NSDate date] timeIntervalSinceDate:recent.updateTime];
 	labelElapsed.text = TimeElapsed(seconds);
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	int counter = [recent.counter intValue];

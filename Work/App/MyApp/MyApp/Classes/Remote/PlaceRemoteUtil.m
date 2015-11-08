@@ -30,9 +30,7 @@
     });
     return sharedObject;
 }
-- (void)setCommonObject:(SystemEntity *)object withRemoteObject:(PFObject *)remoteObj inManagedObjectContext:(NSManagedObjectContext *)context {
-    [object]
-}
+
 
 - (void)setCommonObject:(SystemEntity *)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext:(NSManagedObjectContext *)context {
     NSAssert([object isKindOfClass:[Place class]], @"Type casting is wrong");
@@ -66,6 +64,116 @@
     remoteObj[PF_PLACE_TYPE] = place.type ;
 }
 
+
+- (void)setNewRemoteObject:(RemoteObject *)remoteObj withObject:(SystemEntity *)object {
+    [super setNewRemoteObject:remoteObj withObject:object];
+    NSAssert([object isKindOfClass:[Place class]], @"Type casting is wrong");
+    Place * place = (Place *)object;
+    
+    //photos
+    //NSArray * photosRF = remoteObj[PF_PLACE_PHOTOS];
+    
+    if (place.photos) {
+        NSMutableArray * photosRF = [[NSMutableArray alloc] init];
+        PictureRemoteUtil * pictUtil = [PictureRemoteUtil sharedUtil];
+        for (Picture * picture in place.photos) {
+            RemoteObject * pictRF = [PFObject objectWithClassName:PF_PICTURE_CLASS_NAME];
+            [pictUtil setNewRemoteObject:pictRF withObject:picture];
+            [photosRF addObject:pictRF];
+        }
+        remoteObj[PF_PLACE_PHOTOS] = photosRF;
+    }
+    
+    //thumb
+    if (place.thumb) {
+        PFObject * thumbRMT = [PFObject objectWithClassName:PF_THUMBNAIL_CLASS_NAME];
+        [[ThumbnailRemoteUtil sharedUtil] setNewRemoteObject:thumbRMT withObject:place.thumb];
+        remoteObj[PF_PLACE_THUMB] = thumbRMT;
+    }
+}
+
+
+- (void)setExistedRemoteObject:(RemoteObject *)remoteObj withObject:(SystemEntity *)object {
+    [super setExistedRemoteObject:remoteObj withObject:object];
+    NSAssert([object isKindOfClass:[Place class]], @"Type casting is wrong");
+//    Place * place = (Place *)object;
+//    
+//    //photos
+//    //
+//    NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
+//    NSArray * photosRMT = remoteObj[PF_PLACE_PHOTOS];
+//    for (RemoteObject * pictRMT in photosRMT) {
+//        dict[pictRMT.objectId] = pictRMT;
+//    }
+//    
+//    NSMutableArray * photosRF = [[NSMutableArray alloc] init];
+//    PictureRemoteUtil * pictUtil = [PictureRemoteUtil sharedUtil];
+//    for (Picture * picture in place.photos) {
+//        
+//        RemoteObject * pictRMT = dict[picture.globalID];
+//        if (pictRMT) {
+//            // exist
+//            // check if need update
+//            [pictUtil setExistedRemoteObject:pictRMT withObject:picture];
+//        }
+//        else {
+//            // not exist
+//            // so create one
+//            RemoteObject * newPictRMT = [PFObject objectWithClassName:PF_PICTURE_CLASS_NAME];
+//            [pictUtil setNewRemoteObject:newPictRMT withObject:picture];
+//            pictRMT = newPictRMT;
+//        }
+//        
+//        [photosRF addObject:pictRMT];
+//    }
+//    remoteObj[PF_PLACE_PHOTOS] = photosRF;
+//    
+//    
+//    //thumb
+//    PFObject * thumbRMT = [PFObject objectWithClassName:PF_THUMBNAIL_CLASS_NAME];
+//    [[ThumbnailRemoteUtil sharedUtil] setNewRemoteObject:thumbRMT withObject:place.thumb];
+//    remoteObj[PF_PLACE_THUMB] = thumbRMT;
+}
+
+
+- (void)setNewObject:(SystemEntity *)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext:(NSManagedObjectContext *)context {
+    [super setNewObject:object withRemoteObject:remoteObj inManagedObjectContext:context];
+    NSAssert([object isKindOfClass:[Place class]], @"Type casting is wrong");
+    
+    
+    Place * place = (Place *)object;
+    
+    //    for (Picture * picture in place.photos) {
+    //        [context deleteObject:picture];
+    //        [place removePhotosObject:picture];
+    //    }
+    
+    
+    RemoteObject * filePicture = nil;
+    NSArray * photoArrayRMT = remoteObj[PF_PLACE_PHOTOS];
+    if ([photoArrayRMT count]) {
+        PFObject * firstPhotoRMT = [photoArrayRMT firstObject];
+        if (firstPhotoRMT.updatedAt ) {
+            for (filePicture in photoArrayRMT) {
+                Picture * picture = [Picture createEntity:context];
+                [[PictureRemoteUtil sharedUtil] setNewObject:picture withRemoteObject:filePicture inManagedObjectContext:context];
+                [place addPhotosObject:picture];
+                
+            }
+        }
+    }
+    
+    
+    PFObject * thumbnailPicture = remoteObj[PF_PLACE_THUMB];
+    //self.thumbnail = thumbnailPicture.name;
+    if (thumbnailPicture.updatedAt) {
+        Thumbnail * thumb = [Thumbnail createEntity:context];
+        [[ThumbnailRemoteUtil sharedUtil] setNewObject:thumb withRemoteObject:thumbnailPicture inManagedObjectContext:context];
+        place.thumb = thumb;
+    }
+}
+
+
 - (void)setExistedObject:(SystemEntity *)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext:(NSManagedObjectContext *)context {
     [super setExistedObject:object withRemoteObject:remoteObj inManagedObjectContext:context];
     NSAssert([object isKindOfClass:[Place class]], @"Type casting is wrong");
@@ -73,36 +181,43 @@
     
     //picture
     //delete
-    NSMutableDictionary * pictObjDict = [[NSMutableDictionary alloc] init];
-    for (Picture * picture in place.photos) {
-        pictObjDict[picture.globalID] = picture;
-    }
-    
-    for (PFObject * pictPF in remoteObj[PF_PLACE_PHOTOS]) {
-        //PFFile * pictFile = pictPF[PF_PICTURE_FILE];
-        
-        Picture * pictObj = pictObjDict[pictPF.objectId];
-        if (pictObj) {
-            //exist
-            if ([pictPF.updatedAt compare:pictObj.updateTime] == NSOrderedSame) {
-                // same update time
-                // no need to update
+    NSArray * photoArrayRMT = remoteObj[PF_PLACE_PHOTOS];
+    if ([photoArrayRMT count]) {
+        PFObject * firstPhotoRMT = [photoArrayRMT firstObject];
+        if (firstPhotoRMT.updatedAt ) {
+            NSMutableDictionary * pictObjDict = [[NSMutableDictionary alloc] init];
+            for (Picture * picture in place.photos) {
+                pictObjDict[picture.globalID] = picture;
             }
-            else {
-                [[PictureRemoteUtil sharedUtil] setExistedObject:pictObj withRemoteObject:pictPF inManagedObjectContext:context];
-            }
-            // remove
-            [pictObjDict removeObjectForKey:pictPF.objectId];
             
-        }
-        else {
-            // not exist
-            // so new picture
-            pictObj = [Picture createEntity:context];
-            [[PictureRemoteUtil sharedUtil] setNewObject:pictObj withRemoteObject:pictPF inManagedObjectContext:context];
-            [place addPhotosObject:pictObj];
+            for (PFObject * pictPF in remoteObj[PF_PLACE_PHOTOS]) {
+                //PFFile * pictFile = pictPF[PF_PICTURE_FILE];
+                
+                Picture * pictObj = pictObjDict[pictPF.objectId];
+                if (pictObj) {
+                    //exist
+                    if ([pictPF.updatedAt compare:pictObj.updateTime] == NSOrderedSame) {
+                        // same update time
+                        // no need to update
+                    }
+                    else {
+                        [[PictureRemoteUtil sharedUtil] setExistedObject:pictObj withRemoteObject:pictPF inManagedObjectContext:context];
+                    }
+                    // remove
+                    [pictObjDict removeObjectForKey:pictPF.objectId];
+                    
+                }
+                else {
+                    // not exist
+                    // so new picture
+                    pictObj = [Picture createEntity:context];
+                    [[PictureRemoteUtil sharedUtil] setNewObject:pictObj withRemoteObject:pictPF inManagedObjectContext:context];
+                    [place addPhotosObject:pictObj];
+                }
+            }
         }
     }
+
     
 //    // create
 //    PFFile * filePicture = nil;
@@ -116,112 +231,22 @@
 
     // thumb
     PFObject * thumbnailPicture = remoteObj[PF_PLACE_THUMB];
-    PFFile * thumbFile = thumbnailPicture[PF_THUMBNAIL_FILE];
-    if (place.thumb.fileName != thumbFile.name) {
-        
-        [[ThumbnailRemoteUtil sharedUtil] setExistedObject:place.thumb withRemoteObject:thumbnailPicture inManagedObjectContext:context];
-    }
-    
-}
-
-- (void)setNewObject:(SystemEntity *)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext:(NSManagedObjectContext *)context {
-    [super setNewObject:object withRemoteObject:remoteObj inManagedObjectContext:context];
-    NSAssert([object isKindOfClass:[Place class]], @"Type casting is wrong");
-    
-
-    Place * place = (Place *)object;
-    
-//    for (Picture * picture in place.photos) {
-//        [context deleteObject:picture];
-//        [place removePhotosObject:picture];
-//    }
-    
-    
-    RemoteObject * filePicture = nil;
-    NSArray * photosRT = remoteObj[PF_PLACE_PHOTOS];
-    for (filePicture in photosRT) {
-        Picture * picture = [Picture createEntity:context];
-        [[PictureRemoteUtil sharedUtil] setNewObject:picture withRemoteObject:filePicture inManagedObjectContext:context];
-        [place addPhotosObject:picture];
-        
-    }
-    
-    
-    PFObject * thumbnailPicture = remoteObj[PF_PLACE_THUMB];
-    //self.thumbnail = thumbnailPicture.name;
-    Thumbnail * thumb = [Thumbnail createEntity:context];
-    [[ThumbnailRemoteUtil sharedUtil] setNewObject:thumb withRemoteObject:thumbnailPicture inManagedObjectContext:context];
-    place.thumb = thumb;
-}
-
-
-
-- (void)setExistedRemoteObject:(RemoteObject *)remoteObj withObject:(SystemEntity *)object {
-    [super setExistedRemoteObject:remoteObj withObject:object];
-    NSAssert([object isKindOfClass:[Place class]], @"Type casting is wrong");
-    Place * place = (Place *)object;
-    
-    //photos
-    //
-    NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
-    NSArray * photosRMT = remoteObj[PF_PLACE_PHOTOS];
-    for (RemoteObject * pictRMT in photosRMT) {
-        dict[pictRMT.objectId] = pictRMT;
-    }
-    
-    NSMutableArray * photosRF = [[NSMutableArray alloc] init];
-    PictureRemoteUtil * pictUtil = [PictureRemoteUtil sharedUtil];
-    for (Picture * picture in place.photos) {
-        
-        RemoteObject * pictRMT = dict[picture.globalID];
-        if (pictRMT) {
-            // exist
-            // check if need update
-            [pictUtil setExistedRemoteObject:pictRMT withObject:picture];
+    if (thumbnailPicture.updatedAt ) {
+        Thumbnail * thumb = place.thumb;
+        if (thumb) {
+            if ([thumbnailPicture.updatedAt compare:thumb.updateTime] == NSOrderedDescending) {
+                [[ThumbnailRemoteUtil sharedUtil] setExistedObject:place.thumb withRemoteObject:thumbnailPicture inManagedObjectContext:context];
+            }
         }
         else {
-            // not exist
-            // so create one
-            RemoteObject * newPictRMT = [PFObject objectWithClassName:PF_PICTURE_CLASS_NAME];
-            [pictUtil setNewRemoteObject:newPictRMT withObject:picture];
-            pictRMT = newPictRMT;
+            thumb = [Thumbnail createEntity:self.managedObjectContext];
+            [[ThumbnailRemoteUtil sharedUtil] setExistedObject:thumb withRemoteObject:thumbnailPicture inManagedObjectContext:context];
         }
-    
-        [photosRF addObject:pictRMT];
+        place.thumb = thumb;
     }
-    remoteObj[PF_PLACE_PHOTOS] = photosRF;
-    
-    
-    //thumb
-    PFObject * thumbRMT = [PFObject objectWithClassName:PF_THUMBNAIL_CLASS_NAME];
-    [[ThumbnailRemoteUtil sharedUtil] setNewRemoteObject:thumbRMT withObject:place.thumb];
-    remoteObj[PF_PLACE_THUMB] = thumbRMT;
 }
 
-- (void)setNewRemoteObject:(RemoteObject *)remoteObj withObject:(SystemEntity *)object {
-    [super setNewRemoteObject:remoteObj withObject:object];
-    NSAssert([object isKindOfClass:[Place class]], @"Type casting is wrong");
-    Place * place = (Place *)object;
-    
-    //photos
-    //NSArray * photosRF = remoteObj[PF_PLACE_PHOTOS];
 
-    
-    NSMutableArray * photosRF = [[NSMutableArray alloc] init];
-    PictureRemoteUtil * pictUtil = [PictureRemoteUtil sharedUtil];
-    for (Picture * picture in place.photos) {
-        RemoteObject * pictRF = [PFObject objectWithClassName:PF_PICTURE_CLASS_NAME];
-        [pictUtil setNewRemoteObject:pictRF withObject:picture];
-        [photosRF addObject:pictRF];
-    }
-    remoteObj[PF_PLACE_PHOTOS] = photosRF;
-    
-    
-    //thumb
-    PFObject * thumbRMT = [PFObject objectWithClassName:PF_THUMBNAIL_CLASS_NAME];
-    [[ThumbnailRemoteUtil sharedUtil] setNewRemoteObject:thumbRMT withObject:place.thumb];
-    remoteObj[PF_PLACE_THUMB] = thumbRMT;
-}
 
 
 - (void) loadRemotePlaces:(Place *)latestPlace completionHandler:(REMOTE_ARRAY_BLOCK)block {

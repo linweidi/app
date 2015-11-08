@@ -92,46 +92,25 @@
 #pragma mark - Backend methods
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)loadUsers
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
-    
-    NSMutableArray * peoples = [[NSMutableArray alloc] init];
+- (void)loadUsers {
     
     People * latestPeople = nil;
     
-    latestPeople = [People latestPeopleEntity :self.managedObjectContext];
+    latestPeople = [People latestEntity:self.managedObjectContext];
     
     [[PeopleRemoteUtil sharedUtil] loadRemotePeoples: latestPeople completionHandler:^(NSArray *objects, NSError *error) {
-        if (error == nil)
-		{
-			//[peoples removeAllObjects];
-			//[peoples addObjectsFromArray:objects];
-			//[self.tableView reloadData];
-            
-            People * people = nil;
-            for (RemoteObject * object in objects) {
-                //[recents setObject:object forKey:object[PF_RECENT_GROUPID]];
-                if (latestPeople) {
-                    
-                    people = [People peopleEntityWithRemoteObject:object inManagedObjectContext:self.managedObjectContext];
-                }
-                else {
-                    people = [People createPeopleEntityWithPFObject:object inManagedObjectContext:self.managedObjectContext];
-                }
-                
-                
-                [peoples addObject:people];
-            }
-            
+        if (error == nil) {
+            //[peoples removeAllObjects];
+            //[peoples addObjectsFromArray:objects];
+            //[self.tableView reloadData];
             
             // load the recents into core data
             
             [self.tableView reloadData];
             
-		}
-		else [ProgressHUD showError:@"Network error."];
-		[self.refreshControl endRefreshing];
+        }
+        else [ProgressHUD showError:@"Network error."];
+        [self.refreshControl endRefreshing];
     }];
 //    
 //    

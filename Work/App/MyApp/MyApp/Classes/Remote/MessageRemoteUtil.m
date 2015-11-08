@@ -13,6 +13,8 @@
 #import "ConfigurationManager.h"
 #import "Picture+Util.h"
 #import "Video+Util.h"
+#import "PictureRemoteUtil.h"
+#import "VideoRemoteUtil.h"
 #import "MessageRemoteUtil.h"
 
 #define BASE_REMOTE_UTIL_OBJ_TYPE ObjectEntity*
@@ -54,7 +56,7 @@
     remoteObj[PF_MESSAGE_TEXT] = message.text;
 }
 
-- (void)setNewRemoteObject:(RemoteObject *)remoteObj withObject:(UserEntity *)object {
+- (void)setNewRemoteObject:(RemoteObject *)remoteObj withObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object {
     [super setNewRemoteObject:remoteObj withObject:object];
     NSAssert([object isKindOfClass:[Message class]], @"Type casting is wrong");
     Message * message = (Message *)object;
@@ -62,33 +64,39 @@
     Picture * picture = message.picture;
     
     if (picture) {
+//        PFObject * pictureRMT = [PFObject objectWithClassName:PF_PICTURE_CLASS_NAME];
+//        pictureRMT[PF_PICTURE_NAME] = picture.name;
+//        pictureRMT[PF_PICTURE_URL] = picture.url;
+//        PFFile * pictFile = [PFFile fileWithName:picture.fileName data:picture.dataVolatile contentType:picture.url];
+//        pictureRMT[PF_PICTURE_FILE] = pictFile;
+//        
+//        
+//        
+//        remoteObj[PF_MESSAGE_PICTURE] = pictureRMT;
         PFObject * pictureRMT = [PFObject objectWithClassName:PF_PICTURE_CLASS_NAME];
-        pictureRMT[PF_PICTURE_NAME] = picture.name;
-        pictureRMT[PF_PICTURE_URL] = picture.url;
-        PFFile * pictFile = [PFFile fileWithName:picture.fileName data:picture.data contentType:picture.url];
-        pictureRMT[PF_PICTURE_FILE] = pictFile;
-        
-        
-        
+        [[PictureRemoteUtil sharedUtil] setNewRemoteObject:pictureRMT withObject:message.picture];
         remoteObj[PF_MESSAGE_PICTURE] = pictureRMT;
     }
 
     Video * video = message.video;
     
     if (video) {
+//        PFObject * videoRMT = [PFObject objectWithClassName:PF_VIDEO_CLASS_NAME];
+//        videoRMT[PF_VIDEO_NAME] = video.name;
+//        videoRMT[PF_VIDEO_URL] = video.url;
+//        PFFile * videoFile = [PFFile fileWithName:video.fileName data:video.dataVolatile contentType:video.url];
+//        videoRMT[PF_VIDEO_FILE] = videoFile;
+//        
+//        
+//        remoteObj[PF_MESSAGE_VIDEO] = videoRMT;
         PFObject * videoRMT = [PFObject objectWithClassName:PF_VIDEO_CLASS_NAME];
-        videoRMT[PF_VIDEO_NAME] = video.name;
-        videoRMT[PF_VIDEO_URL] = video.url;
-        PFFile * videoFile = [PFFile fileWithName:video.fileName data:video.data contentType:video.url];
-        videoRMT[PF_VIDEO_FILE] = videoFile;
-        
-        
+        [[VideoRemoteUtil sharedUtil] setNewRemoteObject:videoRMT withObject:message.video];
         remoteObj[PF_MESSAGE_VIDEO] = videoRMT;
     }
 
 }
 
-- (void)setNewObject:(UserEntity *)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext:(NSManagedObjectContext *)context {
+- (void)setNewObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext:(NSManagedObjectContext *)context {
     [super setNewObject:object withRemoteObject:remoteObj inManagedObjectContext:context];
     NSAssert([object isKindOfClass:[Message class]], @"Type casting is wrong");
     Message * message = (Message *)object;
@@ -96,34 +104,41 @@
     //picture
     Picture * picture;
     PFObject * pictureRMT= remoteObj[PF_MESSAGE_PICTURE];
-    if (pictureRMT) {
-        PFFile * pictFile = pictureRMT[PF_PICTURE_FILE];
-        picture = [Picture createEntity:object.managedObjectContext];
-        picture.name = pictureRMT[PF_PICTURE_NAME];
-        picture.url = pictureRMT[PF_PICTURE_URL];
-        picture.fileName = pictFile.name;
-        picture.url = pictFile.url;
+    if (pictureRMT.updatedAt) {
+//        PFFile * pictFile = pictureRMT[PF_PICTURE_FILE];
+//        picture = [Picture createEntity:object.managedObjectContext];
+//        picture.name = pictureRMT[PF_PICTURE_NAME];
+//        picture.url = pictureRMT[PF_PICTURE_URL];
+//        picture.fileName = pictFile.name;
+//        picture.url = pictFile.url;
+//        
+//        message.picture = picture;
         
+        picture = [Picture createEntity:self.managedObjectContext];
+        [[PictureRemoteUtil sharedUtil] setNewObject:picture withRemoteObject:pictureRMT inManagedObjectContext:self.managedObjectContext];
         message.picture = picture;
     }
     
     Video * video;
-    PFObject * videoRMT= remoteObj[PF_MESSAGE_PICTURE];
-    if (pictureRMT) {
-        PFFile * videoFile = videoRMT[PF_PICTURE_FILE];
-        video = [Video createEntity:object.managedObjectContext];
-        video.name = videoRMT[PF_PICTURE_NAME];
-        video.url = videoRMT[PF_PICTURE_URL];
-        video.fileName = videoFile.name;
-        video.url = videoFile.url;
-        
+    PFObject * videoRMT= remoteObj[PF_MESSAGE_VIDEO];
+    if (videoRMT.updatedAt) {
+//        PFFile * videoFile = videoRMT[PF_VIDEO_FILE];
+//        video = [Video createEntity:object.managedObjectContext];
+//        video.name = videoRMT[PF_VIDEO_NAME];
+//        video.url = videoRMT[PF_VIDEO_URL];
+//        video.fileName = videoFile.name;
+//        video.url = videoFile.url;
+//        
+//        message.video = video;
+        video = [Video createEntity:self.managedObjectContext];
+        [[VideoRemoteUtil sharedUtil] setNewObject:video withRemoteObject:videoRMT inManagedObjectContext:self.managedObjectContext];
         message.video = video;
     }
     
 }
 
 
-- (void)setExistedObject:(UserEntity *)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext:(NSManagedObjectContext *)context {
+- (void)setExistedObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext:(NSManagedObjectContext *)context {
     [super setExistedObject:object withRemoteObject:remoteObj inManagedObjectContext:context];
     NSAssert([object isKindOfClass:[Message class]], @"Type casting is wrong");
     Message * message = (Message *)object;
@@ -132,37 +147,56 @@
     // only create when locally deleted
     
     //picture
-    Picture * picture;
-    PFObject * pictureRMT= remoteObj[PF_MESSAGE_PICTURE];
-    if (pictureRMT ) {
-        if (!message.picture ) {
-            PFFile * pictFile = pictureRMT[PF_PICTURE_FILE];
-            picture = [Picture createEntity:object.managedObjectContext];
-            picture.name = pictureRMT[PF_PICTURE_NAME];
-            picture.url = pictureRMT[PF_PICTURE_URL];
-            picture.fileName = pictFile.name;
-            picture.url = pictFile.url;
-            
-            message.picture = picture;
+    PFObject * pictureRMT = remoteObj[PF_MESSAGE_PICTURE];
+    if (pictureRMT.updatedAt) {
+        Picture * picture = message.picture;
+        if (picture) {
+            if ([pictureRMT.updatedAt compare:picture.updateTime] == NSOrderedDescending) {
+                [[PictureRemoteUtil sharedUtil] setExistedObject:picture withRemoteObject:pictureRMT inManagedObjectContext:context];
+            }
         }
-
+        else {
+            picture = [Picture createEntity:context];
+            [[PictureRemoteUtil sharedUtil] setNewObject:picture withRemoteObject:pictureRMT inManagedObjectContext:context];
+        }
+        
+        message.picture = picture;
     }
     
-    Video * video;
-    PFObject * videoRMT= remoteObj[PF_MESSAGE_PICTURE];
-    if (pictureRMT) {
-        if (message.video) {
-            PFFile * videoFile = videoRMT[PF_PICTURE_FILE];
-            video = [Video createEntity:object.managedObjectContext];
-            video.name = videoRMT[PF_PICTURE_NAME];
-            video.url = videoRMT[PF_PICTURE_URL];
-            video.fileName = videoFile.name;
-            video.url = videoFile.url;
-            
-            message.video = video;
+    PFObject * videoRMT = remoteObj[PF_MESSAGE_VIDEO];
+    if (videoRMT.updatedAt) {
+        Video * video = message.video;
+        if (video) {
+            if ([videoRMT.updatedAt compare:video.updateTime] == NSOrderedDescending) {
+                [[VideoRemoteUtil sharedUtil] setExistedObject:video withRemoteObject:videoRMT inManagedObjectContext:context];
+            }
         }
-
+        else {
+            video = [Video createEntity:context];
+            [[VideoRemoteUtil sharedUtil] setNewObject:video withRemoteObject:videoRMT inManagedObjectContext:context];
+        }
+        
+        message.video = video;
     }
+//    Video * video;
+//    PFObject * videoRMT= remoteObj[PF_MESSAGE_VIDEO];
+//    if (videoRMT.updatedAt && [videoRMT.updatedAt compare:message.video.updateTime] == NSOrderedDescending) {
+//        if (message.video) {
+////            PFFile * videoFile = videoRMT[PF_VIDEO_FILE];
+////            video = [Video createEntity:object.managedObjectContext];
+////            video.name = videoRMT[PF_VIDEO_NAME];
+////            video.url = videoRMT[PF_VIDEO_URL];
+////            video.fileName = videoFile.name;
+////            video.url = videoFile.url;
+////            
+////            message.video = video;
+//            
+//            video = [Video createEntity:self.managedObjectContext];
+//            [[VideoRemoteUtil sharedUtil] setExistedObject:video withRemoteObject:videoRMT inManagedObjectContext:self.managedObjectContext];
+//            message.video = video;
+//        }
+//
+//    }
 }
 
 - (void) loadMessagesFromParse:(NSString *)chatId lastMessage:(JSQMessage *)lastMessage completionHandler:(REMOTE_ARRAY_BLOCK)block {
@@ -195,7 +229,7 @@
     [self loadMessagesFromParse:chatId lastMessage:lastMessage completionHandler:block];
 }
 
-- (void) createMessageRemote:(NSString *)chatId text:(NSString *)text Video:(Video *)video Picture:(Picture *)picture completionHandler:(REMOTE_OBJECT_BLOCK)block{
+- (void) createRemoteMessage:(NSString *)chatId text:(NSString *)text Video:(Video *)video Picture:(Picture *)picture completionHandler:(REMOTE_OBJECT_BLOCK)block{
     
     Message * message = [Message createEntity:nil];
     message.user = [[ConfigurationManager sharedManager] getCurrentUser];

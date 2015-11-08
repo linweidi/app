@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CalendarViewController">
@@ -10,7 +10,7 @@
                 <outlet property="calendarContentView" destination="yQL-1Z-hdX" id="5et-ff-b76"/>
                 <outlet property="calendarContentViewHeight" destination="uwb-kE-Xo8" id="FyG-kJ-H45"/>
                 <outlet property="calendarMenuView" destination="450-a2-Hou" id="VSj-Ub-O3Q"/>
-                <outlet property="tableView" destination="mXd-qR-cMV" id="d4P-Tg-HIC"/>
+                <outlet property="tableView" destination="mXd-qR-cMV" id="WFO-k6-sKO"/>
                 <outlet property="view" destination="Xdf-MM-ta3" id="9ns-ej-BIb"/>
             </connections>
         </placeholder>

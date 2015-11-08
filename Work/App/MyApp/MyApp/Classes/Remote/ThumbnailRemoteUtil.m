@@ -144,6 +144,7 @@
     [super setNewRemoteObject:remoteObj withObject:object];
     NSAssert([object isKindOfClass:[Thumbnail class]], @"Type casting is wrong");
     Thumbnail * thumb = (Thumbnail *)object;
+    
     PFFile * filePF = [PFFile fileWithName:thumb.name data:thumb.data];
     remoteObj[PF_THUMBNAIL_FILE] = filePF;
 //    [filePF saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
