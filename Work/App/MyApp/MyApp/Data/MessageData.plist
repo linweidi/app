@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Item</key>
+	<dict>
+		<key>chatID</key>
+		<string>daniel smith, tom hanks, will smith</string>
+		<key>text</key>
+		<string>Hello</string>
+		<key>createUser</key>
+		<string>800</string>
+		<key>picture</key>
+		<string></string>
+		<key>video</key>
+		<string></string>
+	</dict>
+	<key>Item - 2</key>
+	<dict>
+		<key>chatID</key>
+		<string>daniel smith, tom hanks, will smith</string>
+		<key>text</key>
+		<string>Hi</string>
+		<key>createUser</key>
+		<string>800</string>
+		<key>picture</key>
+		<string></string>
+		<key>video</key>
+		<string></string>
+	</dict>
+	<key>Item - 3</key>
+	<dict>
+		<key>chatID</key>
+		<string>daniel smith, tom hanks, will smith</string>
+		<key>text</key>
+		<string>How are you?</string>
+		<key>createUser</key>
+		<string>803</string>
+		<key>picture</key>
+		<string></string>
+		<key>video</key>
+		<string></string>
+	</dict>
+	<key>Item - 4</key>
+	<dict>
+		<key>chatID</key>
+		<string>daniel smith, tom hanks, will smith</string>
+		<key>text</key>
+		<string>Fine, thanks. How about you?</string>
+		<key>createUser</key>
+		<string>800</string>
+		<key>picture</key>
+		<string></string>
+		<key>video</key>
+		<string></string>
+	</dict>
+	<key>Item - 5</key>
+	<dict>
+		<key>chatID</key>
+		<string>daniel smith, tom hanks, will smith</string>
+		<key>text</key>
+		<string>I am pretty good</string>
+		<key>createUser</key>
+		<string>803</string>
+		<key>picture</key>
+		<string></string>
+		<key>video</key>
+		<string></string>
+	</dict>
+</dict>
+</plist>

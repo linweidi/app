@@ -6,16 +6,18 @@
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 #import "Recent+Util.h"
-#import "RecentLocalDataUtility.h"
+#import "UserRemoteUtil.h"
+#import "User+Util.h"
+#import "RecentLocalDataUtil.h"
 
 #undef LOCAL_DATA_CLASS_TYPE
 #define LOCAL_DATA_CLASS_TYPE Recent
 
-@implementation RecentLocalDataUtility
+@implementation RecentLocalDataUtil
 
-+ (RecentLocalDataUtility *)sharedUtil {
++ (RecentLocalDataUtil *)sharedUtil {
     static dispatch_once_t predicate = 0;
-    static RecentLocalDataUtility *sharedObject;
+    static RecentLocalDataUtil *sharedObject;
     
     dispatch_once(&predicate, ^{
         //initializing singleton object
@@ -50,25 +52,16 @@
     [super setRandomValues:object data:dict];
     
     
-    LOCAL_DATA_CLASS_TYPE * event = (LOCAL_DATA_CLASS_TYPE *)object;
+    LOCAL_DATA_CLASS_TYPE * recent = (LOCAL_DATA_CLASS_TYPE *)object;
     
-    event.startTime  = dict[PF_EVENT_START_TIME] ;
-    event.endTime  = dict[PF_EVENT_END_TIME] ;
-    event.invitees = dict[PF_EVENT_INVITEES] ;
-    event.isRecent = dict[PF_EVENT_IS_RECENT];
-    event.location  = dict[PF_EVENT_LOCATION];
-    event.notes  = dict[PF_EVENT_NOTES] ;
-    event.title = dict[PF_EVENT_TITLE] ;
-    event.scope  = dict[PF_EVENT_SCOPE] ;
-    event.boardIDs  = dict[PF_EVENT_BOARD_IDS] ;    //array
-    event.votingID  = dict[PF_EVENT_VOTING_ID] ;
-    event.members  = dict[PF_EVENT_MEMBERS] ;
-    event.groupIDs  = dict[PF_EVENT_GROUP_IDS] ;
-    event.isVoting  = dict[PF_EVENT_IS_VOTING] ;
+    recent.chatID = dict[PF_RECENT_GROUPID];
+    recent.members = [NSArray arrayWithArray:dict[PF_RECENT_MEMBERS]] ;
+    recent.details = dict[PF_RECENT_DESCRIPTION] ;
+    recent.lastUser = [[UserRemoteUtil sharedUtil] convertToUser:dict[PF_RECENT_LASTUSER]];
+    recent.lastMessage = dict[PF_RECENT_LASTMESSAGE] ;
+    recent.counter = dict[PF_RECENT_COUNTER] ;
     
-    event.alert = [Recent entityWithID:dict[PF_EVENT_RECENT] inManagedObjectContext:self.managedObjectContext];
-    event.category = [EventCategory entityWithID:dict[PF_EVENT_CATEGORY] inManagedObjectContext:self.managedObjectContext];
-    event.place = [Place entityWithID:dict[PF_EVENT_PLACE] inManagedObjectContext:self.managedObjectContext];
+    recent.lastUser = [[UserRemoteUtil sharedUtil] convertToUser:dict[PF_RECENT_LASTUSER]];
 }
 
 @end

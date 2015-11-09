@@ -6,16 +6,16 @@
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 #import "Thumbnail+Util.h"
-#import "ThumbnailLocalDataUtility.h"
+#import "ThumbnailLocalDataUtil.h"
 
 #undef LOCAL_DATA_CLASS_TYPE
 #define LOCAL_DATA_CLASS_TYPE Thumbnail
 
-@implementation ThumbnailLocalDataUtility
+@implementation ThumbnailLocalDataUtil
 
-+ (ThumbnailLocalDataUtility *)sharedUtil {
++ (ThumbnailLocalDataUtil *)sharedUtil {
     static dispatch_once_t predicate = 0;
-    static ThumbnailLocalDataUtility *sharedObject;
+    static ThumbnailLocalDataUtil *sharedObject;
     
     dispatch_once(&predicate, ^{
         //initializing singleton object
@@ -50,25 +50,20 @@
     [super setRandomValues:object data:dict];
     
     
-    LOCAL_DATA_CLASS_TYPE * event = (LOCAL_DATA_CLASS_TYPE *)object;
+    LOCAL_DATA_CLASS_TYPE * thumb = (LOCAL_DATA_CLASS_TYPE *)object;
     
-    event.startTime  = dict[PF_EVENT_START_TIME] ;
-    event.endTime  = dict[PF_EVENT_END_TIME] ;
-    event.invitees = dict[PF_EVENT_INVITEES] ;
-    event.isThumbnail = dict[PF_EVENT_IS_THUMBNAIL];
-    event.location  = dict[PF_EVENT_LOCATION];
-    event.notes  = dict[PF_EVENT_NOTES] ;
-    event.title = dict[PF_EVENT_TITLE] ;
-    event.scope  = dict[PF_EVENT_SCOPE] ;
-    event.boardIDs  = dict[PF_EVENT_BOARD_IDS] ;    //array
-    event.votingID  = dict[PF_EVENT_VOTING_ID] ;
-    event.members  = dict[PF_EVENT_MEMBERS] ;
-    event.groupIDs  = dict[PF_EVENT_GROUP_IDS] ;
-    event.isVoting  = dict[PF_EVENT_IS_VOTING] ;
+    thumb.name = dict[PF_THUMBNAIL_NAME];
+    //    PFFile * filePF = remoteObj[PF_THUMBNAIL_FILE];
+    //    thumb.fileName = filePF.name;
+    //    thumb.globalID = remoteObj.objectId;
+    //    thumb.createTime = remoteObj.createdAt;
+    //    thumb.updateTime = remoteObj.updatedAt;
+    thumb.url = dict[PF_THUMBNAIL_URL];
     
-    event.alert = [Thumbnail entityWithID:dict[PF_EVENT_THUMBNAIL] inManagedObjectContext:self.managedObjectContext];
-    event.category = [EventCategory entityWithID:dict[PF_EVENT_CATEGORY] inManagedObjectContext:self.managedObjectContext];
-    event.place = [Place entityWithID:dict[PF_EVENT_PLACE] inManagedObjectContext:self.managedObjectContext];
+    NSDictionary * filePF = dict[PF_THUMBNAIL_FILE];
+    thumb.fileName = filePF[@"name"];
+    thumb.url = filePF[@"url"];
+
 }
 
 @end

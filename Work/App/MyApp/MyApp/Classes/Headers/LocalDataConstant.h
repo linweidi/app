@@ -31,4 +31,7 @@
 
 #define LOCAL_DATA_VIDEO_INDEX 11
 
+#define LOCAL_DATA_EVENT_CATEGORY_INDEX 12
+
+#define LOCAL_DATA_EVENT_VOTING_INDEX 13
 #endif /* LocalDataConstant_h */

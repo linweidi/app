@@ -2,7 +2,7 @@
 //  Place+CoreDataProperties.m
 //  MyApp
 //
-//  Created by Linwei Ding on 11/7/15.
+//  Created by Linwei Ding on 11/8/15.
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -23,7 +23,7 @@
 @dynamic price;
 @dynamic rankings;
 @dynamic tips;
-@dynamic type;
+@dynamic types;
 @dynamic photos;
 @dynamic thumb;
 

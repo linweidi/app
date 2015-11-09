@@ -9,7 +9,7 @@
 #import <CoreData/CoreData.h>
 #import <Foundation/Foundation.h>
 
-@interface BaseLocalDataUtility : NSObject
+@interface BaseLocalDataUtil : NSObject
 
 @property (strong, nonatomic) NSString * className;
 

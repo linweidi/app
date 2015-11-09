@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Item</key>
+	<dict>
+		<key>closeTime</key>
+		<date>2015-11-09T02:07:22Z</date>
+		<key>likes</key>
+		<integer>12</integer>
+		<key>location</key>
+		<string>4066 Loop Rd, San Jose, CA 95555</string>
+		<key>map</key>
+		<string>TODO</string>
+		<key>name</key>
+		<string>Super Restaurant</string>
+		<key>openTime</key>
+		<date>2015-11-09T02:08:06Z</date>
+		<key>parking</key>
+		<integer>1</integer>
+		<key>price</key>
+		<integer>3</integer>
+		<key>rankings</key>
+		<integer>4</integer>
+		<key>tips</key>
+		<string>we have no tips for you</string>
+		<key>types</key>
+		<array>
+			<string>1300</string>
+			<string>1301</string>
+		</array>
+		<key>photos</key>
+		<array/>
+		<key>thumb</key>
+		<string></string>
+	</dict>
+</dict>
+</plist>

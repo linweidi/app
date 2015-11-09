@@ -1,16 +1,16 @@
 //
-//  RecentLocalDataUtility.h
+//  MessageLocalDataUtility.h
 //  MyApp
 //
 //  Created by Linwei Ding on 11/8/15.
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 
-#import "BaseLocalDataUtility.h"
+#import "BaseLocalDataUtil.h"
 
-@interface RecentLocalDataUtility : BaseLocalDataUtility
+@interface MessageLocalDataUtil : BaseLocalDataUtil
 
-+ (RecentLocalDataUtility *)sharedUtil;
++ (MessageLocalDataUtil *)sharedUtil;
 
 - (void) setRandomValues: (id) object data:(NSDictionary *)dict;
 

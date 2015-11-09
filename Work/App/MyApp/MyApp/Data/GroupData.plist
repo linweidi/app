@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Item</key>
+	<dict>
+		<key>members</key>
+		<array>
+			<string>800</string>
+			<string>801</string>
+			<string>802</string>
+			<string>803</string>
+		</array>
+		<key>name</key>
+		<string>friends chat</string>
+	</dict>
+	<key>Item - 2</key>
+	<dict>
+		<key>members</key>
+		<array>
+			<string>800</string>
+			<string>801</string>
+			<string>802</string>
+			<string>803</string>
+			<string>804</string>
+		</array>
+		<key>name</key>
+		<string>2nd friends chat</string>
+	</dict>
+	<key>Item - 3</key>
+	<dict>
+		<key>members</key>
+		<array>
+			<string>800</string>
+			<string>801</string>
+			<string>802</string>
+		</array>
+		<key>name</key>
+		<string>3rd friends chat</string>
+	</dict>
+	<key>Item - 4</key>
+	<dict>
+		<key>members</key>
+		<array>
+			<string>800</string>
+			<string>801</string>
+			<string>802</string>
+			<string>803</string>
+		</array>
+		<key>name</key>
+		<string>4th friends chat</string>
+	</dict>
+</dict>
+</plist>

@@ -10,6 +10,7 @@
 // THE SOFTWARE.
 
 #import <Parse/Parse.h>
+#import "AppHeader.h"
 #import "ProgressHUD.h"
 
 #import "DataModelHeader.h"
@@ -125,7 +126,7 @@
     
     latestRecent = [Recent latestEntity:self.managedObjectContext];
     
-
+#ifdef REMOTE_MODE
     [[RecentRemoteUtil sharedUtil] loadRemoteRecent:latestRecent completionHandler:^(NSArray *objects, NSError *error) {
         if (error == nil) {
             //[recents removeAllObjects];
@@ -141,6 +142,13 @@
         }
         [self.refreshControl endRefreshing];
     }];
+#endif
+    
+#ifdef LOCAL_MODE
+    [self.tableView reloadData];
+    [self updateTabCounter];
+    [self.refreshControl endRefreshing];
+#endif
     
 }
 
@@ -333,7 +341,7 @@
     
     
 	Recent *recent = [self.fetchedResultsController objectAtIndexPath:indexPath];
-
+#ifdef REMOTE_MODE
     [[RecentRemoteUtil sharedUtil] deleteRemoteRecent:recent completionHandler:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             
@@ -344,6 +352,12 @@
             [ProgressHUD showError:@"Network error."];
         }
     }];
+#endif  
+    
+#ifdef LOCAL_MODE
+    [self.managedObjectContext deleteObject:recent];
+    [self updateTabCounter];
+#endif
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	//[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }

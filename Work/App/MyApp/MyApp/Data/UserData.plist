@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Item</key>
+	<dict>
+		<key>email</key>
+		<string>danielsmith@gmail.com</string>
+		<key>emailCopy</key>
+		<string>danielsmith@gmail.com</string>
+		<key>facebookID</key>
+		<string>danielsmith@gmail.com</string>
+		<key>fullname</key>
+		<string>Daniel Smith</string>
+		<key>fullnameLower</key>
+		<string>daniel smith</string>
+		<key>password</key>
+		<string>fdsfdaf</string>
+		<key>twitterID</key>
+		<string>danielsmith@gmail.com</string>
+		<key>username</key>
+		<string>danielsmith@gmail.com</string>
+		<key>picture</key>
+		<string></string>
+		<key>thumbnail</key>
+		<string></string>
+	</dict>
+	<key>Item - 2</key>
+	<dict>
+		<key>email</key>
+		<string>david@gmail.com</string>
+		<key>emailCopy</key>
+		<string>david@gmail.com</string>
+		<key>facebookID</key>
+		<string>david@gmail.com</string>
+		<key>fullname</key>
+		<string>david</string>
+		<key>fullnameLower</key>
+		<string>david</string>
+		<key>password</key>
+		<string>fdsfdaf</string>
+		<key>twitterID</key>
+		<string>david@gmail.com</string>
+		<key>username</key>
+		<string>david@gmail.com</string>
+		<key>picture</key>
+		<string>premium01</string>
+		<key>thumbnail</key>
+		<string>900</string>
+	</dict>
+	<key>Item - 3</key>
+	<dict>
+		<key>email</key>
+		<string>taylorswift@gmail.com</string>
+		<key>emailCopy</key>
+		<string>taylorswift@gmail.com</string>
+		<key>facebookID</key>
+		<string>taylorswift@gmail.com</string>
+		<key>fullname</key>
+		<string>Taylor Swift</string>
+		<key>fullnameLower</key>
+		<string>taylor swift</string>
+		<key>password</key>
+		<string>fdsfdaf</string>
+		<key>twitterID</key>
+		<string>taylorswift@gmail.com</string>
+		<key>username</key>
+		<string>taylorswift@gmail.com</string>
+		<key>picture</key>
+		<string>premium02</string>
+		<key>thumbnail</key>
+		<string>901</string>
+	</dict>
+	<key>Item - 4</key>
+	<dict>
+		<key>email</key>
+		<string>willsmith@gmail.com</string>
+		<key>emailCopy</key>
+		<string>willsmith@gmail.com</string>
+		<key>facebookID</key>
+		<string>willsmith@gmail.com</string>
+		<key>fullname</key>
+		<string>Will Smith</string>
+		<key>fullnameLower</key>
+		<string>will smith</string>
+		<key>password</key>
+		<string>fdsfdaf</string>
+		<key>twitterID</key>
+		<string>willsmith@gmail.com</string>
+		<key>username</key>
+		<string>willsmith@gmail.com</string>
+		<key>picture</key>
+		<string>premium03</string>
+		<key>thumbnail</key>
+		<string>902</string>
+	</dict>
+	<key>Item - 5</key>
+	<dict>
+		<key>email</key>
+		<string>tomhanks@gmail.com</string>
+		<key>emailCopy</key>
+		<string>tomhanks@gmail.com</string>
+		<key>facebookID</key>
+		<string>tomhanks@gmail.com</string>
+		<key>fullname</key>
+		<string>tom hanks</string>
+		<key>fullnameLower</key>
+		<string>tom hanks</string>
+		<key>password</key>
+		<string>fdsfdaf</string>
+		<key>twitterID</key>
+		<string>tomhanks@gmail.com</string>
+		<key>username</key>
+		<string>tomhanks@gmail.com</string>
+		<key>picture</key>
+		<string>premium04</string>
+		<key>thumbnail</key>
+		<string>903</string>
+	</dict>
+</dict>
+</plist>

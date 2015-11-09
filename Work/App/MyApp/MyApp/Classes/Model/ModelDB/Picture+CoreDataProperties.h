@@ -2,7 +2,7 @@
 //  Picture+CoreDataProperties.h
 //  MyApp
 //
-//  Created by Linwei Ding on 11/7/15.
+//  Created by Linwei Ding on 11/8/15.
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -15,13 +15,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Picture (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSData *dataVolatile;
+@property (nullable, nonatomic, retain) NSData *data;
 @property (nullable, nonatomic, retain) NSString *fileName;
 @property (nullable, nonatomic, retain) NSString *name;
 @property (nullable, nonatomic, retain) NSString *url;
-@property (nullable, nonatomic, retain) Message *message;
-@property (nullable, nonatomic, retain) Place *place;
-@property (nullable, nonatomic, retain) User *user;
+@property (nullable, nonatomic, retain) Message *messageInv;
+@property (nullable, nonatomic, retain) Place *placeInv;
+@property (nullable, nonatomic, retain) User *userInv;
 
 @end
 

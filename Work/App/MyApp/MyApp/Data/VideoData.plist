@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Item</key>
+	<dict>
+		<key>fileName</key>
+		<string>video1</string>
+		<key>name</key>
+		<string>video1</string>
+		<key>url</key>
+		<string>video1</string>
+	</dict>
+	<key>Item - 2</key>
+	<dict>
+		<key>fileName</key>
+		<string>video2</string>
+		<key>name</key>
+		<string>video2</string>
+		<key>url</key>
+		<string>video2</string>
+	</dict>
+</dict>
+</plist>

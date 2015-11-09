@@ -6,16 +6,16 @@
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 #import "Picture+Util.h"
-#import "PictureLocalDataUtility.h"
+#import "PictureLocalDataUtil.h"
 
 #undef LOCAL_DATA_CLASS_TYPE
 #define LOCAL_DATA_CLASS_TYPE Picture
 
-@implementation PictureLocalDataUtility
+@implementation PictureLocalDataUtil
 
-+ (PictureLocalDataUtility *)sharedUtil {
++ (PictureLocalDataUtil *)sharedUtil {
     static dispatch_once_t predicate = 0;
-    static PictureLocalDataUtility *sharedObject;
+    static PictureLocalDataUtil *sharedObject;
     
     dispatch_once(&predicate, ^{
         //initializing singleton object
@@ -50,25 +50,15 @@
     [super setRandomValues:object data:dict];
     
     
-    LOCAL_DATA_CLASS_TYPE * event = (LOCAL_DATA_CLASS_TYPE *)object;
+    LOCAL_DATA_CLASS_TYPE * picture = (LOCAL_DATA_CLASS_TYPE *)object;
     
-    event.startTime  = dict[PF_EVENT_START_TIME] ;
-    event.endTime  = dict[PF_EVENT_END_TIME] ;
-    event.invitees = dict[PF_EVENT_INVITEES] ;
-    event.isPicture = dict[PF_EVENT_IS_PICTURE];
-    event.location  = dict[PF_EVENT_LOCATION];
-    event.notes  = dict[PF_EVENT_NOTES] ;
-    event.title = dict[PF_EVENT_TITLE] ;
-    event.scope  = dict[PF_EVENT_SCOPE] ;
-    event.boardIDs  = dict[PF_EVENT_BOARD_IDS] ;    //array
-    event.votingID  = dict[PF_EVENT_VOTING_ID] ;
-    event.members  = dict[PF_EVENT_MEMBERS] ;
-    event.groupIDs  = dict[PF_EVENT_GROUP_IDS] ;
-    event.isVoting  = dict[PF_EVENT_IS_VOTING] ;
+    picture.name = dict[PF_PICTURE_NAME];
+    picture.url = dict[PF_PICTURE_URL];
     
-    event.alert = [Picture entityWithID:dict[PF_EVENT_PICTURE] inManagedObjectContext:self.managedObjectContext];
-    event.category = [EventCategory entityWithID:dict[PF_EVENT_CATEGORY] inManagedObjectContext:self.managedObjectContext];
-    event.place = [Place entityWithID:dict[PF_EVENT_PLACE] inManagedObjectContext:self.managedObjectContext];
+    NSDictionary * filePF = dict[PF_PICTURE_FILE];
+    picture.fileName = filePF[@"name"];
+    picture.url = filePF[@"url"];
+    
 }
 
 @end

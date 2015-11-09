@@ -8,9 +8,9 @@
 
 #import "BaseLocalDataUtility.h"
 
-@interface EventLocalDataUtility : BaseLocalDataUtility
+@interface EventLocalDataUtil : BaseLocalDataUtility
 
-+ (EventLocalDataUtility *)sharedUtil;
++ (EventLocalDataUtil *)sharedUtil;
 
 - (void) setRandomValues: (id) object data:(NSDictionary *)dict;
 

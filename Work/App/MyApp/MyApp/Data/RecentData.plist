@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Item</key>
+	<dict>
+		<key>chatID</key>
+		<string>daniel smith, tom hanks, will smith</string>
+		<key>counter</key>
+		<string>0</string>
+		<key>details</key>
+		<string>daniel smith, will smith, tom hanks</string>
+		<key>fullname</key>
+		<string>this is our chat</string>
+		<key>lastMessage</key>
+		<string>i am fine too</string>
+		<key>members</key>
+		<array>
+			<string>801</string>
+			<string>800</string>
+			<string>802</string>
+		</array>
+		<key>lastUser</key>
+		<string>802</string>
+	</dict>
+	<key>Item - 2</key>
+	<dict>
+		<key>chatID</key>
+		<string>daniel smith, taylor swift, tom hanks</string>
+		<key>counter</key>
+		<string>0</string>
+		<key>details</key>
+		<string>daniel smith, taylor swift, tom hanks</string>
+		<key>fullname</key>
+		<string>this is another our chat</string>
+		<key>lastMessage</key>
+		<string>I am good</string>
+		<key>members</key>
+		<array>
+			<string>801</string>
+			<string>800</string>
+			<string>802</string>
+		</array>
+		<key>lastUser</key>
+		<string>801</string>
+	</dict>
+</dict>
+</plist>

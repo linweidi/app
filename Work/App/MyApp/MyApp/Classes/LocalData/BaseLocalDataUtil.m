@@ -8,12 +8,12 @@
 #import "AppHeader.h"
 #import "ConfigurationManager.h"
 #import "ObjectEntity+Util.h"
-#import "BaseLocalDataUtility.h"
+#import "BaseLocalDataUtil.h"
 
 #undef LOCAL_DATA_CLASS_TYPE
 #define LOCAL_DATA_CLASS_TYPE ObjectEntity
 
-@implementation BaseLocalDataUtility
+@implementation BaseLocalDataUtil
 
 - (NSManagedObjectContext *)managedObjectContext {
     if (!_managedObjectContext) {

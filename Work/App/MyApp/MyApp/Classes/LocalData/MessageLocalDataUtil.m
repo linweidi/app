@@ -6,16 +6,21 @@
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 #import "Message+Util.h"
-#import "MessageLocalDataUtility.h"
+#import "Picture+Util.h"
+#import "Video+Util.h"
+#import "User+Util.h"
+#import "CurrentUser+Util.h"
+#import "ConfigurationManager.h"
+#import "MessageLocalDataUtil.h"
 
 #undef LOCAL_DATA_CLASS_TYPE
 #define LOCAL_DATA_CLASS_TYPE Message
 
-@implementation MessageLocalDataUtility
+@implementation MessageLocalDataUtil
 
-+ (MessageLocalDataUtility *)sharedUtil {
++ (MessageLocalDataUtil *)sharedUtil {
     static dispatch_once_t predicate = 0;
-    static MessageLocalDataUtility *sharedObject;
+    static MessageLocalDataUtil *sharedObject;
     
     dispatch_once(&predicate, ^{
         //initializing singleton object
@@ -50,25 +55,16 @@
     [super setRandomValues:object data:dict];
     
     
-    LOCAL_DATA_CLASS_TYPE * event = (LOCAL_DATA_CLASS_TYPE *)object;
+    LOCAL_DATA_CLASS_TYPE * message = (LOCAL_DATA_CLASS_TYPE *)object;
     
-    event.startTime  = dict[PF_EVENT_START_TIME] ;
-    event.endTime  = dict[PF_EVENT_END_TIME] ;
-    event.invitees = dict[PF_EVENT_INVITEES] ;
-    event.isMessage = dict[PF_EVENT_IS_MESSAGE];
-    event.location  = dict[PF_EVENT_LOCATION];
-    event.notes  = dict[PF_EVENT_NOTES] ;
-    event.title = dict[PF_EVENT_TITLE] ;
-    event.scope  = dict[PF_EVENT_SCOPE] ;
-    event.boardIDs  = dict[PF_EVENT_BOARD_IDS] ;    //array
-    event.votingID  = dict[PF_EVENT_VOTING_ID] ;
-    event.members  = dict[PF_EVENT_MEMBERS] ;
-    event.groupIDs  = dict[PF_EVENT_GROUP_IDS] ;
-    event.isVoting  = dict[PF_EVENT_IS_VOTING] ;
     
-    event.alert = [Message entityWithID:dict[PF_EVENT_MESSAGE] inManagedObjectContext:self.managedObjectContext];
-    event.category = [EventCategory entityWithID:dict[PF_EVENT_CATEGORY] inManagedObjectContext:self.managedObjectContext];
-    event.place = [Place entityWithID:dict[PF_EVENT_PLACE] inManagedObjectContext:self.managedObjectContext];
+    message.chatID = dict[PF_MESSAGE_GROUPID] ;
+    message.text = dict[PF_MESSAGE_TEXT];
+    
+    message.picture = [Picture entityWithID:dict[PF_MESSAGE_PICTURE] inManagedObjectContext:self.managedObjectContext];
+    message.video = [Video entityWithID:dict[PF_MESSAGE_VIDEO] inManagedObjectContext:self.managedObjectContext];
+    
+    message.user = [User entityWithID:dict[PF_MESSAGE_USER] inManagedObjectContext:self.managedObjectContext];
 }
 
 @end

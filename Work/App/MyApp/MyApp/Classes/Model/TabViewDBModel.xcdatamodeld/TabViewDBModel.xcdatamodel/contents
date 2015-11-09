@@ -74,9 +74,9 @@
     <entity name="Message" representedClassName="Message" parentEntity="UserEntity" syncable="YES">
         <attribute name="chatID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="picture" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Picture" inverseName="message" inverseEntity="Picture" syncable="YES"/>
-        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" syncable="YES"/>
-        <relationship name="video" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Video" inverseName="message" inverseEntity="Video" syncable="YES"/>
+        <relationship name="createUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" syncable="YES"/>
+        <relationship name="picture" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Picture" inverseName="messageInv" inverseEntity="Picture" syncable="YES"/>
+        <relationship name="video" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Video" inverseName="messageInv" inverseEntity="Video" syncable="YES"/>
     </entity>
     <entity name="ObjectEntity" representedClassName="ObjectEntity" isAbstract="YES" syncable="YES">
         <attribute name="createTime" optional="YES" attributeType="Date" syncable="YES"/>
@@ -85,33 +85,32 @@
     </entity>
     <entity name="People" representedClassName="People" parentEntity="UserEntity" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="contact" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" syncable="YES"/>
         <relationship name="userVolatile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" syncable="YES"/>
     </entity>
     <entity name="Picture" representedClassName="Picture" parentEntity="UserEntity" syncable="YES">
-        <attribute name="dataVolatile" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="data" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="fileName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="message" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Message" inverseName="picture" inverseEntity="Message" syncable="YES"/>
-        <relationship name="place" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Place" inverseName="photos" inverseEntity="Place" syncable="YES"/>
-        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="picture" inverseEntity="User" syncable="YES"/>
+        <relationship name="messageInv" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Message" inverseName="picture" inverseEntity="Message" syncable="YES"/>
+        <relationship name="placeInv" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Place" inverseName="photos" inverseEntity="Place" syncable="YES"/>
+        <relationship name="userInv" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="picture" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Place" representedClassName="Place" parentEntity="SystemEntity" syncable="YES">
         <attribute name="closeTime" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="likes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="likes" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="map" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="openTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="parking" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="price" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="rankings" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="tips" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Picture" inverseName="place" inverseEntity="Picture" syncable="YES"/>
-        <relationship name="thumb" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Thumbnail" inverseName="place" inverseEntity="Thumbnail" syncable="YES"/>
+        <attribute name="types" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Picture" inverseName="placeInv" inverseEntity="Picture" syncable="YES"/>
+        <relationship name="thumb" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Thumbnail" inverseName="placeInv" inverseEntity="Thumbnail" syncable="YES"/>
     </entity>
     <entity name="Recent" representedClassName="Recent" parentEntity="UserEntity" syncable="YES">
         <attribute name="chatID" optional="YES" attributeType="String" syncable="YES"/>
@@ -132,8 +131,8 @@
         <attribute name="fileName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="place" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Place" inverseName="thumb" inverseEntity="Place" syncable="YES"/>
-        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="thumbnail" inverseEntity="User" syncable="YES"/>
+        <relationship name="placeInv" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Place" inverseName="thumb" inverseEntity="Place" syncable="YES"/>
+        <relationship name="userInv" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="thumbnail" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" parentEntity="UserEntity" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
@@ -144,8 +143,8 @@
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="twitterID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="picture" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Picture" inverseName="user" inverseEntity="Picture" syncable="YES"/>
-        <relationship name="thumbnail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Thumbnail" inverseName="user" inverseEntity="Thumbnail" syncable="YES"/>
+        <relationship name="picture" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Picture" inverseName="userInv" inverseEntity="Picture" syncable="YES"/>
+        <relationship name="thumbnail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Thumbnail" inverseName="userInv" inverseEntity="Thumbnail" syncable="YES"/>
     </entity>
     <entity name="UserEntity" representedClassName="UserEntity" isAbstract="YES" parentEntity="ObjectEntity" syncable="YES"/>
     <entity name="Video" representedClassName="Video" parentEntity="UserEntity" syncable="YES">
@@ -153,7 +152,7 @@
         <attribute name="fileName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="message" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Message" inverseName="video" inverseEntity="Message" syncable="YES"/>
+        <relationship name="messageInv" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Message" inverseName="video" inverseEntity="Message" syncable="YES"/>
     </entity>
     <elements>
         <element name="Alert" positionX="36" positionY="99" width="128" height="90"/>
@@ -167,14 +166,14 @@
         <element name="Group" positionX="-252" positionY="72" width="128" height="90"/>
         <element name="Message" positionX="-369" positionY="-270" width="128" height="120"/>
         <element name="ObjectEntity" positionX="-216" positionY="-63" width="128" height="90"/>
-        <element name="People" positionX="-369" positionY="-270" width="128" height="105"/>
-        <element name="Picture" positionX="-360" positionY="-261" width="128" height="150"/>
+        <element name="People" positionX="-369" positionY="-270" width="128" height="90"/>
+        <element name="Picture" positionX="-360" positionY="-261" width="128" height="30"/>
         <element name="Place" positionX="-90" positionY="72" width="128" height="240"/>
         <element name="Recent" positionX="-567" positionY="-358" width="128" height="165"/>
         <element name="SystemEntity" positionX="-333" positionY="-234" width="128" height="73"/>
-        <element name="Thumbnail" positionX="-351" positionY="-252" width="128" height="135"/>
+        <element name="Thumbnail" positionX="-351" positionY="-252" width="128" height="30"/>
         <element name="User" positionX="-344" positionY="-144" width="128" height="195"/>
         <element name="UserEntity" positionX="-245" positionY="-418" width="128" height="45"/>
-        <element name="Video" positionX="-351" positionY="-252" width="128" height="120"/>
+        <element name="Video" positionX="-351" positionY="-252" width="128" height="30"/>
     </elements>
 </model>

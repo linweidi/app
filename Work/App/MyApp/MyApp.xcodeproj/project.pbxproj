@@ -12,23 +12,34 @@
 		282A27741BCF750D0012332E /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 282A27721BCF750D0012332E /* TestViewController.m */; };
 		282A27751BCF750D0012332E /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 282A27731BCF750D0012332E /* TestViewController.xib */; };
 		282A27781BCF7E290012332E /* CoreDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 282A27771BCF7E290012332E /* CoreDataViewController.m */; };
-		287EC6B41BEF308D009603BA /* BaseLocalDataUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 287EC6B31BEF308D009603BA /* BaseLocalDataUtility.m */; };
-		287EC6B71BEF30AC009603BA /* EventLocalDataUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 287EC6B61BEF30AC009603BA /* EventLocalDataUtility.m */; };
+		287EC6B41BEF308D009603BA /* BaseLocalDataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 287EC6B31BEF308D009603BA /* BaseLocalDataUtil.m */; };
+		287EC6B71BEF30AC009603BA /* EventLocalDataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 287EC6B61BEF30AC009603BA /* EventLocalDataUtil.m */; };
 		2885D2F11BEED9D300E1C930 /* Event+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 2885D2EA1BEED9D300E1C930 /* Event+CoreDataProperties.m */; };
 		2885D2F21BEED9D300E1C930 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 2885D2EC1BEED9D300E1C930 /* Event.m */; };
 		2885D2F31BEED9D300E1C930 /* Group+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 2885D2EE1BEED9D300E1C930 /* Group+CoreDataProperties.m */; };
 		2885D2F41BEED9D300E1C930 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 2885D2F01BEED9D300E1C930 /* Group.m */; };
 		2886E0351BE4AC4900537E34 /* VideoRemoteUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2886E0341BE4AC4900537E34 /* VideoRemoteUtil.m */; };
-		2893CD251BF00B15003DD7E4 /* AlertLocalDataUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2893CD241BF00B15003DD7E4 /* AlertLocalDataUtility.m */; };
-		2893CD281BF00B2D003DD7E4 /* PlaceLocalDataUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2893CD271BF00B2D003DD7E4 /* PlaceLocalDataUtility.m */; };
-		2893CD2B1BF00B3D003DD7E4 /* GroupLocalDataUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2893CD2A1BF00B3D003DD7E4 /* GroupLocalDataUtility.m */; };
-		2893CD2E1BF00B4B003DD7E4 /* MessageLocalDataUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2893CD2D1BF00B4B003DD7E4 /* MessageLocalDataUtility.m */; };
-		2893CD311BF00B7D003DD7E4 /* PeopleLocalDataUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2893CD301BF00B7D003DD7E4 /* PeopleLocalDataUtility.m */; };
-		2893CD341BF00B8F003DD7E4 /* RecentLocalDataUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2893CD331BF00B8F003DD7E4 /* RecentLocalDataUtility.m */; };
-		2893CD371BF00BB0003DD7E4 /* UserLocalDataUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2893CD361BF00BB0003DD7E4 /* UserLocalDataUtility.m */; };
-		2893CD3A1BF00BC5003DD7E4 /* ThumbnailLocalDataUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2893CD391BF00BC5003DD7E4 /* ThumbnailLocalDataUtility.m */; };
-		2893CD3D1BF00BD7003DD7E4 /* PictureLocalDataUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2893CD3C1BF00BD7003DD7E4 /* PictureLocalDataUtility.m */; };
-		2893CD401BF00BE7003DD7E4 /* VideoLocalDataUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2893CD3F1BF00BE7003DD7E4 /* VideoLocalDataUtility.m */; };
+		2893CD251BF00B15003DD7E4 /* AlertLocalDataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2893CD241BF00B15003DD7E4 /* AlertLocalDataUtil.m */; };
+		2893CD281BF00B2D003DD7E4 /* PlaceLocalDataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2893CD271BF00B2D003DD7E4 /* PlaceLocalDataUtil.m */; };
+		2893CD2B1BF00B3D003DD7E4 /* GroupLocalDataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2893CD2A1BF00B3D003DD7E4 /* GroupLocalDataUtil.m */; };
+		2893CD2E1BF00B4B003DD7E4 /* MessageLocalDataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2893CD2D1BF00B4B003DD7E4 /* MessageLocalDataUtil.m */; };
+		2893CD311BF00B7D003DD7E4 /* PeopleLocalDataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2893CD301BF00B7D003DD7E4 /* PeopleLocalDataUtil.m */; };
+		2893CD341BF00B8F003DD7E4 /* RecentLocalDataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2893CD331BF00B8F003DD7E4 /* RecentLocalDataUtil.m */; };
+		2893CD371BF00BB0003DD7E4 /* UserLocalDataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2893CD361BF00BB0003DD7E4 /* UserLocalDataUtil.m */; };
+		2893CD3A1BF00BC5003DD7E4 /* ThumbnailLocalDataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2893CD391BF00BC5003DD7E4 /* ThumbnailLocalDataUtil.m */; };
+		2893CD3D1BF00BD7003DD7E4 /* PictureLocalDataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2893CD3C1BF00BD7003DD7E4 /* PictureLocalDataUtil.m */; };
+		2893CD401BF00BE7003DD7E4 /* VideoLocalDataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2893CD3F1BF00BE7003DD7E4 /* VideoLocalDataUtil.m */; };
+		2893CD481BF01747003DD7E4 /* EventData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2893CD471BF01747003DD7E4 /* EventData.plist */; };
+		2893CD4A1BF02E78003DD7E4 /* AlertData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2893CD491BF02E78003DD7E4 /* AlertData.plist */; };
+		2893CD4C1BF02EBA003DD7E4 /* GroupData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2893CD4B1BF02EBA003DD7E4 /* GroupData.plist */; };
+		2893CD4E1BF02EC8003DD7E4 /* MessageData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2893CD4D1BF02EC8003DD7E4 /* MessageData.plist */; };
+		2893CD501BF02ED6003DD7E4 /* RecentData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2893CD4F1BF02ED6003DD7E4 /* RecentData.plist */; };
+		2893CD521BF02EDE003DD7E4 /* PeopleData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2893CD511BF02EDE003DD7E4 /* PeopleData.plist */; };
+		2893CD541BF02EEA003DD7E4 /* PlaceData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2893CD531BF02EEA003DD7E4 /* PlaceData.plist */; };
+		2893CD561BF02EF5003DD7E4 /* PictureData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2893CD551BF02EF5003DD7E4 /* PictureData.plist */; };
+		2893CD581BF02EFE003DD7E4 /* VideoData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2893CD571BF02EFE003DD7E4 /* VideoData.plist */; };
+		2893CD5A1BF02F09003DD7E4 /* ThumbnailData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2893CD591BF02F09003DD7E4 /* ThumbnailData.plist */; };
+		2893CD5C1BF02F11003DD7E4 /* UserData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2893CD5B1BF02F11003DD7E4 /* UserData.plist */; };
 		28C0C1571BE08CC60069027C /* UserBaseRemoteUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C0C1561BE08CC60069027C /* UserBaseRemoteUtil.m */; };
 		28C0C17C1BE1E5750069027C /* CurrentUser+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C0C1641BE1E5750069027C /* CurrentUser+Util.m */; };
 		28C0C17E1BE1E5750069027C /* EventVoteItem+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C0C1681BE1E5750069027C /* EventVoteItem+Util.m */; };
@@ -519,10 +530,10 @@
 		282A27731BCF750D0012332E /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
 		282A27761BCF7E290012332E /* CoreDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataViewController.h; sourceTree = "<group>"; };
 		282A27771BCF7E290012332E /* CoreDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataViewController.m; sourceTree = "<group>"; };
-		287EC6B21BEF308D009603BA /* BaseLocalDataUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseLocalDataUtility.h; sourceTree = "<group>"; };
-		287EC6B31BEF308D009603BA /* BaseLocalDataUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseLocalDataUtility.m; sourceTree = "<group>"; };
-		287EC6B51BEF30AC009603BA /* EventLocalDataUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventLocalDataUtility.h; sourceTree = "<group>"; };
-		287EC6B61BEF30AC009603BA /* EventLocalDataUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventLocalDataUtility.m; sourceTree = "<group>"; };
+		287EC6B21BEF308D009603BA /* BaseLocalDataUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseLocalDataUtil.h; sourceTree = "<group>"; };
+		287EC6B31BEF308D009603BA /* BaseLocalDataUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseLocalDataUtil.m; sourceTree = "<group>"; };
+		287EC6B51BEF30AC009603BA /* EventLocalDataUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventLocalDataUtil.h; sourceTree = "<group>"; };
+		287EC6B61BEF30AC009603BA /* EventLocalDataUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventLocalDataUtil.m; sourceTree = "<group>"; };
 		2885D2E91BEED9D300E1C930 /* Event+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Event+CoreDataProperties.h"; sourceTree = "<group>"; };
 		2885D2EA1BEED9D300E1C930 /* Event+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Event+CoreDataProperties.m"; sourceTree = "<group>"; };
 		2885D2EB1BEED9D300E1C930 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
@@ -533,31 +544,42 @@
 		2885D2F01BEED9D300E1C930 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
 		2886E0331BE4AC4900537E34 /* VideoRemoteUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoRemoteUtil.h; sourceTree = "<group>"; };
 		2886E0341BE4AC4900537E34 /* VideoRemoteUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoRemoteUtil.m; sourceTree = "<group>"; };
-		2893CD231BF00B15003DD7E4 /* AlertLocalDataUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertLocalDataUtility.h; sourceTree = "<group>"; };
-		2893CD241BF00B15003DD7E4 /* AlertLocalDataUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertLocalDataUtility.m; sourceTree = "<group>"; };
-		2893CD261BF00B2D003DD7E4 /* PlaceLocalDataUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceLocalDataUtility.h; sourceTree = "<group>"; };
-		2893CD271BF00B2D003DD7E4 /* PlaceLocalDataUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceLocalDataUtility.m; sourceTree = "<group>"; };
-		2893CD291BF00B3D003DD7E4 /* GroupLocalDataUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupLocalDataUtility.h; sourceTree = "<group>"; };
-		2893CD2A1BF00B3D003DD7E4 /* GroupLocalDataUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupLocalDataUtility.m; sourceTree = "<group>"; };
-		2893CD2C1BF00B4B003DD7E4 /* MessageLocalDataUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageLocalDataUtility.h; sourceTree = "<group>"; };
-		2893CD2D1BF00B4B003DD7E4 /* MessageLocalDataUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageLocalDataUtility.m; sourceTree = "<group>"; };
-		2893CD2F1BF00B7D003DD7E4 /* PeopleLocalDataUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleLocalDataUtility.h; sourceTree = "<group>"; };
-		2893CD301BF00B7D003DD7E4 /* PeopleLocalDataUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleLocalDataUtility.m; sourceTree = "<group>"; };
-		2893CD321BF00B8F003DD7E4 /* RecentLocalDataUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentLocalDataUtility.h; sourceTree = "<group>"; };
-		2893CD331BF00B8F003DD7E4 /* RecentLocalDataUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentLocalDataUtility.m; sourceTree = "<group>"; };
-		2893CD351BF00BB0003DD7E4 /* UserLocalDataUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocalDataUtility.h; sourceTree = "<group>"; };
-		2893CD361BF00BB0003DD7E4 /* UserLocalDataUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocalDataUtility.m; sourceTree = "<group>"; };
-		2893CD381BF00BC5003DD7E4 /* ThumbnailLocalDataUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumbnailLocalDataUtility.h; sourceTree = "<group>"; };
-		2893CD391BF00BC5003DD7E4 /* ThumbnailLocalDataUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumbnailLocalDataUtility.m; sourceTree = "<group>"; };
-		2893CD3B1BF00BD7003DD7E4 /* PictureLocalDataUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureLocalDataUtility.h; sourceTree = "<group>"; };
-		2893CD3C1BF00BD7003DD7E4 /* PictureLocalDataUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureLocalDataUtility.m; sourceTree = "<group>"; };
-		2893CD3E1BF00BE7003DD7E4 /* VideoLocalDataUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoLocalDataUtility.h; sourceTree = "<group>"; };
-		2893CD3F1BF00BE7003DD7E4 /* VideoLocalDataUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoLocalDataUtility.m; sourceTree = "<group>"; };
+		2893CD231BF00B15003DD7E4 /* AlertLocalDataUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertLocalDataUtil.h; sourceTree = "<group>"; };
+		2893CD241BF00B15003DD7E4 /* AlertLocalDataUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertLocalDataUtil.m; sourceTree = "<group>"; };
+		2893CD261BF00B2D003DD7E4 /* PlaceLocalDataUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceLocalDataUtil.h; sourceTree = "<group>"; };
+		2893CD271BF00B2D003DD7E4 /* PlaceLocalDataUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceLocalDataUtil.m; sourceTree = "<group>"; };
+		2893CD291BF00B3D003DD7E4 /* GroupLocalDataUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupLocalDataUtil.h; sourceTree = "<group>"; };
+		2893CD2A1BF00B3D003DD7E4 /* GroupLocalDataUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupLocalDataUtil.m; sourceTree = "<group>"; };
+		2893CD2C1BF00B4B003DD7E4 /* MessageLocalDataUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageLocalDataUtil.h; sourceTree = "<group>"; };
+		2893CD2D1BF00B4B003DD7E4 /* MessageLocalDataUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageLocalDataUtil.m; sourceTree = "<group>"; };
+		2893CD2F1BF00B7D003DD7E4 /* PeopleLocalDataUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleLocalDataUtil.h; sourceTree = "<group>"; };
+		2893CD301BF00B7D003DD7E4 /* PeopleLocalDataUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleLocalDataUtil.m; sourceTree = "<group>"; };
+		2893CD321BF00B8F003DD7E4 /* RecentLocalDataUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentLocalDataUtil.h; sourceTree = "<group>"; };
+		2893CD331BF00B8F003DD7E4 /* RecentLocalDataUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentLocalDataUtil.m; sourceTree = "<group>"; };
+		2893CD351BF00BB0003DD7E4 /* UserLocalDataUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocalDataUtil.h; sourceTree = "<group>"; };
+		2893CD361BF00BB0003DD7E4 /* UserLocalDataUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocalDataUtil.m; sourceTree = "<group>"; };
+		2893CD381BF00BC5003DD7E4 /* ThumbnailLocalDataUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumbnailLocalDataUtil.h; sourceTree = "<group>"; };
+		2893CD391BF00BC5003DD7E4 /* ThumbnailLocalDataUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumbnailLocalDataUtil.m; sourceTree = "<group>"; };
+		2893CD3B1BF00BD7003DD7E4 /* PictureLocalDataUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureLocalDataUtil.h; sourceTree = "<group>"; };
+		2893CD3C1BF00BD7003DD7E4 /* PictureLocalDataUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureLocalDataUtil.m; sourceTree = "<group>"; };
+		2893CD3E1BF00BE7003DD7E4 /* VideoLocalDataUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoLocalDataUtil.h; sourceTree = "<group>"; };
+		2893CD3F1BF00BE7003DD7E4 /* VideoLocalDataUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoLocalDataUtil.m; sourceTree = "<group>"; };
 		2893CD421BF00E30003DD7E4 /* AppConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConstant.h; sourceTree = "<group>"; };
 		2893CD431BF00E30003DD7E4 /* AppHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppHeader.h; sourceTree = "<group>"; };
 		2893CD441BF00E30003DD7E4 /* RemoteHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteHeader.h; sourceTree = "<group>"; };
 		2893CD451BF00E30003DD7E4 /* TypeHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeHeader.h; sourceTree = "<group>"; };
 		2893CD461BF00E73003DD7E4 /* LocalDataConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalDataConstant.h; sourceTree = "<group>"; };
+		2893CD471BF01747003DD7E4 /* EventData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EventData.plist; sourceTree = "<group>"; };
+		2893CD491BF02E78003DD7E4 /* AlertData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AlertData.plist; sourceTree = "<group>"; };
+		2893CD4B1BF02EBA003DD7E4 /* GroupData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = GroupData.plist; sourceTree = "<group>"; };
+		2893CD4D1BF02EC8003DD7E4 /* MessageData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MessageData.plist; sourceTree = "<group>"; };
+		2893CD4F1BF02ED6003DD7E4 /* RecentData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RecentData.plist; sourceTree = "<group>"; };
+		2893CD511BF02EDE003DD7E4 /* PeopleData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PeopleData.plist; sourceTree = "<group>"; };
+		2893CD531BF02EEA003DD7E4 /* PlaceData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PlaceData.plist; sourceTree = "<group>"; };
+		2893CD551BF02EF5003DD7E4 /* PictureData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PictureData.plist; sourceTree = "<group>"; };
+		2893CD571BF02EFE003DD7E4 /* VideoData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = VideoData.plist; sourceTree = "<group>"; };
+		2893CD591BF02F09003DD7E4 /* ThumbnailData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ThumbnailData.plist; sourceTree = "<group>"; };
+		2893CD5B1BF02F11003DD7E4 /* UserData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserData.plist; sourceTree = "<group>"; };
 		28C0C1551BE08CC60069027C /* UserBaseRemoteUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserBaseRemoteUtil.h; sourceTree = "<group>"; };
 		28C0C1561BE08CC60069027C /* UserBaseRemoteUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserBaseRemoteUtil.m; sourceTree = "<group>"; };
 		28C0C1611BE1E5750069027C /* Alert+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Alert+Util.h"; sourceTree = "<group>"; };
@@ -1052,7 +1074,6 @@
 		E51D86991BB1CC1700470170 /* MSSlidingPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSSlidingPanelController.m; sourceTree = "<group>"; };
 		E51D869A1BB1CC1700470170 /* MSViewControllerSlidingPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSViewControllerSlidingPanel.h; sourceTree = "<group>"; };
 		E51D869B1BB1CC1700470170 /* MSViewControllerSlidingPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSViewControllerSlidingPanel.m; sourceTree = "<group>"; };
-		E51D869D1BB1CC1700470170 /* AppConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConstant.h; sourceTree = "<group>"; };
 		E51D869E1BB1CC1700470170 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E51D869F1BB1CC1700470170 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E51D86A21BB1CC1700470170 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
@@ -1277,7 +1298,6 @@
 		E51D895C1BB1D32900470170 /* TabTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabTableViewController.xib; sourceTree = "<group>"; };
 		E51D895F1BB1F41500470170 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
 		E51D89601BB1F41500470170 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
-		E523F0ED1BBC544C00328565 /* AppHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppHeader.h; sourceTree = "<group>"; };
 		E523F1411BBD2C8300328565 /* ThumbnailManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumbnailManager.h; sourceTree = "<group>"; };
 		E523F1421BBD2C8300328565 /* ThumbnailManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumbnailManager.m; sourceTree = "<group>"; };
 		E523F1431BBD2C8300328565 /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
@@ -1375,30 +1395,30 @@
 		287EC6B11BEF300A009603BA /* LocalData */ = {
 			isa = PBXGroup;
 			children = (
-				287EC6B21BEF308D009603BA /* BaseLocalDataUtility.h */,
-				287EC6B31BEF308D009603BA /* BaseLocalDataUtility.m */,
-				287EC6B51BEF30AC009603BA /* EventLocalDataUtility.h */,
-				287EC6B61BEF30AC009603BA /* EventLocalDataUtility.m */,
-				2893CD231BF00B15003DD7E4 /* AlertLocalDataUtility.h */,
-				2893CD241BF00B15003DD7E4 /* AlertLocalDataUtility.m */,
-				2893CD261BF00B2D003DD7E4 /* PlaceLocalDataUtility.h */,
-				2893CD271BF00B2D003DD7E4 /* PlaceLocalDataUtility.m */,
-				2893CD291BF00B3D003DD7E4 /* GroupLocalDataUtility.h */,
-				2893CD2A1BF00B3D003DD7E4 /* GroupLocalDataUtility.m */,
-				2893CD2C1BF00B4B003DD7E4 /* MessageLocalDataUtility.h */,
-				2893CD2D1BF00B4B003DD7E4 /* MessageLocalDataUtility.m */,
-				2893CD2F1BF00B7D003DD7E4 /* PeopleLocalDataUtility.h */,
-				2893CD301BF00B7D003DD7E4 /* PeopleLocalDataUtility.m */,
-				2893CD321BF00B8F003DD7E4 /* RecentLocalDataUtility.h */,
-				2893CD331BF00B8F003DD7E4 /* RecentLocalDataUtility.m */,
-				2893CD351BF00BB0003DD7E4 /* UserLocalDataUtility.h */,
-				2893CD361BF00BB0003DD7E4 /* UserLocalDataUtility.m */,
-				2893CD381BF00BC5003DD7E4 /* ThumbnailLocalDataUtility.h */,
-				2893CD391BF00BC5003DD7E4 /* ThumbnailLocalDataUtility.m */,
-				2893CD3B1BF00BD7003DD7E4 /* PictureLocalDataUtility.h */,
-				2893CD3C1BF00BD7003DD7E4 /* PictureLocalDataUtility.m */,
-				2893CD3E1BF00BE7003DD7E4 /* VideoLocalDataUtility.h */,
-				2893CD3F1BF00BE7003DD7E4 /* VideoLocalDataUtility.m */,
+				287EC6B21BEF308D009603BA /* BaseLocalDataUtil.h */,
+				287EC6B31BEF308D009603BA /* BaseLocalDataUtil.m */,
+				287EC6B51BEF30AC009603BA /* EventLocalDataUtil.h */,
+				287EC6B61BEF30AC009603BA /* EventLocalDataUtil.m */,
+				2893CD231BF00B15003DD7E4 /* AlertLocalDataUtil.h */,
+				2893CD241BF00B15003DD7E4 /* AlertLocalDataUtil.m */,
+				2893CD261BF00B2D003DD7E4 /* PlaceLocalDataUtil.h */,
+				2893CD271BF00B2D003DD7E4 /* PlaceLocalDataUtil.m */,
+				2893CD291BF00B3D003DD7E4 /* GroupLocalDataUtil.h */,
+				2893CD2A1BF00B3D003DD7E4 /* GroupLocalDataUtil.m */,
+				2893CD2C1BF00B4B003DD7E4 /* MessageLocalDataUtil.h */,
+				2893CD2D1BF00B4B003DD7E4 /* MessageLocalDataUtil.m */,
+				2893CD2F1BF00B7D003DD7E4 /* PeopleLocalDataUtil.h */,
+				2893CD301BF00B7D003DD7E4 /* PeopleLocalDataUtil.m */,
+				2893CD321BF00B8F003DD7E4 /* RecentLocalDataUtil.h */,
+				2893CD331BF00B8F003DD7E4 /* RecentLocalDataUtil.m */,
+				2893CD351BF00BB0003DD7E4 /* UserLocalDataUtil.h */,
+				2893CD361BF00BB0003DD7E4 /* UserLocalDataUtil.m */,
+				2893CD381BF00BC5003DD7E4 /* ThumbnailLocalDataUtil.h */,
+				2893CD391BF00BC5003DD7E4 /* ThumbnailLocalDataUtil.m */,
+				2893CD3B1BF00BD7003DD7E4 /* PictureLocalDataUtil.h */,
+				2893CD3C1BF00BD7003DD7E4 /* PictureLocalDataUtil.m */,
+				2893CD3E1BF00BE7003DD7E4 /* VideoLocalDataUtil.h */,
+				2893CD3F1BF00BE7003DD7E4 /* VideoLocalDataUtil.m */,
 			);
 			path = LocalData;
 			sourceTree = "<group>";
@@ -2198,10 +2218,8 @@
 		E51D869C1BB1CC1700470170 /* app */ = {
 			isa = PBXGroup;
 			children = (
-				E51D869D1BB1CC1700470170 /* AppConstant.h */,
 				E51D869E1BB1CC1700470170 /* AppDelegate.h */,
 				E51D869F1BB1CC1700470170 /* AppDelegate.m */,
-				E523F0ED1BBC544C00328565 /* AppHeader.h */,
 			);
 			name = app;
 			path = MyApp/app;
@@ -2558,6 +2576,17 @@
 			children = (
 				E51D87441BB1CC1700470170 /* Feedbacks.plist */,
 				E51D87451BB1CC1700470170 /* MenuItems.plist */,
+				2893CD5B1BF02F11003DD7E4 /* UserData.plist */,
+				2893CD591BF02F09003DD7E4 /* ThumbnailData.plist */,
+				2893CD551BF02EF5003DD7E4 /* PictureData.plist */,
+				2893CD571BF02EFE003DD7E4 /* VideoData.plist */,
+				2893CD491BF02E78003DD7E4 /* AlertData.plist */,
+				2893CD4B1BF02EBA003DD7E4 /* GroupData.plist */,
+				2893CD471BF01747003DD7E4 /* EventData.plist */,
+				2893CD4F1BF02ED6003DD7E4 /* RecentData.plist */,
+				2893CD4D1BF02EC8003DD7E4 /* MessageData.plist */,
+				2893CD511BF02EDE003DD7E4 /* PeopleData.plist */,
+				2893CD531BF02EEA003DD7E4 /* PlaceData.plist */,
 			);
 			name = Data;
 			path = MyApp/Data;
@@ -3004,6 +3033,7 @@
 				E51D87D91BB1CC1800470170 /* class_flurry_ads-members.html in Resources */,
 				E51D87D11BB1CC1800470170 /* _flurry_8h_source.html in Resources */,
 				E51D88651BB1CC1800470170 /* PLCrashReporter-LICENSE.rtf in Resources */,
+				2893CD4A1BF02E78003DD7E4 /* AlertData.plist in Resources */,
 				E51D88961BB1CC1800470170 /* Info.plist in Resources */,
 				E51D89331BB1CC1800470170 /* photo_item1.png in Resources */,
 				E51D88491BB1CC1800470170 /* nomatches.html in Resources */,
@@ -3066,11 +3096,13 @@
 				E51D88531BB1CC1800470170 /* tab_a.png in Resources */,
 				E51D87FA1BB1CC1800470170 /* ftv2pnode.png in Resources */,
 				E51D89441BB1CC1800470170 /* restoraunt_photo@3x.png in Resources */,
+				2893CD501BF02ED6003DD7E4 /* RecentData.plist in Resources */,
 				E51D88021BB1CC1800470170 /* interface_flurry.html in Resources */,
 				E51D883A1BB1CC1800470170 /* functions_67.html in Resources */,
 				E51D88D91BB1CC1800470170 /* FacebookFriendsView.xib in Resources */,
 				E51D87F11BB1CC1800470170 /* ftv2folderopen.png in Resources */,
 				E51D89291BB1CC1800470170 /* logo_menu@3x.png in Resources */,
+				2893CD4C1BF02EBA003DD7E4 /* GroupData.plist in Resources */,
 				E51D88051BB1CC1800470170 /* nav_f.png in Resources */,
 				E51D89561BB1CC1800470170 /* tab_settings@2x.png in Resources */,
 				E550EC201BCC7EF200C37FA1 /* CustomViewController.xib in Resources */,
@@ -3152,8 +3184,10 @@
 				E51D89001BB1CC1800470170 /* premium01@2x.png in Resources */,
 				E51D88A21BB1CC1800470170 /* ProfileView.xib in Resources */,
 				E51D88C71BB1CC1800470170 /* GroupsView.xib in Resources */,
+				2893CD481BF01747003DD7E4 /* EventData.plist in Resources */,
 				E51D89051BB1CC1800470170 /* premium06@2x.png in Resources */,
 				E51D894C1BB1CC1800470170 /* star_unchosen@2x.png in Resources */,
+				2893CD5A1BF02F09003DD7E4 /* ThumbnailData.plist in Resources */,
 				E51D88CD1BB1CC1800470170 /* PrivacyView.xib in Resources */,
 				E51D89091BB1CC1800470170 /* premium10@2x.png in Resources */,
 				E51D87EC1BB1CC1800470170 /* flurry_logo.png in Resources */,
@@ -3180,6 +3214,7 @@
 				E550EC0F1BCC7EB200C37FA1 /* CalendarViewController.xib in Resources */,
 				E51D87DF1BB1CC1800470170 /* dir_191bbc312b17524397d6a9dc5f56d69f.html in Resources */,
 				E51D89361BB1CC1800470170 /* photo_item2.png in Resources */,
+				2893CD561BF02EF5003DD7E4 /* PictureData.plist in Resources */,
 				E51D89151BB1CC1800470170 /* chosen_menu_item.png in Resources */,
 				E51D89221BB1CC1800470170 /* location@2x.png in Resources */,
 				28D85ECA1BD84B0200A48E87 /* EntityUtilTemplate.mh in Resources */,
@@ -3187,6 +3222,7 @@
 				E51D87ED1BB1CC1800470170 /* ftv2blank.png in Resources */,
 				E51D89501BB1CC1800470170 /* tick_box@3x.png in Resources */,
 				E51D89511BB1CC1800470170 /* settings_blank@2x.png in Resources */,
+				2893CD541BF02EEA003DD7E4 /* PlaceData.plist in Resources */,
 				E550EC241BCC7EF200C37FA1 /* VerticalViewController.xib in Resources */,
 				E51D87DC1BB1CC1800470170 /* deprecated.html in Resources */,
 				E51D89201BB1CC1800470170 /* fork@3x.png in Resources */,
@@ -3203,17 +3239,21 @@
 				E51D88901BB1CC1800470170 /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
 				E51D88D11BB1CC1800470170 /* SettingsView.xib in Resources */,
 				E51D87E31BB1CC1800470170 /* dir_ceb295545057469c14fd8838e824ee91.html in Resources */,
+				2893CD5C1BF02F11003DD7E4 /* UserData.plist in Resources */,
 				E51D88511BB1CC1800470170 /* sync_off.png in Resources */,
 				E51D895D1BB1D32900470170 /* TabTableViewController.xib in Resources */,
+				2893CD581BF02EFE003DD7E4 /* VideoData.plist in Resources */,
 				E51D883E1BB1CC1800470170 /* functions_6c.html in Resources */,
 				E51D87DA1BB1CC1800470170 /* classes.html in Resources */,
 				E51D88611BB1CC1800470170 /* Flurry RTB Marketplace TOS.pdf in Resources */,
+				2893CD521BF02EDE003DD7E4 /* PeopleData.plist in Resources */,
 				E51D885A1BB1CC1800470170 /* FlurryiOSAdvertisingREADMEv5.4.0.pdf in Resources */,
 				E51D88EB1BB1CC1800470170 /* Feedbacks.plist in Resources */,
 				E51D880E1BB1CC1800470170 /* protocol_flurry_ad_delegate-p.html in Resources */,
 				E51D87F41BB1CC1800470170 /* ftv2mlastnode.png in Resources */,
 				E51D88FC1BB1CC1800470170 /* chat_location@2x.png in Resources */,
 				E51D89401BB1CC1800470170 /* reservation@2x.png in Resources */,
+				2893CD4E1BF02EC8003DD7E4 /* MessageData.plist in Resources */,
 				E51D89141BB1CC1800470170 /* background@3x.png in Resources */,
 				E51D88571BB1CC1800470170 /* tabs.css in Resources */,
 				E51D88C51BB1CC1800470170 /* GroupSettingsView.xib in Resources */,
@@ -3260,14 +3300,14 @@
 				28EECB341BCCD3E90001654E /* JTCalendarMenuView.m in Sources */,
 				28D85ECD1BD84B0200A48E87 /* Event+Util.m in Sources */,
 				28C0C1801BE1E5750069027C /* Group+Util.m in Sources */,
-				287EC6B41BEF308D009603BA /* BaseLocalDataUtility.m in Sources */,
+				287EC6B41BEF308D009603BA /* BaseLocalDataUtil.m in Sources */,
 				28EECB351BCCD3E90001654E /* JTCalendarPageView.m in Sources */,
 				28D85F6D1BD95FCA00A48E87 /* ThumbnailRemoteUtil.m in Sources */,
 				28EECB361BCCD3E90001654E /* JTCalendarWeekDayView.m in Sources */,
 				28EECB371BCCD3E90001654E /* JTCalendarWeekView.m in Sources */,
 				28EECB381BCCD3E90001654E /* JTHorizontalCalendarView.m in Sources */,
 				28EECB391BCCD3E90001654E /* JTVerticalCalendarView.m in Sources */,
-				2893CD2E1BF00B4B003DD7E4 /* MessageLocalDataUtility.m in Sources */,
+				2893CD2E1BF00B4B003DD7E4 /* MessageLocalDataUtil.m in Sources */,
 				28EECB3A1BCCD3E90001654E /* AFHTTPRequestOperation.m in Sources */,
 				28EECB3B1BCCD3E90001654E /* AFHTTPRequestOperationManager.m in Sources */,
 				28C0C17E1BE1E5750069027C /* EventVoteItem+Util.m in Sources */,
@@ -3294,7 +3334,7 @@
 				28EECB4B1BCCD3E90001654E /* Appirater.m in Sources */,
 				28EECB4C1BCCD3E90001654E /* IDMPhoto.m in Sources */,
 				28EECB4D1BCCD3E90001654E /* IDMPhotoBrowser.m in Sources */,
-				2893CD2B1BF00B3D003DD7E4 /* GroupLocalDataUtility.m in Sources */,
+				2893CD2B1BF00B3D003DD7E4 /* GroupLocalDataUtil.m in Sources */,
 				28C0C1841BE1E5750069027C /* Picture+Util.m in Sources */,
 				28FB5C4C1BE43A62002819FC /* EventVoting+CoreDataProperties.m in Sources */,
 				28D85EB21BD84B0200A48E87 /* Feedback.m in Sources */,
@@ -3304,7 +3344,7 @@
 				28EECB501BCCD3E90001654E /* IDMZoomingScrollView.m in Sources */,
 				28EECB511BCCD3E90001654E /* JSQSystemSoundPlayer+JSQMessages.m in Sources */,
 				28D85F111BD84B5B00A48E87 /* MessageRemoteUtil.m in Sources */,
-				2893CD3A1BF00BC5003DD7E4 /* ThumbnailLocalDataUtility.m in Sources */,
+				2893CD3A1BF00BC5003DD7E4 /* ThumbnailLocalDataUtil.m in Sources */,
 				28EECB521BCCD3E90001654E /* NSBundle+JSQMessages.m in Sources */,
 				28EECB531BCCD3E90001654E /* NSString+JSQMessages.m in Sources */,
 				28EECB541BCCD3E90001654E /* UIColor+JSQMessages.m in Sources */,
@@ -3337,7 +3377,7 @@
 				28D85ED31BD84B0200A48E87 /* Recent+Util.m in Sources */,
 				28FB5C571BE43A62002819FC /* Recent.m in Sources */,
 				28EECB681BCCD3E90001654E /* JSQVideoMediaItem.m in Sources */,
-				2893CD311BF00B7D003DD7E4 /* PeopleLocalDataUtility.m in Sources */,
+				2893CD311BF00B7D003DD7E4 /* PeopleLocalDataUtil.m in Sources */,
 				28EECB691BCCD3E90001654E /* JSQMessagesCellTextView.m in Sources */,
 				2885D2F21BEED9D300E1C930 /* Event.m in Sources */,
 				28EECB6A1BCCD3E90001654E /* JSQMessagesCollectionView.m in Sources */,
@@ -3352,7 +3392,7 @@
 				28EECB711BCCD3E90001654E /* JSQMessagesLoadEarlierHeaderView.m in Sources */,
 				28EECB721BCCD3E90001654E /* JSQMessagesMediaPlaceholderView.m in Sources */,
 				28C0C17F1BE1E5750069027C /* EventVoting+Util.m in Sources */,
-				2893CD3D1BF00BD7003DD7E4 /* PictureLocalDataUtility.m in Sources */,
+				2893CD3D1BF00BD7003DD7E4 /* PictureLocalDataUtil.m in Sources */,
 				28EECB731BCCD3E90001654E /* JSQMessagesToolbarContentView.m in Sources */,
 				28FB5C541BE43A62002819FC /* People+CoreDataProperties.m in Sources */,
 				28FB5C1D1BE43A46002819FC /* SystemEntity.m in Sources */,
@@ -3369,10 +3409,10 @@
 				28FB5C561BE43A62002819FC /* Recent+CoreDataProperties.m in Sources */,
 				28EECB7A1BCCD3E90001654E /* MSViewControllerSlidingPanel.m in Sources */,
 				28EECB7B1BCCD3E90001654E /* AppDelegate.m in Sources */,
-				2893CD401BF00BE7003DD7E4 /* VideoLocalDataUtility.m in Sources */,
+				2893CD401BF00BE7003DD7E4 /* VideoLocalDataUtil.m in Sources */,
 				28EECB7D1BCCD3E90001654E /* CoreDataTableViewController.m in Sources */,
 				28EECB7E1BCCD3E90001654E /* FeedbacksManager.m in Sources */,
-				2893CD251BF00B15003DD7E4 /* AlertLocalDataUtility.m in Sources */,
+				2893CD251BF00B15003DD7E4 /* AlertLocalDataUtil.m in Sources */,
 				28D85F0D1BD84B5B00A48E87 /* AlertRemoteUtil.m in Sources */,
 				28EECB7F1BCCD3E90001654E /* KeyboardListener.m in Sources */,
 				28EECB801BCCD3E90001654E /* MenuItemsManager.m in Sources */,
@@ -3387,7 +3427,7 @@
 				28EECB841BCCD3E90001654E /* MakeReservationTableViewCell.m in Sources */,
 				28FB5C171BE43A46002819FC /* Thumbnail.m in Sources */,
 				28EECB851BCCD3E90001654E /* MenuItemTableViewCell.m in Sources */,
-				287EC6B71BEF30AC009603BA /* EventLocalDataUtility.m in Sources */,
+				287EC6B71BEF30AC009603BA /* EventLocalDataUtil.m in Sources */,
 				28EECB861BCCD3E90001654E /* MenuTableViewCell.m in Sources */,
 				28D85F131BD84B5B00A48E87 /* PFUser+Util.m in Sources */,
 				28EECB871BCCD3E90001654E /* NumberOfGuestsTableViewCell.m in Sources */,
@@ -3411,7 +3451,7 @@
 				28FB5C5A1BE43A62002819FC /* Board+CoreDataProperties.m in Sources */,
 				28FB5C4E1BE43A62002819FC /* EventVoteItem+CoreDataProperties.m in Sources */,
 				28EECBAD1BCCD3E90001654E /* ProfileView.m in Sources */,
-				2893CD281BF00B2D003DD7E4 /* PlaceLocalDataUtility.m in Sources */,
+				2893CD281BF00B2D003DD7E4 /* PlaceLocalDataUtil.m in Sources */,
 				28C0C1571BE08CC60069027C /* UserBaseRemoteUtil.m in Sources */,
 				28EECBAE1BCCD3E90001654E /* ChatView.m in Sources */,
 				28EECBAF1BCCD3E90001654E /* PhotoMediaItem.m in Sources */,
@@ -3460,11 +3500,11 @@
 				28EECBC81BCCD3EA0001654E /* ThumbnailManager.m in Sources */,
 				28EECBC91BCCD3EA0001654E /* UserManager.m in Sources */,
 				28EECBD31BCCD3EA0001654E /* camera.m in Sources */,
-				2893CD371BF00BB0003DD7E4 /* UserLocalDataUtility.m in Sources */,
+				2893CD371BF00BB0003DD7E4 /* UserLocalDataUtil.m in Sources */,
 				28EECBD41BCCD3EA0001654E /* common.m in Sources */,
 				28D85F291BD8A4B100A48E87 /* BaseRemoteUtil.m in Sources */,
 				28FB5C191BE43A46002819FC /* Message.m in Sources */,
-				2893CD341BF00B8F003DD7E4 /* RecentLocalDataUtility.m in Sources */,
+				2893CD341BF00B8F003DD7E4 /* RecentLocalDataUtil.m in Sources */,
 				28EECBD51BCCD3EA0001654E /* converter.m in Sources */,
 				28EECBD61BCCD3EA0001654E /* fileutil.m in Sources */,
 				28EECBD71BCCD3EA0001654E /* image.m in Sources */,

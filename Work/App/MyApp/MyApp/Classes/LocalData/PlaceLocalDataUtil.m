@@ -6,16 +6,18 @@
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 #import "Place+Util.h"
-#import "PlaceLocalDataUtility.h"
+#import "Picture+Util.h"
+#import "Thumbnail+Util.h"
+#import "PlaceLocalDataUtil.h"
 
 #undef LOCAL_DATA_CLASS_TYPE
 #define LOCAL_DATA_CLASS_TYPE Place
 
-@implementation PlaceLocalDataUtility
+@implementation PlaceLocalDataUtil
 
-+ (PlaceLocalDataUtility *)sharedUtil {
++ (PlaceLocalDataUtil *)sharedUtil {
     static dispatch_once_t predicate = 0;
-    static PlaceLocalDataUtility *sharedObject;
+    static PlaceLocalDataUtil *sharedObject;
     
     dispatch_once(&predicate, ^{
         //initializing singleton object
@@ -50,25 +52,27 @@
     [super setRandomValues:object data:dict];
     
     
-    LOCAL_DATA_CLASS_TYPE * event = (LOCAL_DATA_CLASS_TYPE *)object;
+    LOCAL_DATA_CLASS_TYPE * place = (LOCAL_DATA_CLASS_TYPE *)object;
     
-    event.startTime  = dict[PF_EVENT_START_TIME] ;
-    event.endTime  = dict[PF_EVENT_END_TIME] ;
-    event.invitees = dict[PF_EVENT_INVITEES] ;
-    event.isPlace = dict[PF_EVENT_IS_PLACE];
-    event.location  = dict[PF_EVENT_LOCATION];
-    event.notes  = dict[PF_EVENT_NOTES] ;
-    event.title = dict[PF_EVENT_TITLE] ;
-    event.scope  = dict[PF_EVENT_SCOPE] ;
-    event.boardIDs  = dict[PF_EVENT_BOARD_IDS] ;    //array
-    event.votingID  = dict[PF_EVENT_VOTING_ID] ;
-    event.members  = dict[PF_EVENT_MEMBERS] ;
-    event.groupIDs  = dict[PF_EVENT_GROUP_IDS] ;
-    event.isVoting  = dict[PF_EVENT_IS_VOTING] ;
+    place.closeTime = dict[PF_PLACE_CLOSE_TIME];
+    place.likes = dict[PF_PLACE_LIKES];
+    place.location = dict[PF_PLACE_LOCATION];
+    place.map = dict[PF_PLACE_MAP];
+    place.name = dict[PF_PLACE_NAME];
+    place.openTime = dict[PF_PLACE_OPEN_TIME];
+    place.parking = dict[PF_PLACE_PARKING];
+    place.price = dict[PF_PLACE_PRICE];
+    place.rankings = dict[PF_PLACE_RANKINGS];
+    place.tips = dict[PF_PLACE_TIPS];
+    place.type = dict[PF_PLACE_TYPE];
     
-    event.alert = [Place entityWithID:dict[PF_EVENT_PLACE] inManagedObjectContext:self.managedObjectContext];
-    event.category = [EventCategory entityWithID:dict[PF_EVENT_CATEGORY] inManagedObjectContext:self.managedObjectContext];
-    event.place = [Place entityWithID:dict[PF_EVENT_PLACE] inManagedObjectContext:self.managedObjectContext];
+    for (NSString * pictID in dict[PF_PLACE_PHOTOS]) {
+        Picture * picture = [Picture entityWithID:pictID inManagedObjectContext:self.managedObjectContext];
+        [place addPhotosObject:picture];
+    }
+    
+    Thumbnail * thumb = [Thumbnail entityWithID:dict[PF_PLACE_THUMB] inManagedObjectContext:self.managedObjectContext];
+    place.thumb = thumb;
 }
 
 @end

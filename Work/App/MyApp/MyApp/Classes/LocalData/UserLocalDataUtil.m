@@ -6,16 +6,19 @@
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 #import "User+Util.h"
-#import "UserLocalDataUtility.h"
+#import "Picture+Util.h"
+#import "Video+Util.h"
+#import "Thumbnail+Util.h"
+#import "UserLocalDataUtil.h"
 
 #undef LOCAL_DATA_CLASS_TYPE
 #define LOCAL_DATA_CLASS_TYPE User
 
-@implementation UserLocalDataUtility
+@implementation UserLocalDataUtil
 
-+ (UserLocalDataUtility *)sharedUtil {
++ (UserLocalDataUtil *)sharedUtil {
     static dispatch_once_t predicate = 0;
-    static UserLocalDataUtility *sharedObject;
+    static UserLocalDataUtil *sharedObject;
     
     dispatch_once(&predicate, ^{
         //initializing singleton object
@@ -50,25 +53,26 @@
     [super setRandomValues:object data:dict];
     
     
-    LOCAL_DATA_CLASS_TYPE * event = (LOCAL_DATA_CLASS_TYPE *)object;
+    LOCAL_DATA_CLASS_TYPE * user = (LOCAL_DATA_CLASS_TYPE *)object;
     
-    event.startTime  = dict[PF_EVENT_START_TIME] ;
-    event.endTime  = dict[PF_EVENT_END_TIME] ;
-    event.invitees = dict[PF_EVENT_INVITEES] ;
-    event.isUser = dict[PF_EVENT_IS_USER];
-    event.location  = dict[PF_EVENT_LOCATION];
-    event.notes  = dict[PF_EVENT_NOTES] ;
-    event.title = dict[PF_EVENT_TITLE] ;
-    event.scope  = dict[PF_EVENT_SCOPE] ;
-    event.boardIDs  = dict[PF_EVENT_BOARD_IDS] ;    //array
-    event.votingID  = dict[PF_EVENT_VOTING_ID] ;
-    event.members  = dict[PF_EVENT_MEMBERS] ;
-    event.groupIDs  = dict[PF_EVENT_GROUP_IDS] ;
-    event.isVoting  = dict[PF_EVENT_IS_VOTING] ;
+    user.username = dict[PF_USER_USERNAME];
+    user.password = dict[PF_USER_PASSWORD];
     
-    event.alert = [User entityWithID:dict[PF_EVENT_USER] inManagedObjectContext:self.managedObjectContext];
-    event.category = [EventCategory entityWithID:dict[PF_EVENT_CATEGORY] inManagedObjectContext:self.managedObjectContext];
-    event.place = [Place entityWithID:dict[PF_EVENT_PLACE] inManagedObjectContext:self.managedObjectContext];
+    user.email = dict[PF_USER_EMAIL];
+    user.emailCopy = dict[PF_USER_EMAILCOPY];
+    
+    user.fullname = dict[PF_USER_FULLNAME];
+    user.fullnameLower = dict[PF_USER_FULLNAME_LOWER];
+    
+    user.facebookID = dict[PF_USER_FACEBOOKID];
+    user.twitterID = dict[PF_USER_TWITTERID];
+    
+    if (dict[PF_USER_PICTURE]) {
+        user.picture = [Picture entityWithID:dict[PF_USER_PICTURE] inManagedObjectContext:self.managedObjectContext];
+    }
+    if (dict[PF_USER_THUMBNAIL]) {
+        user.thumbnail = [Thumbnail entityWithID:dict[PF_USER_THUMBNAIL] inManagedObjectContext:self.managedObjectContext];
+    }
 }
 
 @end

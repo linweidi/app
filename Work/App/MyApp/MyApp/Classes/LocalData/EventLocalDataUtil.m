@@ -11,18 +11,18 @@
 #import "Alert+Util.h"
 #import "EventCategory+Util.h"
 #import "Place+Util.h"
-#import "EventLocalDataUtility.h"
+#import "EventLocalDataUtil.h"
 
 #undef LOCAL_DATA_CLASS_TYPE
 #define LOCAL_DATA_CLASS_TYPE Event
 
 
 
-@implementation EventLocalDataUtility
+@implementation EventLocalDataUtil
 
-+ (EventLocalDataUtility *)sharedUtil {
++ (EventLocalDataUtil *)sharedUtil {
     static dispatch_once_t predicate = 0;
-    static EventLocalDataUtility *sharedObject;
+    static EventLocalDataUtil *sharedObject;
     
     dispatch_once(&predicate, ^{
         //initializing singleton object

@@ -15,6 +15,7 @@
 #import "Video+Util.h"
 #import "PictureRemoteUtil.h"
 #import "VideoRemoteUtil.h"
+#import "UserRemoteUtil.h"
 #import "MessageRemoteUtil.h"
 
 #define BASE_REMOTE_UTIL_OBJ_TYPE ObjectEntity*
@@ -39,7 +40,7 @@
     NSAssert([object isKindOfClass:[Message class]], @"Type casting is wrong");
     Message * message = (Message *)object;
     
-    message.user = [[ConfigurationManager sharedManager] getCurrentUser];
+
     message.chatID = remoteObj[PF_MESSAGE_GROUPID] ;
     message.text = remoteObj[PF_MESSAGE_TEXT];
     
@@ -49,8 +50,6 @@
     NSAssert([object isKindOfClass:[Message class]], @"Type casting is wrong");
     Message * message = (Message *)object;
     
-    
-    remoteObj[PF_MESSAGE_USER] = [PFUser currentUser];
     remoteObj[PF_MESSAGE_GROUPID] = message.chatID;
     
     remoteObj[PF_MESSAGE_TEXT] = message.text;
@@ -61,8 +60,14 @@
     NSAssert([object isKindOfClass:[Message class]], @"Type casting is wrong");
     Message * message = (Message *)object;
     
-    Picture * picture = message.picture;
+    User * user = message.user;
+    if (user) {
+        // this is create user
+        PFUser * userRMT = [[UserRemoteUtil sharedUtil] convertToRemoteUser:user];
+        remoteObj[PF_MESSAGE_USER] = userRMT;
+    }
     
+    Picture * picture = message.picture;
     if (picture) {
 //        PFObject * pictureRMT = [PFObject objectWithClassName:PF_PICTURE_CLASS_NAME];
 //        pictureRMT[PF_PICTURE_NAME] = picture.name;
@@ -100,6 +105,15 @@
     [super setNewObject:object withRemoteObject:remoteObj inManagedObjectContext:context];
     NSAssert([object isKindOfClass:[Message class]], @"Type casting is wrong");
     Message * message = (Message *)object;
+    
+    //User
+    User * user;
+    PFUser * userRMT = remoteObj[PF_MESSAGE_USER];
+    if (userRMT.updatedAt) {
+        user = [[UserRemoteUtil sharedUtil] convertToUser:userRMT];
+        message.user = user;
+    }
+    
     
     //picture
     Picture * picture;

@@ -6,11 +6,11 @@
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 
-#import "BaseLocalDataUtility.h"
+#import "BaseLocalDataUtil.h"
 
-@interface AlertLocalDataUtility : BaseLocalDataUtility
+@interface AlertLocalDataUtil : BaseLocalDataUtil
 
-+ (AlertLocalDataUtility *)sharedUtil;
++ (AlertLocalDataUtil *)sharedUtil;
 
 - (void) setRandomValues: (id) object data:(NSDictionary *)dict;
 

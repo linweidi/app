@@ -6,16 +6,16 @@
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 #import "Group+Util.h"
-#import "GroupLocalDataUtility.h"
+#import "GroupLocalDataUtil.h"
 
 #undef LOCAL_DATA_CLASS_TYPE
 #define LOCAL_DATA_CLASS_TYPE Group
 
-@implementation GroupLocalDataUtility
+@implementation GroupLocalDataUtil
 
-+ (GroupLocalDataUtility *)sharedUtil {
++ (GroupLocalDataUtil *)sharedUtil {
     static dispatch_once_t predicate = 0;
-    static GroupLocalDataUtility *sharedObject;
+    static GroupLocalDataUtil *sharedObject;
     
     dispatch_once(&predicate, ^{
         //initializing singleton object
@@ -50,25 +50,11 @@
     [super setRandomValues:object data:dict];
     
     
-    LOCAL_DATA_CLASS_TYPE * event = (LOCAL_DATA_CLASS_TYPE *)object;
+    LOCAL_DATA_CLASS_TYPE * group = (LOCAL_DATA_CLASS_TYPE *)object;
     
-    event.startTime  = dict[PF_EVENT_START_TIME] ;
-    event.endTime  = dict[PF_EVENT_END_TIME] ;
-    event.invitees = dict[PF_EVENT_INVITEES] ;
-    event.isGroup = dict[PF_EVENT_IS_GROUP];
-    event.location  = dict[PF_EVENT_LOCATION];
-    event.notes  = dict[PF_EVENT_NOTES] ;
-    event.title = dict[PF_EVENT_TITLE] ;
-    event.scope  = dict[PF_EVENT_SCOPE] ;
-    event.boardIDs  = dict[PF_EVENT_BOARD_IDS] ;    //array
-    event.votingID  = dict[PF_EVENT_VOTING_ID] ;
-    event.members  = dict[PF_EVENT_MEMBERS] ;
-    event.groupIDs  = dict[PF_EVENT_GROUP_IDS] ;
-    event.isVoting  = dict[PF_EVENT_IS_VOTING] ;
+    group.name = dict[PF_GROUP_NAME] ;
+    group.members = dict[PF_GROUP_MEMBERS];
     
-    event.alert = [Group entityWithID:dict[PF_EVENT_GROUP] inManagedObjectContext:self.managedObjectContext];
-    event.category = [EventCategory entityWithID:dict[PF_EVENT_CATEGORY] inManagedObjectContext:self.managedObjectContext];
-    event.place = [Place entityWithID:dict[PF_EVENT_PLACE] inManagedObjectContext:self.managedObjectContext];
 }
 
 @end

@@ -15,8 +15,10 @@
 //-----------------------------------------------------------------------
 
 #define     DEBUG_MODE                          1
-#define     PARSE_MODE                          2
-#define     SERVER_MODE                         3
+#define     LOCAL_MODE                          2
+#define     REMOTE_MODE                          3
+#define     PARSE_MODE                          3
+#define     SERVER_MODE                         4
 //#define  NS_BLOCK_ASSERTIONS
 
 

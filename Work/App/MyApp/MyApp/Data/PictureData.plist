@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Item</key>
+	<dict>
+		<key>data</key>
+		<string>premium01</string>
+		<key>fileName</key>
+		<string>premium01</string>
+		<key>name</key>
+		<string>premium01</string>
+		<key>url</key>
+		<string>premium01</string>
+	</dict>
+	<key>Item - 2</key>
+	<dict>
+		<key>data</key>
+		<string>premium01</string>
+		<key>fileName</key>
+		<string>premium01</string>
+		<key>name</key>
+		<string>premium01</string>
+		<key>url</key>
+		<string>premium01</string>
+	</dict>
+	<key>Item - 3</key>
+	<dict>
+		<key>data</key>
+		<string>premium02</string>
+		<key>fileName</key>
+		<string>premium02</string>
+		<key>name</key>
+		<string>premium02</string>
+		<key>url</key>
+		<string>premium02</string>
+	</dict>
+	<key>Item - 4</key>
+	<dict>
+		<key>data</key>
+		<string>premium03</string>
+		<key>fileName</key>
+		<string>premium03</string>
+		<key>name</key>
+		<string>premium03</string>
+		<key>url</key>
+		<string>premium03</string>
+	</dict>
+	<key>Item - 5</key>
+	<dict>
+		<key>data</key>
+		<string>premium04</string>
+		<key>fileName</key>
+		<string>premium04</string>
+		<key>name</key>
+		<string>premium04</string>
+		<key>url</key>
+		<string>premium04</string>
+	</dict>
+	<key>Item - 6</key>
+	<dict>
+		<key>data</key>
+		<string>premium05</string>
+		<key>fileName</key>
+		<string>premium05</string>
+		<key>name</key>
+		<string>premium05</string>
+		<key>url</key>
+		<string>premium05</string>
+	</dict>
+	<key>Item - 7</key>
+	<dict>
+		<key>data</key>
+		<string>photo_item1</string>
+		<key>fileName</key>
+		<string>photo_item1</string>
+		<key>name</key>
+		<string>photo_item1</string>
+		<key>url</key>
+		<string>photo_item1</string>
+	</dict>
+	<key>Item - 8</key>
+	<dict>
+		<key>data</key>
+		<string>photo_item2</string>
+		<key>fileName</key>
+		<string>photo_item2</string>
+		<key>name</key>
+		<string>photo_item2</string>
+		<key>url</key>
+		<string>photo_item2</string>
+	</dict>
+	<key>Item - 9</key>
+	<dict>
+		<key>data</key>
+		<string>photo_item3</string>
+		<key>fileName</key>
+		<string>photo_item3</string>
+		<key>name</key>
+		<string>photo_item3</string>
+		<key>url</key>
+		<string>photo_item3</string>
+	</dict>
+	<key>Item - 10</key>
+	<dict>
+		<key>data</key>
+		<string>photo_item4</string>
+		<key>fileName</key>
+		<string>photo_item4</string>
+		<key>name</key>
+		<string>photo_item4</string>
+		<key>url</key>
+		<string>photo_item4</string>
+	</dict>
+</dict>
+</plist>
