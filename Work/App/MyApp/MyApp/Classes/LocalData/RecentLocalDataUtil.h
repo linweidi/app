@@ -16,4 +16,13 @@
 
 - (NSArray *)constructDataFromDict:(NSDictionary *)dict;
 
+- (NSString *) startLocalPrivateChat:(User *)user1 user2:(User *)user2;
+
+- (NSString *) startLocalMultipleChat:(NSMutableArray *)users;
+
+- (void) createLocalRecentItem:(User *)user  groupId:(NSString *)groupId members:(NSArray *)members desciption:(NSString *)description lastMessage:(NSString *)lastMessage;
+
+- (void) updateLocalRecentAndCounter:(NSString *)groupId amount:(NSInteger)amount lastMessage:(NSString *)lastMessage members:(NSArray *)members;
+
+- (void) clearLocalRecentCounter:(NSString *)groupId;
 @end

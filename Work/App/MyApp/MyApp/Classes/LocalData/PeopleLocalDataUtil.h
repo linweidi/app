@@ -16,4 +16,7 @@
 
 - (NSArray *)constructDataFromDict:(NSDictionary *)dict;
 
+- (void) createLocalPeople:(NSString *)name user:(User *)user2 completionHandler:(REMOTE_OBJECT_BLOCK)block;
+
+- (void) removeLocalPeople:(User *)user2  completionHandler:(REMOTE_BOOL_BLOCK)block;
 @end

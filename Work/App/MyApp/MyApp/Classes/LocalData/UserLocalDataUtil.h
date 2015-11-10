@@ -16,4 +16,12 @@
 
 - (NSArray *)constructDataFromDict:(NSDictionary *)dict;
 
+- (void) signUp:(CurrentUser *)user completionHandler:(LOCAL_BOOL_BLOCK)block ;
+
+- (void)logInWithUsername: (NSString *)username password:(NSString *)password completionHandler:(LOCAL_BOOL_BLOCK)block;
+
+- (void) logOut ;
+
+@property (strong, nonatomic) NSArray * keys;
+
 @end

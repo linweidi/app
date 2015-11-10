@@ -311,9 +311,9 @@
             
             
             // remote create the local current user
-            CurrentUser * currentUser = [CurrentUser createEntity:config.managedObjectContext];
+            CurrentUser * currentUser = [CurrentUser createEntity:self.managedObjectContext];
             // update current user and add inot user manager
-            [[UserRemoteUtil sharedUtil] setNewObject:currentUser withRemoteObject:userRT inManagedObjectContext:config.managedObjectContext];
+            [[UserRemoteUtil sharedUtil] setNewObject:currentUser withRemoteObject:userRT inManagedObjectContext:self.managedObjectContext];
             
 
             

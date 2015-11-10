@@ -18,7 +18,8 @@
 
 #import "GroupRemoteUtil.h"
 #import "Group+Util.h"
-
+#import "GroupLocalDataUtil.h"
+#import "PeopleLocalDataUtil.h"
 #import "PeopleRemoteUtil.h"
 #import "People+Util.h"
 #import "User+Util.h"
@@ -125,6 +126,7 @@
     
     latestPeople = [People latestEntity:self.managedObjectContext];
     
+#ifdef REMOTE_MODE
     [[PeopleRemoteUtil sharedUtil] loadRemotePeoples:latestPeople completionHandler:^(NSArray *objects, NSError *error) {
         if (error == nil){
             
@@ -134,10 +136,16 @@
             
         }
         else {
-           [ProgressHUD showError:@"Network error."];
+            [ProgressHUD showError:@"Network error."];
         }
         [self.refreshControl endRefreshing];
     }];
+#endif
+#ifdef LOCAL_MODE
+    [self.tableView reloadData];
+    [self.refreshControl endRefreshing];
+#endif
+
     
     
     
@@ -218,7 +226,8 @@
     
 	[selection addObject: user.globalID];
     
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+
+#ifdef REMOTE_MODE
     [[GroupRemoteUtil sharedUtil] createRemoteGroup:name members:selection completionHandler:^(id object, NSError *error) {
         if (error == nil) {
             [self dismissViewControllerAnimated:YES completion:nil];
@@ -227,6 +236,12 @@
             [ProgressHUD showError:@"Network error."];
         }
     }];
+#endif
+#ifdef LOCAL_MODE
+    [[GroupLocalDataUtil sharedUtil] createLocalGroup:name members:selection completionHandler:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
+#endif
+
 }
 
 #pragma mark - Table view data source

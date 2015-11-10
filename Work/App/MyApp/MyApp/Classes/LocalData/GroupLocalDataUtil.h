@@ -16,4 +16,12 @@
 
 - (NSArray *)constructDataFromDict:(NSDictionary *)dict;
 
+- (void) createLocalGroup:(NSString *)name members:(NSArray *)members completionHandler:(REMOTE_OBJECT_BLOCK)block;
+
+- (void) removeLocalGroupMember:(Group *)group user:(User *)user completionHandler:(REMOTE_BOOL_BLOCK)block ;
+
+- (void) removeLocalGroupMemberAll:(User *)createdUser user:(User *)user completionHandler:(REMOTE_BOOL_BLOCK)block;
+
+- (void) removeLocalGroupItem:(Group *) group completionHandler:(REMOTE_BOOL_BLOCK)block ;
+
 @end

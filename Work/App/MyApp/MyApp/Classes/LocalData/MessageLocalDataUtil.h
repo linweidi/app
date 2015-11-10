@@ -16,4 +16,5 @@
 
 - (NSArray *)constructDataFromDict:(NSDictionary *)dict;
 
+- (void) createLocalMessage:(NSString *)chatId text:(NSString *)text Video:(Video *)video Picture:(Picture *)picture completionHandler:(REMOTE_OBJECT_BLOCK)block;
 @end

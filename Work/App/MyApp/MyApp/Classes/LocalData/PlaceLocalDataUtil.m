@@ -75,4 +75,11 @@
     place.thumb = thumb;
 }
 
+//- (void) createLocalPlaces:(NSArray *)placeObjArray completionHandler:(REMOTE_OBJECT_BLOCK)block{
+//    for (Place * place in placeObjArray) {
+//        [self uploadCreateRemoteObject:place completionHandler:block];
+//    }
+//    
+//}
+
 @end

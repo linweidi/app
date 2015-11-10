@@ -8,6 +8,7 @@
 #import "User+Util.h"
 #import "Picture+Util.h"
 #import "Video+Util.h"
+#import "CurrentUser+Util.h"
 #import "Thumbnail+Util.h"
 #import "UserLocalDataUtil.h"
 
@@ -27,6 +28,8 @@
         sharedObject.className = PF_USER_CLASS_NAME;
         
         sharedObject.index = LOCAL_DATA_USER_INDEX;
+        
+        sharedObject.keys = @[@"email", @"emailCopy", @"facebookID", @"fullname", @"fullnameLower", @"password", @"twitterID", @"username", @"picture", @"thumbnail"];
     });
     return sharedObject;
 }
@@ -73,6 +76,77 @@
     if (dict[PF_USER_THUMBNAIL]) {
         user.thumbnail = [Thumbnail entityWithID:dict[PF_USER_THUMBNAIL] inManagedObjectContext:self.managedObjectContext];
     }
+}
+
+- (void) signUp:(CurrentUser *)user completionHandler:(REMOTE_BOOL_BLOCK)block {
+    ConfigurationManager * config = [ConfigurationManager sharedManager];
+    NSFetchRequest * fetch = [NSFetchRequest fetchRequestWithEntityName:PF_USER_CLASS_NAME];
+    fetch.predicate = [NSPredicate predicateWithFormat:@"username = %@", user.username];
+    NSError * error;
+    NSArray * match = [self.managedObjectContext executeFetchRequest:fetch error:&error];
+    // here, it will check if the username and email has already existed
+    if (!error) {
+        // update the isLogggedIn
+        
+        if ([match count]== 0) {
+            // remote create the local current user
+            CurrentUser * currentUser = [CurrentUser createEntity:self.managedObjectContext];
+            
+            [[UserLocalDataUtil sharedUtil] setObjectEntity:currentUser byObject:user];
+            [super setCommonValues:currentUser];
+            
+            if (currentUser) {
+                // populate the current user to configuration manager
+                config.currentUserID = currentUser.globalID;
+                [config setCurrentUser:currentUser];
+                
+                //ParsePushUserAssign();
+                [ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome back %@!", user.fullname]];
+                
+                block(YES, error);
+                
+                config.isLoggedIn = YES;
+            }
+        }
+
+    }
+    else {
+        [ProgressHUD showError:@"sign up failes"];
+
+    }
+}
+
+- (void)logInWithUsername: (NSString *)username password:(NSString *)password completionHandler:(REMOTE_BOOL_BLOCK)block {
+    
+    ConfigurationManager * config = [ConfigurationManager sharedManager];
+
+    CurrentUser * currentUser = nil;
+    
+    // remote create the local current user
+    currentUser  = [CurrentUser entityWithUsername:username inManagedObjectContext:config.managedObjectContext];
+    if (!currentUser) {
+        [ProgressHUD showError:@"no this user or password incorrect"];
+    }
+    else {
+        // populate the current user to configuration manager
+        config.currentUserID = currentUser.globalID;
+        [config setCurrentUser:currentUser];
+        
+        //ParsePushUserAssign();
+        [ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome back %@!", currentUser.fullname]];
+        
+        block(YES, nil);
+        
+        // update the isLogggedIn
+        config.isLoggedIn = YES;
+    }
+
+}
+
+- (void) logOut {
+    ConfigurationManager * config = [ConfigurationManager sharedManager];
+    [config clearCurrentUserContext];
+    //[PFUser logOut];
 }
 
 @end

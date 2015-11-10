@@ -34,10 +34,10 @@
 
 - (void) createRemoteGroup:(NSString *)name members:(NSArray *)members completionHandler:(REMOTE_OBJECT_BLOCK)block ;
 
-- (void) removeGroupMember:(Group *)group user:(User *)user completionHandler:(REMOTE_BOOL_BLOCK)block;
+- (void) removeRemoteGroupMember:(Group *)group user:(User *)user completionHandler:(REMOTE_BOOL_BLOCK)block;
 
-- (void) removeGroupItem:(Group *) group completionHandler:(REMOTE_BOOL_BLOCK)block;
+- (void) removeRemoteGroupItem:(Group *) group completionHandler:(REMOTE_BOOL_BLOCK)block;
 
-- (void) removeGroupMemberAll:(User *)createdUser user:(User *)user completionHandler:(REMOTE_BOOL_BLOCK)block ;
+- (void) removeRemoteGroupMemberAll:(User *)createdUser user:(User *)user completionHandler:(REMOTE_BOOL_BLOCK)block ;
 
 @end

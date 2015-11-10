@@ -7,6 +7,7 @@
 //
 #import "People+Util.h"
 #import "UserRemoteUtil.h"
+#import "ConfigurationManager.h"
 #import "PeopleLocalDataUtil.h"
 
 #undef LOCAL_DATA_CLASS_TYPE
@@ -55,6 +56,64 @@
     
     people.contact  = [[UserRemoteUtil sharedUtil] convertToUser:dict[PF_PEOPLE_USER2]];
     people.name = dict[PF_PEOPLE_NAME];
+    
+}
+
+- (void) createLocalPeople:(NSString *)name user:(User *)user2 completionHandler:(REMOTE_OBJECT_BLOCK)block{
+    
+    NSFetchRequest * fetch = [NSFetchRequest fetchRequestWithEntityName:PF_PEOPLE_CLASS_NAME];
+    fetch.predicate = [NSPredicate predicateWithFormat:@"contact = %@", user2];
+    NSError * error;
+    NSArray * match = [self.managedObjectContext executeFetchRequest:fetch error:&error];
+    //[query setLimit:1000];
+    
+    if ([match count]) {
+        if (error == nil) {
+            if ([match count] == 0) {
+                People * people = [People createEntity:self.managedObjectContext];
+                //people.userVolatile = [[ConfigurationManager sharedManager] getCurrentUser];
+                people.contact = user2;
+                people.name = name;
+                [self setCommonValues:people];
+                block(people, error);
+            }
+            else {
+                [ProgressHUD showError:@"People already exists."];
+            }
+        }
+        else {
+            [ProgressHUD showError:@"PeopleSave query error."];
+        }
+    }
+}
+
+- (void) removeLocalPeople:(User *)user2  completionHandler:(REMOTE_BOOL_BLOCK)block{
+    NSFetchRequest * fetch = [NSFetchRequest fetchRequestWithEntityName:PF_PEOPLE_CLASS_NAME];
+    fetch.predicate = [NSPredicate predicateWithFormat:@"contact = %@", user2];
+    NSError * error;
+    NSArray * match = [self.managedObjectContext executeFetchRequest:fetch error:&error];
+  
+    if (error == nil) {
+         if ([match count] == 1) {
+             //for (PFObject *people in objects)
+             PFObject * peopleRMT = [match firstObject];
+             People * people = [People entityWithID:peopleRMT.objectId inManagedObjectContext:self.managedObjectContext];
+             [self.managedObjectContext deleteObject:people];
+             block(YES, error);
+         }
+         else if ([match count] == 0) {
+             [ProgressHUD showError:@"People already deleted."];
+             block(NO, error);
+         }
+         else {
+             NSAssert(NO, @"Duplicate users");
+         }
+         
+     }
+     else {
+         block(NO, error);
+         [ProgressHUD showError:@"PeopleSave query error."];
+     }
     
 }
 

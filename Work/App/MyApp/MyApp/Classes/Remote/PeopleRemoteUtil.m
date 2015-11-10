@@ -167,7 +167,7 @@
             if ([objects count] == 0)
             {
                 People * people = [People createEntity:nil];
-                people.userVolatile = [[ConfigurationManager sharedManager] getCurrentUser];
+                //people.userVolatile = [[ConfigurationManager sharedManager] getCurrentUser];
                 people.contact = user2;
                 people.name = name;
                 [self uploadCreateRemoteObject:people completionHandler:block];
@@ -183,7 +183,7 @@
 }
 
 
-- (void) deleteRemotePeople:(User *)user2  completionHandler:(REMOTE_BOOL_BLOCK)block{
+- (void) removeRemotePeople:(User *)user2  completionHandler:(REMOTE_BOOL_BLOCK)block{
     PFQuery *query = [PFQuery queryWithClassName:PF_PEOPLE_CLASS_NAME];
 	[query whereKey:PF_PEOPLE_USER1 equalTo:[PFUser currentUser]];
 	[query whereKey:PF_PEOPLE_USER2 equalTo:[[UserRemoteUtil sharedUtil] convertToRemoteUser:user2] ];
@@ -194,7 +194,7 @@
              if ([objects count] == 1) {
                  //for (PFObject *people in objects)
                  PFObject * peopleRMT = [objects firstObject];
-                 People * people = [People entityWithID:peopleRMT.objectId inManagedObjectContext:user2.managedObjectContext];
+                 People * people = [People entityWithID:peopleRMT.objectId inManagedObjectContext:self.managedObjectContext];
                  if (people) {
                      //local exist
                      [self uploadRemoveRemoteObject:people completionHandler:block];

@@ -67,4 +67,17 @@
     message.user = [User entityWithID:dict[PF_MESSAGE_USER] inManagedObjectContext:self.managedObjectContext];
 }
 
+
+- (void) createLocalMessage:(NSString *)chatId text:(NSString *)text Video:(Video *)video Picture:(Picture *)picture completionHandler:(REMOTE_OBJECT_BLOCK)block{
+    
+    Message * message = [Message createEntity:self.managedObjectContext];
+    message.user = [[ConfigurationManager sharedManager] getCurrentUser];
+    message.chatID = chatId;
+    message.text = text;
+    message.picture = picture;
+    message.video = video;
+    
+    [self setCommonValues:message];
+    
+}
 @end

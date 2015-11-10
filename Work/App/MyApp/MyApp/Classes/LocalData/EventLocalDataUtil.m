@@ -11,6 +11,7 @@
 #import "Alert+Util.h"
 #import "EventCategory+Util.h"
 #import "Place+Util.h"
+#import "User+Util.h"
 #import "EventLocalDataUtil.h"
 
 #undef LOCAL_DATA_CLASS_TYPE
@@ -79,7 +80,21 @@
     event.place = [Place entityWithID:dict[PF_EVENT_PLACE] inManagedObjectContext:self.managedObjectContext];
 }
 
-
+// delete the user in the event
+- (void) removeLocalEventMember:(Event *)event user:(User *)user completionHandler:(REMOTE_BOOL_BLOCK)block {
+    
+    if ([event.members containsObject: user.globalID]) {
+        if ([event.members count] == 1) {
+            // only the user is left, delete the remote object
+            [self.managedObjectContext deleteObject:event];
+            //[object deleteInBackgroundWithBlock:block];
+        }
+        else {
+            // other users are left, just remove the member of the user
+            [event.members removeObject:user.globalID];
+        }
+    }
+}
 
 
 //- (NSDateFormatter *)dateFormatter

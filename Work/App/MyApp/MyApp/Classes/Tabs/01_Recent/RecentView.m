@@ -32,6 +32,10 @@
 #import "CurrentUser+Util.h"
 #import "User+Util.h"
 
+#ifdef LOCAL_MODE
+#import "RecentLocalDataUtil.h"
+#endif
+
 #import "NavigationController.h"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -143,7 +147,6 @@
         [self.refreshControl endRefreshing];
     }];
 #endif
-    
 #ifdef LOCAL_MODE
     [self.tableView reloadData];
     [self updateTabCounter];
@@ -261,11 +264,14 @@
 #pragma mark - SelectSingleDelegate
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)didSelectSingleUser:(User *)user2
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
+- (void)didSelectSingleUser:(User *)user2 {
     CurrentUser *user1 = [[ConfigurationManager sharedManager] getCurrentUser];
+#ifdef REMOTE_MODE
     NSString *groupId = [[RecentRemoteUtil sharedUtil] startRemotePrivateChat:user1 user2:user2];
+#endif
+#ifdef LOCAL_MODE
+    NSString *groupId = [[RecentLocalDataUtil sharedUtil] startLocalPrivateChat:user1 user2:user2];
+#endif
     //StartPrivateChat(user1, user2, self.managedObjectContext);
 	[self actionChat:groupId];
 }
@@ -273,10 +279,13 @@
 #pragma mark - SelectMultipleDelegate
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)didSelectMultipleUsers:(NSMutableArray *)users
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
+- (void)didSelectMultipleUsers:(NSMutableArray *)users {
+#ifdef REMOTE_MODE
     NSString *groupId = [[RecentRemoteUtil sharedUtil] startRemoteMultipleChat:users];
+#endif
+#ifdef LOCAL_MODE
+    NSString *groupId = [[RecentLocalDataUtil sharedUtil] startLocalMultipleChat:users];
+#endif
     //StartMultipleChat(users,  self.managedObjectContext);
 	[self actionChat:groupId];
 }
@@ -284,11 +293,16 @@
 #pragma mark - AddressBookDelegate
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)didSelectAddressBookUser:(User *)user2
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
+- (void)didSelectAddressBookUser:(User *)user2 {
 	User *user1 = [[ConfigurationManager sharedManager] getCurrentUser];
-	NSString *groupId = [[RecentRemoteUtil sharedUtil] startRemotePrivateChat:user1 user2:user2];
+
+#ifdef REMOTE_MODE
+    NSString *groupId = [[RecentRemoteUtil sharedUtil] startRemotePrivateChat:user1 user2:user2];
+#endif
+#ifdef LOCAL_MODE
+    NSString *groupId = [[RecentLocalDataUtil sharedUtil] startLocalPrivateChat:user1 user2:user2];
+#endif
+
 	[self actionChat:groupId];
 }
 
@@ -299,7 +313,13 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	User *user1 = [[ConfigurationManager sharedManager] getCurrentUser];
-	NSString *groupId = [[RecentRemoteUtil sharedUtil] startRemotePrivateChat:user1 user2:user2];
+#ifdef REMOTE_MODE
+    NSString *groupId = [[RecentRemoteUtil sharedUtil] startRemotePrivateChat:user1 user2:user2];
+#endif
+#ifdef LOCAL_MODE
+    NSString *groupId = [[RecentLocalDataUtil sharedUtil] startLocalPrivateChat:user1 user2:user2];
+#endif
+
 	[self actionChat:groupId];
 }
 
@@ -352,9 +372,9 @@
             [ProgressHUD showError:@"Network error."];
         }
     }];
-#endif  
-    
+#endif
 #ifdef LOCAL_MODE
+    
     [self.managedObjectContext deleteObject:recent];
     [self updateTabCounter];
 #endif

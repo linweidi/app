@@ -27,6 +27,9 @@
 #import "GroupRemoteUtil.h"
 #import "Group+Util.h"
 
+
+#import "GroupLocalDataUtil.h"
+
 #import "GroupsView.h"
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 @interface GroupsView()
@@ -119,13 +122,13 @@
     Group * latestGroup = nil;
     
     latestGroup = [Group latestEntity:self.managedObjectContext];
-    
+#ifdef REMOTE_MODE
     [[GroupRemoteUtil sharedUtil] loadRemoteGroups:latestGroup completionHandler:^(NSArray *objects, NSError *error) {
         if (error == nil) {
             //[groups removeAllObjects];
             //[groups addObjectsFromArray:objects];
             //[self.tableView reloadData];
-
+            
             
             // load the recents into core data
             
@@ -137,6 +140,12 @@
         }
         [self.refreshControl endRefreshing];
     }];
+#endif
+#ifdef LOCAL_MODE
+    [self.tableView reloadData];
+    [self.refreshControl endRefreshing];
+#endif
+
 }
 
 #pragma mark - User actions
@@ -215,7 +224,14 @@
 //        [[GroupRemoteUtil sharedUtil] removeGroupMember:group user:user1];
 //    }
     User * user = [[ConfigurationManager sharedManager] getCurrentUser];
-    [[GroupRemoteUtil sharedUtil] removeGroupMember:group user:user completionHandler:nil];
+#ifdef REMOTE_MODE
+    [[GroupRemoteUtil sharedUtil] removeRemoteGroupMember:group user:user completionHandler:nil];
+#endif
+#ifdef LOCAL_MODE
+    [[GroupLocalDataUtil sharedUtil] removeLocalGroupMember:group user:user completionHandler:nil];
+#endif
+
+
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	//[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 #warning notify others that you have quit the group

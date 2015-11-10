@@ -173,7 +173,7 @@
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 // delete the user in the group
-- (void) removeGroupMember:(Group *)group user:(User *)user completionHandler:(REMOTE_BOOL_BLOCK)block {
+- (void) removeRemoteGroupMember:(Group *)group user:(User *)user completionHandler:(REMOTE_BOOL_BLOCK)block {
     //PFObject * groupPF = [PFObject objectWithoutDataWithClassName:PF_GROUP_CLASS_NAME objectId:group.globalID];
     //[groupPF getO]
 
@@ -199,7 +199,7 @@
 
 
 // delete the user in the group
-- (void) removeGroupMemberAll:(User *)createdUser user:(User *)user completionHandler:(REMOTE_BOOL_BLOCK)block {
+- (void) removeRemoteGroupMemberAll:(User *)createdUser user:(User *)user completionHandler:(REMOTE_BOOL_BLOCK)block {
     //PFObject * groupPF = [PFObject objectWithoutDataWithClassName:PF_GROUP_CLASS_NAME objectId:group.globalID];
     //[groupPF getO]
     
@@ -210,13 +210,12 @@
     [self downloadObjectsWithQuery:query completionHandler:^(NSArray *remoteObjs, NSArray *objects, NSError *error) {
         if (!error) {
             int count = 0;
-            Group * group = objects[count];
+            Group * group = nil;
             
-            for (PFObject *groupRMT in remoteObjs)
-            {
+            for (PFObject *groupRMT in remoteObjs) {
+                group = objects[count];
                 
-                if ([groupRMT[PF_GROUP_MEMBERS] containsObject:user.globalID])
-                {
+                if ([groupRMT[PF_GROUP_MEMBERS] containsObject:user.globalID]) {
                     if ([groupRMT[PF_GROUP_MEMBERS] count] == 1) {
                         // only the user is left, delete the remote object
                         [self uploadRemoveRemoteObject:group completionHandler:block];
@@ -246,7 +245,7 @@
 }
 
 // delete the group
-- (void) removeGroupItem:(Group *) group completionHandler:(REMOTE_BOOL_BLOCK)block {
+- (void) removeRemoteGroupItem:(Group *) group completionHandler:(REMOTE_BOOL_BLOCK)block {
     [self uploadRemoveRemoteObject:group completionHandler:block];
 }
 

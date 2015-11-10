@@ -19,6 +19,8 @@
 
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
 
+@property (strong, nonatomic) NSArray * keys;
+
 #pragma mark -- Base Methods
 - (NSDate *) getRandomPastDate ;
 
@@ -28,8 +30,14 @@
 
 - (NSArray *)loadDataRandom: (NSInteger) count ;
 
+- (void) setCommonValues:(id) object;
+
+- (void) setObjectEntity:(NSManagedObject *)object1 byObject:(NSManagedObject *)object2;
+
 #pragma mark -- Inheritance Methods
 - (void) setRandomValues: (id) object data:(NSDictionary *)dict;
 
 - (NSArray *)constructDataFromDict:(NSDictionary *)dict;
+
+
 @end

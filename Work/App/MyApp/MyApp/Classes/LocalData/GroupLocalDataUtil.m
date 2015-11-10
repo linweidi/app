@@ -6,6 +6,8 @@
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 #import "Group+Util.h"
+#import "ConfigurationManager.h"
+#import "CurrentUser+Util.h"
 #import "GroupLocalDataUtil.h"
 
 #undef LOCAL_DATA_CLASS_TYPE
@@ -56,5 +58,84 @@
     group.members = dict[PF_GROUP_MEMBERS];
     
 }
+
+- (void) createLocalGroup:(NSString *)name members:(NSArray *)members completionHandler:(REMOTE_OBJECT_BLOCK)block {
+    Group * group  = [Group createEntity:self.managedObjectContext];
+    group.userVolatile = [[ConfigurationManager sharedManager] getCurrentUser];
+    group.name = name;
+    group.members = members;
+    block(group, nil);
+    
+    [super setCommonValues:group];
+}
+
+// delete the user in the group
+- (void) removeLocalGroupMember:(Group *)group user:(User *)user completionHandler:(REMOTE_BOOL_BLOCK)block {
+    //PFObject * groupPF = [PFObject objectWithoutDataWithClassName:PF_GROUP_CLASS_NAME objectId:group.globalID];
+    //[groupPF getO]
+    
+    if ([group.members containsObject:user.globalID])
+    {
+        if ([group.members count] == 1) {
+            // only the user is left, delete the remote object
+            [self.managedObjectContext deleteObject:group];
+            //[object deleteInBackgroundWithBlock:block];
+        }
+        else {
+            // other users are left, just remove the member of the user
+            NSMutableArray * members = [group.members mutableCopy];
+            [members removeObject:user.globalID];
+            group.members = members;
+        }
+    }
+}
+
+
+// delete the user in the group
+- (void) removeLocalGroupMemberAll:(User *)createdUser user:(User *)user completionHandler:(REMOTE_BOOL_BLOCK)block {
+    //PFObject * groupPF = [PFObject objectWithoutDataWithClassName:PF_GROUP_CLASS_NAME objectId:group.globalID];
+    //[groupPF getO]
+    
+    NSFetchRequest * fetch = [NSFetchRequest fetchRequestWithEntityName:PF_GROUP_CLASS_NAME];
+    fetch.predicate = [NSPredicate predicateWithFormat:@"%@ IN members", user.globalID];
+    NSError * error;
+    NSArray * match = [self.managedObjectContext executeFetchRequest:fetch error:&error];
+    //[query setLimit:1000];
+    
+    if ([match count]) {
+        if (!error) {
+            for (Group * group in match) {
+
+                if ([group.members containsObject:user.globalID]) {
+                    if ([group.members count] == 1) {
+                        // only the user is left, delete the remote object
+                        [self.managedObjectContext deleteObject:group];
+                        //[object deleteInBackgroundWithBlock:block];
+                    }
+                    else {
+                        // other users are left, just remove the member of the user
+                        NSMutableArray * members = [group.members mutableCopy];
+                        [members removeObject:user.globalID];
+                        group.members = members;
+                        
+                        block(!error, error);
+                    }
+                }
+                
+            }
+        }
+        else {
+            [ProgressHUD showError:@"Network Error."];
+        }
+
+        
+    }
+}
+
+// delete the group
+- (void) removeLocalGroupItem:(Group *) group completionHandler:(REMOTE_BOOL_BLOCK)block {
+    [self.managedObjectContext deleteObject:group];
+}
+
 
 @end

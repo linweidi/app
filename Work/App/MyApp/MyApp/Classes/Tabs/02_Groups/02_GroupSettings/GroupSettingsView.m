@@ -24,8 +24,10 @@
 
 #import "Group+Util.h"
 #import "GroupRemoteUtil.h"
+#import "GroupLocalDataUtil.h"
 
 #import "RecentRemoteUtil.h"
+#import "RecentLocalDataUtil.h"
 #import "UserRemoteUtil.h"
 
 #import "GroupSettingsView.h"
@@ -107,17 +109,14 @@
 #pragma mark - Backend actions
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)loadGroup
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
+- (void)loadGroup {
     
 	labelName.text = self.group.name;
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)loadUsers
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-{
+- (void)loadUsers {
+#ifdef REMOTE_MODE
     [[GroupRemoteUtil sharedUtil] loadRemoteUsersByGroup:self.group completionHandler:^(NSArray *objects, NSError *error) {
         if (error == nil) {
             //			[users removeAllObjects];
@@ -132,6 +131,31 @@
             [ProgressHUD showError:@"Network error."];
         }
     }];
+#endif
+#ifdef LOCAL_MODE
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"User"];
+    request.predicate = [NSPredicate predicateWithFormat:@"globalID IN %@", self.group.members];
+    request.fetchLimit = GROUPVIEW_USER_ITEM_NUM;
+    
+    request.sortDescriptors = @[[NSSortDescriptor
+                                 sortDescriptorWithKey:@"name"
+                                 ascending:YES
+                                 selector:@selector(compare:)],
+                                ];
+    NSError * error;
+    NSArray * match = [self.managedObjectContext executeFetchRequest:request error:&error];
+    if ([match count] && !error) {
+        [self.userIDs removeAllObjects];
+        for (User * user in match) {
+            [self.userIDs addObject:user.globalID];
+        }
+    }
+    else {
+        [ProgressHUD showError:@"Network error."];
+    }
+    [self.tableView reloadData];
+#endif
+
 }
 
 #pragma mark - User actions
@@ -140,7 +164,13 @@
 - (void)actionChat {
 	NSString *groupId = self.group.globalID;
 	//---------------------------------------------------------------------------------------------------------------------------------------------
+#ifdef REMOTE_MODE
     [[RecentRemoteUtil sharedUtil] createRemoteRecentItem:[[ConfigurationManager sharedManager] getCurrentUser] groupId:groupId members:self.group.members desciption:self.group.name lastMessage:nil];
+#endif
+#ifdef LOCAL_MODE
+    [[RecentLocalDataUtil sharedUtil] createLocalRecentItem:[[ConfigurationManager sharedManager] getCurrentUser] groupId:groupId members:self.group.members desciption:self.group.name lastMessage:nil];
+#endif
+
     
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	ChatView *chatView = [[ChatView alloc] initWith:groupId];
@@ -206,7 +236,9 @@
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	if ((indexPath.section == 0) && (indexPath.row == 0)) [self actionChat];
+	if ((indexPath.section == 0) && (indexPath.row == 0)) {
+        [self actionChat];
+    }
     
 #warning add new user chat to start
 }

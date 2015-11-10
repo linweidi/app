@@ -35,6 +35,9 @@
 
 #import "RecentRemoteUtil.h"
 
+#import "PeopleLocalDataUtil.h"
+#import "RecentLocalDataUtil.h"
+
 #import "PeopleView.h"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
@@ -132,6 +135,7 @@
     
     latestPeople = [People latestEntity:self.managedObjectContext];
     
+#ifdef REMOTE_MODE
     [[PeopleRemoteUtil sharedUtil] loadRemotePeoples:latestPeople completionHandler:^(NSArray *objects, NSError *error) {
         if (error == nil) {
             //[peoples removeAllObjects];
@@ -144,10 +148,16 @@
             
         }
         else {
-           [ProgressHUD showError:@"Network error."];
+            [ProgressHUD showError:@"Network error."];
         }
         [self.refreshControl endRefreshing];
     }];
+#endif
+#ifdef LOCAL_MODE
+    [self.tableView reloadData];
+    [self.refreshControl endRefreshing];
+#endif
+
     
     
 //    [PeopleRemoteUtil sharedUtil] lo
@@ -311,6 +321,7 @@
 	if ([self.userIds containsObject:user.globalID] == NO) {
 		//PeopleSave([PFUser currentUser], user);
         
+#ifdef REMOTE_MODE
         [[PeopleRemoteUtil sharedUtil] createRemotePeople:user.fullname user:user completionHandler:^(id object, NSError *error) {
             if (error != nil) {
                 [ProgressHUD showError:@"CreateRemotePeople save error."];
@@ -324,6 +335,24 @@
                 }
             }
         }];
+#endif
+#ifdef LOCAL_MODE
+        [[PeopleLocalDataUtil sharedUtil] createLocalPeople:user.fullname user:user completionHandler:^(id object, NSError *error) {
+            if (!error) {
+                if (object) {
+                    //[users addObject:user];
+                    [self.userIds addObject:user.globalID];
+                    //[self setObjects:users];
+                    [self.tableView reloadData];
+                }
+            }
+            else {
+                [ProgressHUD showError:@"CreateRemotePeople save error."];
+            }
+
+        }];
+#endif
+
 
 	}
 }
@@ -400,19 +429,31 @@
     People * people = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     User * user = people.contact;
-    
-    [[PeopleRemoteUtil sharedUtil] deleteRemotePeople:user completionHandler:^(BOOL succeeded, NSError *error) {
+#ifdef REMOTE_MODE
+    [[PeopleRemoteUtil sharedUtil] removeRemotePeople:user completionHandler:^(BOOL succeeded, NSError *error) {
         if (error != nil) {
             [ProgressHUD showError:@"PeopleDelete delete error"];
         }
         else if (succeeded ){
-
+            
             [self.userIds removeObject:user.globalID];
             //[self setObjects:users];
             //---------------------------------------------------------------------------------------------------------------------------------------------
             [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }
     }];
+#endif
+#ifdef LOCAL_MODE
+    [[PeopleLocalDataUtil sharedUtil] removeLocalPeople:user completionHandler:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            [self.userIds removeObject:user.globalID];
+            //[self setObjects:users];
+            //---------------------------------------------------------------------------------------------------------------------------------------------
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }
+    }];
+#endif
+
     
 
 }
@@ -432,7 +473,13 @@
     User *user2 = people.contact;
     //userstemp[indexPath.row];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
+#ifdef REMOTE_MODE
     NSString *groupId = [[RecentRemoteUtil sharedUtil] startRemotePrivateChat:user1 user2:user2];
+#endif
+#ifdef LOCAL_MODE
+    NSString * groupId = [[RecentLocalDataUtil sharedUtil] startLocalPrivateChat:user1 user2:user2];
+#endif
+
     //StartPrivateChat(user1, user2, self.managedObjectContext);
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	ChatView *chatView = [[ChatView alloc] initWith:groupId];

@@ -335,6 +335,7 @@
     //CreateRecentItem(user2, groupId, members, user1.fullname, context);
     [self createRemoteRecentItem:user1 groupId:groupId members:members desciption:user2.fullname lastMessage:nil];
     [self createRemoteRecentItem:user2 groupId:groupId members:members desciption:user1.fullname lastMessage:nil];
+
     //---------------------------------------------------------------------------------------------------------------------------------------------
     return groupId;
 }
@@ -366,11 +367,13 @@
         if ([description length] != 0) description = [description stringByAppendingString:@" & "];
         description = [description stringByAppendingString:user.fullname];
     }
+
     //create recent item
     for (User *user in users) {
         //CreateRecentItem(user, groupId, userIds, description, context);
         [self createRemoteRecentItem:user groupId:groupId members:userIds desciption:description lastMessage:nil];
     }
+
     //---------------------------------------------------------------------------------------------------------------------------------------------
     return groupId;
 }

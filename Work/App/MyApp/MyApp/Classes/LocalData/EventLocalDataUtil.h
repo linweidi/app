@@ -6,14 +6,16 @@
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 
-#import "BaseLocalDataUtility.h"
+#import "BaseLocalDataUtil.h"
 
-@interface EventLocalDataUtil : BaseLocalDataUtility
+@interface EventLocalDataUtil : BaseLocalDataUtil
 
 + (EventLocalDataUtil *)sharedUtil;
 
 - (void) setRandomValues: (id) object data:(NSDictionary *)dict;
 
 - (NSArray *)constructDataFromDict:(NSDictionary *)dict;
+
+- (void) removeLocalEventMember:(Event *)event user:(User *)user completionHandler:(REMOTE_BOOL_BLOCK)block;
 
 @end

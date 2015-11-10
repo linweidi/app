@@ -61,6 +61,22 @@
     }
 }
 
+- (void) setCommonValues:(id) object {
+    LOCAL_DATA_CLASS_TYPE * event = (LOCAL_DATA_CLASS_TYPE *)object;
+    event.globalID = [self getUniqueGlobalID];
+    event.createTime = [NSDate date];
+    event.updateTime = [NSDate date];
+    
+}
+
+- (void) setObjectEntity:(NSManagedObject *)object1 byObject:(NSManagedObject *)object2 {
+    if (self.keys) {
+        for (NSString * key in self.keys) {
+            [object1 setValue:[object2 valueForKey:key] forKey:key];
+        }
+    }
+}
+
 #pragma mark -- Base Methods
 #define LOCAL_DATA_CREATE_DAY_RANGE 60
 - (NSDate *) getRandomPastDate {

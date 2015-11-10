@@ -16,4 +16,5 @@
 
 - (NSArray *)constructDataFromDict:(NSDictionary *)dict;
 
+//- (void) createLocalPlaces:(NSArray *)placeObjArray completionHandler:(REMOTE_OBJECT_BLOCK)block;
 @end
