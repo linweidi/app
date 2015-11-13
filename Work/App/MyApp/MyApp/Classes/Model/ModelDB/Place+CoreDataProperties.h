@@ -2,7 +2,7 @@
 //  Place+CoreDataProperties.h
 //  MyApp
 //
-//  Created by Linwei Ding on 11/8/15.
+//  Created by Linwei Ding on 11/13/15.
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -25,13 +25,18 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSNumber *price;
 @property (nullable, nonatomic, retain) NSNumber *rankings;
 @property (nullable, nonatomic, retain) NSString *tips;
-@property (nullable, nonatomic, retain) id types;
+@property (nullable, nonatomic, retain) NSSet<EventCategory *> *categories;
 @property (nullable, nonatomic, retain) NSSet<Picture *> *photos;
 @property (nullable, nonatomic, retain) Thumbnail *thumb;
 
 @end
 
 @interface Place (CoreDataGeneratedAccessors)
+
+- (void)addCategoriesObject:(EventCategory *)value;
+- (void)removeCategoriesObject:(EventCategory *)value;
+- (void)addCategories:(NSSet<EventCategory *> *)values;
+- (void)removeCategories:(NSSet<EventCategory *> *)values;
 
 - (void)addPhotosObject:(Picture *)value;
 - (void)removePhotosObject:(Picture *)value;

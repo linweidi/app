@@ -16,6 +16,8 @@
 #import "AppHeader.h"
 #import "Event+Util.h"
 #import "EventRemoteUtil.h"
+#import "EventCellView.h"
+#import "EventSettingsView.h"
 #import "CalendarViewController.h"
 
 @interface CalendarViewController (){
@@ -97,7 +99,7 @@
     //_datesSelectedLast = [NSDate date];
     
 
-    [self.tableView registerNib:[UINib nibWithNibName:@"EventCell" bundle:nil] forCellReuseIdentifier:@"EventCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"EventCellView" bundle:nil] forCellReuseIdentifier:@"EventCell"];
     //---------------------------------------------------------------------------------------------------------------------------------------------
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(loadEvents) forControlEvents:UIControlEventValueChanged];
@@ -403,7 +405,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EventCell" forIndexPath:indexPath];
+    TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EventCell" forIndexPath:indexPath];
     
     Event * event = [self.fetchedResultsController objectAtIndexPath:indexPath];
     [cell bindData:event];
@@ -426,7 +428,7 @@
 //	groupSettingsView.hidesBottomBarWhenPushed = YES;
 //	[self.navigationController pushViewController:groupSettingsView animated:YES];
     Event * event = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    EventSettingsView * eventSettingsView = [[EventSettingsView alloc] initWith:event];
+    EventSettingsView * eventSettingsView = [[EventSettingsView alloc] initWithEvent:event];
     eventSettingsView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:eventSettingsView animated:YES];
 }

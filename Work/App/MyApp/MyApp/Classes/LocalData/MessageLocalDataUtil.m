@@ -64,14 +64,14 @@
     message.picture = [Picture entityWithID:dict[PF_MESSAGE_PICTURE] inManagedObjectContext:self.managedObjectContext];
     message.video = [Video entityWithID:dict[PF_MESSAGE_VIDEO] inManagedObjectContext:self.managedObjectContext];
     
-    message.user = [User entityWithID:dict[PF_MESSAGE_USER] inManagedObjectContext:self.managedObjectContext];
+    message.createUser = [User entityWithID:dict[PF_MESSAGE_USER] inManagedObjectContext:self.managedObjectContext];
 }
 
 
 - (void) createLocalMessage:(NSString *)chatId text:(NSString *)text Video:(Video *)video Picture:(Picture *)picture completionHandler:(REMOTE_OBJECT_BLOCK)block{
     
     Message * message = [Message createEntity:self.managedObjectContext];
-    message.user = [[ConfigurationManager sharedManager] getCurrentUser];
+    message.createUser = [[ConfigurationManager sharedManager] getCurrentUser];
     message.chatID = chatId;
     message.text = text;
     message.picture = picture;

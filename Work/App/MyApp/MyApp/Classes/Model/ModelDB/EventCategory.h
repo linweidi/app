@@ -2,12 +2,14 @@
 //  EventCategory.h
 //  MyApp
 //
-//  Created by Linwei Ding on 10/30/15.
+//  Created by Linwei Ding on 11/12/15.
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "SystemEntity.h"
+
+@class Thumbnail;
 
 NS_ASSUME_NONNULL_BEGIN
 

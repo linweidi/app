@@ -5,7 +5,7 @@
 //  Created by Linwei Ding on 11/12/15.
 //  Copyright (c) 2015 Linweiding. All rights reserved.
 //
-
+#import "Event+Util.h"
 #import "EventSettingsView.h"
 
 @interface EventSettingsView ()
@@ -14,12 +14,15 @@
 
 @implementation EventSettingsView
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+
+
+- (instancetype)initWithEvent:(Event *)event
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super init];
     if (self) {
-        // Custom initialization
+        self.event = event;
     }
+
     return self;
 }
 

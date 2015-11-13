@@ -75,7 +75,7 @@
     //---------------------------------------------------------------------------------------------------------------------------------------------
     //CreateRecentItem(user1, groupId, members, user2.fullname, context);
     //CreateRecentItem(user2, groupId, members, user1.fullname, context);
-    [self createRecentItem:user1 groupId:groupId members:members desciption:user2.fullname lastMessage:nil];
+    [self createLocalRecentItem:user1 groupId:groupId members:members desciption:user2.fullname lastMessage:nil];
 
     //---------------------------------------------------------------------------------------------------------------------------------------------
     return groupId;
@@ -111,7 +111,7 @@
     }
     
 
-    [self createRecentItem:[[ConfigurationManager sharedManager] getCurrentUser] groupId:groupId members:userIds desciption:description lastMessage:nil];
+    [self createLocalRecentItem:[[ConfigurationManager sharedManager] getCurrentUser] groupId:groupId members:userIds desciption:description lastMessage:nil];
 
     //---------------------------------------------------------------------------------------------------------------------------------------------
     return groupId;

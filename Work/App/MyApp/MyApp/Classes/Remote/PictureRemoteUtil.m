@@ -53,7 +53,7 @@
     NSAssert([object isKindOfClass:[Picture class]], @"Type casting is wrong");
     Picture * picture = (Picture *)object;
     
-    PFFile * filePF = [PFFile fileWithName:picture.name data:picture.dataVolatile];
+    PFFile * filePF = [PFFile fileWithName:picture.name data:picture.data];
     remoteObj[PF_PICTURE_FILE] = filePF;
 }
 
@@ -78,7 +78,7 @@
     
     PFFile * oldFile = remoteObj[PF_PICTURE_FILE];
     if (![picture.fileName isEqualToString: oldFile.name]) {
-        PFFile * filePF = [PFFile fileWithName:picture.fileName data:picture.dataVolatile];
+        PFFile * filePF = [PFFile fileWithName:picture.fileName data:picture.data];
         remoteObj[PF_PICTURE_FILE] = filePF;
     }
     

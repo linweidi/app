@@ -2,7 +2,7 @@
 //  EventVoting+CoreDataProperties.h
 //  MyApp
 //
-//  Created by Linwei Ding on 11/7/15.
+//  Created by Linwei Ding on 11/13/15.
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -15,10 +15,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface EventVoting (CoreDataProperties)
 
+@property (nullable, nonatomic, retain) NSNumber *initiatorDecision;
 @property (nullable, nonatomic, retain) NSString *instruction;
 @property (nullable, nonatomic, retain) NSNumber *isPriority;
-@property (nullable, nonatomic, retain) NSNumber *selectNum;
 @property (nullable, nonatomic, retain) NSNumber *timeSpan;
+@property (nullable, nonatomic, retain) NSNumber *voteMaxNum;
+@property (nullable, nonatomic, retain) User *votedMemberList;
 @property (nullable, nonatomic, retain) NSSet<EventVoteItem *> *voteItems;
 @property (nullable, nonatomic, retain) NSSet<User *> *voterList;
 

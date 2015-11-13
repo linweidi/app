@@ -2,7 +2,7 @@
 //  EventVoteItem+CoreDataProperties.m
 //  MyApp
 //
-//  Created by Linwei Ding on 11/7/15.
+//  Created by Linwei Ding on 11/13/15.
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -13,9 +13,11 @@
 
 @implementation EventVoteItem (CoreDataProperties)
 
+@dynamic endTime;
 @dynamic score;
-@dynamic voteNum;
-@dynamic voterName;
+@dynamic startTime;
+@dynamic voteCount;
 @dynamic votingID;
+@dynamic voters;
 
 @end

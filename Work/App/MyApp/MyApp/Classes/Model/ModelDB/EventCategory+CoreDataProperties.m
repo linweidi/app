@@ -2,7 +2,7 @@
 //  EventCategory+CoreDataProperties.m
 //  MyApp
 //
-//  Created by Linwei Ding on 11/7/15.
+//  Created by Linwei Ding on 11/12/15.
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -13,13 +13,18 @@
 
 @implementation EventCategory (CoreDataProperties)
 
-@dynamic childArray;
 @dynamic childCount;
+@dynamic childItems;
+@dynamic id;
 @dynamic level;
 @dynamic name;
 @dynamic notes;
-@dynamic parent;
-@dynamic relatedArray;
-@dynamic subArray;
+@dynamic parentItemCount;
+@dynamic parentItems;
+@dynamic relatedItemCount;
+@dynamic relatedItems;
+@dynamic subseqItemCount;
+@dynamic subseqItems;
+@dynamic thumb;
 
 @end

@@ -60,7 +60,7 @@
     NSAssert([object isKindOfClass:[Message class]], @"Type casting is wrong");
     Message * message = (Message *)object;
     
-    User * user = message.user;
+    User * user = message.createUser;
     if (user) {
         // this is create user
         PFUser * userRMT = [[UserRemoteUtil sharedUtil] convertToRemoteUser:user];
@@ -111,7 +111,7 @@
     PFUser * userRMT = remoteObj[PF_MESSAGE_USER];
     if (userRMT.updatedAt) {
         user = [[UserRemoteUtil sharedUtil] convertToUser:userRMT];
-        message.user = user;
+        message.createUser = user;
     }
     
     
@@ -246,7 +246,7 @@
 - (void) createRemoteMessage:(NSString *)chatId text:(NSString *)text Video:(Video *)video Picture:(Picture *)picture completionHandler:(REMOTE_OBJECT_BLOCK)block{
     
     Message * message = [Message createEntity:nil];
-    message.user = [[ConfigurationManager sharedManager] getCurrentUser];
+    message.createUser = [[ConfigurationManager sharedManager] getCurrentUser];
     message.chatID = chatId;
     message.text = text;
     message.picture = picture;

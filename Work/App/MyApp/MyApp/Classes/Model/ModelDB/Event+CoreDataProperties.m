@@ -2,7 +2,7 @@
 //  Event+CoreDataProperties.m
 //  MyApp
 //
-//  Created by Linwei Ding on 11/8/15.
+//  Created by Linwei Ding on 11/12/15.
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -14,6 +14,7 @@
 @implementation Event (CoreDataProperties)
 
 @dynamic boardIDs;
+@dynamic busy;
 @dynamic endTime;
 @dynamic groupIDs;
 @dynamic invitees;
@@ -23,6 +24,7 @@
 @dynamic members;
 @dynamic notes;
 @dynamic scope;
+@dynamic startDay;
 @dynamic startTime;
 @dynamic title;
 @dynamic votingID;

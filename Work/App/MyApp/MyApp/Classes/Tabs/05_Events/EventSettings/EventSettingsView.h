@@ -8,6 +8,11 @@
 
 #import "CoreDataTableViewController.h"
 
+@class Event;
 @interface EventSettingsView : CoreDataTableViewController
 
+- (instancetype)initWithEvent:(Event *)event;
+
+
+@property (strong, nonatomic) Event * event;
 @end

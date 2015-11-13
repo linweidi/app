@@ -2,7 +2,7 @@
 //  EventVoting+CoreDataProperties.m
 //  MyApp
 //
-//  Created by Linwei Ding on 11/7/15.
+//  Created by Linwei Ding on 11/13/15.
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -13,10 +13,12 @@
 
 @implementation EventVoting (CoreDataProperties)
 
+@dynamic initiatorDecision;
 @dynamic instruction;
 @dynamic isPriority;
-@dynamic selectNum;
 @dynamic timeSpan;
+@dynamic voteMaxNum;
+@dynamic votedMemberList;
 @dynamic voteItems;
 @dynamic voterList;
 

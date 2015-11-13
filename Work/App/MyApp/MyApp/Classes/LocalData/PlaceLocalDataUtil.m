@@ -8,6 +8,7 @@
 #import "Place+Util.h"
 #import "Picture+Util.h"
 #import "Thumbnail+Util.h"
+#import "EventCategory+Util.h"
 #import "PlaceLocalDataUtil.h"
 
 #undef LOCAL_DATA_CLASS_TYPE
@@ -64,7 +65,7 @@
     place.price = dict[PF_PLACE_PRICE];
     place.rankings = dict[PF_PLACE_RANKINGS];
     place.tips = dict[PF_PLACE_TIPS];
-    place.type = dict[PF_PLACE_TYPE];
+    //place.categories = dict[PF_PLACE_CATEGORY];
     
     for (NSString * pictID in dict[PF_PLACE_PHOTOS]) {
         Picture * picture = [Picture entityWithID:pictID inManagedObjectContext:self.managedObjectContext];
@@ -73,6 +74,11 @@
     
     Thumbnail * thumb = [Thumbnail entityWithID:dict[PF_PLACE_THUMB] inManagedObjectContext:self.managedObjectContext];
     place.thumb = thumb;
+    
+    for (NSString * categoryID in dict[PF_PLACE_CATEGORY]) {
+        EventCategory * category = [EventCategory entityWithID:categoryID inManagedObjectContext:self.managedObjectContext];
+        [place addCategoriesObject:category];
+    }
 }
 
 //- (void) createLocalPlaces:(NSArray *)placeObjArray completionHandler:(REMOTE_OBJECT_BLOCK)block{

@@ -2,7 +2,7 @@
 //  Event+CoreDataProperties.h
 //  MyApp
 //
-//  Created by Linwei Ding on 11/8/15.
+//  Created by Linwei Ding on 11/12/15.
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Event (CoreDataProperties)
 
 @property (nullable, nonatomic, retain) id boardIDs;
+@property (nullable, nonatomic, retain) NSNumber *busy;
 @property (nullable, nonatomic, retain) NSDate *endTime;
 @property (nullable, nonatomic, retain) id groupIDs;
 @property (nullable, nonatomic, retain) id invitees;
@@ -25,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) id members;
 @property (nullable, nonatomic, retain) NSString *notes;
 @property (nullable, nonatomic, retain) NSString *scope;
+@property (nullable, nonatomic, retain) NSDate *startDay;
 @property (nullable, nonatomic, retain) NSDate *startTime;
 @property (nullable, nonatomic, retain) NSString *title;
 @property (nullable, nonatomic, retain) NSString *votingID;

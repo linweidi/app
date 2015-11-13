@@ -31,23 +31,23 @@
     [super viewDidLoad];
 	self.title = @"Create Group";
 	//---------------------------------------------------------------------------------------------------------------------------------------------
-	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self
-																						  action:@selector(actionCancel)];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self
-																						   action:@selector(actionDone)];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
-	[self.tableView addGestureRecognizer:gestureRecognizer];
-	gestureRecognizer.cancelsTouchesInView = NO;
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	self.tableView.tableHeaderView = viewHeader;
-	self.tableView.tableFooterView = [[UIView alloc] init];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	//users = [[NSMutableArray alloc] init];
-	selection = [[NSMutableArray alloc] init];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	[self loadPeople];
+//	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self
+//																						  action:@selector(actionCancel)];
+//	//---------------------------------------------------------------------------------------------------------------------------------------------
+//	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self
+//																						   action:@selector(actionDone)];
+//	//---------------------------------------------------------------------------------------------------------------------------------------------
+//	UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+//	[self.tableView addGestureRecognizer:gestureRecognizer];
+//	gestureRecognizer.cancelsTouchesInView = NO;
+//	//---------------------------------------------------------------------------------------------------------------------------------------------
+//	self.tableView.tableHeaderView = viewHeader;
+//	self.tableView.tableFooterView = [[UIView alloc] init];
+//	//---------------------------------------------------------------------------------------------------------------------------------------------
+//	//users = [[NSMutableArray alloc] init];
+//	selection = [[NSMutableArray alloc] init];
+//	//---------------------------------------------------------------------------------------------------------------------------------------------
+//	[self loadPeople];
 }
 
 - (void)didReceiveMemoryWarning

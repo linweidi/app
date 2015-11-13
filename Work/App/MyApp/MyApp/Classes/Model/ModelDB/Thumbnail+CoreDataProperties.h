@@ -2,7 +2,7 @@
 //  Thumbnail+CoreDataProperties.h
 //  MyApp
 //
-//  Created by Linwei Ding on 11/8/15.
+//  Created by Linwei Ding on 11/13/15.
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -19,8 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *fileName;
 @property (nullable, nonatomic, retain) NSString *name;
 @property (nullable, nonatomic, retain) NSString *url;
-@property (nullable, nonatomic, retain) Place *place;
-@property (nullable, nonatomic, retain) User *user;
+@property (nullable, nonatomic, retain) Place *placeInv;
+@property (nullable, nonatomic, retain) User *userInv;
+@property (nullable, nonatomic, retain) EventCategory *categoryInv;
 
 @end
 

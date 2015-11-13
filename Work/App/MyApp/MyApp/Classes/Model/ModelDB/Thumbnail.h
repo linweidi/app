@@ -2,14 +2,14 @@
 //  Thumbnail.h
 //  MyApp
 //
-//  Created by Linwei Ding on 10/30/15.
+//  Created by Linwei Ding on 11/13/15.
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "UserEntity.h"
 
-@class Place, User;
+@class EventCategory, Place, User;
 
 NS_ASSUME_NONNULL_BEGIN
 
