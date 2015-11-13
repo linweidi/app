@@ -7,12 +7,17 @@
 //
 
 #import "CoreDataTableViewController.h"
+#import "SingleTextfieldViewController.h"
 
 @class Event;
-@interface EventSettingsView : CoreDataTableViewController
+@interface EventSettingsView : CoreDataTableViewController <SingleTextfieldVCDelegate>
 
 - (instancetype)initWithEvent:(Event *)event;
 
 
 @property (strong, nonatomic) Event * event;
+
+- (void)updateText:(NSString *)text indexPath:(NSIndexPath *)indexPath;
+//@property (strong, nonatomic) NSString * text;
+
 @end
