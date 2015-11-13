@@ -20,4 +20,6 @@
 
 #include "../Template/EntityUtilTemplate.hh"
 
+- (void) setStartTime:(NSDate *)startTime;
+
 @end

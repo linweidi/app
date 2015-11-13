@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateEventView">
+            <connections>
+                <outlet property="view" destination="DXH-Tt-uau" id="8wh-OX-oJm"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" bouncesZoom="NO" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" id="DXH-Tt-uau">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="dataSource" destination="-1" id="C5q-Cy-6TG"/>
+                <outlet property="delegate" destination="-1" id="ri9-uh-ZbG"/>
+            </connections>
+        </tableView>
+        <view contentMode="scaleToFill" id="Guy-uX-ybl">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Fd-T7-dql">
+                    <rect key="frame" x="0.0" y="10" width="320" height="50"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Group name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m5u-lW-FI7">
+                    <rect key="frame" x="15" y="10" width="290" height="50"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
+                </textField>
+            </subviews>
+            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="7Fd-T7-dql" firstAttribute="top" secondItem="m5u-lW-FI7" secondAttribute="top" id="FDI-Sf-Dgb"/>
+                <constraint firstItem="7Fd-T7-dql" firstAttribute="leading" secondItem="Guy-uX-ybl" secondAttribute="leading" id="LEY-Lj-yse"/>
+                <constraint firstAttribute="trailing" secondItem="7Fd-T7-dql" secondAttribute="trailing" id="LOn-pN-qyC"/>
+                <constraint firstAttribute="trailing" secondItem="m5u-lW-FI7" secondAttribute="trailing" constant="15" id="Wia-8t-IdG"/>
+                <constraint firstItem="7Fd-T7-dql" firstAttribute="bottom" secondItem="m5u-lW-FI7" secondAttribute="bottom" id="ZYA-fO-RNm"/>
+                <constraint firstItem="7Fd-T7-dql" firstAttribute="top" secondItem="Guy-uX-ybl" secondAttribute="top" constant="10" id="hvA-KI-mV9"/>
+                <constraint firstItem="7Fd-T7-dql" firstAttribute="centerX" secondItem="m5u-lW-FI7" secondAttribute="centerX" id="pD3-hH-N7B"/>
+                <constraint firstItem="7Fd-T7-dql" firstAttribute="centerY" secondItem="Guy-uX-ybl" secondAttribute="centerY" id="tOV-YN-tCa"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+</document>

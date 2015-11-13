@@ -26,7 +26,7 @@
 //	PFObject *recent;
 }
 
-@property (strong, nonatomic) IBOutlet PFImageView *imageUser;
+@property (strong, nonatomic) IBOutlet UIImageView *imageUser;
 @property (strong, nonatomic) IBOutlet UILabel *labelDescription;
 @property (strong, nonatomic) IBOutlet UILabel *labelLastMessage;
 @property (strong, nonatomic) IBOutlet UILabel *labelElapsed;
@@ -86,8 +86,9 @@
 //            
 //        }
 //    }];
+    
     [imageUser setImage:[UIImage imageWithData:lastUser.thumbnail.data]];
-    [imageUser loadInBackground];
+    //[imageUser loadInBackground];
     
     
 	//---------------------------------------------------------------------------------------------------------------------------------------------

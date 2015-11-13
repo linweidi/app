@@ -26,6 +26,9 @@
 @property (strong, nonatomic) UIRefreshControl * refreshControl;
 
 
+@property (nonatomic) BOOL multiSelection;
+
+//@property (strong, nonatomic) NSMutableArray * rightBarButtons;
 
 @end
 

@@ -25,7 +25,12 @@
     
     NSMutableArray *_datesSelected;
     
-    NSDate *_datesSelectedLast;
+    //NSDate *_datesSelectedLast;
+    
+//    UIBarButtonItem * buttonToday;
+    UIBarButtonItem * _buttonMulti;
+    
+    NSDate * _currentDate;
 }
 
 
@@ -61,12 +66,20 @@
     // add compose button
 //    [rightBarButtons addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(actionNew)]];
     // add compose button
+    [rightBarButtons addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(didCreateEventTouch)]];
+    
     [rightBarButtons addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(didChangeModeTouch)]];
     // add today button
     [rightBarButtons addObject:[[UIBarButtonItem alloc] initWithTitle:@"TODAY" style:UIBarButtonItemStyleBordered target:self action:@selector(didGoTodayTouch)]];
+
+    _buttonMulti =[[UIBarButtonItem alloc] initWithTitle:@"MULTI" style:UIBarButtonItemStyleBordered target:self action:@selector(didChangeSelectModeTouch)];
+    [rightBarButtons addObject:_buttonMulti];
     // add switch view button
     self.navigationItem.rightBarButtonItems = rightBarButtons;
     
+    _multiSelection = NO;
+    
+    _currentDate = [NSDate date];
     
     // Generate random events sort by date using a dateformatter for the demonstration
     [self createRandomEvents];
@@ -81,9 +94,10 @@
     
     _datesSelected = [NSMutableArray new];
     
-    _datesSelectedLast = [NSDate date];
+    //_datesSelectedLast = [NSDate date];
     
 
+    [self.tableView registerNib:[UINib nibWithNibName:@"EventCell" bundle:nil] forCellReuseIdentifier:@"EventCell"];
     //---------------------------------------------------------------------------------------------------------------------------------------------
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(loadEvents) forControlEvents:UIControlEventValueChanged];
@@ -136,10 +150,15 @@
     if (self.managedObjectContext) {
         // init fetch request
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Event"];
-        request.predicate = [NSPredicate predicateWithFormat:@"startDate IN %@", _datesSelected];
+        if (self.multiSelection) {
+            request.predicate = [NSPredicate predicateWithFormat:@"startDay IN %@", _datesSelected];
+        }
+        else {
+            request.predicate = [NSPredicate predicateWithFormat:@"startDay = %@", _currentDate];        }
+
         request.fetchLimit = EVENTVIEW_ITEM_NUM;
         request.sortDescriptors = @[[NSSortDescriptor
-                                     sortDescriptorWithKey:@"startDate"
+                                     sortDescriptorWithKey:@"startTime"
                                      ascending:NO
                                      selector:@selector(compare:)],
                                     ];
@@ -155,6 +174,11 @@
 }
 
 #pragma mark - Buttons callback
+
+- (IBAction)didCreateEventTouch
+{
+    
+}
 
 - (IBAction)didGoTodayTouch
 {
@@ -175,7 +199,22 @@
     [self.view layoutIfNeeded];
 }
 
+- (IBAction)didChangeSelectModeTouch
+{
+    _buttonMulti.style = self.multiSelection?UIBarButtonItemStyleBordered:UIBarButtonItemStyleDone;
+    
+    self.multiSelection = !self.multiSelection;
+    
+    [self refreshSelection];
+    
+    [self.view layoutIfNeeded];
+}
 
+#pragma mark -- private functions
+- (void) refreshSelection {
+    [_datesSelected removeAllObjects];
+    _currentDate = [NSDate date];
+}
 
 #pragma mark - CalendarManager delegate
 
@@ -191,7 +230,13 @@
         dayView.textLabel.textColor = [UIColor whiteColor];
     }
     // Selected date
-    else if([self isInDatesSelected:dayView.date]){
+    else if (self.multiSelection && [self isInDatesSelected:dayView.date]) {
+        dayView.circleView.hidden = NO;
+        dayView.circleView.backgroundColor = [UIColor redColor];
+        dayView.dotView.backgroundColor = [UIColor whiteColor];
+        dayView.textLabel.textColor = [UIColor whiteColor];
+    }
+    else if (!self.multiSelection && _currentDate && [_calendarManager.dateHelper date:_currentDate isTheSameDayThan:dayView.date]){
         dayView.circleView.hidden = NO;
         dayView.circleView.backgroundColor = [UIColor redColor];
         dayView.dotView.backgroundColor = [UIColor whiteColor];
@@ -220,30 +265,49 @@
 
 - (void)calendar:(JTCalendarManager *)calendar didTouchDayView:(JTCalendarDayView *)dayView
 {
-    if([self isInDatesSelected:dayView.date]){
-        [_datesSelected removeObject:dayView.date];
-
+    if(self.multiSelection ){
+        if ([self isInDatesSelected:dayView.date]){
+            [_datesSelected removeObject:dayView.date];
+            
+            
+            [UIView transitionWithView:dayView
+                              duration:.3
+                               options:0
+                            animations:^{
+                                [_calendarManager reload];
+                                dayView.circleView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.1, 0.1);
+                            } completion:nil];
+        }
         
-        [UIView transitionWithView:dayView
-                          duration:.3
-                           options:0
-                        animations:^{
-                            [_calendarManager reload];
-                            dayView.circleView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.1, 0.1);
-                        } completion:nil];
+        else{
+            [_datesSelected addObject:dayView.date];
+            
+            dayView.circleView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.1, 0.1);
+            [UIView transitionWithView:dayView
+                              duration:.3
+                               options:0
+                            animations:^{
+                                [_calendarManager reload];
+                                dayView.circleView.transform = CGAffineTransformIdentity;
+                            } completion:nil];
+        }
     }
-    else{
-        [_datesSelected addObject:dayView.date];
+    else {
+        // not multi selection
+        _currentDate = dayView.date;
         
+        // Animation for the circleView
         dayView.circleView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.1, 0.1);
         [UIView transitionWithView:dayView
                           duration:.3
                            options:0
                         animations:^{
-                            [_calendarManager reload];
                             dayView.circleView.transform = CGAffineTransformIdentity;
+                            [_calendarManager reload];
                         } completion:nil];
     }
+    
+
     
     [self updateFetchedResultsController];
     [self.tableView reloadData];
@@ -339,10 +403,10 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
     
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecentCell" forIndexPath:indexPath];
-//    
-//    Recent * recent = [self.fetchedResultsController objectAtIndexPath:indexPath];
-//    [cell bindData:recent];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EventCell" forIndexPath:indexPath];
+    
+    Event * event = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    [cell bindData:event];
     
     
     return nil;
@@ -354,6 +418,17 @@
     //    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d photographers", [[region popularity] intValue]];
     //    
     //    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    Group * group = [self.fetchedResultsController objectAtIndexPath:indexPath];
+//	GroupSettingsView *groupSettingsView = [[GroupSettingsView alloc] initWith:group];
+//	groupSettingsView.hidesBottomBarWhenPushed = YES;
+//	[self.navigationController pushViewController:groupSettingsView animated:YES];
+    Event * event = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    EventSettingsView * eventSettingsView = [[EventSettingsView alloc] initWith:event];
+    eventSettingsView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:eventSettingsView animated:YES];
 }
 
 #pragma mark - Date selection

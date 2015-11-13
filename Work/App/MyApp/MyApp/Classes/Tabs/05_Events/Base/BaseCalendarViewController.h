@@ -12,4 +12,6 @@
 
 @interface BaseCalendarViewController : CoreDataViewController
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @end

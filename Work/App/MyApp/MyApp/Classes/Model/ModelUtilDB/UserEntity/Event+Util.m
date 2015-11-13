@@ -20,7 +20,17 @@
 
 #include "../Template/EntityUtilTemplate.mh"
 
-
+- (void) setStartTime:(NSDate *)startTime {
+    static NSCalendar * calendar;
+    if (!calendar) {
+        calendar = [NSCalendar currentCalendar];
+        //calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    }
+    
+    NSDateComponents * comps = [calendar components:NSCalendarUnitDay|NSCalendarUnitMonth|NSCalendarUnitYear fromDate:startTime];
+    
+    self.startDay = [comps date];
+}
 @end
 
 //#import "AppConstant.h"

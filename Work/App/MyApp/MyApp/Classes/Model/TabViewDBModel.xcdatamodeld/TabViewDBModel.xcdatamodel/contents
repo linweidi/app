@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="14F27" minimumToolsVersion="Xcode 4.3">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13A603" minimumToolsVersion="Xcode 4.3">
     <entity name="Alert" representedClassName="Alert" parentEntity="UserEntity" syncable="YES">
         <attribute name="time" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
@@ -14,6 +14,7 @@
     <entity name="CurrentUser" representedClassName="CurrentUser" parentEntity="User" syncable="YES"/>
     <entity name="Event" representedClassName="Event" parentEntity="UserEntity" syncable="YES">
         <attribute name="boardIDs" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="busy" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="groupIDs" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="invitees" optional="YES" attributeType="Transformable" syncable="YES"/>
@@ -23,6 +24,7 @@
         <attribute name="members" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="scope" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startDay" optional="YES" syncable="YES"/>
         <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="votingID" optional="YES" attributeType="String" syncable="YES"/>
@@ -32,14 +34,18 @@
         <relationship name="userVolatile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" syncable="YES"/>
     </entity>
     <entity name="EventCategory" representedClassName="EventCategory" parentEntity="SystemEntity" syncable="YES">
-        <attribute name="childArray" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="childCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="childItems" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="parent" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="relatedArray" optional="YES" attributeType="Transformable" syncable="YES"/>
-        <attribute name="subArray" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="parentItemCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="parentItems" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="relatedItemCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="relatedItems" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="subseqItemCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="subseqItems" optional="YES" attributeType="Transformable" syncable="YES"/>
     </entity>
     <entity name="EventTemplate" representedClassName="EventTemplate" parentEntity="UserEntity" syncable="YES">
         <attribute name="boardIDs" optional="YES" attributeType="Transformable" syncable="YES"/>
@@ -53,16 +59,20 @@
         <relationship name="place" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Place" syncable="YES"/>
     </entity>
     <entity name="EventVoteItem" representedClassName="EventVoteItem" parentEntity="UserEntity" syncable="YES">
+        <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="score" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="voteNum" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="voterName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="voteCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="votingID" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="voters" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" syncable="YES"/>
     </entity>
     <entity name="EventVoting" representedClassName="EventVoting" parentEntity="UserEntity" syncable="YES">
+        <attribute name="initiatorDecision" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="instruction" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isPriority" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="selectNum" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="timeSpan" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="voteMaxNum" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="votedMemberList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" syncable="YES"/>
         <relationship name="voteItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EventVoteItem" syncable="YES"/>
         <relationship name="voterList" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" syncable="YES"/>
     </entity>
@@ -108,7 +118,7 @@
         <attribute name="price" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="rankings" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="tips" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="types" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EventCategory" syncable="YES"/>
         <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Picture" inverseName="placeInv" inverseEntity="Picture" syncable="YES"/>
         <relationship name="thumb" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Thumbnail" inverseName="placeInv" inverseEntity="Thumbnail" syncable="YES"/>
     </entity>
@@ -158,11 +168,11 @@
         <element name="Alert" positionX="36" positionY="99" width="128" height="90"/>
         <element name="Board" positionX="-360" positionY="-261" width="128" height="105"/>
         <element name="CurrentUser" positionX="-369" positionY="-270" width="128" height="45"/>
-        <element name="Event" positionX="45" positionY="-180" width="128" height="300"/>
-        <element name="EventCategory" positionX="-369" positionY="-270" width="128" height="165"/>
+        <element name="Event" positionX="45" positionY="-180" width="128" height="328"/>
+        <element name="EventCategory" positionX="-369" positionY="-270" width="128" height="225"/>
         <element name="EventTemplate" positionX="-351" positionY="-252" width="128" height="180"/>
-        <element name="EventVoteItem" positionX="-324" positionY="-225" width="128" height="103"/>
-        <element name="EventVoting" positionX="-342" positionY="-243" width="128" height="133"/>
+        <element name="EventVoteItem" positionX="-324" positionY="-225" width="128" height="133"/>
+        <element name="EventVoting" positionX="-342" positionY="-243" width="128" height="163"/>
         <element name="Group" positionX="-252" positionY="72" width="128" height="90"/>
         <element name="Message" positionX="-369" positionY="-270" width="128" height="120"/>
         <element name="ObjectEntity" positionX="-216" positionY="-63" width="128" height="90"/>
