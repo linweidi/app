@@ -2,7 +2,7 @@
 //  EventCategory+CoreDataProperties.h
 //  MyApp
 //
-//  Created by Linwei Ding on 11/12/15.
+//  Created by Linwei Ding on 11/16/15.
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -17,8 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, retain) NSNumber *childCount;
 @property (nullable, nonatomic, retain) id childItems;
-@property (nullable, nonatomic, retain) NSString *id;
 @property (nullable, nonatomic, retain) NSNumber *level;
+@property (nullable, nonatomic, retain) NSString *localID;
 @property (nullable, nonatomic, retain) NSString *name;
 @property (nullable, nonatomic, retain) NSString *notes;
 @property (nullable, nonatomic, retain) NSNumber *parentItemCount;

@@ -8,6 +8,8 @@
 
 #import "BaseLocalDataUtil.h"
 
+@class Picture;
+@class Video;
 @interface MessageLocalDataUtil : BaseLocalDataUtil
 
 + (MessageLocalDataUtil *)sharedUtil;

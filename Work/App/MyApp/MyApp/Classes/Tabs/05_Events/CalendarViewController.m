@@ -13,6 +13,9 @@
 #import <Parse/Parse.h>
 #import "ProgressHUD.h"
 #import <UIKit/UIKit.h>
+
+#import "common.h"
+
 #import "AppHeader.h"
 #import "Event+Util.h"
 #import "EventRemoteUtil.h"
@@ -45,12 +48,13 @@
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if(!self){
+    if(self){
 		[self.tabBarItem setImage:[UIImage imageNamed:@"tab_recents"]];
 		self.tabBarItem.title = @"Events";
+        self.title = @"Events";
     }
     
-    self.title = @"Events";
+    
     
     return self;
 }
@@ -108,15 +112,17 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	[super viewDidAppear:animated];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	if ([PFUser currentUser] != nil)
-	{
-		//[self loadEvents];
-	}
-	//else LoginUser(self);
+    
+    if ([[ConfigurationManager sharedManager] getCurrentUser] != nil) {
+        [self loadEvents];
+
+    }
+    else {
+        LoginUser(self);
+    }
+	
 }
 
 #pragma mark -- private method

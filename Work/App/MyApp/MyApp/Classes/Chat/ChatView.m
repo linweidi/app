@@ -192,7 +192,7 @@
 	JSQMessage *message;
 	//---------------------------------------------------------------------------------------------------------------------------------------------
     // core data only read user data once, so that is ok
-	User *user = object.user;
+	User *user = object.createUser;
 	NSString *name = user.fullname;
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 //	RemoteFile *fileVideo =[RemoteFile fileWithName:object.videoName url:object.videoURL];
@@ -214,7 +214,7 @@
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	if (object.picture  != nil)
 	{
-		JSQPhotoMediaItem *mediaItem = [[JSQPhotoMediaItem alloc] initWithImage:[UIImage imageWithData:object.picture.dataVolatile]];
+		JSQPhotoMediaItem *mediaItem = [[JSQPhotoMediaItem alloc] initWithImage:[UIImage imageWithData:object.picture.data]];
 		mediaItem.appliesMediaViewMaskAsOutgoing = [user.globalID isEqualToString:self.senderId];
 		message = [[JSQMessage alloc] initWithSenderId:user.globalID senderDisplayName:name date:object.createTime media:mediaItem];
 		//-----------------------------------------------------------------------------------------------------------------------------------------
@@ -311,7 +311,7 @@
         text = @"[Picture message]";
         picture = [Picture createEntity:nil];
         picture.name = @"picture.jpg";
-        picture.dataVolatile = UIImageJPEGRepresentation(pictureData, 0.6);
+        picture.data = UIImageJPEGRepresentation(pictureData, 0.6);
     }
 
     

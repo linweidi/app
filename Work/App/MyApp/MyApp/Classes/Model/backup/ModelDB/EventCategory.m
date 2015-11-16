@@ -2,22 +2,15 @@
 //  EventCategory.m
 //  MyApp
 //
-//  Created by Linwei Ding on 10/27/15.
+//  Created by Linwei Ding on 11/12/15.
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 
 #import "EventCategory.h"
+#import "Thumbnail.h"
 
 @implementation EventCategory
 
-@dynamic childArray;
-@dynamic childCount;
-@dynamic level;
-@dynamic name;
-@dynamic notes;
-@dynamic parent;
-@dynamic relatedArray;
-@dynamic subArray;
-
+// Insert code here to add functionality to your managed object subclass
 
 @end

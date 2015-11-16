@@ -32,6 +32,27 @@
 #import "Flurry.h"
 #import "ThemeManager.h"
 
+// all data model load
+// 1st
+#import "ThumbnailLocalDataUtil.h"
+#import "PictureLocalDataUtil.h"
+#import "VideoLocalDataUtil.h"
+#import "UserLocalDataUtil.h"
+#import "CurrentUserLocalDataUtil.h"
+
+//2nd
+#import "AlertLocalDataUtil.h"
+#import "PlaceLocalDataUtil.h"
+#import "EventLocalDataUtil.h"
+
+
+//3rd
+#import "MessageLocalDataUtil.h"
+#import "PeopleLocalDataUtil.h"
+#import "GroupLocalDataUtil.h"
+#import "RecentLocalDataUtil.h"
+
+
 static NSInteger secondsInHour = 60;
 
 typedef enum {
@@ -80,14 +101,52 @@ typedef enum {
     //configuration
     ConfigurationManager * configManager = [ConfigurationManager sharedManager];
     
-    configManager.managedObjectContext = [[DocumentHelper sharedManager] createMainQueueManagedObjectContext:^(BOOL succeeded) {
+    [[DocumentHelper sharedManager] createMainQueueManagedObjectContext:^(BOOL succeeded) {
         if (succeeded) {
             // nothing
+            
+#ifdef LOCAL_MODE
+            User *object = [NSEntityDescription insertNewObjectForEntityForName:@"User"
+                                                   inManagedObjectContext:configManager.managedObjectContext];
+//            [[ThumbnailLocalDataUtil sharedUtil] loadData];
+//            [[PictureLocalDataUtil sharedUtil] loadData];
+//            [[VideoLocalDataUtil sharedUtil] loadData];
+//            [[UserLocalDataUtil sharedUtil] loadData];
+//            [[CurrentUserLocalDataUtil sharedUtil] loadData];
+//            
+//            [[AlertLocalDataUtil sharedUtil] loadData];
+//            [[PlaceLocalDataUtil sharedUtil] loadData];
+//            [[EventLocalDataUtil sharedUtil] loadData];
+//            
+//            [[MessageLocalDataUtil sharedUtil] loadData];
+//            [[PeopleLocalDataUtil sharedUtil] loadData];
+//            [[GroupLocalDataUtil sharedUtil] loadData];
+//            [[RecentLocalDataUtil sharedUtil] loadData];
+#endif
         }
         else {
             NSAssert(NO, @"Managed Object Context create fails");
         }
     }];
+    
+    //load all models
+//    // 1st
+//#import "ThumbnailLocalDataUtil.h"
+//#import "PictureLocalDataUtil.h"
+//#import "VideoLocalDataUtil.h"
+//#import "UserLocalDataUtil.h"
+//    
+//    //2nd
+//#import "AlertLocalDataUtil.h"
+//#import "PlaceLocalDataUtil.h"
+//#import "EventLocalDataUtil.h"
+//    
+//    
+//    //3rd
+//#import "MessageLocalDataUtil.h"
+//#import "PeopleLocalDataUtil.h"
+//#import "GroupLocalDataUtil.h"
+//#import "RecentLocalDataUtil.h"
 
 
     

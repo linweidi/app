@@ -22,6 +22,6 @@
 
 - (void) logOut ;
 
-@property (strong, nonatomic) NSArray * keys;
+
 
 @end

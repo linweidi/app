@@ -8,6 +8,8 @@
 
 #import "BaseLocalDataUtil.h"
 
+@class User;
+
 @interface PeopleLocalDataUtil : BaseLocalDataUtil
 
 + (PeopleLocalDataUtil *)sharedUtil;

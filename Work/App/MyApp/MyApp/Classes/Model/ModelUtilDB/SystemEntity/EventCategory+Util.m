@@ -17,4 +17,28 @@
 
 #include "../Template/EntityUtilTemplate.mh"
 
+
++ (ENTITY_UTIL_TEMPLATE_CLASS *)entityWithLocalID:(NSString *)localID inManagedObjectContext:  (NSManagedObjectContext *)context {
+    ENTITY_UTIL_TEMPLATE_CLASS * object = nil;
+    
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:ENTITY_UTIL_TEMPLATE_CLASS_NAME] ;
+    request.predicate = [NSPredicate predicateWithFormat:@"id = %@", localID];
+    NSError *error;
+    NSArray *matches = [context executeFetchRequest:request error:&error   ];
+    
+    if (!matches || ([matches count]>1)) {
+        NSAssert(NO, @"match count is not unique");
+    }
+    else if (![matches count]) {
+        //create a new one
+        object = [NSEntityDescription insertNewObjectForEntityForName:ENTITY_UTIL_TEMPLATE_CLASS_NAME inManagedObjectContext:context];
+        
+    }
+    else {
+        object = [matches lastObject];
+    }
+    
+    return object;
+}
 @end

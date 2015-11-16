@@ -6,18 +6,18 @@
 //  Copyright (c) 2015 Linweiding. All rights reserved.
 //
 
-#import "CoreDataTableViewController.h"
+#import <UIKit/UIKit.h>
 #import "SingleTextfieldViewController.h"
 
 @class Event;
-@interface EventSettingsView : CoreDataTableViewController <SingleTextfieldVCDelegate>
+@interface EventSettingsView : UITableViewController <SingleTextfieldVCDelegate>
 
 - (instancetype)initWithEvent:(Event *)event;
 
 
 @property (strong, nonatomic) Event * event;
 
-- (void)updateText:(NSString *)text indexPath:(NSIndexPath *)indexPath;
+- (void)updateTextfield:(NSString *)text indexPath:(NSIndexPath *)indexPath;
 //@property (strong, nonatomic) NSString * text;
 
 @end

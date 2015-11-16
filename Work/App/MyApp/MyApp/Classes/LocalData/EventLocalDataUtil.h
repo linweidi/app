@@ -8,6 +8,7 @@
 
 #import "BaseLocalDataUtil.h"
 
+@class Event;
 @interface EventLocalDataUtil : BaseLocalDataUtil
 
 + (EventLocalDataUtil *)sharedUtil;

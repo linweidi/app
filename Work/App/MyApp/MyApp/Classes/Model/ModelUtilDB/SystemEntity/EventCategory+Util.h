@@ -15,4 +15,9 @@
 #define ENTITY_UTIL_TEMPLATE_CLASS_NAME @"EventCategory"
 
 #include "../Template/EntityUtilTemplate.hh"
+
+
+
++ (ENTITY_UTIL_TEMPLATE_CLASS *)entityWithLocalID:(NSString *)localID inManagedObjectContext:  (NSManagedObjectContext *)context;
+
 @end

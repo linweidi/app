@@ -13,7 +13,7 @@
 
 + (DocumentHelper *)sharedManager ;
 
-- (NSManagedObjectContext *)createMainQueueManagedObjectContext:(void (^)(BOOL succeeded))completionHandler;
+- (void)createMainQueueManagedObjectContext:(void (^)(BOOL succeeded))completionHandler;
 
 @property (strong, nonatomic) UIManagedDocument *document;
 @property  (strong, nonatomic) NSManagedObjectContext *managedObjectContext;

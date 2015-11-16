@@ -14,12 +14,16 @@
 //---------------------------   APP CONFIG    --------------------------------------
 //-----------------------------------------------------------------------
 
+//#define     NORMAL_MODE                         0
 #define     DEBUG_MODE                          1
 #define     LOCAL_MODE                          2
 //#define     REMOTE_MODE                          3
 #define     PARSE_MODE                          3
 #define     SERVER_MODE                         4
 //#define  NS_BLOCK_ASSERTIONS
+
+#define DEFAULT_USER_ACCOUNT    @"linweiding@gmail.com"
+#define DEFAULT_USER_PASSWORD   @"123456"
 
 
 #define     MainDatabaseAvailableContext            @"main data base available context"

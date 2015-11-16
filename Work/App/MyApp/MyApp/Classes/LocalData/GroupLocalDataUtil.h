@@ -8,6 +8,7 @@
 
 #import "BaseLocalDataUtil.h"
 
+@class Group;
 @interface GroupLocalDataUtil : BaseLocalDataUtil
 
 + (GroupLocalDataUtil *)sharedUtil;

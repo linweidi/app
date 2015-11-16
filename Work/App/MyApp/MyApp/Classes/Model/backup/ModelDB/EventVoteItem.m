@@ -2,18 +2,15 @@
 //  EventVoteItem.m
 //  MyApp
 //
-//  Created by Linwei Ding on 10/27/15.
+//  Created by Linwei Ding on 11/13/15.
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 
 #import "EventVoteItem.h"
+#import "User.h"
 
 @implementation EventVoteItem
 
-@dynamic score;
-@dynamic voteNum;
-@dynamic voterName;
-@dynamic votingID;
-
+// Insert code here to add functionality to your managed object subclass
 
 @end

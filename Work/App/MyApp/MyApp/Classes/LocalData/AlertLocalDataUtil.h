@@ -8,6 +8,7 @@
 
 #import "BaseLocalDataUtil.h"
 
+@class Alert;
 @interface AlertLocalDataUtil : BaseLocalDataUtil
 
 + (AlertLocalDataUtil *)sharedUtil;

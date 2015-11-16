@@ -8,20 +8,32 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-
+#import "AppConstant.h"
 #import "common.h"
 #import "WelcomeView.h"
 #import "PremiumView.h"
+#import "ConfigurationManager.h"
+#import "UserLocalDataUtil.h"
+#import "UserRemoteUtil.h"
 #import "NavigationController.h"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 void LoginUser(id target)
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
+#ifdef DEBUG_MODE
+#ifdef LOCAL_MODE
+    [[UserLocalDataUtil sharedUtil] logInWithUsername:@"linweiding@gmail.com" password:@"123456" completionHandler:nil];
+#endif
+#ifdef REMOTE_MODE
+    [[UserRemoteDataUtil sharedUtil] logInWithUsername:@"linweiding@gmail.com" password:@"123456" completionHandler:nil];
+#endif
+#endif
+#ifdef NORMAL_MODE
 	NavigationController *navigationController = [[NavigationController alloc] initWithRootViewController:[[WelcomeView alloc] init]];
     navigationController.hidesBottomBarWhenPushed = YES;
 	[target presentViewController:navigationController animated:YES completion:nil];
-   
+#endif
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------

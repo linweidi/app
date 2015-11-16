@@ -8,6 +8,10 @@
 #import "Event+Util.h"
 #import "TwoLabelTVCell.h"
 #import "EventCellView.h"
+#import "MemberListView.h"
+#import "InviteeListView.h"
+#import "GroupListView.h"
+#import "BoardListView.h"
 #import "EventSettingsView.h"
 
 #define EVENT_SETTING_VIEW_SECTION_TITLE_INDEX 0
@@ -18,26 +22,20 @@
 
 @interface EventSettingsView ()
 
-@property (strong, nonatomic) NSMutableArray * userIDs;
-
-@property (strong, nonatomic) IBOutlet UITableViewCell *cellName;
-
-@property (strong, nonatomic) IBOutlet UILabel *labelName;
-
 // static cell
-@property (strong, nonatomic) IBOutlet TwoLabelTVCell *titleCell;
-@property (strong, nonatomic) IBOutlet TwoLabelTVCell *categoryCell;
-@property (strong, nonatomic) IBOutlet TwoLabelTVCell *busyCell;
-@property (strong, nonatomic) IBOutlet TwoLabelTVCell *locationCell;
-@property (strong, nonatomic) IBOutlet TwoLabelTVCell *placeCell;
-@property (strong, nonatomic) IBOutlet TwoLabelTVCell *startTime;
-@property (strong, nonatomic) IBOutlet TwoLabelTVCell *endTime;
-@property (strong, nonatomic) IBOutlet TwoLabelTVCell *scopeCell;
-@property (strong, nonatomic) IBOutlet TwoLabelTVCell *inviteeCell;
-@property (strong, nonatomic) IBOutlet TwoLabelTVCell *boardsCell;
-@property (strong, nonatomic) IBOutlet TwoLabelTVCell *groupsCell;
-@property (strong, nonatomic) IBOutlet TwoLabelTVCell *membersCell;
-@property (strong, nonatomic) IBOutlet TwoLabelTVCell *alertCell;
+@property (strong, nonatomic) IBOutlet EventCellView *titleCell;
+@property (strong, nonatomic) IBOutlet EventCellView *categoryCell;
+@property (strong, nonatomic) IBOutlet EventCellView *busyCell;
+@property (strong, nonatomic) IBOutlet EventCellView *locationCell;
+@property (strong, nonatomic) IBOutlet EventCellView *placeCell;
+@property (strong, nonatomic) IBOutlet EventCellView *startTime;
+@property (strong, nonatomic) IBOutlet EventCellView *endTime;
+@property (strong, nonatomic) IBOutlet EventCellView *scopeCell;
+@property (strong, nonatomic) IBOutlet EventCellView *inviteeCell;
+@property (strong, nonatomic) IBOutlet EventCellView *boardsCell;
+@property (strong, nonatomic) IBOutlet EventCellView *groupsCell;
+@property (strong, nonatomic) IBOutlet EventCellView *membersCell;
+@property (strong, nonatomic) IBOutlet EventCellView *alertCell;
 
 // static label
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -75,7 +73,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"TwoLabelTVCell" bundle:nil] forCellReuseIdentifier:@"LabelCell"];
+//    [self.tableView registerNib:[UINib nibWithNibName:@"TwoLabelTVCell" bundle:nil] forCellReuseIdentifier:@"LabelCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"EventCellView" bundle:nil] forCellReuseIdentifier:@"EventCell"];
 }
 
@@ -87,17 +85,13 @@
 
 #pragma mark - Table view data source
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	return 6;
+	return 5;
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	if (section == 0) return 3;
-	if (section == 1) return 1;
     
     NSInteger ret = 0;
 
@@ -141,32 +135,9 @@
 	return ret;
 }
 
-//switch (indexPath.section) {
-//    case EVENT_SETTING_VIEW_SECTION_TITLE_INDEX:
-//        <#statements#>
-//        break;
-//    case EVENT_SETTING_VIEW_SECTION_TIME_INDEX:
-//        <#statements#>
-//        break;
-//    case EVENT_SETTING_VIEW_SECTION_PLACE_INDEX:
-//        <#statements#>
-//        break;
-//    case EVENT_SETTING_VIEW_SECTION_INVITEE_INDEX:
-//        <#statements#>
-//        break;
-//    case EVENT_SETTING_VIEW_SECTION_ALERT_INDEX:
-//        <#statements#>
-//        break;
-//    case EVENT_SETTING_VIEW_SECTION_TITLE_INDEX:
-//        <#statements#>
-//        break;
-//    default:
-//        break;
-//}
-//------------------------------------------------------------------------------------------------------------------------------------------------
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TwoLabelTVCell * cell = nil;
+    EventCellView * cell = nil;
     
     //Title
     
@@ -218,25 +189,6 @@
             break;
     }
     return cell;
-    
-//	if (indexPath.section == 0){
-//        if () {
-//            <#statements#>
-//        }
-//        [cell bindData:@"title" contents:self.event.title accessory:UITableViewCellAccessoryDisclosureIndicator];
-//    }
-//    //Time
-//	if ((indexPath.section == 1) && (indexPath.row == 0)) return cellLogout;
-//	return nil;
-//    
-//    UITableViewCell * cell = nil;
-//    if ((indexPath.section == 0)) {
-//        ;
-//    }
-//    else {
-//        cell = [tableView dequeueReusableCellWithIdentifier:@"two label cell" forIndexPath:indexPath];
-//        cell
-//    }
 }
 //
 //- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -248,16 +200,71 @@
 
 #pragma mark - Table view delegate
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	if ((indexPath.section == 0) && (indexPath.row == 0)) [self actionBlocked];
-	if ((indexPath.section == 0) && (indexPath.row == 1)) [self actionPrivacy];
-	if ((indexPath.section == 0) && (indexPath.row == 2)) [self actionTerms];
-	if ((indexPath.section == 1) && (indexPath.row == 0)) [self actionLogout];
+    
+    switch (indexPath.section) {
+        case EVENT_SETTING_VIEW_SECTION_TITLE_INDEX:
+            if (indexPath.row == 0) {
+                //cell = self.titleCell;
+            }
+            if (indexPath.row == 1) {
+                //cell = self.categoryCell;
+            }
+            if (indexPath.row == 2) {
+                //cell = self.locationCell;
+            }
+            break;
+        case EVENT_SETTING_VIEW_SECTION_TIME_INDEX:
+            if (indexPath.row == 0) {
+                //cell = self.startTime;
+            }
+            if (indexPath.row == 1) {
+                //ell = self.endTime;
+            }
+            break;
+        case EVENT_SETTING_VIEW_SECTION_PLACE_INDEX:
+            if (indexPath.row == 0) {
+                //cell = self.placeCell;
+            }
+            break;
+        case EVENT_SETTING_VIEW_SECTION_INVITEE_INDEX:
+            if (indexPath.row == 0) {
+                //cell = self.membersCell;
+                MemberListView * memberVC = [[MemberListView alloc] init];
+                memberVC.userIDs = [NSArray arrayWithArray:self.event.members];
+                [self.navigationController pushViewController:memberVC animated:YES];
+            }
+            if (indexPath.row == 1) {
+                //cell = self.inviteeCell;
+                InviteeListView * inviteeVC = [[InviteeListView alloc] init];
+                inviteeVC.userIDs = [NSArray arrayWithArray:self.event.invitees];
+                [self.navigationController pushViewController:inviteeVC animated:YES];
+            }
+            if (indexPath.row == 2) {
+                //cell = self.groupsCell;
+                GroupListView * groupVC = [[GroupListView alloc] init];
+                groupVC.groupIDs  = [NSArray arrayWithArray:self.event.groupIDs];
+                [self.navigationController pushViewController:groupVC animated:YES];
+            }
+            if (indexPath.row == 3) {
+                //cell = self.boardsCell;
+                BoardListView * boardVC = [[BoardListView alloc] init];
+                boardVC.boardIDs = [NSArray arrayWithArray:self.event.boardIDs];
+                [self.navigationController pushViewController:boardVC animated:YES];
+                
+            }
+            break;
+        case EVENT_SETTING_VIEW_SECTION_ALERT_INDEX:
+            if (indexPath.row == 0) {
+                //cell = self.alertCell;
+            }
+            break;
+        default:
+            break;
+    }
 }
 
 #pragma mark -- action
@@ -269,8 +276,9 @@
         self.event.scope = @"friend";
     }
     else {
-        self.event.public = @"public";
+        self.event.scope = @"public";
     }
+    [self.tableView reloadData];
 }
 - (IBAction)actionBusySegment:(UISegmentedControl *)sender {
     if (sender.selectedSegmentIndex == 0) {
@@ -282,7 +290,7 @@
 }
 
 #pragma mark -- SingleTextViewController delegate
-- (void)updateText:(NSString *)text indexPath:(NSIndexPath *)indexPath {
+- (void)updateTextfield:(NSString *)text indexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
         case EVENT_SETTING_VIEW_SECTION_TITLE_INDEX:
             if (indexPath.row == 0) {

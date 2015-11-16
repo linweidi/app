@@ -22,6 +22,8 @@
 @interface CoreDataViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
 
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 // The controller (this class fetches nothing if this is not set).
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 

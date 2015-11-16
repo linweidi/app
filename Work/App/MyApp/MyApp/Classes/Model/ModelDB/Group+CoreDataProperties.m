@@ -2,7 +2,7 @@
 //  Group+CoreDataProperties.m
 //  MyApp
 //
-//  Created by Linwei Ding on 11/12/15.
+//  Created by Linwei Ding on 11/16/15.
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -13,6 +13,7 @@
 
 @implementation Group (CoreDataProperties)
 
+@dynamic chatID;
 @dynamic members;
 @dynamic name;
 @dynamic userVolatile;

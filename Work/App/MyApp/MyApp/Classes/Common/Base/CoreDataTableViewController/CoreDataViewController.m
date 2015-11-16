@@ -48,6 +48,8 @@
     }
 }
 
+
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -146,6 +148,11 @@
     NSAssert(NO, @"virtual functions");
     return nil;
 }
+
+//- (UITableView *)tableView {
+//    NSAssert([self.view isKindOfClass:[UITableView class]], @"the view is not UITableView");
+//    return (UITableView *)self.view;
+//}
 
 @end
 

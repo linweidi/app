@@ -46,6 +46,9 @@
 - (CurrentUser *)getCurrentUser {
     NSAssert(self.isLoggedIn && self.currentUser, @"Your code should not get current user when logged out");
     
+    
+    
+    
     CurrentUser * user = nil;
 
     

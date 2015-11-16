@@ -22,6 +22,6 @@
 
 @interface SingleTextfieldViewController : CoreDataTableViewController <UITextFieldDelegate>
 
-@property (strong, nonatomic) NSString * title;
+@property (strong, nonatomic) NSString * text;
 @property (weak, nonatomic) IBOutlet UITextField *textfield;
 @end

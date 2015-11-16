@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 AppsFoundation. All rights reserved.
 //
 #import "AppConstant.h"
+#import "ConfigurationManager.h"
 #import "DocumentHelper.h"
 
 @implementation DocumentHelper
@@ -23,7 +24,7 @@
 - (BOOL) createDatabaseDocument {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSURL * documentsDirectory = [[fileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] firstObject	];
-    NSString * nameDBDoc = @"RegionDatabase";
+    NSString * nameDBDoc = @"NewDataBaseFile2";
     
     self.documentPath = [documentsDirectory URLByAppendingPathComponent:nameDBDoc isDirectory:NO];
     NSAssert(self.documentPath, @"the database path does not exist at all!");
@@ -32,7 +33,8 @@
     
     NSAssert(self.document , @"the managed document does not exist at all!");
     
-    BOOL fileExists = [fileManager fileExistsAtPath:[self.documentPath path] isDirectory:NO];
+    BOOL isDirectory = NO;
+    BOOL fileExists = [fileManager fileExistsAtPath:[self.documentPath path] isDirectory:&isDirectory];
     //fileExists = [fileManager fileExistsAtPath:[documentsDirectory path]];
     //fileExists = [fileManager fileExistsAtPath:[documentPath path]];
     NSLog(@"load document completed");
@@ -40,7 +42,7 @@
     return fileExists;
 }
 
-- (NSManagedObjectContext *)createMainQueueManagedObjectContext:(void (^)(BOOL succeeded))completionHandler{
+- (void)createMainQueueManagedObjectContext:(void (^)(BOOL succeeded))completionHandler{
     
     __block NSManagedObjectContext * context = nil;
     
@@ -82,7 +84,7 @@
     }
     else {
         // not exist, then create one
-        NSAssert(self.documentPath, @"document path does not exist");
+        //NSAssert(NO, @"document path does not exist");
         [self.document  saveToURL:self.documentPath forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
             if (success) {
                 context = self.document.managedObjectContext;
@@ -99,12 +101,12 @@
         }];
     }
     
-    return context;
 }
 
 #pragma mark -- set context
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
     _managedObjectContext = managedObjectContext;
+    [[ConfigurationManager sharedManager] setManagedObjectContext:managedObjectContext];
     
     // every time the context changes, we'll restart our timer
     // so kill (invalidate) the current one

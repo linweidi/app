@@ -15,7 +15,12 @@
 #undef LOCAL_DATA_CLASS_TYPE
 #define LOCAL_DATA_CLASS_TYPE User
 
+@interface UserLocalDataUtil()
+@property (strong, nonatomic) NSArray * keyNames;
+@end
+
 @implementation UserLocalDataUtil
+
 
 + (UserLocalDataUtil *)sharedUtil {
     static dispatch_once_t predicate = 0;
@@ -29,7 +34,7 @@
         
         sharedObject.index = LOCAL_DATA_USER_INDEX;
         
-        sharedObject.keys = @[@"email", @"emailCopy", @"facebookID", @"fullname", @"fullnameLower", @"password", @"twitterID", @"username", @"picture", @"thumbnail"];
+        sharedObject.keyNames = @[@"email", @"emailCopy", @"facebookID", @"fullname", @"fullnameLower", @"password", @"twitterID", @"username", @"picture", @"thumbnail"];
     });
     return sharedObject;
 }

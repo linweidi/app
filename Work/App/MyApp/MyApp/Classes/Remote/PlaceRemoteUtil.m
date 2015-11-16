@@ -14,6 +14,7 @@
 #import "UserEntity.h"
 #import "SystemEntity.h"
 #import "EventCategory+Util.h"
+#import "EventCategoryRemoteUtil.h"
 #import "PlaceRemoteUtil.h"
 
 @implementation PlaceRemoteUtil
@@ -87,10 +88,11 @@
     
     if (place.categories) {
         NSMutableArray * categoriesRMT = [[NSMutableArray alloc] init];
-        EventCategoryRemoteUtil * eventCatUtil = [EventCategoryRemoteUtil sharedUtil];
+        //EventCategoryRemoteUtil * eventCatUtil = [EventCategoryRemoteUtil sharedUtil];
         for (EventCategory * category in place.categories) {
-            RemoteObject * categoryRMT = [PFObject objectWithClassName:PF_PICTURE_CLASS_NAME];
-            [eventCatUtil setNewRemoteObject:categoryRMT withObject:category];
+            RemoteObject * categoryRMT = [PFObject objectWithClassName:PF_EVENT_CATEGORY_CLASS_NAME];
+            //[eventCatUtil setNewRemoteObject:categoryRMT withObject:category];
+            categoryRMT.objectId = category.globalID;
             [categoriesRMT addObject:categoryRMT];
         }
         remoteObj[PF_PLACE_CATEGORY] = categoriesRMT;
@@ -246,42 +248,41 @@
     
     //event category
     //delete
-    NSArray * categoryArrayRMT = remoteObj[PF_PLACE_CATEGORY];
-    if ([categoryArrayRMT count]) {
-        PFObject * firstCategoryRMT = [categoryArrayRMT firstObject];
-        if (firstCategoryRMT.updatedAt ) {
-            NSMutableDictionary * pictObjDict = [[NSMutableDictionary alloc] init];
-            for (Picture * picture in place.photos) {
-                pictObjDict[picture.globalID] = picture;
-            }
-            
-            for (PFObject * categoryRMT in categoryArrayRMT) {
-                //PFFile * pictFile = pictPF[PF_PICTURE_FILE];
-                
-                Picture * pictObj = pictObjDict[categoryRMT.objectId];
-                if (pictObj) {
-                    //exist
-                    if ([pictPF.updatedAt compare:pictObj.updateTime] == NSOrderedSame) {
-                        // same update time
-                        // no need to update
-                    }
-                    else {
-                        [[PictureRemoteUtil sharedUtil] setExistedObject:pictObj withRemoteObject:pictPF inManagedObjectContext:context];
-                    }
-                    // remove
-                    [pictObjDict removeObjectForKey:pictPF.objectId];
-                    
-                }
-                else {
-                    // not exist
-                    // so new picture
-                    pictObj = [Picture createEntity:context];
-                    [[PictureRemoteUtil sharedUtil] setNewObject:pictObj withRemoteObject:pictPF inManagedObjectContext:context];
-                    [place addPhotosObject:pictObj];
-                }
-            }
-        }
-    }
+//    NSArray * categoryArrayRMT = remoteObj[PF_PLACE_CATEGORY];
+//    if ([categoryArrayRMT count]) {
+//        PFObject * firstCategoryRMT = [categoryArrayRMT firstObject];
+//        if (firstCategoryRMT.updatedAt ) {
+//            NSMutableDictionary * categoryObjDict = [[NSMutableDictionary alloc] init];
+//            for (EventCategory * category in place.photos) {
+//                categoryObjDict[category.globalID] = category;
+//            }
+//            
+//            for (PFObject * categoryRMT in categoryArrayRMT) {
+//                
+//                EventCategory * category = categoryObjDict[categoryRMT.objectId];
+//                if (category) {
+//                    //exist
+//                    if ([categoryRMT.updatedAt compare:category.updateTime] == NSOrderedSame) {
+//                        // same update time
+//                        // no need to update
+//                    }
+//                    else {
+//                        [[EventCategoryRemoteUtil sharedUtil] setExistedObject:category withRemoteObject:categoryRMT inManagedObjectContext:context];
+//                    }
+//                    // remove
+//                    [categoryObjDict removeObjectForKey:categoryRMT.objectId];
+//                    
+//                }
+//                else {
+//                    // not exist
+//                    // so new picture
+//                    category = [EventCategory createEntity:context];
+//                    [[EventCategoryRemoteUtil sharedUtil] setNewObject:category withRemoteObject:categoryRMT inManagedObjectContext:context];
+//                    [place addCategoriesObject:category];
+//                }
+//            }
+//        }
+//    }
 
     
 //    // create

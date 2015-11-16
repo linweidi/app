@@ -2,7 +2,7 @@
 //  EventTemplate.m
 //  MyApp
 //
-//  Created by Linwei Ding on 10/27/15.
+//  Created by Linwei Ding on 10/30/15.
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 
@@ -12,15 +12,6 @@
 
 @implementation EventTemplate
 
-@dynamic boardIDs;
-@dynamic groupIDs;
-@dynamic invitees;
-@dynamic location;
-@dynamic notes;
-@dynamic scope;
-@dynamic title;
-@dynamic category;
-@dynamic place;
-
+// Insert code here to add functionality to your managed object subclass
 
 @end
