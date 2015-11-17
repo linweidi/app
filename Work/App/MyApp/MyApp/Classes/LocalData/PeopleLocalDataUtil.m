@@ -6,6 +6,7 @@
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 #import "People+Util.h"
+#import "User+Util.h"
 #import "UserRemoteUtil.h"
 #import "ConfigurationManager.h"
 #import "PeopleLocalDataUtil.h"
@@ -54,7 +55,7 @@
     
     LOCAL_DATA_CLASS_TYPE * people = (LOCAL_DATA_CLASS_TYPE *)object;
     
-    people.contact  = [[UserRemoteUtil sharedUtil] convertToUser:dict[PF_PEOPLE_USER2]];
+    people.contact  = [User entityWithID:dict[PF_PEOPLE_USER2] inManagedObjectContext:self.managedObjectContext];
     people.name = dict[PF_PEOPLE_NAME];
     
 }

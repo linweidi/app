@@ -115,7 +115,7 @@
     NSMutableArray * arrayOut = nil;
     
     if (count >= [dataDictionary count]) {
-        count = [dataDictionary count];
+        //count = [dataDictionary count];
         arrayOut = [[dataDictionary allValues] mutableCopy];
     }
     else {

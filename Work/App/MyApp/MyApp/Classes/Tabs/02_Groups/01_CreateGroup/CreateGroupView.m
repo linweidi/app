@@ -119,12 +119,12 @@
 - (void)loadPeople {
     
     //NSMutableArray * peoples = [[NSMutableArray alloc] init];
+
     
+#ifdef REMOTE_MODE
     People * latestPeople = nil;
     
     latestPeople = [People latestEntity:self.managedObjectContext];
-    
-#ifdef REMOTE_MODE
     [[PeopleRemoteUtil sharedUtil] loadRemotePeoples:latestPeople completionHandler:^(NSArray *objects, NSError *error) {
         if (error == nil){
             

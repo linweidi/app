@@ -126,32 +126,35 @@
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)loadRecents {
-    Recent * latestRecent = nil;
-    
-    latestRecent = [Recent latestEntity:self.managedObjectContext];
-    
+
+    if (self.managedObjectContext) {
 #ifdef REMOTE_MODE
-    [[RecentRemoteUtil sharedUtil] loadRemoteRecent:latestRecent completionHandler:^(NSArray *objects, NSError *error) {
-        if (error == nil) {
-            //[recents removeAllObjects];
-            //[recents addObjectsFromArray:objects];
-            
-            // load the recents into core data
-            
-            [self.tableView reloadData];
-            [self updateTabCounter];
-        }
-        else {
-            [ProgressHUD showError:@"Network error."];
-        }
-        [self.refreshControl endRefreshing];
-    }];
+        Recent * latestRecent = nil;
+        
+        latestRecent = [Recent latestEntity:self.managedObjectContext];
+        
+        [[RecentRemoteUtil sharedUtil] loadRemoteRecent:latestRecent completionHandler:^(NSArray *objects, NSError *error) {
+            if (error == nil) {
+                //[recents removeAllObjects];
+                //[recents addObjectsFromArray:objects];
+                
+                // load the recents into core data
+                
+                [self.tableView reloadData];
+                [self updateTabCounter];
+            }
+            else {
+                [ProgressHUD showError:@"Network error."];
+            }
+            [self.refreshControl endRefreshing];
+        }];
 #endif
 #ifdef LOCAL_MODE
-    [self.tableView reloadData];
-    [self updateTabCounter];
-    [self.refreshControl endRefreshing];
+        [self.tableView reloadData];
+        [self updateTabCounter];
+        [self.refreshControl endRefreshing];
 #endif
+    }
     
 }
 

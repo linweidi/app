@@ -22,7 +22,7 @@
 #include "../Template/EntityUtilTemplate.hh"
 
 
-- (BOOL) isEqual: (User *)user;
+- (BOOL) isEqualToUser: (User *)user;
 
 //- (RemoteUser *) convertToRemoteUser;
 //

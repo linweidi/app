@@ -52,6 +52,7 @@
 #import "GroupLocalDataUtil.h"
 #import "RecentLocalDataUtil.h"
 
+#import "Thumbnail+Util.h"
 
 static NSInteger secondsInHour = 60;
 
@@ -106,22 +107,25 @@ typedef enum {
             // nothing
             
 #ifdef LOCAL_MODE
-            User *object = [NSEntityDescription insertNewObjectForEntityForName:@"User"
-                                                   inManagedObjectContext:configManager.managedObjectContext];
-//            [[ThumbnailLocalDataUtil sharedUtil] loadData];
-//            [[PictureLocalDataUtil sharedUtil] loadData];
-//            [[VideoLocalDataUtil sharedUtil] loadData];
-//            [[UserLocalDataUtil sharedUtil] loadData];
-//            [[CurrentUserLocalDataUtil sharedUtil] loadData];
-//            
-//            [[AlertLocalDataUtil sharedUtil] loadData];
-//            [[PlaceLocalDataUtil sharedUtil] loadData];
-//            [[EventLocalDataUtil sharedUtil] loadData];
-//            
-//            [[MessageLocalDataUtil sharedUtil] loadData];
-//            [[PeopleLocalDataUtil sharedUtil] loadData];
-//            [[GroupLocalDataUtil sharedUtil] loadData];
-//            [[RecentLocalDataUtil sharedUtil] loadData];
+            //User *object = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:configManager.managedObjectContext];
+            [[ThumbnailLocalDataUtil sharedUtil] loadData];
+            [Thumbnail entityWithID:@"901" inManagedObjectContext:configManager.managedObjectContext];
+            [[PictureLocalDataUtil sharedUtil] loadData];
+            [Thumbnail entityWithID:@"901" inManagedObjectContext:configManager.managedObjectContext];
+            [[VideoLocalDataUtil sharedUtil] loadData];
+            [Thumbnail entityWithID:@"901" inManagedObjectContext:configManager.managedObjectContext];
+            [[UserLocalDataUtil sharedUtil] loadData];
+            [Thumbnail entityWithID:@"901" inManagedObjectContext:configManager.managedObjectContext];
+            [[CurrentUserLocalDataUtil sharedUtil] loadData];
+            
+            [[AlertLocalDataUtil sharedUtil] loadData];
+            [[PlaceLocalDataUtil sharedUtil] loadData];
+            [[EventLocalDataUtil sharedUtil] loadData];
+            
+            [[MessageLocalDataUtil sharedUtil] loadData];
+            [[PeopleLocalDataUtil sharedUtil] loadData];
+            [[GroupLocalDataUtil sharedUtil] loadData];
+            [[RecentLocalDataUtil sharedUtil] loadData];
 #endif
         }
         else {

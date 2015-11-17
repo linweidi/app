@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Board (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSNumber *categoryID;
+@property (nullable, nonatomic, retain) NSString *categoryID;
 @property (nullable, nonatomic, retain) NSString *categoryName;
 @property (nullable, nonatomic, retain) NSString *city;
 @property (nullable, nonatomic, retain) NSString *country;

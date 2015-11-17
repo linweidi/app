@@ -29,10 +29,6 @@
 
 #include "../Template/EntityUtilTemplate.mh"
 
-- (BOOL) isEqual: (CurrentUser *)user {
-    return [self.globalID isEqualToString:user.globalID];
-}
-
 /* legacy
 + (CurrentUser *) userEntityWithPFUser:(PFUser *)object inManagedObjectContext: (NSManagedObjectContext *)context updateUser:(BOOL)updateUser{
     

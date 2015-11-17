@@ -127,35 +127,36 @@
 
 #pragma mark - User actions
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-- (void)loadPeople {
 
-    People * latestPeople = nil;
-    
-    latestPeople = [People latestEntity:self.managedObjectContext];
-    
+- (void)loadPeople {
+    if (self.managedObjectContext) {
 #ifdef REMOTE_MODE
-    [[PeopleRemoteUtil sharedUtil] loadRemotePeoples:latestPeople completionHandler:^(NSArray *objects, NSError *error) {
-        if (error == nil) {
-            //[peoples removeAllObjects];
-            //[peoples addObjectsFromArray:objects];
-            //[self.tableView reloadData];
-            
-            // load the recents into core data
-            
-            [self.tableView reloadData];
-            
-        }
-        else {
-            [ProgressHUD showError:@"Network error."];
-        }
-        [self.refreshControl endRefreshing];
-    }];
+        People * latestPeople = nil;
+        
+        latestPeople = [People latestEntity:self.managedObjectContext];
+        
+        [[PeopleRemoteUtil sharedUtil] loadRemotePeoples:latestPeople completionHandler:^(NSArray *objects, NSError *error) {
+            if (error == nil) {
+                //[peoples removeAllObjects];
+                //[peoples addObjectsFromArray:objects];
+                //[self.tableView reloadData];
+                
+                // load the recents into core data
+                
+                [self.tableView reloadData];
+                
+            }
+            else {
+                [ProgressHUD showError:@"Network error."];
+            }
+            [self.refreshControl endRefreshing];
+        }];
 #endif
 #ifdef LOCAL_MODE
-    [self.tableView reloadData];
-    [self.refreshControl endRefreshing];
+        [self.tableView reloadData];
+        [self.refreshControl endRefreshing];
 #endif
+    }
 
     
     

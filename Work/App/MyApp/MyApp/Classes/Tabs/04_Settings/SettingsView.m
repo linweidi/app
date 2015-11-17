@@ -99,7 +99,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)loadUser {
 	//PFUser *user = [PFUser currentUser];
-    
+        
     User * user = [[ConfigurationManager sharedManager] getCurrentUser];
     
     
@@ -111,6 +111,7 @@
 	[imageUser loadInBackground];
 
 	labelName.text = user.fullname;
+
 }
 
 #pragma mark - User actions
@@ -161,9 +162,8 @@
 
 #pragma mark - UIActionSheetDelegate
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	if (buttonIndex != actionSheet.cancelButtonIndex)
 	{
@@ -175,26 +175,24 @@
 	}
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (IBAction)actionPhoto:(id)sender
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	PresentPhotoLibrary(self, YES);
 }
 
 #pragma mark - UIImagePickerControllerDelegate
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	UIImage *image = info[UIImagePickerControllerEditedImage];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	UIImage *picture = ResizeImage(image, 280, 280);
 	UIImage *thumbnail = ResizeImage(image, 60, 60);
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	imageUser.image = picture;
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
     
     RemoteFile * filePicture = [RemoteFile fileWithName:@"picture.jpg" data:UIImageJPEGRepresentation(picture, 0.6)];
 
@@ -202,7 +200,7 @@
 	{
 		if (error != nil) [ProgressHUD showError:@"Network error."];
 	}];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
     
     RemoteFile * fileThumbnail = [RemoteFile fileWithName:@"thumbnail.jpg" data:UIImageJPEGRepresentation(thumbnail, 0.6)];
 
@@ -210,7 +208,7 @@
 	{
 		if (error != nil) [ProgressHUD showError:@"Network error."];
 	}];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	RemoteUser *user = [RemoteUser currentUser];
 	user[PF_USER_PICTURE] = filePicture;
 	user[PF_USER_THUMBNAIL] = fileThumbnail;
@@ -218,31 +216,28 @@
 	{
 		if (error != nil) [ProgressHUD showError:@"Network error."];
 	}];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	[picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Table view data source
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	return 2;
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	if (section == 0) return 3;
 	if (section == 1) return 1;
 	return 0;
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	if ((indexPath.section == 0) && (indexPath.row == 0)) return cellBlocked;
 	if ((indexPath.section == 0) && (indexPath.row == 1)) return cellPrivacy;
@@ -253,12 +248,12 @@
 
 #pragma mark - Table view delegate
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	if ((indexPath.section == 0) && (indexPath.row == 0)) [self actionBlocked];
 	if ((indexPath.section == 0) && (indexPath.row == 1)) [self actionPrivacy];
 	if ((indexPath.section == 0) && (indexPath.row == 2)) [self actionTerms];

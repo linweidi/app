@@ -225,7 +225,7 @@
                         // other users are left, just remove the member of the user
                         [groupRMT removeObject:user.globalID forKey:PF_GROUP_MEMBERS];
                         [self uploadUpdateRemoteObject:groupRMT modifyObject:group completionHandler:^(id object, NSError *error) {
-                            NSMutableArray * memberIDs = [[NSMutableArray alloc] init];
+                            NSMutableArray * memberIDs = nil;//[[NSMutableArray alloc] init];
                             memberIDs = [group.members mutableCopy];
                             [memberIDs removeObject:user.globalID];
                             group.members = memberIDs;

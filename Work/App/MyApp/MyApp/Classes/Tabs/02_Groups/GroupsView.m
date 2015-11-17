@@ -119,33 +119,36 @@
 
 - (void)loadGroups {
     
-    Group * latestGroup = nil;
+    if (self.managedObjectContext) {
     
-    latestGroup = [Group latestEntity:self.managedObjectContext];
+    
+    
 #ifdef REMOTE_MODE
-    [[GroupRemoteUtil sharedUtil] loadRemoteGroups:latestGroup completionHandler:^(NSArray *objects, NSError *error) {
-        if (error == nil) {
-            //[groups removeAllObjects];
-            //[groups addObjectsFromArray:objects];
-            //[self.tableView reloadData];
-            
-            
-            // load the recents into core data
-            
-            [self.tableView reloadData];
-            
-        }
-        else {
-            [ProgressHUD showError:@"Network error."];
-        }
-        [self.refreshControl endRefreshing];
-    }];
+        Group * latestGroup = nil;
+        latestGroup = [Group latestEntity:self.managedObjectContext];
+        [[GroupRemoteUtil sharedUtil] loadRemoteGroups:latestGroup completionHandler:^(NSArray *objects, NSError *error) {
+            if (error == nil) {
+                //[groups removeAllObjects];
+                //[groups addObjectsFromArray:objects];
+                //[self.tableView reloadData];
+                
+                
+                // load the recents into core data
+                
+                [self.tableView reloadData];
+                
+            }
+            else {
+                [ProgressHUD showError:@"Network error."];
+            }
+            [self.refreshControl endRefreshing];
+        }];
 #endif
 #ifdef LOCAL_MODE
-    [self.tableView reloadData];
-    [self.refreshControl endRefreshing];
+        [self.tableView reloadData];
+        [self.refreshControl endRefreshing];
 #endif
-
+    }
 }
 
 #pragma mark - User actions

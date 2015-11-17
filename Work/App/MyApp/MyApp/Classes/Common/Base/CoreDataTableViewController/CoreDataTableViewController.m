@@ -4,7 +4,7 @@
 //  Created for Stanford CS193p Fall 2013.
 //  Copyright 2013 Stanford University. All rights reserved.
 //
-
+#import "ConfigurationManager.h"
 #import "CoreDataTableViewController.h"
 
 @implementation CoreDataTableViewController
@@ -140,6 +140,14 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView endUpdates];
+}
+
+- (NSManagedObjectContext *)managedObjectContext {
+    if (!_managedObjectContext) {
+        _managedObjectContext = [[ConfigurationManager sharedManager] managedObjectContext];
+    }
+    
+    return _managedObjectContext;
 }
 
 @end

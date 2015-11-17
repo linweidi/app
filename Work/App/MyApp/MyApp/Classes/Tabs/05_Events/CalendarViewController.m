@@ -129,27 +129,36 @@
 
 - (void)loadEvents {
 
-    
-    Event * latestEvent = nil;
-    
-    latestEvent = [Event latestEntity:self.managedObjectContext];
-    
-    [[EventRemoteUtil sharedUtil] loadRemoteEvents:latestEvent completionHandler:^(NSArray *objects, NSError *error) {
-        if (error == nil) {
-            //[events removeAllObjects];
-            //[events addObjectsFromArray:objects];
-            //[self.tableView reloadData];
-            
-            // load the recents into core data
-            
-            [self.tableView reloadData];
-            
-        }
-        else {
-            [ProgressHUD showError:@"Network error."];
-        }
+    if (self.managedObjectContext) {
+        
+#ifdef REMOTE_MODE
+        Event * latestEvent = nil;
+        
+        latestEvent = [Event latestEntity:self.managedObjectContext];
+        
+        [[EventRemoteUtil sharedUtil] loadRemoteEvents:latestEvent completionHandler:^(NSArray *objects, NSError *error) {
+            if (error == nil) {
+                //[events removeAllObjects];
+                //[events addObjectsFromArray:objects];
+                //[self.tableView reloadData];
+                
+                // load the recents into core data
+                
+                [self.tableView reloadData];
+                
+            }
+            else {
+                [ProgressHUD showError:@"Network error."];
+            }
+            [self.refreshControl endRefreshing];
+        }];
+#endif
+#ifdef LOCAL_MODE
+        [self.tableView reloadData];
         [self.refreshControl endRefreshing];
-    }];
+#endif
+    }
+
 }
 
 

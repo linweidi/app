@@ -27,7 +27,7 @@
 
 #include "../Template/EntityUtilTemplate.mh"
 
-- (BOOL) isEqual: (User *)user {
+- (BOOL) isEqualToUser: (User *)user {
     return [self.globalID isEqualToString:user.globalID];
 }
 /* legacy

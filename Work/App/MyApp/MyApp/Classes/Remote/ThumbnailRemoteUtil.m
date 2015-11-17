@@ -36,12 +36,12 @@
     Thumbnail *thumbObj = nil   ;
     NSString * thumbName = nil;
     UserContext * userContext = nil;
-    User * user = nil;
+    //User * user = nil;
     if ([manager exists:userID]) {
         //thumb exists in core data
         
         userContext = [manager getContext:userID];
-        user = userContext.user;
+        //user = userContext.user;
         thumbObj = userContext.thumb;
         thumbName = userContext.thumbName;
         

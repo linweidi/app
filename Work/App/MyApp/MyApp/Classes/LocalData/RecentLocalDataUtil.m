@@ -9,6 +9,7 @@
 #import "UserRemoteUtil.h"
 #import "User+Util.h"
 #import "CurrentUser+Util.h"
+#import "NSString+ConvertToNumber.h"
 #import "RecentLocalDataUtil.h"
 
 #undef LOCAL_DATA_CLASS_TYPE
@@ -58,11 +59,12 @@
     recent.chatID = dict[PF_RECENT_GROUPID];
     recent.members = [NSArray arrayWithArray:dict[PF_RECENT_MEMBERS]] ;
     recent.details = dict[PF_RECENT_DESCRIPTION] ;
-    recent.lastUser = [[UserRemoteUtil sharedUtil] convertToUser:dict[PF_RECENT_LASTUSER]];
+    recent.lastUser = [User entityWithID:dict[PF_RECENT_LASTUSER] inManagedObjectContext:self.managedObjectContext];
     recent.lastMessage = dict[PF_RECENT_LASTMESSAGE] ;
-    recent.counter = dict[PF_RECENT_COUNTER] ;
+    recent.counter = dict[PF_RECENT_COUNTER];
     
-    recent.lastUser = [[UserRemoteUtil sharedUtil] convertToUser:dict[PF_RECENT_LASTUSER]];
+    recent.lastUser = [User entityWithID:dict[PF_RECENT_LASTUSER] inManagedObjectContext:self.managedObjectContext];
+   
 }
 
 - (NSString *) startLocalPrivateChat:(User *)user1 user2:(User *)user2 {

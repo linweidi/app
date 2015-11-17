@@ -7,7 +7,7 @@
 		<key>chatID</key>
 		<string>daniel smith, tom hanks, will smith</string>
 		<key>counter</key>
-		<string>0</string>
+		<integer>0</integer>
 		<key>details</key>
 		<string>daniel smith, will smith, tom hanks</string>
 		<key>fullname</key>
@@ -28,7 +28,7 @@
 		<key>chatID</key>
 		<string>daniel smith, taylor swift, tom hanks</string>
 		<key>counter</key>
-		<string>0</string>
+		<integer>0</integer>
 		<key>details</key>
 		<string>daniel smith, taylor swift, tom hanks</string>
 		<key>fullname</key>

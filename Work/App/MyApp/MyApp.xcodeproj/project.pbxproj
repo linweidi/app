@@ -59,6 +59,8 @@
 		286D54501BF9C77E003D6BB8 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 286D54361BF9C77E003D6BB8 /* Message.m */; };
 		286D54511BF9C77E003D6BB8 /* EventTemplate+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 286D54381BF9C77E003D6BB8 /* EventTemplate+CoreDataProperties.m */; };
 		286D54521BF9C77E003D6BB8 /* EventTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 286D543A1BF9C77E003D6BB8 /* EventTemplate.m */; };
+		286D54561BFB0778003D6BB8 /* TabViewDBModel.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 286D53C61BF9C592003D6BB8 /* TabViewDBModel.xcdatamodeld */; };
+		286D54591BFB0AE5003D6BB8 /* NSString+ConvertToNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 286D54581BFB0AE5003D6BB8 /* NSString+ConvertToNumber.m */; };
 		287393DC1BF5C46100F890D5 /* CreateEventView.m in Sources */ = {isa = PBXBuildFile; fileRef = 287393D61BF5C46100F890D5 /* CreateEventView.m */; };
 		287393DD1BF5C46100F890D5 /* CreateEventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 287393D71BF5C46100F890D5 /* CreateEventView.xib */; };
 		287393DE1BF5C46100F890D5 /* EventSettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 287393DA1BF5C46100F890D5 /* EventSettingsView.m */; };
@@ -655,6 +657,8 @@
 		286D54381BF9C77E003D6BB8 /* EventTemplate+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EventTemplate+CoreDataProperties.m"; sourceTree = "<group>"; };
 		286D54391BF9C77E003D6BB8 /* EventTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTemplate.h; sourceTree = "<group>"; };
 		286D543A1BF9C77E003D6BB8 /* EventTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTemplate.m; sourceTree = "<group>"; };
+		286D54571BFB0AE5003D6BB8 /* NSString+ConvertToNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ConvertToNumber.h"; sourceTree = "<group>"; };
+		286D54581BFB0AE5003D6BB8 /* NSString+ConvertToNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ConvertToNumber.m"; sourceTree = "<group>"; };
 		287393D51BF5C46100F890D5 /* CreateEventView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateEventView.h; sourceTree = "<group>"; };
 		287393D61BF5C46100F890D5 /* CreateEventView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateEventView.m; sourceTree = "<group>"; };
 		287393D71BF5C46100F890D5 /* CreateEventView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateEventView.xib; sourceTree = "<group>"; };
@@ -1491,6 +1495,8 @@
 				286D53991BF9AC5C003D6BB8 /* MenuItemsManager.m */,
 				286D539A1BF9AC5C003D6BB8 /* NavigationController.h */,
 				286D539B1BF9AC5C003D6BB8 /* NavigationController.m */,
+				286D54571BFB0AE5003D6BB8 /* NSString+ConvertToNumber.h */,
+				286D54581BFB0AE5003D6BB8 /* NSString+ConvertToNumber.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -2763,7 +2769,6 @@
 			isa = PBXGroup;
 			children = (
 				E523F1401BBD2C8300328565 /* container */,
-				E523F12A1BBCA65200328565 /* wrapper */,
 				E51D872C1BB1CC1700470170 /* general */,
 			);
 			path = Utilities;
@@ -3038,13 +3043,6 @@
 				E51D87BD1BB1CC1800470170 /* terms.html */,
 			);
 			path = Web;
-			sourceTree = "<group>";
-		};
-		E523F12A1BBCA65200328565 /* wrapper */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = wrapper;
 			sourceTree = "<group>";
 		};
 		E523F1401BBD2C8300328565 /* container */ = {
@@ -3388,6 +3386,7 @@
 				E51D88071BB1CC1800470170 /* nav_h.png in Resources */,
 				E51D88F31BB1CC1800470170 /* images.xcassets in Resources */,
 				E51D88381BB1CC1800470170 /* functions_66.html in Resources */,
+				286D54561BFB0778003D6BB8 /* TabViewDBModel.xcdatamodeld in Resources */,
 				E51D880C1BB1CC1800470170 /* pages.html in Resources */,
 				E51D89321BB1CC1800470170 /* our_menu@3x.png in Resources */,
 				E51D880D1BB1CC1800470170 /* protocol_flurry_ad_delegate-p-members.html in Resources */,
@@ -3625,6 +3624,7 @@
 				28EECB651BCCD3E90001654E /* JSQMessagesAvatarImage.m in Sources */,
 				286D544A1BF9C77E003D6BB8 /* Place.m in Sources */,
 				28EECB661BCCD3E90001654E /* JSQMessagesBubbleImage.m in Sources */,
+				286D54591BFB0AE5003D6BB8 /* NSString+ConvertToNumber.m in Sources */,
 				28EECB671BCCD3E90001654E /* JSQPhotoMediaItem.m in Sources */,
 				287393DE1BF5C46100F890D5 /* EventSettingsView.m in Sources */,
 				28D85EC81BD84B0200A48E87 /* EventCategory+Util.m in Sources */,

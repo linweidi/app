@@ -4,7 +4,7 @@
 //  Created for Stanford CS193p Fall 2013.
 //  Copyright 2013 Stanford University. All rights reserved.
 //
-
+#import "ConfigurationManager.h"
 #import "CoreDataViewController.h"
 
 @implementation CoreDataViewController
@@ -153,6 +153,14 @@
 //    NSAssert([self.view isKindOfClass:[UITableView class]], @"the view is not UITableView");
 //    return (UITableView *)self.view;
 //}
+
+- (NSManagedObjectContext *)managedObjectContext {
+    if (!_managedObjectContext) {
+        _managedObjectContext = [[ConfigurationManager sharedManager] managedObjectContext];
+    }
+    
+    return _managedObjectContext;
+}
 
 @end
 

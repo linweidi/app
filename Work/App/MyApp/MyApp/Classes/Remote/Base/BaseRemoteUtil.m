@@ -310,7 +310,7 @@
     }
     
     // other query
-    queryHandler(query, nil);
+    queryHandler(query, NULL);
     
     if (latest) {
         //found any recent itme

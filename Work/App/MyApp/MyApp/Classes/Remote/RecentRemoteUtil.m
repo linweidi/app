@@ -417,7 +417,7 @@
             else {
                 //already exist
                 NSAssert([objects count]>1, @"recent item is not unique remotely");
-                recent = [objects firstObject];
+                //recent = [objects firstObject];
                 //block(recent, nil);
             }
         }

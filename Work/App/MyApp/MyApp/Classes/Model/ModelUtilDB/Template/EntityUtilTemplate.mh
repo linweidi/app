@@ -143,7 +143,7 @@
     NSArray *matches = [context executeFetchRequest:request error:&error];
     
     
-    NSDate * latestCreateDate = nil;
+   // NSDate * latestCreateDate = nil;
     ENTITY_UTIL_TEMPLATE_CLASS * latest = nil;
     if (!error) {
         if (!matches) {
@@ -151,11 +151,11 @@
         }
         else if (![matches count]) {
             latest = nil;
-            latestCreateDate = nil;
+            //latestCreateDate = nil;
         }
         else {
             latest =[matches lastObject];
-            latestCreateDate = latest.createTime;
+            //latestCreateDate = latest.createTime;
         }
     }
     else {
