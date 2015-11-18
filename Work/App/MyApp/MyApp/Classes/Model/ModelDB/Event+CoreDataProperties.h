@@ -2,7 +2,7 @@
 //  Event+CoreDataProperties.h
 //  MyApp
 //
-//  Created by Linwei Ding on 11/16/15.
+//  Created by Linwei Ding on 11/17/15.
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSDate *startTime;
 @property (nullable, nonatomic, retain) NSString *title;
 @property (nullable, nonatomic, retain) NSString *votingID;
+@property (nullable, nonatomic, retain) NSDate *startMonth;
 @property (nullable, nonatomic, retain) Alert *alert;
 @property (nullable, nonatomic, retain) EventCategory *category;
 @property (nullable, nonatomic, retain) Place *place;

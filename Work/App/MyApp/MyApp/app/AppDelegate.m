@@ -73,6 +73,12 @@ typedef enum {
     // NSString *flurrySessionID = [[ConfigurationManager sharedManager] flurrySessionID];
     //[Flurry startSession:@"PY8QGYRKC9HTBH8MX2SJ"];
     
+    NSString * defaultPrefFile = [[NSBundle mainBundle] pathForResource:@"DefaultPreference" ofType:@"plist"];
+    NSDictionary * defaultPrefDict = [NSDictionary dictionaryWithContentsOfFile:defaultPrefFile];
+    NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults registerDefaults:defaultPrefDict];
+    
+    
     [Parse setApplicationId:@"IWkzJejznAWgiIdRuXrNsn6KKd1I6uOGk8JDNve0" clientKey:@"cw6PUoNh4zz3TgOedEnrEWB1CitM6xrbAiQH3Bwh"];
     //---------------------------------------------------------------------------------------------------------------------------------------------
     
@@ -107,25 +113,30 @@ typedef enum {
             // nothing
             
 #ifdef LOCAL_MODE
-            //User *object = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:configManager.managedObjectContext];
-            [[ThumbnailLocalDataUtil sharedUtil] loadData];
-            [Thumbnail entityWithID:@"901" inManagedObjectContext:configManager.managedObjectContext];
-            [[PictureLocalDataUtil sharedUtil] loadData];
-            [Thumbnail entityWithID:@"901" inManagedObjectContext:configManager.managedObjectContext];
-            [[VideoLocalDataUtil sharedUtil] loadData];
-            [Thumbnail entityWithID:@"901" inManagedObjectContext:configManager.managedObjectContext];
-            [[UserLocalDataUtil sharedUtil] loadData];
-            [Thumbnail entityWithID:@"901" inManagedObjectContext:configManager.managedObjectContext];
-            [[CurrentUserLocalDataUtil sharedUtil] loadData];
-            
-            [[AlertLocalDataUtil sharedUtil] loadData];
-            [[PlaceLocalDataUtil sharedUtil] loadData];
-            [[EventLocalDataUtil sharedUtil] loadData];
-            
-            [[MessageLocalDataUtil sharedUtil] loadData];
-            [[PeopleLocalDataUtil sharedUtil] loadData];
-            [[GroupLocalDataUtil sharedUtil] loadData];
-            [[RecentLocalDataUtil sharedUtil] loadData];
+            BOOL firstStart = [userDefaults boolForKey:USER_DEFAULTS_FIRST_START];
+            if (firstStart) {
+                [userDefaults setBool:NO forKey:USER_DEFAULTS_FIRST_START];
+                //User *object = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:configManager.managedObjectContext];
+                [[ThumbnailLocalDataUtil sharedUtil] loadData];
+                
+                [[PictureLocalDataUtil sharedUtil] loadData];
+                
+                [[VideoLocalDataUtil sharedUtil] loadData];
+                
+                [[UserLocalDataUtil sharedUtil] loadData];
+                
+                [[CurrentUserLocalDataUtil sharedUtil] loadData];
+                
+                [[AlertLocalDataUtil sharedUtil] loadData];
+                [[PlaceLocalDataUtil sharedUtil] loadData];
+                [[EventLocalDataUtil sharedUtil] loadData];
+                
+                [[MessageLocalDataUtil sharedUtil] loadData];
+                [[PeopleLocalDataUtil sharedUtil] loadData];
+                [[GroupLocalDataUtil sharedUtil] loadData];
+                [[RecentLocalDataUtil sharedUtil] loadData];
+            }
+
 #endif
         }
         else {

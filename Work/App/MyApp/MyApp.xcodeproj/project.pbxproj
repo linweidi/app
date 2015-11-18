@@ -77,6 +77,7 @@
 		287EC6B41BEF308D009603BA /* BaseLocalDataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 287EC6B31BEF308D009603BA /* BaseLocalDataUtil.m */; };
 		287EC6B71BEF30AC009603BA /* EventLocalDataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 287EC6B61BEF30AC009603BA /* EventLocalDataUtil.m */; };
 		2886E0351BE4AC4900537E34 /* VideoRemoteUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2886E0341BE4AC4900537E34 /* VideoRemoteUtil.m */; };
+		28898F331BFC427D00CF37A9 /* DefaultPreference.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28898F321BFC427D00CF37A9 /* DefaultPreference.plist */; };
 		2893CD251BF00B15003DD7E4 /* AlertLocalDataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2893CD241BF00B15003DD7E4 /* AlertLocalDataUtil.m */; };
 		2893CD281BF00B2D003DD7E4 /* PlaceLocalDataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2893CD271BF00B2D003DD7E4 /* PlaceLocalDataUtil.m */; };
 		2893CD2B1BF00B3D003DD7E4 /* GroupLocalDataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2893CD2A1BF00B3D003DD7E4 /* GroupLocalDataUtil.m */; };
@@ -685,6 +686,7 @@
 		287EC6B61BEF30AC009603BA /* EventLocalDataUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventLocalDataUtil.m; sourceTree = "<group>"; };
 		2886E0331BE4AC4900537E34 /* VideoRemoteUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoRemoteUtil.h; sourceTree = "<group>"; };
 		2886E0341BE4AC4900537E34 /* VideoRemoteUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoRemoteUtil.m; sourceTree = "<group>"; };
+		28898F321BFC427D00CF37A9 /* DefaultPreference.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultPreference.plist; sourceTree = "<group>"; };
 		2893CD231BF00B15003DD7E4 /* AlertLocalDataUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertLocalDataUtil.h; sourceTree = "<group>"; };
 		2893CD241BF00B15003DD7E4 /* AlertLocalDataUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertLocalDataUtil.m; sourceTree = "<group>"; };
 		2893CD261BF00B2D003DD7E4 /* PlaceLocalDataUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceLocalDataUtil.h; sourceTree = "<group>"; };
@@ -1949,6 +1951,7 @@
 				E51D87461BB1CC1700470170 /* Frameworks */,
 				E51D874D1BB1CC1700470170 /* images.xcassets */,
 				E51D874E1BB1CC1700470170 /* Info.plist */,
+				28898F321BFC427D00CF37A9 /* DefaultPreference.plist */,
 				E51D874F1BB1CC1700470170 /* main.m */,
 				E51D87501BB1CC1700470170 /* Resources */,
 				E51D85531BB1CC1600470170 /* 3rdparty */,
@@ -3301,6 +3304,7 @@
 				E51D88341BB1CC1800470170 /* functions_64.html in Resources */,
 				E51D88361BB1CC1800470170 /* functions_65.html in Resources */,
 				E51D893A1BB1CC1800470170 /* photo_item3@2x.png in Resources */,
+				28898F331BFC427D00CF37A9 /* DefaultPreference.plist in Resources */,
 				E51D87FB1BB1CC1800470170 /* ftv2splitbar.png in Resources */,
 				E51D890E1BB1CC1800470170 /* arrow_left@3x.png in Resources */,
 				28E2B8451BF7EEBA0049F18C /* PlaceTableView.xib in Resources */,

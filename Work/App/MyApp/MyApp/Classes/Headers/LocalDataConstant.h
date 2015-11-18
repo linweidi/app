@@ -34,4 +34,6 @@
 #define LOCAL_DATA_EVENT_CATEGORY_INDEX 12
 
 #define LOCAL_DATA_EVENT_VOTING_INDEX 13
+
+#define LOCAL_DATA_CURRENT_USER_INDEX 14
 #endif /* LocalDataConstant_h */

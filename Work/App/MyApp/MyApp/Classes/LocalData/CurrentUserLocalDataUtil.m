@@ -31,9 +31,9 @@
         //initializing singleton object
         sharedObject = [[self alloc] init];
         
-        sharedObject.className = PF_USER_CLASS_NAME;
+        sharedObject.className = PF_CURRENT_USER_CLASS_NAME;
         
-        sharedObject.index = LOCAL_DATA_USER_INDEX;
+        sharedObject.index = LOCAL_DATA_CURRENT_USER_INDEX;
         
         sharedObject.keyNames = @[@"email", @"emailCopy", @"facebookID", @"fullname", @"fullnameLower", @"password", @"twitterID", @"username", @"picture", @"thumbnail"];
     });

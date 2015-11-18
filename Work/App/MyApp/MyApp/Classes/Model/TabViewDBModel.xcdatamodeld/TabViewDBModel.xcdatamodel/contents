@@ -29,6 +29,7 @@
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="scope" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="startDay" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="startMonth" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="votingID" optional="YES" attributeType="String" syncable="YES"/>
@@ -175,7 +176,7 @@
         <element name="Alert" positionX="36" positionY="99" width="128" height="90"/>
         <element name="Board" positionX="-360" positionY="-261" width="128" height="165"/>
         <element name="CurrentUser" positionX="-369" positionY="-270" width="128" height="45"/>
-        <element name="Event" positionX="45" positionY="-180" width="128" height="330"/>
+        <element name="Event" positionX="45" positionY="-180" width="128" height="345"/>
         <element name="EventCategory" positionX="-369" positionY="-270" width="128" height="240"/>
         <element name="EventTemplate" positionX="-351" positionY="-252" width="128" height="180"/>
         <element name="EventVoteItem" positionX="-324" positionY="-225" width="128" height="133"/>

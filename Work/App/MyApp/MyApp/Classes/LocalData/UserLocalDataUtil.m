@@ -139,8 +139,10 @@
         
         //ParsePushUserAssign();
         [ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome back %@!", currentUser.fullname]];
+        if (block) {
+            block(YES, nil);
+        }
         
-        block(YES, nil);
         
         // update the isLogggedIn
         config.isLoggedIn = YES;

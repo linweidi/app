@@ -29,6 +29,10 @@
 #define     MainDatabaseAvailableContext            @"main data base available context"
 #define     MainDatabaseAvailableNotification            @"main data base available notif"
 
+//-----------------------------------------------------------------------
+//---------------------------   User Defaults    --------------------------------------
+//-----------------------------------------------------------------------
+#define     USER_DEFAULTS_FIRST_START          @"firstStart"
 
 //-----------------------------------------------------------------------
 //---------------------------   VIEW CONTROLLER    --------------------------------------

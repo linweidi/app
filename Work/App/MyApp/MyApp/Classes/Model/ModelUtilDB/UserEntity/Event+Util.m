@@ -27,9 +27,16 @@
         //calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     }
     
-    NSDateComponents * comps = [calendar components:NSCalendarUnitDay|NSCalendarUnitMonth|NSCalendarUnitYear fromDate:startTime];
+    NSDateComponents * compDay = [calendar components:NSCalendarUnitDay|NSCalendarUnitMonth|NSCalendarUnitYear fromDate:startTime];
     
-    self.startDay = [comps date];
+    NSDateComponents * compMonth = [calendar components:NSCalendarUnitMonth|NSCalendarUnitYear fromDate:startTime];
+    
+    [compDay setCalendar:calendar];
+    [compMonth setCalendar:calendar];
+    
+    self.startDay = [compDay date] ;
+    
+    self.startMonth = [compMonth date];
 }
 @end
 

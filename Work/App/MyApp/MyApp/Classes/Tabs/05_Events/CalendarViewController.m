@@ -24,20 +24,25 @@
 #import "CalendarViewController.h"
 
 @interface CalendarViewController (){
-    NSMutableDictionary *_eventsByDate;
-    
-
-    
-    NSMutableArray *_datesSelected;
-    
-    //NSDate *_datesSelectedLast;
-    
-//    UIBarButtonItem * buttonToday;
-    UIBarButtonItem * _buttonMulti;
-    
-    NSDate * _currentDate;
+//    NSMutableDictionary *_eventsByDate;
+//    
+//
+//    
+//    NSMutableArray *_datesSelected;
+//    
+//    //NSDate *_datesSelectedLast;
+//    
+////    UIBarButtonItem * buttonToday;
+//    UIBarButtonItem * _buttonMulti;
+//    
+//    NSDate * _currentDate;
 }
 
+@property (strong, nonatomic) NSMutableDictionary * eventsByDate;
+@property (strong, nonatomic) NSMutableArray * datesSelected;
+@property (strong, nonatomic) UIBarButtonItem * buttonMulti;
+@property (strong, nonatomic) NSDate * currentDate;
+@property (strong, nonatomic) NSDate * monthDateRecord;
 
 
 //@property (strong, nonatomic)     NSMutableArray * eventDates;    //of NSDate
@@ -88,7 +93,7 @@
     _currentDate = [NSDate date];
     
     // Generate random events sort by date using a dateformatter for the demonstration
-    [self createRandomEvents];
+    //[self createRandomEvents];
     
 //    _calendarMenuView.contentRatio = .75;
 //    _calendarManager.settings.weekDayFormat = JTCalendarWeekDayFormatSingle;
@@ -103,7 +108,7 @@
     //_datesSelectedLast = [NSDate date];
     
 
-    [self.tableView registerNib:[UINib nibWithNibName:@"EventCellView" bundle:nil] forCellReuseIdentifier:@"EventCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"TableViewCell" bundle:nil] forCellReuseIdentifier:@"EventCellView"];
     //---------------------------------------------------------------------------------------------------------------------------------------------
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(loadEvents) forControlEvents:UIControlEventValueChanged];
@@ -115,8 +120,9 @@
 {
 	[super viewDidAppear:animated];
     
-    if ([[ConfigurationManager sharedManager] getCurrentUser] != nil) {
+    if ([[ConfigurationManager sharedManager] getCurrentUser] ) {
         [self loadEvents];
+        [self updateEventDotUI:_calendarManager.date];
 
     }
     else {
@@ -171,7 +177,8 @@
             request.predicate = [NSPredicate predicateWithFormat:@"startDay IN %@", _datesSelected];
         }
         else {
-            request.predicate = [NSPredicate predicateWithFormat:@"startDay = %@", _currentDate];        }
+            request.predicate = [NSPredicate predicateWithFormat:@"startDay = %@", _currentDate];
+        }
 
         request.fetchLimit = EVENTVIEW_ITEM_NUM;
         request.sortDescriptors = @[[NSSortDescriptor
@@ -224,13 +231,65 @@
     
     [self refreshSelection];
     
-    [self.view layoutIfNeeded];
+    [_calendarManager reload];
+    
+    //[self.view layoutIfNeeded];
 }
 
 #pragma mark -- private functions
 - (void) refreshSelection {
     [_datesSelected removeAllObjects];
     _currentDate = [NSDate date];
+}
+
+- (void) updateEventDotUI:(NSDate *)date {
+    static NSCalendar * calendar;
+    if (!calendar) {
+        calendar = [NSCalendar currentCalendar];
+        //calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    }
+    
+    NSDateComponents * comps = [calendar components:NSCalendarUnitMonth|NSCalendarUnitYear fromDate:date];
+    [comps setCalendar:calendar];
+    NSDate * monthDate = [comps date];
+
+    if (([monthDate compare:self.monthDateRecord]!= NSOrderedSame && self.monthDateRecord) || !self.monthDateRecord) {
+        //month
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Event"];
+        if (_calendarManager.settings.weekModeEnabled) {
+            //week
+            /// TODO
+            request.predicate = [NSPredicate predicateWithFormat:@"startMonth = %@", monthDate];
+        }
+        else {
+            request.predicate = [NSPredicate predicateWithFormat:@"startMonth = %@", monthDate];
+        }
+        request.fetchLimit = EVENTVIEW_ITEM_NUM;
+        //        request.sortDescriptors = @[[NSSortDescriptor
+        //                                     sortDescriptorWithKey:@"startTime"
+        //                                     ascending:NO
+        //                                     selector:@selector(compare:)],
+        //                                    ];
+        NSError * error;
+        NSArray * matches = [self.managedObjectContext executeFetchRequest:request error:&error];
+        if (matches && !error) {
+            for (Event * event in matches) {
+                
+                
+                NSString *key = [[self dateFormatter] stringFromDate:event.startDay];
+                if(!_eventsByDate[key]) {
+                    _eventsByDate[key] = [NSMutableArray new];
+                }
+                [_eventsByDate[key] addObject:key];
+            }
+            
+            self.monthDateRecord = monthDate;
+        }
+        else {
+            [ProgressHUD showError:@"Fetch fails for month dot view"];
+        }
+    }
+    
 }
 
 #pragma mark - CalendarManager delegate
@@ -280,6 +339,7 @@
     }
 }
 
+
 - (void)calendar:(JTCalendarManager *)calendar didTouchDayView:(JTCalendarDayView *)dayView
 {
     if(self.multiSelection ){
@@ -327,7 +387,7 @@
 
     
     [self updateFetchedResultsController];
-    [self.tableView reloadData];
+    [self loadEvents];
     
     
     // Load the previous or next page if touch a day from another month
@@ -351,43 +411,44 @@
 ////    return [_calendarManager.dateHelper date:date isEqualOrAfter:_minDate andEqualOrBefore:_maxDate];
 //}
 //
-//- (void)calendarDidLoadNextPage:(JTCalendarManager *)calendar
-//{
-//    //    NSLog(@"Next page loaded");
-//}
-//
-//- (void)calendarDidLoadPreviousPage:(JTCalendarManager *)calendar
-//{
-//    //    NSLog(@"Previous page loaded");
-//    
-//}
+- (void)calendarDidLoadNextPage:(JTCalendarManager *)calendar
+{
+    //    NSLog(@"Next page loaded");
+    [self updateEventDotUI:calendar.date];
+}
+
+- (void)calendarDidLoadPreviousPage:(JTCalendarManager *)calendar
+{
+    //    NSLog(@"Previous page loaded");
+    [self updateEventDotUI:calendar.date];
+}
 
 
 #pragma mark - Views customization
 
-//- (UIView *)calendarBuildMenuItemView:(JTCalendarManager *)calendar
-//{
-//    UILabel *label = [UILabel new];
-//    
-//    label.textAlignment = NSTextAlignmentCenter;
-//    label.font = [UIFont fontWithName:@"Avenir-Medium" size:16];
-//    
-//    return label;
-//}
-//
-//- (void)calendar:(JTCalendarManager *)calendar prepareMenuItemView:(UILabel *)menuItemView date:(NSDate *)date
-//{
-//    static NSDateFormatter *dateFormatter;
-//    if(!dateFormatter){
-//        dateFormatter = [NSDateFormatter new];
-//        dateFormatter.dateFormat = @"MMMM yyyy";
-//        
-//        dateFormatter.locale = _calendarManager.dateHelper.calendar.locale;
-//        dateFormatter.timeZone = _calendarManager.dateHelper.calendar.timeZone;
-//    }
-//    
-//    menuItemView.text = [dateFormatter stringFromDate:date];
-//}
+- (UIView *)calendarBuildMenuItemView:(JTCalendarManager *)calendar
+{
+    UILabel *label = [UILabel new];
+    
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont fontWithName:@"Avenir-Medium" size:16];
+    
+    return label;
+}
+
+- (void)calendar:(JTCalendarManager *)calendar prepareMenuItemView:(UILabel *)menuItemView date:(NSDate *)date
+{
+    static NSDateFormatter *dateFormatter;
+    if(!dateFormatter){
+        dateFormatter = [NSDateFormatter new];
+        dateFormatter.dateFormat = @"MMMM yyyy";
+        
+        dateFormatter.locale = _calendarManager.dateHelper.calendar.locale;
+        dateFormatter.timeZone = _calendarManager.dateHelper.calendar.timeZone;
+    }
+    
+    menuItemView.text = [dateFormatter stringFromDate:date];
+}
 //
 //- (UIView<JTCalendarWeekDay> *)calendarBuildWeekDayView:(JTCalendarManager *)calendar
 //{
@@ -420,7 +481,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
     
-    TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EventCell" forIndexPath:indexPath];
+    TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EventCellView" forIndexPath:indexPath];
     
     Event * event = [self.fetchedResultsController objectAtIndexPath:indexPath];
     [cell bindData:event];
@@ -487,24 +548,24 @@
     
 }
 
-- (void)createRandomEvents
-{
-    _eventsByDate = [NSMutableDictionary new];
-    
-    for(int i = 0; i < 30; ++i){
-        // Generate 30 random dates between now and 60 days later
-        NSDate *randomDate = [NSDate dateWithTimeInterval:(rand() % (3600 * 24 * 60)) sinceDate:[NSDate date]];
-        
-        // Use the date as key for eventsByDate
-        NSString *key = [[self dateFormatter] stringFromDate:randomDate];
-        
-        if(!_eventsByDate[key]){
-            _eventsByDate[key] = [NSMutableArray new];
-        }
-        
-        [_eventsByDate[key] addObject:randomDate];
-    }
-}
+//- (void)createRandomEvents
+//{
+//    _eventsByDate = [NSMutableDictionary new];
+//    
+//    for(int i = 0; i < 30; ++i){
+//        // Generate 30 random dates between now and 60 days later
+//        NSDate *randomDate = [NSDate dateWithTimeInterval:(rand() % (3600 * 24 * 60)) sinceDate:[NSDate date]];
+//        
+//        // Use the date as key for eventsByDate
+//        NSString *key = [[self dateFormatter] stringFromDate:randomDate];
+//        
+//        if(!_eventsByDate[key]){
+//            _eventsByDate[key] = [NSMutableArray new];
+//        }
+//        
+//        [_eventsByDate[key] addObject:randomDate];
+//    }
+//}
 
 @end
 
