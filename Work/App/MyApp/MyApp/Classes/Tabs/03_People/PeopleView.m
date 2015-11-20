@@ -62,6 +62,9 @@
     if (self) {
 		[self.tabBarItem setImage:[UIImage imageNamed:@"tab_people"]];
 		self.tabBarItem.title = @"People";
+        
+
+        //self.tabBarController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"People" image:[UIImage imageNamed:@"tab_recents"] tag:1];
 		//-----------------------------------------------------------------------------------------------------------------------------------------
 //		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(actionCleanup) name:NOTIFICATION_USER_LOGGED_OUT object:nil];
 	}
@@ -73,7 +76,13 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	[super viewDidLoad];
+    
+
+    
+    
 	self.title = @"People";
+    [self.tabBarItem setImage:[UIImage imageNamed:@"tab_people"]];
+    self.tabBarItem.title = @"People";
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self
 																						   action:@selector(actionAdd)];

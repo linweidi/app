@@ -70,7 +70,6 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="description" destination="ef3-Zp-3x0" id="Hzq-kQ-M2d"/>
                 <outlet property="details" destination="ef3-Zp-3x0" id="N0i-sz-VyP"/>
                 <outlet property="others" destination="JNw-3h-I1l" id="1jO-Zw-e4m"/>
                 <outlet property="thumb" destination="KXD-xI-hqr" id="9qc-bO-NQk"/>

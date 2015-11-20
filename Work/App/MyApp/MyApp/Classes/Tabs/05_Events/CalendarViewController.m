@@ -12,7 +12,6 @@
 
 #import <Parse/Parse.h>
 #import "ProgressHUD.h"
-#import <UIKit/UIKit.h>
 
 #import "common.h"
 
@@ -53,10 +52,13 @@
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if(self){
-		[self.tabBarItem setImage:[UIImage imageNamed:@"tab_recents"]];
-		self.tabBarItem.title = @"Events";
+    {
+//		[self.tabBarItem setImage:[UIImage imageNamed:@"tab_recents"]];
+//		self.tabBarItem.title = @"Events";
         self.title = @"Events";
+        
+
+        //self.tabBarController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Events" image:[UIImage imageNamed:@"tab_recents"] tag:0];
     }
     
     
@@ -67,7 +69,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Events";
+    
+
+    
     
     _calendarManager = [JTCalendarManager new];
     _calendarManager.delegate = self;
@@ -105,10 +109,14 @@
     
     _datesSelected = [NSMutableArray new];
     
+    _eventsByDate = [[NSMutableDictionary alloc] init];
     //_datesSelectedLast = [NSDate date];
     
+    [self updateFetchedResultsController];
+    
 
-    [self.tableView registerNib:[UINib nibWithNibName:@"TableViewCell" bundle:nil] forCellReuseIdentifier:@"EventCellView"];
+    //[self.tableView registerNib:[UINib nibWithNibName:@"TableViewCell" bundle:nil] forCellReuseIdentifier:@"EventCellView"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"EventCellView" bundle:nil] forCellReuseIdentifier:@"EventCellView"];
     //---------------------------------------------------------------------------------------------------------------------------------------------
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(loadEvents) forControlEvents:UIControlEventValueChanged];
@@ -127,6 +135,9 @@
     }
     else {
         LoginUser(self);
+#ifdef DEBUG_MODE
+        [self updateEventDotUI:_calendarManager.date];  
+#endif
     }
 	
 }
@@ -284,6 +295,8 @@
             }
             
             self.monthDateRecord = monthDate;
+            
+            [_calendarManager reload];
         }
         else {
             [ProgressHUD showError:@"Fetch fails for month dot view"];
@@ -481,13 +494,14 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
     
-    TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EventCellView" forIndexPath:indexPath];
+    EventCellView *cell = [tableView dequeueReusableCellWithIdentifier:@"EventCellView" forIndexPath:indexPath];
+    
     
     Event * event = [self.fetchedResultsController objectAtIndexPath:indexPath];
     [cell bindData:event];
     
     
-    return nil;
+    return cell;
     
     //    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Region Cell"];
     //

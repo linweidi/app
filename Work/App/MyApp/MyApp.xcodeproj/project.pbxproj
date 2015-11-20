@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		282A27741BCF750D0012332E /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 282A27721BCF750D0012332E /* TestViewController.m */; };
 		282A27751BCF750D0012332E /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 282A27731BCF750D0012332E /* TestViewController.xib */; };
+		28622B581BFEF94100E6CCE2 /* EventCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28622B571BFEF94100E6CCE2 /* EventCellView.xib */; };
 		286D539C1BF9AC5C003D6BB8 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 286D538F1BF9AC5C003D6BB8 /* CoreDataTableViewController.m */; };
 		286D539D1BF9AC5C003D6BB8 /* CoreDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 286D53911BF9AC5C003D6BB8 /* CoreDataViewController.m */; };
 		286D539E1BF9AC5C003D6BB8 /* DocumentHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 286D53931BF9AC5C003D6BB8 /* DocumentHelper.m */; };
@@ -560,6 +561,7 @@
 		282A27711BCF750D0012332E /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		282A27721BCF750D0012332E /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		282A27731BCF750D0012332E /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
+		28622B571BFEF94100E6CCE2 /* EventCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventCellView.xib; sourceTree = "<group>"; };
 		286D538E1BF9AC5C003D6BB8 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
 		286D538F1BF9AC5C003D6BB8 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
 		286D53901BF9AC5C003D6BB8 /* CoreDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataViewController.h; sourceTree = "<group>"; };
@@ -3139,6 +3141,7 @@
 				E550EC0D1BCC7EB200C37FA1 /* CalendarViewController.xib */,
 				287393E01BF5C4EC00F890D5 /* EventCellView.h */,
 				287393E11BF5C4EC00F890D5 /* EventCellView.m */,
+				28622B571BFEF94100E6CCE2 /* EventCellView.xib */,
 			);
 			path = 05_Events;
 			sourceTree = "<group>";
@@ -3449,6 +3452,7 @@
 				287D1AA51BF7088B0022FEFE /* SingleTextfieldViewController.xib in Resources */,
 				E51D888B1BB1CC1800470170 /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
 				E51D883C1BB1CC1800470170 /* functions_69.html in Resources */,
+				28622B581BFEF94100E6CCE2 /* EventCellView.xib in Resources */,
 				E51D88271BB1CC1800470170 /* all_73.html in Resources */,
 				28E2B8521BF83AE40049F18C /* BoardListView.xib in Resources */,
 				E51D88151BB1CC1800470170 /* all_63.html in Resources */,

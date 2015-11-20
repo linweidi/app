@@ -194,13 +194,33 @@ typedef enum {
     NavigationController *navController2 = [[NavigationController alloc] initWithRootViewController:self.groupsView];
     NavigationController *navController3 = [[NavigationController alloc] initWithRootViewController:self.peopleView];
     NavigationController *navController4 = [[NavigationController alloc] initWithRootViewController:self.settingsView];
+
     
     self.tabBarController = [[UITabBarController alloc] init];
     
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:navController0, navController1, navController2, navController3, navController4, nil];
+    //self.tabBarController.viewControllers = [NSArray arrayWithObjects:navController0, navController1, navController2, navController3, navController4, nil];
+    [self.tabBarController setViewControllers:[NSArray arrayWithObjects:navController0, navController1, navController2, navController3, navController4, nil]];
     self.tabBarController.tabBar.translucent = NO;
     self.tabBarController.selectedIndex = DEFAULT_TAB;
     
+    //UITabBarItem * tabBarItem = nil;
+//tabBarItem = [self.tabBarController.tabBar.items objectAtIndex:0];
+    UITabBarItem * tabBarItem = nil;
+    tabBarItem = [self.tabBarController.tabBar.items objectAtIndex:0];
+    tabBarItem.title = @"Events";
+    [tabBarItem setImage:[UIImage imageNamed:@"tab_recents"]];
+    tabBarItem = [self.tabBarController.tabBar.items objectAtIndex:1];
+    tabBarItem.title = @"Recent";
+    [tabBarItem setImage:[UIImage imageNamed:@"tab_recent"]];
+    tabBarItem = [self.tabBarController.tabBar.items objectAtIndex:2];
+    tabBarItem.title = @"Groups";
+    [tabBarItem setImage:[UIImage imageNamed:@"tab_groups"]];
+    tabBarItem = [self.tabBarController.tabBar.items objectAtIndex:3];
+    tabBarItem.title = @"People";
+    [tabBarItem setImage:[UIImage imageNamed:@"tab_people"]];
+    tabBarItem = [self.tabBarController.tabBar.items objectAtIndex:4];
+    tabBarItem.title = @"Settings";
+    [tabBarItem setImage:[UIImage imageNamed:@"tab_settings"]];
     //1. remove all the themes to see if the calendar view can show up
     //2. default sliding window main view should be main view of calendar view
     //3.
@@ -218,10 +238,11 @@ typedef enum {
 #pragma mark - Actions
 
 - (void)openMainMenu {
-    MSSlidingPanelController *rootController = (MSSlidingPanelController *)self.window.rootViewController;
+
     if (!self.tabBarController) {
         [self createTabViewController];
     }
+    MSSlidingPanelController *rootController = (MSSlidingPanelController *)self.window.rootViewController;
     [rootController setCenterViewController:self.tabBarController];
     [rootController closePanel];
 }

@@ -11,5 +11,7 @@
 @interface EventCellView : TableViewCell
 
 - (void) bindData:(id)object ;
+//@property (weak, nonatomic) IBOutlet UILabel *foo;
+//@property (strong, nonatomic) IBOutlet UILabel *foo2;
 
 @end
