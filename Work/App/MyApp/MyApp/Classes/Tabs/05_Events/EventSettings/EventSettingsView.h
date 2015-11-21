@@ -14,9 +14,6 @@
 
 - (instancetype)initWithEvent:(Event *)event;
 
-
-@property (strong, nonatomic) Event * event;
-
 - (void)updateTextfield:(NSString *)text indexPath:(NSIndexPath *)indexPath;
 //@property (strong, nonatomic) NSString * text;
 

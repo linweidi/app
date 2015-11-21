@@ -2,23 +2,22 @@
 //  EventVoteItem.h
 //  MyApp
 //
-//  Created by Linwei Ding on 11/16/15.
-//  Copyright © 2015 Linweiding. All rights reserved.
+//  Created by Linwei Ding on 11/20/15.
+//  Copyright (c) 2015 Linweiding. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 #import "UserEntity.h"
 
-@class User;
-
-NS_ASSUME_NONNULL_BEGIN
 
 @interface EventVoteItem : UserEntity
 
-// Insert code here to declare functionality of your managed object subclass
+@property (nonatomic, retain) NSDate * endTime;
+@property (nonatomic, retain) NSNumber * score;
+@property (nonatomic, retain) NSDate * startTime;
+@property (nonatomic, retain) NSNumber * voteCount;
+@property (nonatomic, retain) NSString * votingID;
+@property (nonatomic, retain) id voters;
 
 @end
-
-NS_ASSUME_NONNULL_END
-
-#import "EventVoteItem+CoreDataProperties.h"

@@ -22,6 +22,9 @@
 
 @interface EventSettingsView ()
 
+@property (strong, nonatomic) Event * event;
+
+
 // static cell
 @property (strong, nonatomic) IBOutlet EventCellView *titleCell;
 @property (strong, nonatomic) IBOutlet EventCellView *categoryCell;
@@ -74,7 +77,7 @@
     // Do any additional setup after loading the view from its nib.
     
 //    [self.tableView registerNib:[UINib nibWithNibName:@"TwoLabelTVCell" bundle:nil] forCellReuseIdentifier:@"LabelCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"EventCellView" bundle:nil] forCellReuseIdentifier:@"EventCell"];
+    //[self.tableView registerNib:[UINib nibWithNibName:@"EventCellView" bundle:nil] forCellReuseIdentifier:@"EventCellView"];
 }
 
 - (void)didReceiveMemoryWarning

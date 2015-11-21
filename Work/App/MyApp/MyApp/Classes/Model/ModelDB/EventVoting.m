@@ -2,16 +2,21 @@
 //  EventVoting.m
 //  MyApp
 //
-//  Created by Linwei Ding on 11/16/15.
-//  Copyright © 2015 Linweiding. All rights reserved.
+//  Created by Linwei Ding on 11/20/15.
+//  Copyright (c) 2015 Linweiding. All rights reserved.
 //
 
 #import "EventVoting.h"
-#import "EventVoteItem.h"
-#import "User.h"
+
 
 @implementation EventVoting
 
-// Insert code here to add functionality to your managed object subclass
+@dynamic initiatorDecision;
+@dynamic instruction;
+@dynamic isPriority;
+@dynamic timeSpan;
+@dynamic voteMaxNum;
+@dynamic votedMemberList;
+@dynamic voterList;
 
 @end

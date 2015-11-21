@@ -177,7 +177,7 @@
 #define		PF_EVENT_CLASS_NAME                 @"Event"
 
 
-#define		PF_EVENT_OBJECTID					PF_EVENT_OBJECTID//	Class name
+#define		PF_EVENT_OBJECTID					PF_COMMON_OBJECTID//	Class name
 #define		PF_EVENT_CREATE_TIME                PF_COMMON_CREATE_TIME			//	Date
 #define		PF_EVENT_UPDATE_TIME                PF_COMMON_UPDATE_TIME			//	Date
 
@@ -247,47 +247,80 @@
 #define		PF_EVENT_CATEGORY_CREATE_TIME       PF_COMMON_CREATE_TIME			//	Date
 #define		PF_EVENT_CATEGORY_UPDATE_TIME       PF_COMMON_UPDATE_TIME			//	Date
 
-#define		PF_EVENT_CATEGORY_CHILD_ARRAY       @"childArray"			//	Date
+#define		PF_EVENT_CATEGORY_CHILD_ITEMS       @"childItems"			//	Date
 #define		PF_EVENT_CATEGORY_CHILD_COUNT       @"childCount"			//	Date
 #define		PF_EVENT_CATEGORY_LEVEL             @"level"			//	Date
+#define     PF_EVENT_CATEGORY_LOCALID           @"localID"
+
 #define		PF_EVENT_CATEGORY_NAME              @"name"			//	Date
 #define		PF_EVENT_CATEGORY_NOTES             @"notes"			//	Date
-#define		PF_EVENT_CATEGORY_PARENT            @"parent"			//	Date
-#define		PF_EVENT_CATEGORY_RELATED_ARRAY     @"relatedArray"			//	Date
-#define		PF_EVENT_CATEGORY_SUB_ARRAY         @"subArray"			//	Date
+#define		PF_EVENT_CATEGORY_PARENT_ITEMS      @"parentItems"			//	Date
+#define		PF_EVENT_CATEGORY_PARENT_COUNT      @"parentCount"			//	Date
+#define		PF_EVENT_CATEGORY_RELATED_ITEMS     @"relatedItems"
 
+#define		PF_EVENT_CATEGORY_RELATED_COUNT     @"relatedCount"	//	Date
+#define		PF_EVENT_CATEGORY_SUBSEQ_ITEMS      @"subseqItems"			//	Date
+#define		PF_EVENT_CATEGORY_SUBSEQ_COUNT      @"subseqCount"			//	Date
+#define		PF_EVENT_CATEGORY_THUMBNAIL         @"thumb"			//	Date
 //-----------------------------------------------------------------------
 //---------------------------   EVENT VOTING    --------------------------------------
 //-----------------------------------------------------------------------
-#define		PF_EVENT_VOTING_CLASS_NAME          @"EventCategory"
+#define		PF_EVENT_VOTING_CLASS_NAME          @"EventVoting"
 
 
 #define		PF_EVENT_VOTING_OBJECTID			PF_EVENT_OBJECTID//	Class name
 #define		PF_EVENT_VOTING_CREATE_TIME         PF_COMMON			//	Date
 #define		PF_EVENT_VOTING_UPDATE_TIME         PF_COMMON_UPDATE_TIME			//	Date
 
+#define     PF_EVENT_VOTING_INITIATOR_DECISION  @"initiatorDecision"
+
 #define		PF_EVENT_VOTING_INSTRUCTION         @"instruction"			//	Date
 #define		PF_EVENT_VOTING_IS_PRIORITY         @"isPriority"			//	Date
-#define		PF_EVENT_VOTING_SELECT_NUM          @"selectNum"			//	Date
+
 #define		PF_EVENT_VOTING_TIME_SPAN           @"timeSpan"			//	Date
 
-#define		PF_EVENT_VOTING_VOTE_ITEMS          @"voteItems"			//	Date
+//#define		PF_EVENT_VOTING_VOTE_ITEMS          @"voteItems"			//	Date
 #define		PF_EVENT_VOTING_VOTER_LIST          @"voterList"			//	Date
+#define		PF_EVENT_VOTING_VOTED_MEMBER_LIST          @"votedMemberList"			//	Date
+#define		PF_EVENT_VOTING_VOTE_MAX_NUM        @"voteMaxNum"			//	Date
+
 
 //-----------------------------------------------------------------------
 //---------------------------   EVENT VOTE ITEM    --------------------------------------
 //-----------------------------------------------------------------------
-#define		PF_EVENT_VOTE_ITEM_CLASS_NAME       @"EventCategory"
+#define		PF_EVENT_VOTE_ITEM_CLASS_NAME       @"EventVoteItem"
 
 
 #define		PF_EVENT_VOTE_ITEM_OBJECTID			PF_EVENT_OBJECTID//	Class name
 #define		PF_EVENT_VOTE_ITEM_CREATE_TIME      PF_COMMON_CREATE_TIME			//	Date
 #define		PF_EVENT_VOTE_ITEM_UPDATE_TIME      PF_COMMON_UPDATE_TIME			//	Date
 
+#define		PF_EVENT_VOTE_ITEM_END_TIME         @"endTime"			//	Date
+#define		PF_EVENT_VOTE_ITEM_START_TIME       @"startTime"			//	Date
+
 #define		PF_EVENT_VOTE_ITEM_SCORE            @"score"			//	Date
-#define		PF_EVENT_VOTE_ITEM_VOTE_NUM         @"voteNum"			//	Date
-#define		PF_EVENT_VOTE_ITEM_VOTER_NAME       @"voterName"			//	Date
+#define		PF_EVENT_VOTE_ITEM_VOTE_COUNT       @"voteCount"			//	Date
+#define		PF_EVENT_VOTE_ITEM_VOTERS           @"voters"			//	Date
 #define		PF_EVENT_VOTE_ITEM_VOTING_ID        @"votingID"			//	Date
+
+//-----------------------------------------------------------------------
+//---------------------------   EVENT TEMPLATE    --------------------------------------
+//-----------------------------------------------------------------------
+#define		PF_EVENT_TEMPLATE_CLASS_NAME        @"EventTemplate"
+
+
+#define		PF_EVENT_TEMPLATE_OBJECTID			PF_EVENT_OBJECTID//	Class name
+#define		PF_EVENT_TEMPLATE_BOARDIDS          PF_COMMON_CREATE_TIME			//	Date
+#define		PF_EVENT_TEMPLATE_GROUPIDS          PF_COMMON_UPDATE_TIME			//	Date
+
+#define		PF_EVENT_TEMPLATE_INVITEES          @"invitees"			//	Date
+#define		PF_EVENT_TEMPLATE_LOCATION          @"location"			//	Date
+
+#define		PF_EVENT_TEMPLATE_NOTES             @"notes"			//	Date
+#define		PF_EVENT_TEMPLATE_SCOPE             @"scope"			//	Date
+#define		PF_EVENT_TEMPLATE_TITLE             @"title"			//	Date
+#define		PF_EVENT_TEMPLATE_CATEGORY          @"category"			//	Date
+#define		PF_EVENT_TEMPLATE_PLACE             @"place"			//	Date
 
 
 //-----------------------------------------------------------------------
