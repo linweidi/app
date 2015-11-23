@@ -36,6 +36,8 @@
 		<integer>0</integer>
 		<key>notes</key>
 		<string></string>
+		<key>thumb</key>
+		<string>901</string>
 	</dict>
 	<key>Study</key>
 	<dict>
@@ -66,6 +68,8 @@
 		<integer>0</integer>
 		<key>notes</key>
 		<string></string>
+		<key>thumb</key>
+		<string>901</string>
 	</dict>
 	<key>Health</key>
 	<dict>
@@ -98,6 +102,8 @@
 		<integer>0</integer>
 		<key>notes</key>
 		<string></string>
+		<key>thumb</key>
+		<string>901</string>
 	</dict>
 	<key>Domestic</key>
 	<dict>
@@ -134,6 +140,8 @@
 		<integer>0</integer>
 		<key>notes</key>
 		<string></string>
+		<key>thumb</key>
+		<string>901</string>
 	</dict>
 	<key>Work</key>
 	<dict>
@@ -164,6 +172,8 @@
 		<integer>0</integer>
 		<key>notes</key>
 		<string></string>
+		<key>thumb</key>
+		<string>901</string>
 	</dict>
 	<key>Charity</key>
 	<dict>
@@ -194,6 +204,8 @@
 		<integer>0</integer>
 		<key>notes</key>
 		<string></string>
+		<key>thumb</key>
+		<string>901</string>
 	</dict>
 	<key>Miscellaneous</key>
 	<dict>
@@ -224,6 +236,8 @@
 		<integer>0</integer>
 		<key>notes</key>
 		<string></string>
+		<key>thumb</key>
+		<string>901</string>
 	</dict>
 	<key>Karaoke</key>
 	<dict>
@@ -263,6 +277,8 @@
 		<integer>1</integer>
 		<key>notes</key>
 		<string></string>
+		<key>thumb</key>
+		<string>901</string>
 	</dict>
 	<key>Club</key>
 	<dict>
@@ -302,6 +318,8 @@
 		<integer>1</integer>
 		<key>notes</key>
 		<string>Only over 18 years old</string>
+		<key>thumb</key>
+		<string>901</string>
 	</dict>
 	<key>Tour</key>
 	<dict>
@@ -343,6 +361,8 @@
 		<integer>1</integer>
 		<key>notes</key>
 		<string></string>
+		<key>thumb</key>
+		<string>901</string>
 	</dict>
 	<key>Hiking</key>
 	<dict>
@@ -380,6 +400,8 @@
 		<integer>1</integer>
 		<key>notes</key>
 		<string></string>
+		<key>thumb</key>
+		<string>901</string>
 	</dict>
 	<key>Dinner</key>
 	<dict>
@@ -420,6 +442,8 @@
 		<integer>1</integer>
 		<key>notes</key>
 		<string></string>
+		<key>thumb</key>
+		<string>901</string>
 	</dict>
 	<key>Party</key>
 	<dict>
@@ -457,6 +481,8 @@
 		<integer>1</integer>
 		<key>notes</key>
 		<string></string>
+		<key>thumb</key>
+		<string>901</string>
 	</dict>
 	<key>Sports</key>
 	<dict>
@@ -494,6 +520,8 @@
 		<integer>1</integer>
 		<key>notes</key>
 		<string></string>
+		<key>thumb</key>
+		<string>901</string>
 	</dict>
 	<key>Skiing</key>
 	<dict>
@@ -531,6 +559,8 @@
 		<integer>1</integer>
 		<key>notes</key>
 		<string></string>
+		<key>thumb</key>
+		<string>901</string>
 	</dict>
 	<key>Snowboarding</key>
 	<dict>
@@ -568,6 +598,8 @@
 		<integer>1</integer>
 		<key>notes</key>
 		<string></string>
+		<key>thumb</key>
+		<string>901</string>
 	</dict>
 	<key>Soccer</key>
 	<dict>
@@ -605,6 +637,8 @@
 		<integer>1</integer>
 		<key>notes</key>
 		<string></string>
+		<key>thumb</key>
+		<string>901</string>
 	</dict>
 	<key>Tennis</key>
 	<dict>
@@ -642,6 +676,8 @@
 		<integer>1</integer>
 		<key>notes</key>
 		<string></string>
+		<key>thumb</key>
+		<string>901</string>
 	</dict>
 	<key>Movie</key>
 	<dict>
@@ -681,6 +717,8 @@
 		<integer>1</integer>
 		<key>notes</key>
 		<string></string>
+		<key>thumb</key>
+		<string>901</string>
 	</dict>
 	<key>Museum</key>
 	<dict>
@@ -718,6 +756,8 @@
 		<integer>1</integer>
 		<key>notes</key>
 		<string></string>
+		<key>thumb</key>
+		<string>901</string>
 	</dict>
 	<key>Concert</key>
 	<dict>
@@ -757,6 +797,8 @@
 		<integer>1</integer>
 		<key>notes</key>
 		<string></string>
+		<key>thumb</key>
+		<string>901</string>
 	</dict>
 	<key>Water</key>
 	<dict>
@@ -798,6 +840,8 @@
 		<integer>1</integer>
 		<key>notes</key>
 		<string></string>
+		<key>thumb</key>
+		<string>901</string>
 	</dict>
 	<key>Resorts</key>
 	<dict>
@@ -837,6 +881,8 @@
 		<integer>1</integer>
 		<key>notes</key>
 		<string></string>
+		<key>thumb</key>
+		<string>901</string>
 	</dict>
 	<key>Kayak</key>
 	<dict>
@@ -866,6 +912,8 @@
 		<integer>1</integer>
 		<key>notes</key>
 		<string></string>
+		<key>thumb</key>
+		<string>901</string>
 	</dict>
 	<key>ScrubaDiving</key>
 	<dict>
@@ -895,6 +943,8 @@
 		<integer>1</integer>
 		<key>notes</key>
 		<string></string>
+		<key>thumb</key>
+		<string>901</string>
 	</dict>
 	<key>Snorkeling</key>
 	<dict>
@@ -924,6 +974,8 @@
 		<integer>1</integer>
 		<key>notes</key>
 		<string></string>
+		<key>thumb</key>
+		<string>901</string>
 	</dict>
 	<key>School</key>
 	<dict>
@@ -958,6 +1010,8 @@
 		<integer>1</integer>
 		<key>notes</key>
 		<string></string>
+		<key>thumb</key>
+		<string>901</string>
 	</dict>
 	<key>Self-Study</key>
 	<dict>

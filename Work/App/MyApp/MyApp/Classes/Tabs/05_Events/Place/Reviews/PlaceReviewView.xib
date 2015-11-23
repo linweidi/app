@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="KozGoPro-Light.otf">
+            <string>KozGoPro-Light</string>
+            <string>KozGoPro-Light</string>
+            <string>KozGoPro-Light</string>
+            <string>KozGoPro-Light</string>
+            <string>KozGoPro-Light</string>
+        </mutableArray>
+        <mutableArray key="KozGoPro-Regular.otf">
+            <string>KozGoPro-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlaceReviewView"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="4V5-Xh-VZM">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="restoraunt_photo.png" translatesAutoresizingMaskIntoConstraints="NO" id="en0-Fx-XC5">
+                    <rect key="frame" x="0.0" y="64" width="320" height="420"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GvM-Au-HJf">
+                    <rect key="frame" x="0.0" y="386" width="320" height="182"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LEAVE FEEDBACK" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ybp-Vb-ddM">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="38"/>
+                            <fontDescription key="fontDescription" name="KozGoPro-Light" family="Kozuka Gothic Pro" pointSize="18"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                            <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8E4-4G-dGo">
+                            <rect key="frame" x="0.0" y="38" width="320" height="28"/>
+                            <subviews>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pWA-Hv-vpA">
+                                    <rect key="frame" x="23" y="0.0" width="170" height="28"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="fontDescription" name="KozGoPro-Light" family="Kozuka Gothic Pro" pointSize="15"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                </textField>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZMA-h7-AMC">
+                                    <rect key="frame" x="193" y="0.0" width="22" height="28"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="ZMA-h7-AMC" secondAttribute="height" multiplier="11:14" id="Jlx-Au-dsZ"/>
+                                    </constraints>
+                                    <state key="normal" image="star_chosen.png">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zmn-Vh-dGu">
+                                    <rect key="frame" x="215" y="0.0" width="22" height="28"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="Zmn-Vh-dGu" secondAttribute="height" multiplier="11:14" id="Xr8-gn-qwX"/>
+                                    </constraints>
+                                    <state key="normal" image="star_chosen.png">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lr9-ii-ZlV">
+                                    <rect key="frame" x="237" y="0.0" width="22" height="28"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="lr9-ii-ZlV" secondAttribute="height" multiplier="11:14" id="CTZ-JJ-OEi"/>
+                                    </constraints>
+                                    <state key="normal" image="star_chosen.png">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lw4-Oh-9CH">
+                                    <rect key="frame" x="259" y="0.0" width="22" height="28"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="Lw4-Oh-9CH" secondAttribute="height" multiplier="11:14" id="Vui-vC-tHp"/>
+                                    </constraints>
+                                    <state key="normal" image="star_chosen.png">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VPB-7K-l6c">
+                                    <rect key="frame" x="281" y="0.0" width="22" height="28"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="VPB-7K-l6c" secondAttribute="height" multiplier="11:14" id="GLc-Z6-VQQ"/>
+                                    </constraints>
+                                    <state key="normal" image="star_chosen.png">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.23000000000000001" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="Zmn-Vh-dGu" secondAttribute="bottom" id="4OQ-6M-WWf"/>
+                                <constraint firstAttribute="bottom" secondItem="pWA-Hv-vpA" secondAttribute="bottom" id="9N1-9A-fLM"/>
+                                <constraint firstItem="VPB-7K-l6c" firstAttribute="leading" secondItem="Lw4-Oh-9CH" secondAttribute="trailing" id="Daq-MC-fr0"/>
+                                <constraint firstItem="ZMA-h7-AMC" firstAttribute="leading" secondItem="pWA-Hv-vpA" secondAttribute="trailing" id="DnU-49-iBf"/>
+                                <constraint firstItem="pWA-Hv-vpA" firstAttribute="leading" secondItem="8E4-4G-dGo" secondAttribute="leading" constant="23" id="Fbr-v4-t0f"/>
+                                <constraint firstItem="pWA-Hv-vpA" firstAttribute="top" secondItem="8E4-4G-dGo" secondAttribute="top" id="GMr-1L-o3I"/>
+                                <constraint firstItem="lr9-ii-ZlV" firstAttribute="top" secondItem="8E4-4G-dGo" secondAttribute="top" id="LnU-Bp-z7w"/>
+                                <constraint firstItem="Lw4-Oh-9CH" firstAttribute="leading" secondItem="lr9-ii-ZlV" secondAttribute="trailing" id="MgX-C8-AhE"/>
+                                <constraint firstAttribute="bottom" secondItem="Lw4-Oh-9CH" secondAttribute="bottom" id="MiD-9q-J0S"/>
+                                <constraint firstItem="VPB-7K-l6c" firstAttribute="top" secondItem="8E4-4G-dGo" secondAttribute="top" id="OQy-sx-fdk"/>
+                                <constraint firstItem="Zmn-Vh-dGu" firstAttribute="top" secondItem="8E4-4G-dGo" secondAttribute="top" id="QiA-aS-v7E"/>
+                                <constraint firstItem="Lw4-Oh-9CH" firstAttribute="top" secondItem="8E4-4G-dGo" secondAttribute="top" id="Uxe-EY-nYz"/>
+                                <constraint firstAttribute="bottom" secondItem="VPB-7K-l6c" secondAttribute="bottom" id="a7C-G2-unT"/>
+                                <constraint firstItem="ZMA-h7-AMC" firstAttribute="top" secondItem="8E4-4G-dGo" secondAttribute="top" id="dgX-Yu-mjJ"/>
+                                <constraint firstItem="lr9-ii-ZlV" firstAttribute="leading" secondItem="Zmn-Vh-dGu" secondAttribute="trailing" id="hFY-G5-E5v"/>
+                                <constraint firstAttribute="bottom" secondItem="lr9-ii-ZlV" secondAttribute="bottom" id="mYG-Rd-5Kq"/>
+                                <constraint firstAttribute="bottom" secondItem="ZMA-h7-AMC" secondAttribute="bottom" id="s19-8A-EmF"/>
+                                <constraint firstAttribute="width" secondItem="pWA-Hv-vpA" secondAttribute="width" multiplier="320:170" id="seW-DR-fwD"/>
+                                <constraint firstItem="Zmn-Vh-dGu" firstAttribute="leading" secondItem="ZMA-h7-AMC" secondAttribute="trailing" id="vmn-3E-eHv"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Jh-57-7uO">
+                            <rect key="frame" x="0.0" y="67" width="320" height="72"/>
+                            <subviews>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your Feedback" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="agM-sF-NLH">
+                                    <rect key="frame" x="23" y="4" width="282" height="28"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="fontDescription" name="KozGoPro-Light" family="Kozuka Gothic Pro" pointSize="15"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                </textField>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.23000000000000001" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="agM-sF-NLH" firstAttribute="leading" secondItem="2Jh-57-7uO" secondAttribute="leading" constant="23" id="IW4-CK-PHd"/>
+                                <constraint firstItem="agM-sF-NLH" firstAttribute="height" secondItem="2Jh-57-7uO" secondAttribute="height" multiplier="28:72" id="PdR-NA-kO0"/>
+                                <constraint firstAttribute="trailing" secondItem="agM-sF-NLH" secondAttribute="trailing" constant="15" id="l7O-XX-hxK"/>
+                                <constraint firstItem="agM-sF-NLH" firstAttribute="top" secondItem="2Jh-57-7uO" secondAttribute="top" constant="4" id="wgk-0G-J2z"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qdz-yg-isH">
+                            <rect key="frame" x="0.0" y="140" width="320" height="42"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GIM-9K-ZzM">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="42"/>
+                                    <fontDescription key="fontDescription" name="KozGoPro-Light" family="Kozuka Gothic Pro" pointSize="15"/>
+                                    <state key="normal" title="+ ADD">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.25" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="GIM-9K-ZzM" secondAttribute="trailing" id="K2e-D3-Ww8"/>
+                                <constraint firstItem="GIM-9K-ZzM" firstAttribute="leading" secondItem="Qdz-yg-isH" secondAttribute="leading" id="aem-rf-6Xf"/>
+                                <constraint firstAttribute="bottom" secondItem="GIM-9K-ZzM" secondAttribute="bottom" id="d8E-dk-l1G"/>
+                                <constraint firstItem="GIM-9K-ZzM" firstAttribute="top" secondItem="Qdz-yg-isH" secondAttribute="top" id="kla-PY-V56"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="2Jh-57-7uO" firstAttribute="leading" secondItem="GvM-Au-HJf" secondAttribute="leading" id="3NR-nc-aw9"/>
+                        <constraint firstItem="Qdz-yg-isH" firstAttribute="top" secondItem="2Jh-57-7uO" secondAttribute="bottom" constant="1" id="41G-KU-45a"/>
+                        <constraint firstItem="ybp-Vb-ddM" firstAttribute="top" secondItem="GvM-Au-HJf" secondAttribute="top" id="7IC-kd-KYI"/>
+                        <constraint firstItem="Qdz-yg-isH" firstAttribute="leading" secondItem="GvM-Au-HJf" secondAttribute="leading" id="Lhx-NS-SXT"/>
+                        <constraint firstAttribute="height" constant="182" id="Ssf-zI-inT"/>
+                        <constraint firstItem="2Jh-57-7uO" firstAttribute="top" secondItem="8E4-4G-dGo" secondAttribute="bottom" constant="1" id="TuF-2d-xqH"/>
+                        <constraint firstItem="8E4-4G-dGo" firstAttribute="leading" secondItem="GvM-Au-HJf" secondAttribute="leading" id="Uij-57-wTA"/>
+                        <constraint firstItem="8E4-4G-dGo" firstAttribute="height" secondItem="GvM-Au-HJf" secondAttribute="height" multiplier="28:182" id="V4i-1n-4h6"/>
+                        <constraint firstAttribute="height" secondItem="ybp-Vb-ddM" secondAttribute="height" multiplier="182:38" id="aVR-rE-nad"/>
+                        <constraint firstItem="8E4-4G-dGo" firstAttribute="top" secondItem="ybp-Vb-ddM" secondAttribute="bottom" id="b1E-kR-54g"/>
+                        <constraint firstAttribute="trailing" secondItem="8E4-4G-dGo" secondAttribute="trailing" id="bKh-3Y-bwI"/>
+                        <constraint firstAttribute="trailing" secondItem="2Jh-57-7uO" secondAttribute="trailing" id="iAR-1d-I08"/>
+                        <constraint firstItem="ybp-Vb-ddM" firstAttribute="leading" secondItem="GvM-Au-HJf" secondAttribute="leading" id="mzs-RJ-hfR"/>
+                        <constraint firstAttribute="trailing" secondItem="Qdz-yg-isH" secondAttribute="trailing" id="p96-f9-ovJ"/>
+                        <constraint firstAttribute="bottom" secondItem="Qdz-yg-isH" secondAttribute="bottom" id="qQy-x6-I8j"/>
+                        <constraint firstAttribute="height" secondItem="2Jh-57-7uO" secondAttribute="height" multiplier="182:72" id="tA9-ru-JXT"/>
+                        <constraint firstAttribute="trailing" secondItem="ybp-Vb-ddM" secondAttribute="trailing" id="zmM-GC-ZVe"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="128" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ZDM-8h-hag">
+                    <rect key="frame" x="0.0" y="64" width="320" height="321"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="GvM-Au-HJf" firstAttribute="top" secondItem="ZDM-8h-hag" secondAttribute="bottom" constant="1" id="Cv9-zN-Uuu"/>
+                <constraint firstItem="en0-Fx-XC5" firstAttribute="top" secondItem="4V5-Xh-VZM" secondAttribute="top" constant="64" id="Hgd-2R-3sN">
+                    <variation key="widthClass=compact" constant="0.0"/>
+                </constraint>
+                <constraint firstAttribute="bottom" secondItem="GvM-Au-HJf" secondAttribute="bottom" priority="1" id="Jdg-cg-rdH"/>
+                <constraint firstItem="GvM-Au-HJf" firstAttribute="leading" secondItem="4V5-Xh-VZM" secondAttribute="leading" id="KiD-Yt-QgM"/>
+                <constraint firstAttribute="trailing" secondItem="ZDM-8h-hag" secondAttribute="trailing" id="Rig-sE-WUd"/>
+                <constraint firstItem="ZDM-8h-hag" firstAttribute="top" secondItem="4V5-Xh-VZM" secondAttribute="top" id="aFC-iO-9ZJ"/>
+                <constraint firstItem="ZDM-8h-hag" firstAttribute="leading" secondItem="4V5-Xh-VZM" secondAttribute="leading" id="nK8-mX-1BR"/>
+                <constraint firstAttribute="trailing" secondItem="GvM-Au-HJf" secondAttribute="trailing" id="p3j-lh-bvd"/>
+                <constraint firstItem="en0-Fx-XC5" firstAttribute="leading" secondItem="4V5-Xh-VZM" secondAttribute="leading" id="zNy-pt-h9l"/>
+                <constraint firstAttribute="trailing" secondItem="en0-Fx-XC5" secondAttribute="trailing" id="zYo-lW-Zfn"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="aFC-iO-9ZJ"/>
+                    <exclude reference="Hgd-2R-3sN"/>
+                    <exclude reference="Jdg-cg-rdH"/>
+                </mask>
+            </variation>
+            <variation key="widthClass=compact">
+                <mask key="constraints">
+                    <include reference="aFC-iO-9ZJ"/>
+                    <include reference="Hgd-2R-3sN"/>
+                    <include reference="Jdg-cg-rdH"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="39" y="466"/>
+        </view>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="feedBackCell" id="JHc-Ll-dfn" customClass="FeedbackTableViewCell">
+            <rect key="frame" x="0.0" y="22" width="320" height="128"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JHc-Ll-dfn" id="t1h-Ac-RSZ">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="127"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CUx-6Y-XzE">
+                        <rect key="frame" x="0.0" y="1" width="320" height="126"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_chosen.png" translatesAutoresizingMaskIntoConstraints="NO" id="RJx-da-qYi">
+                                <rect key="frame" x="156" y="18" width="11" height="11"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="RJx-da-qYi" secondAttribute="height" multiplier="1:1" id="WXD-Bm-Q8v"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_chosen.png" translatesAutoresizingMaskIntoConstraints="NO" id="gPX-dq-3zT">
+                                <rect key="frame" x="169" y="18" width="11" height="11"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="gPX-dq-3zT" secondAttribute="height" multiplier="1:1" id="kZb-s7-W6g"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_chosen.png" translatesAutoresizingMaskIntoConstraints="NO" id="4ic-c7-YIK">
+                                <rect key="frame" x="182" y="18" width="11" height="11"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="4ic-c7-YIK" secondAttribute="height" multiplier="1:1" id="eMc-AX-Az6"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_chosen.png" translatesAutoresizingMaskIntoConstraints="NO" id="DgS-uP-TgS">
+                                <rect key="frame" x="195" y="18" width="11" height="11"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="DgS-uP-TgS" secondAttribute="height" multiplier="1:1" id="jb0-0Y-Spf"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_chosen.png" translatesAutoresizingMaskIntoConstraints="NO" id="5PV-Le-VQO">
+                                <rect key="frame" x="208" y="18" width="11" height="11"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="5PV-Le-VQO" secondAttribute="height" multiplier="1:1" id="Fxs-vE-iaN"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="5PV-Le-VQO" firstAttribute="leading" secondItem="DgS-uP-TgS" secondAttribute="trailing" constant="2" id="0vv-is-XM2"/>
+                            <constraint firstItem="gPX-dq-3zT" firstAttribute="top" secondItem="RJx-da-qYi" secondAttribute="top" id="1sV-x6-syL"/>
+                            <constraint firstItem="DgS-uP-TgS" firstAttribute="top" secondItem="5PV-Le-VQO" secondAttribute="top" id="3co-UJ-2Ba"/>
+                            <constraint firstItem="4ic-c7-YIK" firstAttribute="leading" secondItem="gPX-dq-3zT" secondAttribute="trailing" constant="2" id="Fxl-3S-Lux"/>
+                            <constraint firstItem="gPX-dq-3zT" firstAttribute="top" secondItem="4ic-c7-YIK" secondAttribute="top" id="UdY-KM-kak"/>
+                            <constraint firstItem="4ic-c7-YIK" firstAttribute="top" secondItem="DgS-uP-TgS" secondAttribute="top" id="XhR-Px-vJ2"/>
+                            <constraint firstItem="gPX-dq-3zT" firstAttribute="leading" secondItem="RJx-da-qYi" secondAttribute="trailing" constant="2" id="omq-KZ-8hA"/>
+                            <constraint firstItem="DgS-uP-TgS" firstAttribute="leading" secondItem="4ic-c7-YIK" secondAttribute="trailing" constant="2" id="stV-Ix-znw"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="345" translatesAutoresizingMaskIntoConstraints="NO" id="KkP-Kj-FN9">
+                        <rect key="frame" x="15" y="42" width="290" height="44"/>
+                        <string key="text">Richard Brenson Richard Brenson Richard Brenson vRichard Brenson Richard BrensonRichard BrensonRichard Brenson  Richard Brenson Richard Brenson Richard  fdr BrensonRichard BrensonRichard Brenson Richard BrensonRichard BrensonRichard Brenson</string>
+                        <fontDescription key="fontDescription" name="KozGoPro-Light" family="Kozuka Gothic Pro" pointSize="11"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Richard Brenson" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1na-0Y-0vG">
+                        <rect key="frame" x="15" y="15" width="131" height="18"/>
+                        <fontDescription key="fontDescription" name="KozGoPro-Regular" family="Kozuka Gothic Pro" pointSize="18"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="RJx-da-qYi" firstAttribute="top" secondItem="1na-0Y-0vG" secondAttribute="top" constant="4" id="1H0-zi-VeD"/>
+                    <constraint firstAttribute="bottom" secondItem="CUx-6Y-XzE" secondAttribute="bottom" id="Ga7-dB-wfX"/>
+                    <constraint firstAttribute="trailing" secondItem="CUx-6Y-XzE" secondAttribute="trailing" id="HjE-Dw-bcF"/>
+                    <constraint firstItem="1na-0Y-0vG" firstAttribute="top" secondItem="t1h-Ac-RSZ" secondAttribute="top" constant="15" id="Lfj-6I-vG4"/>
+                    <constraint firstItem="1na-0Y-0vG" firstAttribute="leading" secondItem="t1h-Ac-RSZ" secondAttribute="leading" constant="15" id="OJh-RA-lwP"/>
+                    <constraint firstAttribute="trailing" secondItem="1na-0Y-0vG" secondAttribute="trailing" priority="250" constant="164" id="a1K-YX-MAV"/>
+                    <constraint firstAttribute="trailing" secondItem="KkP-Kj-FN9" secondAttribute="trailing" constant="15" id="bMv-Dz-QNs"/>
+                    <constraint firstItem="KkP-Kj-FN9" firstAttribute="leading" secondItem="t1h-Ac-RSZ" secondAttribute="leading" constant="15" id="exe-35-05i"/>
+                    <constraint firstItem="CUx-6Y-XzE" firstAttribute="top" secondItem="t1h-Ac-RSZ" secondAttribute="top" constant="1" id="fXt-qH-S8v"/>
+                    <constraint firstItem="CUx-6Y-XzE" firstAttribute="leading" secondItem="t1h-Ac-RSZ" secondAttribute="leading" id="i55-hc-T33"/>
+                    <constraint firstItem="KkP-Kj-FN9" firstAttribute="top" secondItem="1na-0Y-0vG" secondAttribute="bottom" constant="9" id="iAV-2t-aPN"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="KkP-Kj-FN9" secondAttribute="bottom" priority="250" constant="3" id="ra1-B8-b1i"/>
+                    <constraint firstItem="RJx-da-qYi" firstAttribute="leading" secondItem="1na-0Y-0vG" secondAttribute="trailing" constant="10" id="vS0-4W-uED"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="feedbackNameLabel" destination="1na-0Y-0vG" id="DB2-yT-jZE"/>
+                <outlet property="feedbackTextLabel" destination="KkP-Kj-FN9" id="Had-eD-bkG"/>
+                <outlet property="fiveStarImgView" destination="5PV-Le-VQO" id="7ft-TW-zBr"/>
+                <outlet property="fourStarsImgView" destination="DgS-uP-TgS" id="GGw-20-s2w"/>
+                <outlet property="oneStarImgView" destination="RJx-da-qYi" id="Rja-FA-oo1"/>
+                <outlet property="threeStarImgView" destination="4ic-c7-YIK" id="8zH-kb-j9e"/>
+                <outlet property="twoStarsImgView" destination="gPX-dq-3zT" id="Nf6-JL-30y"/>
+            </connections>
+            <point key="canvasLocation" x="49" y="30"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="restoraunt_photo.png" width="360" height="640"/>
+        <image name="star_chosen.png" width="11" height="10"/>
+    </resources>
+</document>

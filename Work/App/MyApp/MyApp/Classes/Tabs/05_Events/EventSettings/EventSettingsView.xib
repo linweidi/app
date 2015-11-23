@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EventSettingsView">
@@ -15,13 +16,12 @@
                 <outlet property="busySegement" destination="CeU-fE-PvX" id="jLp-at-YgH"/>
                 <outlet property="categoryCell" destination="Oe1-IM-puc" id="MBi-nN-scw"/>
                 <outlet property="categoryLabel" destination="K2f-Rl-7kn" id="qbG-xo-IhU"/>
-                <outlet property="endTime" destination="U1A-Ut-gxs" id="8Wn-O3-7sB"/>
+                <outlet property="endTimeCell" destination="yJx-Cf-Nhn" id="sgh-Lg-0SF"/>
                 <outlet property="endTimeLabel" destination="U1A-Ut-gxs" id="zll-n8-jH0"/>
                 <outlet property="groupsCell" destination="CvQ-op-q1A" id="Dcx-1e-huB"/>
                 <outlet property="groupsLabel" destination="jex-On-ozm" id="s4K-eX-3cS"/>
                 <outlet property="inviteeCell" destination="Cao-CS-QtG" id="pm6-vP-Hrr"/>
                 <outlet property="inviteeLabel" destination="UCh-Zv-cTN" id="yWf-A4-OD5"/>
-                <outlet property="invitteeCell" destination="Cao-CS-QtG" id="kGy-Lh-AVm"/>
                 <outlet property="locationCell" destination="ddY-y7-Xck" id="awV-pz-Qph"/>
                 <outlet property="locationLabel" destination="dMh-nf-ieu" id="M5S-tZ-7mU"/>
                 <outlet property="membersCell" destination="tg5-BH-Kgq" id="sss-h9-lz7"/>
@@ -30,7 +30,7 @@
                 <outlet property="placeLabel" destination="xsh-25-tua" id="Tgm-fD-hey"/>
                 <outlet property="scopeCell" destination="ENn-tb-WAE" id="wm8-v3-ZFa"/>
                 <outlet property="scopeSegment" destination="bj9-7S-7yq" id="UdM-by-rRl"/>
-                <outlet property="startTime" destination="Oan-jn-30a" id="r8M-B2-teN"/>
+                <outlet property="startTimeCell" destination="XeJ-nB-eJN" id="ePY-dV-35u"/>
                 <outlet property="startTimeLabel" destination="Oan-jn-30a" id="hfz-3s-Evi"/>
                 <outlet property="titleCell" destination="LXh-oe-qh8" id="0ay-cg-p1H"/>
                 <outlet property="titleLabel" destination="PLf-EO-yqg" id="QSR-Vx-KCu"/>
@@ -41,7 +41,8 @@
         <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" bouncesZoom="NO" style="grouped" separatorStyle="default" rowHeight="50" sectionHeaderHeight="10" sectionFooterHeight="10" id="OiP-34-4dG">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+            <nil key="simulatedStatusBarMetrics"/>
             <connections>
                 <outlet property="dataSource" destination="-1" id="LhD-Ao-qEp"/>
                 <outlet property="delegate" destination="-1" id="DMg-3i-96S"/>
@@ -95,7 +96,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contents" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K2f-Rl-7kn">
-                        <rect key="frame" x="103" y="0.0" width="197" height="43"/>
+                        <rect key="frame" x="103" y="0.0" width="164" height="43"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -103,7 +104,7 @@
                 <constraints>
                     <constraint firstItem="K2f-Rl-7kn" firstAttribute="leading" secondItem="t9d-pn-asx" secondAttribute="trailing" constant="8" symbolic="YES" id="8YO-sv-pMZ"/>
                     <constraint firstItem="K2f-Rl-7kn" firstAttribute="top" secondItem="t9d-pn-asx" secondAttribute="top" id="FZG-nu-rlp"/>
-                    <constraint firstAttribute="trailing" secondItem="K2f-Rl-7kn" secondAttribute="trailing" constant="20" symbolic="YES" id="UN3-oD-gD1"/>
+                    <constraint firstAttribute="trailing" secondItem="K2f-Rl-7kn" secondAttribute="trailing" constant="53" id="UN3-oD-gD1"/>
                     <constraint firstItem="t9d-pn-asx" firstAttribute="leading" secondItem="yEZ-Jc-3Ae" secondAttribute="leading" constant="20" symbolic="YES" id="UqQ-Ip-AmZ"/>
                     <constraint firstAttribute="bottom" secondItem="t9d-pn-asx" secondAttribute="bottom" id="agv-Fd-DBT"/>
                     <constraint firstItem="K2f-Rl-7kn" firstAttribute="baseline" secondItem="t9d-pn-asx" secondAttribute="baseline" id="gQA-wb-AZr"/>
@@ -290,7 +291,7 @@
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bj9-7S-7yq">
+                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bj9-7S-7yq">
                         <rect key="frame" x="127" y="8" width="173" height="29"/>
                         <segments>
                             <segment title="Private"/>

@@ -20,7 +20,7 @@
 
 #include "../Template/EntityUtilTemplate.hh"
 
-- (void) setStartTime:(NSDate *)startTime;
+- (void) setStartTimeGroup:(NSDate *)startTime;
 
 
 @end

@@ -17,3 +17,9 @@ NSDate*			String2Date				(NSString *dateStr);
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 NSString*		TimeElapsed				(NSTimeInterval seconds);
+
+@interface ConverterUtil : NSObject
+
+- (NSString *) dateToTimeString: (NSDate *)date ;
+
+@end

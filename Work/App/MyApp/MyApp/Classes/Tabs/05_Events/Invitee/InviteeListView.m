@@ -42,7 +42,7 @@
         request.predicate = [NSPredicate predicateWithFormat:@"globalID IN %@", self.userIDs];
         //request.fetchLimit = USERVIEW_DISPLAY_ITEM_NUM;
         request.sortDescriptors = @[[NSSortDescriptor
-                                     sortDescriptorWithKey:@"name"
+                                     sortDescriptorWithKey:@"username"
                                      ascending:YES
                                      selector:@selector(localizedCompare:)]
                                     ];

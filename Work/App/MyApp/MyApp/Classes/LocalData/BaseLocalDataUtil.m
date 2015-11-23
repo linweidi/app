@@ -13,6 +13,11 @@
 #undef LOCAL_DATA_CLASS_TYPE
 #define LOCAL_DATA_CLASS_TYPE ObjectEntity
 
+@interface BaseLocalDataUtil()
+
+@property (nonatomic) int count;
+@end
+
 @implementation BaseLocalDataUtil
 
 - (NSManagedObjectContext *)managedObjectContext {
@@ -93,9 +98,9 @@
 #define LOCAL_DATA_GLOBALID_BASE_NUM 100
 
 - (NSString *) getUniqueGlobalID {
-    static int count = 0;
-    NSString * ret = [NSString stringWithFormat:@"%d", count+ LOCAL_DATA_GLOBALID_BASE_NUM*self.index];
-    count++;
+    
+    NSString * ret = [NSString stringWithFormat:@"%d", self.count+ LOCAL_DATA_GLOBALID_BASE_NUM*self.index];
+    self.count++;
     return ret;
 }
 

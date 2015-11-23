@@ -41,6 +41,7 @@
 #import "CurrentUserLocalDataUtil.h"
 
 //2nd
+#import "EventCategoryLocalDataUtil.h"
 #import "AlertLocalDataUtil.h"
 #import "PlaceLocalDataUtil.h"
 #import "EventLocalDataUtil.h"
@@ -126,6 +127,8 @@ typedef enum {
                 [[UserLocalDataUtil sharedUtil] loadData];
                 
                 [[CurrentUserLocalDataUtil sharedUtil] loadData];
+                
+                [[EventCategoryLocalDataUtil sharedUtil] loadData];
                 
                 [[AlertLocalDataUtil sharedUtil] loadData];
                 [[PlaceLocalDataUtil sharedUtil] loadData];

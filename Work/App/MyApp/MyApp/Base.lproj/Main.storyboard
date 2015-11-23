@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="5e5-vN-JkK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="5e5-vN-JkK">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -577,14 +577,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="azq-7k-NJr" firstAttribute="top" secondItem="01n-Rk-HoF" secondAttribute="bottom" constant="-64" id="EpL-ov-Ic7"/>
                             <constraint firstAttribute="trailing" secondItem="T4t-9e-Tfz" secondAttribute="trailing" id="Gah-HZ-G1D"/>
-                            <constraint firstItem="QYg-b1-tTi" firstAttribute="top" secondItem="azq-7k-NJr" secondAttribute="bottom" id="NVB-b4-zEc"/>
+                            <constraint firstItem="T4t-9e-Tfz" firstAttribute="top" secondItem="01n-Rk-HoF" secondAttribute="bottom" id="J81-kd-afe"/>
+                            <constraint firstItem="QYg-b1-tTi" firstAttribute="top" secondItem="T4t-9e-Tfz" secondAttribute="bottom" id="Jgx-8B-e5s"/>
+                            <constraint firstItem="QYg-b1-tTi" firstAttribute="top" secondItem="azq-7k-NJr" secondAttribute="bottom" id="Tve-iU-aEh"/>
                             <constraint firstItem="T4t-9e-Tfz" firstAttribute="leading" secondItem="ge8-GR-QR6" secondAttribute="leading" id="d4S-mM-nLo"/>
-                            <constraint firstItem="T4t-9e-Tfz" firstAttribute="top" secondItem="01n-Rk-HoF" secondAttribute="bottom" id="fpZ-lU-9Ej"/>
-                            <constraint firstItem="QYg-b1-tTi" firstAttribute="top" secondItem="T4t-9e-Tfz" secondAttribute="bottom" id="iZg-dZ-HED"/>
                             <constraint firstAttribute="trailing" secondItem="azq-7k-NJr" secondAttribute="trailing" id="rq4-8j-E39"/>
                             <constraint firstItem="azq-7k-NJr" firstAttribute="leading" secondItem="ge8-GR-QR6" secondAttribute="leading" id="sre-iP-aQj"/>
+                            <constraint firstItem="azq-7k-NJr" firstAttribute="top" secondItem="01n-Rk-HoF" secondAttribute="bottom" constant="-64" id="usV-nd-eNw"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="RESERVATION" id="6Ce-7M-QpW"/>
@@ -596,7 +596,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="twq-om-lMh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="919.5" y="708.5"/>
+            <point key="canvasLocation" x="892.5" y="715.5"/>
         </scene>
         <!--OUR MENU-->
         <scene sceneID="RT7-i6-F7B">
@@ -725,10 +725,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="dE2-mV-yoe" firstAttribute="top" secondItem="zAT-X9-nFu" secondAttribute="bottom" id="71F-jG-LOZ"/>
                             <constraint firstAttribute="centerX" secondItem="zAT-X9-nFu" secondAttribute="centerX" id="74N-lh-F63"/>
+                            <constraint firstItem="zAT-X9-nFu" firstAttribute="top" secondItem="Sll-y2-eZs" secondAttribute="bottom" id="Uo2-EW-GOm"/>
                             <constraint firstAttribute="width" secondItem="zAT-X9-nFu" secondAttribute="width" id="aJI-jF-s1M"/>
-                            <constraint firstItem="dE2-mV-yoe" firstAttribute="top" secondItem="zAT-X9-nFu" secondAttribute="bottom" id="p2W-06-Ceq"/>
-                            <constraint firstItem="zAT-X9-nFu" firstAttribute="top" secondItem="Sll-y2-eZs" secondAttribute="bottom" id="xE7-CO-5ia"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="OUR MENU" id="IqQ-4d-ynh"/>
@@ -947,14 +947,14 @@
                             <constraint firstItem="s8w-Mz-5Jw" firstAttribute="top" secondItem="Qkc-Sa-y0Z" secondAttribute="bottom" constant="3" id="0wX-IW-cVx"/>
                             <constraint firstItem="s8w-Mz-5Jw" firstAttribute="leading" secondItem="sP1-tV-oYW" secondAttribute="leading" id="931-Wb-ZPw"/>
                             <constraint firstItem="Pzp-yv-vvC" firstAttribute="leading" secondItem="sP1-tV-oYW" secondAttribute="leading" id="GCK-Ju-gs2"/>
-                            <constraint firstItem="lfA-UI-pid" firstAttribute="top" secondItem="Pzp-yv-vvC" secondAttribute="bottom" id="QaR-1J-Bsl"/>
+                            <constraint firstItem="lfA-UI-pid" firstAttribute="top" secondItem="Pzp-yv-vvC" secondAttribute="bottom" id="RI4-xh-Epl"/>
                             <constraint firstAttribute="trailing" secondItem="Qkc-Sa-y0Z" secondAttribute="trailing" id="TRI-Nc-lij"/>
                             <constraint firstAttribute="trailing" secondItem="Pzp-yv-vvC" secondAttribute="trailing" id="b6k-2d-6Gw"/>
-                            <constraint firstItem="Pzp-yv-vvC" firstAttribute="top" secondItem="XLv-tI-ScO" secondAttribute="bottom" id="dZh-uW-IV6"/>
                             <constraint firstItem="Qkc-Sa-y0Z" firstAttribute="height" secondItem="sP1-tV-oYW" secondAttribute="height" multiplier="140:568" id="eTb-rD-fH0"/>
                             <constraint firstAttribute="trailing" secondItem="s8w-Mz-5Jw" secondAttribute="trailing" id="jR6-NP-J0S"/>
-                            <constraint firstItem="lfA-UI-pid" firstAttribute="top" secondItem="s8w-Mz-5Jw" secondAttribute="bottom" id="u87-Zd-KSC"/>
+                            <constraint firstItem="lfA-UI-pid" firstAttribute="top" secondItem="s8w-Mz-5Jw" secondAttribute="bottom" id="uzf-Xa-O2Q"/>
                             <constraint firstAttribute="height" secondItem="s8w-Mz-5Jw" secondAttribute="height" multiplier="568:78" id="vpc-lG-r1B"/>
+                            <constraint firstItem="Pzp-yv-vvC" firstAttribute="top" secondItem="XLv-tI-ScO" secondAttribute="bottom" id="yKs-3C-43B"/>
                             <constraint firstItem="Qkc-Sa-y0Z" firstAttribute="leading" secondItem="sP1-tV-oYW" secondAttribute="leading" id="ywy-HS-LZQ"/>
                         </constraints>
                     </view>
@@ -1290,12 +1290,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="2ga-aW-jyt" secondAttribute="trailing" id="6Ya-Ba-mjA"/>
-                            <constraint firstItem="2ga-aW-jyt" firstAttribute="top" secondItem="dcQ-Nw-6UI" secondAttribute="bottom" id="6eF-Ve-6vV"/>
-                            <constraint firstItem="IuE-Jj-2X9" firstAttribute="top" secondItem="dcQ-Nw-6UI" secondAttribute="bottom" id="7Yc-fs-xmD"/>
                             <constraint firstAttribute="trailing" secondItem="IuE-Jj-2X9" secondAttribute="trailing" id="7Z9-Lh-2fs"/>
-                            <constraint firstItem="TUV-QP-fs5" firstAttribute="top" secondItem="2ga-aW-jyt" secondAttribute="bottom" constant="84" id="Lpn-r9-4TK"/>
+                            <constraint firstItem="IuE-Jj-2X9" firstAttribute="top" secondItem="dcQ-Nw-6UI" secondAttribute="bottom" id="HhI-5H-Uwh"/>
+                            <constraint firstItem="2ga-aW-jyt" firstAttribute="top" secondItem="dcQ-Nw-6UI" secondAttribute="bottom" id="KYU-ub-QB3"/>
                             <constraint firstAttribute="trailing" secondItem="3bb-6L-hL3" secondAttribute="trailing" id="PJ0-o0-uzQ"/>
-                            <constraint firstItem="TUV-QP-fs5" firstAttribute="top" secondItem="3bb-6L-hL3" secondAttribute="bottom" id="Tgo-4f-brD"/>
+                            <constraint firstItem="TUV-QP-fs5" firstAttribute="top" secondItem="2ga-aW-jyt" secondAttribute="bottom" constant="84" id="Rh4-K0-FOn"/>
+                            <constraint firstItem="TUV-QP-fs5" firstAttribute="top" secondItem="3bb-6L-hL3" secondAttribute="bottom" id="T3I-UR-nXW"/>
                             <constraint firstItem="3bb-6L-hL3" firstAttribute="leading" secondItem="e5f-NF-vuT" secondAttribute="leading" id="VOe-gh-rFK"/>
                             <constraint firstItem="2ga-aW-jyt" firstAttribute="leading" secondItem="e5f-NF-vuT" secondAttribute="leading" id="XJV-Ud-JpM"/>
                             <constraint firstItem="IuE-Jj-2X9" firstAttribute="leading" secondItem="e5f-NF-vuT" secondAttribute="leading" id="cbt-Tz-LDO"/>
@@ -1307,7 +1307,6 @@
                     <connections>
                         <outlet property="addBtnView" destination="EWD-5P-UEY" id="2BF-fQ-KC0"/>
                         <outlet property="addFeedbackBtn" destination="Xab-7e-gMM" id="RhO-Pu-SqR"/>
-                        <outlet property="bottomConstraint" destination="Tgo-4f-brD" id="x6u-8X-gPy"/>
                         <outlet property="bottomView" destination="3bb-6L-hL3" id="pLO-eb-y3G"/>
                         <outlet property="feedbackField" destination="g1G-UV-LOL" id="y9W-gV-Rfy"/>
                         <outlet property="feedbackView" destination="zWs-y8-kRV" id="PCb-ZN-0CM"/>

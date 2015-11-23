@@ -69,8 +69,12 @@
     category.subseqItemCount = dict[PF_EVENT_CATEGORY_SUBSEQ_COUNT];
     category.subseqItems = dict[PF_EVENT_CATEGORY_SUBSEQ_ITEMS];
     
-    Thumbnail * thumb = [Thumbnail entityWithID:dict[PF_EVENT_CATEGORY_THUMBNAIL] inManagedObjectContext:self.managedObjectContext];
-    category.thumb = thumb;
+    if (dict[PF_EVENT_CATEGORY_THUMBNAIL]) {
+        Thumbnail * thumb = [Thumbnail entityWithID:dict[PF_EVENT_CATEGORY_THUMBNAIL] inManagedObjectContext:self.managedObjectContext];
+        category.thumb = thumb;
+    }
+
+
     
 }
 

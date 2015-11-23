@@ -85,9 +85,9 @@
     
     [rightBarButtons addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(didChangeModeTouch)]];
     // add today button
-    [rightBarButtons addObject:[[UIBarButtonItem alloc] initWithTitle:@"TODAY" style:UIBarButtonItemStyleBordered target:self action:@selector(didGoTodayTouch)]];
+    [rightBarButtons addObject:[[UIBarButtonItem alloc] initWithTitle:@"T" style:UIBarButtonItemStyleBordered target:self action:@selector(didGoTodayTouch)]];
 
-    _buttonMulti =[[UIBarButtonItem alloc] initWithTitle:@"MULTI" style:UIBarButtonItemStyleBordered target:self action:@selector(didChangeSelectModeTouch)];
+    _buttonMulti =[[UIBarButtonItem alloc] initWithTitle:@"M" style:UIBarButtonItemStyleBordered target:self action:@selector(didChangeSelectModeTouch)];
     [rightBarButtons addObject:_buttonMulti];
     // add switch view button
     self.navigationItem.rightBarButtonItems = rightBarButtons;

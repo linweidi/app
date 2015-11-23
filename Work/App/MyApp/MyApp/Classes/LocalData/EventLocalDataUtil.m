@@ -61,7 +61,10 @@
     
     LOCAL_DATA_CLASS_TYPE * event = (LOCAL_DATA_CLASS_TYPE *)object;
     
-    event.startTime  = dict[PF_EVENT_START_TIME] ;
+    //event.startTime  = dict[PF_EVENT_START_TIME] ;
+    
+    [event setStartTimeGroup:dict[PF_EVENT_START_TIME]];
+    
     event.endTime  = dict[PF_EVENT_END_TIME] ;
     event.invitees = dict[PF_EVENT_INVITEES] ;
     event.isAlert = dict[PF_EVENT_IS_ALERT];

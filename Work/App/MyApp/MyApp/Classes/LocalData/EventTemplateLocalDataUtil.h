@@ -9,7 +9,7 @@
 #import "BaseLocalDataUtil.h"
 
 @interface EventTemplateLocalDataUtil : BaseLocalDataUtil
-+ (EventVoteItemLocalDataUtil *)sharedUtil;
++ (EventTemplateLocalDataUtil *)sharedUtil;
 
 - (void) setRandomValues: (id) object data:(NSDictionary *)dict;
 

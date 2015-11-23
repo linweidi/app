@@ -6,11 +6,12 @@
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 
-#import "BaseRemoteUtil.h"
+#import "UserBaseRemoteUtil.h"
 
+@class UserEntity;
 @class Thumbnail;
 
-@interface ThumbnailRemoteUtil : BaseRemoteUtil
+@interface ThumbnailRemoteUtil : UserBaseRemoteUtil
 + (ThumbnailRemoteUtil *)sharedUtil;
 
 //- (void) setCommonFile:(BASE_REMOTE_UTIL_OBJ_TYPE)object withRemoteFile:(RemoteFile *)remoteFile inManagedObjectContext: (NSManagedObjectContext *)context;

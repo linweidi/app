@@ -12,6 +12,10 @@
 #import "InviteeListView.h"
 #import "GroupListView.h"
 #import "BoardListView.h"
+#import "EventCategory+Util.h"
+#import "Place+Util.h"
+#import "ConverterUtil.h"
+#import "Alert+Util.h"
 #import "EventSettingsView.h"
 
 #define EVENT_SETTING_VIEW_SECTION_TITLE_INDEX 0
@@ -26,19 +30,19 @@
 
 
 // static cell
-@property (strong, nonatomic) IBOutlet EventCellView *titleCell;
-@property (strong, nonatomic) IBOutlet EventCellView *categoryCell;
-@property (strong, nonatomic) IBOutlet EventCellView *busyCell;
-@property (strong, nonatomic) IBOutlet EventCellView *locationCell;
-@property (strong, nonatomic) IBOutlet EventCellView *placeCell;
-@property (strong, nonatomic) IBOutlet EventCellView *startTime;
-@property (strong, nonatomic) IBOutlet EventCellView *endTime;
-@property (strong, nonatomic) IBOutlet EventCellView *scopeCell;
-@property (strong, nonatomic) IBOutlet EventCellView *inviteeCell;
-@property (strong, nonatomic) IBOutlet EventCellView *boardsCell;
-@property (strong, nonatomic) IBOutlet EventCellView *groupsCell;
-@property (strong, nonatomic) IBOutlet EventCellView *membersCell;
-@property (strong, nonatomic) IBOutlet EventCellView *alertCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *titleCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *categoryCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *busyCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *locationCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *placeCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *startTimeCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *endTimeCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *scopeCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *inviteeCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *boardsCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *groupsCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *membersCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *alertCell;
 
 // static label
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -80,10 +84,57 @@
     //[self.tableView registerNib:[UINib nibWithNibName:@"EventCellView" bundle:nil] forCellReuseIdentifier:@"EventCellView"];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self updateCellContents];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+//@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
+//@property (weak, nonatomic) IBOutlet UISegmentedControl *busySegement;
+//@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *placeLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *startTimeLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *endTimeLabel;
+//@property (weak, nonatomic) IBOutlet UISegmentedControl *scopeSegment;
+//@property (weak, nonatomic) IBOutlet UILabel *inviteeLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *boardsLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *groupsLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *membersLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *alertLabel;
+- (void) updateCellContents {
+    self.titleLabel.text = self.event.title;
+    self.categoryLabel.text = self.event.category.name;
+    self.busySegement.selectedSegmentIndex = [self.event.busy boolValue]?0:1;    //0:yes, 1:no
+    self.locationLabel.text = self.event.location;
+    self.placeLabel.text = self.event.place.name;
+    self.startTimeLabel.text = [[ConverterUtil sharedUtil] dateShortFromDate: self.event.startTime];
+    self.endTimeLabel.text = [[ConverterUtil sharedUtil] dateShortFromDate:self.event.endTime];
+    
+    if ([self.event.scope isEqualToString:@"private"]) {
+        self.scopeSegment.selectedSegmentIndex = 0;
+    }
+    else if ([self.event.scope isEqualToString:@"friend"]) {
+        self.scopeSegment.selectedSegmentIndex = 1;
+    }
+    else if ([self.event.scope isEqualToString:@"public"]) {
+        self.scopeSegment.selectedSegmentIndex = 2;
+    }
+    self.inviteeLabel.text = [NSString stringWithFormat:@"%lu invitees", [(NSArray *)self.event.invitees count] ] ;
+    self.boardsLabel.text = [NSString stringWithFormat:@"%lu boards", [(NSArray *)self.event.boardIDs count] ] ;
+    self.groupsLabel.text = [NSString stringWithFormat:@"%lu groups", [(NSArray *)self.event.groupIDs count] ] ;
+    self.membersLabel.text = [NSString stringWithFormat:@"%lu members", [(NSArray *)self.event.members count] ] ;
+    
+    self.alertLabel.text = [[ConverterUtil sharedUtil] stringFromDate: self.event.alert.time];
+    
+    
 }
 
 #pragma mark - Table view data source
@@ -100,7 +151,7 @@
 
     switch (section) {
         case EVENT_SETTING_VIEW_SECTION_TITLE_INDEX:
-            ret = 3;
+            ret = 5;
             break;
         case EVENT_SETTING_VIEW_SECTION_TIME_INDEX:
             ret = 2;
@@ -140,7 +191,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    EventCellView * cell = nil;
+    UITableViewCell * cell = nil;
     
     //Title
     
@@ -155,13 +206,19 @@
             if (indexPath.row == 2) {
                 cell = self.locationCell;
             }
+            if (indexPath.row == 3) {
+                cell = self.busyCell;
+            }
+            if (indexPath.row == 4) {
+                cell = self.scopeCell;
+            }
             break;
         case EVENT_SETTING_VIEW_SECTION_TIME_INDEX:
             if (indexPath.row == 0) {
-                cell = self.startTime;
+                cell = self.startTimeCell;
             }
             if (indexPath.row == 1) {
-                cell = self.endTime;
+                cell = self.endTimeCell;
             }
             break;
         case EVENT_SETTING_VIEW_SECTION_PLACE_INDEX:
@@ -193,7 +250,7 @@
     }
     return cell;
 }
-//
+
 //- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 ////-------------------------------------------------------------------------------------------------------------------------------------------------
 //{
@@ -231,32 +288,25 @@
         case EVENT_SETTING_VIEW_SECTION_PLACE_INDEX:
             if (indexPath.row == 0) {
                 //cell = self.placeCell;
+                [self actionPlace];
             }
             break;
         case EVENT_SETTING_VIEW_SECTION_INVITEE_INDEX:
             if (indexPath.row == 0) {
                 //cell = self.membersCell;
-                MemberListView * memberVC = [[MemberListView alloc] init];
-                memberVC.userIDs = [NSArray arrayWithArray:self.event.members];
-                [self.navigationController pushViewController:memberVC animated:YES];
+                [self actionMembers];
             }
             if (indexPath.row == 1) {
                 //cell = self.inviteeCell;
-                InviteeListView * inviteeVC = [[InviteeListView alloc] init];
-                inviteeVC.userIDs = [NSArray arrayWithArray:self.event.invitees];
-                [self.navigationController pushViewController:inviteeVC animated:YES];
+                [self actionInvitee];
             }
             if (indexPath.row == 2) {
                 //cell = self.groupsCell;
-                GroupListView * groupVC = [[GroupListView alloc] init];
-                groupVC.groupIDs  = [NSArray arrayWithArray:self.event.groupIDs];
-                [self.navigationController pushViewController:groupVC animated:YES];
+                [self actionGroups];
             }
             if (indexPath.row == 3) {
                 //cell = self.boardsCell;
-                BoardListView * boardVC = [[BoardListView alloc] init];
-                boardVC.boardIDs = [NSArray arrayWithArray:self.event.boardIDs];
-                [self.navigationController pushViewController:boardVC animated:YES];
+                [self actionBoards];
                 
             }
             break;
@@ -271,6 +321,34 @@
 }
 
 #pragma mark -- action
+- (void) actionPlace {
+    
+}
+
+- (void) actionMembers {
+    MemberListView * memberVC = [[MemberListView alloc] init];
+    memberVC.userIDs = [NSArray arrayWithArray:self.event.members];
+    [self.navigationController pushViewController:memberVC animated:YES];
+}
+
+- (void) actionInvitee {
+    InviteeListView * inviteeVC = [[InviteeListView alloc] init];
+    inviteeVC.userIDs = [NSArray arrayWithArray:self.event.invitees];
+    [self.navigationController pushViewController:inviteeVC animated:YES];
+}
+
+- (void) actionGroups {
+    GroupListView * groupVC = [[GroupListView alloc] init];
+    groupVC.groupIDs  = [NSArray arrayWithArray:self.event.groupIDs];
+    [self.navigationController pushViewController:groupVC animated:YES];
+}
+
+- (void) actionBoards {
+    BoardListView * boardVC = [[BoardListView alloc] init];
+    boardVC.boardIDs = [NSArray arrayWithArray:self.event.boardIDs];
+    [self.navigationController pushViewController:boardVC animated:YES];
+}
+
 - (IBAction)actionScopeSegment:(UISegmentedControl *)sender {
     if (sender.selectedSegmentIndex == 0) {
         self.event.scope = @"private";
