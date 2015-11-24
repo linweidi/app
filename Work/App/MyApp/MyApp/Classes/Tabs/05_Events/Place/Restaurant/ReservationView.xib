@@ -7,9 +7,25 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="KozGoPro-Light.otf">
+            <string>KozGoPro-Light</string>
+            <string>KozGoPro-Light</string>
+            <string>KozGoPro-Light</string>
+            <string>KozGoPro-Light</string>
+            <string>KozGoPro-Light</string>
+            <string>KozGoPro-Light</string>
+        </mutableArray>
+        <mutableArray key="KozGoPro-Regular.otf">
+            <string>KozGoPro-Regular</string>
+            <string>KozGoPro-Regular</string>
+            <string>KozGoPro-Regular</string>
+        </mutableArray>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReservationView">
             <connections>
+                <outlet property="tableView" destination="cVi-ch-3tV" id="HgA-Rl-w8P"/>
                 <outlet property="view" destination="2dV-P5-dfb" id="zg4-zI-ped"/>
             </connections>
         </placeholder>
@@ -18,14 +34,18 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="restoraunt_photo.png" translatesAutoresizingMaskIntoConstraints="NO" id="z2H-Jg-WnC">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="restoraunt_photo.png" translatesAutoresizingMaskIntoConstraints="NO" id="z2H-Jg-WnC">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="467"/>
                 </imageView>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="228" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="cVi-ch-3tV">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="228" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="cVi-ch-3tV">
                     <rect key="frame" x="0.0" y="64" width="600" height="516"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="q88-cc-zJs"/>
+                        <outlet property="delegate" destination="-1" id="iPW-NX-zvG"/>
+                    </connections>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -47,16 +67,16 @@
                 <mask key="constraints">
                     <exclude reference="oXj-vL-T06"/>
                     <exclude reference="ubp-9m-q0x"/>
-                    <exclude reference="syu-tZ-LxG"/>
                     <exclude reference="W8O-E5-TId"/>
+                    <exclude reference="syu-tZ-LxG"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
                 <mask key="constraints">
                     <include reference="oXj-vL-T06"/>
                     <include reference="ubp-9m-q0x"/>
-                    <include reference="syu-tZ-LxG"/>
                     <include reference="W8O-E5-TId"/>
+                    <include reference="syu-tZ-LxG"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="274" y="440"/>
@@ -165,22 +185,22 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="XZV-Cd-mYs"/>
-                                        <exclude reference="y8O-nO-eGb"/>
                                         <exclude reference="1H0-TJ-HIj"/>
                                         <exclude reference="HFE-gd-FoB"/>
+                                        <exclude reference="XZV-Cd-mYs"/>
+                                        <exclude reference="y8O-nO-eGb"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
-                                        <include reference="XZV-Cd-mYs"/>
-                                        <include reference="y8O-nO-eGb"/>
-                                        <exclude reference="Vk8-V2-O3u"/>
-                                        <exclude reference="aSI-oL-bXj"/>
                                         <include reference="1H0-TJ-HIj"/>
                                         <include reference="HFE-gd-FoB"/>
-                                        <exclude reference="MaR-EL-EJn"/>
                                         <exclude reference="M1g-4G-XRU"/>
+                                        <exclude reference="MaR-EL-EJn"/>
+                                        <exclude reference="Vk8-V2-O3u"/>
+                                        <include reference="XZV-Cd-mYs"/>
+                                        <exclude reference="aSI-oL-bXj"/>
+                                        <include reference="y8O-nO-eGb"/>
                                     </mask>
                                 </variation>
                             </view>

@@ -74,9 +74,9 @@
 - (void) updateCellContents {
     ConverterUtil *converter = [ConverterUtil sharedUtil];
     self.nameLabel.text = self.place.name;
-    self.starLabel.text ;
+    self.starLabel.text = self.place.name;
     self.hourLabel.text = [NSString stringWithFormat:@"Hours: %@ ~ %@", [converter stringFromDateTimeShort:self.place.openTime], [converter stringFromDateTimeShort:self.place.closeTime]];
-    self.reviewNumLabel.text = self.place.
+    //self.reviewNumLabel.text = self.place.
 }
 
 #pragma mark - Table view data source

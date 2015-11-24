@@ -115,8 +115,8 @@
     self.busySegement.selectedSegmentIndex = [self.event.busy boolValue]?0:1;    //0:yes, 1:no
     self.locationLabel.text = self.event.location;
     self.placeLabel.text = self.event.place.name;
-    self.startTimeLabel.text = [[ConverterUtil sharedUtil] dateShortFromDate: self.event.startTime];
-    self.endTimeLabel.text = [[ConverterUtil sharedUtil] dateShortFromDate:self.event.endTime];
+    self.startTimeLabel.text = [[ConverterUtil sharedUtil] stringFromDateShort: self.event.startTime];
+    self.endTimeLabel.text = [[ConverterUtil sharedUtil] stringFromDateShort:self.event.endTime];
     
     if ([self.event.scope isEqualToString:@"private"]) {
         self.scopeSegment.selectedSegmentIndex = 0;

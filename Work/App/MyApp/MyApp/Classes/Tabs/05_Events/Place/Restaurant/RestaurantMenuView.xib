@@ -5,6 +5,18 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="KozGoPro-Light.otf">
+            <string>KozGoPro-Light</string>
+            <string>KozGoPro-Light</string>
+        </mutableArray>
+        <mutableArray key="KozGoPro-Medium.otf">
+            <string>KozGoPro-Medium</string>
+        </mutableArray>
+        <mutableArray key="KozGoPro-Regular.otf">
+            <string>KozGoPro-Regular</string>
+        </mutableArray>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RestaurantMenuView">
             <connections>
@@ -114,7 +126,7 @@
             <point key="canvasLocation" x="433" y="945.5"/>
         </tableViewCell>
         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="eoe-eb-0vv">
-            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <connections>

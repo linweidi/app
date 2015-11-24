@@ -155,8 +155,6 @@
 		28E2B83A1BF7EAF70049F18C /* InviteeListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E2B8381BF7EAF70049F18C /* InviteeListView.m */; };
 		28E2B83B1BF7EAF70049F18C /* InviteeListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28E2B8391BF7EAF70049F18C /* InviteeListView.xib */; };
 		28E2B83F1BF7EB0D0049F18C /* MemberListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E2B83D1BF7EB0D0049F18C /* MemberListView.m */; };
-		28E2B8441BF7EEBA0049F18C /* PlaceTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E2B8421BF7EEBA0049F18C /* PlaceTableView.m */; };
-		28E2B8451BF7EEBA0049F18C /* PlaceTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28E2B8431BF7EEBA0049F18C /* PlaceTableView.xib */; };
 		28E2B8481BF7F2610049F18C /* PlaceCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E2B8471BF7F2610049F18C /* PlaceCellView.m */; };
 		28E2B8511BF83AE40049F18C /* BoardListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E2B84F1BF83AE40049F18C /* BoardListView.m */; };
 		28E2B8521BF83AE40049F18C /* BoardListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28E2B8501BF83AE40049F18C /* BoardListView.xib */; };
@@ -824,9 +822,6 @@
 		28E2B8381BF7EAF70049F18C /* InviteeListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteeListView.m; sourceTree = "<group>"; };
 		28E2B8391BF7EAF70049F18C /* InviteeListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InviteeListView.xib; sourceTree = "<group>"; };
 		28E2B83D1BF7EB0D0049F18C /* MemberListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberListView.m; sourceTree = "<group>"; };
-		28E2B8411BF7EEBA0049F18C /* PlaceTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceTableView.h; sourceTree = "<group>"; };
-		28E2B8421BF7EEBA0049F18C /* PlaceTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceTableView.m; sourceTree = "<group>"; };
-		28E2B8431BF7EEBA0049F18C /* PlaceTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceTableView.xib; sourceTree = "<group>"; };
 		28E2B8461BF7F2610049F18C /* PlaceCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceCellView.h; sourceTree = "<group>"; };
 		28E2B8471BF7F2610049F18C /* PlaceCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceCellView.m; sourceTree = "<group>"; };
 		28E2B84E1BF83AE40049F18C /* BoardListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardListView.h; sourceTree = "<group>"; };
@@ -1932,9 +1927,6 @@
 				2823AAAD1C02E3200060DC84 /* FindUs */,
 				2823AAAE1C02E3200060DC84 /* Reviews */,
 				2823AA971C02DABE0060DC84 /* Restaurant */,
-				28E2B8411BF7EEBA0049F18C /* PlaceTableView.h */,
-				28E2B8421BF7EEBA0049F18C /* PlaceTableView.m */,
-				28E2B8431BF7EEBA0049F18C /* PlaceTableView.xib */,
 				28E2B8461BF7F2610049F18C /* PlaceCellView.h */,
 				28E2B8471BF7F2610049F18C /* PlaceCellView.m */,
 				2823AA921C02AF500060DC84 /* PlacePropertyView.h */,
@@ -3278,7 +3270,6 @@
 				28898F331BFC427D00CF37A9 /* DefaultPreference.plist in Resources */,
 				E51D87FB1BB1CC1800470170 /* ftv2splitbar.png in Resources */,
 				E51D890E1BB1CC1800470170 /* arrow_left@3x.png in Resources */,
-				28E2B8451BF7EEBA0049F18C /* PlaceTableView.xib in Resources */,
 				E51D89421BB1CC1800470170 /* restoraunt_photo.png in Resources */,
 				E51D87FF1BB1CC1800470170 /* hierarchy.html in Resources */,
 				E51D87DB1BB1CC1800470170 /* closed.png in Resources */,
@@ -3656,7 +3647,6 @@
 				28EECB7A1BCCD3E90001654E /* MSViewControllerSlidingPanel.m in Sources */,
 				286D53A11BF9AC5C003D6BB8 /* MenuItemsManager.m in Sources */,
 				28EECB7B1BCCD3E90001654E /* AppDelegate.m in Sources */,
-				28E2B8441BF7EEBA0049F18C /* PlaceTableView.m in Sources */,
 				2823A9861C028FA50060DC84 /* EventCategoryLocalDataUtil.m in Sources */,
 				287D1AA41BF7088B0022FEFE /* SingleTextfieldViewController.m in Sources */,
 				286D53A01BF9AC5C003D6BB8 /* KeyboardListener.m in Sources */,

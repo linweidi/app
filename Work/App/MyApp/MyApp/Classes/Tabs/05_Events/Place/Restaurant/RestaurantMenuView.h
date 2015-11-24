@@ -11,4 +11,6 @@
 #import <UIKit/UIKit.h>
 @interface RestaurantMenuView : UITableViewController
 
+//@property (nonatomic,assign) IBOutlet UITableView *tableView;
+
 @end

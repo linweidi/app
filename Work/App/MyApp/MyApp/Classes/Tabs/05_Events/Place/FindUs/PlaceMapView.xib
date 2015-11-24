@@ -19,7 +19,13 @@
         </mutableArray>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlaceMapView"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlaceMapView">
+            <connections>
+                <outlet property="distanceLabel" destination="0Fe-PP-vuz" id="3hR-1I-WC8"/>
+                <outlet property="locationLabel" destination="tYF-YF-Pr9" id="cWO-Of-7t6"/>
+                <outlet property="mapView" destination="n7u-bh-4ad" id="LDU-iM-lhQ"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="KIm-Ro-KoL">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -72,6 +78,9 @@
                                     <state key="normal" image="arrow_left.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="onPreviosLocation:" destination="-1" eventType="touchUpInside" id="Zs4-to-5vq"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3HD-xD-SNw">
                                     <rect key="frame" x="566" y="25" width="34" height="33"/>
@@ -82,6 +91,9 @@
                                     <state key="normal" image="arrow_right.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="onNextLocation:" destination="-1" eventType="touchUpInside" id="Qdn-vn-fQr"/>
+                                    </connections>
                                 </button>
                                 <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Jr-j2-Sz8">
                                     <rect key="frame" x="298" y="0.0" width="5" height="85"/>
@@ -142,6 +154,9 @@
                             <state key="normal">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="onMakeReservation:" destination="-1" eventType="touchUpInside" id="T5Q-RA-2x9"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.69019607839999997" green="0.1450980392" blue="0.0" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
