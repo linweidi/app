@@ -6,10 +6,12 @@
 //  Copyright (c) 2015 AppsFoundation. All rights reserved.
 //
 
+#import "AppHeader.h"
 #import "OurMenuViewController.h"
 #import "MSViewControllerSlidingPanel.h"
 #import "MenuItem.h"
 #import "MenuItemsManager.h"
+#import "AppDelegate.h"
 #import "MenuItemTableViewCell.h"
 
 @interface OurMenuViewController ()
@@ -22,11 +24,40 @@
 
 #pragma mark - Lifecycle
 
+- (void)awakeFromNib {
+    //listen to managedObjectContext when ready
+    #warning remove this line of code, should start not this way
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startMainPage) name:NOTIFICATION_DATA_LOAD_READY object:nil];
+}
+//- (instancetype)init {
+//    self = [super init];
+//    if (self) {
+//        
+//    }
+//    return self;
+//}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startMainPage) name:NOTIFICATION_DATA_LOAD_READY object:nil];
+    
     self.menuItems = [[MenuItemsManager sharedManager] loadData];
+    
+
+    
+//    if ([AppDelegate sharedDelegate].initDone == YES ) {
+//        [[AppDelegate sharedDelegate] openMainMenu];
+//    }
+    
 }
+
+- (void) startMainPage {
+    if ([AppDelegate sharedDelegate].initDone == YES) {
+        //[[AppDelegate sharedDelegate] openMainMenu];
+    }
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

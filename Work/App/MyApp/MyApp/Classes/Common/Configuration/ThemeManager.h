@@ -10,6 +10,8 @@
 
 @interface ThemeManager : NSObject
 
-+ (void)applyNavigationBarTheme;
++ (ThemeManager *)sharedUtil;
+
+- (void)applyNavigationBarTheme;
 
 @end

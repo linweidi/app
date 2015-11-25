@@ -32,6 +32,7 @@
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (nonatomic) CLLocationCoordinate2D coordinate;
 
+@property (nonatomic) BOOL initDone;
 
 + (AppDelegate *)sharedDelegate;
 

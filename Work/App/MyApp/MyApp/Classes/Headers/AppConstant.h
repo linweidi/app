@@ -26,6 +26,16 @@
 #define DEFAULT_USER_PASSWORD   @"123456"
 
 
+
+//-----------------------------------------------------------------------
+//---------------------------   NOTIFICATION    --------------------------------------
+//-----------------------------------------------------------------------
+#define		NOTIFICATION_APP_STARTED			@"NCAppStarted"
+#define		NOTIFICATION_USER_LOGGED_IN			@"NCUserLoggedIn"
+#define		NOTIFICATION_USER_LOGGED_OUT		@"NCUserLoggedOut"
+
+#define     NOTIFICATION_DATA_LOAD_READY        @"Data Are Loaded"
+
 #define     MainDatabaseAvailableContext            @"main data base available context"
 #define     MainDatabaseAvailableNotification            @"main data base available notif"
 
@@ -386,12 +396,6 @@
 #define		PF_REPORT_USER1						@"user1"				//	Pointer to User Class
 #define		PF_REPORT_USER2						@"user2"				//	Pointer to User Class
 
-//-----------------------------------------------------------------------
-//---------------------------   NOTIFICATION    --------------------------------------
-//-----------------------------------------------------------------------
-#define		NOTIFICATION_APP_STARTED			@"NCAppStarted"
-#define		NOTIFICATION_USER_LOGGED_IN			@"NCUserLoggedIn"
-#define		NOTIFICATION_USER_LOGGED_OUT		@"NCUserLoggedOut"
 
 
 

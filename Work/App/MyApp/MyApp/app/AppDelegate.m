@@ -116,7 +116,7 @@ typedef enum {
 #ifdef LOCAL_MODE
             BOOL firstStart = [userDefaults boolForKey:USER_DEFAULTS_FIRST_START];
             if (firstStart) {
-                [userDefaults setBool:NO forKey:USER_DEFAULTS_FIRST_START];
+                
                 //User *object = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:configManager.managedObjectContext];
                 [[ThumbnailLocalDataUtil sharedUtil] loadData];
                 
@@ -138,7 +138,20 @@ typedef enum {
                 [[PeopleLocalDataUtil sharedUtil] loadData];
                 [[GroupLocalDataUtil sharedUtil] loadData];
                 [[RecentLocalDataUtil sharedUtil] loadData];
+                
+                [userDefaults setBool:NO forKey:USER_DEFAULTS_FIRST_START];
+
+                self.initDone = YES;
+                
+                //NSDictionary *userInfo = self.managedObjectContext ? @{ MainDatabaseAvailableContext : self.managedObjectContext } : nil;
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_DATA_LOAD_READY object:self userInfo:nil];
             }
+            else {
+                self.initDone = YES;
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_DATA_LOAD_READY object:self userInfo:nil];
+                
+            }
+            [self openMainMenu];
 
 #endif
         }
@@ -167,20 +180,25 @@ typedef enum {
 //#import "RecentLocalDataUtil.h"
 
 
-    
     //apply all theme
-    [ThemeManager applyNavigationBarTheme];
+    [[ThemeManager sharedUtil] applyNavigationBarTheme];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------------------------------------------------------------
     [PFImageView class];
     //---------------------------------------------------------------------------------------------------------------------------------------------
     if (!self.tabBarController) {
         [self createTabViewController];
     }
     
+    //[self openMainMenu];
+    
     return YES;
 }
+
+//- (void)applicationDidBecomeActive:(UIApplication *)application {
+//    [self openMainMenu];
+//}
 
 - (void)createTabViewController {
     //self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -211,7 +229,8 @@ typedef enum {
     UITabBarItem * tabBarItem = nil;
     tabBarItem = [self.tabBarController.tabBar.items objectAtIndex:0];
     tabBarItem.title = @"Events";
-    [tabBarItem setImage:[UIImage imageNamed:@"tab_recents"]];
+    [tabBarItem setImage:[UIImage imageNamed:@"tab_recent"]];
+    
     tabBarItem = [self.tabBarController.tabBar.items objectAtIndex:1];
     tabBarItem.title = @"Recent";
     [tabBarItem setImage:[UIImage imageNamed:@"tab_recent"]];
@@ -230,6 +249,8 @@ typedef enum {
     
     //self.window.rootViewController = self.tabBarController;
     //[self.window makeKeyAndVisible];
+    
+    
     
 }
 
@@ -267,6 +288,8 @@ typedef enum {
     [self openControllerWithIndentifier:@"feedbackNavController"];
 }
 
+#pragma mark -- private method
+
 - (void)openControllerWithIndentifier:(NSString *)identifier {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *controller = [storyboard instantiateViewControllerWithIdentifier:identifier];
@@ -303,9 +326,13 @@ typedef enum {
 - (void)applicationDidBecomeActive:(UIApplication *)application
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 {
+    
     [FBSDKAppEvents activateApp];
     PostNotification(NOTIFICATION_APP_STARTED);
     [self locationManagerStart];
+    
+    //[self openOurMenu];
+    //[self openMainMenu];
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
