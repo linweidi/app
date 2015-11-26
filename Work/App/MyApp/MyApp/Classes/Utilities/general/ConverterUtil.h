@@ -26,4 +26,6 @@
 
 //- (NSString *) timeStringFromDate: (NSDate *)date ;
 
+- (NSString *) starString:(int) count;
+
 @end

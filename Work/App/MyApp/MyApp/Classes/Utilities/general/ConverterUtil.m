@@ -85,5 +85,36 @@
 //    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
 //    return [formatter stringFromDate:date];
 //}
-
+static NSString * zeroStart = @"☆☆☆☆☆";
+static NSString * oneStart = @"★☆☆☆☆";
+static NSString * twoStart = @"★★☆☆☆";
+static NSString * threeStart = @"★★★☆☆";
+static NSString * fourStart = @"★★★★☆";
+static NSString * fiveStart = @"★★★★★";
+- (NSString *) starString:(int) count {
+    NSString * ret = nil;
+    switch (count) {
+        case 1:
+            ret = oneStart;
+            break;
+        case 2:
+            ret = twoStart;
+            break;
+        case 3:
+            ret = threeStart;
+            break;
+        case 4:
+            ret = fourStart;
+            break;
+        case 5:
+            ret = fiveStart;
+            break;
+            
+        default:
+            ret = zeroStart;
+            break;
+    }
+    
+    return ret;
+}
 @end
