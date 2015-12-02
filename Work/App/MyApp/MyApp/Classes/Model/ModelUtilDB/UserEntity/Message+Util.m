@@ -50,7 +50,7 @@
 + (NSArray *)messageEntities:(NSString *)chatID inManagedObjectContext: (NSManagedObjectContext *)context {
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:PF_MESSAGE_CLASS_NAME] ;
-    request.predicate = [NSPredicate predicateWithFormat:@"chatID = %@", chatID];
+    request.predicate = [NSPredicate predicateWithFormat:@"chatID == %@", chatID];
     request.fetchLimit = MESSAGEVIEW_DISPLAY_ITEM_NUM;
     request.sortDescriptors = @[[NSSortDescriptor
                                  sortDescriptorWithKey:PF_MESSAGE_CREATEDAT
@@ -58,7 +58,7 @@
                                  selector:@selector(compare:)],
                                 ];
     NSError *error;
-    NSArray *matches = [context executeFetchRequest:request error:&error   ];
+    NSArray *matches = [context executeFetchRequest:request error:&error];
     
     if (!matches ) {
         NSAssert(NO, @"match does not exist");

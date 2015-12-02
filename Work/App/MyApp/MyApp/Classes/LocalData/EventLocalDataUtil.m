@@ -78,9 +78,9 @@
     event.groupIDs  = dict[PF_EVENT_GROUP_IDS] ;
     event.isVoting  = dict[PF_EVENT_IS_VOTING] ;
     
-    event.alert = [Alert entityWithID:dict[PF_EVENT_ALERT] inManagedObjectContext:self.managedObjectContext];
-    event.category = [EventCategory entityWithID:dict[PF_EVENT_CATEGORY] inManagedObjectContext:self.managedObjectContext];
-    event.place = [Place entityWithID:dict[PF_EVENT_PLACE] inManagedObjectContext:self.managedObjectContext];
+    event.alert = [Alert fetchEntityWithID:dict[PF_EVENT_ALERT] inManagedObjectContext:self.managedObjectContext];
+    event.category = [EventCategory fetchEntityWithID:dict[PF_EVENT_CATEGORY] inManagedObjectContext:self.managedObjectContext];
+    event.place = [Place fetchEntityWithID:dict[PF_EVENT_PLACE] inManagedObjectContext:self.managedObjectContext];
 }
 
 // delete the user in the event

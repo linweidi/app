@@ -40,8 +40,10 @@
     place.closeTime = remoteObj[PF_PLACE_CLOSE_TIME];
     place.likes = remoteObj[PF_PLACE_LIKES];
     place.location = remoteObj[PF_PLACE_LOCATION];
-    place.map = remoteObj[PF_PLACE_MAP];
-    place.name = remoteObj[PF_PLACE_NAME];
+    place.longitude = remoteObj[PF_PLACE_LONGITUDE];
+    place.latitude = remoteObj[PF_PLACE_LATITUDE];
+    place.title = remoteObj[PF_PLACE_TITLE];
+    place.subtitle = remoteObj[PF_PLACE_SUBTITLE];
     place.openTime = remoteObj[PF_PLACE_OPEN_TIME];
     place.parking = remoteObj[PF_PLACE_PARKING];
     place.price = remoteObj[PF_PLACE_PRICE];
@@ -56,8 +58,12 @@
     remoteObj[PF_PLACE_CLOSE_TIME] = place.closeTime ;
     remoteObj[PF_PLACE_LIKES] = place.likes ;
     remoteObj[PF_PLACE_LOCATION] = place.location ;
-    remoteObj[PF_PLACE_MAP] = place.map ;
-    remoteObj[PF_PLACE_NAME] = place.name ;
+    
+    remoteObj[PF_PLACE_LONGITUDE] = place.longitude ;
+    remoteObj[PF_PLACE_LATITUDE] = place.latitude ;
+    remoteObj[PF_PLACE_TITLE] = place.title ;
+    remoteObj[PF_PLACE_SUBTITLE] = place.subtitle ;
+    
     remoteObj[PF_PLACE_OPEN_TIME] = place.openTime ;
     remoteObj[PF_PLACE_PARKING] = place.parking ;
     remoteObj[PF_PLACE_PRICE] = place.price ;

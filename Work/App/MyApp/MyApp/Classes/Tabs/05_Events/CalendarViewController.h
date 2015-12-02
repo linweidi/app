@@ -11,7 +11,7 @@
 
 #import "JTCalendar.h"
 
-@interface CalendarViewController : BaseCalendarViewController<JTCalendarDelegate>
+@interface CalendarViewController : BaseCalendarViewController<UIActionSheetDelegate,JTCalendarDelegate>
 
 
 //@property (weak, nonatomic) IBOutlet UITableView *tableView;

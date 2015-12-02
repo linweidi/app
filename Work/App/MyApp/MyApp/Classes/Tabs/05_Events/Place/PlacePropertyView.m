@@ -6,10 +6,13 @@
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 
+#import <MapKit/MapKit.h>
+#import "Place+Annotation.h"
 #import "Place+Util.h"
 #import "TwoLabelTVCell.h"
 #import "ConverterUtil.h"
-#import <MapKit/MapKit.h>
+
+#import "PlaceReviewView.h"
 #import "PlacePropertyView.h"
 
 #define PLACE_PROPERTY_VIEW_SECTION_MAP_INDEX 0
@@ -17,7 +20,7 @@
 #define PLACE_PROPERTY_VIEW_SECTION_OTHERS_INDEX 2
 #define PLACE_PROPERTY_VIEW_SECTION_REVIEWS_INDEX 3
 
-@interface PlacePropertyView  () <MKMapViewDelegate>
+@interface PlacePropertyView  () 
 //@property (strong, nonatomic) IBOutlet UITableViewCell *mapCell;
 //@property (strong, nonatomic) IBOutlet UITableViewCell *reviewCell;
 //@property (strong, nonatomic) IBOutlet UITableViewCell *photoButtonCell;
@@ -37,23 +40,28 @@
 //@property (strong, nonatomic) IBOutlet UILabel *statusLabel;
 
 
+
+@property (strong, nonatomic) IBOutlet UIView *headerView;
+
 @property (strong, nonatomic) UITableViewCell *mapCell;
 @property (strong, nonatomic) UITableViewCell *reviewCell;
 @property (strong, nonatomic) UITableViewCell *photoButtonCell;
-@property (strong, nonatomic) UIView *headerView;
 
 @property (strong, nonatomic) UITableViewCell * locationCell;
 @property (strong, nonatomic) UITableViewCell * priceCell;
 @property (strong, nonatomic) UITableViewCell * parkingCell;
 @property (strong, nonatomic) UITableViewCell * photoCell;
 
-@property (strong, nonatomic) UILabel *nameLabel;
-@property (strong, nonatomic) UILabel *starLabel;
-@property (strong, nonatomic) UILabel *hourLabel;
-@property (strong, nonatomic) UILabel *reviewNumLabel;
-@property (strong, nonatomic) UILabel *likesLabel;
-@property (strong, nonatomic) UILabel *distanceLabel;
-@property (strong, nonatomic) UILabel *statusLabel;
+@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
+@property (strong, nonatomic) IBOutlet UILabel *starLabel;
+@property (strong, nonatomic) IBOutlet UILabel *hourLabel;
+@property (strong, nonatomic) IBOutlet UILabel *reviewNumLabel;
+@property (strong, nonatomic) IBOutlet UILabel *likesLabel;
+@property (strong, nonatomic) IBOutlet UILabel *distanceLabel;
+@property (strong, nonatomic) IBOutlet UILabel *statusLabel;
+@property (strong, nonatomic) IBOutlet UILabel *categoryLabel;
+@property (strong, nonatomic) IBOutlet UILabel *priceLabel;
+
 @property (strong, nonatomic) Place * place;
 
 @end
@@ -74,8 +82,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.title = @"Place";
     
-    
+    self.tableView.tableHeaderView = self.headerView;
+    //[self.tableView.tableHeaderView sizeToFit];
+    //self.tableView.tableFooterView = [[UIView alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -90,11 +101,42 @@
 }
 
 - (void) updateCellContents {
-    ConverterUtil *converter = [ConverterUtil sharedUtil];
-    self.nameLabel.text = self.place.name;
-    self.starLabel.text = self.place.name;
+    //ConverterUtil *converter = [ConverterUtil sharedUtil];
+    
+    
+    
+//    @property (strong, nonatomic) UILabel *nameLabel;
+//    @property (strong, nonatomic) UILabel *starLabel;
+//    @property (strong, nonatomic) UILabel *hourLabel;
+//    @property (strong, nonatomic) UILabel *reviewNumLabel;
+//    @property (strong, nonatomic) UILabel *likesLabel;
+//    @property (strong, nonatomic) UILabel *distanceLabel;
+//    @property (strong, nonatomic) UILabel *statusLabel;
+    
+    ConverterUtil * converter = [ConverterUtil sharedUtil];
+    
+    self.nameLabel.text = self.place.title;
+    self.starLabel.text = [converter starString:[self.place.rankings intValue]];
     self.hourLabel.text = [NSString stringWithFormat:@"Hours: %@ ~ %@", [converter stringFromDateTimeShort:self.place.openTime], [converter stringFromDateTimeShort:self.place.closeTime]];
+    self.reviewNumLabel.text = @"rev num";
+    self.likesLabel.text = [NSString stringWithFormat:@"%d likes", [self.place.likes intValue]];
+    self.distanceLabel.text = @"distance";
+    NSDate * currentTime = [converter timeOfDate:[NSDate date]];
+    NSDate * openTime = [converter timeOfDate:self.place.openTime];
+    NSDate * closeTime = [converter timeOfDate:self.place.closeTime];
+    if ([currentTime compare:openTime] == NSOrderedDescending && [currentTime compare:closeTime] == NSOrderedAscending) {
+        self.statusLabel.text = @"Open";
+    }
+    else {
+        self.statusLabel.text = @"Close";
+    }
+    
     //self.reviewNumLabel.text = self.place.
+    self.locationCell.textLabel.text = self.place.location;
+    self.priceCell.detailTextLabel.text = [[ConverterUtil sharedUtil] starString:[self.place.price intValue]];
+    self.parkingCell.detailTextLabel.text = [[ConverterUtil sharedUtil] starString:[self.place.parking intValue]];
+    self.photoCell.detailTextLabel.text = [NSString stringWithFormat:@"%lu counts", [self.place.photos count]];
+    
 }
 
 #pragma mark - Table view data source
@@ -177,6 +219,7 @@
     return cell;
 }
 
+
 //- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 ////-------------------------------------------------------------------------------------------------------------------------------------------------
 //{
@@ -229,14 +272,17 @@
     [mapView addAnnotation:self.place];
     [mapView showAnnotations:@[self.place] animated:YES];
     mapView.showsUserLocation = YES;
+    [self.navigationController pushViewController:mapVC animated:YES];
 }
 
 - (void) actionPhotos {
-    
+#warning add collection view
+
 }
 
 - (void) actionReviews {
-    
+    PlaceReviewView * placeReviewVC = [[PlaceReviewView alloc] init];
+    [self.navigationController pushViewController:placeReviewVC animated:YES];
 }
 
 #pragma mark -- map delegate
@@ -314,7 +360,7 @@
         _photoButtonCell.textLabel.textAlignment = NSTextAlignmentCenter;
         _photoButtonCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    return _parkingCell;
+    return _photoButtonCell;
 }
 
 - (UITableViewCell *)photoCell {

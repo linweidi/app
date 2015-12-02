@@ -37,8 +37,8 @@ typedef enum {
     
     self.feedbacks = [NSMutableArray arrayWithArray:[[FeedbacksManager sharedManager] loadData]];
     
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];
-    self.bottomView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];
+    //self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];
+    //self.bottomView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];
     
     self.keyboardListener = [[KeyboardListener alloc] initWithScrollView:self.feedbacksTableView andConstraint:self.bottomConstraint];
     

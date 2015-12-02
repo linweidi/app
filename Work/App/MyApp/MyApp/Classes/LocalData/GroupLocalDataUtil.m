@@ -8,6 +8,7 @@
 #import "Group+Util.h"
 #import "ConfigurationManager.h"
 #import "CurrentUser+Util.h"
+#import "ConverterUtil.h"
 #import "GroupLocalDataUtil.h"
 
 #undef LOCAL_DATA_CLASS_TYPE
@@ -56,6 +57,7 @@
     
     group.name = dict[PF_GROUP_NAME] ;
     group.members = dict[PF_GROUP_MEMBERS];
+    group.chatID = [[ConverterUtil sharedUtil] createChatIdByUserIds:dict[PF_GROUP_MEMBERS]];
     
 }
 

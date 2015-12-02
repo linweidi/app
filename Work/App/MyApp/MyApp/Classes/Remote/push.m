@@ -15,9 +15,7 @@
 
 #import "push.h"
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 void ParsePushUserAssign(void)
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	PFInstallation *installation = [PFInstallation currentInstallation];
 	installation[PF_INSTALLATION_USER] = [PFUser currentUser];
@@ -30,9 +28,7 @@ void ParsePushUserAssign(void)
 	}];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 void ParsePushUserResign(void)
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	PFInstallation *installation = [PFInstallation currentInstallation];
 	[installation removeObjectForKey:PF_INSTALLATION_USER];
@@ -45,9 +41,7 @@ void ParsePushUserResign(void)
 	}];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 void SendPushNotification(NSString *groupId, NSString *text)
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	PFUser *user = [PFUser currentUser];
 	NSString *message = [NSString stringWithFormat:@"%@: %@", user[PF_USER_FULLNAME], text];

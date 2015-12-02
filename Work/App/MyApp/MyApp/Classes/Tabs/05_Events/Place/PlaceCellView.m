@@ -37,7 +37,7 @@
     //[imageUser loadInBackground];
     
     
-    self.title.text = place.name;
+    self.title.text = place.title;
     self.details.text = place.location;
     
     

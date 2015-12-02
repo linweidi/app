@@ -36,7 +36,7 @@
 
 @property (weak, nonatomic) Group * group;
 
-@property (strong, nonatomic) NSMutableArray * userIDs;
+//@property (strong, nonatomic) NSMutableArray * userIDs;
 
 @property (strong, nonatomic) IBOutlet UITableViewCell *cellName;
 
@@ -64,8 +64,9 @@
 	self.title = @"Group Settings";
 	
     
-	self.userIDs = [[NSMutableArray alloc] init];
+	//self.userIDs = [[NSMutableArray alloc] init];
 	
+    self.managedObjectContext = [[ConfigurationManager sharedManager] managedObjectContext];
     
 	[self loadGroup];
 	[self loadUsers];
@@ -79,12 +80,12 @@
         // init fetch request
         NSAssert(self.group!= nil, @"group is nil")  ;
         
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"User"];
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:PF_USER_CLASS_NAME];
         request.predicate = [NSPredicate predicateWithFormat:@"globalID IN %@", self.group.members];
         request.fetchLimit = GROUPVIEW_USER_ITEM_NUM;
 
         request.sortDescriptors = @[[NSSortDescriptor
-                                     sortDescriptorWithKey:@"name"
+                                     sortDescriptorWithKey:@"fullname"
                                      ascending:YES
                                      selector:@selector(compare:)],
                                     ];
@@ -113,13 +114,12 @@
 #ifdef REMOTE_MODE
     [[GroupRemoteUtil sharedUtil] loadRemoteUsersByGroup:self.group completionHandler:^(NSArray *objects, NSError *error) {
         if (error == nil) {
-            //			[users removeAllObjects];
-            //			[users addObjectsFromArray:objects];
-            [self.userIDs removeAllObjects];
-            for (User * user in objects) {
-                [self.userIDs addObject:user.globalID];
-            }
-			[self.tableView reloadData];
+
+//            [self.userIDs removeAllObjects];
+//            for (User * user in objects) {
+//                [self.userIDs addObject:user.globalID];
+//            }
+//			[self.tableView reloadData];
 		}
         else {
             [ProgressHUD showError:@"Network error."];
@@ -127,26 +127,6 @@
     }];
 #endif
 #ifdef LOCAL_MODE
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"User"];
-    request.predicate = [NSPredicate predicateWithFormat:@"globalID IN %@", self.group.members];
-    request.fetchLimit = GROUPVIEW_USER_ITEM_NUM;
-    
-    request.sortDescriptors = @[[NSSortDescriptor
-                                 sortDescriptorWithKey:@"name"
-                                 ascending:YES
-                                 selector:@selector(compare:)],
-                                ];
-    NSError * error;
-    NSArray * match = [self.managedObjectContext executeFetchRequest:request error:&error];
-    if ([match count] && !error) {
-        [self.userIDs removeAllObjects];
-        for (User * user in match) {
-            [self.userIDs addObject:user.globalID];
-        }
-    }
-    else {
-        [ProgressHUD showError:@"Network error."];
-    }
     [self.tableView reloadData];
 #endif
 
@@ -154,10 +134,10 @@
 
 #pragma mark - User actions
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)actionChat {
-	NSString *groupId = self.group.globalID;
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	NSString *groupId = self.group.chatID;
+	
 #ifdef REMOTE_MODE
     [[RecentRemoteUtil sharedUtil] createRemoteRecentItem:[[ConfigurationManager sharedManager] getCurrentUser] groupId:groupId members:self.group.members desciption:self.group.name lastMessage:nil];
 #endif
@@ -165,8 +145,6 @@
     [[RecentLocalDataUtil sharedUtil] createLocalRecentItem:[[ConfigurationManager sharedManager] getCurrentUser] groupId:groupId members:self.group.members desciption:self.group.name lastMessage:nil];
 #endif
 
-    
-	//---------------------------------------------------------------------------------------------------------------------------------------------
 	ChatView *chatView = [[ChatView alloc] initWith:groupId];
     
 #warning move this new view controller to recent tab
@@ -175,36 +153,30 @@
 
 #pragma mark - Table view data source
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	return 2;
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	if (section == 0) return 1;
-	if (section == 1) return [super tableView:tableView numberOfRowsInSection:section];
+	if (section == 1) return [super tableView:tableView numberOfRowsInSection:0];
 	return 0;
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	if (section == 1) return @"Members";
 	return nil;
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	if ((indexPath.section == 0) && (indexPath.row == 0)) return cellName;
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	if (indexPath.section == 1)
 	{
 		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
@@ -224,12 +196,11 @@
 
 #pragma mark - Table view delegate
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	if ((indexPath.section == 0) && (indexPath.row == 0)) {
         [self actionChat];
     }

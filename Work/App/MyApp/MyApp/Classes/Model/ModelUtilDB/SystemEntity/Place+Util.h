@@ -5,8 +5,9 @@
 //  Created by Linwei Ding on 9/23/15.
 //  Copyright © 2015 AppsFoundation. All rights reserved.
 //
-#import <Parse/Parse.h>
+
 #import "Place.h"
+#import <Parse/Parse.h>
 
 @interface Place (Util)
 #undef ENTITY_UTIL_TEMPLATE_CLASS

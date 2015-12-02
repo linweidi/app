@@ -16,6 +16,7 @@
 #import "Place+Util.h"
 #import "ConverterUtil.h"
 #import "Alert+Util.h"
+#import "PlacePropertyView.h"
 #import "EventSettingsView.h"
 
 #define EVENT_SETTING_VIEW_SECTION_TITLE_INDEX 0
@@ -30,19 +31,19 @@
 
 
 // static cell
-@property (strong, nonatomic) IBOutlet UITableViewCell *titleCell;
-@property (strong, nonatomic) IBOutlet UITableViewCell *categoryCell;
-@property (strong, nonatomic) IBOutlet UITableViewCell *busyCell;
-@property (strong, nonatomic) IBOutlet UITableViewCell *locationCell;
-@property (strong, nonatomic) IBOutlet UITableViewCell *placeCell;
-@property (strong, nonatomic) IBOutlet UITableViewCell *startTimeCell;
-@property (strong, nonatomic) IBOutlet UITableViewCell *endTimeCell;
-@property (strong, nonatomic) IBOutlet UITableViewCell *scopeCell;
-@property (strong, nonatomic) IBOutlet UITableViewCell *inviteeCell;
-@property (strong, nonatomic) IBOutlet UITableViewCell *boardsCell;
-@property (strong, nonatomic) IBOutlet UITableViewCell *groupsCell;
-@property (strong, nonatomic) IBOutlet UITableViewCell *membersCell;
-@property (strong, nonatomic) IBOutlet UITableViewCell *alertCell;
+@property (strong, nonatomic) UITableViewCell *titleCell;
+@property (strong, nonatomic) UITableViewCell *categoryCell;
+@property (strong, nonatomic) UITableViewCell *busyCell;
+@property (strong, nonatomic) UITableViewCell *locationCell;
+@property (strong, nonatomic) UITableViewCell *placeCell;
+@property (strong, nonatomic) UITableViewCell *startTimeCell;
+@property (strong, nonatomic) UITableViewCell *endTimeCell;
+@property (strong, nonatomic) UITableViewCell *scopeCell;
+@property (strong, nonatomic) UITableViewCell *inviteeCell;
+@property (strong, nonatomic) UITableViewCell *boardsCell;
+@property (strong, nonatomic) UITableViewCell *groupsCell;
+@property (strong, nonatomic) UITableViewCell *membersCell;
+@property (strong, nonatomic) UITableViewCell *alertCell;
 
 // static label
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -78,6 +79,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.title = @"Event";
     // Do any additional setup after loading the view from its nib.
     
 //    [self.tableView registerNib:[UINib nibWithNibName:@"TwoLabelTVCell" bundle:nil] forCellReuseIdentifier:@"LabelCell"];
@@ -95,7 +98,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+//
 //@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 //@property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
 //@property (weak, nonatomic) IBOutlet UISegmentedControl *busySegement;
@@ -114,7 +117,7 @@
     self.categoryLabel.text = self.event.category.name;
     self.busySegement.selectedSegmentIndex = [self.event.busy boolValue]?0:1;    //0:yes, 1:no
     self.locationLabel.text = self.event.location;
-    self.placeLabel.text = self.event.place.name;
+    self.placeLabel.text = self.event.place.title;
     self.startTimeLabel.text = [[ConverterUtil sharedUtil] stringFromDateShort: self.event.startTime];
     self.endTimeLabel.text = [[ConverterUtil sharedUtil] stringFromDateShort:self.event.endTime];
     
@@ -322,7 +325,8 @@
 
 #pragma mark -- action
 - (void) actionPlace {
-    
+    PlacePropertyView * placePropVC = [[PlacePropertyView alloc] initWithPlace:self.event.place];
+    [self.navigationController pushViewController:placePropVC animated:YES];
 }
 
 - (void) actionMembers {
@@ -389,4 +393,44 @@
             break;
     }
 }
+
+#pragma mark -- cell method
+//@property (strong, nonatomic) UITableViewCell *titleCell;
+//@property (strong, nonatomic) UITableViewCell *categoryCell;
+//@property (strong, nonatomic) UITableViewCell *busyCell;
+//@property (strong, nonatomic) UITableViewCell *locationCell;
+//@property (strong, nonatomic) UITableViewCell *placeCell;
+//@property (strong, nonatomic) UITableViewCell *startTimeCell;
+//@property (strong, nonatomic) UITableViewCell *endTimeCell;
+//@property (strong, nonatomic) UITableViewCell *scopeCell;
+//@property (strong, nonatomic) UITableViewCell *inviteeCell;
+//@property (strong, nonatomic) UITableViewCell *boardsCell;
+//@property (strong, nonatomic) UITableViewCell *groupsCell;
+//@property (strong, nonatomic) UITableViewCell *membersCell;
+//@property (strong, nonatomic) UITableViewCell *alertCell;
+//- (UITableViewCell *)titleCell {
+//    if (!_titleCell) {
+//        _titleCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+//        _titleCell.textLabel.text = @"title";
+//        _titleCell.detailTextLabel.text = @"name"
+//    }
+//    
+//    return _titleCell;
+//}
+//
+//- (UITableViewCell *)categoryCell {
+//    if (!_categoryCell) {
+//        _categoryCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+//        _categoryCell.textLabel.text = @"category";
+//    }
+//    return _categoryCell;
+//}
+//
+//- (UITableViewCell *)categoryCell {
+//    if (!_categoryCell) {
+//        _categoryCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+//        _categoryCell.textLabel.text = @"category";
+//    }
+//    return _categoryCell;
+//}
 @end

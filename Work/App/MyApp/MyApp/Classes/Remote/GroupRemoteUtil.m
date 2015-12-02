@@ -81,9 +81,10 @@
     NSAssert([object isKindOfClass:[Group class]], @"Type casting is wrong");
     Group * group = (Group *)object;
     
-	//group.user = [[ConfigurationManager sharedManager] getCurrentUser];
 	group.name = remoteObj[PF_GROUP_NAME] ;
     group.members = remoteObj[PF_GROUP_MEMBERS];
+    
+    group.chatID = remoteObj[PF_GROUP_GROUPID];
     
     
 }
@@ -94,6 +95,7 @@
 	remoteObj[PF_GROUP_USER] = [PFUser currentUser];
 	remoteObj[PF_GROUP_NAME] = group.name;
 	remoteObj[PF_GROUP_MEMBERS] = group.members;
+    remoteObj[PF_GROUP_GROUPID] = group.chatID ;
 }
 
 

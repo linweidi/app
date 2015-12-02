@@ -144,7 +144,8 @@
 
 - (NSManagedObjectContext *)managedObjectContext {
     if (!_managedObjectContext) {
-        _managedObjectContext = [[ConfigurationManager sharedManager] managedObjectContext];
+        //_managedObjectContext = [[ConfigurationManager sharedManager] managedObjectContext];
+        self.managedObjectContext = [[ConfigurationManager sharedManager] managedObjectContext];
     }
     
     return _managedObjectContext;

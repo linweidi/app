@@ -17,9 +17,7 @@
 #import "FacebookFriendsView.h"
 
 #import "TabTableViewController.h"
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 @interface RecentView : TabTableViewController <UIActionSheetDelegate, SelectSingleDelegate, SelectMultipleDelegate, AddressBookDelegate, FacebookFriendsDelegate>
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 - (void)updateTabCounter:(NSArray *)recents;

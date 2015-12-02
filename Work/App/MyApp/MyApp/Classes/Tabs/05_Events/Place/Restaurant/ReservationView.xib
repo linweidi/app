@@ -37,11 +37,10 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="restoraunt_photo.png" translatesAutoresizingMaskIntoConstraints="NO" id="z2H-Jg-WnC">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="467"/>
                 </imageView>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="228" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="cVi-ch-3tV">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="228" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cVi-ch-3tV">
                     <rect key="frame" x="0.0" y="64" width="600" height="516"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="sectionIndexBackgroundColor" red="0.88235294119999996" green="0.92941176469999998" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="q88-cc-zJs"/>
                         <outlet property="delegate" destination="-1" id="iPW-NX-zvG"/>
@@ -304,7 +303,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.34999999999999998" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.23529411759999999" green="0.71764705880000002" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="BGE-O7-yB3" secondAttribute="trailing" id="AMD-Ug-dPx"/>
                             <constraint firstItem="y8k-WW-ooH" firstAttribute="top" secondItem="CSE-xq-orN" secondAttribute="top" id="DJ2-4q-S7G"/>
@@ -344,6 +343,7 @@
                 <outlet property="numberOfGuestsLabel" destination="Ofh-R9-yqZ" id="NdX-Pl-ApM"/>
                 <outlet property="titleLabel" destination="Pss-kt-3WN" id="Ex1-9g-5m0"/>
             </connections>
+            <point key="canvasLocation" x="36" y="217"/>
         </tableViewCell>
         <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="phoneNumberCell" rowHeight="140" id="1Jd-vK-NGr" customClass="PhoneNumberTableViewCell">
             <rect key="frame" x="0.0" y="390" width="600" height="140"/>
@@ -374,7 +374,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.34999999999999998" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.23529411759999999" green="0.71764705880000002" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" secondItem="oYp-ji-oFO" secondAttribute="height" multiplier="91:40" id="1ng-P0-Isu"/>
                             <constraint firstItem="dq0-mG-9TP" firstAttribute="top" secondItem="oYp-ji-oFO" secondAttribute="bottom" constant="-20" id="2CN-Bg-9EY"/>
@@ -420,7 +420,7 @@
                                 <rect key="frame" x="181" y="29" width="14" height="15"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.34999999999999998" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.23529411759999999" green="0.71764705880000002" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="hHC-Ia-2hJ" firstAttribute="top" secondItem="vuh-p1-xMX" secondAttribute="bottom" constant="4" id="BRW-NO-8MN"/>
                             <constraint firstAttribute="centerX" secondItem="vuh-p1-xMX" secondAttribute="centerX" id="EmT-IJ-C4L"/>
@@ -438,7 +438,6 @@
                     <constraint firstAttribute="trailing" secondItem="Y5s-1X-9LL" secondAttribute="trailing" id="zat-Ch-ejI"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
         </tableViewCell>
     </objects>
     <resources>

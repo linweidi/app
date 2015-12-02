@@ -54,10 +54,10 @@
     
     video.name = dict[PF_VIDEO_NAME];
     video.url = dict[PF_VIDEO_URL];
-    
-    NSDictionary * filePF = dict[PF_VIDEO_FILE];
-    video.fileName = filePF[@"name"];
-    video.url = filePF[@"url"];
+    video.fileName = dict[PF_VIDEO_NAME];
+//    NSDictionary * filePF = dict[PF_VIDEO_FILE];
+//    video.fileName = filePF[@"name"];
+//    video.url = filePF[@"url"];
     
 }
 

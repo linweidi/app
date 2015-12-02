@@ -44,14 +44,12 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="restoraunt_photo.png" translatesAutoresizingMaskIntoConstraints="NO" id="en0-Fx-XC5">
-                    <rect key="frame" x="0.0" y="64" width="600" height="420"/>
-                </imageView>
                 <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GvM-Au-HJf">
                     <rect key="frame" x="0.0" y="386" width="600" height="182"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="LEAVE FEEDBACK" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ybp-Vb-ddM">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="38"/>
+                            <color key="backgroundColor" red="0.23529411759999999" green="0.71764705880000002" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="KozGoPro-Light" family="Kozuka Gothic Pro" pointSize="18"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -60,7 +58,7 @@
                         <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8E4-4G-dGo">
                             <rect key="frame" x="0.0" y="38" width="600" height="28"/>
                             <subviews>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pWA-Hv-vpA">
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Name" placeholder="Your Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pWA-Hv-vpA">
                                     <rect key="frame" x="23" y="0.0" width="319" height="28"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -128,7 +126,7 @@
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.23000000000000001" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="0.23529411759999999" green="0.71764705880000002" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="Zmn-Vh-dGu" secondAttribute="bottom" id="4OQ-6M-WWf"/>
                                 <constraint firstAttribute="bottom" secondItem="pWA-Hv-vpA" secondAttribute="bottom" id="9N1-9A-fLM"/>
@@ -154,7 +152,7 @@
                         <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Jh-57-7uO">
                             <rect key="frame" x="0.0" y="67" width="600" height="72"/>
                             <subviews>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your Feedback" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="agM-sF-NLH">
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Feedback" placeholder="Your Feedback" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="agM-sF-NLH">
                                     <rect key="frame" x="23" y="4" width="562" height="28"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -162,7 +160,7 @@
                                     <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                 </textField>
                             </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.23000000000000001" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="0.23529411759999999" green="0.71764705880000002" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstItem="agM-sF-NLH" firstAttribute="leading" secondItem="2Jh-57-7uO" secondAttribute="leading" constant="23" id="IW4-CK-PHd"/>
                                 <constraint firstItem="agM-sF-NLH" firstAttribute="height" secondItem="2Jh-57-7uO" secondAttribute="height" multiplier="28:72" id="PdR-NA-kO0"/>
@@ -185,7 +183,7 @@
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.25" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="0.2156862745" green="0.64705882349999999" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="GIM-9K-ZzM" secondAttribute="trailing" id="K2e-D3-Ww8"/>
                                 <constraint firstItem="GIM-9K-ZzM" firstAttribute="leading" secondItem="Qdz-yg-isH" secondAttribute="leading" id="aem-rf-6Xf"/>
@@ -194,7 +192,6 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="2Jh-57-7uO" firstAttribute="leading" secondItem="GvM-Au-HJf" secondAttribute="leading" id="3NR-nc-aw9"/>
                         <constraint firstItem="Qdz-yg-isH" firstAttribute="top" secondItem="2Jh-57-7uO" secondAttribute="bottom" constant="1" id="41G-KU-45a"/>
@@ -229,29 +226,22 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="GvM-Au-HJf" firstAttribute="top" secondItem="ZDM-8h-hag" secondAttribute="bottom" constant="1" id="Cv9-zN-Uuu"/>
-                <constraint firstItem="en0-Fx-XC5" firstAttribute="top" secondItem="4V5-Xh-VZM" secondAttribute="top" constant="64" id="Hgd-2R-3sN">
-                    <variation key="widthClass=compact" constant="0.0"/>
-                </constraint>
                 <constraint firstAttribute="bottom" secondItem="GvM-Au-HJf" secondAttribute="bottom" priority="1" id="Jdg-cg-rdH"/>
                 <constraint firstItem="GvM-Au-HJf" firstAttribute="leading" secondItem="4V5-Xh-VZM" secondAttribute="leading" id="KiD-Yt-QgM"/>
                 <constraint firstAttribute="trailing" secondItem="ZDM-8h-hag" secondAttribute="trailing" id="Rig-sE-WUd"/>
                 <constraint firstItem="ZDM-8h-hag" firstAttribute="top" secondItem="4V5-Xh-VZM" secondAttribute="top" id="aFC-iO-9ZJ"/>
                 <constraint firstItem="ZDM-8h-hag" firstAttribute="leading" secondItem="4V5-Xh-VZM" secondAttribute="leading" id="nK8-mX-1BR"/>
                 <constraint firstAttribute="trailing" secondItem="GvM-Au-HJf" secondAttribute="trailing" id="p3j-lh-bvd"/>
-                <constraint firstItem="en0-Fx-XC5" firstAttribute="leading" secondItem="4V5-Xh-VZM" secondAttribute="leading" id="zNy-pt-h9l"/>
-                <constraint firstAttribute="trailing" secondItem="en0-Fx-XC5" secondAttribute="trailing" id="zYo-lW-Zfn"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="aFC-iO-9ZJ"/>
-                    <exclude reference="Hgd-2R-3sN"/>
                     <exclude reference="Jdg-cg-rdH"/>
                 </mask>
             </variation>
             <variation key="widthClass=compact">
                 <mask key="constraints">
                     <include reference="aFC-iO-9ZJ"/>
-                    <include reference="Hgd-2R-3sN"/>
                     <include reference="Jdg-cg-rdH"/>
                 </mask>
             </variation>
@@ -267,38 +257,38 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CUx-6Y-XzE">
                         <rect key="frame" x="0.0" y="1" width="320" height="126"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="star_chosen.png" translatesAutoresizingMaskIntoConstraints="NO" id="RJx-da-qYi">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_chosen.png" translatesAutoresizingMaskIntoConstraints="NO" id="RJx-da-qYi">
                                 <rect key="frame" x="156" y="18" width="11" height="11"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="RJx-da-qYi" secondAttribute="height" multiplier="1:1" id="WXD-Bm-Q8v"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="star_chosen.png" translatesAutoresizingMaskIntoConstraints="NO" id="gPX-dq-3zT">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_chosen.png" translatesAutoresizingMaskIntoConstraints="NO" id="gPX-dq-3zT">
                                 <rect key="frame" x="169" y="18" width="11" height="11"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="gPX-dq-3zT" secondAttribute="height" multiplier="1:1" id="kZb-s7-W6g"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="star_chosen.png" translatesAutoresizingMaskIntoConstraints="NO" id="4ic-c7-YIK">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_chosen.png" translatesAutoresizingMaskIntoConstraints="NO" id="4ic-c7-YIK">
                                 <rect key="frame" x="182" y="18" width="11" height="11"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="4ic-c7-YIK" secondAttribute="height" multiplier="1:1" id="eMc-AX-Az6"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="star_chosen.png" translatesAutoresizingMaskIntoConstraints="NO" id="DgS-uP-TgS">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_chosen.png" translatesAutoresizingMaskIntoConstraints="NO" id="DgS-uP-TgS">
                                 <rect key="frame" x="195" y="18" width="11" height="11"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="DgS-uP-TgS" secondAttribute="height" multiplier="1:1" id="jb0-0Y-Spf"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="star_chosen.png" translatesAutoresizingMaskIntoConstraints="NO" id="5PV-Le-VQO">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_chosen.png" translatesAutoresizingMaskIntoConstraints="NO" id="5PV-Le-VQO">
                                 <rect key="frame" x="208" y="18" width="11" height="11"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="5PV-Le-VQO" secondAttribute="height" multiplier="1:1" id="Fxs-vE-iaN"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.23529411759999999" green="0.71764705880000002" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="5PV-Le-VQO" firstAttribute="leading" secondItem="DgS-uP-TgS" secondAttribute="trailing" constant="2" id="0vv-is-XM2"/>
                             <constraint firstItem="gPX-dq-3zT" firstAttribute="top" secondItem="RJx-da-qYi" secondAttribute="top" id="1sV-x6-syL"/>
@@ -310,14 +300,14 @@
                             <constraint firstItem="DgS-uP-TgS" firstAttribute="leading" secondItem="4ic-c7-YIK" secondAttribute="trailing" constant="2" id="stV-Ix-znw"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="345" translatesAutoresizingMaskIntoConstraints="NO" id="KkP-Kj-FN9">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="345" translatesAutoresizingMaskIntoConstraints="NO" id="KkP-Kj-FN9">
                         <rect key="frame" x="15" y="42" width="290" height="44"/>
                         <string key="text">Richard Brenson Richard Brenson Richard Brenson vRichard Brenson Richard BrensonRichard BrensonRichard Brenson  Richard Brenson Richard Brenson Richard  fdr BrensonRichard BrensonRichard Brenson Richard BrensonRichard BrensonRichard Brenson</string>
                         <fontDescription key="fontDescription" name="KozGoPro-Light" family="Kozuka Gothic Pro" pointSize="11"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Richard Brenson" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1na-0Y-0vG">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Richard Brenson" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1na-0Y-0vG">
                         <rect key="frame" x="15" y="15" width="131" height="18"/>
                         <fontDescription key="fontDescription" name="KozGoPro-Regular" family="Kozuka Gothic Pro" pointSize="18"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -341,7 +331,6 @@
                     <constraint firstItem="RJx-da-qYi" firstAttribute="leading" secondItem="1na-0Y-0vG" secondAttribute="trailing" constant="10" id="vS0-4W-uED"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="feedbackNameLabel" destination="1na-0Y-0vG" id="DB2-yT-jZE"/>
                 <outlet property="feedbackTextLabel" destination="KkP-Kj-FN9" id="Had-eD-bkG"/>
@@ -355,7 +344,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="restoraunt_photo.png" width="360" height="640"/>
         <image name="star_chosen.png" width="11" height="10"/>
     </resources>
 </document>

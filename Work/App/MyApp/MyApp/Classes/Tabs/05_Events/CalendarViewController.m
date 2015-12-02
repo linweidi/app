@@ -9,7 +9,7 @@
 
 
 // multiple secltions
-
+#import <CoreData/CoreData.h>
 #import <Parse/Parse.h>
 #import "ProgressHUD.h"
 
@@ -39,11 +39,13 @@
 
 @property (strong, nonatomic) NSMutableDictionary * eventsByDate;
 @property (strong, nonatomic) NSMutableArray * datesSelected;
-@property (strong, nonatomic) UIBarButtonItem * buttonMulti;
+
 @property (strong, nonatomic) NSDate * currentDate;
 @property (strong, nonatomic) NSDate * monthDateRecord;
 
-
+@property (strong, nonatomic) UIBarButtonItem * multiButton;
+@property (strong, nonatomic) UIBarButtonItem * todayButton;
+@property (strong, nonatomic) UIBarButtonItem * menuButton;
 //@property (strong, nonatomic)     NSMutableArray * eventDates;    //of NSDate
 @end
 
@@ -81,14 +83,19 @@
     // add compose button
 //    [rightBarButtons addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(actionNew)]];
     // add compose button
-    [rightBarButtons addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(didCreateEventTouch)]];
+    self.menuButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(actionMenu)];
     
-    [rightBarButtons addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(didChangeModeTouch)]];
+    [rightBarButtons addObject:self.menuButton];
+    
+    //[rightBarButtons addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(didChangeModeTouch)]];
+    
     // add today button
-    [rightBarButtons addObject:[[UIBarButtonItem alloc] initWithTitle:@"T" style:UIBarButtonItemStyleBordered target:self action:@selector(didGoTodayTouch)]];
+    self.todayButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(didGoTodayTouch)];
+    [rightBarButtons addObject: self.todayButton];
 
-    _buttonMulti =[[UIBarButtonItem alloc] initWithTitle:@"M" style:UIBarButtonItemStyleBordered target:self action:@selector(didChangeSelectModeTouch)];
-    [rightBarButtons addObject:_buttonMulti];
+    self.multiButton =[[UIBarButtonItem alloc] initWithTitle:@"⚽️" style:UIBarButtonItemStyleBordered target:self action:@selector(didChangeSelectModeTouch)];
+    [rightBarButtons addObject:self.multiButton];
+    
     // add switch view button
     self.navigationItem.rightBarButtonItems = rightBarButtons;
     
@@ -122,6 +129,15 @@
     [self.refreshControl addTarget:self action:@selector(loadEvents) forControlEvents:UIControlEventValueChanged];
     
     [self.tableView addSubview:self.refreshControl];
+    
+    [self applyCustomUI];
+}
+
+- (void) applyCustomUI {
+//     self.tableView.translucent = YES;
+     self.tableView.layer.shadowOpacity = 1.0f;
+     self.tableView.layer.shadowRadius = 1.0f;
+     self.tableView.layer.shadowOffset = CGSizeMake(1, -1);
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -236,7 +252,7 @@
 
 - (IBAction)didChangeSelectModeTouch
 {
-    _buttonMulti.style = self.multiSelection?UIBarButtonItemStyleBordered:UIBarButtonItemStyleDone;
+    self.multiButton.style = self.multiSelection?UIBarButtonItemStyleBordered:UIBarButtonItemStyleDone;
     
     self.multiSelection = !self.multiSelection;
     
@@ -246,6 +262,33 @@
     
     //[self.view layoutIfNeeded];
 }
+
+- (void)actionMenu
+{
+    UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil
+                                               otherButtonTitles:@"Create Event", @"Change View", nil];
+    //[action showFromTabBar:[[self tabBarController] tabBar]];
+    [action showFromBarButtonItem:self.menuButton animated:YES];
+}
+
+#pragma mark - UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex != actionSheet.cancelButtonIndex)
+    {
+        if (buttonIndex == 0)
+        {
+            [self didCreateEventTouch];
+        }
+        if (buttonIndex == 1)
+        {
+            [self didChangeModeTouch];
+        }
+
+    }
+}
+
 
 #pragma mark -- private functions
 - (void) refreshSelection {
@@ -522,6 +565,8 @@
     eventSettingsView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:eventSettingsView animated:YES];
 }
+
+
 
 #pragma mark - Date selection
 

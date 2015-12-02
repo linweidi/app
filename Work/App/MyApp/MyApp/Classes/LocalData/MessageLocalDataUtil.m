@@ -10,6 +10,7 @@
 #import "Video+Util.h"
 #import "User+Util.h"
 #import "CurrentUser+Util.h"
+#import "Recent+Util.h"
 #import "ConfigurationManager.h"
 #import "MessageLocalDataUtil.h"
 
@@ -58,13 +59,18 @@
     LOCAL_DATA_CLASS_TYPE * message = (LOCAL_DATA_CLASS_TYPE *)object;
     
     
-    message.chatID = dict[PF_MESSAGE_GROUPID] ;
+    //message.chatID = dict[PF_MESSAGE_GROUPID] ;
+    
+    Recent * recent = [Recent fetchEntityWithID:dict[PF_MESSAGE_RECENTID] inManagedObjectContext:self.managedObjectContext];
+    message.chatID = recent.chatID;
+    
     message.text = dict[PF_MESSAGE_TEXT];
     
-    message.picture = [Picture entityWithID:dict[PF_MESSAGE_PICTURE] inManagedObjectContext:self.managedObjectContext];
-    message.video = [Video entityWithID:dict[PF_MESSAGE_VIDEO] inManagedObjectContext:self.managedObjectContext];
+    message.picture = [Picture fetchEntityWithID:dict[PF_MESSAGE_PICTURE] inManagedObjectContext:self.managedObjectContext];
+    message.video = [Video fetchEntityWithID:dict[PF_MESSAGE_VIDEO] inManagedObjectContext:self.managedObjectContext];
     
-    message.createUser = [User entityWithID:dict[PF_MESSAGE_USER] inManagedObjectContext:self.managedObjectContext];
+    message.createUser = [User fetchEntityWithID:dict[PF_MESSAGE_USER] inManagedObjectContext:self.managedObjectContext];
+    
 }
 
 

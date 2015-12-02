@@ -21,9 +21,9 @@
 		<key>username</key>
 		<string>danielsmith@gmail.com</string>
 		<key>picture</key>
-		<string></string>
+		<string>903</string>
 		<key>thumbnail</key>
-		<string></string>
+		<string>903</string>
 	</dict>
 	<key>Item - 2</key>
 	<dict>
@@ -44,7 +44,7 @@
 		<key>username</key>
 		<string>david@gmail.com</string>
 		<key>picture</key>
-		<string>premium01</string>
+		<string>900</string>
 		<key>thumbnail</key>
 		<string>900</string>
 	</dict>
@@ -67,7 +67,7 @@
 		<key>username</key>
 		<string>taylorswift@gmail.com</string>
 		<key>picture</key>
-		<string>premium02</string>
+		<string>901</string>
 		<key>thumbnail</key>
 		<string>901</string>
 	</dict>
@@ -90,7 +90,7 @@
 		<key>username</key>
 		<string>willsmith@gmail.com</string>
 		<key>picture</key>
-		<string>premium03</string>
+		<string>902</string>
 		<key>thumbnail</key>
 		<string>902</string>
 	</dict>
@@ -113,7 +113,7 @@
 		<key>username</key>
 		<string>tomhanks@gmail.com</string>
 		<key>picture</key>
-		<string>premium04</string>
+		<string>903</string>
 		<key>thumbnail</key>
 		<string>903</string>
 	</dict>

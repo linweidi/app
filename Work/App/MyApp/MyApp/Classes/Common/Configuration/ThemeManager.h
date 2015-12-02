@@ -12,6 +12,7 @@
 
 + (ThemeManager *)sharedUtil;
 
-- (void)applyNavigationBarTheme;
+//- (void)applyNavigationBarTheme;
 
+- (void) applyTheme ;
 @end

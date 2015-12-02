@@ -60,10 +60,23 @@
     //    thumb.updateTime = remoteObj.updatedAt;
     thumb.url = dict[PF_THUMBNAIL_URL];
     
-    NSDictionary * filePF = dict[PF_THUMBNAIL_FILE];
-    thumb.fileName = filePF[@"name"];
-    thumb.url = filePF[@"url"];
-
+    //NSDictionary * filePF = dict[PF_THUMBNAIL_FILE];
+    thumb.fileName = dict[PF_THUMBNAIL_NAME];
+    thumb.url = dict[PF_THUMBNAIL_URL];
+    
+//    NSString* path = [[NSBundle mainBundle] pathForResource:@"Configuration" ofType:@"plist"];
+//    NSDictionary *configDict = [[NSDictionary alloc] initWithContentsOfFile:path];
+    
+//    NSUInteger rand = arc4random_uniform(11)+1;
+//    NSString *image = [NSString stringWithFormat:@"premium%02d", (int) rand];
+//    imageIcon.image = [UIImage imageNamed:image];
+    
+//    NSString* path= [[NSBundle mainBundle] pathForResource:dict[PF_THUMBNAIL_NAME] ofType:@"png"];
+//    thumb.data = [NSData dataWithContentsOfFile:path];
+    NSString * imageName = dict[PF_THUMBNAIL_NAME];
+    UIImage * image = [UIImage imageNamed:imageName];
+    thumb.data = UIImagePNGRepresentation(image);
+    //thumb.data = [NSData dataWithContentsOfFile:image];
 }
 
 @end

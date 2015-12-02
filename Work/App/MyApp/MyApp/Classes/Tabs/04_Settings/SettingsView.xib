@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsView">
@@ -11,7 +11,7 @@
                 <outlet property="cellLogout" destination="8xF-qI-TWS" id="eTj-bM-SOb"/>
                 <outlet property="cellPrivacy" destination="LNT-oc-w73" id="8oc-wh-TGy"/>
                 <outlet property="cellTerms" destination="zsl-bM-eoc" id="szK-JD-qDh"/>
-                <outlet property="imageUser" destination="b1o-fd-eKH" id="u6z-Ns-K0J"/>
+                <outlet property="imageUser" destination="v5q-JK-PDy" id="ORk-Re-1wC"/>
                 <outlet property="labelName" destination="ftm-da-xuL" id="aaa-Zd-uVZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewHeader" destination="9Oi-fY-zxx" id="fWF-WS-tWV"/>
@@ -21,7 +21,6 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <connections>
                 <outlet property="dataSource" destination="-1" id="Tng-2m-Rnh"/>
                 <outlet property="delegate" destination="-1" id="9aC-8N-iBw"/>
@@ -31,13 +30,6 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="settings_blank.png" translatesAutoresizingMaskIntoConstraints="NO" id="b1o-fd-eKH" customClass="PFImageView">
-                    <rect key="frame" x="125" y="15" width="70" height="70"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="70" id="7pa-HE-Vbo"/>
-                        <constraint firstAttribute="height" constant="70" id="pB1-uu-azU"/>
-                    </constraints>
-                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdd-jH-lxc">
                     <rect key="frame" x="125" y="15" width="70" height="70"/>
                     <constraints>
@@ -52,21 +44,27 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftm-da-xuL">
-                    <rect key="frame" x="0.0" y="95" width="320" height="30"/>
+                    <rect key="frame" x="0.0" y="104" width="320" height="21"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="v5q-JK-PDy">
+                    <rect key="frame" x="125" y="15" width="70" height="70"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="Mmy-nE-WoX"/>
+                        <constraint firstAttribute="width" constant="70" id="lkU-0D-ZZO"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="ftm-da-xuL" firstAttribute="leading" secondItem="9Oi-fY-zxx" secondAttribute="leading" id="1nG-22-eHK"/>
-                <constraint firstItem="ftm-da-xuL" firstAttribute="top" secondItem="b1o-fd-eKH" secondAttribute="bottom" constant="10" id="FeP-kR-YIA"/>
                 <constraint firstAttribute="centerX" secondItem="ftm-da-xuL" secondAttribute="centerX" id="KQh-gS-DCI"/>
                 <constraint firstAttribute="centerX" secondItem="mdd-jH-lxc" secondAttribute="centerX" id="M3S-zz-4vP"/>
-                <constraint firstAttribute="centerX" secondItem="b1o-fd-eKH" secondAttribute="centerX" id="iGS-X4-Jiw"/>
+                <constraint firstItem="v5q-JK-PDy" firstAttribute="centerX" secondItem="9Oi-fY-zxx" secondAttribute="centerX" id="RGA-ci-1Dk"/>
+                <constraint firstItem="v5q-JK-PDy" firstAttribute="centerY" secondItem="9Oi-fY-zxx" secondAttribute="centerY" constant="-20" id="TWe-I8-mA5"/>
                 <constraint firstAttribute="bottom" secondItem="ftm-da-xuL" secondAttribute="bottom" constant="15" id="mFS-1s-rsC"/>
                 <constraint firstAttribute="centerY" secondItem="mdd-jH-lxc" secondAttribute="centerY" constant="20" id="s9I-J4-flk"/>
-                <constraint firstAttribute="centerY" secondItem="b1o-fd-eKH" secondAttribute="centerY" constant="20" id="tsO-r8-9Og"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -145,7 +143,4 @@
             <point key="canvasLocation" x="415" y="900"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="settings_blank.png" width="70" height="70"/>
-    </resources>
 </document>

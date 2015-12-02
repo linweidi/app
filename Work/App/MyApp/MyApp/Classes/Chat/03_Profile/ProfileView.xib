@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileView">
             <connections>
                 <outlet property="cellBlock" destination="zsl-bM-eoc" id="mml-Zb-eNh"/>
                 <outlet property="cellReport" destination="LNT-oc-w73" id="hYE-if-gOw"/>
-                <outlet property="imageUser" destination="b1o-fd-eKH" id="u6z-Ns-K0J"/>
+                <outlet property="imageUser" destination="iLZ-rc-9wD" id="wS0-LH-utK"/>
                 <outlet property="labelName" destination="ftm-da-xuL" id="aaa-Zd-uVZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewHeader" destination="9Oi-fY-zxx" id="fWF-WS-tWV"/>
@@ -18,7 +18,7 @@
         <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" bouncesZoom="NO" style="grouped" separatorStyle="default" rowHeight="50" sectionHeaderHeight="10" sectionFooterHeight="10" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <connections>
                 <outlet property="dataSource" destination="-1" id="Tng-2m-Rnh"/>
@@ -29,27 +29,27 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="settings_blank.png" translatesAutoresizingMaskIntoConstraints="NO" id="b1o-fd-eKH" customClass="PFImageView">
-                    <rect key="frame" x="125" y="15" width="70" height="70"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="70" id="7pa-HE-Vbo"/>
-                        <constraint firstAttribute="height" constant="70" id="pB1-uu-azU"/>
-                    </constraints>
-                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftm-da-xuL">
                     <rect key="frame" x="0.0" y="95" width="320" height="30"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iLZ-rc-9wD">
+                    <rect key="frame" x="125" y="15" width="70" height="70"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="ROm-ny-gwq"/>
+                        <constraint firstAttribute="width" constant="70" id="dsq-X4-19D"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="ftm-da-xuL" firstAttribute="leading" secondItem="9Oi-fY-zxx" secondAttribute="leading" id="1nG-22-eHK"/>
-                <constraint firstItem="ftm-da-xuL" firstAttribute="top" secondItem="b1o-fd-eKH" secondAttribute="bottom" constant="10" id="FeP-kR-YIA"/>
+                <constraint firstItem="iLZ-rc-9wD" firstAttribute="centerY" secondItem="9Oi-fY-zxx" secondAttribute="centerY" constant="-20" id="3qG-1R-omm"/>
+                <constraint firstItem="iLZ-rc-9wD" firstAttribute="centerX" secondItem="9Oi-fY-zxx" secondAttribute="centerX" id="6kD-wW-gU9"/>
                 <constraint firstAttribute="centerX" secondItem="ftm-da-xuL" secondAttribute="centerX" id="KQh-gS-DCI"/>
-                <constraint firstAttribute="centerX" secondItem="b1o-fd-eKH" secondAttribute="centerX" id="iGS-X4-Jiw"/>
-                <constraint firstAttribute="bottom" secondItem="ftm-da-xuL" secondAttribute="bottom" constant="15" id="mFS-1s-rsC"/>
-                <constraint firstAttribute="centerY" secondItem="b1o-fd-eKH" secondAttribute="centerY" constant="20" id="tsO-r8-9Og"/>
+                <constraint firstAttribute="bottom" secondItem="ftm-da-xuL" secondAttribute="bottom" constant="15" id="awH-t5-FM1"/>
+                <constraint firstItem="ftm-da-xuL" firstAttribute="top" secondItem="iLZ-rc-9wD" secondAttribute="bottom" constant="10" id="w5q-cU-OXH"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -92,7 +92,4 @@
             <point key="canvasLocation" x="415" y="900"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="settings_blank.png" width="70" height="70"/>
-    </resources>
 </document>

@@ -12,8 +12,7 @@
 #import <UIKit/UIKit.h>
 #import "TabTableViewController.h"
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 @interface SettingsView : TabTableViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate>
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 @end

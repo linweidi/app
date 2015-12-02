@@ -38,60 +38,56 @@
 
 #import "NavigationController.h"
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 @interface RecentView()
 {
 	//NSMutableArray *recents;
 }
 
-
 @end
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 
 @implementation RecentView
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-	{
+	if (self) {
 		[self.tabBarItem setImage:[UIImage imageNamed:@"tab_recent"]];
 		self.tabBarItem.title = @"Recent";
-		//-----------------------------------------------------------------------------------------------------------------------------------------
-//		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(actionCleanup) name:NOTIFICATION_USER_LOGGED_OUT object:nil];
+        
+		//		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(actionCleanup) name:NOTIFICATION_USER_LOGGED_OUT object:nil];
 	}
 	return self;
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidLoad
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	[super viewDidLoad];
 	self.title = @"Recent";
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+    
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self
 																						   action:@selector(actionCompose)];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	[self.tableView registerNib:[UINib nibWithNibName:@"RecentCell" bundle:nil] forCellReuseIdentifier:@"RecentCell"];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	self.refreshControl = [[UIRefreshControl alloc] init];
+	
+    [self.tableView registerNib:[UINib nibWithNibName:@"RecentCell" bundle:nil] forCellReuseIdentifier:@"RecentCell"];
+	
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+    [self.tableView setSeparatorColor:[UIColor blackColor]];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
 	[self.refreshControl addTarget:self action:@selector(loadRecents) forControlEvents:UIControlEventValueChanged];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	//recents = [[NSMutableArray alloc] init];
+	
+    //recents = [[NSMutableArray alloc] init];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidAppear:(BOOL)animated
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	[super viewDidAppear:animated];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
 	if ([[ConfigurationManager sharedManager] getCurrentUser] != nil) {
 		[self loadRecents];
 	}
-	//else LoginUser(self);
+    else {
+        LoginUser(self);
+    }
 }
 
 
@@ -105,7 +101,7 @@
         request.predicate = nil;
         request.fetchLimit = RECENTVIEW_DISPLAY_ITEM_NUM;
         request.sortDescriptors = @[[NSSortDescriptor
-                                     sortDescriptorWithKey:@"updateDate"
+                                     sortDescriptorWithKey:@"updateTime"
                                      ascending:NO
                                      selector:@selector(compare:)],
                                     ];
@@ -124,7 +120,6 @@
 
 #pragma mark - Backend methods
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)loadRecents {
 
     if (self.managedObjectContext) {
@@ -160,9 +155,7 @@
 
 #pragma mark - Helper methods
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)updateTabCounter:(NSArray *)recents
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	int total = 0;
 	for (Recent *recent in recents)
@@ -174,7 +167,6 @@
 }
 
 - (void)updateTabCounter
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	int total = 0;
     NSArray *recents = [self.fetchedResultsController fetchedObjects];
@@ -187,7 +179,6 @@
 }
 
 - (void)clearTabCounter
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	int total = 0;
 	UITabBarItem *item = self.tabBarController.tabBar.items[0];
@@ -196,18 +187,14 @@
 
 #pragma mark - User actions
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)actionChat:(NSString *)groupId
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	ChatView *chatView = [[ChatView alloc] initWith:groupId];
 	chatView.hidesBottomBarWhenPushed = NO;
 	[self.navigationController pushViewController:chatView animated:YES];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)actionCleanup
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	//[recents removeAllObjects];
     // only delete local
@@ -216,9 +203,7 @@
 	[self clearTabCounter];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)actionCompose
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil
 			   otherButtonTitles:@"Single recipient", @"Multiple recipients", @"Address Book", @"Facebook Friends", nil];
@@ -227,9 +212,7 @@
 
 #pragma mark - UIActionSheetDelegate
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	if (buttonIndex != actionSheet.cancelButtonIndex)
 	{
@@ -266,7 +249,6 @@
 
 #pragma mark - SelectSingleDelegate
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)didSelectSingleUser:(User *)user2 {
     CurrentUser *user1 = [[ConfigurationManager sharedManager] getCurrentUser];
 #ifdef REMOTE_MODE
@@ -281,7 +263,6 @@
 
 #pragma mark - SelectMultipleDelegate
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)didSelectMultipleUsers:(NSMutableArray *)users {
 #ifdef REMOTE_MODE
     NSString *groupId = [[RecentRemoteUtil sharedUtil] startRemoteMultipleChat:users];
@@ -295,7 +276,6 @@
 
 #pragma mark - AddressBookDelegate
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)didSelectAddressBookUser:(User *)user2 {
 	User *user1 = [[ConfigurationManager sharedManager] getCurrentUser];
 
@@ -311,9 +291,7 @@
 
 #pragma mark - FacebookFriendsDelegate
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)didSelectFacebookUser:(User *)user2
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	User *user1 = [[ConfigurationManager sharedManager] getCurrentUser];
 #ifdef REMOTE_MODE
@@ -328,12 +306,12 @@
 
 #pragma mark - Table view data source
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-    
+    //[super tableView:tableView cellForRowAtIndexPath:indexPath];
 	RecentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RecentCell" forIndexPath:indexPath];
+    
     
     Recent * recent = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	[cell bindData:recent];
@@ -350,16 +328,13 @@
 //    return cell;
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	return YES;
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
     
     
@@ -381,18 +356,14 @@
     [self.managedObjectContext deleteObject:recent];
     [self updateTabCounter];
 #endif
-	//---------------------------------------------------------------------------------------------------------------------------------------------
 	//[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 #pragma mark - Table view delegate
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
 	//PFObject *recent = recents[indexPath.row];
     Recent *recent = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	[self actionChat:recent.chatID];

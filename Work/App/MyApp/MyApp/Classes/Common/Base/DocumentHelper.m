@@ -49,6 +49,32 @@
     BOOL fileExists = [self createDatabaseDocument];
     
     if (fileExists) {
+        
+#ifdef DEBUG_ALWAYS_CREATE_DATA
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        // not exist, then create one
+        //NSAssert(NO, @"document path does not exist");
+        NSError * error;
+        [fileManager removeItemAtURL:self.documentPath error:&error];
+        NSParameterAssert(error == nil);
+        
+        [self.document  saveToURL:self.documentPath forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
+            if (success) {
+                context = self.document.managedObjectContext;
+                self.managedObjectContext = context;
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    //[self startFlickrFetch];
+                    completionHandler(success);
+                });
+            }
+            else {
+                completionHandler(success);
+            }
+        }];
+#endif
+        
+#ifndef DEBUG_ALWAYS_CREATE_DATA
         if (self.document.documentState == UIDocumentStateNormal) {
             if (!self.managedObjectContext) {
                 context = self.document.managedObjectContext;
@@ -80,6 +106,7 @@
             NSAssert(NO, @"document open fails");
             completionHandler(NO);
         }
+#endif
         
     }
     else {

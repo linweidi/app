@@ -43,7 +43,6 @@
 
     message.chatID = remoteObj[PF_MESSAGE_GROUPID] ;
     message.text = remoteObj[PF_MESSAGE_TEXT];
-    
 }
 
 - (void) setCommonRemoteObject:(RemoteObject *)remoteObj withAlert:(BASE_REMOTE_UTIL_OBJ_TYPE)object {

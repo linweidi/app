@@ -31,63 +31,61 @@
 #import "GroupLocalDataUtil.h"
 
 #import "GroupsView.h"
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 @interface GroupsView()
 {
 	//NSMutableArray *groups;
 }
 @end
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 
 @implementation GroupsView
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 	if (self)
 	{
 		[self.tabBarItem setImage:[UIImage imageNamed:@"tab_groups"]];
 		self.tabBarItem.title = @"Groups";
-		//-----------------------------------------------------------------------------------------------------------------------------------------
 //		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(actionCleanup) name:NOTIFICATION_USER_LOGGED_OUT object:nil];
 	}
 	return self;
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidLoad
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	[super viewDidLoad];
 	self.title = @"Groups";
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self
+	
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self
 																						   action:@selector(actionNew)];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	self.refreshControl = [[UIRefreshControl alloc] init];
+    
+    //[self.tableView setBackgroundColor:[UIColor greenColor]];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+    [self.tableView setSeparatorColor:[UIColor blackColor]];
+    [self.tableView setSeparatorInset:UIEdgeInsetsMake(0, 0, 0, 0)];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
 	[self.refreshControl addTarget:self action:@selector(loadGroups) forControlEvents:UIControlEventValueChanged];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	//groups = [[NSMutableArray alloc] init];
+	
+    //groups = [[NSMutableArray alloc] init];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidAppear:(BOOL)animated
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	[super viewDidAppear:animated];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	if ([PFUser currentUser] != nil)
+
+	if ([[ConfigurationManager sharedManager] getCurrentUser] != nil)
 	{
 		[self loadGroups];
 	}
-	else LoginUser(self);
+    else {
+        LoginUser(self);
+    }
 }
 
 #pragma mark - Backend actions
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
@@ -153,18 +151,14 @@
 
 #pragma mark - User actions
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)actionNew
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	CreateGroupView *createGroupView = [[CreateGroupView alloc] init];
 	NavigationController *navController = [[NavigationController alloc] initWithRootViewController:createGroupView];
 	[self presentViewController:navController animated:YES completion:nil];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)actionCleanup
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	//[groups removeAllObjects];
 	[self.tableView reloadData];
@@ -172,55 +166,51 @@
 
 #pragma mark - Table view data source
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 //- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-////-------------------------------------------------------------------------------------------------------------------------------------------------
 //{
 //	return 1;
 //}
 
-////-------------------------------------------------------------------------------------------------------------------------------------------------
 //- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-////-------------------------------------------------------------------------------------------------------------------------------------------------
 //{
 //	return [groups count];
 //}
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+    [self.tableView setSeparatorColor:[UIColor blackColor]];
+    
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
 	if (cell == nil) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
 
+    
 	Group  *group = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	cell.textLabel.text = group.name;
 
     
 	cell.detailTextLabel.text = [NSString stringWithFormat:@"%d members", (int) [group.members count]];
-	cell.detailTextLabel.textColor = [UIColor lightGrayColor];
+	//cell.detailTextLabel.textColor = [UIColor lightGrayColor];
 
 	return cell;
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
+
 	return YES;
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	Group *group = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	//[groups removeObject:group];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-//	User *user1 = [CurrentUser getCurrentUser];
+	
+    //	User *user1 = [CurrentUser getCurrentUser];
 //	User *user2 = group.user;
-//	//---------------------------------------------------------------------------------------------------------------------------------------------
-//	if ([user1 isEqual:user2]) {
+
+    //	if ([user1 isEqual:user2]) {
 //        [[GroupRemoteUtil sharedUtil] removeGroupItem:group];
 //    }
 //    else {
@@ -235,19 +225,16 @@
 #endif
 
 
-	//---------------------------------------------------------------------------------------------------------------------------------------------
 	//[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-#warning notify others that you have quit the group
+
 }
 
 #pragma mark - Table view delegate
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
     Group * group = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	GroupSettingsView *groupSettingsView = [[GroupSettingsView alloc] initWith:group];
 	groupSettingsView.hidesBottomBarWhenPushed = YES;

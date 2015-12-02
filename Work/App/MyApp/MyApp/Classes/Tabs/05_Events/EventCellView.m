@@ -6,6 +6,7 @@
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 
+#import <CoreData/CoreData.h>
 #import "Event+Util.h"
 #import "EventCategory+Util.h"
 #import "Thumbnail+Util.h"

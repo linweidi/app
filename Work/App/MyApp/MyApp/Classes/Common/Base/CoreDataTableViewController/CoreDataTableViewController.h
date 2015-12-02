@@ -37,5 +37,8 @@
 
 @property (nonatomic,strong) NSManagedObjectContext *managedObjectContext;
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 
 @end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="14F27" minimumToolsVersion="Xcode 4.2">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="14F1021" minimumToolsVersion="Xcode 4.2">
     <entity name="Alert" representedClassName="Alert" parentEntity="UserEntity" syncable="YES">
         <attribute name="time" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
@@ -115,15 +115,17 @@
     </entity>
     <entity name="Place" representedClassName="Place" parentEntity="SystemEntity" syncable="YES">
         <attribute name="closeTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
         <attribute name="likes" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="map" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
         <attribute name="openTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="parking" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="price" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="rankings" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="subtitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tips" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EventCategory" syncable="YES"/>
         <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Picture" inverseName="placeInv" inverseEntity="Picture" syncable="YES"/>
         <relationship name="thumb" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Thumbnail" inverseName="placeInv" inverseEntity="Thumbnail" syncable="YES"/>
@@ -147,9 +149,9 @@
         <attribute name="fileName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="categoryInv" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="EventCategory" inverseName="thumb" inverseEntity="EventCategory" syncable="YES"/>
-        <relationship name="placeInv" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Place" inverseName="thumb" inverseEntity="Place" syncable="YES"/>
-        <relationship name="userInv" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="thumbnail" inverseEntity="User" syncable="YES"/>
+        <relationship name="categoryInv" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EventCategory" inverseName="thumb" inverseEntity="EventCategory" syncable="YES"/>
+        <relationship name="placeInv" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Place" inverseName="thumb" inverseEntity="Place" syncable="YES"/>
+        <relationship name="userInv" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="thumbnail" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" parentEntity="UserEntity" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
@@ -185,7 +187,7 @@
         <element name="ObjectEntity" positionX="-216" positionY="-63" width="128" height="90"/>
         <element name="People" positionX="-369" positionY="-270" width="128" height="90"/>
         <element name="Picture" positionX="-360" positionY="-261" width="128" height="30"/>
-        <element name="Place" positionX="-90" positionY="72" width="128" height="240"/>
+        <element name="Place" positionX="-90" positionY="72" width="128" height="270"/>
         <element name="Recent" positionX="-567" positionY="-358" width="128" height="165"/>
         <element name="SystemEntity" positionX="-333" positionY="-234" width="128" height="73"/>
         <element name="Thumbnail" positionX="-351" positionY="-252" width="128" height="150"/>

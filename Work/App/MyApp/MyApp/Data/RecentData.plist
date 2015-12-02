@@ -4,12 +4,10 @@
 <dict>
 	<key>Item</key>
 	<dict>
-		<key>chatID</key>
-		<string>daniel smith, tom hanks, will smith</string>
 		<key>counter</key>
 		<integer>0</integer>
 		<key>details</key>
-		<string>daniel smith, will smith, tom hanks</string>
+		<string>daniel smith, tom hanks, will smith</string>
 		<key>fullname</key>
 		<string>this is our chat</string>
 		<key>lastMessage</key>
@@ -25,8 +23,6 @@
 	</dict>
 	<key>Item - 2</key>
 	<dict>
-		<key>chatID</key>
-		<string>daniel smith, taylor swift, tom hanks</string>
 		<key>counter</key>
 		<integer>0</integer>
 		<key>details</key>
@@ -39,10 +35,30 @@
 		<array>
 			<string>801</string>
 			<string>800</string>
-			<string>802</string>
+			<string>804</string>
 		</array>
 		<key>lastUser</key>
 		<string>801</string>
+	</dict>
+	<key>Item - 3</key>
+	<dict>
+		<key>counter</key>
+		<integer>0</integer>
+		<key>details</key>
+		<string>daniel smith, linweidi, taylor swift, tom hanks</string>
+		<key>fullname</key>
+		<string>third chat</string>
+		<key>lastMessage</key>
+		<string>I am good</string>
+		<key>members</key>
+		<array>
+			<string>801</string>
+			<string>800</string>
+			<string>804</string>
+			<string>1400</string>
+		</array>
+		<key>lastUser</key>
+		<string>1400</string>
 	</dict>
 </dict>
 </plist>

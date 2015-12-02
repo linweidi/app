@@ -63,8 +63,8 @@
     template.scope = dict[PF_EVENT_TEMPLATE_SCOPE];
     template.title = dict[PF_EVENT_TEMPLATE_TITLE];
     
-    template.category = [EventCategory entityWithID:dict[PF_EVENT_TEMPLATE_CATEGORY] inManagedObjectContext:self.managedObjectContext];
-    template.place = [Place entityWithID:dict[PF_EVENT_TEMPLATE_PLACE] inManagedObjectContext:self.managedObjectContext];
+    template.category = [EventCategory fetchEntityWithID:dict[PF_EVENT_TEMPLATE_CATEGORY] inManagedObjectContext:self.managedObjectContext];
+    template.place = [Place fetchEntityWithID:dict[PF_EVENT_TEMPLATE_PLACE] inManagedObjectContext:self.managedObjectContext];
     
 }
 

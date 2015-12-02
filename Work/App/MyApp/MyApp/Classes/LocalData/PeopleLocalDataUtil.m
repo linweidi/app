@@ -55,7 +55,7 @@
     
     LOCAL_DATA_CLASS_TYPE * people = (LOCAL_DATA_CLASS_TYPE *)object;
     
-    people.contact  = [User entityWithID:dict[PF_PEOPLE_USER2] inManagedObjectContext:self.managedObjectContext];
+    people.contact  = [User fetchEntityWithID:dict[PF_PEOPLE_USER2] inManagedObjectContext:self.managedObjectContext];
     people.name = dict[PF_PEOPLE_NAME];
     
 }

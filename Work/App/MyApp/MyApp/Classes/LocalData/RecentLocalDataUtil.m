@@ -10,6 +10,7 @@
 #import "User+Util.h"
 #import "CurrentUser+Util.h"
 #import "NSString+ConvertToNumber.h"
+#import "ConverterUtil.h"
 #import "RecentLocalDataUtil.h"
 
 #undef LOCAL_DATA_CLASS_TYPE
@@ -56,14 +57,20 @@
     
     LOCAL_DATA_CLASS_TYPE * recent = (LOCAL_DATA_CLASS_TYPE *)object;
     
-    recent.chatID = dict[PF_RECENT_GROUPID];
-    recent.members = [NSArray arrayWithArray:dict[PF_RECENT_MEMBERS]] ;
+    //recent.chatID = dict[PF_RECENT_GROUPID];
+    recent.chatID = [[ConverterUtil sharedUtil] createChatIdByUserIds:dict[PF_RECENT_MEMBERS]];
+    
     recent.details = dict[PF_RECENT_DESCRIPTION] ;
+    
+    
+    recent.members = [NSArray arrayWithArray:dict[PF_RECENT_MEMBERS]] ;
     recent.lastUser = [User entityWithID:dict[PF_RECENT_LASTUSER] inManagedObjectContext:self.managedObjectContext];
     recent.lastMessage = dict[PF_RECENT_LASTMESSAGE] ;
     recent.counter = dict[PF_RECENT_COUNTER];
     
-    recent.lastUser = [User entityWithID:dict[PF_RECENT_LASTUSER] inManagedObjectContext:self.managedObjectContext];
+    recent.lastUser = [User fetchEntityWithID:dict[PF_RECENT_LASTUSER] inManagedObjectContext:self.managedObjectContext];
+    
+    recent.fullname = dict[PF_RECENT_FULLNAME];
    
 }
 
@@ -115,7 +122,7 @@
 
     [self createLocalRecentItem:[[ConfigurationManager sharedManager] getCurrentUser] groupId:groupId members:userIds desciption:description lastMessage:nil];
 
-    //---------------------------------------------------------------------------------------------------------------------------------------------
+
     return groupId;
 }
 

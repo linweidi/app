@@ -115,8 +115,10 @@ typedef enum {
             
 #ifdef LOCAL_MODE
             BOOL firstStart = [userDefaults boolForKey:USER_DEFAULTS_FIRST_START];
+            
+#ifndef DEBUG_ALWAYS_CREATE_DATA
             if (firstStart) {
-                
+#endif
                 //User *object = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:configManager.managedObjectContext];
                 [[ThumbnailLocalDataUtil sharedUtil] loadData];
                 
@@ -131,13 +133,20 @@ typedef enum {
                 [[EventCategoryLocalDataUtil sharedUtil] loadData];
                 
                 [[AlertLocalDataUtil sharedUtil] loadData];
+                //depends on alert
                 [[PlaceLocalDataUtil sharedUtil] loadData];
+                //depends on place
                 [[EventLocalDataUtil sharedUtil] loadData];
                 
-                [[MessageLocalDataUtil sharedUtil] loadData];
+                
                 [[PeopleLocalDataUtil sharedUtil] loadData];
                 [[GroupLocalDataUtil sharedUtil] loadData];
+                
+                
+                //depends on group's chatID
                 [[RecentLocalDataUtil sharedUtil] loadData];
+                //depends on group's chatID
+                [[MessageLocalDataUtil sharedUtil] loadData];
                 
                 [userDefaults setBool:NO forKey:USER_DEFAULTS_FIRST_START];
 
@@ -145,12 +154,15 @@ typedef enum {
                 
                 //NSDictionary *userInfo = self.managedObjectContext ? @{ MainDatabaseAvailableContext : self.managedObjectContext } : nil;
                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_DATA_LOAD_READY object:self userInfo:nil];
+
+#ifndef DEBUG_ALWAYS_CREATE_DATA
             }
             else {
                 self.initDone = YES;
                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_DATA_LOAD_READY object:self userInfo:nil];
                 
             }
+#endif
             [self openMainMenu];
 
 #endif
@@ -181,8 +193,8 @@ typedef enum {
 
 
     //apply all theme
-    [[ThemeManager sharedUtil] applyNavigationBarTheme];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+    [[ThemeManager sharedUtil] applyTheme];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:NO];
     
     //---------------------------------------------------------------------------------------------------------------------------------------------
     [PFImageView class];
@@ -215,7 +227,12 @@ typedef enum {
     NavigationController *navController2 = [[NavigationController alloc] initWithRootViewController:self.groupsView];
     NavigationController *navController3 = [[NavigationController alloc] initWithRootViewController:self.peopleView];
     NavigationController *navController4 = [[NavigationController alloc] initWithRootViewController:self.settingsView];
-
+    
+//    navController0.navigationBar.translucent = NO;
+//    navController1.navigationBar.translucent = NO;
+//    navController2.navigationBar.translucent = NO;
+//    navController3.navigationBar.translucent = NO;
+//    navController4.navigationBar.translucent = NO;
     
     self.tabBarController = [[UITabBarController alloc] init];
     

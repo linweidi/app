@@ -29,14 +29,15 @@
 #import "CurrentUser+Util.h"
 #import "UserRemoteUtil.h"
 #import "Picture+Util.h"
+#import "Thumbnail+Util.h"
 
 #import "SettingsView.h"
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 @interface SettingsView()
 
 @property (strong, nonatomic) IBOutlet UIView *viewHeader;
-@property (strong, nonatomic) IBOutlet PFImageView *imageUser;
+@property (strong, nonatomic) IBOutlet UIImageView *imageUser;
 @property (strong, nonatomic) IBOutlet UILabel *labelName;
 
 @property (strong, nonatomic) IBOutlet UITableViewCell *cellBlocked;
@@ -46,16 +47,16 @@
 @property (strong, nonatomic) IBOutlet UITableViewCell *cellLogout;
 
 @end
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 @implementation SettingsView
 
 @synthesize viewHeader, imageUser, labelName;
 @synthesize cellBlocked, cellPrivacy, cellTerms, cellLogout;
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 	if (self)
@@ -66,26 +67,26 @@
 	return self;
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)viewDidLoad
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	[super viewDidLoad];
 	self.title = @"Settings";
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+
 	self.tableView.tableHeaderView = viewHeader;
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+
 	imageUser.layer.cornerRadius = imageUser.frame.size.width/2;
 	imageUser.layer.masksToBounds = YES;
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)viewDidAppear:(BOOL)animated
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	[super viewDidAppear:animated];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	if ([PFUser currentUser] != nil)
+
+	if ([[ConfigurationManager sharedManager] getCurrentUser] != nil)
 	{
 		[self loadUser];
 	}
@@ -96,19 +97,21 @@
 
 #pragma mark - Backend actions
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)loadUser {
 	//PFUser *user = [PFUser currentUser];
         
     User * user = [[ConfigurationManager sharedManager] getCurrentUser];
     
     
+    [imageUser setImage:[UIImage imageWithData:user.thumbnail.data]];
+				labelName.text = user.fullname;
     
-    RemoteFile * filePicture = [RemoteFile fileWithName:user.picture.fileName contentsAtPath:user.picture.url];
-    
-
-	[imageUser setFile:filePicture];
-	[imageUser loadInBackground];
+//    RemoteFile * filePicture = [RemoteFile fileWithName:user.picture.fileName contentsAtPath:user.picture.url];
+//    
+//
+//	[imageUser setFile:filePicture];
+//	[imageUser loadInBackground];
 
 	labelName.text = user.fullname;
 
@@ -116,44 +119,44 @@
 
 #pragma mark - User actions
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)actionBlocked
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	BlockedView *blockedView = [[BlockedView alloc] init];
 	blockedView.hidesBottomBarWhenPushed = YES;
 	[self.navigationController pushViewController:blockedView animated:YES];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)actionPrivacy
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	PrivacyView *privacyView = [[PrivacyView alloc] init];
 	privacyView.hidesBottomBarWhenPushed = YES;
 	[self.navigationController pushViewController:privacyView animated:YES];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)actionTerms
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	TermsView *termsView = [[TermsView alloc] init];
 	termsView.hidesBottomBarWhenPushed = YES;
 	[self.navigationController pushViewController:termsView animated:YES];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)actionCleanup
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	imageUser.image = [UIImage imageNamed:@"settings_blank"];
 	labelName.text = nil;
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)actionLogout
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel"
 										  destructiveButtonTitle:@"Log out" otherButtonTitles:nil];
@@ -250,7 +253,6 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	

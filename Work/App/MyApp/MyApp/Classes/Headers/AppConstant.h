@@ -15,11 +15,16 @@
 //-----------------------------------------------------------------------
 
 //#define     NORMAL_MODE                         0
+
 #define     DEBUG_MODE                          1
+#define     DEBUG_ALWAYS_CREATE_DATA
+
 #define     LOCAL_MODE                          2
 //#define     REMOTE_MODE                          3
 #define     PARSE_MODE                          3
 #define     SERVER_MODE                         4
+
+
 //#define  NS_BLOCK_ASSERTIONS
 
 #define DEFAULT_USER_ACCOUNT    @"linweiding@gmail.com"
@@ -128,8 +133,8 @@
 //---------------------------   COMMON    --------------------------------------
 //-----------------------------------------------------------------------
 #define		PF_COMMON_OBJECTID					@"objectId"//	Class name
-#define		PF_COMMON_CREATE_TIME               @"createAt"			//	Date
-#define		PF_COMMON_UPDATE_TIME               @"updateAt"			//	Date
+#define		PF_COMMON_CREATE_TIME               @"createTime"			//	Date
+#define		PF_COMMON_UPDATE_TIME               @"updateTime"			//	Date
 #define		PF_COMMON_USER                      @"user"			//	Date
 
 
@@ -167,6 +172,7 @@
 #define		PF_GROUP_USER						@"user"					//	Pointer to User Class
 #define		PF_GROUP_NAME						@"name"					//	String
 #define		PF_GROUP_MEMBERS					@"members"				//	Array
+#define		PF_GROUP_GROUPID					@"chatID"				//	Array
 #define     PF_GROUP_CREATE_TIME                PF_COMMON_CREATE_TIME
 
 #define     PF_GROUP_UPDATE_TIME                PF_COMMON_UPDATE_TIME
@@ -174,12 +180,13 @@
 //---------------------------   MESSAGE    --------------------------------------
 //-----------------------------------------------------------------------
 #define		PF_MESSAGE_CLASS_NAME				@"Message"				//	Class name
-#define		PF_MESSAGE_USER						@"user"					//	Pointer to User Class
-#define		PF_MESSAGE_GROUPID					@"groupId"				//	String
+#define		PF_MESSAGE_USER						@"createUser"					//	Pointer to User Class
+#define		PF_MESSAGE_GROUPID					@"chatID"				//	String
 #define		PF_MESSAGE_TEXT						@"text"					//	String
 #define		PF_MESSAGE_PICTURE					@"picture"				//	File
 #define		PF_MESSAGE_VIDEO					@"video"				//	File
-#define		PF_MESSAGE_CREATEDAT				@"createdAt"			//	Date
+#define		PF_MESSAGE_CREATEDAT				@"createTime"			//	Date
+#define		PF_MESSAGE_RECENTID				@"recentID"			//	Date
 
 //-----------------------------------------------------------------------
 //---------------------------   EVENT    --------------------------------------
@@ -235,8 +242,12 @@
 #define		PF_PLACE_CLOSE_TIME                 @"closeTime"			//	Date
 #define		PF_PLACE_LIKES                      @"likes"			//	Date
 #define		PF_PLACE_LOCATION                   @"location"			//	Date
-#define		PF_PLACE_MAP                        @"map"			//	Date
-#define		PF_PLACE_NAME                       @"name"			//	Date
+#define		PF_PLACE_LONGITUDE                  @"longitude"			//	Date
+#define		PF_PLACE_LATITUDE                   @"latitude"			//	Date
+
+#define		PF_PLACE_TITLE                      @"title"			//	Date
+#define		PF_PLACE_SUBTITLE                   @"subtitle"			//	Date
+
 #define		PF_PLACE_OPEN_TIME                  @"openTime"			//	Date
 #define		PF_PLACE_PARKING                    @"parking"			//	Date
 #define		PF_PLACE_PHOTOS                     @"photos"			//	Date
@@ -258,19 +269,19 @@
 #define		PF_EVENT_CATEGORY_UPDATE_TIME       PF_COMMON_UPDATE_TIME			//	Date
 
 #define		PF_EVENT_CATEGORY_CHILD_ITEMS       @"childItems"			//	Date
-#define		PF_EVENT_CATEGORY_CHILD_COUNT       @"childCount"			//	Date
+#define		PF_EVENT_CATEGORY_CHILD_COUNT       @"childItemCount"			//	Date
 #define		PF_EVENT_CATEGORY_LEVEL             @"level"			//	Date
 #define     PF_EVENT_CATEGORY_LOCALID           @"localID"
 
 #define		PF_EVENT_CATEGORY_NAME              @"name"			//	Date
 #define		PF_EVENT_CATEGORY_NOTES             @"notes"			//	Date
 #define		PF_EVENT_CATEGORY_PARENT_ITEMS      @"parentItems"			//	Date
-#define		PF_EVENT_CATEGORY_PARENT_COUNT      @"parentCount"			//	Date
+#define		PF_EVENT_CATEGORY_PARENT_COUNT      @"parentItemCount"			//	Date
 #define		PF_EVENT_CATEGORY_RELATED_ITEMS     @"relatedItems"
 
-#define		PF_EVENT_CATEGORY_RELATED_COUNT     @"relatedCount"	//	Date
+#define		PF_EVENT_CATEGORY_RELATED_COUNT     @"relatedItemCount"	//	Date
 #define		PF_EVENT_CATEGORY_SUBSEQ_ITEMS      @"subseqItems"			//	Date
-#define		PF_EVENT_CATEGORY_SUBSEQ_COUNT      @"subseqCount"			//	Date
+#define		PF_EVENT_CATEGORY_SUBSEQ_COUNT      @"subseqItemCount"			//	Date
 #define		PF_EVENT_CATEGORY_THUMBNAIL         @"thumb"			//	Date
 //-----------------------------------------------------------------------
 //---------------------------   EVENT VOTING    --------------------------------------
@@ -338,7 +349,7 @@
 //-----------------------------------------------------------------------
 #define		PF_PEOPLE_CLASS_NAME				@"People"				//	Class name
 #define		PF_PEOPLE_USER1						@"user"				//	Pointer to User Class
-#define		PF_PEOPLE_USER2						@"user2"				//	Pointer to User Class
+#define		PF_PEOPLE_USER2						@"contact"				//	Pointer to User Class
 
 #define		PF_PEOPLE_OBJECTID					PF_EVENT_OBJECTID
 
@@ -353,28 +364,30 @@
 //-----------------------------------------------------------------------
 #define		PF_RECENT_CLASS_NAME				@"Recent"				//	Class name
 #define		PF_RECENT_USER						@"user"					//	Pointer to User Class
-#define		PF_RECENT_GROUPID					@"groupId"				//	String
+#define		PF_RECENT_GROUPID					@"chatID"				//	String
 #define		PF_RECENT_MEMBERS					@"members"				//	Array
-#define		PF_RECENT_DESCRIPTION				@"description"			//	String
+#define		PF_RECENT_DESCRIPTION				@"details"			//	String
 #define		PF_RECENT_LASTUSER					@"lastUser"				//	Pointer to User Class
 #define		PF_RECENT_LASTMESSAGE				@"lastMessage"			//	String
 #define		PF_RECENT_COUNTER					@"counter"				//	Number
+#define		PF_RECENT_FULLNAME					@"fullname"				//	Number
 //#define		PF_RECENT_UPDATEDACTION				@"updatedAction"		//	Date
 
 //-----------------------------------------------------------------------
 //---------------------------   THUMBNAIL    --------------------------------------
 //-----------------------------------------------------------------------
-#define		PF_THUMBNAIL_CLASS_NAME				@"Recent"				//	Class name
+#define		PF_THUMBNAIL_CLASS_NAME				@"Thumbnail"				//	Class name
 
 #define		PF_THUMBNAIL_NAME					@"name"				//	String
-//#define		PF_THUMBNAIL_FILENAME				@"fileName"				//	String
+
+#define		PF_THUMBNAIL_FILENAME				@"fileName"				//	String
 #define		PF_THUMBNAIL_URL					@"url"				//	Array
 #define		PF_THUMBNAIL_FILE                   @"file"			//	String
 
 //-----------------------------------------------------------------------
 //---------------------------   PICTURE    --------------------------------------
 //-----------------------------------------------------------------------
-#define		PF_PICTURE_CLASS_NAME				@"Recent"				//	Class name
+#define		PF_PICTURE_CLASS_NAME				@"Picture"				//	Class name
 
 #define		PF_PICTURE_NAME					@"name"				//	String
 #define		PF_PICTURE_URL					@"url"				//	Array
@@ -383,7 +396,7 @@
 //-----------------------------------------------------------------------
 //---------------------------   VIDEO    --------------------------------------
 //-----------------------------------------------------------------------
-#define		PF_VIDEO_CLASS_NAME				@"Recent"				//	Class name
+#define		PF_VIDEO_CLASS_NAME				@"Video"				//	Class name
 
 #define		PF_VIDEO_NAME					@"name"				//	String
 #define		PF_VIDEO_URL					@"url"				//	Array

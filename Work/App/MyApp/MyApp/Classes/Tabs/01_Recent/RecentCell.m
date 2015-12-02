@@ -20,7 +20,6 @@
 
 #import "RecentCell.h"
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 @interface RecentCell()
 {
 //	PFObject *recent;
@@ -33,7 +32,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *labelCounter;
 
 @end
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 
 @implementation RecentCell
 
@@ -65,13 +63,10 @@
 //}
 
 - (void)bindData:(Recent *)recent_
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	Recent * recent = recent_;
-	//---------------------------------------------------------------------------------------------------------------------------------------------
 	imageUser.layer.cornerRadius = imageUser.frame.size.width/2;
 	imageUser.layer.masksToBounds = YES;
-	//---------------------------------------------------------------------------------------------------------------------------------------------
 	User *lastUser = recent.lastUser;
     
 
@@ -88,16 +83,14 @@
 //    }];
     
     [imageUser setImage:[UIImage imageWithData:lastUser.thumbnail.data]];
+    [imageUser sizeToFit];
     //[imageUser loadInBackground];
     
     
-	//---------------------------------------------------------------------------------------------------------------------------------------------
 	labelDescription.text = recent.details;
 	labelLastMessage.text = recent.lastMessage;
-	//---------------------------------------------------------------------------------------------------------------------------------------------
 	NSTimeInterval seconds = [[NSDate date] timeIntervalSinceDate:recent.updateTime];
 	labelElapsed.text = TimeElapsed(seconds);
-	//---------------------------------------------------------------------------------------------------------------------------------------------
 	int counter = [recent.counter intValue];
 	labelCounter.text = (counter == 0) ? @"" : [NSString stringWithFormat:@"%d new", counter];
 }

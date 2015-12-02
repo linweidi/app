@@ -70,7 +70,7 @@
     category.subseqItems = dict[PF_EVENT_CATEGORY_SUBSEQ_ITEMS];
     
     if (dict[PF_EVENT_CATEGORY_THUMBNAIL]) {
-        Thumbnail * thumb = [Thumbnail entityWithID:dict[PF_EVENT_CATEGORY_THUMBNAIL] inManagedObjectContext:self.managedObjectContext];
+        Thumbnail * thumb = [Thumbnail fetchEntityWithID:dict[PF_EVENT_CATEGORY_THUMBNAIL] inManagedObjectContext:self.managedObjectContext];
         category.thumb = thumb;
     }
 

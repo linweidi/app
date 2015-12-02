@@ -54,11 +54,16 @@
     
     picture.name = dict[PF_PICTURE_NAME];
     picture.url = dict[PF_PICTURE_URL];
+    picture.fileName = dict[PF_PICTURE_NAME];
+    //NSDictionary * filePF = dict[PF_PICTURE_FILE];
+//    picture.fileName = filePF[@"name"];
+//    picture.url = filePF[@"url"];
+//    NSString* path= [[NSBundle mainBundle] pathForResource:dict[PF_PICTURE_NAME] ofType:@"png"];
+//    picture.data = [NSData dataWithContentsOfFile:path];
     
-    NSDictionary * filePF = dict[PF_PICTURE_FILE];
-    picture.fileName = filePF[@"name"];
-    picture.url = filePF[@"url"];
-    
+    NSString * imageName = dict[PF_PICTURE_NAME];
+    UIImage * image = [UIImage imageNamed:imageName];
+    picture.data = UIImagePNGRepresentation(image);
 }
 
 @end

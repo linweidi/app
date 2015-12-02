@@ -28,4 +28,13 @@
 
 - (NSString *) starString:(int) count;
 
+- (NSDate *) timeOfDate: (NSDate *)date;
+
+- (NSString *) createChatIdByUserIds:(NSArray *)userIDs;
+
+- (NSString *) createChatIdByUsers:(NSArray *)users ;
+
+- (NSString *) createDescriptionByNames:(NSArray *)names;
+
+- (NSString *) createDescriptionByUsers:(NSArray *)users;
 @end

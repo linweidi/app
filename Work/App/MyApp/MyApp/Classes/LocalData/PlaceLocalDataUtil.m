@@ -58,8 +58,10 @@
     place.closeTime = dict[PF_PLACE_CLOSE_TIME];
     place.likes = dict[PF_PLACE_LIKES];
     place.location = dict[PF_PLACE_LOCATION];
-    place.map = dict[PF_PLACE_MAP];
-    place.name = dict[PF_PLACE_NAME];
+    place.longitude = dict[PF_PLACE_LONGITUDE];
+    place.latitude = dict[PF_PLACE_LATITUDE];
+    place.title = dict[PF_PLACE_TITLE];
+    place.subtitle = dict[PF_PLACE_SUBTITLE];
     place.openTime = dict[PF_PLACE_OPEN_TIME];
     place.parking = dict[PF_PLACE_PARKING];
     place.price = dict[PF_PLACE_PRICE];
@@ -68,15 +70,15 @@
     //place.categories = dict[PF_PLACE_CATEGORY];
     
     for (NSString * pictID in dict[PF_PLACE_PHOTOS]) {
-        Picture * picture = [Picture entityWithID:pictID inManagedObjectContext:self.managedObjectContext];
+        Picture * picture = [Picture fetchEntityWithID:pictID inManagedObjectContext:self.managedObjectContext];
         [place addPhotosObject:picture];
     }
     
-    Thumbnail * thumb = [Thumbnail entityWithID:dict[PF_PLACE_THUMB] inManagedObjectContext:self.managedObjectContext];
+    Thumbnail * thumb = [Thumbnail fetchEntityWithID:dict[PF_PLACE_THUMB] inManagedObjectContext:self.managedObjectContext];
     place.thumb = thumb;
     
     for (NSString * categoryID in dict[PF_PLACE_CATEGORY]) {
-        EventCategory * category = [EventCategory entityWithID:categoryID inManagedObjectContext:self.managedObjectContext];
+        EventCategory * category = [EventCategory fetchEntityWithID:categoryID inManagedObjectContext:self.managedObjectContext];
         [place addCategoriesObject:category];
     }
 }

@@ -18,8 +18,8 @@
 
 #import "TabTableViewController.h"
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 @interface PeopleView : TabTableViewController <UIActionSheetDelegate, SelectSingleDelegate, SelectMultipleDelegate, AddressBookDelegate, FacebookFriendsDelegate>
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 @end
