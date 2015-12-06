@@ -83,7 +83,7 @@
 //    }];
     
     [imageUser setImage:[UIImage imageWithData:lastUser.thumbnail.data]];
-    [imageUser sizeToFit];
+    //[imageUser sizeToFit];
     //[imageUser loadInBackground];
     
     

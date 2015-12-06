@@ -13,6 +13,7 @@
 @property (assign,nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 
 @property (assign,nonatomic) IBOutlet UITableView *feedbacksTableView;
+
 @property (assign,nonatomic) IBOutlet UITextField *nameField;
 @property (assign,nonatomic) IBOutlet UITextField *feedbackField;
 @property (assign,nonatomic) IBOutlet UIButton *addFeedbackBtn;

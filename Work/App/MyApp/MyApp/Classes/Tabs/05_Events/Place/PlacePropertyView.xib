@@ -38,7 +38,7 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="02f-l7-BWl">
                     <rect key="frame" x="0.0" y="8" width="320" height="163"/>
-                    <color key="backgroundColor" red="0.23529411852359772" green="0.71764707565307617" blue="0.7607843279838562" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.88235294819999999" green="0.92941176889999999" blue="0.93333333730000001" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⭐︎⭐︎⭐︎⭐︎⭐︎" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQk-J5-Sgo">
                     <rect key="frame" x="8" y="70" width="80" height="21"/>
@@ -127,7 +127,7 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="38" y="85.5"/>
+            <point key="canvasLocation" x="207" y="94.5"/>
         </view>
     </objects>
 </document>

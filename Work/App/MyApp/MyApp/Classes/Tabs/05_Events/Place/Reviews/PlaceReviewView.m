@@ -31,14 +31,44 @@ typedef enum {
 
 
 @implementation PlaceReviewView
+//
+//- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+//
+//    [textField endEditing:YES];
+//    
+//    
+//    return YES;
+//    
+//}
+//
+//- (void)textFieldDidBeginEditing:(UITextField *)textField {
+//    if (textField == self.nameField) {
+//        [self.nameField becomeFirstResponder];
+//    }
+//    else {
+//        [self.feedbackField becomeFirstResponder];
+//    }
+//}
+//
+//- (void)textFieldDidEndEditing:(UITextField *)textField {
+//    if (textField == self.nameField) {
+//        [self.feedbackField becomeFirstResponder];
+//    }
+//    else {
+//        // nothing
+//    }
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.title = @"Review";
     
     self.feedbacks = [NSMutableArray arrayWithArray:[[FeedbacksManager sharedManager] loadData]];
     
     //self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];
     //self.bottomView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];
+    [self.feedbacksTableView registerNib:[UINib nibWithNibName:@"FeedbackTableViewCell" bundle:nil] forCellReuseIdentifier:@"feedBackCell"];
     
     self.keyboardListener = [[KeyboardListener alloc] initWithScrollView:self.feedbacksTableView andConstraint:self.bottomConstraint];
     

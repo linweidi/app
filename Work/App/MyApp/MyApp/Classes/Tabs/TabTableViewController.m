@@ -27,9 +27,7 @@
     }];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 	{
@@ -44,9 +42,7 @@
 }
 
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidLoad
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	[super viewDidLoad];
     
@@ -63,7 +59,7 @@
 //    
 //    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"background"]
 //                                                  forBarMetrics:UIBarMetricsDefault]; //UIImageNamed:@"transparent.png"UIImageNamed:@"transparent.png"
-    self.navigationController.navigationBar.translucent = YES;
+    //self.navigationController.navigationBar.translucent = YES;
     self.navigationController.navigationBar.layer.shadowOpacity = 1.0f;
     self.navigationController.navigationBar.layer.shadowRadius = 1.0f;
     self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(1, 1);

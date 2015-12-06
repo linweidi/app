@@ -8,6 +8,7 @@
 
 #import "BaseLocalDataUtil.h"
 
+@class EventCategory;
 @interface PlaceLocalDataUtil : BaseLocalDataUtil
 
 + (PlaceLocalDataUtil *)sharedUtil;
@@ -17,4 +18,6 @@
 - (NSArray *)constructDataFromDict:(NSDictionary *)dict;
 
 //- (void) createLocalPlaces:(NSArray *)placeObjArray completionHandler:(REMOTE_OBJECT_BLOCK)block;
+
+- (void) loadPlacesRecommended:(NSMutableArray *)array category:(EventCategory *)category;
 @end

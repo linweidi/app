@@ -29,14 +29,16 @@
 - (NSString *)stringFromDate:(NSDate *)date {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'zzz'"];
-    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    //[formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    [formatter setTimeZone:[NSTimeZone localTimeZone]];
     return [formatter stringFromDate:date];
 }
 
 - (NSDate *) dateFromString:(NSString *)dateStr {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'zzz'"];
-    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    //[formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    [formatter setTimeZone:[NSTimeZone localTimeZone]];
     return [formatter dateFromString:dateStr];
 }
 
@@ -48,7 +50,8 @@
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     [formatter setDateStyle:NSDateFormatterShortStyle];
     
-    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    //[formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    [formatter setTimeZone:[NSTimeZone localTimeZone]];
     return [formatter stringFromDate:date];
 }
 
@@ -58,7 +61,8 @@
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     [formatter setDateStyle:NSDateFormatterShortStyle];
     
-    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    //[formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    [formatter setTimeZone:[NSTimeZone localTimeZone]];
     return [formatter dateFromString:dateStr];
 }
 
@@ -67,7 +71,8 @@
     //[formatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'zzz'"];
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     
-    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    //[formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    [formatter setTimeZone:[NSTimeZone localTimeZone]];
     return [formatter dateFromString:dateStr];
 }
 
@@ -78,7 +83,8 @@
     
     [formatter setTimeStyle:NSDateFormatterShortStyle];
     
-    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    //[formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    [formatter setTimeZone:[NSTimeZone localTimeZone]];
     return [formatter stringFromDate:date];
 }
 

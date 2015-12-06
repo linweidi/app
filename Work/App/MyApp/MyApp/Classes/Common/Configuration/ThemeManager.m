@@ -7,14 +7,11 @@
 //
 
 #import "ThemeManager.h"
-#import <UIKit/UIKit.h>
+
 
 @interface ThemeManager()
 
-@property (strong, nonatomic) UIColor * barColor;
-@property (strong, nonatomic) UIColor * barColor2;
-@property (strong, nonatomic) UIColor * buttonColor;
-@property (strong, nonatomic) UIColor * backgroundColor;
+
 @end
 
 @implementation ThemeManager

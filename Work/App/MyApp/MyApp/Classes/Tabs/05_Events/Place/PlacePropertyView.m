@@ -87,6 +87,9 @@
     self.tableView.tableHeaderView = self.headerView;
     //[self.tableView.tableHeaderView sizeToFit];
     //self.tableView.tableFooterView = [[UIView alloc] init];
+    self.headerView.layer.shadowOpacity = 1.0f;
+    self.headerView.layer.shadowRadius = 1.0f;
+    self.headerView.layer.shadowOffset = CGSizeMake(1, 1);
 }
 
 - (void)viewWillAppear:(BOOL)animated {

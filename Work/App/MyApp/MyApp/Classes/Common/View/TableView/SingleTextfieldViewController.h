@@ -5,8 +5,7 @@
 //  Created by Linwei Ding on 11/12/15.
 //  Copyright (c) 2015 Linweiding. All rights reserved.
 //
-
-#import "CoreDataTableViewController.h"
+#import <UIKit/UIKit.h>
 
 @protocol SingleTextfieldVCDelegate  <NSObject>
 
@@ -20,8 +19,19 @@
 
 @end
 
-@interface SingleTextfieldViewController : CoreDataTableViewController <UITextFieldDelegate>
+@interface SingleTextfieldViewController : UITableViewController <UITextFieldDelegate>
 
-@property (strong, nonatomic) NSString * text;
+- (instancetype) initWithTitle:(NSString *)title text:(NSString *)text;
+
+
+
 @property (weak, nonatomic) IBOutlet UITextField *textfield;
+
+@property (strong, nonatomic) UIDatePicker * datePicker;
+
+@property (strong, nonatomic) id <SingleTextfieldVCDelegate> delegate;
+
+@property (strong, nonatomic) NSIndexPath * indexPath;
+
+@property (nonatomic) BOOL dateInputView;
 @end

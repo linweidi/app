@@ -31,4 +31,6 @@
 - (void) loadRemotePlaces:(Place *)latestPlace completionHandler:(REMOTE_ARRAY_BLOCK)block ;
 
 - (void) createRemotePlaces:(NSArray *)placeObjArray completionHandler:(REMOTE_OBJECT_BLOCK)block;
+
+- (void) loadPlacesRecommended:(NSMutableArray *)array category:(EventCategory *)category;
 @end

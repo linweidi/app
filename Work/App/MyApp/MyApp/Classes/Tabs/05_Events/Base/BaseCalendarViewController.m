@@ -28,9 +28,7 @@
     }];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     {
@@ -45,9 +43,7 @@
 }
 
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidLoad
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
     [super viewDidLoad];
     
@@ -55,21 +51,21 @@
 }
 
 - (void) navigationBarConfig {
-//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"menu_button"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
-//                                                                             style:UIBarButtonItemStyleBordered
-//                                                                            target:self
-//                                                                            action:@selector(onMenu:)];
-//    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"menu_button"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+                                                                             style:UIBarButtonItemStyleBordered
+                                                                            target:self
+                                                                            action:@selector(onMenu:)];
+    
 //    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];
 //    
 //    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"background"]
 //                                                  forBarMetrics:UIBarMetricsDefault]; //UIImageNamed:@"transparent.png"UIImageNamed:@"transparent.png"
-//    self.navigationController.navigationBar.translucent = YES;
-//    self.navigationController.navigationBar.layer.shadowOpacity = 1.0f;
-//    self.navigationController.navigationBar.layer.shadowRadius = 1.0f;
-//    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(1, 1);
-//    
-//    self.automaticallyAdjustsScrollViewInsets = NO;
+    //self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.navigationBar.layer.shadowOpacity = 1.0f;
+    self.navigationController.navigationBar.layer.shadowRadius = 1.0f;
+    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(1, 1);
+    
+    //self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
 #pragma mark - Actions

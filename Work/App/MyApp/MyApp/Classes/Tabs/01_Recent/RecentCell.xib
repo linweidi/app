@@ -18,13 +18,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="recent_blank.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ifk-Hu-PIe">
-                        <rect key="frame" x="8" y="8" width="10" height="10"/>
+                        <rect key="frame" x="8" y="8" width="83" height="83"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Ifk-Hu-PIe" secondAttribute="height" multiplier="1:1" id="CER-e0-DO6"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uxG-h3-jPt">
-                        <rect key="frame" x="26" y="8" width="41" height="6"/>
+                        <rect key="frame" x="99" y="8" width="41" height="50"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -41,7 +41,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last message" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ois-e3-M4I">
-                        <rect key="frame" x="26" y="11" width="84" height="4"/>
+                        <rect key="frame" x="99" y="55" width="84" height="33"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -59,7 +59,7 @@
                     <constraint firstItem="uxG-h3-jPt" firstAttribute="height" secondItem="Ifk-Hu-PIe" secondAttribute="height" multiplier="0.6" id="aMG-rd-rIg"/>
                     <constraint firstItem="Ifk-Hu-PIe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="dIq-fL-ual"/>
                     <constraint firstItem="Ois-e3-M4I" firstAttribute="leading" secondItem="Ifk-Hu-PIe" secondAttribute="trailing" constant="8" id="eWT-p8-1QC"/>
-                    <constraint firstItem="Ifk-Hu-PIe" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.1" id="nmb-FP-1kL"/>
+                    <constraint firstItem="Ifk-Hu-PIe" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.8" id="nmb-FP-1kL"/>
                     <constraint firstItem="Ois-e3-M4I" firstAttribute="top" secondItem="uxG-h3-jPt" secondAttribute="bottom" constant="-3" id="nr6-nG-Lw4"/>
                     <constraint firstItem="1Bu-wA-gQI" firstAttribute="trailing" secondItem="aCl-zV-J5y" secondAttribute="trailing" id="s1z-z7-zYK"/>
                     <constraint firstItem="uxG-h3-jPt" firstAttribute="leading" secondItem="Ifk-Hu-PIe" secondAttribute="trailing" constant="8" symbolic="YES" id="s8D-2E-syv"/>

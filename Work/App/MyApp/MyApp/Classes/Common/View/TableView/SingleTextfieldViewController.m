@@ -5,13 +5,16 @@
 //  Created by Linwei Ding on 11/12/15.
 //  Copyright (c) 2015 Linweiding. All rights reserved.
 //
-
+#import "ConverterUtil.h"
 #import "SingleTextfieldViewController.h"
 
 @interface SingleTextfieldViewController ()
 
 @property (strong, nonatomic) IBOutlet UITableViewCell *textCell;
 
+@property (strong, nonatomic) NSString * titleText;
+@property (strong, nonatomic) NSString * defaultText;
+@property (strong, nonatomic) UIBarButtonItem * saveButton;
 @end
 
 @implementation SingleTextfieldViewController
@@ -25,16 +28,53 @@
     return self;
 }
 
+
+- (instancetype) initWithTitle:(NSString *)title text:(NSString *)text {
+    
+    self = [super init];
+    if (self) {
+        self.titleText = title;
+        self.defaultText = text;
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    //self.textfield.
+    self.title = self.titleText;
+    
+    self.textfield.text = self.defaultText;
+    self.textfield.placeholder = self.defaultText;
+    
+    NSMutableArray * rightBarButtons = [[NSMutableArray alloc] init];
+    
+    self.saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(actionSaveButton)];
+    
+    [rightBarButtons addObject: self.saveButton];
+    // add switch view button
+    self.navigationItem.rightBarButtonItems = rightBarButtons;
+    
+    if (self.dateInputView) {
+        [self.textfield setInputView:self.datePicker];
+        if (self.defaultText) {
+            self.datePicker.date = [[ConverterUtil sharedUtil] dateFromStringShort:self.defaultText];
+        }
+        else {
+            self.datePicker.date = [NSDate date];
+        }
+        
+    }
 }
+
+
 
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-	[self.textfield becomeFirstResponder];
+	//[self.textfield becomeFirstResponder];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -56,8 +96,15 @@
 
 - (BOOL) textFieldShouldReturn:(UITextField *)textField {
     [self dismissKeyboard];
-    [self.navigationController popViewControllerAnimated:YES];
+    //[self.navigationController popViewControllerAnimated:YES];
     return YES;
+}
+
+#pragma mark -- action on button
+- (void) actionSaveButton {
+    [self.delegate updateTextfield:self.textfield.text indexPath:self.indexPath];
+    [self dismissKeyboard];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark -- table view
@@ -73,13 +120,31 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return self.text;
+    return self.titleText;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
 	return self.textCell;
+}
+
+#pragma mark -- date picker
+- (UIDatePicker *)datePicker {
+    if (!_datePicker) {
+        _datePicker =[[UIDatePicker alloc] init];
+        _datePicker.datePickerMode = UIDatePickerModeDateAndTime;
+        _datePicker.hidden = NO;
+        
+        [self.datePicker addTarget:self action:@selector(updateDateTextView:) forControlEvents:UIControlEventValueChanged];
+        
+    }
+    
+    return _datePicker;
+}
+
+- (void) updateDateTextView: (id)sender {
+    self.textfield.text =  [[ConverterUtil sharedUtil] stringFromDateShort:self.datePicker.date];
 }
 
 

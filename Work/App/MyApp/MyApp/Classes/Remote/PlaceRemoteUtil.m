@@ -336,4 +336,8 @@
     
 }
 
+- (void) loadPlacesRecommended:(NSMutableArray *)array category:(EventCategory *)category {
+#warning TODO implement remote loadPlacesRecommended
+}
+
 @end

@@ -74,8 +74,8 @@
     
     
 	self.title = @"People";
-    [self.tabBarItem setImage:[UIImage imageNamed:@"tab_people"]];
-    self.tabBarItem.title = @"People";
+//    [self.tabBarItem setImage:[UIImage imageNamed:@"tab_people"]];
+//    self.tabBarItem.title = @"People";
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self
 																						   action:@selector(actionAdd)];
 	self.tableView.tableFooterView = [[UIView alloc] init];

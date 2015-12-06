@@ -121,6 +121,10 @@
 		287D1AAA1BF7088B0022FEFE /* TwoLabelTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 287D1AA21BF7088B0022FEFE /* TwoLabelTVCell.m */; };
 		287D1AAB1BF7088B0022FEFE /* TwoLabelTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 287D1AA31BF7088B0022FEFE /* TwoLabelTVCell.xib */; };
 		28898F331BFC427D00CF37A9 /* DefaultPreference.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28898F321BFC427D00CF37A9 /* DefaultPreference.plist */; };
+		28B39D1E1C1246DB005CB782 /* FeedbackTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28B39D1D1C1246DB005CB782 /* FeedbackTableViewCell.xib */; };
+		28D3F6F01C14C7730062AC19 /* PlaceListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D3F6EE1C14C7730062AC19 /* PlaceListView.m */; };
+		28D3F6F11C14C7730062AC19 /* PlaceListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28D3F6EF1C14C7730062AC19 /* PlaceListView.xib */; };
+		28D3F6F41C14C7CB0062AC19 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D3F6F31C14C7CB0062AC19 /* BaseTableViewController.m */; };
 		28D85D121BD60ED900A48E87 /* BaseCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D85D111BD60ED900A48E87 /* BaseCalendarViewController.m */; };
 		28D85D191BD60F4200A48E87 /* Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28D85D141BD60F4200A48E87 /* Configuration.plist */; };
 		28D85D1A1BD60F4200A48E87 /* ConfigurationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D85D161BD60F4200A48E87 /* ConfigurationManager.m */; };
@@ -782,6 +786,12 @@
 		2893CD441BF00E30003DD7E4 /* RemoteHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteHeader.h; sourceTree = "<group>"; };
 		2893CD451BF00E30003DD7E4 /* TypeHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeHeader.h; sourceTree = "<group>"; };
 		2893CD461BF00E73003DD7E4 /* LocalDataConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalDataConstant.h; sourceTree = "<group>"; };
+		28B39D1D1C1246DB005CB782 /* FeedbackTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedbackTableViewCell.xib; sourceTree = "<group>"; };
+		28D3F6ED1C14C7730062AC19 /* PlaceListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceListView.h; sourceTree = "<group>"; };
+		28D3F6EE1C14C7730062AC19 /* PlaceListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceListView.m; sourceTree = "<group>"; };
+		28D3F6EF1C14C7730062AC19 /* PlaceListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceListView.xib; sourceTree = "<group>"; };
+		28D3F6F21C14C7CB0062AC19 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
+		28D3F6F31C14C7CB0062AC19 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		28D85D101BD60ED900A48E87 /* BaseCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCalendarViewController.h; sourceTree = "<group>"; };
 		28D85D111BD60ED900A48E87 /* BaseCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCalendarViewController.m; sourceTree = "<group>"; };
 		28D85D141BD60F4200A48E87 /* Configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Configuration.plist; sourceTree = "<group>"; };
@@ -1872,6 +1882,8 @@
 				286D54581BFB0AE5003D6BB8 /* NSString+ConvertToNumber.m */,
 				2823AAA01C02DF840060DC84 /* BaseSimpleViewController.h */,
 				2823AAA11C02DF840060DC84 /* BaseSimpleViewController.m */,
+				28D3F6F21C14C7CB0062AC19 /* BaseTableViewController.h */,
+				28D3F6F31C14C7CB0062AC19 /* BaseTableViewController.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -2040,6 +2052,9 @@
 				2823AA921C02AF500060DC84 /* PlacePropertyView.h */,
 				2823AA931C02AF500060DC84 /* PlacePropertyView.m */,
 				2823AA941C02AF500060DC84 /* PlacePropertyView.xib */,
+				28D3F6ED1C14C7730062AC19 /* PlaceListView.h */,
+				28D3F6EE1C14C7730062AC19 /* PlaceListView.m */,
+				28D3F6EF1C14C7730062AC19 /* PlaceListView.xib */,
 			);
 			path = Place;
 			sourceTree = "<group>";
@@ -2674,6 +2689,7 @@
 			isa = PBXGroup;
 			children = (
 				E51D86CD1BB1CC1700470170 /* FeedbackTableViewCell.h */,
+				28B39D1D1C1246DB005CB782 /* FeedbackTableViewCell.xib */,
 				E51D86CE1BB1CC1700470170 /* FeedbackTableViewCell.m */,
 				E51D86CF1BB1CC1700470170 /* MakeReservationTableViewCell.h */,
 				E51D86D01BB1CC1700470170 /* MakeReservationTableViewCell.m */,
@@ -3347,6 +3363,7 @@
 				E51D87D11BB1CC1800470170 /* _flurry_8h_source.html in Resources */,
 				E51D88651BB1CC1800470170 /* PLCrashReporter-LICENSE.rtf in Resources */,
 				E51D88961BB1CC1800470170 /* Info.plist in Resources */,
+				28D3F6F11C14C7730062AC19 /* PlaceListView.xib in Resources */,
 				E51D89331BB1CC1800470170 /* photo_item1.png in Resources */,
 				E51D88491BB1CC1800470170 /* nomatches.html in Resources */,
 				E51D87F51BB1CC1800470170 /* ftv2mnode.png in Resources */,
@@ -3449,6 +3466,7 @@
 				287D1AAB1BF7088B0022FEFE /* TwoLabelTVCell.xib in Resources */,
 				E51D88E61BB1CC1800470170 /* LoginView.xib in Resources */,
 				E51D88F91BB1CC1800470170 /* chat_audio@2x.png in Resources */,
+				28B39D1E1C1246DB005CB782 /* FeedbackTableViewCell.xib in Resources */,
 				E51D89191BB1CC1800470170 /* feedback@2x.png in Resources */,
 				E51D87F21BB1CC1800470170 /* ftv2lastnode.png in Resources */,
 				E51D88FE1BB1CC1800470170 /* chat_stickers@2x.png in Resources */,
@@ -3748,6 +3766,7 @@
 				28EECB6B1BCCD3E90001654E /* JSQMessagesCollectionViewCell.m in Sources */,
 				2823AA651C0290FB0060DC84 /* MenuItem.m in Sources */,
 				2823A9891C028FA50060DC84 /* EventVoteItemLocalDataUtil.m in Sources */,
+				28D3F6F41C14C7CB0062AC19 /* BaseTableViewController.m in Sources */,
 				28EECB6C1BCCD3E90001654E /* JSQMessagesCollectionViewCellIncoming.m in Sources */,
 				28EECB6D1BCCD3E90001654E /* JSQMessagesCollectionViewCellOutgoing.m in Sources */,
 				28EECB6E1BCCD3E90001654E /* JSQMessagesComposerTextView.m in Sources */,
@@ -3865,6 +3884,7 @@
 				28EECBD51BCCD3EA0001654E /* converter.m in Sources */,
 				28E32C091C0AD01D00A9EEC1 /* ObjectEntity.m in Sources */,
 				28E32C141C0AD01D00A9EEC1 /* Video+CoreDataProperties.m in Sources */,
+				28D3F6F01C14C7730062AC19 /* PlaceListView.m in Sources */,
 				28EECBD61BCCD3EA0001654E /* fileutil.m in Sources */,
 				28EECBD71BCCD3EA0001654E /* image.m in Sources */,
 				28E32C431C0AD03600A9EEC1 /* Group.m in Sources */,

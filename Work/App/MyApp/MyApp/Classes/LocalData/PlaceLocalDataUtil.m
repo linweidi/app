@@ -90,4 +90,18 @@
 //    
 //}
 
+// Note: places are not stored locally. only the places under some events are stored locally. but for local test, we implement all places locally.
+- (void) loadPlacesRecommended:(NSMutableArray *)array category:(EventCategory *)category {
+    NSFetchRequest * request = [NSFetchRequest fetchRequestWithEntityName:self.className];
+#warning TODO add sort descriptor for place's advertisement level
+    //NSSortDescriptor;
+    request.predicate = [NSPredicate predicateWithFormat:@"%@ IN categories", category];
+    
+    NSError * error = nil;
+    NSArray * matches = [self.managedObjectContext executeFetchRequest:request error:&error];
+    if (!error) {
+        [array addObjectsFromArray:matches];
+    }
+}
+
 @end
