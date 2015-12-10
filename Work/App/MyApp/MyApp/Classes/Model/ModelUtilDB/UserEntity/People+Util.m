@@ -21,6 +21,10 @@
 
 #include "../Template/EntityUtilTemplate.mh"
 
+- (NSString *) initial  {
+    return [[self.name substringToIndex:1] uppercaseString];
+}
+
 //+ (People *)createPeopleEntityWithPFObject: (PFObject *)object
 //                  inManagedObjectContext: (NSManagedObjectContext *)context {
 //    People * people = nil;

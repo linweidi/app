@@ -10,7 +10,7 @@
 
 @class User;
 @protocol SelectSinglePeopleDelegate
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 - (void)didSelectSinglePeople:(User *)user;
 
@@ -18,6 +18,6 @@
 
 @interface SelectSinglePeopleView : SelectPeopleView
 
-@property (nonatomic, assign) id<SelectSinglePeopleDelegate>delegate;
+@property (nonatomic, weak) id<SelectSinglePeopleDelegate>delegate;
 
 @end

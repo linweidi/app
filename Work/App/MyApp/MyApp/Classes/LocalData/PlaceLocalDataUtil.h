@@ -19,5 +19,5 @@
 
 //- (void) createLocalPlaces:(NSArray *)placeObjArray completionHandler:(REMOTE_OBJECT_BLOCK)block;
 
-- (void) loadPlacesRecommended:(NSMutableArray *)array category:(EventCategory *)category;
+- (NSArray *) loadPlacesRecommended:(NSString *)localID ;
 @end

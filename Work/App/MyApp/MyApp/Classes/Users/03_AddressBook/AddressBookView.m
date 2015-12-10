@@ -17,10 +17,13 @@
 #import "ProgressHUD.h"
 
 #import "AppConstant.h"
+#import "User+Util.h"
+#import "CurrentUser+Util.h"
+#import "ConfigurationManager.h"
 
 #import "AddressBookView.h"
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 @interface AddressBookView()
 {
 	NSMutableArray *users1;
@@ -29,25 +32,25 @@
 	NSIndexPath *indexSelected;
 }
 @end
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 @implementation AddressBookView
 
 @synthesize delegate;
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)viewDidLoad
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	[super viewDidLoad];
 	self.title = @"Address Book";
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self
 																						  action:@selector(actionCancel)];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	users1 = [[NSMutableArray alloc] init];
 	users2 = [[NSMutableArray alloc] init];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, nil);
 	ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error)
 	{
@@ -55,13 +58,15 @@
 			if (granted) [self loadAddressBook];
 		});
 	});
+    
+    NSParameterAssert(self.delegate);
 }
 
 #pragma mark - Backend methods
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)loadAddressBook
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized)
 	{
@@ -118,16 +123,17 @@
 	}
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)loadUsers
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	NSMutableArray *emails = [[NSMutableArray alloc] init];
 	for (NSDictionary *user in users1)
 	{
 		[emails addObjectsFromArray:user[@"emails"]];
 	}
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
+#ifdef REMOTE_MODE
 	PFUser *user = [PFUser currentUser];
 
 	PFQuery *query1 = [PFQuery queryWithClassName:PF_BLOCKED_CLASS_NAME];
@@ -153,14 +159,48 @@
 		}
 		else [ProgressHUD showError:@"Network error."];
 	}];
+#endif
+#ifdef LOCAL_MODE
+    
+    User * currentUser = [[ConfigurationManager sharedManager] getCurrentUser];
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:PF_USER_CLASS_NAME];
+    //request.predicate = [NSPredicate predicateWithFormat:@"string"];
+    request.predicate = [NSPredicate predicateWithFormat:@"emailCopy IN %@ && globalID != %@", emails ,currentUser.globalID];
+    
+    request.fetchLimit = USERVIEW_DISPLAY_ITEM_NUM;
+    request.sortDescriptors = @[[NSSortDescriptor
+                                 sortDescriptorWithKey:PF_USER_FULLNAME
+                                 ascending:YES
+                                 selector:@selector(localizedCompare:)],
+                                ];
+
+    
+    NSManagedObjectContext * context = [ConfigurationManager sharedManager].managedObjectContext;
+    NSError * error = nil;
+    NSArray * matches = [context executeFetchRequest:request error:&error];
+    
+    if (!error) {
+        [users2 removeAllObjects];
+        for (PFUser *user in matches)
+        {
+            [users2 addObject:user];
+            [self removeUser:user[PF_USER_EMAILCOPY]];
+        }
+        [self.tableView reloadData];
+    }
+    else {
+        NSParameterAssert(!error) ;
+    }
+#endif
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)removeUser:(NSString *)email_
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	NSMutableArray *remove = [[NSMutableArray alloc] init];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	for (NSDictionary *user in users1)
 	{
 		for (NSString *email in user[@"emails"])
@@ -172,7 +212,7 @@
 			}
 		}
 	}
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	for (NSDictionary *user in remove)
 	{
 		[users1 removeObject:user];
@@ -181,47 +221,47 @@
 
 #pragma mark - User actions
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)actionCancel
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Table view data source
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	return 2;
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	if (section == 0) return [users2 count];
 	if (section == 1) return [users1 count];
 	return 0;
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	if ((section == 0) && ([users2 count] != 0)) return @"Registered users";
 	if ((section == 1) && ([users1 count] != 0)) return @"Non-registered users";
 	return nil;
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
 	if (cell == nil) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	if (indexPath.section == 0)
 	{
 		PFUser *user = users2[indexPath.row];
@@ -236,19 +276,19 @@
 		cell.textLabel.text = user[@"name"];
 		cell.detailTextLabel.text = (email != nil) ? email : phone;
 	}
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	cell.detailTextLabel.textColor = [UIColor lightGrayColor];
 	return cell;
 }
 
 #pragma mark - Table view delegate
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	if (indexPath.section == 0)
 	{
 		[self dismissViewControllerAnimated:YES completion:^{
@@ -264,9 +304,9 @@
 
 #pragma mark - Invite helper method
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)inviteUser:(NSDictionary *)user
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	if (([user[@"emails"] count] != 0) && ([user[@"phones"] count] != 0))
 	{
@@ -287,12 +327,12 @@
 
 #pragma mark - UIActionSheetDelegate
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	if (buttonIndex == actionSheet.cancelButtonIndex) return;
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	NSDictionary *user = users1[indexSelected.row];
 	if (buttonIndex == 0) [self sendMail:user];
 	if (buttonIndex == 1) [self sendSMS:user];
@@ -300,9 +340,9 @@
 
 #pragma mark - Mail sending method
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)sendMail:(NSDictionary *)user
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	if ([MFMailComposeViewController canSendMail])
 	{
@@ -318,9 +358,9 @@
 
 #pragma mark - MFMailComposeViewControllerDelegate
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	if (result == MFMailComposeResultSent)
 	{
@@ -331,9 +371,9 @@
 
 #pragma mark - SMS sending method
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)sendSMS:(NSDictionary *)user
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	if ([MFMessageComposeViewController canSendText])
 	{
@@ -348,9 +388,9 @@
 
 #pragma mark - MFMessageComposeViewControllerDelegate
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	if (result == MessageComposeResultSent)
 	{

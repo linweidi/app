@@ -24,6 +24,6 @@
 @interface FacebookFriendsView : UITableViewController <UISearchBarDelegate>
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 
-@property (nonatomic, assign) IBOutlet id<FacebookFriendsDelegate>delegate;
+@property (nonatomic, weak) IBOutlet id<FacebookFriendsDelegate>delegate;
 
 @end

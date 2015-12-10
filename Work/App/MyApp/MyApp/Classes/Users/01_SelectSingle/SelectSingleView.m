@@ -14,12 +14,12 @@
 
 #import "AppConstant.h"
 #import "User+Util.h"
-
+#import "CurrentUser+Util.h"
 #import "ConfigurationManager.h"
 #import "UserRemoteUtil.h"
 #import "SelectSingleView.h"
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 @interface SelectSingleView()
 {
 	NSMutableArray *users;
@@ -29,14 +29,14 @@
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 
 @end
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 @implementation SelectSingleView
 
 @synthesize delegate;
 @synthesize viewHeader, searchBar;
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
@@ -50,6 +50,8 @@
 	users = [[NSMutableArray alloc] init];
 
 	[self loadUsers];
+    
+    NSParameterAssert(self.delegate);
 }
 
 
@@ -64,6 +66,8 @@
 
 - (void)loadUsers
 {
+    
+#ifdef REMOTE_MODE
 	PFUser *user = [PFUser currentUser];
     
 	PFQuery *query1 = [PFQuery queryWithClassName:PF_BLOCKED_CLASS_NAME];
@@ -84,11 +88,43 @@
          }
          else [ProgressHUD showError:@"Network error."];
      }];
+    
+#endif
+#ifdef LOCAL_MODE
+    
+    User * currentUser = [[ConfigurationManager sharedManager] getCurrentUser];
+    
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:PF_USER_CLASS_NAME];
+    //request.predicate = [NSPredicate predicateWithFormat:@"string"];
+    request.predicate = [NSPredicate predicateWithFormat:@"globalID != %@", currentUser.globalID];
+    request.fetchLimit = USERVIEW_DISPLAY_ITEM_NUM;
+    request.sortDescriptors = @[[NSSortDescriptor
+                                 sortDescriptorWithKey:PF_USER_FULLNAME
+                                 ascending:YES
+                                 selector:@selector(localizedCompare:)],
+                                ];
+    
+    NSManagedObjectContext * context = [ConfigurationManager sharedManager].managedObjectContext;
+    NSError * error = nil;
+    NSArray * matches = [context executeFetchRequest:request error:&error];
+    
+    if (!error) {
+        [users removeAllObjects];
+        [users addObjectsFromArray:matches];
+        [self.tableView reloadData];
+    }
+    else {
+        NSParameterAssert(!error) ;
+    }
+#endif
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)searchUsers:(NSString *)search_lower
 {
+    
+#ifdef REMOTE_MODE
 	PFUser *user = [PFUser currentUser];
     
 	PFQuery *query1 = [PFQuery queryWithClassName:PF_BLOCKED_CLASS_NAME];
@@ -110,11 +146,38 @@
          }
          else [ProgressHUD showError:@"Network error."];
      }];
+    
+#endif
+#ifdef LOCAL_MODE
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:PF_USER_CLASS_NAME];
+    //request.predicate = [NSPredicate predicateWithFormat:@"string"];
+    request.fetchLimit = USERVIEW_DISPLAY_ITEM_NUM;
+    request.sortDescriptors = @[[NSSortDescriptor
+                                 sortDescriptorWithKey:PF_USER_FULLNAME
+                                 ascending:YES
+                                 selector:@selector(localizedCompare:)],
+                                ];
+    
+    request.predicate = [NSPredicate predicateWithFormat:@"fullname_lower contains[c] %@", search_lower];
+    
+    NSManagedObjectContext * context = [ConfigurationManager sharedManager].managedObjectContext;
+    NSError * error = nil;
+    NSArray * matches = [context executeFetchRequest:request error:&error];
+    
+    if (!error) {
+        [users removeAllObjects];
+        [users addObjectsFromArray:matches];
+        [self.tableView reloadData];
+    }
+    else {
+        NSParameterAssert(!error) ;
+    }
+#endif
 }
 
 #pragma mark - User actions
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)actionCancel
 {
 	[self dismissViewControllerAnimated:YES completion:nil];
@@ -137,10 +200,14 @@
 {
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
 	if (cell == nil) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
-    
+#ifdef REMOTE_MODE
 	PFUser *user = users[indexPath.row];
 	cell.textLabel.text = user[PF_USER_FULLNAME];
-    
+#endif
+#ifdef LOCAL_MODE
+    User *user = users[indexPath.row];
+    cell.textLabel.text = user.fullname;
+#endif
 	return cell;
 }
 
@@ -152,8 +219,22 @@
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 	[self dismissViewControllerAnimated:YES completion:^{
+        
+#ifdef REMOTE_MODE
         PFUser * userPF = users[indexPath.row];
-		if (delegate != nil) [delegate didSelectSingleUser:[[UserRemoteUtil sharedUtil] convertToUser:userPF]];
+        if (delegate != nil) {
+            [delegate didSelectSingleUser:user];
+        }
+#endif
+#ifdef LOCAL_MODE
+        User * user = users[indexPath.row];
+        if (delegate != nil) {
+            [delegate didSelectSingleUser:user];
+ 
+        }
+#endif
+        
+        
 	}];
 }
 
@@ -226,7 +307,7 @@
 //
 //#import "SelectSingleView.h"
 //
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//
 //@interface SelectSingleView()
 //{
 //	//NSMutableArray *users;
@@ -237,16 +318,16 @@
 //@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 //
 //@end
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//
 //
 //@implementation SelectSingleView
 //
 //@synthesize delegate;
 //@synthesize viewHeader, searchBar;
 //
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//
 //- (void)viewDidLoad
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//
 //{
 //	[super viewDidLoad];
 //	self.title = @"Select Single";
@@ -263,9 +344,9 @@
 //	[self loadUsers];
 //}
 //
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//
 //- (void)viewWillDisappear:(BOOL)animated
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//
 //{
 //	[super viewWillDisappear:animated];
 //	[self.view endEditing:YES];
@@ -295,9 +376,9 @@
 //
 //#pragma mark - Backend methods
 //
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//
 //- (void)loadUsers
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//
 //{
 //    
 //    NSMutableArray * peoples = [[NSMutableArray alloc] init];
@@ -361,9 +442,9 @@
 ////	}];
 //}
 //
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//
 //- (void)searchUsers:(NSString *)search_lower
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//
 //{
 //    
 //    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"People"];
@@ -385,32 +466,32 @@
 //
 //#pragma mark - User actions
 //
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//
 //- (void)actionCancel
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//
 //{
 //	[self dismissViewControllerAnimated:YES completion:nil];
 //}
 //
 //#pragma mark - Table view data source
 ////
-//////-------------------------------------------------------------------------------------------------------------------------------------------------
+////
 ////- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//////-------------------------------------------------------------------------------------------------------------------------------------------------
+////
 ////{
 ////	return 1;
 ////}
 ////
-//////-------------------------------------------------------------------------------------------------------------------------------------------------
+////
 ////- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//////-------------------------------------------------------------------------------------------------------------------------------------------------
+////
 ////{
 ////	return [users count];
 ////}
 //
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//
 //- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//
 //{
 //	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
 //	if (cell == nil) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
@@ -437,9 +518,9 @@
 //
 //#pragma mark - Table view delegate
 //
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//
 //- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//
 //{
 //	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 //	//---------------------------------------------------------------------------------------------------------------------------------------------
@@ -466,9 +547,9 @@
 //
 //#pragma mark - UISearchBarDelegate
 //
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//
 //- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//
 //{
 //	if ([searchText length] > 0)
 //	{
@@ -477,37 +558,37 @@
 //	else [self loadUsers];
 //}
 //
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//
 //- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar_
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//
 //{
 //	[searchBar_ setShowsCancelButton:YES animated:YES];
 //}
 //
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//
 //- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar_
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//
 //{
 //	[searchBar_ setShowsCancelButton:NO animated:YES];
 //}
 //
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//
 //- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar_
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//
 //{
 //	[self searchBarCancelled];
 //}
 //
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//
 //- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar_
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//
 //{
 //	[searchBar_ resignFirstResponder];
 //}
 //
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//
 //- (void)searchBarCancelled
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//
 //{
 //	searchBar.text = @"";
 //	[searchBar resignFirstResponder];

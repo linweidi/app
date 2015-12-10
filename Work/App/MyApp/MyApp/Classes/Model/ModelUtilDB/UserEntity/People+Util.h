@@ -20,6 +20,8 @@
 
 # pragma method -- sever method
 
+- (NSString *) initial ;
+
 //+ (People *)createPeopleEntityWithRemoteObject: (RemoteObject *)object
 //                      inManagedObjectContext: (NSManagedObjectContext *)context;
 //

@@ -26,11 +26,28 @@
     
     //create a new one
     object = [NSEntityDescription insertNewObjectForEntityForName:ENTITY_UTIL_TEMPLATE_CLASS_NAME
-                                          inManagedObjectContext:context];
+    inManagedObjectContext:context];
 
-    
-    
     return object;
+}
+
++ (ENTITY_UTIL_TEMPLATE_CLASS *)createTempEntity: (NSManagedObjectContext *)context {
+ENTITY_UTIL_TEMPLATE_CLASS * object = nil;
+
+NSEntityDescription *entity = [NSEntityDescription entityForName:ENTITY_UTIL_TEMPLATE_CLASS_NAME inManagedObjectContext:context];
+object = [[ENTITY_UTIL_TEMPLATE_CLASS alloc] initWithEntity:entity insertIntoManagedObjectContext:nil];
+
+return object;
+}
+
+
++ (void) insertTempEntity:(ENTITY_UTIL_TEMPLATE_CLASS *)object context:(NSManagedObjectContext *)context {
+[context insertObject:object];
+NSError *error = nil;
+if (![context save:&error]) {
+//Respond to the error
+NSAssert(NO, @"context save fails");
+}
 }
 
 + (ENTITY_UTIL_TEMPLATE_CLASS *)entityWithID:(NSString *)globalID inManagedObjectContext:  (NSManagedObjectContext *)context {
@@ -190,7 +207,20 @@
     return latest;
 }
 
-
+- (void) populateProperties: (NSManagedObject *)object  {
+    NSArray *properties = [[object entity] properties];
+    //NSMutableDictionary *dictionaryRepresentation = [NSMutableDictionary dictionary];
+    for(NSAttributeDescription *attribute in properties)
+    {
+    // we want only actual attributes, not relationships
+    // or fetched properties
+    if([attribute isKindOfClass:[NSAttributeDescription class]])
+    {
+    [self setValue:[object valueForKey:attribute.name] forKey:attribute.name];
+    //[dictionaryRepresentation setObject:[object valueForKey:attribute.name] forKey:attribute.name];
+    }
+    }
+}
 
 
 //@end

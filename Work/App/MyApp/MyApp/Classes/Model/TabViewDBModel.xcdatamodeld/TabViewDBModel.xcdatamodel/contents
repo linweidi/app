@@ -114,6 +114,7 @@
         <relationship name="userInv" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="picture" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Place" representedClassName="Place" parentEntity="SystemEntity" syncable="YES">
+        <attribute name="catLocalIDs" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="closeTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
         <attribute name="likes" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -187,7 +188,7 @@
         <element name="ObjectEntity" positionX="-216" positionY="-63" width="128" height="90"/>
         <element name="People" positionX="-369" positionY="-270" width="128" height="90"/>
         <element name="Picture" positionX="-360" positionY="-261" width="128" height="30"/>
-        <element name="Place" positionX="-90" positionY="72" width="128" height="270"/>
+        <element name="Place" positionX="-90" positionY="72" width="128" height="285"/>
         <element name="Recent" positionX="-567" positionY="-358" width="128" height="165"/>
         <element name="SystemEntity" positionX="-333" positionY="-234" width="128" height="73"/>
         <element name="Thumbnail" positionX="-351" positionY="-252" width="128" height="150"/>

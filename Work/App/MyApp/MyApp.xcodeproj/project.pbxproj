@@ -97,6 +97,10 @@
 		2823AAC71C02F7A90060DC84 /* RestaurantMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2823AAC51C02F7A90060DC84 /* RestaurantMenuView.xib */; };
 		282A27741BCF750D0012332E /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 282A27721BCF750D0012332E /* TestViewController.m */; };
 		282A27751BCF750D0012332E /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 282A27731BCF750D0012332E /* TestViewController.xib */; };
+		284884651C18FDAB0093B758 /* SelectMultipleGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 284884631C18FDAB0093B758 /* SelectMultipleGroupView.m */; };
+		284884661C18FDAB0093B758 /* SelectMultipleGroupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 284884641C18FDAB0093B758 /* SelectMultipleGroupView.xib */; };
+		2848846A1C190B020093B758 /* SelectMultipleBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 284884681C190B020093B758 /* SelectMultipleBoardView.m */; };
+		2848846B1C190B020093B758 /* SelectMultipleBoardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 284884691C190B020093B758 /* SelectMultipleBoardView.xib */; };
 		284CDC3F1C0E20A900800D08 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 284CDC3E1C0E20A900800D08 /* MapKit.framework */; };
 		28622B581BFEF94100E6CCE2 /* EventCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28622B571BFEF94100E6CCE2 /* EventCellView.xib */; };
 		286D539C1BF9AC5C003D6BB8 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 286D538F1BF9AC5C003D6BB8 /* CoreDataTableViewController.m */; };
@@ -116,15 +120,13 @@
 		287D1AA51BF7088B0022FEFE /* SingleTextfieldViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 287D1A991BF7088B0022FEFE /* SingleTextfieldViewController.xib */; };
 		287D1AA61BF7088B0022FEFE /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 287D1A9C1BF7088B0022FEFE /* TableViewCell.m */; };
 		287D1AA71BF7088B0022FEFE /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 287D1A9D1BF7088B0022FEFE /* TableViewCell.xib */; };
-		287D1AA81BF7088B0022FEFE /* TwoLabelDetailTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 287D1A9F1BF7088B0022FEFE /* TwoLabelDetailTVCell.m */; };
-		287D1AA91BF7088B0022FEFE /* TwoLabelDetailTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 287D1AA01BF7088B0022FEFE /* TwoLabelDetailTVCell.xib */; };
-		287D1AAA1BF7088B0022FEFE /* TwoLabelTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 287D1AA21BF7088B0022FEFE /* TwoLabelTVCell.m */; };
-		287D1AAB1BF7088B0022FEFE /* TwoLabelTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 287D1AA31BF7088B0022FEFE /* TwoLabelTVCell.xib */; };
 		28898F331BFC427D00CF37A9 /* DefaultPreference.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28898F321BFC427D00CF37A9 /* DefaultPreference.plist */; };
 		28B39D1E1C1246DB005CB782 /* FeedbackTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28B39D1D1C1246DB005CB782 /* FeedbackTableViewCell.xib */; };
 		28D3F6F01C14C7730062AC19 /* PlaceListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D3F6EE1C14C7730062AC19 /* PlaceListView.m */; };
 		28D3F6F11C14C7730062AC19 /* PlaceListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28D3F6EF1C14C7730062AC19 /* PlaceListView.xib */; };
 		28D3F6F41C14C7CB0062AC19 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D3F6F31C14C7CB0062AC19 /* BaseTableViewController.m */; };
+		28D3F6F91C15F74F0062AC19 /* PlaceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D3F6F71C15F74F0062AC19 /* PlaceCell.m */; };
+		28D3F6FA1C15F74F0062AC19 /* PlaceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28D3F6F81C15F74F0062AC19 /* PlaceCell.xib */; };
 		28D85D121BD60ED900A48E87 /* BaseCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D85D111BD60ED900A48E87 /* BaseCalendarViewController.m */; };
 		28D85D191BD60F4200A48E87 /* Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28D85D141BD60F4200A48E87 /* Configuration.plist */; };
 		28D85D1A1BD60F4200A48E87 /* ConfigurationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D85D161BD60F4200A48E87 /* ConfigurationManager.m */; };
@@ -742,6 +744,12 @@
 		282A27711BCF750D0012332E /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		282A27721BCF750D0012332E /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		282A27731BCF750D0012332E /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
+		284884621C18FDAB0093B758 /* SelectMultipleGroupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectMultipleGroupView.h; sourceTree = "<group>"; };
+		284884631C18FDAB0093B758 /* SelectMultipleGroupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectMultipleGroupView.m; sourceTree = "<group>"; };
+		284884641C18FDAB0093B758 /* SelectMultipleGroupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectMultipleGroupView.xib; sourceTree = "<group>"; };
+		284884671C190B020093B758 /* SelectMultipleBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectMultipleBoardView.h; sourceTree = "<group>"; };
+		284884681C190B020093B758 /* SelectMultipleBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectMultipleBoardView.m; sourceTree = "<group>"; };
+		284884691C190B020093B758 /* SelectMultipleBoardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectMultipleBoardView.xib; sourceTree = "<group>"; };
 		284CDC3E1C0E20A900800D08 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		28622B571BFEF94100E6CCE2 /* EventCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventCellView.xib; sourceTree = "<group>"; };
 		286D538E1BF9AC5C003D6BB8 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
@@ -774,12 +782,6 @@
 		287D1A9B1BF7088B0022FEFE /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
 		287D1A9C1BF7088B0022FEFE /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 		287D1A9D1BF7088B0022FEFE /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
-		287D1A9E1BF7088B0022FEFE /* TwoLabelDetailTVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoLabelDetailTVCell.h; sourceTree = "<group>"; };
-		287D1A9F1BF7088B0022FEFE /* TwoLabelDetailTVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoLabelDetailTVCell.m; sourceTree = "<group>"; };
-		287D1AA01BF7088B0022FEFE /* TwoLabelDetailTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TwoLabelDetailTVCell.xib; sourceTree = "<group>"; };
-		287D1AA11BF7088B0022FEFE /* TwoLabelTVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoLabelTVCell.h; sourceTree = "<group>"; };
-		287D1AA21BF7088B0022FEFE /* TwoLabelTVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoLabelTVCell.m; sourceTree = "<group>"; };
-		287D1AA31BF7088B0022FEFE /* TwoLabelTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TwoLabelTVCell.xib; sourceTree = "<group>"; };
 		28898F321BFC427D00CF37A9 /* DefaultPreference.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultPreference.plist; sourceTree = "<group>"; };
 		2893CD421BF00E30003DD7E4 /* AppConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConstant.h; sourceTree = "<group>"; };
 		2893CD431BF00E30003DD7E4 /* AppHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppHeader.h; sourceTree = "<group>"; };
@@ -792,6 +794,9 @@
 		28D3F6EF1C14C7730062AC19 /* PlaceListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceListView.xib; sourceTree = "<group>"; };
 		28D3F6F21C14C7CB0062AC19 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		28D3F6F31C14C7CB0062AC19 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
+		28D3F6F61C15F74F0062AC19 /* PlaceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceCell.h; sourceTree = "<group>"; };
+		28D3F6F71C15F74F0062AC19 /* PlaceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceCell.m; sourceTree = "<group>"; };
+		28D3F6F81C15F74F0062AC19 /* PlaceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceCell.xib; sourceTree = "<group>"; };
 		28D85D101BD60ED900A48E87 /* BaseCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCalendarViewController.h; sourceTree = "<group>"; };
 		28D85D111BD60ED900A48E87 /* BaseCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCalendarViewController.m; sourceTree = "<group>"; };
 		28D85D141BD60F4200A48E87 /* Configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Configuration.plist; sourceTree = "<group>"; };
@@ -815,8 +820,8 @@
 		28E2B8381BF7EAF70049F18C /* InviteeListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteeListView.m; sourceTree = "<group>"; };
 		28E2B8391BF7EAF70049F18C /* InviteeListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InviteeListView.xib; sourceTree = "<group>"; };
 		28E2B83D1BF7EB0D0049F18C /* MemberListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberListView.m; sourceTree = "<group>"; };
-		28E2B8461BF7F2610049F18C /* PlaceCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceCellView.h; sourceTree = "<group>"; };
-		28E2B8471BF7F2610049F18C /* PlaceCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceCellView.m; sourceTree = "<group>"; };
+		28E2B8461BF7F2610049F18C /* PlaceCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlaceCellView.h; path = MyApp/Classes/Tabs/05_Events/Place/PlaceCellView.h; sourceTree = SOURCE_ROOT; };
+		28E2B8471BF7F2610049F18C /* PlaceCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlaceCellView.m; path = MyApp/Classes/Tabs/05_Events/Place/PlaceCellView.m; sourceTree = SOURCE_ROOT; };
 		28E2B84E1BF83AE40049F18C /* BoardListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardListView.h; sourceTree = "<group>"; };
 		28E2B84F1BF83AE40049F18C /* BoardListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardListView.m; sourceTree = "<group>"; };
 		28E2B8501BF83AE40049F18C /* BoardListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BoardListView.xib; sourceTree = "<group>"; };
@@ -1864,6 +1869,26 @@
 			path = Reviews;
 			sourceTree = "<group>";
 		};
+		284884601C18FD1D0093B758 /* SelectMultipleBoardView */ = {
+			isa = PBXGroup;
+			children = (
+				284884671C190B020093B758 /* SelectMultipleBoardView.h */,
+				284884681C190B020093B758 /* SelectMultipleBoardView.m */,
+				284884691C190B020093B758 /* SelectMultipleBoardView.xib */,
+			);
+			path = SelectMultipleBoardView;
+			sourceTree = "<group>";
+		};
+		284884611C18FD1D0093B758 /* SelectMultipleGroupView */ = {
+			isa = PBXGroup;
+			children = (
+				284884621C18FDAB0093B758 /* SelectMultipleGroupView.h */,
+				284884631C18FDAB0093B758 /* SelectMultipleGroupView.m */,
+				284884641C18FDAB0093B758 /* SelectMultipleGroupView.xib */,
+			);
+			path = SelectMultipleGroupView;
+			sourceTree = "<group>";
+		};
 		286D538C1BF9AC5C003D6BB8 /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -1944,12 +1969,6 @@
 				287D1A9B1BF7088B0022FEFE /* TableViewCell.h */,
 				287D1A9C1BF7088B0022FEFE /* TableViewCell.m */,
 				287D1A9D1BF7088B0022FEFE /* TableViewCell.xib */,
-				287D1A9E1BF7088B0022FEFE /* TwoLabelDetailTVCell.h */,
-				287D1A9F1BF7088B0022FEFE /* TwoLabelDetailTVCell.m */,
-				287D1AA01BF7088B0022FEFE /* TwoLabelDetailTVCell.xib */,
-				287D1AA11BF7088B0022FEFE /* TwoLabelTVCell.h */,
-				287D1AA21BF7088B0022FEFE /* TwoLabelTVCell.m */,
-				287D1AA31BF7088B0022FEFE /* TwoLabelTVCell.xib */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -1964,6 +1983,18 @@
 				2893CD461BF00E73003DD7E4 /* LocalDataConstant.h */,
 			);
 			path = Headers;
+			sourceTree = "<group>";
+		};
+		28D3F6F51C15F6C40062AC19 /* PlaceCell */ = {
+			isa = PBXGroup;
+			children = (
+				28E2B8461BF7F2610049F18C /* PlaceCellView.h */,
+				28E2B8471BF7F2610049F18C /* PlaceCellView.m */,
+				28D3F6F61C15F74F0062AC19 /* PlaceCell.h */,
+				28D3F6F71C15F74F0062AC19 /* PlaceCell.m */,
+				28D3F6F81C15F74F0062AC19 /* PlaceCell.xib */,
+			);
+			path = PlaceCell;
 			sourceTree = "<group>";
 		};
 		28D85D131BD60F4200A48E87 /* Configuration */ = {
@@ -2044,11 +2075,10 @@
 		28E2B8221BF70AFB0049F18C /* Place */ = {
 			isa = PBXGroup;
 			children = (
+				28D3F6F51C15F6C40062AC19 /* PlaceCell */,
 				2823AAAD1C02E3200060DC84 /* FindUs */,
 				2823AAAE1C02E3200060DC84 /* Reviews */,
 				2823AA971C02DABE0060DC84 /* Restaurant */,
-				28E2B8461BF7F2610049F18C /* PlaceCellView.h */,
-				28E2B8471BF7F2610049F18C /* PlaceCellView.m */,
 				2823AA921C02AF500060DC84 /* PlacePropertyView.h */,
 				2823AA931C02AF500060DC84 /* PlacePropertyView.m */,
 				2823AA941C02AF500060DC84 /* PlacePropertyView.xib */,
@@ -2823,6 +2853,8 @@
 		E51D870F1BB1CC1700470170 /* Users */ = {
 			isa = PBXGroup;
 			children = (
+				284884601C18FD1D0093B758 /* SelectMultipleBoardView */,
+				284884611C18FD1D0093B758 /* SelectMultipleGroupView */,
 				E5B268411BBE44D000B76485 /* SelectMultiplePeopleView */,
 				E5B268421BBE44D000B76485 /* SelectSinglePeopleView */,
 				E5B2683B1BBE430600B76485 /* SelectPeopleView */,
@@ -3387,6 +3419,7 @@
 				E51D88CB1BB1CC1800470170 /* BlockedView.xib in Resources */,
 				E51D893D1BB1CC1800470170 /* photo_item4@2x.png in Resources */,
 				E51D88FA1BB1CC1800470170 /* chat_blank@2x.png in Resources */,
+				2848846B1C190B020093B758 /* SelectMultipleBoardView.xib in Resources */,
 				E51D88C31BB1CC1800470170 /* CreateGroupView.xib in Resources */,
 				E51D890B1BB1CC1800470170 /* recent_blank@2x.png in Resources */,
 				E51D88011BB1CC1800470170 /* index.html in Resources */,
@@ -3447,6 +3480,7 @@
 				E51D894E1BB1CC1800470170 /* tick_box.png in Resources */,
 				E51D87E71BB1CC1800470170 /* doxygen.css in Resources */,
 				E51D884C1BB1CC1800470170 /* search.css in Resources */,
+				284884661C18FDAB0093B758 /* SelectMultipleGroupView.xib in Resources */,
 				E51D88FB1BB1CC1800470170 /* chat_camera@2x.png in Resources */,
 				E51D87F61BB1CC1800470170 /* ftv2mo.png in Resources */,
 				E51D88111BB1CC1800470170 /* all_5f.html in Resources */,
@@ -3463,7 +3497,6 @@
 				E51D89081BB1CC1800470170 /* premium09@2x.png in Resources */,
 				E51D89451BB1CC1800470170 /* splash_screen_logo.png in Resources */,
 				E51D87E51BB1CC1800470170 /* dir_f396504afdc959660871b003fa10164d.html in Resources */,
-				287D1AAB1BF7088B0022FEFE /* TwoLabelTVCell.xib in Resources */,
 				E51D88E61BB1CC1800470170 /* LoginView.xib in Resources */,
 				E51D88F91BB1CC1800470170 /* chat_audio@2x.png in Resources */,
 				28B39D1E1C1246DB005CB782 /* FeedbackTableViewCell.xib in Resources */,
@@ -3620,6 +3653,7 @@
 				E51D89351BB1CC1800470170 /* photo_item1@3x.png in Resources */,
 				E51D88981BB1CC1800470170 /* ProgressHUD.bundle in Resources */,
 				2823AA911C02A4E40060DC84 /* MemberListView.xib in Resources */,
+				28D3F6FA1C15F74F0062AC19 /* PlaceCell.xib in Resources */,
 				2823A9C41C028FC10060DC84 /* RecentData.plist in Resources */,
 				E51D89231BB1CC1800470170 /* location@3x.png in Resources */,
 				E51D88081BB1CC1800470170 /* navtree.css in Resources */,
@@ -3628,7 +3662,6 @@
 				E51D87F01BB1CC1800470170 /* ftv2folderclosed.png in Resources */,
 				E51D893B1BB1CC1800470170 /* photo_item3@3x.png in Resources */,
 				E51D88FF1BB1CC1800470170 /* chat_videos@2x.png in Resources */,
-				287D1AA91BF7088B0022FEFE /* TwoLabelDetailTVCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3728,7 +3761,6 @@
 				28EECB5D1BCCD3E90001654E /* JSQMessagesTimestampFormatter.m in Sources */,
 				28E32C461C0AD03600A9EEC1 /* People+CoreDataProperties.m in Sources */,
 				2823A9A81C028FA50060DC84 /* VideoRemoteUtil.m in Sources */,
-				287D1AAA1BF7088B0022FEFE /* TwoLabelTVCell.m in Sources */,
 				28E32C151C0AD01D00A9EEC1 /* Video.m in Sources */,
 				2823AA641C0290FB0060DC84 /* Feedback.m in Sources */,
 				28EECB5E1BCCD3E90001654E /* JSQMessagesToolbarButtonFactory.m in Sources */,
@@ -3772,6 +3804,7 @@
 				28EECB6E1BCCD3E90001654E /* JSQMessagesComposerTextView.m in Sources */,
 				28EECB6F1BCCD3E90001654E /* JSQMessagesInputToolbar.m in Sources */,
 				28E2B8481BF7F2610049F18C /* PlaceCellView.m in Sources */,
+				284884651C18FDAB0093B758 /* SelectMultipleGroupView.m in Sources */,
 				2823A98C1C028FA50060DC84 /* MessageLocalDataUtil.m in Sources */,
 				28EECB701BCCD3E90001654E /* JSQMessagesLabel.m in Sources */,
 				28E32C541C0AD8FE00A9EEC1 /* Place+Annotation.m in Sources */,
@@ -3837,6 +3870,7 @@
 				28EECBB11BCCD3E90001654E /* TabTableViewController.m in Sources */,
 				28EECBB21BCCD3E90001654E /* RecentCell.m in Sources */,
 				28EECBB31BCCD3E90001654E /* RecentView.m in Sources */,
+				28D3F6F91C15F74F0062AC19 /* PlaceCell.m in Sources */,
 				28EECBB41BCCD3E90001654E /* CreateGroupView.m in Sources */,
 				28E32C471C0AD03600A9EEC1 /* People.m in Sources */,
 				28E32C021C0AD01D00A9EEC1 /* Board+CoreDataProperties.m in Sources */,
@@ -3857,7 +3891,6 @@
 				28E32C401C0AD03600A9EEC1 /* Event+CoreDataProperties.m in Sources */,
 				28EECBBD1BCCD3E90001654E /* CustomViewController.m in Sources */,
 				28EECBBE1BCCD3E90001654E /* SelectionViewController.m in Sources */,
-				287D1AA81BF7088B0022FEFE /* TwoLabelDetailTVCell.m in Sources */,
 				28EECBBF1BCCD3E90001654E /* VerticalViewController.m in Sources */,
 				28EECBC01BCCD3E90001654E /* CalendarViewController.m in Sources */,
 				2823A9881C028FA50060DC84 /* EventTemplateLocalDataUtil.m in Sources */,
@@ -3894,6 +3927,7 @@
 				28EECBDA1BCCD3EA0001654E /* RegisterView.m in Sources */,
 				28D85D1B1BD60F4200A48E87 /* ThemeManager.m in Sources */,
 				28EECBDB1BCCD3EA0001654E /* WelcomeView.m in Sources */,
+				2848846A1C190B020093B758 /* SelectMultipleBoardView.m in Sources */,
 				2823A9A11C028FA50060DC84 /* PFUser+Util.m in Sources */,
 				2823A9991C028FA50060DC84 /* EventCategoryRemoteUtil.m in Sources */,
 				2823A99F1C028FA50060DC84 /* MessageRemoteUtil.m in Sources */,

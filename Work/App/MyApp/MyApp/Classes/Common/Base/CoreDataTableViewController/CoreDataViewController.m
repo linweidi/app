@@ -9,6 +9,11 @@
 
 @implementation CoreDataViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.managedObjectContext = [ConfigurationManager sharedManager].managedObjectContext;
+}
+
 #pragma mark - Fetching
 
 - (void)performFetch

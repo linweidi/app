@@ -23,7 +23,7 @@
     
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:ENTITY_UTIL_TEMPLATE_CLASS_NAME] ;
-    request.predicate = [NSPredicate predicateWithFormat:@"id = %@", localID];
+    request.predicate = [NSPredicate predicateWithFormat:@"localID = %@", [NSString stringWithFormat:@"%@", localID]];
     NSError *error;
     NSArray *matches = [context executeFetchRequest:request error:&error   ];
     
@@ -32,7 +32,7 @@
     }
     else if (![matches count]) {
         //create a new one
-        object = [NSEntityDescription insertNewObjectForEntityForName:ENTITY_UTIL_TEMPLATE_CLASS_NAME inManagedObjectContext:context];
+        //object = [NSEntityDescription insertNewObjectForEntityForName:ENTITY_UTIL_TEMPLATE_CLASS_NAME inManagedObjectContext:context];
         
     }
     else {
@@ -41,4 +41,6 @@
     
     return object;
 }
+
+
 @end

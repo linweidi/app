@@ -254,8 +254,9 @@
 #define		PF_PLACE_PRICE                      @"price"			//	Date
 #define		PF_PLACE_RANKINGS                   @"rankings"			//	Date
 #define		PF_PLACE_TIPS                       @"tips"			//	Date
-#define		PF_PLACE_CATEGORY                   @"category"			//	Date
+#define		PF_PLACE_CATEGORY                   @"categories"			//	Date
 #define		PF_PLACE_THUMB                      @"thumb"			//	Date
+#define		PF_PLACE_CAT_LOCAL_IDS                    @"catLocalIDs"			//	Date
 
 
 //-----------------------------------------------------------------------

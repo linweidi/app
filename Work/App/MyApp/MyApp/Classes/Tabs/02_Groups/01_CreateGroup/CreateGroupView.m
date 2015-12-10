@@ -29,7 +29,7 @@
 
 #import "CreateGroupView.h"
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 @interface CreateGroupView()
 {
 	//NSMutableArray *users;
@@ -41,53 +41,50 @@
 @property (strong, nonatomic) IBOutlet UITextField *fieldName;
 
 @end
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 @implementation CreateGroupView
 
 @synthesize viewHeader, fieldName;
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidLoad
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
 	[super viewDidLoad];
 	self.title = @"Create Group";
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self
 																						  action:@selector(actionCancel)];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self
 																						   action:@selector(actionDone)];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
 	[self.tableView addGestureRecognizer:gestureRecognizer];
 	gestureRecognizer.cancelsTouchesInView = NO;
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	self.tableView.tableHeaderView = viewHeader;
 	self.tableView.tableFooterView = [[UIView alloc] init];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	//users = [[NSMutableArray alloc] init];
 	selection = [[NSMutableArray alloc] init];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	[self loadPeople];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
 	[fieldName becomeFirstResponder];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)viewWillDisappear:(BOOL)animated
 {
 	[super viewWillDisappear:animated];
 	[self dismissKeyboard];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)dismissKeyboard {
 	[self.view endEditing:YES];
 }
@@ -115,7 +112,7 @@
 
 #pragma mark - Backend actions
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)loadPeople {
     
     //NSMutableArray * peoples = [[NSMutableArray alloc] init];
@@ -169,29 +166,29 @@
 //    }];
 }
 
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//Board
 //- (void)setObjects:(NSArray *)objects
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//Board
 //{
 //    /* legacy use UILocalizedIndexedCollation
 //	if (sections != nil) [sections removeAllObjects];
-//	//---------------------------------------------------------------------------------------------------------------------------------------------
+//	
 //    // update sections
 //	NSInteger sectionTitlesCount = [[[UILocalizedIndexedCollation currentCollation] sectionTitles] count];
 //	sections = [[NSMutableArray alloc] initWithCapacity:sectionTitlesCount];
-//	//---------------------------------------------------------------------------------------------------------------------------------------------
+//	
 //	for (NSUInteger i=0; i<sectionTitlesCount; i++)
 //	{
 //		[sections addObject:[NSMutableArray array]];
 //	}
-//	//---------------------------------------------------------------------------------------------------------------------------------------------
+//	
 //	NSArray *sorted = [objects sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2)
 //	{
 //		PFUser *user1 = (PFUser *)obj1;
 //		PFUser *user2 = (PFUser *)obj2;
 //		return [user1[PF_USER_FULLNAME] compare:user2[PF_USER_FULLNAME]];
 //	}];
-//	//---------------------------------------------------------------------------------------------------------------------------------------------
+//	
 //	for (PFUser *object in sorted)
 //	{
 //		NSInteger section = [[UILocalizedIndexedCollation currentCollation] sectionForObject:object collationStringSelector:@selector(fullname)];
@@ -202,15 +199,15 @@
 
 #pragma mark - User actions
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)actionCancel {
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)actionDone {
 	NSString *name = fieldName.text;
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	if ([name length] == 0)		{
         [ProgressHUD showError:@"Group name must be set."];
         return;
@@ -219,7 +216,7 @@
         [ProgressHUD showError:@"Please select some users."];
         return;
     }
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	User *user = [[ConfigurationManager sharedManager] getCurrentUser];
     
 	[selection addObject: user.globalID];
@@ -244,11 +241,11 @@
 
 #pragma mark - Table view data source
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 //- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//Board
 //{
 //	if ([sections[section] count] != 0)
 //	{
@@ -257,21 +254,21 @@
 //	else return nil;
 //}
 //
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//Board
 //- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//Board
 //{
 //	return [[UILocalizedIndexedCollation currentCollation] sectionIndexTitles];
 //}
 //
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//Board
 //- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//Board
 //{
 //	return [[UILocalizedIndexedCollation currentCollation] sectionForSectionIndexTitleAtIndex:index];
 //}
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
@@ -301,10 +298,10 @@
 
 #pragma mark - Table view delegate
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
     People * people= [self.fetchedResultsController objectAtIndexPath:indexPath];
     User * contact = people.contact;
     
@@ -314,7 +311,7 @@
     } else {
         [selection addObject:contact.globalID];
     }
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	[self.tableView reloadData];
 }
 

@@ -20,22 +20,16 @@
 
 @synthesize delegate;
 
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
     self.title = @"Select Single";
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self
+                                                                                           action:@selector(actionDone)];
+    NSParameterAssert(self.delegate);
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,10 +49,12 @@
 //        contact = [UserManager ]
 //    }
     
-	[self dismissViewControllerAnimated:YES completion:^{
-		if (delegate != nil) {
-            [delegate didSelectSinglePeople:contact];
-        }
-	}];
+//	[self dismissViewControllerAnimated:YES completion:^{
+//		if (delegate != nil) {
+//            [delegate didSelectSinglePeople:contact];
+//        }
+//	}];
+    [delegate didSelectSinglePeople:contact];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end

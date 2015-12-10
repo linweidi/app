@@ -127,6 +127,12 @@ static NSString * fiveStart = @"★★★★★";
     return ret;
 }
 
+- (NSString *) dollarString:(int) count {
+    NSArray * starArray = @[@"$", @"$$", @"$$$", @"$$$$", @"$$$$$"];
+
+    return starArray[count];
+}
+
 - (NSDate *) timeOfDate: (NSDate *)date {
     NSCalendar * calendar = [NSCalendar currentCalendar];
     NSDateComponents * compTime = [calendar components:NSCalendarUnitHour|NSCalendarUnitMinute fromDate:date];

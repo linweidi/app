@@ -7,21 +7,21 @@
 		<key>name</key>
 		<string>dan</string>
 		<key>contact</key>
-		<string>800</string>
+		<string>danielsmith@gmail.com</string>
 	</dict>
 	<key>Item - 2</key>
 	<dict>
 		<key>name</key>
 		<string>taylor</string>
 		<key>contact</key>
-		<string>802</string>
+		<string>taylorswift@gmail.com</string>
 	</dict>
 	<key>Item - 3</key>
 	<dict>
 		<key>name</key>
 		<string>tommy</string>
 		<key>contact</key>
-		<string>804</string>
+		<string>tomhanks@gmail.com</string>
 	</dict>
 </dict>
 </plist>

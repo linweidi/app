@@ -15,4 +15,6 @@
 
 @interface Place (Annotation) <MKAnnotation>
 - (CLLocationCoordinate2D)coordinate ;
+
+- (void)setCoordinate:(CLLocationCoordinate2D)newCoordinate;
 @end

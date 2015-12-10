@@ -9,8 +9,9 @@
 #import <MapKit/MapKit.h>
 #import "Place+Annotation.h"
 #import "Place+Util.h"
-#import "TwoLabelTVCell.h"
+
 #import "ConverterUtil.h"
+#import "ConfigurationManager.h"
 
 #import "PlaceReviewView.h"
 #import "PlacePropertyView.h"
@@ -62,17 +63,18 @@
 @property (strong, nonatomic) IBOutlet UILabel *categoryLabel;
 @property (strong, nonatomic) IBOutlet UILabel *priceLabel;
 
-@property (strong, nonatomic) Place * place;
+@property (strong, nonatomic) NSString * placeID;
+
 
 @end
 
 @implementation PlacePropertyView
 
-- (instancetype)initWithPlace:(Place *)place
+- (instancetype)initWithPlace:(NSString *)placeID
 {
     self = [super init];
     if (self) {
-        self.place = place;
+        self.placeID = placeID;
     }
     
     return self;
@@ -103,9 +105,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void) updateProperty: (Place *) place {
+
+}
+
 - (void) updateCellContents {
     //ConverterUtil *converter = [ConverterUtil sharedUtil];
     
+    Place * place = [Place entityWithID:self.placeID inManagedObjectContext:[ConfigurationManager sharedManager].managedObjectContext];
+    
+    [self updateProperty:place];
     
     
 //    @property (strong, nonatomic) UILabel *nameLabel;
@@ -118,15 +127,15 @@
     
     ConverterUtil * converter = [ConverterUtil sharedUtil];
     
-    self.nameLabel.text = self.place.title;
-    self.starLabel.text = [converter starString:[self.place.rankings intValue]];
-    self.hourLabel.text = [NSString stringWithFormat:@"Hours: %@ ~ %@", [converter stringFromDateTimeShort:self.place.openTime], [converter stringFromDateTimeShort:self.place.closeTime]];
+    self.nameLabel.text = place.title;
+    self.starLabel.text = [converter starString:[place.rankings intValue]];
+    self.hourLabel.text = [NSString stringWithFormat:@"Hours: %@ ~ %@", [converter stringFromDateTimeShort:place.openTime], [converter stringFromDateTimeShort:place.closeTime]];
     self.reviewNumLabel.text = @"rev num";
-    self.likesLabel.text = [NSString stringWithFormat:@"%d likes", [self.place.likes intValue]];
+    self.likesLabel.text = [NSString stringWithFormat:@"%d likes", [place.likes intValue]];
     self.distanceLabel.text = @"distance";
     NSDate * currentTime = [converter timeOfDate:[NSDate date]];
-    NSDate * openTime = [converter timeOfDate:self.place.openTime];
-    NSDate * closeTime = [converter timeOfDate:self.place.closeTime];
+    NSDate * openTime = [converter timeOfDate:place.openTime];
+    NSDate * closeTime = [converter timeOfDate:place.closeTime];
     if ([currentTime compare:openTime] == NSOrderedDescending && [currentTime compare:closeTime] == NSOrderedAscending) {
         self.statusLabel.text = @"Open";
     }
@@ -134,11 +143,11 @@
         self.statusLabel.text = @"Close";
     }
     
-    //self.reviewNumLabel.text = self.place.
-    self.locationCell.textLabel.text = self.place.location;
-    self.priceCell.detailTextLabel.text = [[ConverterUtil sharedUtil] starString:[self.place.price intValue]];
-    self.parkingCell.detailTextLabel.text = [[ConverterUtil sharedUtil] starString:[self.place.parking intValue]];
-    self.photoCell.detailTextLabel.text = [NSString stringWithFormat:@"%lu counts", [self.place.photos count]];
+    //self.reviewNumLabel.text = place.
+    self.locationCell.textLabel.text = place.location;
+    self.priceCell.detailTextLabel.text = [[ConverterUtil sharedUtil] starString:[place.price intValue]];
+    self.parkingCell.detailTextLabel.text = [[ConverterUtil sharedUtil] starString:[place.parking intValue]];
+    self.photoCell.detailTextLabel.text = [NSString stringWithFormat:@"%lu counts", [place.photos count]];
     
 }
 
@@ -268,12 +277,14 @@
 }
 
 - (void) actionMap {
+    Place * place = [Place entityWithID:self.placeID inManagedObjectContext:[ConfigurationManager sharedManager].managedObjectContext];
+    
     UIViewController * mapVC = [[UIViewController alloc] init];
     MKMapView * mapView = [[MKMapView alloc] initWithFrame:mapVC.view.bounds];
     [mapVC.view addSubview:mapView];
     
-    [mapView addAnnotation:self.place];
-    [mapView showAnnotations:@[self.place] animated:YES];
+    [mapView addAnnotation:place];
+    [mapView showAnnotations:@[place] animated:YES];
     mapView.showsUserLocation = YES;
     [self.navigationController pushViewController:mapVC animated:YES];
 }

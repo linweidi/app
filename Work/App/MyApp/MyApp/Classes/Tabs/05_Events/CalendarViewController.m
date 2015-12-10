@@ -561,7 +561,7 @@
 //	groupSettingsView.hidesBottomBarWhenPushed = YES;
 //	[self.navigationController pushViewController:groupSettingsView animated:YES];
     Event * event = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    EventSettingsView * eventSettingsView = [[EventSettingsView alloc] initWithEvent:event];
+    EventSettingsView * eventSettingsView = [[EventSettingsView alloc] initWithEvent:event.globalID];
     eventSettingsView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:eventSettingsView animated:YES];
 }

@@ -21,15 +21,6 @@
 @synthesize delegate;
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -38,7 +29,8 @@
     self.title = @"Select Multiple";
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self
-																						   action:@selector(actionDone)];
+                                                                                           action:@selector(actionDone)];
+    NSParameterAssert(self.delegate);
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,26 +40,42 @@
 }
 
 - (void)actionDone
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 {
-	if ([selection count] == 0) {
+	if ([self.selection count] == 0) {
         [ProgressHUD showError:@"Please select some users."];
         return;
     }
-	//---------------------------------------------------------------------------------------------------------------------------------------------
-	[self dismissViewControllerAnimated:YES completion:^{
-		if (delegate != nil)
-		{
-			NSMutableArray *selectedUsers = [[NSMutableArray alloc] init];
-            
-            for (NSString * userID in selection) {
-                User * user = [[UserManager sharedUtil] getUser:userID];
-                NSAssert(user, @"user does not exist");
-                [selectedUsers addObject:user];
-            }
-            [delegate didSelectMultipleUsers:selectedUsers];
-			
-		}
-	}];
+
+//	[self dismissViewControllerAnimated:YES completion:^{
+//		if (delegate != nil)
+//		{
+//			NSMutableArray *selectedUsers = [[NSMutableArray alloc] init];
+//            
+//            for (NSString * userID in self.selection) {
+//                User * user = [[UserManager sharedUtil] getUser:userID];
+//                NSAssert(user, @"user does not exist");
+//                [selectedUsers addObject:user];
+//            }
+//            [delegate didSelectMultipleUsers:selectedUsers];
+//			
+//		}
+//	}];
+    
+    if (delegate != nil)
+    {
+//        NSMutableArray *selectedUsers = [[NSMutableArray alloc] init];
+//        
+//        for (NSString * userID in self.selection) {
+//            User * user = [[UserManager sharedUtil] getUser:userID];
+//            NSAssert(user, @"user does not exist");
+//            [selectedUsers addObject:user];
+//        }
+//        [delegate didSelectMultipleUsers:selectedUsers];
+        
+        [delegate didSelectMultipleUserIDs:self.selection];
+        
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+    
 }
 @end

@@ -10,14 +10,14 @@
 
 @class User;
 @protocol SelectMultiplePeopleDelegate
-//-------------------------------------------------------------------------------------------------------------------------------------------------
 
+@optional
 - (void)didSelectMultipleUsers:(NSMutableArray *)users;
-
+- (void)didSelectMultipleUserIDs:(NSMutableArray *)userIDs;
 @end
 
 @interface SelectMultiplePeopleView : SelectPeopleView
 
-@property (nonatomic, assign) id<SelectMultiplePeopleDelegate>delegate;
+@property (nonatomic, weak) id<SelectMultiplePeopleDelegate>delegate;
 
 @end

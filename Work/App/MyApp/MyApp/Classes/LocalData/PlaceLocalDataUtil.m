@@ -67,6 +67,18 @@
     place.price = dict[PF_PLACE_PRICE];
     place.rankings = dict[PF_PLACE_RANKINGS];
     place.tips = dict[PF_PLACE_TIPS];
+    
+    //place.catLocalIDs = [NSArray arrayWithArray: dict[PF_PLACE_CAT_LOCAL_IDS]];
+    
+    NSMutableArray *catLocalIDs = [[NSMutableArray alloc] init];
+    for (NSString * localID in dict[PF_PLACE_CAT_LOCAL_IDS]) {
+        [catLocalIDs addObject:[NSString stringWithFormat:@"%@",localID]];
+    }
+    place.catLocalIDs =  [NSArray arrayWithArray: catLocalIDs];
+    
+
+    //place.catLocalIDs =  [NSKeyedArchiver archivedDataWithRootObject:catLocalIDs];
+    
     //place.categories = dict[PF_PLACE_CATEGORY];
     
     for (NSString * pictID in dict[PF_PLACE_PHOTOS]) {
@@ -77,10 +89,12 @@
     Thumbnail * thumb = [Thumbnail fetchEntityWithID:dict[PF_PLACE_THUMB] inManagedObjectContext:self.managedObjectContext];
     place.thumb = thumb;
     
-    for (NSString * categoryID in dict[PF_PLACE_CATEGORY]) {
-        EventCategory * category = [EventCategory fetchEntityWithID:categoryID inManagedObjectContext:self.managedObjectContext];
+
+    for (NSString * localID in dict[PF_PLACE_CAT_LOCAL_IDS]) {
+        EventCategory * category = [EventCategory entityWithLocalID:[NSString stringWithFormat:@"%@",localID] inManagedObjectContext:self.managedObjectContext];
         [place addCategoriesObject:category];
     }
+
 }
 
 //- (void) createLocalPlaces:(NSArray *)placeObjArray completionHandler:(REMOTE_OBJECT_BLOCK)block{
@@ -91,17 +105,39 @@
 //}
 
 // Note: places are not stored locally. only the places under some events are stored locally. but for local test, we implement all places locally.
-- (void) loadPlacesRecommended:(NSMutableArray *)array category:(EventCategory *)category {
+- (NSArray *) loadPlacesRecommended:(NSString *)localID {
+
+    NSError * error = nil;
+    //[self.managedObjectContext save:&error];
+    NSParameterAssert(error == nil);
+    
+//    NSEntityDescription *descriptor = [NSEntityDescription entityForName:@"Place" inManagedObjectContext:self.managedObjectContext];
+//    NSFetchRequest * request = [[NSFetchRequest alloc] init];
+//    request.entity = descriptor;
+//    request.predicate = [NSPredicate predicateWithFormat:@"ANY catLocalIDs == %@", [NSString stringWithFormat:@"%@",@"4.4"]];
+//    NSArray * matches = [[ConfigurationManager sharedManager].managedObjectContext executeFetchRequest:request error:&error];
+    
+    
     NSFetchRequest * request = [NSFetchRequest fetchRequestWithEntityName:self.className];
 #warning TODO add sort descriptor for place's advertisement level
     //NSSortDescriptor;
-    request.predicate = [NSPredicate predicateWithFormat:@"%@ IN categories", category];
+    //request.predicate = [NSPredicate predicateWithFormat:@"%@ IN catLocalIDs", [NSString stringWithFormat:@"%@",localID]];
     
-    NSError * error = nil;
+    request.predicate = [NSPredicate predicateWithFormat:@"ANY categories.localID == %@", [NSString stringWithFormat:@"%@",localID]];
+    //request.predicate = [NSPredicate predicateWithFormat:@"SUBQUERY(catLocalIDs, $g, $g == %@).@count == 0", localID];
+    //[NSPredicate predicateWithFormat:@"SUBQUERY(games, $g, $g == %@).@count == 0", self.game]
+    
+    
     NSArray * matches = [self.managedObjectContext executeFetchRequest:request error:&error];
     if (!error) {
-        [array addObjectsFromArray:matches];
+        //return matches;
     }
+    
+    return matches;
+    
+    //return nil;
+    
+    
 }
 
 @end

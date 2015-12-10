@@ -2,7 +2,7 @@
 //  Place+CoreDataProperties.h
 //  MyApp
 //
-//  Created by Linwei Ding on 11/28/15.
+//  Created by Linwei Ding on 12/6/15.
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *subtitle;
 @property (nullable, nonatomic, retain) NSString *tips;
 @property (nullable, nonatomic, retain) NSString *title;
+@property (nullable, nonatomic, retain) id catLocalIDs;
 @property (nullable, nonatomic, retain) NSSet<EventCategory *> *categories;
 @property (nullable, nonatomic, retain) NSSet<Picture *> *photos;
 @property (nullable, nonatomic, retain) Thumbnail *thumb;

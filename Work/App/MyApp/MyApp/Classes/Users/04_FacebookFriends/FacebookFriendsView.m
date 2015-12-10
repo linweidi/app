@@ -46,6 +46,8 @@
 	users = [[NSMutableArray alloc] init];
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	[self loadFacebook];
+    
+    NSParameterAssert(self.delegate);
 }
 
 #pragma mark - Backend methods

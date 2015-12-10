@@ -110,7 +110,7 @@
         //request.predicate = [NSPredicate predicateWithFormat:@"string"];
         request.fetchLimit = PEOPLEVIEW_DISPLAY_ITEM_NUM;
         request.sortDescriptors = @[[NSSortDescriptor
-                                     sortDescriptorWithKey:@"name"
+                                     sortDescriptorWithKey:@"initial"
                                      ascending:YES
                                      selector:@selector(localizedCompare:)],
                                     ];
@@ -286,6 +286,9 @@
 
 
 	}
+    else {
+        [ProgressHUD showError:@"User already exists."];
+    }
 }
 
 #pragma mark - Table view data source
@@ -354,17 +357,19 @@
             [self.userIds removeObject:user.globalID];
             //[self setObjects:users];
             //---------------------------------------------------------------------------------------------------------------------------------------------
-            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            //[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }
     }];
 #endif
 #ifdef LOCAL_MODE
     [[PeopleLocalDataUtil sharedUtil] removeLocalPeople:user completionHandler:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
-            [self.userIds removeObject:user.globalID];
+            
             //[self setObjects:users];
-            //---------------------------------------------------------------------------------------------------------------------------------------------
-            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+
+            //[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            
+            [self.userIds removeObject:user.globalID];
         }
     }];
 #endif

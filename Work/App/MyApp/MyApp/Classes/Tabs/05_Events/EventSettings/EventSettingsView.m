@@ -6,9 +6,11 @@
 //  Copyright (c) 2015 Linweiding. All rights reserved.
 //
 
+#import "AppConstant.h"
 #import "ProgressHUD.h"
 #import "Event+Util.h"
-#import "TwoLabelTVCell.h"
+
+#import "ThemeManager.h"
 #import "EventCellView.h"
 #import "MemberListView.h"
 #import "InviteeListView.h"
@@ -16,12 +18,20 @@
 #import "BoardListView.h"
 #import "EventCategory+Util.h"
 #import "Place+Util.h"
+#import "Place+Annotation.h"
 #import "ConverterUtil.h"
 #import "Alert+Util.h"
 #import "PlacePropertyView.h"
 #import "ThemeManager.h"
 
 #import "PlaceListView.h"
+
+#import "SelectMultiplePeopleView.h"
+
+#import "ConfigurationManager.h"
+
+#import "SelectMultipleBoardView.h"
+#import "SelectMultipleGroupView.h"
 
 #import "EventSettingsView.h"
 
@@ -33,10 +43,19 @@
 
 @interface EventSettingsView ()
 
-@property (strong, nonatomic) Event * event;
+
 
 @property (nonatomic) BOOL editEnable;
 
+@property (strong, nonatomic) NSString * eventID;
+@property (nonatomic) BOOL isAlert;
+@property (strong, nonatomic) NSString * categoryID;
+@property (strong, nonatomic) NSString * categoryName;
+@property (strong, nonatomic) NSArray * members;
+@property (strong, nonatomic) NSArray * invitees;
+@property (strong, nonatomic) NSArray * boards;
+@property (strong, nonatomic) NSArray * groups;
+@property (strong, nonatomic) NSString * placeID;
 
 // static cell
 @property (strong, nonatomic) UITableViewCell *titleCell;
@@ -54,6 +73,10 @@
 @property (strong, nonatomic) UITableViewCell *alertCell;
 
 @property (strong, nonatomic) UITableViewCell *selectPlaceCell;
+@property (strong, nonatomic) UITableViewCell *selectInviteeCell;
+@property (strong, nonatomic) UITableViewCell *selectMemberCell;
+@property (strong, nonatomic) UITableViewCell *selectBoardCell;
+@property (strong, nonatomic) UITableViewCell *selectGroupCell;
 // static label
 //@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 //@property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
@@ -75,17 +98,19 @@
 @property (strong, nonatomic) UIDatePicker * datePicker;
 
 @property (strong, nonatomic) UIBarButtonItem * editButton;
+
+@property (strong, nonatomic) NSIndexPath * curIndexPath;
 @end
 
 @implementation EventSettingsView
 
 
 
-- (instancetype)initWithEvent:(Event *)event
+- (instancetype)initWithEvent:(NSString *)eventID
 {
     self = [super init];
     if (self) {
-        self.event = event;
+        self.eventID = eventID;
     }
 
     return self;
@@ -95,7 +120,7 @@
 {
     [super viewDidLoad];
     
-    self.title = self.event.title;
+    self.title = @"Event";
     // Do any additional setup after loading the view from its nib.
     
 //    [self.tableView registerNib:[UINib nibWithNibName:@"TwoLabelTVCell" bundle:nil] forCellReuseIdentifier:@"LabelCell"];
@@ -145,31 +170,35 @@
 //@property (weak, nonatomic) IBOutlet UILabel *membersLabel;
 //@property (weak, nonatomic) IBOutlet UILabel *alertLabel;
 - (void) updateCellContents {
-    self.titleCell.detailTextLabel.text = self.event.title;
-    self.categoryCell.detailTextLabel.text = self.event.category.name;
-    self.busySegement.selectedSegmentIndex = [self.event.busy boolValue]?0:1;    //0:yes, 1:no
-    self.locationCell.detailTextLabel.text = self.event.location;
-    self.placeCell.detailTextLabel.text = self.event.place.title;
+    Event * event = [Event entityWithID:self.eventID inManagedObjectContext:[ConfigurationManager sharedManager].managedObjectContext];
+    
+    [self updateProperty:event];
+    
+    self.titleCell.detailTextLabel.text = event.title;
+    self.categoryCell.detailTextLabel.text = event.category.name;
+    self.busySegement.selectedSegmentIndex = [event.busy boolValue]?0:1;    //0:yes, 1:no
+    self.locationCell.detailTextLabel.text = event.location;
+    self.placeCell.detailTextLabel.text = event.place.title;
 
     
-    self.startTimeCell.detailTextLabel.text = [[ConverterUtil sharedUtil] stringFromDateShort: self.event.startTime];
-    self.endTimeCell.detailTextLabel.text = [[ConverterUtil sharedUtil] stringFromDateShort:self.event.endTime];
+    self.startTimeCell.detailTextLabel.text = [[ConverterUtil sharedUtil] stringFromDateShort: event.startTime];
+    self.endTimeCell.detailTextLabel.text = [[ConverterUtil sharedUtil] stringFromDateShort:event.endTime];
     
-    if ([self.event.scope isEqualToString:@"private"]) {
+    if ([event.scope isEqualToString:@"private"]) {
         self.scopeSegment.selectedSegmentIndex = 0;
     }
-    else if ([self.event.scope isEqualToString:@"friend"]) {
+    else if ([event.scope isEqualToString:@"friend"]) {
         self.scopeSegment.selectedSegmentIndex = 1;
     }
-    else if ([self.event.scope isEqualToString:@"public"]) {
+    else if ([event.scope isEqualToString:@"public"]) {
         self.scopeSegment.selectedSegmentIndex = 2;
     }
-    self.inviteeCell.detailTextLabel.text = [NSString stringWithFormat:@"%lu invitees", [(NSArray *)self.event.invitees count] ] ;
-    self.boardsCell.detailTextLabel.text = [NSString stringWithFormat:@"%lu boards", [(NSArray *)self.event.boardIDs count] ] ;
-    self.groupsCell.detailTextLabel.text = [NSString stringWithFormat:@"%lu groups", [(NSArray *)self.event.groupIDs count] ] ;
-    self.membersCell.detailTextLabel.text = [NSString stringWithFormat:@"%lu members", [(NSArray *)self.event.members count] ] ;
+    self.inviteeCell.detailTextLabel.text = [NSString stringWithFormat:@"%lu invitees", [(NSArray *)event.invitees count] ] ;
+    self.boardsCell.detailTextLabel.text = [NSString stringWithFormat:@"%lu boards", [(NSArray *)event.boardIDs count] ] ;
+    self.groupsCell.detailTextLabel.text = [NSString stringWithFormat:@"%lu groups", [(NSArray *)event.groupIDs count] ] ;
+    self.membersCell.detailTextLabel.text = [NSString stringWithFormat:@"%lu members", [(NSArray *)event.members count] ] ;
     
-    self.alertCell.detailTextLabel.text = [[ConverterUtil sharedUtil] stringFromDate: self.event.alert.time];
+    self.alertCell.detailTextLabel.text = [[ConverterUtil sharedUtil] stringFromDateShort: event.alert.time];
     
     //accessory
     self.placeCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -199,6 +228,19 @@
         
         self.alertCell.accessoryType = UITableViewCellAccessoryNone;
     }
+    
+    
+}
+
+- (void) updateProperty: (Event *) event {
+    self.isAlert = event.isAlert;
+    self.members = [NSArray arrayWithArray:event.members];
+    self.invitees = [NSArray arrayWithArray:event.invitees];
+    self.groups = [NSArray arrayWithArray:event.groupIDs];
+    self.boards = [NSArray arrayWithArray:event.boardIDs];
+    self.categoryID = event.category.localID;
+    self.categoryName = event.category.name;
+    self.placeID = event.place.globalID;
 }
 
 
@@ -231,22 +273,23 @@
             }
             break;
         case EVENT_SETTING_VIEW_SECTION_INVITEE_INDEX:
+            
             if (self.scopeSegment.selectedSegmentIndex == 0) {
                 //private
                 ret = 0;
             }
             else if (self.scopeSegment.selectedSegmentIndex == 1) {
                 //friend
-                ret = 3;
+                ret = (!self.editEnable)? 3:5;
             }
             else {
                 //public
-                ret = 4;
+                ret = (!self.editEnable)? 4:7;
             }
             
             break;
         case EVENT_SETTING_VIEW_SECTION_ALERT_INDEX:
-            if (self.event.isAlert) {
+            if (self.isAlert) {
                 ret = 1;
             }
             else {
@@ -301,17 +344,56 @@
             }
             break;
         case EVENT_SETTING_VIEW_SECTION_INVITEE_INDEX:
-            if (indexPath.row == 0) {
-                cell = self.membersCell;
+            if (self.editEnable) {
+                if (indexPath.row == 0) {
+                    cell = self.membersCell;
+                }
+                if (indexPath.row == 1) {
+                    cell = self.inviteeCell;
+                }
+                if (indexPath.row == 3) {
+                    cell = self.groupsCell;
+                }
+                if (indexPath.row == 5) {
+                    cell = self.boardsCell;
+                }
+//                if (indexPath.row == 1) {
+//                    cell = nil;
+//                }
+//                if (indexPath.row == 3) {
+//                    cell = self.selectInviteeCell;
+//                }
+//                if (indexPath.row == 5) {
+//                    cell = self.selectGroupCell;
+//                }
+//                if (indexPath.row == 7) {
+//                    cell = self.selectBoardCell;
+//                }
+                
+                if (indexPath.row == 2) {
+                    cell = self.selectInviteeCell;
+                }
+                if (indexPath.row == 4) {
+                    cell = self.selectGroupCell;
+                }
+                if (indexPath.row == 6) {
+                    cell = self.selectBoardCell;
+                }
+
             }
-            if (indexPath.row == 1) {
-                cell = self.inviteeCell;
-            }
-            if (indexPath.row == 2) {
-                cell = self.groupsCell;
-            }
-            if (indexPath.row == 3) {
-                cell = self.boardsCell;
+            else {
+                if (indexPath.row == 0) {
+                    cell = self.membersCell;
+                }
+                if (indexPath.row == 1) {
+                    cell = self.inviteeCell;
+                }
+                if (indexPath.row == 2) {
+                    cell = self.groupsCell;
+                }
+                if (indexPath.row == 3) {
+                    cell = self.boardsCell;
+                }
             }
             break;
         case EVENT_SETTING_VIEW_SECTION_ALERT_INDEX:
@@ -344,7 +426,7 @@
             
             break;
         case EVENT_SETTING_VIEW_SECTION_ALERT_INDEX:
-            if (self.event.isAlert) {
+            if (self.isAlert) {
                 ret = @"alert";
             }
             else {
@@ -362,7 +444,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    self.curIndexPath = indexPath;
     
     switch (indexPath.section) {
         case EVENT_SETTING_VIEW_SECTION_TITLE_INDEX:
@@ -394,34 +479,76 @@
                 //cell = self.placeCell;
                 [self actionPlace];
             }
+            if (indexPath.row == 1) {
+                [self actionOnSelectPlace];
+            }
             break;
         case EVENT_SETTING_VIEW_SECTION_INVITEE_INDEX:
-            if (indexPath.row == 0) {
-                //cell = self.membersCell;
-                [self actionMembers];
+            if (self.editEnable) {
+                if (indexPath.row == 0) {
+                    //cell = self.membersCell;
+                    [self actionMembers];
+                }
+                if (indexPath.row == 1) {
+                    //cell = self.inviteeCell;
+                    [self actionInvitee];
+                }
+                if (indexPath.row == 3) {
+                    //cell = self.groupsCell;
+                    [self actionGroups];
+                }
+                if (indexPath.row == 5) {
+                    //cell = self.boardsCell;
+                    [self actionBoards];
+                }
+//                if (indexPath.row == 1) {
+//                    //cell = self.membersCell;
+//                    //[self actionOnSelectMember];
+//                }
+                if (indexPath.row == 2) {
+                    //cell = self.inviteeCell;
+                    [self actionOnSelectInvitee];
+                }
+                if (indexPath.row == 4) {
+                    //cell = self.groupsCell;
+                    [self actionOnSelectGroup];
+                }
+                if (indexPath.row == 6) {
+                    //cell = self.boardsCell;
+                    [self actionOnSelectBoard];
+                }
             }
-            if (indexPath.row == 1) {
-                //cell = self.inviteeCell;
-                [self actionInvitee];
+            else {
+                if (indexPath.row == 0) {
+                    //cell = self.membersCell;
+                    [self actionMembers];
+                }
+                if (indexPath.row == 1) {
+                    //cell = self.inviteeCell;
+                    [self actionInvitee];
+                }
+                if (indexPath.row == 2) {
+                    //cell = self.groupsCell;
+                    [self actionGroups];
+                }
+                if (indexPath.row == 3) {
+                    //cell = self.boardsCell;
+                    [self actionBoards];
+                }
             }
-            if (indexPath.row == 2) {
-                //cell = self.groupsCell;
-                [self actionGroups];
-            }
-            if (indexPath.row == 3) {
-                //cell = self.boardsCell;
-                [self actionBoards];
-                
-            }
+            
             break;
         case EVENT_SETTING_VIEW_SECTION_ALERT_INDEX:
             if (indexPath.row == 0) {
                 //cell = self.alertCell;
+                [self actionDate:self.alertCell.textLabel.text text:self.alertCell.detailTextLabel.text indexPath:indexPath];
             }
             break;
         default:
             break;
     }
+    
+    
 }
 
 #pragma mark -- Actions
@@ -443,13 +570,13 @@
 
 #pragma mark -- SingleTextViewController delegate
 - (void)updateTextfield:(NSString *)text indexPath:(NSIndexPath *)indexPath {
-    
+    Event * event = [Event entityWithID:self.eventID inManagedObjectContext:[ConfigurationManager sharedManager].managedObjectContext];
 #warning TODO update remotely as well
     switch (indexPath.section) {
         case EVENT_SETTING_VIEW_SECTION_TITLE_INDEX:
             if (indexPath.row == 0) {
 
-                self.event.title = text;
+                event.title = text;
                 [ProgressHUD showSuccess:[NSString stringWithFormat:@"%@ is updated!", @"title"]];
             }
             if (indexPath.row == 1) {
@@ -458,7 +585,7 @@
             }
             if (indexPath.row == 2) {
                 //cell = self.locationCell;
-                self.event.location = text;
+                event.location = text;
                 [ProgressHUD showSuccess:[NSString stringWithFormat:@"%@ is updated!", @"location"]];
             }
             break;
@@ -466,29 +593,156 @@
         case EVENT_SETTING_VIEW_SECTION_TIME_INDEX:
             if (indexPath.row == 0) {
                 //cell = self.startTime;
-                self.event.startTime = [[ConverterUtil sharedUtil] dateFromStringShort: text];
-                if ([self.event.startTime compare:self.event.endTime] != NSOrderedAscending) {
-                    self.event.endTime = nil;
+                event.startTime = [[ConverterUtil sharedUtil] dateFromStringShort: text];
+                if ([event.startTime compare:event.endTime] != NSOrderedAscending) {
+                    event.endTime = nil;
                 }
                 [ProgressHUD showSuccess:[NSString stringWithFormat:@"%@ is updated!", @"start time"]];
             }
             if (indexPath.row == 1) {
                 //ell = self.endTime;
-                self.event.endTime = [[ConverterUtil sharedUtil] dateFromStringShort: text];
-                if ([self.event.startTime compare:self.event.endTime] == NSOrderedAscending) {
+                event.endTime = [[ConverterUtil sharedUtil] dateFromStringShort: text];
+                if ([event.startTime compare:event.endTime] == NSOrderedAscending) {
                     [ProgressHUD showSuccess:[NSString stringWithFormat:@"%@ is updated!", @"end time"]];
                 }
                 else {
                     [ProgressHUD showError:@"your startTime is later than endTime, please update your startTime at first"];
-                    self.event.endTime = nil;
+                    event.endTime = nil;
                 }
             }
             
+            break;
+        case EVENT_SETTING_VIEW_SECTION_ALERT_INDEX:
+            if (indexPath.row == 0) {
+                //cell = self.alertCell;
+                event.alert.time = [[ConverterUtil sharedUtil] dateFromStringShort: text];
+#warning TODO add alert to local notification system
+            }
             break;
         default:
             break;
     }
 }
+- (void)didSelectSinglePlaceMapItem:(MKMapItem *)place catLocalID:(NSString *)localID{
+    if (place) {
+#warning TODO save this place into our system;
+        NSManagedObjectContext * context = [ConfigurationManager sharedManager].managedObjectContext;
+#ifdef LOCAL_MODE
+        Place *newPlace = [Place createEntity:context];
+        
+        NSArray * catLocalIDs = @[localID];
+        
+        [self updatePlace:newPlace withMapItem:place withCatLocalIDs:catLocalIDs];
+#endif
+    }
+#warning TODO implement Remote mode here
+}
+
+- (void) updatePlace:(Place *)place withMapItem:(MKMapItem *)mapItem withCatLocalIDs:(NSArray *)localIDs{
+    place.coordinate = mapItem.placemark.location.coordinate;
+    place.likes = 0;
+    place.parking = 0;
+    place.price = 0;
+    place.rankings = 0;
+    place.title = mapItem.name?mapItem.name:mapItem.placemark.title;
+    place.subtitle = @"";
+    place.tips = @"";
+    place.catLocalIDs = localIDs;
+}
+
+- (void)didSelectSinglePlace:(Place *)place {
+    if (place) {
+        NSManagedObjectContext * context = [ConfigurationManager sharedManager].managedObjectContext;
+#ifdef LOCAL_MODE
+        Place * newPlace = [Place entityWithID:place.globalID inManagedObjectContext:context];
+        
+        NSAssert(newPlace, @"select new place does not exist");
+#endif
+#warning implement Remote mode here
+//        if (!newPlace) {
+//            newPlace = [Place createEntity:context];
+//            newPlace populateProperties:
+//        }
+    }
+}
+
+
+//- (void)didSelectMultipleUsers:(NSMutableArray *)users {
+//    if (users) {
+//        
+//        Event * event = [Event entityWithID:self.eventID inManagedObjectContext:[ConfigurationManager sharedManager].managedObjectContext];
+//        
+//        //[self updateProperty:event];
+//#ifdef LOCAL_MODE
+//        
+//        if (self.curIndexPath.section == EVENT_SETTING_VIEW_SECTION_INVITEE_INDEX) {
+//            switch (self.curIndexPath.row) {
+//                case 0:
+//                    break;
+//                case 1:
+//                    event.invitees = users;
+//                    break;
+//                case 2:
+//                    event.groupIDs = users;
+//                    break;
+//                case 3:
+//                    event.boardIDs = users;
+//                    break;
+//                default:
+//                    break;
+//            }
+//        }
+//#endif
+//#warning implement Remote mode here
+//        //        if (!newPlace) {
+//        //            newPlace = [Place createEntity:context];
+//        //            newPlace populateProperties:
+//        //        }
+//    }
+//}
+
+- (void)didSelectMultipleUserIDs:(NSMutableArray *)userIDs {
+    if (userIDs) {
+        
+        Event * event = [Event entityWithID:self.eventID inManagedObjectContext:[ConfigurationManager sharedManager].managedObjectContext];
+        
+        //[self updateProperty:event];
+#ifdef LOCAL_MODE
+        event.invitees = userIDs;
+#endif
+#warning implement Remote mode here
+
+    }
+}
+
+- (void)didSelectMultipleGroupIDs:(NSMutableArray *)groupIDs {
+    if (groupIDs) {
+        
+        Event * event = [Event entityWithID:self.eventID inManagedObjectContext:[ConfigurationManager sharedManager].managedObjectContext];
+        
+        //[self updateProperty:event];
+#ifdef LOCAL_MODE
+        event.groupIDs = groupIDs;
+#endif
+#warning implement Remote mode here
+        
+    }
+}
+
+- (void)didSelectMultipleBoardIDs:(NSMutableArray *)boardIDs {
+    if (boardIDs) {
+        
+        Event * event = [Event entityWithID:self.eventID inManagedObjectContext:[ConfigurationManager sharedManager].managedObjectContext];
+        
+        //[self updateProperty:event];
+#ifdef LOCAL_MODE
+        event.boardIDs = boardIDs;
+#endif
+#warning implement Remote mode here
+        
+    }
+}
+
 
 
 #pragma mark -- action single cell
@@ -523,13 +777,17 @@
 #pragma mark -- action place
 
 - (void) actionPlace {
-    PlacePropertyView * placePropVC = [[PlacePropertyView alloc] initWithPlace:self.event.place];
+    PlacePropertyView * placePropVC = [[PlacePropertyView alloc] initWithPlace:self.placeID];
     [self.navigationController pushViewController:placePropVC animated:YES];
 }
 
 - (void) actionOnSelectPlace {
-    if (self.event.category) {
+    if (self.categoryID) {
+        
         PlaceListView * placeListVC = [[PlaceListView alloc] init];
+        placeListVC.catLocalID = [NSString stringWithFormat:@"%@", self.categoryID];
+        placeListVC.catName = [NSString stringWithFormat:@"%@", self.categoryName];
+        placeListVC.delegate = self;
         [self.navigationController pushViewController:placeListVC animated:YES];
     }
     else {
@@ -538,52 +796,104 @@
     
 }
 
+- (void) actionOnSelectBoard {
+    SelectMultipleBoardView * selectView = [[SelectMultipleBoardView alloc] init];
+    //NSParameterAssert(selectView.selection);
+    selectView.delegate = self;
+    [selectView.selection addObjectsFromArray:self.groups];
+    [self.navigationController pushViewController:selectView animated:YES];
+}
+
+//- (void) actionOnSelectMember {
+//    [self presentUserSelectionView:self.event.members];
+//}
+
+- (void) actionOnSelectInvitee {
+    SelectMultiplePeopleView * selectView = [[SelectMultiplePeopleView alloc] init];
+    //NSParameterAssert(selectView.selection);
+    selectView.delegate = self;
+    [selectView.selection addObjectsFromArray:self.invitees];
+    [self.navigationController pushViewController:selectView animated:YES];
+}
+
+- (void) actionOnSelectGroup {
+    SelectMultipleGroupView * selectView = [[SelectMultipleGroupView alloc] init];
+    //NSParameterAssert(selectView.selection);
+    selectView.delegate = self;
+    [selectView.selection addObjectsFromArray:self.groups];
+    [self.navigationController pushViewController:selectView animated:YES];
+}
+
+-  (void) presentUserSelectionView: (NSArray *)selectionIDs {
+    SelectMultiplePeopleView * selectView = [[SelectMultiplePeopleView alloc] init];
+    //NSParameterAssert(selectView.selection);
+    selectView.delegate = self;
+    [selectView.selection addObjectsFromArray:selectionIDs];
+    [self.navigationController pushViewController:selectView animated:YES];
+}
+//-  (void) pushUserSelectionView: (NSArray *)selectionIDs {
+//    SelectMultiplePeopleView * selectView = [[SelectMultiplePeopleView alloc] init];
+//    //NSParameterAssert(selectView.selection);
+//    [selectView.selection addObjectsFromArray:selectionIDs];
+//    [self.navigationController pushViewController:selectView animated:YES];
+//}
+
+
 #pragma mark -- action members
 
 - (void) actionMembers {
     MemberListView * memberVC = [[MemberListView alloc] init];
-    memberVC.userIDs = [NSArray arrayWithArray:self.event.members];
+    memberVC.userIDs = [NSArray arrayWithArray:self.members];
     [self.navigationController pushViewController:memberVC animated:YES];
 }
 
 - (void) actionInvitee {
     InviteeListView * inviteeVC = [[InviteeListView alloc] init];
-    inviteeVC.userIDs = [NSArray arrayWithArray:self.event.invitees];
+    inviteeVC.userIDs = [NSArray arrayWithArray:self.invitees];
     [self.navigationController pushViewController:inviteeVC animated:YES];
 }
 
 - (void) actionGroups {
     GroupListView * groupVC = [[GroupListView alloc] init];
-    groupVC.groupIDs  = [NSArray arrayWithArray:self.event.groupIDs];
+    groupVC.groupIDs  = [NSArray arrayWithArray:self.groups];
     [self.navigationController pushViewController:groupVC animated:YES];
 }
 
 - (void) actionBoards {
     BoardListView * boardVC = [[BoardListView alloc] init];
-    boardVC.boardIDs = [NSArray arrayWithArray:self.event.boardIDs];
+    boardVC.boardIDs = [NSArray arrayWithArray:self.boards];
     [self.navigationController pushViewController:boardVC animated:YES];
 }
 
 - (IBAction)actionScopeSegment:(UISegmentedControl *)sender {
+#warning TODO add remote process here
+    Event * event = [Event entityWithID:self.eventID inManagedObjectContext:[ConfigurationManager sharedManager].managedObjectContext];
+#ifdef LOCAL_MODE
+    
     if (sender.selectedSegmentIndex == 0) {
-        self.event.scope = @"private";
+        event.scope = @"private";
     }
     else if (sender.selectedSegmentIndex == 1) {
-        self.event.scope = @"friend";
+        event.scope = @"friend";
     }
     else {
-        self.event.scope = @"public";
+        event.scope = @"public";
     }
     [self.tableView reloadData];
+#endif
 }
 
 - (IBAction)actionBusySegment:(UISegmentedControl *)sender {
+#warning TODO add remote process here
+    Event * event = [Event entityWithID:self.eventID inManagedObjectContext:[ConfigurationManager sharedManager].managedObjectContext];
+#ifdef LOCAL_MODE
     if (sender.selectedSegmentIndex == 0) {
-        self.event.busy = @YES;
+        event.busy = @YES;
     }
     else {
-        self.event.busy = @NO;
+        event.busy = @NO;
     }
+#endif
 }
 
 
@@ -692,18 +1002,109 @@
 - (UITableViewCell *)selectPlaceCell {
     
     if (!_selectPlaceCell) {
-        _selectPlaceCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        //_selectPlaceCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         
-        UIButton * button = [[UIButton alloc] initWithFrame:self.placeCell.bounds];
-        [button addTarget:self action:@selector(actionOnSelectPlace) forControlEvents:UIControlEventTouchDown];
-        //button.backgroundColor = [UIColor redColor];
-        //[button setTintColor:[ThemeManager sharedUtil].buttonColor];
-        [button setTitle:@"Select Place" forState:UIControlStateNormal];
-
-        [button setTitleColor:[ThemeManager sharedUtil].buttonColor forState:UIControlStateNormal];
-        [_selectPlaceCell.contentView addSubview:button];
+//        UIButton * button = [[UIButton alloc] initWithFrame:self.placeCell.bounds];
+//        [button addTarget:self action:@selector(actionOnSelectPlace) forControlEvents:UIControlEventTouchDown];
+//        //button.backgroundColor = [UIColor redColor];
+//        //[button setTintColor:[ThemeManager sharedUtil].buttonColor];
+//        [button setTitle:@"Select Place" forState:UIControlStateNormal];
+//
+//        [button setTitleColor:[ThemeManager sharedUtil].buttonColor forState:UIControlStateNormal];
+//        [_selectPlaceCell.contentView addSubview:button];
+        
+        _selectPlaceCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        _selectPlaceCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        //[_selectPlaceCell setTintColor:[[ThemeManager sharedUtil] buttonColor]];
+        [_selectPlaceCell.textLabel setTextAlignment:NSTextAlignmentCenter];
+        [_selectPlaceCell.textLabel setTextColor:[[ThemeManager sharedUtil] buttonColor]];
+        [_selectPlaceCell.textLabel setText:@"Select Place"];
     }
     return _selectPlaceCell;
+}
+
+- (UITableViewCell *)selectBoardCell {
+    if (!_selectBoardCell) {
+//        _selectBoardCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+//        
+//        UIButton * button = [[UIButton alloc] initWithFrame:self.boardsCell.bounds];
+//        [button addTarget:self action:@selector(actionOnSelectBoard) forControlEvents:UIControlEventTouchDown];
+//        //button.backgroundColor = [UIColor redColor];
+//        //[button setTintColor:[ThemeManager sharedUtil].buttonColor];
+//        [button setTitle:@"Add Boards" forState:UIControlStateNormal];
+//        
+//        [button setTitleColor:[ThemeManager sharedUtil].buttonColor forState:UIControlStateNormal];
+//        [_selectBoardCell.contentView addSubview:button];
+        _selectBoardCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        _selectBoardCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        //[_selectBoardCell setTintColor:[[ThemeManager sharedUtil] buttonColor]];
+        [_selectBoardCell.textLabel setTextAlignment:NSTextAlignmentCenter];
+        [_selectBoardCell.textLabel setTextColor:[[ThemeManager sharedUtil] buttonColor]];
+        [_selectBoardCell.textLabel setText:@"Add Boards"];
+        
+    }
+    return _selectBoardCell;
+}
+
+- (UITableViewCell *)selectGroupCell {
+    if (!_selectGroupCell) {
+//        _selectGroupCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+//        
+//        UIButton * button = [[UIButton alloc] initWithFrame:self.groupsCell.bounds];
+//        [button addTarget:self action:@selector(actionOnSelectGroup) forControlEvents:UIControlEventTouchDown];
+//        //button.backgroundColor = [UIColor redColor];
+//        //[button setTintColor:[ThemeManager sharedUtil].buttonColor];
+//        [button setTitle:@"Add Groups" forState:UIControlStateNormal];
+//        
+//        [button setTitleColor:[ThemeManager sharedUtil].buttonColor forState:UIControlStateNormal];
+//        [_selectGroupCell.contentView addSubview:button];
+        
+        _selectGroupCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        _selectGroupCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        //[_selectGroupCell setTintColor:[[ThemeManager sharedUtil] buttonColor]];
+        [_selectGroupCell.textLabel setTextAlignment:NSTextAlignmentCenter];
+        [_selectGroupCell.textLabel setTextColor:[[ThemeManager sharedUtil] buttonColor]];
+        [_selectGroupCell.textLabel setText:@"Add Groups"];
+    }
+    return _selectGroupCell;
+}
+
+//- (UITableViewCell *)selectMemberCell {
+//    if (!_selectMemberCell) {
+//        _selectMemberCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+//        
+//        UIButton * button = [[UIButton alloc] initWithFrame:self.membersCell.bounds];
+//        [button addTarget:self action:@selector(actionOnSelectMember) forControlEvents:UIControlEventTouchDown];
+//        //button.backgroundColor = [UIColor redColor];
+//        //[button setTintColor:[ThemeManager sharedUtil].buttonColor];
+//        [button setTitle:@"Select Members" forState:UIControlStateNormal];
+//        
+//        [button setTitleColor:[ThemeManager sharedUtil].buttonColor forState:UIControlStateNormal];
+//        [_selectMemberCell.contentView addSubview:button];
+//    }
+//    return _selectMemberCell;
+//}
+
+- (UITableViewCell *)selectInviteeCell {
+    if (!_selectInviteeCell) {
+//        _selectInviteeCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+//        
+//        UIButton * button = [[UIButton alloc] initWithFrame:self.inviteeCell.bounds];
+//        [button addTarget:self action:@selector(actionOnSelectInvitee) forControlEvents:UIControlEventTouchDown];
+//        //button.backgroundColor = [UIColor redColor];
+//        //[button setTintColor:[ThemeManager sharedUtil].buttonColor];
+//        [button setTitle:@"Add Invitees" forState:UIControlStateNormal];
+//        
+//        [button setTitleColor:[ThemeManager sharedUtil].buttonColor forState:UIControlStateNormal];
+//        [_selectInviteeCell.contentView addSubview:button];
+        _selectInviteeCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        _selectInviteeCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        //[_selectInviteeCell setTintColor:[[ThemeManager sharedUtil] buttonColor]];
+        [_selectInviteeCell.textLabel setTextAlignment:NSTextAlignmentCenter];
+        [_selectInviteeCell.textLabel setTextColor:[[ThemeManager sharedUtil] buttonColor]];
+        [_selectInviteeCell.textLabel setText:@"Add Invitees"];
+    }
+    return _selectInviteeCell;
 }
 
 

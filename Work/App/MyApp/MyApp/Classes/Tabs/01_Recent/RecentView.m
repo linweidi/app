@@ -239,10 +239,12 @@
 		}
 		if (buttonIndex == 3)
 		{
+//#ifdef REMOTE_MODE
 			FacebookFriendsView *facebookFriendsView = [[FacebookFriendsView alloc] init];
 			facebookFriendsView.delegate = self;
 			NavigationController *navController = [[NavigationController alloc] initWithRootViewController:facebookFriendsView];
 			[self presentViewController:navController animated:YES completion:nil];
+//#endif
 		}
 	}
 }

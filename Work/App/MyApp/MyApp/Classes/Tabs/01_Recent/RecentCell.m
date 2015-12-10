@@ -25,11 +25,6 @@
 //	PFObject *recent;
 }
 
-@property (strong, nonatomic) IBOutlet UIImageView *imageUser;
-@property (strong, nonatomic) IBOutlet UILabel *labelDescription;
-@property (strong, nonatomic) IBOutlet UILabel *labelLastMessage;
-@property (strong, nonatomic) IBOutlet UILabel *labelElapsed;
-@property (strong, nonatomic) IBOutlet UILabel *labelCounter;
 
 @end
 
@@ -70,17 +65,6 @@
 	User *lastUser = recent.lastUser;
     
 
-//    PFQuery *query = [PFUser query];
-//    //[query whereKey:PF_USER_OBJECTID equalTo:@"female"]; // find all the women
-//    [query includeKey:PF_USER_PICTURE];
-//    [query getObjectInBackgroundWithId:lastUser.globalID block:^(PFObject * object, NSError *  error) {
-//        if (!error) {
-//            [imageUser setFile:object[PF_USER_PICTURE]];
-//            [imageUser loadInBackground];
-//        }else {
-//            
-//        }
-//    }];
     
     [imageUser setImage:[UIImage imageWithData:lastUser.thumbnail.data]];
     //[imageUser sizeToFit];
@@ -94,5 +78,7 @@
 	int counter = [recent.counter intValue];
 	labelCounter.text = (counter == 0) ? @"" : [NSString stringWithFormat:@"%d new", counter];
 }
+
+
 
 @end

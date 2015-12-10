@@ -25,6 +25,6 @@
 @interface AddressBookView : UITableViewController <UIActionSheetDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate>
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 
-@property (nonatomic, assign) IBOutlet id<AddressBookDelegate>delegate;
+@property (nonatomic, weak) IBOutlet id<AddressBookDelegate>delegate;
 
 @end

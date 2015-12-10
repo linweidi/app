@@ -26,6 +26,10 @@
 //@interface ENTITY_UTIL_TEMPLATE_CLASS (Util)
 + (ENTITY_UTIL_TEMPLATE_CLASS *)createEntity: (NSManagedObjectContext *)context ;
 
++ (ENTITY_UTIL_TEMPLATE_CLASS *)createTempEntity: (NSManagedObjectContext *)context ;
+
++ (void) insertTempEntity:(ENTITY_UTIL_TEMPLATE_CLASS *)object context:(NSManagedObjectContext *)context ;
+
 + (ENTITY_UTIL_TEMPLATE_CLASS *)entityWithID:(NSString *)globalID inManagedObjectContext:  (NSManagedObjectContext *)context;
 
 + (ENTITY_UTIL_TEMPLATE_CLASS *)fetchEntityWithID:(NSString *)globalID inManagedObjectContext:  (NSManagedObjectContext *)context;
@@ -41,5 +45,6 @@
 
 + (ENTITY_UTIL_TEMPLATE_CLASS *) latestEntity:(NSManagedObjectContext *)context ;
 
+- (void) populateProperties: (NSManagedObject *)object ;
 //@end
 

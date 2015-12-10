@@ -49,6 +49,7 @@
     place.price = remoteObj[PF_PLACE_PRICE];
     place.rankings = remoteObj[PF_PLACE_RANKINGS];
     place.tips = remoteObj[PF_PLACE_TIPS];
+    place.catLocalIDs = remoteObj[PF_PLACE_CAT_LOCAL_IDS];
 
 }
 
@@ -69,7 +70,7 @@
     remoteObj[PF_PLACE_PRICE] = place.price ;
     remoteObj[PF_PLACE_RANKINGS] = place.rankings ;
     remoteObj[PF_PLACE_TIPS] = place.tips ;
-
+    remoteObj[PF_PLACE_CAT_LOCAL_IDS] = place.catLocalIDs ;
 }
 
 

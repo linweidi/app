@@ -11,6 +11,6 @@
 @class Place;
 @interface PlacePropertyView <MKMapViewDelegate> : CoreDataTableViewController
 
-- (instancetype)initWithPlace:(Place *)place;
+- (instancetype)initWithPlace:(NSString *)placeID;
 
 @end

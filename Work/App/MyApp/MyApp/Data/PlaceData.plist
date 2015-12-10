@@ -28,10 +28,10 @@
 		<integer>4</integer>
 		<key>tips</key>
 		<string>we have no tips for you</string>
-		<key>types</key>
+		<key>catLocalIDs</key>
 		<array>
-			<string>1300</string>
-			<string>1301</string>
+			<string>1.1</string>
+			<string>1.2</string>
 		</array>
 		<key>photos</key>
 		<array>
@@ -67,10 +67,11 @@
 		<integer>4</integer>
 		<key>tips</key>
 		<string>we have no tips for you</string>
-		<key>types</key>
+		<key>catLocalIDs</key>
 		<array>
-			<string>1300</string>
-			<string>1301</string>
+			<string>1.1</string>
+			<string>1.2</string>
+			<string>4.4</string>
 		</array>
 		<key>photos</key>
 		<array>
@@ -79,6 +80,46 @@
 		</array>
 		<key>thumb</key>
 		<string>902</string>
+	</dict>
+	<key>Item - 3</key>
+	<dict>
+		<key>closeTime</key>
+		<date>2015-11-09T02:07:22Z</date>
+		<key>likes</key>
+		<integer>12</integer>
+		<key>location</key>
+		<string>4066 Loop Rd, San Jose, CA 95555</string>
+		<key>title</key>
+		<string>macdonald</string>
+		<key>subtitle</key>
+		<string>grocery store</string>
+		<key>longitude</key>
+		<real>37.32288</real>
+		<key>latitude</key>
+		<real>-122.036459</real>
+		<key>openTime</key>
+		<date>2015-11-08T14:08:06Z</date>
+		<key>parking</key>
+		<integer>1</integer>
+		<key>price</key>
+		<integer>3</integer>
+		<key>rankings</key>
+		<integer>4</integer>
+		<key>tips</key>
+		<string>we have no tips for you</string>
+		<key>catLocalIDs</key>
+		<array>
+			<string>2.1</string>
+			<string>2.2</string>
+			<string>4.4</string>
+		</array>
+		<key>photos</key>
+		<array>
+			<string>1006</string>
+			<string>1007</string>
+		</array>
+		<key>thumb</key>
+		<string>903</string>
 	</dict>
 </dict>
 </plist>

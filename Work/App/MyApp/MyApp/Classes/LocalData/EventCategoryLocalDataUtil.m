@@ -59,7 +59,7 @@
     category.childCount = dict[PF_EVENT_CATEGORY_CHILD_COUNT];
     category.childItems = dict[PF_EVENT_CATEGORY_CHILD_ITEMS];
     category.level = dict[PF_EVENT_CATEGORY_LEVEL];
-    category.localID = dict[PF_EVENT_CATEGORY_LOCALID];
+    category.localID = [NSString stringWithFormat:@"%@", dict[PF_EVENT_CATEGORY_LOCALID]];
     category.name = dict[PF_EVENT_CATEGORY_NAME];
     category.notes = dict[PF_EVENT_CATEGORY_NOTES];
     category.parentItemCount = dict[PF_EVENT_CATEGORY_PARENT_COUNT];

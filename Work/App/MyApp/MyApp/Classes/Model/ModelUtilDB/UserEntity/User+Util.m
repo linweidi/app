@@ -30,6 +30,31 @@
 - (BOOL) isEqualToUser: (User *)user {
     return [self.globalID isEqualToString:user.globalID];
 }
+
++ (ENTITY_UTIL_TEMPLATE_CLASS *)fetchEntityWithUsername:(NSString *)username inManagedObjectContext:  (NSManagedObjectContext *)context {
+    ENTITY_UTIL_TEMPLATE_CLASS * object = nil;
+    
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:ENTITY_UTIL_TEMPLATE_CLASS_NAME] ;
+    request.predicate = [NSPredicate predicateWithFormat:@"username = %@", username];
+    NSError *error;
+    NSArray *matches = [context executeFetchRequest:request error:&error   ];
+    
+    if (!matches || ([matches count]>1)) {
+        NSAssert(NO, @"match count is not unique");
+    }
+    else if (![matches count]) {
+        //create a new one
+        object = nil;
+        
+    }
+    else {
+        object = [matches lastObject];
+    }
+    
+    return object;
+    
+}
 /* legacy
 + (User *) userEntityWithPFUser:(PFUser *)object inManagedObjectContext: (NSManagedObjectContext *)context updateUser:(BOOL)updateUser{
     

@@ -7,10 +7,27 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseTableViewController.h"
+#import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
+#import "BaseSimpleViewController.h"
 
 @class EventCategory;
-@interface PlaceListView : BaseTableViewController
 
-@property (strong, nonatomic) EventCategory * eventCategory;
+@protocol PlaceListViewDelegate
+
+
+- (void)didSelectSinglePlace:(Place *)place;
+
+- (void)didSelectSinglePlaceMapItem:(MKMapItem *)place catLocalID:(NSString *)localID;
+
+@end
+
+@interface PlaceListView : BaseSimpleViewController <UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate>
+
+//@property (strong, nonatomic) EventCategory * eventCategory;
+@property (strong, nonatomic) NSString * catLocalID;
+@property (strong, nonatomic) NSString * catName;
+//@property (strong, nonatomic) NSString * searchBarText;
+
+@property (nonatomic, weak) id <PlaceListViewDelegate>delegate;
 @end

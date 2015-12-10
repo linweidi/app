@@ -11,20 +11,20 @@
 
 #import <UIKit/UIKit.h>
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 @protocol SelectMultipleDelegate
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 - (void)didSelectMultipleUsers:(NSMutableArray *)users;
 
 @end
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 @interface SelectMultipleView : UITableViewController
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 //@property (nonatomic,strong) NSManagedObjectContext *managedObjectContext;
 
-@property (nonatomic, assign) IBOutlet id<SelectMultipleDelegate>delegate;
+@property (nonatomic, weak) IBOutlet id<SelectMultipleDelegate>delegate;
 
 @end
 
@@ -41,17 +41,17 @@
 //
 //#import <UIKit/UIKit.h>
 //#import "CoreDataTableViewController.h"
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//
 //@protocol SelectMultipleDelegate
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//
 //
 //- (void)didSelectMultipleUsers:(NSMutableArray *)users;
 //
 //@end
 //
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//
 //@interface SelectMultipleView : CoreDataTableViewController 
-////-------------------------------------------------------------------------------------------------------------------------------------------------
+//
 //
 //@property (nonatomic, assign) IBOutlet id<SelectMultipleDelegate>delegate;
 //

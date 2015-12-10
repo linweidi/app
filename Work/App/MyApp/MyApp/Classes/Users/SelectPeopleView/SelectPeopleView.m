@@ -36,7 +36,7 @@
 @implementation SelectPeopleView
 
 //@synthesize delegate;
-@synthesize viewHeader, searchBar;
+@synthesize viewHeader, searchBar, selection;
 
 - (void)viewDidLoad
 {
@@ -46,9 +46,13 @@
 																						  action:@selector(actionCancel)];
 	self.tableView.tableHeaderView = viewHeader;
 	//users = [[NSMutableArray alloc] init];
-	selection = [[NSMutableArray alloc] init];
+	
+    
+    self.managedObjectContext = [ConfigurationManager sharedManager].managedObjectContext;
     
 	[self loadUsers];
+    
+    //NSParameterAssert(self.delegate);
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -84,6 +88,7 @@
 
 - (void)loadUsers {
     
+#ifdef REMOTE_MODE
     People * latestPeople = nil;
     
     latestPeople = [People latestEntity:self.managedObjectContext];
@@ -99,11 +104,18 @@
             [self.tableView reloadData];
             
         }
-        else [ProgressHUD showError:@"Network error."];
+        else {
+          [ProgressHUD showError:@"Network error."];
+        }
         [self.refreshControl endRefreshing];
     }];
-//    
-//    
+#endif
+#ifdef LOCAL_MODE
+    [self.tableView reloadData];
+    [self.refreshControl endRefreshing];
+#endif
+//
+//
 //	PFUser *user = [PFUser currentUser];
 //
 //	PFQuery *query1 = [PFQuery queryWithClassName:PF_BLOCKED_CLASS_NAME];
@@ -150,7 +162,8 @@
 
 - (void)actionCancel
 {
-	[self dismissViewControllerAnimated:YES completion:nil];
+	//[self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
@@ -170,7 +183,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-	if (cell == nil) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+    }
 
     People * people= [self.fetchedResultsController objectAtIndexPath:indexPath];
     //    User * contact = [[UserManager sharedUtil] getUser:people.userID];
@@ -253,6 +268,14 @@
 	[searchBar resignFirstResponder];
 
 	[self loadUsers];
+}
+
+#pragma mark -- property methods
+- (NSMutableArray *)selection {
+    if (!selection) {
+        selection = [[NSMutableArray alloc] init];
+    }
+    return selection;
 }
 
 @end

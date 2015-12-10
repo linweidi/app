@@ -24,6 +24,8 @@
 
 - (BOOL) isEqualToUser: (User *)user;
 
++ (ENTITY_UTIL_TEMPLATE_CLASS *)fetchEntityWithUsername:(NSString *)username inManagedObjectContext:  (NSManagedObjectContext *)context;
+
 //- (RemoteUser *) convertToRemoteUser;
 //
 //- (PFUser *) convertToPFUser;

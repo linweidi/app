@@ -8,6 +8,8 @@
 
 #import "ConfigurationManager.h"
 #import "Group+Util.h"
+#import "UserManager.h"
+#import "ConverterUtil.h"
 #import "GroupListView.h"
 
 @interface GroupListView ()
@@ -33,6 +35,9 @@
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     super.managedObjectContext = managedObjectContext;
+    NSError * error = nil;
+    [self.managedObjectContext save:&error];
+    NSParameterAssert(!error);
     
     if (managedObjectContext) {
         // init fetch request
@@ -67,7 +72,13 @@
     
     
     cell.textLabel.text = group.name;
-    cell.detailTextLabel.text = group.chatID;
+    NSArray * memberIDs = group.members;
+    NSMutableArray * users = [[NSMutableArray alloc] init];
+    UserManager * manager = [UserManager sharedUtil];
+    for (NSString * userId in memberIDs) {
+        [users addObject:[manager getUser:userId]];
+    }
+    cell.detailTextLabel.text = [[ConverterUtil sharedUtil] createDescriptionByUsers:users];
     //[cell.imageView setImage:[UIImage imageWithData:category.thumb.data]];
     
     return cell;

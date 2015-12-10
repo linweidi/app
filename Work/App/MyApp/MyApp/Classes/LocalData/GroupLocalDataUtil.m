@@ -66,7 +66,10 @@
     group.userVolatile = [[ConfigurationManager sharedManager] getCurrentUser];
     group.name = name;
     group.members = members;
-    block(group, nil);
+    if (block) {
+        block(group, nil);
+    }
+   
     
     [super setCommonValues:group];
 }

@@ -10,6 +10,10 @@
 @implementation CoreDataTableViewController
 
 #pragma mark - Fetching
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.managedObjectContext = [ConfigurationManager sharedManager].managedObjectContext;
+}
 
 - (void)performFetch
 {
@@ -68,7 +72,9 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-	return [[[self.fetchedResultsController sections] objectAtIndex:section] name];
+    //return [[self.fetchedResultsController sectionIndexTitles] objectAtIndex:section];
+	//return [[[[[self.fetchedResultsController sections] objectAtIndex:section] name] substringToIndex:1] uppercaseString];
+    return [[[self.fetchedResultsController sections] objectAtIndex:section] name];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
@@ -78,7 +84,7 @@
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-    return [self.fetchedResultsController sectionIndexTitles];
+    return [self.fetchedResultsController sectionIndexTitles] ;
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
