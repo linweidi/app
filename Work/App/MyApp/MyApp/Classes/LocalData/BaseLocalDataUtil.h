@@ -34,6 +34,8 @@
 
 - (void) setObjectEntity:(NSManagedObject *)object1 byObject:(NSManagedObject *)object2;
 
+- (NSMutableSet *) createSetFromStringArray:(NSArray *)collections ;
+
 #pragma mark -- Inheritance Methods
 - (void) setRandomValues: (id) object data:(NSDictionary *)dict;
 

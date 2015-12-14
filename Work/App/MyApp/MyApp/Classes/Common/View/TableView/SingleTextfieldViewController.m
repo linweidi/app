@@ -136,7 +136,7 @@
         _datePicker.datePickerMode = UIDatePickerModeDateAndTime;
         _datePicker.hidden = NO;
         
-        [self.datePicker addTarget:self action:@selector(updateDateTextView:) forControlEvents:UIControlEventValueChanged];
+        [_datePicker addTarget:self action:@selector(updateDateTextView:) forControlEvents:UIControlEventValueChanged];
         
     }
     

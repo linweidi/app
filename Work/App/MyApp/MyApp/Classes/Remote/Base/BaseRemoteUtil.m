@@ -10,6 +10,7 @@
 #import "ObjectEntity+Util.h"
 
 #import "ConfigurationManager.h"
+#import "ArrayElement+Util.h"
 #import "BaseRemoteUtil.h"
 
 
@@ -83,6 +84,27 @@
 //    //remoteObj[PF_ALERT_UPDATE_TIME] = object.updateTime;
 //    //[self setCommonRemoteObject:remoteObj withObject:object];
 //}
+
+- (NSMutableSet *) createSetFromStringArray:(NSArray *)collections  {
+    NSMutableSet * arrayOut = [[NSMutableSet alloc] init];
+    
+    for (NSString * element in collections) {
+        ArrayElement * object = [ArrayElement createEntity:self.managedObjectContext];
+        object.indexStr = element;
+        [arrayOut addObject:object];
+    }
+    return arrayOut;
+}
+
+- (NSMutableArray *) createArrayFromElementSet:(NSSet *)collections  {
+    NSMutableArray * arrayOut = [[NSMutableArray alloc] init];
+    
+    for (ArrayElement * element in collections) {
+        NSString * str = element.indexStr;
+        [arrayOut addObject:str];
+    }
+    return arrayOut;
+}
 
 #pragma mark -- networking functions
 

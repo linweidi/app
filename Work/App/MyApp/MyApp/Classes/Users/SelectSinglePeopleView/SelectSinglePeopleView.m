@@ -28,7 +28,7 @@
     self.title = @"Select Single";
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self
-                                                                                           action:@selector(actionDone)];
+                                                                                           action:nil];
     NSParameterAssert(self.delegate);
 }
 

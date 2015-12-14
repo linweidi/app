@@ -24,11 +24,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.title = @"Select Single";
+    self.title = @"Select Category";
     
     //self.tableView.tableHeaderView = self.viewHeader;
-    self.managedObjectContext = [[ConfigurationManager sharedManager] managedObjectContext];
-    
+    //self.managedObjectContext = [[ConfigurationManager sharedManager] managedObjectContext];
+    NSError * error = nil;
+    [self.managedObjectContext save:&error];
+    NSParameterAssert(error == nil);
+    [self updateFetchedResultsController];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,16 +39,18 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
-{
-    super.managedObjectContext = managedObjectContext;
+- (void)updateFetchedResultsController {
     
-    if (managedObjectContext) {
+    if (self.managedObjectContext) {
         // init fetch request
+        
+        
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"EventCategory"];
         if (self.parentID) {
-            request.predicate = [NSPredicate predicateWithFormat:@"%@ IN parentItems AND level = %d", self.parentID, self.level];
-
+//            request.predicate = [NSPredicate predicateWithFormat:@"level = %d AND ANY parentItems = %@",  self.level, self.parentID];
+            //request.predicate = [NSPredicate predicateWithFormat:@"ANY parentItems.self = %@",self.parentID];
+            request.predicate = [NSPredicate predicateWithFormat:@"level = %d AND ANY parentItems.indexStr = %@",  self.level, self.parentID];
+            
         }
         else {
             request.predicate = [NSPredicate predicateWithFormat:@"level = 1"];
@@ -89,7 +94,9 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     EventCategory * category = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    [self.delegate didSelectEventCategory:category level:self.level];
+    [self.delegate didSelectEventCategoryLevel:category level:self.level];
+    
+    
     
     [self.navigationController popViewControllerAnimated:YES];
     

@@ -20,6 +20,7 @@
 #import "EventRemoteUtil.h"
 #import "EventCellView.h"
 #import "EventSettingsView.h"
+#import "CreateEventView.h"
 #import "CalendarViewController.h"
 
 @interface CalendarViewController (){
@@ -47,6 +48,8 @@
 @property (strong, nonatomic) UIBarButtonItem * todayButton;
 @property (strong, nonatomic) UIBarButtonItem * menuButton;
 //@property (strong, nonatomic)     NSMutableArray * eventDates;    //of NSDate
+
+@property (nonatomic) BOOL refreshCalendar;
 @end
 
 @implementation CalendarViewController
@@ -124,7 +127,8 @@
 
     //[self.tableView registerNib:[UINib nibWithNibName:@"TableViewCell" bundle:nil] forCellReuseIdentifier:@"EventCellView"];
     [self.tableView registerNib:[UINib nibWithNibName:@"EventCellView" bundle:nil] forCellReuseIdentifier:@"EventCellView"];
-    //---------------------------------------------------------------------------------------------------------------------------------------------
+    
+    
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(loadEvents) forControlEvents:UIControlEventValueChanged];
     
@@ -139,6 +143,13 @@
      self.tableView.layer.shadowRadius = 1.0f;
      self.tableView.layer.shadowOffset = CGSizeMake(1, -1);
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.refreshCalendar = YES;
+}
+
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -226,18 +237,46 @@
 
 #pragma mark - Buttons callback
 
-- (IBAction)didCreateEventTouch
-{
+- (IBAction)didCreateEventTouch {
+    CreateEventView * createEventVC = [[CreateEventView alloc] init];
+    
+    
+    if (self.multiSelection) {
+        //
+        if ([self.datesSelected count] == 2) {
+            [createEventVC.days addObject:[self.datesSelected firstObject]];
+            [createEventVC.days addObject:[self.datesSelected lastObject]];
+            [self.navigationController pushViewController:createEventVC animated:YES];
+        }
+        else if ([self.datesSelected count] == 1) {
+            [createEventVC.days addObject:[self.datesSelected firstObject]];
+            //[createEventVC.days addObject:[self.datesSelected lastObject]];
+            [self.navigationController pushViewController:createEventVC animated:YES];
+        }
+        else {
+            [ProgressHUD showError:@"Please select two days for a range"];
+        }
+    }
+    else {
+        // not multi selection
+        if (self.currentDate) {
+            [createEventVC.days addObject:self.currentDate];
+        }
+        else {
+            // nothing
+        }
+        [self.navigationController pushViewController:createEventVC animated:YES];
+    }
+    
+    
     
 }
 
-- (IBAction)didGoTodayTouch
-{
+- (IBAction)didGoTodayTouch {
     [_calendarManager setDate:[NSDate date]];
 }
 
-- (IBAction)didChangeModeTouch
-{
+- (IBAction)didChangeModeTouch {
     _calendarManager.settings.weekModeEnabled = !_calendarManager.settings.weekModeEnabled;
     [_calendarManager reload];
     
@@ -250,8 +289,7 @@
     [self.view layoutIfNeeded];
 }
 
-- (IBAction)didChangeSelectModeTouch
-{
+- (IBAction)didChangeSelectModeTouch {
     self.multiButton.style = self.multiSelection?UIBarButtonItemStyleBordered:UIBarButtonItemStyleDone;
     
     self.multiSelection = !self.multiSelection;
@@ -263,8 +301,7 @@
     //[self.view layoutIfNeeded];
 }
 
-- (void)actionMenu
-{
+- (void)actionMenu {
     UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil
                                                otherButtonTitles:@"Create Event", @"Change View", nil];
     //[action showFromTabBar:[[self tabBarController] tabBar]];
@@ -273,8 +310,7 @@
 
 #pragma mark - UIActionSheetDelegate
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex != actionSheet.cancelButtonIndex)
     {
         if (buttonIndex == 0)
@@ -307,7 +343,9 @@
     [comps setCalendar:calendar];
     NSDate * monthDate = [comps date];
 
-    if (([monthDate compare:self.monthDateRecord]!= NSOrderedSame && self.monthDateRecord) || !self.monthDateRecord) {
+    if (([monthDate compare:self.monthDateRecord]!= NSOrderedSame && self.monthDateRecord) || !self.monthDateRecord || self.refreshCalendar) {
+        
+        self.refreshCalendar = NO;
         //month
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Event"];
         if (_calendarManager.settings.weekModeEnabled) {

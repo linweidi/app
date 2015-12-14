@@ -30,18 +30,32 @@
     NSAssert([object isKindOfClass:[EventCategory class]], @"Type casting is wrong");
     EventCategory * category = (EventCategory *)object;
     
+    NSMutableSet * collection = nil;
+    
     category.childCount = remoteObj[PF_EVENT_CATEGORY_CHILD_COUNT];
-    category.childItems = remoteObj[PF_EVENT_CATEGORY_CHILD_ITEMS];
+    //category.childItems = remoteObj[PF_EVENT_CATEGORY_CHILD_ITEMS];
     category.level = remoteObj[PF_EVENT_CATEGORY_LEVEL];
     category.localID = remoteObj[PF_EVENT_CATEGORY_LOCALID];
     category.name = remoteObj[PF_EVENT_CATEGORY_NAME];
     category.notes = remoteObj[PF_EVENT_CATEGORY_NOTES];
     category.parentItemCount = remoteObj[PF_EVENT_CATEGORY_PARENT_COUNT];
-    category.parentItems = remoteObj[PF_EVENT_CATEGORY_PARENT_ITEMS];
+    //category.parentItems = remoteObj[PF_EVENT_CATEGORY_PARENT_ITEMS];
     category.relatedItemCount = remoteObj[PF_EVENT_CATEGORY_RELATED_COUNT];
-    category.relatedItems = remoteObj[PF_EVENT_CATEGORY_RELATED_ITEMS];
+    //category.relatedItems = remoteObj[PF_EVENT_CATEGORY_RELATED_ITEMS];
     category.subseqItemCount = remoteObj[PF_EVENT_CATEGORY_SUBSEQ_COUNT];
-    category.subseqItems = remoteObj[PF_EVENT_CATEGORY_SUBSEQ_ITEMS];
+    //category.subseqItems = remoteObj[PF_EVENT_CATEGORY_SUBSEQ_ITEMS];
+    
+    collection = [self createSetFromStringArray:remoteObj[PF_EVENT_CATEGORY_CHILD_ITEMS]];
+    [category addChildItems:collection];
+    
+    collection = [self createSetFromStringArray:remoteObj[PF_EVENT_CATEGORY_PARENT_ITEMS]];
+    [category addParentItems:collection];
+    
+    collection = [self createSetFromStringArray:remoteObj[PF_EVENT_CATEGORY_RELATED_ITEMS]];
+    [category addRelatedItems:collection];
+    
+    collection = [self createSetFromStringArray:remoteObj[PF_EVENT_CATEGORY_SUBSEQ_ITEMS]];
+    [category addSubseqItems:collection];
     
 }
 
@@ -51,17 +65,17 @@
 
     
     remoteObj[PF_EVENT_CATEGORY_CHILD_COUNT] = category.childCount;
-    remoteObj[PF_EVENT_CATEGORY_CHILD_ITEMS] = category.childItems ;
+    remoteObj[PF_EVENT_CATEGORY_CHILD_ITEMS] = [self createArrayFromElementSet:category.childItems] ;
     remoteObj[PF_EVENT_CATEGORY_LEVEL] = category.level ;
     remoteObj[PF_EVENT_CATEGORY_LOCALID] = category.localID ;
     remoteObj[PF_EVENT_CATEGORY_NAME] = category.name ;
     remoteObj[PF_EVENT_CATEGORY_NOTES] = category.notes ;
     remoteObj[PF_EVENT_CATEGORY_PARENT_COUNT] = category.parentItemCount ;
-    remoteObj[PF_EVENT_CATEGORY_PARENT_ITEMS] = category.parentItems ;
+    remoteObj[PF_EVENT_CATEGORY_PARENT_ITEMS] = [self createArrayFromElementSet:category.parentItems] ;
     remoteObj[PF_EVENT_CATEGORY_RELATED_COUNT] = category.relatedItemCount ;
-    remoteObj[PF_EVENT_CATEGORY_RELATED_ITEMS] = category.relatedItems ;
+    remoteObj[PF_EVENT_CATEGORY_RELATED_ITEMS] = [self createArrayFromElementSet:category.relatedItems]  ;
     remoteObj[PF_EVENT_CATEGORY_SUBSEQ_COUNT] = category.subseqItemCount ;
-    remoteObj[PF_EVENT_CATEGORY_SUBSEQ_ITEMS] = category.subseqItems ;
+    remoteObj[PF_EVENT_CATEGORY_SUBSEQ_ITEMS] = [self createArrayFromElementSet:category.subseqItems]  ;
     
 }
 

@@ -6,14 +6,19 @@
 //  Copyright © 2015 Linweiding. All rights reserved.
 //
 
-//#import "EventCategoryTableView.h"
+#import "EventCategoryListView.h"
 #import <UIKit/UIKit.h>
 @class EventCategory;
 
+@protocol SelectEventCategoryDelegate
 
-@interface EventCategoryLevelView : UITableViewController <SelectEventCategoryDelegate>
+- (void)didSelectEventCategory:(EventCategory *)category;
 
-- (void)didSelectEventCategory:(EventCategory *)category level:(int)level;
+@end
+
+@interface EventCategoryLevelView : UITableViewController <SelectEventCategoryLevelDelegate>
+
+
 
 @property (strong, nonatomic) id <SelectEventCategoryDelegate> delegate;
 

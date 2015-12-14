@@ -56,18 +56,30 @@
     
     LOCAL_DATA_CLASS_TYPE * category = (LOCAL_DATA_CLASS_TYPE *)object;
     
+    NSMutableSet * collection = nil;
+    
     category.childCount = dict[PF_EVENT_CATEGORY_CHILD_COUNT];
-    category.childItems = dict[PF_EVENT_CATEGORY_CHILD_ITEMS];
+
+    
     category.level = dict[PF_EVENT_CATEGORY_LEVEL];
     category.localID = [NSString stringWithFormat:@"%@", dict[PF_EVENT_CATEGORY_LOCALID]];
     category.name = dict[PF_EVENT_CATEGORY_NAME];
     category.notes = dict[PF_EVENT_CATEGORY_NOTES];
     category.parentItemCount = dict[PF_EVENT_CATEGORY_PARENT_COUNT];
-    category.parentItems = dict[PF_EVENT_CATEGORY_PARENT_ITEMS];
     category.relatedItemCount = dict[PF_EVENT_CATEGORY_RELATED_COUNT];
-    category.relatedItems = dict[PF_EVENT_CATEGORY_RELATED_ITEMS];
     category.subseqItemCount = dict[PF_EVENT_CATEGORY_SUBSEQ_COUNT];
-    category.subseqItems = dict[PF_EVENT_CATEGORY_SUBSEQ_ITEMS];
+    
+    collection = [self createSetFromStringArray:dict[PF_EVENT_CATEGORY_CHILD_ITEMS]];
+    [category addChildItems:collection];
+    
+    collection = [self createSetFromStringArray:dict[PF_EVENT_CATEGORY_PARENT_ITEMS]];
+    [category addParentItems:collection];
+    
+    collection = [self createSetFromStringArray:dict[PF_EVENT_CATEGORY_PARENT_ITEMS]];
+    [category addRelatedItems:collection];
+    
+    collection = [self createSetFromStringArray:dict[PF_EVENT_CATEGORY_SUBSEQ_ITEMS]];
+    [category addSubseqItems:collection];
     
     if (dict[PF_EVENT_CATEGORY_THUMBNAIL]) {
         Thumbnail * thumb = [Thumbnail fetchEntityWithID:dict[PF_EVENT_CATEGORY_THUMBNAIL] inManagedObjectContext:self.managedObjectContext];

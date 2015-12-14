@@ -39,8 +39,8 @@
 - (void) setCommonObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object withRemoteObject:(RemoteObject *)remoteObj inManagedObjectContext: (NSManagedObjectContext *)context{
     NSAssert([object isKindOfClass:[Event class]], @"Type casting is wrong");
     Event * event = (Event *)object;
-    //event.startTime  = remoteObj[PF_EVENT_START_TIME] ;
-    [event setStartTimeGroup:remoteObj[PF_EVENT_START_TIME]];
+    event.startTime  = remoteObj[PF_EVENT_START_TIME] ;
+    //[event setStartTimeGroup:remoteObj[PF_EVENT_START_TIME]];
     event.endTime  = remoteObj[PF_EVENT_END_TIME] ;
     event.invitees = remoteObj[PF_EVENT_INVITEES] ;
     event.isAlert = remoteObj[PF_EVENT_IS_ALERT] ;

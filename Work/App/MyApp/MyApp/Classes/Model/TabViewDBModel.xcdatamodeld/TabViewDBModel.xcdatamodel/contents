@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="14F1021" minimumToolsVersion="Xcode 4.2">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="14F1021" minimumToolsVersion="Xcode 4.2">
     <entity name="Alert" representedClassName="Alert" parentEntity="UserEntity" syncable="YES">
         <attribute name="time" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="event" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="alert" inverseEntity="Event" syncable="YES"/>
+    </entity>
+    <entity name="ArrayElement" representedClassName="ArrayElement" syncable="YES">
+        <attribute name="indexStr" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Board" representedClassName="Board" parentEntity="SystemEntity" syncable="YES">
         <attribute name="categoryID" optional="YES" attributeType="String" syncable="YES"/>
@@ -40,17 +43,17 @@
     </entity>
     <entity name="EventCategory" representedClassName="EventCategory" parentEntity="SystemEntity" syncable="YES">
         <attribute name="childCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="childItems" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="localID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parentItemCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="parentItems" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="relatedItemCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="relatedItems" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="subseqItemCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="subseqItems" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <relationship name="childItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ArrayElement" syncable="YES"/>
+        <relationship name="parentItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ArrayElement" syncable="YES"/>
+        <relationship name="relatedItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ArrayElement" syncable="YES"/>
+        <relationship name="subseqItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ArrayElement" syncable="YES"/>
         <relationship name="thumb" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Thumbnail" inverseName="categoryInv" inverseEntity="Thumbnail" syncable="YES"/>
     </entity>
     <entity name="EventTemplate" representedClassName="EventTemplate" parentEntity="UserEntity" syncable="YES">
@@ -195,5 +198,6 @@
         <element name="User" positionX="-344" positionY="-144" width="128" height="195"/>
         <element name="UserEntity" positionX="-245" positionY="-418" width="128" height="45"/>
         <element name="Video" positionX="-351" positionY="-252" width="128" height="30"/>
+        <element name="ArrayElement" positionX="-369" positionY="-270" width="128" height="60"/>
     </elements>
 </model>

@@ -97,6 +97,11 @@
 		2823AAC71C02F7A90060DC84 /* RestaurantMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2823AAC51C02F7A90060DC84 /* RestaurantMenuView.xib */; };
 		282A27741BCF750D0012332E /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 282A27721BCF750D0012332E /* TestViewController.m */; };
 		282A27751BCF750D0012332E /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 282A27731BCF750D0012332E /* TestViewController.xib */; };
+		282DDA5B1C1E1BD70054E60F /* ArrayElement+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 282DDA561C1E1BD70054E60F /* ArrayElement+CoreDataProperties.m */; };
+		282DDA5C1C1E1BD70054E60F /* ArrayElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 282DDA581C1E1BD70054E60F /* ArrayElement.m */; };
+		282DDA5F1C1E1DCB0054E60F /* ArrayElement+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 282DDA5E1C1E1DCB0054E60F /* ArrayElement+Util.m */; };
+		282DDA641C1E1EDD0054E60F /* EventCategory+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 282DDA611C1E1EDD0054E60F /* EventCategory+CoreDataProperties.m */; };
+		282DDA651C1E1EDD0054E60F /* EventCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 282DDA631C1E1EDD0054E60F /* EventCategory.m */; };
 		284884651C18FDAB0093B758 /* SelectMultipleGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 284884631C18FDAB0093B758 /* SelectMultipleGroupView.m */; };
 		284884661C18FDAB0093B758 /* SelectMultipleGroupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 284884641C18FDAB0093B758 /* SelectMultipleGroupView.xib */; };
 		2848846A1C190B020093B758 /* SelectMultipleBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 284884681C190B020093B758 /* SelectMultipleBoardView.m */; };
@@ -181,8 +186,6 @@
 		28E32C4D1C0AD03600A9EEC1 /* EventTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E32C351C0AD03600A9EEC1 /* EventTemplate.m */; };
 		28E32C4E1C0AD03600A9EEC1 /* EventVoteItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E32C371C0AD03600A9EEC1 /* EventVoteItem+CoreDataProperties.m */; };
 		28E32C4F1C0AD03600A9EEC1 /* EventVoteItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E32C391C0AD03600A9EEC1 /* EventVoteItem.m */; };
-		28E32C501C0AD03600A9EEC1 /* EventCategory+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E32C3B1C0AD03600A9EEC1 /* EventCategory+CoreDataProperties.m */; };
-		28E32C511C0AD03600A9EEC1 /* EventCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E32C3D1C0AD03600A9EEC1 /* EventCategory.m */; };
 		28E32C541C0AD8FE00A9EEC1 /* Place+Annotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E32C531C0AD8FE00A9EEC1 /* Place+Annotation.m */; };
 		28E32C591C0ADB9800A9EEC1 /* Place+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E32C561C0ADB9800A9EEC1 /* Place+CoreDataProperties.m */; };
 		28E32C5A1C0ADB9800A9EEC1 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E32C581C0ADB9800A9EEC1 /* Place.m */; };
@@ -744,6 +747,16 @@
 		282A27711BCF750D0012332E /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		282A27721BCF750D0012332E /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		282A27731BCF750D0012332E /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
+		282DDA551C1E1BD70054E60F /* ArrayElement+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ArrayElement+CoreDataProperties.h"; sourceTree = "<group>"; };
+		282DDA561C1E1BD70054E60F /* ArrayElement+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ArrayElement+CoreDataProperties.m"; sourceTree = "<group>"; };
+		282DDA571C1E1BD70054E60F /* ArrayElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayElement.h; sourceTree = "<group>"; };
+		282DDA581C1E1BD70054E60F /* ArrayElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayElement.m; sourceTree = "<group>"; };
+		282DDA5D1C1E1DCB0054E60F /* ArrayElement+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ArrayElement+Util.h"; sourceTree = "<group>"; };
+		282DDA5E1C1E1DCB0054E60F /* ArrayElement+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ArrayElement+Util.m"; sourceTree = "<group>"; };
+		282DDA601C1E1EDD0054E60F /* EventCategory+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EventCategory+CoreDataProperties.h"; sourceTree = "<group>"; };
+		282DDA611C1E1EDD0054E60F /* EventCategory+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EventCategory+CoreDataProperties.m"; sourceTree = "<group>"; };
+		282DDA621C1E1EDD0054E60F /* EventCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventCategory.h; sourceTree = "<group>"; };
+		282DDA631C1E1EDD0054E60F /* EventCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventCategory.m; sourceTree = "<group>"; };
 		284884621C18FDAB0093B758 /* SelectMultipleGroupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectMultipleGroupView.h; sourceTree = "<group>"; };
 		284884631C18FDAB0093B758 /* SelectMultipleGroupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectMultipleGroupView.m; sourceTree = "<group>"; };
 		284884641C18FDAB0093B758 /* SelectMultipleGroupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectMultipleGroupView.xib; sourceTree = "<group>"; };
@@ -897,10 +910,6 @@
 		28E32C371C0AD03600A9EEC1 /* EventVoteItem+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EventVoteItem+CoreDataProperties.m"; sourceTree = "<group>"; };
 		28E32C381C0AD03600A9EEC1 /* EventVoteItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventVoteItem.h; sourceTree = "<group>"; };
 		28E32C391C0AD03600A9EEC1 /* EventVoteItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventVoteItem.m; sourceTree = "<group>"; };
-		28E32C3A1C0AD03600A9EEC1 /* EventCategory+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EventCategory+CoreDataProperties.h"; sourceTree = "<group>"; };
-		28E32C3B1C0AD03600A9EEC1 /* EventCategory+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EventCategory+CoreDataProperties.m"; sourceTree = "<group>"; };
-		28E32C3C1C0AD03600A9EEC1 /* EventCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventCategory.h; sourceTree = "<group>"; };
-		28E32C3D1C0AD03600A9EEC1 /* EventCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventCategory.m; sourceTree = "<group>"; };
 		28E32C521C0AD8FE00A9EEC1 /* Place+Annotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Place+Annotation.h"; sourceTree = "<group>"; };
 		28E32C531C0AD8FE00A9EEC1 /* Place+Annotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Place+Annotation.m"; sourceTree = "<group>"; };
 		28E32C551C0ADB9800A9EEC1 /* Place+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Place+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -1679,6 +1688,14 @@
 		2823AA0B1C0290FB0060DC84 /* ModelDB */ = {
 			isa = PBXGroup;
 			children = (
+				282DDA601C1E1EDD0054E60F /* EventCategory+CoreDataProperties.h */,
+				282DDA611C1E1EDD0054E60F /* EventCategory+CoreDataProperties.m */,
+				282DDA621C1E1EDD0054E60F /* EventCategory.h */,
+				282DDA631C1E1EDD0054E60F /* EventCategory.m */,
+				282DDA551C1E1BD70054E60F /* ArrayElement+CoreDataProperties.h */,
+				282DDA561C1E1BD70054E60F /* ArrayElement+CoreDataProperties.m */,
+				282DDA571C1E1BD70054E60F /* ArrayElement.h */,
+				282DDA581C1E1BD70054E60F /* ArrayElement.m */,
 				28E32C551C0ADB9800A9EEC1 /* Place+CoreDataProperties.h */,
 				28E32C561C0ADB9800A9EEC1 /* Place+CoreDataProperties.m */,
 				28E32C571C0ADB9800A9EEC1 /* Place.h */,
@@ -1715,10 +1732,6 @@
 				28E32C371C0AD03600A9EEC1 /* EventVoteItem+CoreDataProperties.m */,
 				28E32C381C0AD03600A9EEC1 /* EventVoteItem.h */,
 				28E32C391C0AD03600A9EEC1 /* EventVoteItem.m */,
-				28E32C3A1C0AD03600A9EEC1 /* EventCategory+CoreDataProperties.h */,
-				28E32C3B1C0AD03600A9EEC1 /* EventCategory+CoreDataProperties.m */,
-				28E32C3C1C0AD03600A9EEC1 /* EventCategory.h */,
-				28E32C3D1C0AD03600A9EEC1 /* EventCategory.m */,
 				28E32BDA1C0AD01D00A9EEC1 /* Board+CoreDataProperties.h */,
 				28E32BDB1C0AD01D00A9EEC1 /* Board+CoreDataProperties.m */,
 				28E32BDC1C0AD01D00A9EEC1 /* Board.h */,
@@ -1832,6 +1845,8 @@
 				2823AA5D1C0290FB0060DC84 /* User+Util.m */,
 				2823AA5E1C0290FB0060DC84 /* Video+Util.h */,
 				2823AA5F1C0290FB0060DC84 /* Video+Util.m */,
+				282DDA5D1C1E1DCB0054E60F /* ArrayElement+Util.h */,
+				282DDA5E1C1E1DCB0054E60F /* ArrayElement+Util.m */,
 			);
 			path = UserEntity;
 			sourceTree = "<group>";
@@ -3688,7 +3703,7 @@
 				28E32C031C0AD01D00A9EEC1 /* Board.m in Sources */,
 				28EECB361BCCD3E90001654E /* JTCalendarWeekDayView.m in Sources */,
 				28E32C5A1C0ADB9800A9EEC1 /* Place.m in Sources */,
-				28E32C511C0AD03600A9EEC1 /* EventCategory.m in Sources */,
+				282DDA641C1E1EDD0054E60F /* EventCategory+CoreDataProperties.m in Sources */,
 				28EECB371BCCD3E90001654E /* JTCalendarWeekView.m in Sources */,
 				287D1AA61BF7088B0022FEFE /* TableViewCell.m in Sources */,
 				2823A9941C028FA50060DC84 /* AlertRemoteUtil.m in Sources */,
@@ -3773,8 +3788,10 @@
 				28EECB641BCCD3E90001654E /* JSQMessage.m in Sources */,
 				286D539D1BF9AC5C003D6BB8 /* CoreDataViewController.m in Sources */,
 				2823AA8E1C0290FB0060DC84 /* TabViewDBModel.xcdatamodeld in Sources */,
+				282DDA651C1E1EDD0054E60F /* EventCategory.m in Sources */,
 				28EECB651BCCD3E90001654E /* JSQMessagesAvatarImage.m in Sources */,
 				28EECB661BCCD3E90001654E /* JSQMessagesBubbleImage.m in Sources */,
+				282DDA5B1C1E1BD70054E60F /* ArrayElement+CoreDataProperties.m in Sources */,
 				2823A9951C028FA50060DC84 /* BaseRemoteUtil.m in Sources */,
 				28E32C421C0AD03600A9EEC1 /* Group+CoreDataProperties.m in Sources */,
 				286D54591BFB0AE5003D6BB8 /* NSString+ConvertToNumber.m in Sources */,
@@ -3799,6 +3816,7 @@
 				2823AA651C0290FB0060DC84 /* MenuItem.m in Sources */,
 				2823A9891C028FA50060DC84 /* EventVoteItemLocalDataUtil.m in Sources */,
 				28D3F6F41C14C7CB0062AC19 /* BaseTableViewController.m in Sources */,
+				282DDA5F1C1E1DCB0054E60F /* ArrayElement+Util.m in Sources */,
 				28EECB6C1BCCD3E90001654E /* JSQMessagesCollectionViewCellIncoming.m in Sources */,
 				28EECB6D1BCCD3E90001654E /* JSQMessagesCollectionViewCellOutgoing.m in Sources */,
 				28EECB6E1BCCD3E90001654E /* JSQMessagesComposerTextView.m in Sources */,
@@ -3932,13 +3950,13 @@
 				2823A9991C028FA50060DC84 /* EventCategoryRemoteUtil.m in Sources */,
 				2823A99F1C028FA50060DC84 /* MessageRemoteUtil.m in Sources */,
 				2823AA8B1C0290FB0060DC84 /* User+Util.m in Sources */,
-				28E32C501C0AD03600A9EEC1 /* EventCategory+CoreDataProperties.m in Sources */,
 				28EECBDC1BCCD3EA0001654E /* main.m in Sources */,
 				2823AAC61C02F7A90060DC84 /* RestaurantMenuView.m in Sources */,
 				28EECB2C1BCCD3890001654E /* JTCalendarManager.m in Sources */,
 				28EECB2E1BCCD3890001654E /* JTCalendarSettings.m in Sources */,
 				28E32C591C0ADB9800A9EEC1 /* Place+CoreDataProperties.m in Sources */,
 				28EECB301BCCD3890001654E /* JTDateHelper.m in Sources */,
+				282DDA5C1C1E1BD70054E60F /* ArrayElement.m in Sources */,
 				28E32C491C0AD03600A9EEC1 /* Recent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

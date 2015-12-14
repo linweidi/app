@@ -9,15 +9,17 @@
 #import "CoreDataTableViewController.h"
 
 @class EventCategory;
-@protocol SelectEventCategoryDelegate
 
-- (void)didSelectEventCategory:(EventCategory *)category level:(int)level;
+@protocol SelectEventCategoryLevelDelegate
+
+- (void)didSelectEventCategoryLevel:(EventCategory *)category level:(int)level;
 
 @end
+
 
 @interface EventCategoryListView : CoreDataTableViewController
 
 @property (nonatomic) int level;
 @property (strong, nonatomic) NSString * parentID;
-@property (strong, nonatomic) id <SelectEventCategoryDelegate> delegate;
+@property (strong, nonatomic) id <SelectEventCategoryLevelDelegate> delegate;
 @end

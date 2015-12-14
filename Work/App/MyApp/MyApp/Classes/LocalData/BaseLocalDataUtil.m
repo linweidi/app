@@ -8,6 +8,7 @@
 #import "AppHeader.h"
 #import "ConfigurationManager.h"
 #import "ObjectEntity+Util.h"
+#import "ArrayElement+Util.h"
 #import "BaseLocalDataUtil.h"
 
 #undef LOCAL_DATA_CLASS_TYPE
@@ -80,6 +81,17 @@
             [object1 setValue:[object2 valueForKey:key] forKey:key];
         }
     }
+}
+
+- (NSMutableSet *) createSetFromStringArray:(NSArray *)collections  {
+    NSMutableSet * arrayOut = [[NSMutableSet alloc] init];
+    
+    for (NSString * element in collections) {
+        ArrayElement * object = [ArrayElement createEntity:self.managedObjectContext];
+        object.indexStr = element;
+        [arrayOut addObject:object];
+    }
+    return arrayOut;
 }
 
 #pragma mark -- Base Methods

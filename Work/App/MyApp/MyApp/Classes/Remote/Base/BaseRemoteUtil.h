@@ -53,8 +53,8 @@
 // 3. after save, populate updateTime to data model
 - (void) setExistedRemoteObject:(RemoteObject *)remoteObj withObject:(BASE_REMOTE_UTIL_OBJ_TYPE)object;
 
-
-
+- (NSMutableSet *) createSetFromStringArray:(NSArray *)collections ;
+- (NSMutableArray *) createArrayFromElementSet:(NSSet *)collections ;
 #pragma mark -- networking functions
 #pragma mark -- upload object
 // @param[IN]: we assume the argument object is data model, not core data model

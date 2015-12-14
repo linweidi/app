@@ -147,7 +147,7 @@
 
 	ChatView *chatView = [[ChatView alloc] initWith:groupId];
     
-#warning move this new view controller to recent tab
+#warning TODO move this new view controller to recent tab
 	[self.navigationController pushViewController:chatView animated:YES];
 }
 

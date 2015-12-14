@@ -133,9 +133,19 @@
     self.reviewNumLabel.text = @"rev num";
     self.likesLabel.text = [NSString stringWithFormat:@"%d likes", [place.likes intValue]];
     self.distanceLabel.text = @"distance";
+    
     NSDate * currentTime = [converter timeOfDate:[NSDate date]];
-    NSDate * openTime = [converter timeOfDate:place.openTime];
-    NSDate * closeTime = [converter timeOfDate:place.closeTime];
+    
+    NSDate * openTime;
+    NSDate * closeTime;
+    if (place.openTime) {
+        openTime = [converter timeOfDate:place.openTime];
+    }
+    if (place.closeTime) {
+        closeTime = [converter timeOfDate:place.closeTime];
+    }
+    
+    
     if ([currentTime compare:openTime] == NSOrderedDescending && [currentTime compare:closeTime] == NSOrderedAscending) {
         self.statusLabel.text = @"Open";
     }
@@ -145,6 +155,7 @@
     
     //self.reviewNumLabel.text = place.
     self.locationCell.textLabel.text = place.location;
+    
     self.priceCell.detailTextLabel.text = [[ConverterUtil sharedUtil] starString:[place.price intValue]];
     self.parkingCell.detailTextLabel.text = [[ConverterUtil sharedUtil] starString:[place.parking intValue]];
     self.photoCell.detailTextLabel.text = [NSString stringWithFormat:@"%lu counts", [place.photos count]];

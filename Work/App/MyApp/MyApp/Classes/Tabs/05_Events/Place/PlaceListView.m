@@ -200,6 +200,8 @@ static NSString *kCellIdentifier = @"cellIdentifier";
         // place
         [self.delegate didSelectSinglePlaceMapItem:self.places[indexPath.row] catLocalID:self.catLocalID];
     }
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - UIActionSheetDelegate

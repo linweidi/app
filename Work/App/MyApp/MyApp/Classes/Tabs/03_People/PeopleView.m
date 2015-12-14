@@ -110,14 +110,14 @@
         //request.predicate = [NSPredicate predicateWithFormat:@"string"];
         request.fetchLimit = PEOPLEVIEW_DISPLAY_ITEM_NUM;
         request.sortDescriptors = @[[NSSortDescriptor
-                                     sortDescriptorWithKey:@"initial"
+                                     sortDescriptorWithKey:@"name"
                                      ascending:YES
                                      selector:@selector(localizedCompare:)],
                                     ];
         
         
         // init fetch result controller
-        self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"name" cacheName:nil];
+        self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"initial" cacheName:nil];
     }
     
 }

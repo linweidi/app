@@ -20,8 +20,7 @@
 
 #include "../Template/EntityUtilTemplate.mh"
 
-- (void) setStartTimeGroup:(NSDate *)startTime {
-    
+- (void)setStartTime:(NSDate *)startTime {
     static NSCalendar * calendar;
     if (!calendar) {
         calendar = [NSCalendar currentCalendar];
@@ -39,8 +38,10 @@
     
     self.startMonth = [compMonth date];
     
-    self.startTime = startTime;
     
+    [self willChangeValueForKey:@"startTime"];
+    [self setPrimitiveValue:startTime forKey:@"startTime"];
+    [self didChangeValueForKey:@"startTime"];
 
 }
 @end

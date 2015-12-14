@@ -33,12 +33,14 @@
 #import "SelectMultipleBoardView.h"
 #import "SelectMultipleGroupView.h"
 
+#import "PlaceLocalDataUtil.h"
+
 #import "EventSettingsView.h"
 
 #define EVENT_SETTING_VIEW_SECTION_TITLE_INDEX 0
-#define EVENT_SETTING_VIEW_SECTION_TIME_INDEX 1
-#define EVENT_SETTING_VIEW_SECTION_PLACE_INDEX 2
-#define EVENT_SETTING_VIEW_SECTION_INVITEE_INDEX 3
+#define EVENT_SETTING_VIEW_SECTION_TIME_INDEX 3
+#define EVENT_SETTING_VIEW_SECTION_PLACE_INDEX 1
+#define EVENT_SETTING_VIEW_SECTION_INVITEE_INDEX 2
 #define EVENT_SETTING_VIEW_SECTION_ALERT_INDEX 4
 
 @interface EventSettingsView ()
@@ -77,6 +79,8 @@
 @property (strong, nonatomic) UITableViewCell *selectMemberCell;
 @property (strong, nonatomic) UITableViewCell *selectBoardCell;
 @property (strong, nonatomic) UITableViewCell *selectGroupCell;
+
+@property (strong, nonatomic) UITableViewCell *smartScheduleCell;
 // static label
 //@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 //@property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
@@ -262,7 +266,7 @@
             ret = 5;
             break;
         case EVENT_SETTING_VIEW_SECTION_TIME_INDEX:
-            ret = 2;
+            ret = self.editEnable?3:2;
             break;
         case EVENT_SETTING_VIEW_SECTION_PLACE_INDEX:
             if (self.editEnable) {
@@ -334,6 +338,10 @@
             if (indexPath.row == 1) {
                 cell = self.endTimeCell;
             }
+            if (indexPath.row == 2) {
+                cell = self.smartScheduleCell;
+            }
+
             break;
         case EVENT_SETTING_VIEW_SECTION_PLACE_INDEX:
             if (indexPath.row == 0) {
@@ -625,14 +633,22 @@
 }
 - (void)didSelectSinglePlaceMapItem:(MKMapItem *)place catLocalID:(NSString *)localID{
     if (place) {
+        
+                         
 #warning TODO save this place into our system;
         NSManagedObjectContext * context = [ConfigurationManager sharedManager].managedObjectContext;
+        
+        Event * event = [Event entityWithID:self.eventID inManagedObjectContext:context];
 #ifdef LOCAL_MODE
         Place *newPlace = [Place createEntity:context];
         
         NSArray * catLocalIDs = @[localID];
         
         [self updatePlace:newPlace withMapItem:place withCatLocalIDs:catLocalIDs];
+                         
+        event.place = newPlace;
+        [[PlaceLocalDataUtil sharedUtil] setCommonValues:newPlace];
+        self.placeID = newPlace.globalID;
 #endif
     }
 #warning TODO implement Remote mode here
@@ -653,12 +669,18 @@
 - (void)didSelectSinglePlace:(Place *)place {
     if (place) {
         NSManagedObjectContext * context = [ConfigurationManager sharedManager].managedObjectContext;
+        
+        Event * event = [Event entityWithID:self.eventID inManagedObjectContext:context];
+        
 #ifdef LOCAL_MODE
         Place * newPlace = [Place entityWithID:place.globalID inManagedObjectContext:context];
         
         NSAssert(newPlace, @"select new place does not exist");
+        
+        event.place = newPlace;
+        self.placeID = newPlace.globalID;
 #endif
-#warning implement Remote mode here
+#warning TODO implement Remote mode here
 //        if (!newPlace) {
 //            newPlace = [Place createEntity:context];
 //            newPlace populateProperties:
@@ -710,7 +732,7 @@
 #ifdef LOCAL_MODE
         event.invitees = userIDs;
 #endif
-#warning implement Remote mode here
+#warning TODO implement Remote mode here
 
     }
 }
@@ -724,7 +746,7 @@
 #ifdef LOCAL_MODE
         event.groupIDs = groupIDs;
 #endif
-#warning implement Remote mode here
+#warning TODO implement Remote mode here
         
     }
 }
@@ -738,7 +760,7 @@
 #ifdef LOCAL_MODE
         event.boardIDs = boardIDs;
 #endif
-#warning implement Remote mode here
+#warning TODO implement Remote mode here
         
     }
 }
@@ -1021,6 +1043,19 @@
         [_selectPlaceCell.textLabel setText:@"Select Place"];
     }
     return _selectPlaceCell;
+}
+
+- (UITableViewCell *)smartScheduleCell {
+    if (!_smartScheduleCell) {
+        
+        _smartScheduleCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        _smartScheduleCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        //[_selectPlaceCell setTintColor:[[ThemeManager sharedUtil] buttonColor]];
+        [_smartScheduleCell.textLabel setTextAlignment:NSTextAlignmentCenter];
+        [_smartScheduleCell.textLabel setTextColor:[[ThemeManager sharedUtil] buttonColor]];
+        [_smartScheduleCell.textLabel setText:@"🌟Smart Schedule🌟"];
+    }
+    return _smartScheduleCell;
 }
 
 - (UITableViewCell *)selectBoardCell {
