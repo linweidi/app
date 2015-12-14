@@ -12,7 +12,7 @@
 			<string>803</string>
 		</array>
 		<key>name</key>
-		<string>friends chat</string>
+		<string>prior classmates</string>
 	</dict>
 	<key>Item - 2</key>
 	<dict>
@@ -25,7 +25,7 @@
 			<string>804</string>
 		</array>
 		<key>name</key>
-		<string>2nd friends chat</string>
+		<string>workmates</string>
 	</dict>
 	<key>Item - 3</key>
 	<dict>
@@ -36,7 +36,7 @@
 			<string>802</string>
 		</array>
 		<key>name</key>
-		<string>3rd friends chat</string>
+		<string>happy dinner group</string>
 	</dict>
 	<key>Item - 4</key>
 	<dict>
@@ -48,7 +48,7 @@
 			<string>803</string>
 		</array>
 		<key>name</key>
-		<string>4th friends chat</string>
+		<string>soccer team</string>
 	</dict>
 </dict>
 </plist>

@@ -30,6 +30,7 @@
 #import "People+Util.h"
 #import "User+Util.h"
 #import "CurrentUser+Util.h"
+#import "Thumbnail+Util.h"
 
 #import "UserManager.h"
 
@@ -333,6 +334,7 @@
     People * people = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
 	cell.textLabel.text = people.name;
+    [cell.imageView setImage:[UIImage imageWithData:people.contact.thumbnail.data]];
 
 	return cell;
 }

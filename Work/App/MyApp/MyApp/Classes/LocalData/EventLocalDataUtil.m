@@ -76,9 +76,10 @@
     event.members  = dict[PF_EVENT_MEMBERS] ;
     event.groupIDs  = dict[PF_EVENT_GROUP_IDS] ;
     event.isVoting  = dict[PF_EVENT_IS_VOTING] ;
+    event.busy = @YES;
     
     event.alert = [Alert fetchEntityWithID:dict[PF_EVENT_ALERT] inManagedObjectContext:self.managedObjectContext];
-    event.category = [EventCategory fetchEntityWithID:dict[PF_EVENT_CATEGORY] inManagedObjectContext:self.managedObjectContext];
+    event.category = [EventCategory fetchEntityWithLocalID:dict[PF_EVENT_CATEGORY] inManagedObjectContext:self.managedObjectContext];
     event.place = [Place fetchEntityWithID:dict[PF_EVENT_PLACE] inManagedObjectContext:self.managedObjectContext];
 }
 

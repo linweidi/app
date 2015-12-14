@@ -22,4 +22,5 @@
 
 + (Thumbnail *) thumbnailEntityWithPFUser:(PFFile *)thumbFile withUserID:(NSString *)userID inManagedObjectContext: (NSManagedObjectContext *)context;
 
++ (ENTITY_UTIL_TEMPLATE_CLASS *)fetchEntityWithFileName:(NSString *)fileName inManagedObjectContext:  (NSManagedObjectContext *)context;
 @end

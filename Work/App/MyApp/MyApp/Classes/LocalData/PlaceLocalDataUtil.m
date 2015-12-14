@@ -86,12 +86,12 @@
         [place addPhotosObject:picture];
     }
     
-    Thumbnail * thumb = [Thumbnail fetchEntityWithID:dict[PF_PLACE_THUMB] inManagedObjectContext:self.managedObjectContext];
+    Thumbnail * thumb = [Thumbnail fetchEntityWithFileName:dict[PF_PLACE_THUMB] inManagedObjectContext:self.managedObjectContext];
     place.thumb = thumb;
     
 
     for (NSString * localID in dict[PF_PLACE_CAT_LOCAL_IDS]) {
-        EventCategory * category = [EventCategory entityWithLocalID:[NSString stringWithFormat:@"%@",localID] inManagedObjectContext:self.managedObjectContext];
+        EventCategory * category = [EventCategory fetchEntityWithLocalID:[NSString stringWithFormat:@"%@",localID] inManagedObjectContext:self.managedObjectContext];
         [place addCategoriesObject:category];
     }
 

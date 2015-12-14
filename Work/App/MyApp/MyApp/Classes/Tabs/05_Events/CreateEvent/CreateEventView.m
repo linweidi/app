@@ -312,7 +312,7 @@
     event.groupIDs = [NSArray arrayWithArray:self.groups] ;
     event.boardIDs = [NSArray arrayWithArray:self.boards] ;
     
-    EventCategory * category = [EventCategory entityWithLocalID:self.categoryID inManagedObjectContext:context];
+    EventCategory * category = [EventCategory fetchEntityWithLocalID:self.categoryID inManagedObjectContext:context];
     event.category = category;
     
     Place * place = [Place entityWithID:self.placeID inManagedObjectContext:context];
@@ -394,10 +394,10 @@
     
     switch (indexPath.section) {
         case EVENT_SETTING_VIEW_SECTION_TITLE_INDEX:
-            if (indexPath.row == 0) {
+            if (indexPath.row == 1) {
                 cell = self.titleCell;
             }
-            if (indexPath.row == 1) {
+            if (indexPath.row == 0) {
                 cell = self.categoryCell;
             }
             if (indexPath.row == 2) {

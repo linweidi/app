@@ -37,7 +37,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>905</string>
+		<string></string>
 	</dict>
 	<key>Study</key>
 	<dict>
@@ -69,7 +69,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>906</string>
+		<string>category_study</string>
 	</dict>
 	<key>Health</key>
 	<dict>
@@ -103,7 +103,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>906</string>
+		<string>category_health</string>
 	</dict>
 	<key>Domestic</key>
 	<dict>
@@ -141,7 +141,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>906</string>
+		<string>category_domestic</string>
 	</dict>
 	<key>Work</key>
 	<dict>
@@ -173,7 +173,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>906</string>
+		<string>category_work</string>
 	</dict>
 	<key>Charity</key>
 	<dict>
@@ -205,7 +205,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>906</string>
+		<string>category_science-chemistry</string>
 	</dict>
 	<key>Miscellaneous</key>
 	<dict>
@@ -237,7 +237,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>906</string>
+		<string>category_miscellaneous</string>
 	</dict>
 	<key>Karaoke</key>
 	<dict>
@@ -278,7 +278,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>906</string>
+		<string>category_karaoke</string>
 	</dict>
 	<key>Club</key>
 	<dict>
@@ -319,7 +319,7 @@
 		<key>notes</key>
 		<string>Only over 18 years old</string>
 		<key>thumb</key>
-		<string>906</string>
+		<string>category_club</string>
 	</dict>
 	<key>Tour</key>
 	<dict>
@@ -362,7 +362,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>902</string>
+		<string>category_tour</string>
 	</dict>
 	<key>Hiking</key>
 	<dict>
@@ -401,7 +401,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>902</string>
+		<string>category_hiking</string>
 	</dict>
 	<key>Dinner</key>
 	<dict>
@@ -443,7 +443,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>902</string>
+		<string>category_dinner</string>
 	</dict>
 	<key>Party</key>
 	<dict>
@@ -482,7 +482,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>902</string>
+		<string>category_party-poppers</string>
 	</dict>
 	<key>Sports</key>
 	<dict>
@@ -521,7 +521,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>902</string>
+		<string>category_sport</string>
 	</dict>
 	<key>Skiing</key>
 	<dict>
@@ -560,7 +560,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>903</string>
+		<string>category_skiing</string>
 	</dict>
 	<key>Snowboarding</key>
 	<dict>
@@ -599,7 +599,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>903</string>
+		<string>category_snowboard</string>
 	</dict>
 	<key>Soccer</key>
 	<dict>
@@ -638,7 +638,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>903</string>
+		<string>category_soccer</string>
 	</dict>
 	<key>Tennis</key>
 	<dict>
@@ -677,7 +677,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>903</string>
+		<string>category_tennis</string>
 	</dict>
 	<key>Movie</key>
 	<dict>
@@ -718,7 +718,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>904</string>
+		<string>category_movie</string>
 	</dict>
 	<key>Museum</key>
 	<dict>
@@ -757,7 +757,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>904</string>
+		<string>category_museum</string>
 	</dict>
 	<key>Concert</key>
 	<dict>
@@ -798,7 +798,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>904</string>
+		<string>category_concert</string>
 	</dict>
 	<key>Water</key>
 	<dict>
@@ -841,7 +841,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>904</string>
+		<string>category_water</string>
 	</dict>
 	<key>Resorts</key>
 	<dict>
@@ -882,7 +882,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>904</string>
+		<string>category_resort</string>
 	</dict>
 	<key>Kayak</key>
 	<dict>
@@ -913,7 +913,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>905</string>
+		<string>category_kayak</string>
 	</dict>
 	<key>ScrubaDiving</key>
 	<dict>
@@ -1011,7 +1011,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>905</string>
+		<string>category_school</string>
 	</dict>
 	<key>Self-Study</key>
 	<dict>
@@ -1044,7 +1044,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>902</string>
+		<string>category_self-study</string>
 	</dict>
 	<key>Instrument</key>
 	<dict>
@@ -1075,7 +1075,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>902</string>
+		<string>category_instrument</string>
 	</dict>
 	<key>Language</key>
 	<dict>
@@ -1106,7 +1106,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>902</string>
+		<string>category_language</string>
 	</dict>
 	<key>Science</key>
 	<dict>
@@ -1137,7 +1137,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>902</string>
+		<string>category_science</string>
 	</dict>
 	<key>Art</key>
 	<dict>
@@ -1168,7 +1168,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>902</string>
+		<string>category_art</string>
 	</dict>
 	<key>Library</key>
 	<dict>
@@ -1199,7 +1199,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>902</string>
+		<string>category_library</string>
 	</dict>
 	<key>Jogging</key>
 	<dict>
@@ -1261,7 +1261,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>902</string>
+		<string>category_exercise</string>
 	</dict>
 	<key>DoctorVisit</key>
 	<dict>
@@ -1292,7 +1292,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>902</string>
+		<string>category_doctor</string>
 	</dict>
 	<key>Dental</key>
 	<dict>
@@ -1354,7 +1354,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>902</string>
+		<string>category_bank</string>
 	</dict>
 	<key>Online</key>
 	<dict>
@@ -1385,7 +1385,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>902</string>
+		<string>category_online</string>
 	</dict>
 	<key>Billing</key>
 	<dict>
@@ -1416,7 +1416,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>902</string>
+		<string>category_billing</string>
 	</dict>
 	<key>Auto</key>
 	<dict>
@@ -1447,7 +1447,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>902</string>
+		<string>category_auto</string>
 	</dict>
 	<key>Cleaning</key>
 	<dict>
@@ -1478,7 +1478,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>902</string>
+		<string>cleaning</string>
 	</dict>
 	<key>HomeFix</key>
 	<dict>
@@ -1509,7 +1509,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>902</string>
+		<string>homefix</string>
 	</dict>
 	<key>Moving</key>
 	<dict>
@@ -1540,7 +1540,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>902</string>
+		<string>category_moving</string>
 	</dict>
 	<key>FamilyVisit</key>
 	<dict>
@@ -1571,7 +1571,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>902</string>
+		<string>category_family-visit</string>
 	</dict>
 	<key>Meeting</key>
 	<dict>
@@ -1602,7 +1602,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>902</string>
+		<string>category_meeting</string>
 	</dict>
 	<key>GoBusiness</key>
 	<dict>
@@ -1633,7 +1633,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>902</string>
+		<string>category_gobusiness</string>
 	</dict>
 	<key>PickUpDropOff</key>
 	<dict>
@@ -1664,7 +1664,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>902</string>
+		<string>category_pickup</string>
 	</dict>
 	<key>Booking</key>
 	<dict>

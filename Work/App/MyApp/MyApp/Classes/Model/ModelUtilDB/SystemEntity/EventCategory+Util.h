@@ -20,4 +20,5 @@
 
 + (ENTITY_UTIL_TEMPLATE_CLASS *)entityWithLocalID:(NSString *)localID inManagedObjectContext:  (NSManagedObjectContext *)context;
 
++ (ENTITY_UTIL_TEMPLATE_CLASS *)fetchEntityWithLocalID:(NSString *)localID inManagedObjectContext:  (NSManagedObjectContext *)context;
 @end

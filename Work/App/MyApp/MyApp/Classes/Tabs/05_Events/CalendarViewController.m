@@ -303,7 +303,7 @@
 
 - (void)actionMenu {
     UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil
-                                               otherButtonTitles:@"Create Event", @"Change View", nil];
+                                               otherButtonTitles:@"Create Event", @"Create Event by Template", @"Change View", nil];
     //[action showFromTabBar:[[self tabBarController] tabBar]];
     [action showFromBarButtonItem:self.menuButton animated:YES];
 }

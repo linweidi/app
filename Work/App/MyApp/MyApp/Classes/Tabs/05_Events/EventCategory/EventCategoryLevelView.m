@@ -64,15 +64,15 @@
     EventCategory * category = nil;
     NSManagedObjectContext * context = [ConfigurationManager sharedManager].managedObjectContext;
     if (self.index == 1) {
-        category = [EventCategory entityWithLocalID:self.categoryFirstLocalID inManagedObjectContext:context];
+        category = [EventCategory fetchEntityWithLocalID:self.categoryFirstLocalID inManagedObjectContext:context];
         [self.delegate didSelectEventCategory:category];
     }
     if (self.index == 2) {
-        category = [EventCategory entityWithLocalID:self.categorySecondLocalID inManagedObjectContext:context];
+        category = [EventCategory fetchEntityWithLocalID:self.categorySecondLocalID inManagedObjectContext:context];
         [self.delegate didSelectEventCategory:category];
     }
     if (self.index == 3) {
-        category = [EventCategory entityWithLocalID:self.categoryThirdLocalID inManagedObjectContext:context];
+        category = [EventCategory fetchEntityWithLocalID:self.categoryThirdLocalID inManagedObjectContext:context];
         [self.delegate didSelectEventCategory:category];
     }
     
@@ -253,7 +253,7 @@
 }
 
 - (void) setTableViewCell:(UITableViewCell *)cell catLocalID:(NSString *)catLocalID {
-    EventCategory * category = [EventCategory entityWithLocalID:catLocalID inManagedObjectContext:[ConfigurationManager sharedManager].managedObjectContext];
+    EventCategory * category = [EventCategory fetchEntityWithLocalID:catLocalID inManagedObjectContext:[ConfigurationManager sharedManager].managedObjectContext];
     
     cell.textLabel.text = category.name;
     [cell.imageView setImage:[UIImage imageWithData:category.thumb.data]];

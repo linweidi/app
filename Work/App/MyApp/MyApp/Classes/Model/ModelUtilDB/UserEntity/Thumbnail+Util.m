@@ -94,6 +94,30 @@
     }];
 }
 
++ (ENTITY_UTIL_TEMPLATE_CLASS *)fetchEntityWithFileName:(NSString *)fileName inManagedObjectContext:  (NSManagedObjectContext *)context {
+    ENTITY_UTIL_TEMPLATE_CLASS * object = nil;
+    
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:ENTITY_UTIL_TEMPLATE_CLASS_NAME] ;
+    request.predicate = [NSPredicate predicateWithFormat:@"fileName = %@", fileName];
+    NSError *error;
+    NSArray *matches = [context executeFetchRequest:request error:&error   ];
+    
+    if (!matches || ([matches count]>1)) {
+        NSAssert(NO, @"match count is not unique");
+    }
+    else if (![matches count]) {
+        //create a new one
+        object = nil;
+        
+    }
+    else {
+        object = [matches lastObject];
+    }
+    
+    return object;
+    
+}
 /*
 + (Thumbnail *) thumbnailEntity:(NSString *)name inManagedObjectContext: (NSManagedObjectContext *)context {
     Thumbnail *newThumbNail = nil   ;

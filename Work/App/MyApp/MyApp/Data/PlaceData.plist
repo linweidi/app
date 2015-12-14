@@ -119,7 +119,124 @@
 			<string>1007</string>
 		</array>
 		<key>thumb</key>
-		<string>903</string>
+		<string>macdonald</string>
+	</dict>
+	<key>Item - 4</key>
+	<dict>
+		<key>closeTime</key>
+		<date>2015-11-09T02:07:22Z</date>
+		<key>likes</key>
+		<integer>1002</integer>
+		<key>location</key>
+		<string>4066 Loop Rd, San Jose, CA 95555</string>
+		<key>title</key>
+		<string>walmart</string>
+		<key>subtitle</key>
+		<string>retail store</string>
+		<key>longitude</key>
+		<real>37.4351252</real>
+		<key>latitude</key>
+		<real>-121.8046897</real>
+		<key>openTime</key>
+		<date>2015-11-08T14:08:06Z</date>
+		<key>parking</key>
+		<integer>1</integer>
+		<key>price</key>
+		<integer>3</integer>
+		<key>rankings</key>
+		<integer>4</integer>
+		<key>tips</key>
+		<string>we have no tips for you</string>
+		<key>catLocalIDs</key>
+		<array>
+			<string>1.1</string>
+			<string>1.2</string>
+		</array>
+		<key>photos</key>
+		<array>
+			<string>1007</string>
+			<string>1008</string>
+		</array>
+		<key>thumb</key>
+		<string>walmart</string>
+	</dict>
+	<key>Item - 5</key>
+	<dict>
+		<key>closeTime</key>
+		<date>2015-11-09T02:07:22Z</date>
+		<key>likes</key>
+		<integer>12</integer>
+		<key>location</key>
+		<string>4066 Loop Rd, San Jose, CA 95555</string>
+		<key>title</key>
+		<string>national stadium</string>
+		<key>subtitle</key>
+		<string>stadium</string>
+		<key>longitude</key>
+		<real>37.5351252</real>
+		<key>latitude</key>
+		<real>-121.9046897</real>
+		<key>openTime</key>
+		<date>2015-11-09T02:08:06Z</date>
+		<key>parking</key>
+		<integer>1</integer>
+		<key>price</key>
+		<integer>3</integer>
+		<key>rankings</key>
+		<integer>4</integer>
+		<key>tips</key>
+		<string>we have no tips for you</string>
+		<key>catLocalIDs</key>
+		<array>
+			<string>1.1</string>
+			<string>1.2</string>
+		</array>
+		<key>photos</key>
+		<array>
+			<string>1007</string>
+			<string>1008</string>
+		</array>
+		<key>thumb</key>
+		<string>stadium</string>
+	</dict>
+	<key>Item - 6</key>
+	<dict>
+		<key>closeTime</key>
+		<date>2015-11-09T02:07:22Z</date>
+		<key>likes</key>
+		<integer>300</integer>
+		<key>location</key>
+		<string>5200 Loop Rd, San Jose, CA 95555</string>
+		<key>title</key>
+		<string>san jose bar</string>
+		<key>subtitle</key>
+		<string>beer bar</string>
+		<key>longitude</key>
+		<real>37.3351252</real>
+		<key>latitude</key>
+		<real>-121.9046897</real>
+		<key>openTime</key>
+		<date>2015-11-08T14:08:06Z</date>
+		<key>parking</key>
+		<integer>1</integer>
+		<key>price</key>
+		<integer>3</integer>
+		<key>rankings</key>
+		<integer>4</integer>
+		<key>tips</key>
+		<string>we have no tips for you</string>
+		<key>catLocalIDs</key>
+		<array>
+			<string>1.1</string>
+			<string>1.2</string>
+		</array>
+		<key>photos</key>
+		<array>
+			<string>1007</string>
+			<string>1008</string>
+		</array>
+		<key>thumb</key>
+		<string>bar</string>
 	</dict>
 </dict>
 </plist>

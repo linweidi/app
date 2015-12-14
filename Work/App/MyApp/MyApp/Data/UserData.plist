@@ -23,7 +23,7 @@
 		<key>picture</key>
 		<string>903</string>
 		<key>thumbnail</key>
-		<string>903</string>
+		<string>premium01</string>
 	</dict>
 	<key>Item - 2</key>
 	<dict>
@@ -46,7 +46,7 @@
 		<key>picture</key>
 		<string>900</string>
 		<key>thumbnail</key>
-		<string>900</string>
+		<string>premium02</string>
 	</dict>
 	<key>Item - 3</key>
 	<dict>
@@ -69,7 +69,7 @@
 		<key>picture</key>
 		<string>901</string>
 		<key>thumbnail</key>
-		<string>901</string>
+		<string>premium03</string>
 	</dict>
 	<key>Item - 4</key>
 	<dict>
@@ -92,30 +92,122 @@
 		<key>picture</key>
 		<string>902</string>
 		<key>thumbnail</key>
-		<string>902</string>
+		<string>premium04</string>
 	</dict>
 	<key>Item - 5</key>
 	<dict>
 		<key>email</key>
-		<string>tomhanks@gmail.com</string>
+		<string>sue@gmail.com</string>
 		<key>emailCopy</key>
-		<string>tomhanks@gmail.com</string>
+		<string>sue@gmail.com</string>
 		<key>facebookID</key>
-		<string>tomhanks@gmail.com</string>
+		<string>sue@gmail.com</string>
 		<key>fullname</key>
-		<string>tom hanks</string>
+		<string>Sue</string>
 		<key>fullnameLower</key>
-		<string>tom hanks</string>
+		<string>sue</string>
 		<key>password</key>
-		<string>fdsfdaf</string>
+		<string>grrrgrg</string>
 		<key>twitterID</key>
-		<string>tomhanks@gmail.com</string>
+		<string>sue@gmail.com</string>
 		<key>username</key>
-		<string>tomhanks@gmail.com</string>
+		<string>sue@gmail.com</string>
 		<key>picture</key>
 		<string>903</string>
 		<key>thumbnail</key>
+		<string>premium05</string>
+	</dict>
+	<key>Item - 6</key>
+	<dict>
+		<key>email</key>
+		<string>lillian@gmail.com</string>
+		<key>emailCopy</key>
+		<string>lillian@gmail.com</string>
+		<key>facebookID</key>
+		<string>lillian@gmail.com</string>
+		<key>fullname</key>
+		<string>Lillian</string>
+		<key>fullnameLower</key>
+		<string>lillian</string>
+		<key>password</key>
+		<string>grgrgrgr</string>
+		<key>twitterID</key>
+		<string>lillian@gmail.com</string>
+		<key>username</key>
+		<string>lillian@gmail.com</string>
+		<key>picture</key>
 		<string>903</string>
+		<key>thumbnail</key>
+		<string>premium06</string>
+	</dict>
+	<key>Item - 7</key>
+	<dict>
+		<key>email</key>
+		<string>melody@gmail.com</string>
+		<key>emailCopy</key>
+		<string>melody@gmail.com</string>
+		<key>facebookID</key>
+		<string>melody@gmail.com</string>
+		<key>fullname</key>
+		<string>Melody</string>
+		<key>fullnameLower</key>
+		<string>melody</string>
+		<key>password</key>
+		<string>dyrbrrbrr</string>
+		<key>twitterID</key>
+		<string>melody@gmail.com</string>
+		<key>username</key>
+		<string>melody@gmail.com</string>
+		<key>picture</key>
+		<string>903</string>
+		<key>thumbnail</key>
+		<string>premium07</string>
+	</dict>
+	<key>Item - 8</key>
+	<dict>
+		<key>email</key>
+		<string>tony@gmail.com</string>
+		<key>emailCopy</key>
+		<string>tony@gmail.com</string>
+		<key>facebookID</key>
+		<string>tony@gmail.com</string>
+		<key>fullname</key>
+		<string>Tony</string>
+		<key>fullnameLower</key>
+		<string>tony</string>
+		<key>password</key>
+		<string>setege</string>
+		<key>twitterID</key>
+		<string>tony@gmail.com</string>
+		<key>username</key>
+		<string>tony@gmail.com</string>
+		<key>picture</key>
+		<string>903</string>
+		<key>thumbnail</key>
+		<string>premium08</string>
+	</dict>
+	<key>Item - 9</key>
+	<dict>
+		<key>email</key>
+		<string>Jean@gmail.com</string>
+		<key>emailCopy</key>
+		<string>Jean@gmail.com</string>
+		<key>facebookID</key>
+		<string>Jean@gmail.com</string>
+		<key>fullname</key>
+		<string>Jean</string>
+		<key>fullnameLower</key>
+		<string>jean</string>
+		<key>password</key>
+		<string>yrdyrd</string>
+		<key>twitterID</key>
+		<string>Jean@gmail.com</string>
+		<key>username</key>
+		<string>Jean@gmail.com</string>
+		<key>picture</key>
+		<string>903</string>
+		<key>thumbnail</key>
+		<string>premium09</string>
 	</dict>
 </dict>
 </plist>

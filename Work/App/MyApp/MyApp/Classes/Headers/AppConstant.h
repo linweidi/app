@@ -215,6 +215,7 @@
 #define		PF_EVENT_PLACE                      @"place"			//	Date
 #define		PF_EVENT_CREATE_USER                @"user"			//	Date
 #define		PF_EVENT_CATEGORY                   @"category"			//	Date
+#define		PF_EVENT_IS_BUSY                    @"isBusy"			//	Date
 
 #define		PF_ARRAY_ELEMENT_CLASS_NAME                 @"ArrayElement"
 

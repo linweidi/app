@@ -12,16 +12,58 @@
 	<key>Item - 2</key>
 	<dict>
 		<key>name</key>
-		<string>taylor</string>
+		<string>david</string>
 		<key>contact</key>
-		<string>taylorswift@gmail.com</string>
+		<string>david@gmail.com</string>
 	</dict>
 	<key>Item - 3</key>
 	<dict>
 		<key>name</key>
-		<string>tommy</string>
+		<string>taylor </string>
 		<key>contact</key>
-		<string>tomhanks@gmail.com</string>
+		<string>taylorswift@gmail.com</string>
+	</dict>
+	<key>Item - 4</key>
+	<dict>
+		<key>name</key>
+		<string>will</string>
+		<key>contact</key>
+		<string>willsmith@gmail.com</string>
+	</dict>
+	<key>Item - 5</key>
+	<dict>
+		<key>name</key>
+		<string>Sue</string>
+		<key>contact</key>
+		<string>sue@gmail.com</string>
+	</dict>
+	<key>Item - 6</key>
+	<dict>
+		<key>name</key>
+		<string>lillian</string>
+		<key>contact</key>
+		<string>lillian@gmail.com</string>
+	</dict>
+	<key>Item - 7</key>
+	<dict>
+		<key>name</key>
+		<string>melody</string>
+		<key>contact</key>
+		<string>melody@gmail.com</string>
+	</dict>
+	<key>Item - 8</key>
+	<dict>
+		<key>name</key>
+		<string>tony</string>
+		<key>contact</key>
+		<string>tony@gmail.com</string>
+	</dict>
+	<key>Item - 9</key>
+	<dict>
+		<key>name</key>
+		<string>Jean</string>
+		<key>contact</key>
+		<string>Jean@gmail.com</string>
 	</dict>
 </dict>
 </plist>

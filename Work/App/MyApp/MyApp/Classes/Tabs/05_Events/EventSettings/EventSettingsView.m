@@ -9,6 +9,7 @@
 #import "AppConstant.h"
 #import "ProgressHUD.h"
 #import "Event+Util.h"
+#import "Thumbnail+Util.h"
 
 #import "ThemeManager.h"
 #import "EventCellView.h"
@@ -180,10 +181,11 @@
     
     self.titleCell.detailTextLabel.text = event.title;
     self.categoryCell.detailTextLabel.text = event.category.name;
+    [self.categoryCell.imageView setImage: [UIImage imageWithData:event.category.thumb.data]];
     self.busySegement.selectedSegmentIndex = [event.busy boolValue]?0:1;    //0:yes, 1:no
     self.locationCell.detailTextLabel.text = event.location;
     self.placeCell.detailTextLabel.text = event.place.title;
-
+    [self.placeCell.imageView setImage:[UIImage imageWithData:event.place.thumb.data]];
     
     self.startTimeCell.detailTextLabel.text = [[ConverterUtil sharedUtil] stringFromDateShort: event.startTime];
     self.endTimeCell.detailTextLabel.text = [[ConverterUtil sharedUtil] stringFromDateShort:event.endTime];
@@ -315,10 +317,10 @@
     
     switch (indexPath.section) {
         case EVENT_SETTING_VIEW_SECTION_TITLE_INDEX:
-            if (indexPath.row == 0) {
+            if (indexPath.row == 1) {
                 cell = self.titleCell;
             }
-            if (indexPath.row == 1) {
+            if (indexPath.row == 0) {
                 cell = self.categoryCell;
             }
             if (indexPath.row == 2) {

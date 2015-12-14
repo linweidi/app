@@ -79,7 +79,7 @@
         user.picture = [Picture fetchEntityWithID:dict[PF_USER_PICTURE] inManagedObjectContext:self.managedObjectContext];
     }
     if (dict[PF_USER_THUMBNAIL]) {
-        user.thumbnail = [Thumbnail fetchEntityWithID:dict[PF_USER_THUMBNAIL] inManagedObjectContext:self.managedObjectContext];
+        user.thumbnail = [Thumbnail fetchEntityWithFileName:dict[PF_USER_THUMBNAIL] inManagedObjectContext:self.managedObjectContext];
     }
     
     //if create, add user to User Manager
