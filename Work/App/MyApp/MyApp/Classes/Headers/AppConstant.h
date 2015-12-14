@@ -112,7 +112,8 @@
 #define		SCREEN_HEIGHT						[UIScreen mainScreen].bounds.size.height
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
-#define		PREMIUM_LINK						@"http://www.relatedcode.com/realtimepremium"
+//#define		PREMIUM_LINK						@"http://www.relatedcode.com/realtimepremium"
+#define		PREMIUM_LINK                        @"https://www.linkedin.com/in/linweiding"
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 #define		MESSAGE_INVITE						@"Please accept our invitation"

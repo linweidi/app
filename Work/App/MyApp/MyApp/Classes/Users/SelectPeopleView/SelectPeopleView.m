@@ -19,6 +19,7 @@
 #import "CurrentUser+Util.h"
 
 #import "People+Util.h"
+#import "Thumbnail+Util.h"
 #import "PeopleRemoteUtil.h"
 
 #import "UserManager.h"
@@ -200,6 +201,8 @@
     else {
         cell.textLabel.text = contact.fullname;
     }
+    
+    [cell.imageView setImage:[UIImage imageWithData: contact.thumbnail.data ]];
     
     BOOL selected = [selection containsObject:contact.globalID];
 	cell.accessoryType = selected ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;

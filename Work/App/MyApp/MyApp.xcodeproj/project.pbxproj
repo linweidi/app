@@ -256,6 +256,12 @@
 		287D1AA61BF7088B0022FEFE /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 287D1A9C1BF7088B0022FEFE /* TableViewCell.m */; };
 		287D1AA71BF7088B0022FEFE /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 287D1A9D1BF7088B0022FEFE /* TableViewCell.xib */; };
 		28898F331BFC427D00CF37A9 /* DefaultPreference.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28898F321BFC427D00CF37A9 /* DefaultPreference.plist */; };
+		289467E61C1F4E8300584111 /* EventActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 289467E41C1F4E8300584111 /* EventActionView.m */; };
+		289467E71C1F4E8300584111 /* EventActionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 289467E51C1F4E8300584111 /* EventActionView.xib */; };
+		289467ED1C1F5A8700584111 /* bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 289467E91C1F5A8700584111 /* bar.png */; };
+		289467EE1C1F5A8700584111 /* macdonald.png in Resources */ = {isa = PBXBuildFile; fileRef = 289467EA1C1F5A8700584111 /* macdonald.png */; };
+		289467EF1C1F5A8700584111 /* stadium.png in Resources */ = {isa = PBXBuildFile; fileRef = 289467EB1C1F5A8700584111 /* stadium.png */; };
+		289467F01C1F5A8700584111 /* walmart.png in Resources */ = {isa = PBXBuildFile; fileRef = 289467EC1C1F5A8700584111 /* walmart.png */; };
 		28B39D1E1C1246DB005CB782 /* FeedbackTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28B39D1D1C1246DB005CB782 /* FeedbackTableViewCell.xib */; };
 		28D3F6F01C14C7730062AC19 /* PlaceListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D3F6EE1C14C7730062AC19 /* PlaceListView.m */; };
 		28D3F6F11C14C7730062AC19 /* PlaceListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28D3F6EF1C14C7730062AC19 /* PlaceListView.xib */; };
@@ -1058,6 +1064,13 @@
 		2893CD441BF00E30003DD7E4 /* RemoteHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteHeader.h; sourceTree = "<group>"; };
 		2893CD451BF00E30003DD7E4 /* TypeHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeHeader.h; sourceTree = "<group>"; };
 		2893CD461BF00E73003DD7E4 /* LocalDataConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalDataConstant.h; sourceTree = "<group>"; };
+		289467E31C1F4E8300584111 /* EventActionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventActionView.h; sourceTree = "<group>"; };
+		289467E41C1F4E8300584111 /* EventActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventActionView.m; sourceTree = "<group>"; };
+		289467E51C1F4E8300584111 /* EventActionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventActionView.xib; sourceTree = "<group>"; };
+		289467E91C1F5A8700584111 /* bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bar.png; sourceTree = "<group>"; };
+		289467EA1C1F5A8700584111 /* macdonald.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = macdonald.png; sourceTree = "<group>"; };
+		289467EB1C1F5A8700584111 /* stadium.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stadium.png; sourceTree = "<group>"; };
+		289467EC1C1F5A8700584111 /* walmart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walmart.png; sourceTree = "<group>"; };
 		28B39D1D1C1246DB005CB782 /* FeedbackTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedbackTableViewCell.xib; sourceTree = "<group>"; };
 		28D3F6ED1C14C7730062AC19 /* PlaceListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceListView.h; sourceTree = "<group>"; };
 		28D3F6EE1C14C7730062AC19 /* PlaceListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceListView.m; sourceTree = "<group>"; };
@@ -2416,6 +2429,27 @@
 			path = Headers;
 			sourceTree = "<group>";
 		};
+		289467E21C1F4E3700584111 /* EventAction */ = {
+			isa = PBXGroup;
+			children = (
+				289467E31C1F4E8300584111 /* EventActionView.h */,
+				289467E41C1F4E8300584111 /* EventActionView.m */,
+				289467E51C1F4E8300584111 /* EventActionView.xib */,
+			);
+			path = EventAction;
+			sourceTree = "<group>";
+		};
+		289467E81C1F5A8700584111 /* logo */ = {
+			isa = PBXGroup;
+			children = (
+				289467E91C1F5A8700584111 /* bar.png */,
+				289467EA1C1F5A8700584111 /* macdonald.png */,
+				289467EB1C1F5A8700584111 /* stadium.png */,
+				289467EC1C1F5A8700584111 /* walmart.png */,
+			);
+			path = logo;
+			sourceTree = "<group>";
+		};
 		28D3F6F51C15F6C40062AC19 /* PlaceCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -3072,10 +3106,10 @@
 				E51D86A71BB1CC1700470170 /* Chat */,
 				E51D86E71BB1CC1700470170 /* Tabs */,
 				E51D870F1BB1CC1700470170 /* Users */,
+				E51D87391BB1CC1700470170 /* Welcome */,
 				E51D87201BB1CC1700470170 /* Utilities */,
 				2823A9341C028FA50060DC84 /* LocalData */,
 				2823A9571C028FA50060DC84 /* Remote */,
-				E51D87391BB1CC1700470170 /* Welcome */,
 			);
 			name = Classes;
 			path = MyApp/Classes;
@@ -3438,6 +3472,7 @@
 				282DDB8B1C1E9A0D0054E60F /* others */,
 				282DDA691C1E6AC80054E60F /* button */,
 				282DDA7E1C1E6AC80054E60F /* category */,
+				289467E81C1F5A8700584111 /* logo */,
 				282DDAD51C1E6AC80054E60F /* chat */,
 				282DDAFA1C1E6AC80054E60F /* Poker-icon.png */,
 				E51D87561BB1CC1700470170 /* chat */,
@@ -3688,6 +3723,7 @@
 				28E2B8211BF70AFB0049F18C /* Members */,
 				28E2B8221BF70AFB0049F18C /* Place */,
 				287393D41BF5C46100F890D5 /* CreateEvent */,
+				289467E21C1F4E3700584111 /* EventAction */,
 				287393D81BF5C46100F890D5 /* EventSettings */,
 				E550EC0B1BCC7EB200C37FA1 /* CalendarViewController.h */,
 				E550EC0C1BCC7EB200C37FA1 /* CalendarViewController.m */,
@@ -3924,9 +3960,11 @@
 				282DDB5A1C1E6AC90054E60F /* category_study5.png in Resources */,
 				282DDB101C1E6AC90054E60F /* category_auto.png in Resources */,
 				E51D87E81BB1CC1800470170 /* doxygen.png in Resources */,
+				289467E71C1F4E8300584111 /* EventActionView.xib in Resources */,
 				E51D890A1BB1CC1800470170 /* premium11@2x.png in Resources */,
 				E51D88531BB1CC1800470170 /* tab_a.png in Resources */,
 				E51D87FA1BB1CC1800470170 /* ftv2pnode.png in Resources */,
+				289467EF1C1F5A8700584111 /* stadium.png in Resources */,
 				E51D89441BB1CC1800470170 /* restoraunt_photo@3x.png in Resources */,
 				282DDB121C1E6AC90054E60F /* category_bank2.png in Resources */,
 				E51D88021BB1CC1800470170 /* interface_flurry.html in Resources */,
@@ -3952,6 +3990,7 @@
 				28E2B8361BF7E7C80049F18C /* GroupListView.xib in Resources */,
 				282DDB3A1C1E6AC90054E60F /* category_museum.png in Resources */,
 				E51D89481BB1CC1800470170 /* star_chosen.png in Resources */,
+				289467F01C1F5A8700584111 /* walmart.png in Resources */,
 				E51D894E1BB1CC1800470170 /* tick_box.png in Resources */,
 				E51D87E71BB1CC1800470170 /* doxygen.css in Resources */,
 				E51D884C1BB1CC1800470170 /* search.css in Resources */,
@@ -4079,6 +4118,7 @@
 				E51D89051BB1CC1800470170 /* premium06@2x.png in Resources */,
 				E51D894C1BB1CC1800470170 /* star_unchosen@2x.png in Resources */,
 				282DDB251C1E6AC90054E60F /* category_gobusiness5.png in Resources */,
+				289467EE1C1F5A8700584111 /* macdonald.png in Resources */,
 				282DDB0E1C1E6AC90054E60F /* button_upload.png in Resources */,
 				E51D88CD1BB1CC1800470170 /* PrivacyView.xib in Resources */,
 				E51D89091BB1CC1800470170 /* premium10@2x.png in Resources */,
@@ -4165,6 +4205,7 @@
 				E51D895D1BB1D32900470170 /* TabTableViewController.xib in Resources */,
 				E51D883E1BB1CC1800470170 /* functions_6c.html in Resources */,
 				E51D87DA1BB1CC1800470170 /* classes.html in Resources */,
+				289467ED1C1F5A8700584111 /* bar.png in Resources */,
 				E51D88611BB1CC1800470170 /* Flurry RTB Marketplace TOS.pdf in Resources */,
 				28E2B82C1BF717830049F18C /* EventCategoryLevelView.xib in Resources */,
 				E51D885A1BB1CC1800470170 /* FlurryiOSAdvertisingREADMEv5.4.0.pdf in Resources */,
@@ -4416,6 +4457,7 @@
 				28E32C051C0AD01D00A9EEC1 /* CurrentUser.m in Sources */,
 				28E32C3E1C0AD03600A9EEC1 /* EventVoting+CoreDataProperties.m in Sources */,
 				28EECB8F1BCCD3E90001654E /* ReservationViewController.m in Sources */,
+				289467E61C1F4E8300584111 /* EventActionView.m in Sources */,
 				28EECB901BCCD3E90001654E /* TabBarControllerViewController.m in Sources */,
 				2823A99A1C028FA50060DC84 /* EventRemoteUtil.m in Sources */,
 				28D85D121BD60ED900A48E87 /* BaseCalendarViewController.m in Sources */,

@@ -35,6 +35,7 @@
 #import "SelectMultipleGroupView.h"
 
 #import "PlaceLocalDataUtil.h"
+#import "EventActionView.h"
 
 #import "EventSettingsView.h"
 
@@ -138,9 +139,11 @@
     
     self.editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(actionEditEnable)];
     
-
+    UIBarButtonItem * sendButton = [[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStylePlain target:self action:@selector(actionSendButton)];
+    
     
     [rightBarButtons addObject: self.editButton];
+    [rightBarButtons addObject: sendButton];
     // add switch view button
     self.navigationItem.rightBarButtonItems = rightBarButtons;
 }
@@ -462,11 +465,12 @@
     switch (indexPath.section) {
         case EVENT_SETTING_VIEW_SECTION_TITLE_INDEX:
             if (indexPath.row == 0) {
-                //cell = self.titleCell;
-                [self actionSingleCell:self.titleCell.textLabel.text text:self.titleCell.detailTextLabel.text indexPath:indexPath];
+                //cell = self.categoryCell;
             }
             if (indexPath.row == 1) {
-                //cell = self.categoryCell;
+                
+                //cell = self.titleCell;
+                [self actionSingleCell:self.titleCell.textLabel.text text:self.titleCell.detailTextLabel.text indexPath:indexPath];
             }
             if (indexPath.row == 2) {
                 //cell = self.locationCell;
@@ -561,7 +565,7 @@
     
 }
 
-#pragma mark -- Actions
+#pragma mark -- UIBarButtonItem Actions
 - (void) actionEditEnable {
     self.editEnable = !self.editEnable;
     if (self.editEnable) {
@@ -574,6 +578,11 @@
     
     [self updateCellContents];
     [self.tableView reloadData];
+}
+
+- (void) actionSendButton {
+    EventActionView * actionVC = [[EventActionView alloc] initWithEventID:self.eventID];
+    [self.navigationController pushViewController:actionVC animated:YES];
 }
 
 

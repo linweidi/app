@@ -9,6 +9,7 @@
 #import <AddressBookUI/AddressBookUI.h>
 #import "Place+Util.h"
 #import "EventCategory+Util.h"
+#import "Thumbnail+Util.h"
 #import "ConverterUtil.h"
 #import "PlaceCell.h"
 @interface PlaceCell()
@@ -63,6 +64,8 @@
     self.categories.text =
     self.address.text = place.location;
     self.price.text = [[ConverterUtil sharedUtil] dollarString:[place.price intValue]];
+    
+    [self.thumb setImage:[UIImage imageWithData:place.thumb.data]];
 //    self.parkingCell.detailTextLabel.text = [[ConverterUtil sharedUtil] starString:[self.place.parking intValue]];
 //    self.photoCell.detailTextLabel.text = [NSString stringWithFormat:@"%lu counts", [self.place.photos count]];
 }

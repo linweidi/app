@@ -73,7 +73,7 @@
     
 //    NSString* path= [[NSBundle mainBundle] pathForResource:dict[PF_THUMBNAIL_NAME] ofType:@"png"];
 //    thumb.data = [NSData dataWithContentsOfFile:path];
-    NSString * imageName = dict[PF_THUMBNAIL_NAME];
+    NSString * imageName = dict[PF_THUMBNAIL_URL];
     UIImage * image = [UIImage imageNamed:imageName];
     thumb.data = UIImagePNGRepresentation(image);
     //thumb.data = [NSData dataWithContentsOfFile:image];

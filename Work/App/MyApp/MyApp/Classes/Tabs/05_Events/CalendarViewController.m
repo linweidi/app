@@ -90,7 +90,7 @@
     
     [rightBarButtons addObject:self.menuButton];
     
-    //[rightBarButtons addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(didChangeModeTouch)]];
+    //[rightBarButtons addObject:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(didChangeViewModeTouch)]];
     
     // add today button
     self.todayButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(didGoTodayTouch)];
@@ -272,11 +272,11 @@
     
 }
 
-- (IBAction)didGoTodayTouch {
+- (void)didGoTodayTouch {
     [_calendarManager setDate:[NSDate date]];
 }
 
-- (IBAction)didChangeModeTouch {
+- (void)didChangeViewModeTouch {
     _calendarManager.settings.weekModeEnabled = !_calendarManager.settings.weekModeEnabled;
     [_calendarManager reload];
     
@@ -289,7 +289,7 @@
     [self.view layoutIfNeeded];
 }
 
-- (IBAction)didChangeSelectModeTouch {
+- (void)didChangeSelectModeTouch {
     self.multiButton.style = self.multiSelection?UIBarButtonItemStyleBordered:UIBarButtonItemStyleDone;
     
     self.multiSelection = !self.multiSelection;
@@ -319,7 +319,11 @@
         }
         if (buttonIndex == 1)
         {
-            [self didChangeModeTouch];
+            //[self didChangeViewModeTouch];
+#warning TODO trigger create event by template view
+        }
+        if (buttonIndex == 2) {
+            [self didChangeViewModeTouch];
         }
 
     }

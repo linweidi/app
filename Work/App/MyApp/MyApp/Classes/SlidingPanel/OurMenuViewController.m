@@ -26,7 +26,7 @@
 
 - (void)awakeFromNib {
     //listen to managedObjectContext when ready
-    #warning remove this line of code, should start not this way
+    #warning TODO remove this line of code, should start not this way
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startMainPage) name:NOTIFICATION_DATA_LOAD_READY object:nil];
 }
 //- (instancetype)init {

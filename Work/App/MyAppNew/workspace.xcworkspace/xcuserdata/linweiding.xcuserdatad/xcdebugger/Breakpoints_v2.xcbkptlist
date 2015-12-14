@@ -148,11 +148,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/CalendarViewController.m"
-            timestampString = "471743236.213306"
+            timestampString = "471817560.776463"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "436"
-            endingLineNumber = "436"
+            startingLineNumber = "440"
+            endingLineNumber = "440"
             landmarkName = "-calendar:didTouchDayView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -164,11 +164,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/CalendarViewController.m"
-            timestampString = "471743236.213306"
+            timestampString = "471817560.776463"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "434"
-            endingLineNumber = "434"
+            startingLineNumber = "438"
+            endingLineNumber = "438"
             landmarkName = "-calendar:prepareDayView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -196,11 +196,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/CalendarViewController.m"
-            timestampString = "471743236.213306"
+            timestampString = "471817560.776463"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "507"
-            endingLineNumber = "507"
+            startingLineNumber = "511"
+            endingLineNumber = "511"
             landmarkName = "-calendarDidLoadNextPage:"
             landmarkType = "5">
          </BreakpointContent>
@@ -212,11 +212,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/CalendarViewController.m"
-            timestampString = "471743236.213306"
+            timestampString = "471817560.776463"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "339"
-            endingLineNumber = "339"
+            startingLineNumber = "343"
+            endingLineNumber = "343"
             landmarkName = "-updateEventDotUI:"
             landmarkType = "5">
          </BreakpointContent>
@@ -228,11 +228,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/CalendarViewController.m"
-            timestampString = "471743236.213306"
+            timestampString = "471817560.776463"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "574"
-            endingLineNumber = "574"
+            startingLineNumber = "578"
+            endingLineNumber = "578"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -356,11 +356,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/CalendarViewController.m"
-            timestampString = "471743236.213306"
+            timestampString = "471817560.776463"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "333"
-            endingLineNumber = "333"
+            startingLineNumber = "337"
+            endingLineNumber = "337"
             landmarkName = "-refreshSelection"
             landmarkType = "5">
          </BreakpointContent>
@@ -372,11 +372,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/CalendarViewController.m"
-            timestampString = "471743236.213306"
+            timestampString = "471817560.776463"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "581"
-            endingLineNumber = "581"
+            startingLineNumber = "585"
+            endingLineNumber = "585"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -420,11 +420,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/EventSettings/EventSettingsView.m"
-            timestampString = "471745179.780565"
+            timestampString = "471816729.347369"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
             landmarkName = "-initWithEvent:"
             landmarkType = "5">
          </BreakpointContent>
@@ -436,11 +436,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/EventSettings/EventSettingsView.m"
-            timestampString = "471745179.780565"
+            timestampString = "471817283.630387"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
             landmarkName = "-updateCellContents"
             landmarkType = "5">
          </BreakpointContent>
@@ -1332,11 +1332,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/CalendarViewController.m"
-            timestampString = "471743236.213306"
+            timestampString = "471817560.776463"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "580"
-            endingLineNumber = "580"
+            startingLineNumber = "584"
+            endingLineNumber = "584"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1348,11 +1348,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/EventSettings/EventSettingsView.m"
-            timestampString = "471654033.665813"
+            timestampString = "471816729.347369"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
             landmarkName = "titleCell"
             landmarkType = "19">
             <Locations>
@@ -1396,11 +1396,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/EventSettings/EventSettingsView.m"
-            timestampString = "471745179.780565"
+            timestampString = "471817283.630387"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "315"
-            endingLineNumber = "315"
+            startingLineNumber = "320"
+            endingLineNumber = "320"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1412,11 +1412,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/EventSettings/EventSettingsView.m"
-            timestampString = "471745179.780565"
+            timestampString = "471817283.630387"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "347"
-            endingLineNumber = "347"
+            startingLineNumber = "352"
+            endingLineNumber = "352"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1444,11 +1444,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/EventSettings/EventSettingsView.m"
-            timestampString = "471654033.665813"
+            timestampString = "471816729.347369"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "placeCell"
             landmarkType = "19">
          </BreakpointContent>
@@ -1460,11 +1460,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/EventSettings/EventSettingsView.m"
-            timestampString = "471745179.780565"
+            timestampString = "471817840.555759"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "945"
-            endingLineNumber = "945"
+            startingLineNumber = "956"
+            endingLineNumber = "956"
             landmarkName = "-locationCell"
             landmarkType = "5">
          </BreakpointContent>
@@ -1476,11 +1476,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/EventSettings/EventSettingsView.m"
-            timestampString = "471745179.780565"
+            timestampString = "471817840.555759"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "954"
-            endingLineNumber = "954"
+            startingLineNumber = "965"
+            endingLineNumber = "965"
             landmarkName = "-placeCell"
             landmarkType = "5">
          </BreakpointContent>
@@ -1492,11 +1492,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/EventSettings/EventSettingsView.m"
-            timestampString = "471745179.780565"
+            timestampString = "471817283.630387"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "409"
-            endingLineNumber = "409"
+            startingLineNumber = "414"
+            endingLineNumber = "414"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1572,43 +1572,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/EventSettings/EventSettingsView.m"
-            timestampString = "471745179.780565"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "772"
-            endingLineNumber = "772"
-            landmarkName = "-actionSingleCell:text:indexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/EventSettings/EventSettingsView.m"
-            timestampString = "471745179.780565"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "773"
-            endingLineNumber = "773"
-            landmarkName = "-actionSingleCell:text:indexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/EventSettings/EventSettingsView.m"
-            timestampString = "471745179.780565"
+            timestampString = "471817840.555759"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "783"
             endingLineNumber = "783"
+            landmarkName = "-actionSingleCell:text:indexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/EventSettings/EventSettingsView.m"
+            timestampString = "471817840.555759"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "784"
+            endingLineNumber = "784"
+            landmarkName = "-actionSingleCell:text:indexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/EventSettings/EventSettingsView.m"
+            timestampString = "471817840.555759"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "794"
+            endingLineNumber = "794"
             landmarkName = "-actionDate:text:indexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1668,11 +1668,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/EventSettings/EventSettingsView.m"
-            timestampString = "471745179.780565"
+            timestampString = "471817840.555759"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1026"
-            endingLineNumber = "1026"
+            startingLineNumber = "1037"
+            endingLineNumber = "1037"
             landmarkName = "-selectPlaceCell"
             landmarkType = "5">
          </BreakpointContent>
@@ -1876,11 +1876,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/EventSettings/EventSettingsView.m"
-            timestampString = "471745179.780565"
+            timestampString = "471817840.555759"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "818"
-            endingLineNumber = "818"
+            startingLineNumber = "829"
+            endingLineNumber = "829"
             landmarkName = "-actionOnSelectPlace"
             landmarkType = "5">
          </BreakpointContent>
@@ -1988,11 +1988,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/EventSettings/EventSettingsView.m"
-            timestampString = "471745179.780565"
+            timestampString = "471817283.630387"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "335"
-            endingLineNumber = "335"
+            startingLineNumber = "340"
+            endingLineNumber = "340"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2004,11 +2004,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/EventSettings/EventSettingsView.m"
-            timestampString = "471745179.780565"
+            timestampString = "471817283.630387"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "355"
-            endingLineNumber = "355"
+            startingLineNumber = "360"
+            endingLineNumber = "360"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2020,11 +2020,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/EventSettings/EventSettingsView.m"
-            timestampString = "471745179.780565"
+            timestampString = "471817283.630387"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "408"
-            endingLineNumber = "408"
+            startingLineNumber = "413"
+            endingLineNumber = "413"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2036,11 +2036,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/EventSettings/EventSettingsView.m"
-            timestampString = "471745179.780565"
+            timestampString = "471817840.555759"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "809"
-            endingLineNumber = "809"
+            startingLineNumber = "820"
+            endingLineNumber = "820"
             landmarkName = "-actionOnSelectPlace"
             landmarkType = "5">
          </BreakpointContent>
@@ -2052,11 +2052,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Users/SelectPeopleView/SelectPeopleView.m"
-            timestampString = "471415033.235284"
+            timestampString = "471772578.976492"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
             landmarkName = "-setManagedObjectContext:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2068,11 +2068,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Users/SelectPeopleView/SelectPeopleView.m"
-            timestampString = "471415033.235284"
+            timestampString = "471772578.976492"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "-setManagedObjectContext:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2084,11 +2084,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Users/SelectPeopleView/SelectPeopleView.m"
-            timestampString = "471415033.235284"
+            timestampString = "471772578.976492"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "-loadUsers"
             landmarkType = "5">
          </BreakpointContent>
@@ -2100,11 +2100,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Users/SelectPeopleView/SelectPeopleView.m"
-            timestampString = "471415033.235284"
+            timestampString = "471772578.976492"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "242"
-            endingLineNumber = "242"
+            startingLineNumber = "245"
+            endingLineNumber = "245"
             landmarkName = "-searchBar:textDidChange:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2132,23 +2132,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Users/SelectPeopleView/SelectPeopleView.m"
-            timestampString = "471415033.235284"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../MyApp/MyApp/Classes/Users/SelectPeopleView/SelectPeopleView.m"
-            timestampString = "471415033.235284"
+            timestampString = "471772578.976492"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "185"
@@ -2163,12 +2147,28 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/EventSettings/EventSettingsView.m"
-            timestampString = "471745179.780565"
+            filePath = "../MyApp/MyApp/Classes/Users/SelectPeopleView/SelectPeopleView.m"
+            timestampString = "471772578.976492"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "834"
-            endingLineNumber = "834"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/EventSettings/EventSettingsView.m"
+            timestampString = "471817840.555759"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "845"
+            endingLineNumber = "845"
             landmarkName = "-actionOnSelectInvitee"
             landmarkType = "5">
          </BreakpointContent>
@@ -2180,11 +2180,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/EventSettings/EventSettingsView.m"
-            timestampString = "471745179.780565"
+            timestampString = "471817840.555759"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "850"
-            endingLineNumber = "850"
+            startingLineNumber = "861"
+            endingLineNumber = "861"
             landmarkName = "-presentUserSelectionView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2196,11 +2196,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/EventSettings/EventSettingsView.m"
-            timestampString = "471745179.780565"
+            timestampString = "471817840.555759"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "839"
-            endingLineNumber = "839"
+            startingLineNumber = "850"
+            endingLineNumber = "850"
             landmarkName = "-actionOnSelectInvitee"
             landmarkType = "5">
          </BreakpointContent>
@@ -2212,11 +2212,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/EventSettings/EventSettingsView.m"
-            timestampString = "471745179.780565"
+            timestampString = "471817840.555759"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "855"
-            endingLineNumber = "855"
+            startingLineNumber = "866"
+            endingLineNumber = "866"
             landmarkName = "-presentUserSelectionView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2244,11 +2244,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/EventSettings/EventSettingsView.m"
-            timestampString = "471745179.780565"
+            timestampString = "471817840.555759"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "558"
-            endingLineNumber = "558"
+            startingLineNumber = "564"
+            endingLineNumber = "564"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2260,11 +2260,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/EventSettings/EventSettingsView.m"
-            timestampString = "471745179.780565"
+            timestampString = "471817840.555759"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "729"
-            endingLineNumber = "729"
+            startingLineNumber = "740"
+            endingLineNumber = "740"
             landmarkName = "-didSelectMultipleUserIDs:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2420,11 +2420,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Users/01_SelectSingle/SelectSingleView.m"
-            timestampString = "471415033.235284"
+            timestampString = "471772578.976492"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
             landmarkName = "-searchUsers:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2436,11 +2436,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Users/02_SelectMultiple/SelectMultipleView.m"
-            timestampString = "471415033.235284"
+            timestampString = "471772578.976492"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
             landmarkName = "-loadUsers"
             landmarkType = "5">
          </BreakpointContent>
@@ -2452,11 +2452,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Users/02_SelectMultiple/SelectMultipleView.m"
-            timestampString = "471415033.235284"
+            timestampString = "471772578.976492"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
             landmarkName = "-loadUsers"
             landmarkType = "5">
          </BreakpointContent>
@@ -2468,11 +2468,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Users/02_SelectMultiple/SelectMultipleView.m"
-            timestampString = "471415033.235284"
+            timestampString = "471772578.976492"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "245"
-            endingLineNumber = "245"
+            startingLineNumber = "246"
+            endingLineNumber = "246"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2484,11 +2484,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/03_People/PeopleView.m"
-            timestampString = "471415141.341185"
+            timestampString = "471772000.523011"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "273"
-            endingLineNumber = "273"
+            startingLineNumber = "274"
+            endingLineNumber = "274"
             landmarkName = "-addUser:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2500,11 +2500,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/03_People/PeopleView.m"
-            timestampString = "471415143.300873"
+            timestampString = "471772000.523011"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
+            startingLineNumber = "272"
+            endingLineNumber = "272"
             landmarkName = "-addUser:"
             landmarkType = "5">
             <Locations>
@@ -2612,11 +2612,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/EventSettings/EventSettingsView.m"
-            timestampString = "471745179.780565"
+            timestampString = "471817840.555759"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "681"
-            endingLineNumber = "681"
+            startingLineNumber = "692"
+            endingLineNumber = "692"
             landmarkName = "-didSelectSinglePlace:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2628,11 +2628,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/EventSettings/EventSettingsView.m"
-            timestampString = "471745179.780565"
+            timestampString = "471817840.555759"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "651"
-            endingLineNumber = "651"
+            startingLineNumber = "662"
+            endingLineNumber = "662"
             landmarkName = "-didSelectSinglePlaceMapItem:catLocalID:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2644,11 +2644,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/CreateEvent/CreateEventView.m"
-            timestampString = "471745179.780565"
+            timestampString = "471816729.347369"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
             landmarkName = "-initWithNibName:bundle:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2836,11 +2836,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/CreateEvent/CreateEventView.m"
-            timestampString = "471745179.780565"
+            timestampString = "471817840.555759"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "593"
-            endingLineNumber = "593"
+            startingLineNumber = "596"
+            endingLineNumber = "596"
             landmarkName = "-actionSaveButton"
             landmarkType = "5">
          </BreakpointContent>
@@ -2852,11 +2852,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/CreateEvent/CreateEventView.m"
-            timestampString = "471745179.780565"
+            timestampString = "471816729.347369"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "295"
-            endingLineNumber = "295"
+            startingLineNumber = "297"
+            endingLineNumber = "297"
             landmarkName = "-createEventProperty"
             landmarkType = "5">
          </BreakpointContent>
@@ -2884,11 +2884,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/CalendarViewController.m"
-            timestampString = "471743236.213306"
+            timestampString = "471817560.776463"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "342"
-            endingLineNumber = "342"
+            startingLineNumber = "346"
+            endingLineNumber = "346"
             landmarkName = "-updateEventDotUI:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2900,11 +2900,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/CreateEvent/CreateEventView.m"
-            timestampString = "471745179.780565"
+            timestampString = "471817840.555759"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "976"
-            endingLineNumber = "976"
+            startingLineNumber = "982"
+            endingLineNumber = "982"
             landmarkName = "-textFieldShouldReturn:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2916,11 +2916,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/CreateEvent/CreateEventView.m"
-            timestampString = "471745179.780565"
+            timestampString = "471817840.555759"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "974"
-            endingLineNumber = "974"
+            startingLineNumber = "980"
+            endingLineNumber = "980"
             landmarkName = "-textFieldShouldReturn:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2932,11 +2932,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/CalendarViewController.m"
-            timestampString = "471743236.213306"
+            timestampString = "471817560.776463"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "366"
-            endingLineNumber = "366"
+            startingLineNumber = "370"
+            endingLineNumber = "370"
             landmarkName = "-updateEventDotUI:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2948,11 +2948,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/EventSettings/EventSettingsView.m"
-            timestampString = "471745179.780565"
+            timestampString = "471817283.630387"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "188"
-            endingLineNumber = "188"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
             landmarkName = "-updateCellContents"
             landmarkType = "5">
          </BreakpointContent>
@@ -2964,11 +2964,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/EventSettings/EventSettingsView.m"
-            timestampString = "471745179.780565"
+            timestampString = "471817283.630387"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
             landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2980,11 +2980,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/EventSettings/EventSettingsView.m"
-            timestampString = "471770032.63565"
+            timestampString = "471817283.630387"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "179"
-            endingLineNumber = "179"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
             landmarkName = "-updateCellContents"
             landmarkType = "5">
          </BreakpointContent>
@@ -3002,6 +3002,54 @@
             startingLineNumber = "81"
             endingLineNumber = "81"
             landmarkName = "-setRandomValues:data:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../MyApp/MyApp/Classes/LocalData/PlaceLocalDataUtil.m"
+            timestampString = "471813303.684398"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "-setRandomValues:data:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/CalendarViewController.m"
+            timestampString = "471817271.166946"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "283"
+            endingLineNumber = "283"
+            landmarkName = "-didChangeViewModeTouch"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../MyApp/MyApp/Classes/Tabs/05_Events/CalendarViewController.m"
+            timestampString = "471817415.690297"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "316"
+            endingLineNumber = "316"
+            landmarkName = "-actionSheet:clickedButtonAtIndex:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

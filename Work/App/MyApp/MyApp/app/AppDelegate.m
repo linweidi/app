@@ -107,16 +107,18 @@ typedef enum {
     
     
     //configuration
-    ConfigurationManager * configManager = [ConfigurationManager sharedManager];
+    //ConfigurationManager * configManager = [ConfigurationManager sharedManager];
     
     [[DocumentHelper sharedManager] createMainQueueManagedObjectContext:^(BOOL succeeded) {
         if (succeeded) {
             // nothing
             
 #ifdef LOCAL_MODE
-            BOOL firstStart = [userDefaults boolForKey:USER_DEFAULTS_FIRST_START];
             
 #ifndef DEBUG_ALWAYS_CREATE_DATA
+            BOOL firstStart = [userDefaults boolForKey:USER_DEFAULTS_FIRST_START];
+            
+
             if (firstStart) {
 #endif
                 //User *object = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:configManager.managedObjectContext];
@@ -252,7 +254,7 @@ typedef enum {
     tabBarItem.title = @"Recent";
     [tabBarItem setImage:[UIImage imageNamed:@"tab_recent"]];
     tabBarItem = [self.tabBarController.tabBar.items objectAtIndex:2];
-    tabBarItem.title = @"Groups";
+    tabBarItem.title = @"Social";
     [tabBarItem setImage:[UIImage imageNamed:@"tab_groups"]];
     tabBarItem = [self.tabBarController.tabBar.items objectAtIndex:3];
     tabBarItem.title = @"People";

@@ -276,7 +276,7 @@
 }
 
 - (void)loadAvatar:(User *)user {
-#warning Maybe I can use thumbnail here
+#warning TODO Maybe I can use thumbnail here
     /*
     ///legacy: this is the code for loading picture
 	RemoteFile *file = [RemoteFile fileWithName:user.pictureName url:user.pictureURL];

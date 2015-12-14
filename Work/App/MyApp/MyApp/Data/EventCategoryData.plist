@@ -37,7 +37,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string></string>
+		<string>category_concert</string>
 	</dict>
 	<key>Study</key>
 	<dict>
@@ -69,7 +69,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>category_study</string>
+		<string>category_study4</string>
 	</dict>
 	<key>Health</key>
 	<dict>
@@ -103,7 +103,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>category_health</string>
+		<string>category_sports2</string>
 	</dict>
 	<key>Domestic</key>
 	<dict>
@@ -141,7 +141,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>category_domestic</string>
+		<string>category_domestic2</string>
 	</dict>
 	<key>Work</key>
 	<dict>
@@ -173,7 +173,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>category_work</string>
+		<string>category_work4</string>
 	</dict>
 	<key>Charity</key>
 	<dict>
@@ -205,7 +205,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>category_science-chemistry</string>
+		<string>category_charity</string>
 	</dict>
 	<key>Miscellaneous</key>
 	<dict>
@@ -237,7 +237,7 @@
 		<key>notes</key>
 		<string></string>
 		<key>thumb</key>
-		<string>category_miscellaneous</string>
+		<string>category_miscellaneous2</string>
 	</dict>
 	<key>Karaoke</key>
 	<dict>

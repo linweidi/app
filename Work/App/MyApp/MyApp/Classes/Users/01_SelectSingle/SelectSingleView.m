@@ -17,6 +17,7 @@
 #import "CurrentUser+Util.h"
 #import "ConfigurationManager.h"
 #import "UserRemoteUtil.h"
+#import "Thumbnail+Util.h"
 #import "SelectSingleView.h"
 
 
@@ -207,6 +208,8 @@
 #ifdef LOCAL_MODE
     User *user = users[indexPath.row];
     cell.textLabel.text = user.fullname;
+    
+    [cell.imageView setImage:[UIImage imageWithData:user.thumbnail.data]];
 #endif
 	return cell;
 }

@@ -39,6 +39,8 @@
 
 #import "EventCategoryLevelView.h"
 #import "EventLocalDataUtil.h"
+
+#import "EventActionView.h"
 #import "CreateEventView.h"
 
 
@@ -510,14 +512,15 @@
     switch (indexPath.section) {
         case EVENT_SETTING_VIEW_SECTION_TITLE_INDEX:
             if (indexPath.row == 0) {
-                //cell = self.titleCell;
-                //[self actionSingleCell:self.titleCell.textLabel.text text:self.titleCell.detailTextLabel.text indexPath:indexPath];
-            }
-            if (indexPath.row == 1) {
                 //cell = self.categoryCell;
                 EventCategoryLevelView * eventCatLevelVC = [[EventCategoryLevelView alloc] init];
                 eventCatLevelVC.delegate = self;
                 [self.navigationController pushViewController:eventCatLevelVC animated:YES];
+                
+            }
+            if (indexPath.row == 1) {
+                //cell = self.titleCell;
+                //[self actionSingleCell:self.titleCell.textLabel.text text:self.titleCell.detailTextLabel.text indexPath:indexPath];
             }
             if (indexPath.row == 2) {
                 //cell = self.locationCell;
@@ -606,7 +609,10 @@
         }
         
         [self updateCellContents];
-        [self.navigationController popViewControllerAnimated:YES];
+        //[self.navigationController popViewControllerAnimated:YES];
+        
+        EventActionView * actionVC = [[EventActionView alloc] initWithEventID:event.globalID];
+        [self.navigationController pushViewController:actionVC animated:YES];
     }
     
 }

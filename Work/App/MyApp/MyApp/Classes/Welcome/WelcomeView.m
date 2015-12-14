@@ -25,30 +25,30 @@
 
 @implementation WelcomeView
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)viewDidLoad
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	[super viewDidLoad];
 	self.title = @"Welcome";
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
 	[self.navigationItem setBackBarButtonItem:backButton];
 }
 
 #pragma mark - User actions
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (IBAction)actionRegister:(id)sender
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	RegisterView *registerView = [[RegisterView alloc] init];
 	[self.navigationController pushViewController:registerView animated:YES];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (IBAction)actionLogin:(id)sender
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	LoginView *loginView = [[LoginView alloc] init];
 	[self.navigationController pushViewController:loginView animated:YES];
@@ -56,9 +56,9 @@
 
 #pragma mark - Twitter login methods
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (IBAction)actionTwitter:(id)sender
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	[ProgressHUD show:@"Signing in..." Interaction:NO];
 	[PFTwitterUtils logInWithBlock:^(PFUser *user, NSError *error)
@@ -75,12 +75,12 @@
 	}];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)processTwitter:(PFUser *)user
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	PF_Twitter *twitter = [PFTwitterUtils twitter];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	user[PF_USER_FULLNAME] = twitter.screenName;
 	user[PF_USER_FULLNAME_LOWER] = [twitter.screenName lowercaseString];
 	user[PF_USER_TWITTERID] = twitter.userId;
@@ -97,12 +97,12 @@
 
 #pragma mark - Facebook login methods
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (IBAction)actionFacebook:(id)sender
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	[ProgressHUD show:@"Signing in..." Interaction:NO];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	NSArray *permissionsArray = @[@"public_profile", @"email", @"user_friends"];
 	[PFFacebookUtils logInInBackgroundWithReadPermissions:permissionsArray block:^(PFUser *user, NSError *error)
 	{
@@ -118,9 +118,9 @@
 	}];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)requestFacebook:(PFUser *)user
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me?fields=id,email,name" parameters:nil];
 	[request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error)
@@ -138,41 +138,41 @@
 	}];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)processFacebook:(PFUser *)user UserData:(NSDictionary *)userData
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	NSString *link = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=large", userData[@"id"]];
 	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:link]];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
 	operation.responseSerializer = [AFImageResponseSerializer serializer];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	[operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
 	{
 		UIImage *image = (UIImage *)responseObject;
-		//-----------------------------------------------------------------------------------------------------------------------------------------
+		
 		UIImage *picture = ResizeImage(image, 280, 280);
 		UIImage *thumbnail = ResizeImage(image, 60, 60);
-		//-----------------------------------------------------------------------------------------------------------------------------------------
+		
 		PFFile *filePicture = [PFFile fileWithName:@"picture.jpg" data:UIImageJPEGRepresentation(picture, 0.6)];
 		[filePicture saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
 		{
 			if (error != nil) [ProgressHUD showError:@"Network error."];
 		}];
-		//-----------------------------------------------------------------------------------------------------------------------------------------
+		
 		PFFile *fileThumbnail = [PFFile fileWithName:@"thumbnail.jpg" data:UIImageJPEGRepresentation(thumbnail, 0.6)];
 		[fileThumbnail saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
 		{
 			if (error != nil) [ProgressHUD showError:@"Network error."];
 		}];
-		//---------------------------------------------------------------------------------------------------------------------------------------------
+		
 		NSString *name = userData[@"name"];
 		NSString *email = userData[@"email"];
-		//---------------------------------------------------------------------------------------------------------------------------------------------
+		
 		if (name == nil) name = @"";
 		if (email == nil) email = @"";
-		//---------------------------------------------------------------------------------------------------------------------------------------------
+		
 		user[PF_USER_EMAILCOPY] = email;
 		user[PF_USER_FULLNAME] = name;
 		user[PF_USER_FULLNAME_LOWER] = [userData[@"name"] lowercaseString];
@@ -194,15 +194,15 @@
 		[PFUser logOut];
 		[ProgressHUD showError:@"Failed to fetch Facebook profile picture."];
 	}];
-	//---------------------------------------------------------------------------------------------------------------------------------------------
+	
 	[[NSOperationQueue mainQueue] addOperation:operation];
 }
 
 #pragma mark - Helper methods
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 - (void)userLoggedIn:(PFUser *)user
-//-------------------------------------------------------------------------------------------------------------------------------------------------
+
 {
 	ParsePushUserAssign();
 	[ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome back %@!", user[PF_USER_FULLNAME]]];

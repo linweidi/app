@@ -21,6 +21,7 @@
 
 #import "ConfigurationManager.h"
 #import "UserRemoteUtil.h"
+#import "Thumbnail+Util.h"
 #import "SelectMultipleView.h"
 
 
@@ -254,7 +255,7 @@
 #ifdef LOCAL_MODE
     User *user = userstemp[indexPath.row];
     cell.textLabel.text = user.fullname;
-    
+    [cell.imageView setImage:[UIImage imageWithData:user.thumbnail.data]];
     BOOL selected = [selection containsObject:user.globalID];
 #endif
     
